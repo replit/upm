@@ -95,6 +95,7 @@ listed in the specfile. Print each one on a separate line to stdout.
     nodejs
     nodejs-npm
     nodejs-yarn
+    ruby-bundle
 
     $ upm search flask
     Flask
@@ -152,3 +153,37 @@ listed in the specfile. Print each one on a separate line to stdout.
     Jinja2        2.10.1
     MarkupSafe    1.1.1
     Werkzeug      0.15.4
+
+## Feature matrix
+
+|               | python-pip                | python-pipenv    | python-poetry  | nodejs-npm         | nodejs-yarn         | ruby-bundle               |
+|---------------|:--------------------------|:-----------------|:---------------|:-------------------|:--------------------|:--------------------------|
+| upm search    | pip search (?)            | pip search (?)   | pip search (?) | npm search         | npm search          | gem search                |
+| upm info      | pypi info (?)             | pypi info (?)    | pypi info (?)  | npm view           | yarn info           | gem info -r               |
+| upm add       | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
+| upm add -v    | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
+| upm add -n    | echo >> requirements.txt  |                  |                |                    |                     | bundle add --skip-install |
+| upm remove    | (2)                       | pipenv uninstall | poetry remove  | npm uninstall      | yarn remove         | bundle remove             |
+| upm remove -n | sed -i requirements.txt   |                  |                |                    |                     |                           |
+| upm lock      | (3)                       | pipenv update    | poetry update  | npm install        | yarn upgrade        | bundle update             |
+| upm lock -N   |                           | pipenv lock      | poetry lock    |                    |                     |                           |
+| upm install   | (3)                       | pipenv sync      | poetry install | npm install        | yarn install        | bundle install            |
+| upm list      | cat requirements.txt      |                  |                | npm list --depth=0 |                     |                           |
+| upm list -a   | cat requirements-lock.txt | pip list         |                | npm list           | yarn list --depth=0 | bunder list               |
+
+1. echo >> requirements.txt &&
+   rm -rf VENV &&
+   python -m venv VENV &&
+   VENV/bin/pip install -r requirements.txt &&
+   VENV/bin/pip freeze > requirements-lock.txt
+
+2. sed -i requirements.txt &&
+   rm -rf VENV &&
+   python -m venv VENV &&
+   VENV/bin/pip install -r requirements.txt &&
+   VENV/bin/pip freeze > requirements-lock.txt
+
+3. rm -rf VENV &&
+   python -m venv VENV &&
+   VENV/bin/pip install -r requirements.txt &&
+   VENV/bin/pip freeze > requirements-lock.txt
