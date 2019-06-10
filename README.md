@@ -44,10 +44,10 @@ Show metadata about a package. Default to table format.
 Add a package to the specfile. Unless `--no-lock` is given, proceed to
 update the lockfile and the specfile and reinstall packages (if
 necessary, and unless `--no-install` is given). You can give a
-specific version spec, or omit to use the default (the latest version,
-or something similarly reasonable). If `--guess` is given, then `upm
-guess` is implicitly run and the output is combined with the packages
-given on the command line.
+specific version spec with `--version`, or omit to use the default
+(the latest version, or something similarly reasonable). If `--guess`
+is given, then `upm guess` is implicitly run and the output is
+combined with the packages given on the command line.
 
     $ upm remove <package> [-n, --no-lock] [-N, --no-install]
 
