@@ -102,13 +102,13 @@ listed in the specfile. Print each one on a separate line to stdout.
     Flask-Mime
 
     $ upm info flask
-    name:         Flask
-    description:  A simple framework for building complex web applications.
-    version:      1.0.3
-    homepage:     https://www.palletsprojects.com/p/flask/
-    docs:         http://flask.pocoo.org/docs/
-    source:       https://github.com/pallets/flask
-    bugs:         https://github.com/pallets/flask/issues
+    name          Flask
+    description   A simple framework for building complex web applications.
+    version       1.0.3
+    homepage      https://www.palletsprojects.com/p/flask/
+    docs          http://flask.pocoo.org/docs/
+    source        https://github.com/pallets/flask
+    bugs          https://github.com/pallets/flask/issues
 
     $ upm info flask --format=json
     {
