@@ -36,32 +36,27 @@ names.
 Show metadata about a package. Default to table format.
 
     $ upm add <package>
-        [-n, --no-lock]
-        [-N, --no-install]
         [-v, --version=SPEC]
         [--guess]
 
-Add a package to the specfile. Unless `--no-lock` is given, proceed to
-update the lockfile and the specfile and reinstall packages (if
-necessary, and unless `--no-install` is given). You can give a
-specific version spec with `--version`, or omit to use the default
-(the latest version, or something similarly reasonable). If `--guess`
-is given, then `upm guess` is implicitly run and the output is
-combined with the packages given on the command line.
+Add a package to the specfile. Then update the lockfile and specfile,
+and reinstall packages. You can give a specific version spec with
+`--version`, or omit to use the default (the latest version, or
+something similarly reasonable). If `--guess` is given, then `upm
+guess` is implicitly run and the output is combined with the packages
+given on the command line.
 
-    $ upm remove <package> [-n, --no-lock] [-N, --no-install]
+    $ upm remove <package>
 
-Remove a package from the specfile, but don't do anything else. Unless
-`--no-lock` is given, proceed to update the lockfile and the specfile
-and reinstall packages (if necessary, and unless `--no-install` is
-given).
+Remove a package from the specfile. Then update the lockfile and the
+specfile and reinstall packages.
 
-    $ upm lock <package> [-N, --no-install] [-f, --force]
+    $ upm lock <package> [-f, --force]
 
-Update the lockfile from the specfile, if necessary. Unless
-`--no-install` is given, proceed to reinstall packages from the
-lockfile. If `--force` is given, always update the lockfile, even if
-the specfile has not been changed since the last update.
+Update the lockfile from the specfile, if necessary. Then reinstall
+packages from the lockfile. If `--force` is given, always update the
+lockfile, even if the specfile has not been changed since the last
+update.
 
     $ upm install [-f, --force]
 
@@ -164,11 +159,8 @@ listed in the specfile. Print each one on a separate line to stdout.
 | upm info      | pypi info (?)             | pypi info (?)    | pypi info (?)  | npm view           | yarn info           | gem info -r               |
 | upm add       | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
 | upm add -v    | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
-| upm add -n    | echo >> requirements.txt  |                  |                |                    |                     | bundle add --skip-install |
 | upm remove    | (2)                       | pipenv uninstall | poetry remove  | npm uninstall      | yarn remove         | bundle remove             |
-| upm remove -n | sed -i requirements.txt   |                  |                |                    |                     |                           |
 | upm lock      | (3)                       | pipenv update    | poetry update  | npm install        | yarn upgrade        | bundle update             |
-| upm lock -N   |                           | pipenv lock      | poetry lock    |                    |                     |                           |
 | upm install   | (3)                       | pipenv sync      | poetry install | npm install        | yarn install        | bundle install            |
 | upm list      | cat requirements.txt      |                  |                | npm list --depth=0 |                     |                           |
 | upm list -a   | cat requirements-lock.txt | pip list         |                | npm list           | yarn list --depth=0 | bunder list               |
