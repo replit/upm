@@ -15,42 +15,62 @@ const (
 
 func runWhichLanguage() {
 	fmt.Println("upm which-language")
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runListLanguages() {
 	fmt.Println("upm list-languages")
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runSearch(language string, queries []string) {
 	fmt.Printf("upm search %#v\n", queries)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runInfo(language string, pkg string, format InfoFormat) {
 	fmt.Printf("upm info %#v --format=%#v\n", pkg, format)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runAdd(language string, pkgsWithSpecs []string, guess bool) {
 	fmt.Printf("upm add %#v --guess=%#v\n", pkgsWithSpecs, guess)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runRemove(language string, pkgs []string) {
 	fmt.Printf("upm remove %#v\n", pkgs)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runLock(language string, force bool) {
 	fmt.Printf("upm lock --force=%#v\n", force)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runInstall(language string, force bool) {
 	fmt.Printf("upm install --force=%#v\n", force)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runList(language string, all bool) {
 	fmt.Printf("upm list --all=%#v\n", all)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func runGuess(language string, all bool) {
 	fmt.Printf("upm guess --all=%#v\n", all)
+	fmt.Println("not implemented yet")
+	os.Exit(1)
 }
 
 func getVersion() string {
