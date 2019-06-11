@@ -1,83 +1,153 @@
-package main
+package internal
 
 import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
+	"strings"
 )
 
-type InfoFormat int
+type outputFormat int
 
 const (
-	InfoFormatTable InfoFormat = iota
-	InfoFormatJSON
+	outputFormatTable outputFormat = iota
+	outputFormatJSON
 )
 
+func parseOutputFormat(formatStr string) outputFormat {
+	switch formatStr {
+	case "table":
+		return outputFormatTable
+	case "json":
+		return outputFormatJSON
+	default:
+		die(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
+		return 0
+	}
+}
+
 func runWhichLanguage() {
-	fmt.Println("upm which-language")
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	backend := getBackend("")
+	fmt.Println(backend.name)
 }
 
 func runListLanguages() {
-	fmt.Println("upm list-languages")
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	for _, backendName := range getBackendNames() {
+		fmt.Println(backendName)
+	}
 }
 
-func runSearch(language string, queries []string) {
-	fmt.Printf("upm search %#v\n", queries)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+func runSearch(language string, queries []string, outputFormat outputFormat) {
+	results := getBackend(language).search(queries)
+	fmt.Printf("output %#v in format %#v\n", results, outputFormat)
+	notImplemented()
 }
 
-func runInfo(language string, pkg string, format InfoFormat) {
-	fmt.Printf("upm info %#v --format=%#v\n", pkg, format)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+func runInfo(language string, pkg string, outputFormat outputFormat) {
+	info := getBackend(language).info(pkg)
+	fmt.Printf("output %#v in format %#v\n", info, outputFormat)
+	notImplemented()
 }
 
-func runAdd(language string, pkgsWithSpecs []string, guess bool) {
-	fmt.Printf("upm add %#v --guess=%#v\n", pkgsWithSpecs, guess)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+func runAdd(language string, pkgSpecStrs []string, guess bool) {
+	pkgSpecs := []pkgSpec{}
+	for _, pkgSpecStr := range pkgSpecStrs {
+		fields := strings.Fields(pkgSpecStr)
+		if !(len(fields) >= 1 && len(fields) <= 2) {
+			fmt.Fprintf(os.Stderr, "invalid package/spec: %#v\n", pkgSpecStr)
+			os.Exit(1)
+		}
+		pkg := fields[0]
+		var spec string
+		if len(fields) >= 2 {
+			spec = fields[1]
+		}
+		pkgSpecs = append(pkgSpecs, pkgSpec{pkg, spec})
+	}
+
+	backend := getBackend(language)
+	if guess {
+		for _, guessedPkg := range backend.guess() {
+			alreadyAdded := false
+			for _, givenSpec := range pkgSpecs {
+				if givenSpec.pkg == guessedPkg {
+					alreadyAdded = true
+					break
+				}
+			}
+			if !alreadyAdded {
+				pkgSpecs = append(pkgSpecs, pkgSpec{pkg: guessedPkg})
+			}
+		}
+	}
+
+	existingPkgs := backend.list(false)
+	filteredSpecs := []pkgSpec{}
+	for _, spec := range pkgSpecs {
+		alreadyExists := false
+		for _, existingPkg := range existingPkgs {
+			if (existingPkg.name == spec.pkg) {
+				alreadyExists = true
+				break
+			}
+		}
+		if (!alreadyExists) {
+			filteredSpecs = append(filteredSpecs, spec)
+		}
+	}
+
+	backend.add(filteredSpecs)
 }
 
 func runRemove(language string, pkgs []string) {
-	fmt.Printf("upm remove %#v\n", pkgs)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	getBackend(language).remove(pkgs)
 }
 
 func runLock(language string, force bool) {
-	fmt.Printf("upm lock --force=%#v\n", force)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	notImplemented()
 }
 
 func runInstall(language string, force bool) {
-	fmt.Printf("upm install --force=%#v\n", force)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	notImplemented()
 }
 
-func runList(language string, all bool) {
-	fmt.Printf("upm list --all=%#v\n", all)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+func runList(language string, all bool, outputFormat outputFormat) {
+	results := getBackend(language).list(all)
+	fmt.Printf("output %#v in format %#v\n", results, outputFormat)
+	notImplemented()
 }
 
 func runGuess(language string, all bool) {
-	fmt.Printf("upm guess --all=%#v\n", all)
-	fmt.Println("not implemented yet")
-	os.Exit(1)
+	backend := getBackend(language)
+	guessedPkgs := backend.guess()
+	if (!all) {
+		existingPkgs := backend.list(false)
+		filteredGuesses := []string{}
+		for _, guessedPkg := range guessedPkgs {
+			alreadyAdded := false
+			for _, existingPkg := range existingPkgs {
+				if existingPkg.name == guessedPkg {
+					alreadyAdded = true
+					break
+				}
+			}
+			if !alreadyAdded {
+				filteredGuesses = append(filteredGuesses, guessedPkg)
+			}
+		}
+		guessedPkgs = filteredGuesses
+	}
+
+	for _, pkg := range guessedPkgs {
+		fmt.Println(pkg)
+	}
 }
 
 func getVersion() string {
 	return "upm development version"
 }
 
-func main() {
+func DoCLI() {
 	var language string
 	var formatStr string
 	var guess bool
@@ -126,9 +196,13 @@ func main() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			queries := args
-			runSearch(language, queries)
+			outputFormat := parseOutputFormat(formatStr)
+			runSearch(language, queries, outputFormat)
 		},
 	}
+	cmdSearch.PersistentFlags().StringVarP(
+		&formatStr, "format", "f", "table", `output format ("table" or "json")`,
+	)
 	rootCmd.AddCommand(cmdSearch)
 
 	var cmdInfo *cobra.Command
@@ -138,19 +212,9 @@ func main() {
 		Short:   "Show package information from online registry",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			var format InfoFormat
-			switch formatStr {
-			case "table":
-				format = InfoFormatTable
-			case "json":
-				format = InfoFormatJSON
-			default:
-				fmt.Fprintf(os.Stderr, `Error: invalid format %#v (must be "table" or "json")`, formatStr)
-				fmt.Fprintln(os.Stderr)
-				os.Exit(1)
-			}
 			pkg := args[0]
-			runInfo(language, pkg, format)
+			outputFormat := parseOutputFormat(formatStr)
+			runInfo(language, pkg, outputFormat)
 		},
 	}
 	cmdInfo.PersistentFlags().StringVarP(
@@ -163,8 +227,8 @@ func main() {
 		Short: "Add packages to the specfile",
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			pkgsWithSpecs := args
-			runAdd(language, pkgsWithSpecs, guess)
+			pkgSpecStrs := args
+			runAdd(language, pkgSpecStrs, guess)
 		},
 	}
 	cmdAdd.PersistentFlags().BoolVarP(
@@ -222,11 +286,15 @@ func main() {
 		Long:  "List packages from the specfile",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runList(language, all)
+			outputFormat := parseOutputFormat(formatStr)
+			runList(language, all, outputFormat)
 		},
 	}
 	cmdList.PersistentFlags().BoolVarP(
 		&all, "all", "a", false, "list packages from the lockfile instead",
+	)
+	cmdList.PersistentFlags().StringVarP(
+		&formatStr, "format", "f", "table", `output format ("table" or "json")`,
 	)
 	rootCmd.AddCommand(cmdList)
 

@@ -66,7 +66,7 @@ last install.
 
 Alias for `upm lock --force`.
 
-    $ upm list [-a, --all]
+    $ upm list [-a, --all] [-f, --format=(table|json)]
 
 List packages from the specfile, with versions (if applicable). If
 `--all` is given, list packages from the lockfile instead.
@@ -151,17 +151,17 @@ If `--all` is given, list also packages already in the specfile.
 
 ## Feature matrix
 
-|               | python-pip                | python-pipenv    | python-poetry  | nodejs-npm         | nodejs-yarn         | ruby-bundle               |
-|---------------|:--------------------------|:-----------------|:---------------|:-------------------|:--------------------|:--------------------------|
-| upm search    | pip search (?)            | pip search (?)   | pip search (?) | npm search         | npm search          | gem search                |
-| upm info      | pypi info (?)             | pypi info (?)    | pypi info (?)  | npm view           | yarn info           | gem info -r               |
-| upm add       | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
-| upm add -v    | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add                |
-| upm remove    | (2)                       | pipenv uninstall | poetry remove  | npm uninstall      | yarn remove         | bundle remove             |
-| upm lock      | (3)                       | pipenv update    | poetry update  | npm install        | yarn upgrade        | bundle update             |
-| upm install   | (3)                       | pipenv sync      | poetry install | npm install        | yarn install        | bundle install            |
-| upm list      | cat requirements.txt      |                  |                | npm list --depth=0 |                     |                           |
-| upm list -a   | cat requirements-lock.txt | pip list         |                | npm list           | yarn list --depth=0 | bunder list               |
+|             | python-pip                | python-pipenv    | python-poetry  | nodejs-npm         | nodejs-yarn         | ruby-bundle    |
+|-------------|:--------------------------|:-----------------|:---------------|:-------------------|:--------------------|:---------------|
+| upm search  | pip search (?)            | pip search (?)   | pip search (?) | npm search         | npm search          | gem search     |
+| upm info    | pypi info (?)             | pypi info (?)    | pypi info (?)  | npm view           | yarn info           | gem info -r    |
+| upm add     | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add     |
+| upm add -v  | (1)                       | pipenv install   | poetry add     | npm install        | yarn add            | bundle add     |
+| upm remove  | (2)                       | pipenv uninstall | poetry remove  | npm uninstall      | yarn remove         | bundle remove  |
+| upm lock    | (3)                       | pipenv update    | poetry update  | npm install        | yarn upgrade        | bundle update  |
+| upm install | (3)                       | pipenv sync      | poetry install | npm install        | yarn install        | bundle install |
+| upm list    | cat requirements.txt      |                  |                | npm list --depth=0 |                     |                |
+| upm list -a | cat requirements-lock.txt | pip list         |                | npm list           | yarn list --depth=0 | bunder list    |
 
 1. echo >> requirements.txt &&
    rm -rf VENV &&
