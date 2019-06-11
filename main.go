@@ -85,7 +85,7 @@ func main() {
 	var all bool
 
 	rootCmd := &cobra.Command{
-		Use: "upm",
+		Use:     "upm",
 		Version: getVersion(),
 	}
 	rootCmd.SetVersionTemplate(`{{.Version}}` + "\n")
@@ -243,15 +243,15 @@ func main() {
 	)
 	rootCmd.AddCommand(cmdGuess)
 
-	specialArgs := map[string](func ()){}
+	specialArgs := map[string](func()){}
 	for _, helpFlag := range []string{"-help", "-?"} {
-		specialArgs[helpFlag] = func () {
+		specialArgs[helpFlag] = func() {
 			rootCmd.Usage()
 			os.Exit(0)
 		}
 	}
 	for _, versionFlag := range []string{"-version", "-V"} {
-		specialArgs[versionFlag] = func () {
+		specialArgs[versionFlag] = func() {
 			fmt.Println(getVersion())
 			os.Exit(0)
 		}
