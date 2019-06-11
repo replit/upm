@@ -21,35 +21,35 @@ func runListLanguages() {
 	fmt.Println("upm list-languages")
 }
 
-func runSearch(queries []string) {
+func runSearch(language string, queries []string) {
 	fmt.Printf("upm search %#v\n", queries)
 }
 
-func runInfo(pkg string, format InfoFormat) {
+func runInfo(language string, pkg string, format InfoFormat) {
 	fmt.Printf("upm info %#v --format=%#v\n", pkg, format)
 }
 
-func runAdd(pkgsWithSpecs []string, guess bool) {
+func runAdd(language string, pkgsWithSpecs []string, guess bool) {
 	fmt.Printf("upm add %#v --guess=%#v\n", pkgsWithSpecs, guess)
 }
 
-func runRemove(pkgs []string) {
+func runRemove(language string, pkgs []string) {
 	fmt.Printf("upm remove %#v\n", pkgs)
 }
 
-func runLock(force bool) {
+func runLock(language string, force bool) {
 	fmt.Printf("upm lock --force=%#v\n", force)
 }
 
-func runInstall(force bool) {
+func runInstall(language string, force bool) {
 	fmt.Printf("upm install --force=%#v\n", force)
 }
 
-func runList(all bool) {
+func runList(language string, all bool) {
 	fmt.Printf("upm list --all=%#v\n", all)
 }
 
-func runGuess(all bool) {
+func runGuess(language string, all bool) {
 	fmt.Printf("upm guess --all=%#v\n", all)
 }
 
@@ -58,7 +58,7 @@ func getVersion() string {
 }
 
 func main() {
-	var langs []string
+	var language string
 	var formatStr string
 	var guess bool
 	var force bool
@@ -75,8 +75,8 @@ func main() {
 	rootCmd.PersistentFlags().BoolP(
 		"version", "v", false, "display command version",
 	)
-	rootCmd.PersistentFlags().StringArrayVarP(
-		&langs, "lang", "l", nil, "specify project language(s) manually",
+	rootCmd.PersistentFlags().StringVarP(
+		&language, "lang", "l", "", "specify project language(s) manually",
 	)
 
 	cmdWhichLanguage := &cobra.Command{
@@ -106,7 +106,7 @@ func main() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			queries := args
-			runSearch(queries)
+			runSearch(language, queries)
 		},
 	}
 	rootCmd.AddCommand(cmdSearch)
@@ -130,7 +130,7 @@ func main() {
 				os.Exit(1)
 			}
 			pkg := args[0]
-			runInfo(pkg, format)
+			runInfo(language, pkg, format)
 		},
 	}
 	cmdInfo.PersistentFlags().StringVarP(
@@ -144,7 +144,7 @@ func main() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgsWithSpecs := args
-			runAdd(pkgsWithSpecs, guess)
+			runAdd(language, pkgsWithSpecs, guess)
 		},
 	}
 	cmdAdd.PersistentFlags().BoolVarP(
@@ -158,7 +158,7 @@ func main() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgs := args
-			runRemove(pkgs)
+			runRemove(language, pkgs)
 		},
 	}
 	rootCmd.AddCommand(cmdRemove)
@@ -175,7 +175,7 @@ func main() {
 					force = true
 				}
 			}
-			runLock(force)
+			runLock(language, force)
 		},
 	}
 	cmdLock.PersistentFlags().BoolVarP(
@@ -188,7 +188,7 @@ func main() {
 		Short: "Install packages from the lockfile",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runInstall(force)
+			runInstall(language, force)
 		},
 	}
 	cmdInstall.PersistentFlags().BoolVarP(
@@ -202,7 +202,7 @@ func main() {
 		Long:  "List packages from the specfile",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runList(all)
+			runList(language, all)
 		},
 	}
 	cmdList.PersistentFlags().BoolVarP(
@@ -215,7 +215,7 @@ func main() {
 		Short: "Guess what packages are needed by your project",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runGuess(all)
+			runGuess(language, all)
 		},
 	}
 	cmdGuess.PersistentFlags().BoolVarP(

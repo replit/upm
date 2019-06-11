@@ -15,8 +15,6 @@ Get the version of UPM.
     $ upm [-l, --lang=LANG] CMD
 
 Run a UPM command. Specify a language or have it auto-detected.
-Multiple languages can be provided, in which case the selected command
-is run for all of them.
 
     $ upm which-language
 
