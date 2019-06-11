@@ -26,32 +26,31 @@ Ask what language UPM thinks your project is.
 
 List the names of the languages that are supported by UPM.
 
-    $ upm search <query>
+    $ upm search QUERY...
 
 Searches the package index. Print out a truncated list of package
 names.
 
-    $ upm (show | info) [-f, --format=(table|json)]
+    $ upm (info | show) PACKAGE [-f, --format=(table|json)]
 
 Show metadata about a package. Default to table format.
 
-    $ upm add <package>
-        [-v, --version=SPEC]
-        [--guess]
+    $ upm add "PACKAGE[ SPEC]"... [-g, --guess]
 
-Add a package to the specfile. Then update the lockfile and specfile,
-and reinstall packages. You can give a specific version spec with
-`--version`, or omit to use the default (the latest version, or
-something similarly reasonable). If `--guess` is given, then `upm
-guess` is implicitly run and the output is combined with the packages
-given on the command line.
+Add packages to the specfile. Then update the lockfile and specfile,
+and reinstall packages. You can give a specific version spec as part
+of the same argument as the package name, delimited by a space, or
+omit to use the default (the latest version, or something similarly
+reasonable). If `--guess` is given, then `upm guess` is implicitly run
+and the output is combined with the packages given on the command
+line.
 
-    $ upm remove <package>
+    $ upm remove PACKAGE...
 
-Remove a package from the specfile. Then update the lockfile and the
+Remove packages from the specfile. Then update the lockfile and the
 specfile and reinstall packages.
 
-    $ upm lock <package> [-f, --force]
+    $ upm lock [-f, --force]
 
 Update the lockfile from the specfile, if necessary. Then reinstall
 packages from the lockfile. If `--force` is given, always update the
@@ -74,10 +73,11 @@ Alias for `upm lock --force`.
 List packages from the specfile, with versions (if applicable). If
 `--all` is given, list packages from the lockfile instead.
 
-    $ upm guess
+    $ upm guess [-a, --all]
 
 Guess what packages are required by the project but not currently
 listed in the specfile. Print each one on a separate line to stdout.
+If `--all` is given, list also packages already in the specfile.
 
 ## Example usage
 
