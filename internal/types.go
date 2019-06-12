@@ -1,5 +1,16 @@
 package internal
 
+// Shared between cli and cmds
+
+type outputFormat int
+
+const (
+	outputFormatTable outputFormat = iota
+	outputFormatJSON
+)
+
+// Shared between cmds and backends
+
 type pkgName string
 type pkgSpec string
 type pkgVersion string
