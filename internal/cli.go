@@ -23,6 +23,8 @@ func getVersion() string {
 }
 
 func DoCLI() {
+	checkBackends()
+
 	var language string
 	var formatStr string
 	var guess bool

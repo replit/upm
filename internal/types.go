@@ -36,6 +36,7 @@ type pkgInfo struct {
 	dependencies []string
 }
 
+// Keep up to date with checkBackends in backends.go
 type languageBackend struct {
 	name string
 	specfile string

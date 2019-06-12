@@ -27,6 +27,14 @@ var languageBackends = []languageBackend{{
 	detect: func () bool {
 		return true
 	},
+	search: func ([]string) []pkgInfo {
+		notImplemented()
+		return nil
+	},
+	info: func (pkgName) pkgInfo {
+		notImplemented()
+		return pkgInfo{}
+	},
 	add: func (pkgs map[pkgName]pkgSpec) {
 		if _, err := os.Stat("pyproject.toml"); os.IsNotExist(err) {
 			runCmd([]string{"poetry", "init", "--no-interaction"})
@@ -91,7 +99,32 @@ var languageBackends = []languageBackend{{
 		}
 		return pkgs
 	},
+	guess: func () map[pkgName]bool {
+		notImplemented()
+		return nil
+	},
 }}
+
+// Keep up to date with languageBackend in types.go
+func checkBackends() {
+	for _, b := range languageBackends {
+		if (b.name == "" ||
+			b.specfile == "" ||
+			b.lockfile == "" ||
+			b.detect == nil ||
+			b.search == nil ||
+			b.info == nil ||
+			b.add == nil ||
+			b.remove == nil ||
+			b.lock == nil ||
+			b.install == nil ||
+			b.listSpecfile == nil ||
+			b.listLockfile == nil ||
+			b.guess == nil) {
+			panicf("language backend %s is incomplete", b.name)
+		}
+	}
+}
 
 func getBackend(language string) languageBackend {
 	if language != "" {
