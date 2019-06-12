@@ -14,8 +14,8 @@ const (
 type hash string
 
 type store struct {
-	specfileHash hash
-	lockfileHash hash
+	SpecfileHash hash
+	LockfileHash hash
 }
 
 // Shared between cmds and backends

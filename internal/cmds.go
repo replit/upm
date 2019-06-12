@@ -91,7 +91,7 @@ func runLock(language string, force bool) {
 	backend := getBackend(language)
 	store := readStore()
 	specfileHash := hashFile(backend.specfile)
-	if specfileHash == store.specfileHash && !force {
+	if specfileHash == store.SpecfileHash && !force {
 		return
 	}
 	backend.lock()
@@ -102,7 +102,7 @@ func runInstall(language string, force bool) {
 	backend := getBackend(language)
 	store := readStore()
 	lockfileHash := hashFile(backend.lockfile)
-	if lockfileHash == store.lockfileHash && !force {
+	if lockfileHash == store.LockfileHash && !force {
 		return
 	}
 	backend.install()

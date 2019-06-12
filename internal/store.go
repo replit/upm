@@ -54,6 +54,8 @@ func writeStore(store store) {
 	if err != nil {
 		panicf("writeStore: json.MarshallIndent failed", err)
 	}
+	bytes = append(bytes, '\n')
+
 	if err := ioutil.WriteFile(filename, bytes, 0666); err != nil {
 		die("%s: %s", filename, err)
 	}
@@ -61,14 +63,14 @@ func writeStore(store store) {
 
 func updateStoreHashes(specfile string, lockfile string) {
 	store := readStore()
-	store.specfileHash = hashFile(specfile)
-	store.lockfileHash = hashFile(lockfile)
+	store.SpecfileHash = hashFile(specfile)
+	store.LockfileHash = hashFile(lockfile)
 
-	if store.specfileHash == "" {
+	if store.SpecfileHash == "" {
 		die("file does not exist: %s", specfile)
 	}
 
-	if store.lockfileHash == "" {
+	if store.LockfileHash == "" {
 		die("file does not exist: %s", lockfile)
 	}
 
