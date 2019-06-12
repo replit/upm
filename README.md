@@ -4,8 +4,25 @@ Universal Package Manager. More info to come.
 
 ## Build and run
 
-To build UPM, run `make`. Then add `./cmd/upm` to your `$PATH` so that
-you can run the binary. To remove build artifacts, run `make clean`.
+    % make help
+    usage:
+      make upm     Build the UPM binary
+      make docker  Run a shell with UPM inside Docker
+      make clean   Remove build artifacts
+      make help    Show this message
+
+To build UPM, run `make` (or `make upm`). Then add the directory
+`./cmd/upm` to your `$PATH` so that you can run the binary. To remove
+build artifacts, run `make clean`.
+
+You can use [Docker](https://www.docker.com/) to avoid needing to
+install the package managers that UPM drives. To do this, run `make
+docker`. This will build an image and launch a shell inside the
+container with the UPM source directory on your computer synced with
+the filesystem inside the container. The same Makefile targets are
+available, and UPM is added to the `$PATH` automatically. You only
+need to restart the shell if you edit the Dockerfile or the scripts
+used by the Dockerfile.
 
 ## Command-line interface
 
@@ -184,3 +201,7 @@ If `--all` is given, list also packages already in the specfile.
    python -m venv VENV &&
    VENV/bin/pip install -r requirements.txt &&
    VENV/bin/pip freeze > requirements-lock.txt
+
+<!-- Local Variables: -->
+<!-- truncate-lines: t -->
+<!-- End: -->
