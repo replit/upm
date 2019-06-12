@@ -18,7 +18,10 @@ func notImplemented() {
 
 func runCmd(cmd []string) {
 	fmt.Println("-->", shellquote.Join(cmd...))
-	if err := exec.Command(cmd[0], cmd[1:]...).Run(); err != nil {
+	command := exec.Command(cmd[0], cmd[1:]...)
+	command.Stdout = os.Stderr
+	command.Stderr = os.Stderr
+	if err := command.Run(); err != nil {
 		die("%s", err)
 	}
 }
