@@ -81,12 +81,12 @@ func runAdd(language string, pkgSpecStrs []string, guess bool) {
 		}
 	}
 
-	existingPkgs := backend.list(false)
+	existingSpecs := backend.listSpecfile()
 	filteredSpecs := []pkgSpec{}
 	for _, spec := range pkgSpecs {
 		alreadyExists := false
-		for _, existingPkg := range existingPkgs {
-			if (existingPkg.name == spec.pkg) {
+		for _, existingSpec := range existingSpecs {
+			if (existingSpec.pkg == spec.pkg) {
 				alreadyExists = true
 				break
 			}
@@ -112,21 +112,28 @@ func runInstall(language string, force bool) {
 }
 
 func runList(language string, all bool, outputFormat outputFormat) {
-	results := getBackend(language).list(all)
-	fmt.Printf("output %#v in format %#v\n", results, outputFormat)
-	notImplemented()
+	backend := getBackend(language)
+	if all {
+		results := backend.listLockfile()
+		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
+		notImplemented()
+	} else {
+		results := backend.listSpecfile()
+		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
+		notImplemented()
+	}
 }
 
 func runGuess(language string, all bool) {
 	backend := getBackend(language)
 	guessedPkgs := backend.guess()
 	if (!all) {
-		existingPkgs := backend.list(false)
+		existingSpecs := backend.listSpecfile()
 		filteredGuesses := []string{}
 		for _, guessedPkg := range guessedPkgs {
 			alreadyAdded := false
-			for _, existingPkg := range existingPkgs {
-				if existingPkg.name == guessedPkg {
+			for _, existingSpec := range existingSpecs {
+				if existingSpec.pkg == guessedPkg {
 					alreadyAdded = true
 					break
 				}

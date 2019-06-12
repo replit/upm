@@ -5,6 +5,11 @@ type pkgSpec struct {
 	spec string
 }
 
+type pkgLock struct {
+	pkg string
+	version string
+}
+
 type pkgInfo struct {
 	name string
 	description string
@@ -28,6 +33,7 @@ type languageBackend struct {
 	remove func ([]string)
 	lock func ()
 	install func ()
-	list func (bool) []pkgInfo
+	listSpecfile func () []pkgSpec
+	listLockfile func () []pkgLock
 	guess func () []string
 }
