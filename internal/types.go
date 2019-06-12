@@ -9,6 +9,15 @@ const (
 	outputFormatJSON
 )
 
+// Shared between cmds and store
+
+type hash string
+
+type store struct {
+	specfileHash hash
+	lockfileHash hash
+}
+
 // Shared between cmds and backends
 
 type pkgName string

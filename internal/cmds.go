@@ -64,6 +64,8 @@ func runAdd(language string, args []string, guess bool) {
 	if len(pkgs) >= 1 {
 		backend.add(pkgs)
 	}
+
+	updateStoreHashes(backend.specfile, backend.lockfile)
 }
 
 func runRemove(language string, args []string) {
@@ -81,14 +83,30 @@ func runRemove(language string, args []string) {
 	if len(pkgs) >= 1 {
 		backend.remove(pkgs)
 	}
+
+	updateStoreHashes(backend.specfile, backend.lockfile)
 }
 
 func runLock(language string, force bool) {
-	notImplemented()
+	backend := getBackend(language)
+	store := readStore()
+	specfileHash := hashFile(backend.specfile)
+	if specfileHash == store.specfileHash && !force {
+		return
+	}
+	backend.lock()
+	updateStoreHashes(backend.specfile, backend.lockfile)
 }
 
 func runInstall(language string, force bool) {
-	notImplemented()
+	backend := getBackend(language)
+	store := readStore()
+	lockfileHash := hashFile(backend.lockfile)
+	if lockfileHash == store.lockfileHash && !force {
+		return
+	}
+	backend.install()
+	updateStoreHashes(backend.specfile, backend.lockfile)
 }
 
 func runList(language string, all bool, outputFormat outputFormat) {
