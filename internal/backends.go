@@ -32,6 +32,18 @@ var languageBackends = []languageBackend{{
 		}
 		runCmd(cmd)
 	},
+	remove: func (pkgs map[pkgName]bool) {
+		if _, err := os.Stat("pyproject.toml"); os.IsNotExist(err) {
+			return
+		} else if err != nil {
+			die("pyproject.toml: %s", err)
+		}
+		cmd := []string{"poetry", "remove"}
+		for name, _ := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		runCmd(cmd)
+	},
 	listSpecfile: func () map[pkgName]pkgSpec {
 		var cfg PyprojectToml
 		if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
