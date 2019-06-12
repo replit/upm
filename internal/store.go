@@ -52,7 +52,7 @@ func writeStore(store store) {
 
 	bytes, err := json.MarshalIndent(store, "", "  ")
 	if err != nil {
-		panicf("writeStore: json.MarshallIndent failed", err)
+		panicf("writeStore: json.MarshalIndent failed", err)
 	}
 	bytes = append(bytes, '\n')
 
