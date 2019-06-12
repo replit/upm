@@ -1,14 +1,8 @@
 package internal
 
-type pkgSpec struct {
-	pkg string
-	spec string
-}
-
-type pkgLock struct {
-	pkg string
-	version string
-}
+type pkgName string
+type pkgSpec string
+type pkgVersion string
 
 type pkgInfo struct {
 	name string
@@ -28,12 +22,12 @@ type languageBackend struct {
 	lockfile string
 	detect func () bool
 	search func ([]string) []pkgInfo
-	info func (string) pkgInfo
-	add func ([]pkgSpec)
-	remove func ([]string)
+	info func (pkgName) pkgInfo
+	add func (map[pkgName]pkgSpec)
+	remove func (map[pkgName]bool)
 	lock func ()
 	install func ()
-	listSpecfile func () []pkgSpec
-	listLockfile func () []pkgLock
-	guess func () []string
+	listSpecfile func () map[pkgName]pkgSpec
+	listLockfile func () map[pkgName]pkgVersion
+	guess func () map[pkgName]bool
 }

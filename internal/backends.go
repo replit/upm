@@ -20,34 +20,35 @@ var languageBackends = []languageBackend{{
 	detect: func () bool {
 		return true
 	},
-	add: func (pkgSpecs []pkgSpec) {
+	add: func (pkgs map[pkgName]pkgSpec) {
 		if _, err := os.Stat("pyproject.toml"); os.IsNotExist(err) {
 			runCmd([]string{"poetry", "init", "--no-interaction"})
 		} else if err != nil {
 			die("pyproject.toml: %s", err)
 		}
 		cmd := []string{"poetry", "add"}
-		for _, pkgSpec := range pkgSpecs {
-			cmd = append(cmd, pkgSpec.pkg + pkgSpec.spec)
+		for name, spec := range pkgs {
+			cmd = append(cmd, string(name) + string(spec))
 		}
 		runCmd(cmd)
 	},
-	listSpecfile: func () []pkgSpec {
+	listSpecfile: func () map[pkgName]pkgSpec {
 		var cfg PyprojectToml
 		if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
 			if os.IsNotExist(err) {
-				return []pkgSpec{}
+				return map[pkgName]pkgSpec{}
 			}
 			die(err.Error())
 		}
-		specs := []pkgSpec{}
-		for name, spec := range cfg.Tool.Poetry.Dependencies {
-			if name == "python" {
+		pkgs := map[pkgName]pkgSpec{}
+		for nameStr, specStr := range cfg.Tool.Poetry.Dependencies {
+			if nameStr == "python" {
 				continue
 			}
-			specs = append(specs, pkgSpec{name, spec})
+
+			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
 		}
-		return specs
+		return pkgs
 	},
 }}
 

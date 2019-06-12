@@ -44,65 +44,63 @@ func runSearch(language string, queries []string, outputFormat outputFormat) {
 }
 
 func runInfo(language string, pkg string, outputFormat outputFormat) {
-	info := getBackend(language).info(pkg)
+	info := getBackend(language).info(pkgName(pkg))
 	fmt.Printf("output %#v in format %#v\n", info, outputFormat)
 	notImplemented()
 }
 
-func runAdd(language string, pkgSpecStrs []string, guess bool) {
-	pkgSpecs := []pkgSpec{}
-	for _, pkgSpecStr := range pkgSpecStrs {
-		fields := strings.Fields(pkgSpecStr)
+func runAdd(language string, args []string, guess bool) {
+	pkgs := map[pkgName]pkgSpec{}
+	for _, arg := range args {
+		fields := strings.Fields(arg)
 		if !(len(fields) >= 1 && len(fields) <= 2) {
-			fmt.Fprintf(os.Stderr, "invalid package/spec: %#v\n", pkgSpecStr)
+			fmt.Fprintf(os.Stderr, "invalid package/spec: %#v\n", arg)
 			os.Exit(1)
 		}
-		pkg := fields[0]
-		var spec string
+
+		name := pkgName(fields[0])
+		var spec pkgSpec
 		if len(fields) >= 2 {
-			spec = fields[1]
+			spec = pkgSpec(fields[1])
 		}
-		pkgSpecs = append(pkgSpecs, pkgSpec{pkg, spec})
+
+		pkgs[name] = spec
 	}
 
 	backend := getBackend(language)
+
 	if guess {
-		for _, guessedPkg := range backend.guess() {
-			alreadyAdded := false
-			for _, givenSpec := range pkgSpecs {
-				if givenSpec.pkg == guessedPkg {
-					alreadyAdded = true
-					break
-				}
-			}
-			if !alreadyAdded {
-				pkgSpecs = append(pkgSpecs, pkgSpec{pkg: guessedPkg})
+		for name, _ := range backend.guess() {
+			if _, ok := pkgs[name]; !ok {
+				pkgs[name] = ""
 			}
 		}
 	}
 
-	existingSpecs := backend.listSpecfile()
-	filteredSpecs := []pkgSpec{}
-	for _, spec := range pkgSpecs {
-		alreadyExists := false
-		for _, existingSpec := range existingSpecs {
-			if (existingSpec.pkg == spec.pkg) {
-				alreadyExists = true
-				break
-			}
-		}
-		if (!alreadyExists) {
-			filteredSpecs = append(filteredSpecs, spec)
-		}
+	for name, _ := range backend.listSpecfile() {
+		delete(pkgs, name)
 	}
 
-	if len(filteredSpecs) >= 1 {
-		backend.add(filteredSpecs)
+	if len(pkgs) >= 1 {
+		backend.add(pkgs)
 	}
 }
 
-func runRemove(language string, pkgs []string) {
-	getBackend(language).remove(pkgs)
+func runRemove(language string, args []string) {
+	backend := getBackend(language)
+	specfilePkgs := backend.listSpecfile()
+
+	pkgs := map[pkgName]bool{}
+	for _, arg := range args {
+		name := pkgName(arg)
+		if _, ok := specfilePkgs[name]; ok {
+			pkgs[name] = true
+		}
+	}
+
+	if len(pkgs) >= 1 {
+		backend.remove(pkgs)
+	}
 }
 
 func runLock(language string, force bool) {
@@ -128,27 +126,16 @@ func runList(language string, all bool, outputFormat outputFormat) {
 
 func runGuess(language string, all bool) {
 	backend := getBackend(language)
-	guessedPkgs := backend.guess()
+	pkgs := backend.guess()
+
 	if (!all) {
-		existingSpecs := backend.listSpecfile()
-		filteredGuesses := []string{}
-		for _, guessedPkg := range guessedPkgs {
-			alreadyAdded := false
-			for _, existingSpec := range existingSpecs {
-				if existingSpec.pkg == guessedPkg {
-					alreadyAdded = true
-					break
-				}
-			}
-			if !alreadyAdded {
-				filteredGuesses = append(filteredGuesses, guessedPkg)
-			}
+		for name, _ := range backend.listSpecfile() {
+			delete(pkgs, name)
 		}
-		guessedPkgs = filteredGuesses
 	}
 
-	for _, pkg := range guessedPkgs {
-		fmt.Println(pkg)
+	for name, _ := range pkgs {
+		fmt.Println(name)
 	}
 }
 
