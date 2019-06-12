@@ -96,7 +96,9 @@ func runAdd(language string, pkgSpecStrs []string, guess bool) {
 		}
 	}
 
-	backend.add(filteredSpecs)
+	if len(filteredSpecs) >= 1 {
+		backend.add(filteredSpecs)
+	}
 }
 
 func runRemove(language string, pkgs []string) {
