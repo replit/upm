@@ -5,11 +5,18 @@ import (
 	"os"
 )
 
-type PyprojectToml struct {
+type pyprojectToml struct {
 	Tool struct {
 		Poetry struct {
 			Dependencies map[string]string
 		}
+	}
+}
+
+type poetryLock struct {
+	Package []struct {
+		Name string
+		Version string
 	}
 }
 
@@ -44,13 +51,19 @@ var languageBackends = []languageBackend{{
 		}
 		runCmd(cmd)
 	},
+	lock: func () {
+		runCmd([]string{"poetry", "lock"})
+	},
+	install: func () {
+		runCmd([]string{"poetry", "install"})
+	},
 	listSpecfile: func () map[pkgName]pkgSpec {
-		var cfg PyprojectToml
+		var cfg pyprojectToml
 		if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
 			if os.IsNotExist(err) {
 				return map[pkgName]pkgSpec{}
 			}
-			die(err.Error())
+			die("%s", err.Error())
 		}
 		pkgs := map[pkgName]pkgSpec{}
 		for nameStr, specStr := range cfg.Tool.Poetry.Dependencies {
@@ -59,6 +72,22 @@ var languageBackends = []languageBackend{{
 			}
 
 			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+		}
+		return pkgs
+	},
+	listLockfile: func () map[pkgName]pkgVersion {
+		var cfg poetryLock
+		if _, err := toml.DecodeFile("poetry.lock", &cfg); err != nil {
+			if os.IsNotExist(err) {
+				return map[pkgName]pkgVersion{}
+			}
+			die("%s", err.Error())
+		}
+		pkgs := map[pkgName]pkgVersion{}
+		for _, pkgObj := range cfg.Package {
+			name := pkgName(pkgObj.Name)
+			version := pkgVersion(pkgObj.Version)
+			pkgs[name] = version
 		}
 		return pkgs
 	},
