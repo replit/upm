@@ -65,7 +65,17 @@ func runAdd(language string, args []string, guess bool) {
 		backend.add(pkgs)
 	}
 
-	updateStoreHashes(backend.specfile, backend.lockfile)
+	store := readStore()
+
+	if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+		backend.lock()
+	}
+
+	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+		backend.install()
+	}
+
+	updateStoreHashes(store, backend.specfile, backend.lockfile)
 }
 
 func runRemove(language string, args []string) {
@@ -84,29 +94,42 @@ func runRemove(language string, args []string) {
 		backend.remove(pkgs)
 	}
 
-	updateStoreHashes(backend.specfile, backend.lockfile)
+	store := readStore()
+
+	if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+		backend.lock()
+	}
+
+	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+		backend.install()
+	}
+
+	updateStoreHashes(store, backend.specfile, backend.lockfile)
 }
 
 func runLock(language string, force bool) {
 	backend := getBackend(language)
 	store := readStore()
-	specfileHash := hashFile(backend.specfile)
-	if specfileHash == store.SpecfileHash && !force {
+	if doesStoreSpecfileHashMatch(store, backend.specfile) && !force {
 		return
 	}
 	backend.lock()
-	updateStoreHashes(backend.specfile, backend.lockfile)
+
+	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+		backend.install()
+	}
+
+	updateStoreHashes(store, backend.specfile, backend.lockfile)
 }
 
 func runInstall(language string, force bool) {
 	backend := getBackend(language)
 	store := readStore()
-	lockfileHash := hashFile(backend.lockfile)
-	if lockfileHash == store.LockfileHash && !force {
+	if doesStoreLockfileHashMatch(store, backend.lockfile) && !force {
 		return
 	}
 	backend.install()
-	updateStoreHashes(backend.specfile, backend.lockfile)
+	updateStoreHashes(store, backend.specfile, backend.lockfile)
 }
 
 func runList(language string, all bool, outputFormat outputFormat) {

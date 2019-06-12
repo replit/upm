@@ -61,8 +61,17 @@ func writeStore(store store) {
 	}
 }
 
-func updateStoreHashes(specfile string, lockfile string) {
-	store := readStore()
+func doesStoreSpecfileHashMatch(store store, specfile string) bool {
+	specfileHash := hashFile(specfile)
+	return specfileHash == store.SpecfileHash
+}
+
+func doesStoreLockfileHashMatch(store store, lockfile string) bool {
+	lockfileHash := hashFile(lockfile)
+	return lockfileHash == store.LockfileHash
+}
+
+func updateStoreHashes(store store, specfile string, lockfile string) {
 	store.SpecfileHash = hashFile(specfile)
 	store.LockfileHash = hashFile(lockfile)
 

@@ -63,6 +63,11 @@ var languageBackends = []languageBackend{{
 		runCmd([]string{"poetry", "lock"})
 	},
 	install: func () {
+		// Unfortunately, this doesn't necessarily uninstall
+		// packages that have been removed from the lockfile,
+		// which happens for example if 'poetry remove' is
+		// interrupted. See
+		// <https://github.com/sdispater/poetry/issues/648>.
 		runCmd([]string{"poetry", "install"})
 	},
 	listSpecfile: func () map[pkgName]pkgSpec {
