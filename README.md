@@ -2,6 +2,11 @@
 
 Universal Package Manager. More info to come.
 
+## Build and run
+
+To build UPM, run `make`. Then add `./cmd/upm` to your `$PATH` so that
+you can run the binary. To remove build artifacts, run `make clean`.
+
 ## Command-line interface
 
     $ upm [-h, -?, -help, --help, help]
