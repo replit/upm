@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: upm
 upm: cmd/upm/upm ## Build the UPM binary
 
 cmd/upm/upm: cmd/upm/*.go internal/*.go
