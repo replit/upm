@@ -1,0 +1,4 @@
+FROM alpine:3.9 AS dev
+
+COPY scripts/docker-install-dev.sh /tmp/docker-install-dev.sh
+RUN /tmp/docker-install-dev.sh
