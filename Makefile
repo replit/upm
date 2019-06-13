@@ -9,9 +9,9 @@ docker: ## Run a shell with UPM inside Docker
 	docker build . -f Dockerfile.dev -t upm-dev
 	docker run -it --rm -v "$$PWD:/upm" upm-dev sh -isc "source /upm/scripts/docker-env.sh"
 
-.PHONY: docker-bin
-docker-bin: ## Build a Docker image with just the UPM binary
-	docker build . -f Dockerfile.bin -t upm
+.PHONY: image
+image: ## Build a Docker image with just the UPM binary
+	docker build . -t upm
 
 .PHONY: clean
 clean: ## Remove build artifacts
