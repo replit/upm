@@ -24,6 +24,10 @@ available, and UPM is added to the `$PATH` automatically. You only
 need to restart the shell if you edit the Dockerfile or the scripts
 used by the Dockerfile.
 
+To build a Docker image which has only the UPM binary, for embedding
+in other images, run `make docker-bin`. The image will be tagged as
+`upm-bin:latest`.
+
 ## Command-line interface
 
     $ upm [-h, -?, -help, --help, help]
