@@ -26,7 +26,7 @@ used by the Dockerfile.
 
 To build a Docker image which has only the UPM binary, for embedding
 in other images, run `make docker-bin`. The image will be tagged as
-`upm-bin:latest`.
+`upm:latest`.
 
 ## Command-line interface
 

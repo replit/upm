@@ -6,12 +6,12 @@ cmd/upm/upm: cmd/upm/*.go internal/*.go
 
 .PHONY: docker
 docker: ## Run a shell with UPM inside Docker
-	docker build . -f Dockerfile.dev -t upm
-	docker run -it --rm -v "$$PWD:/upm" upm sh -isc "source /upm/scripts/docker-env.sh"
+	docker build . -f Dockerfile.dev -t upm-dev
+	docker run -it --rm -v "$$PWD:/upm" upm-dev sh -isc "source /upm/scripts/docker-env.sh"
 
 .PHONY: docker-bin
 docker-bin: ## Build a Docker image with just the UPM binary
-	docker build . -f Dockerfile.bin -t upm-bin
+	docker build . -f Dockerfile.bin -t upm
 
 .PHONY: clean
 clean: ## Remove build artifacts
