@@ -23,8 +23,12 @@ func notImplemented() {
 	panic("not yet implemented")
 }
 
+func progressMsg(msg string) {
+	fmt.Println("-->", msg)
+}
+
 func runCmd(cmd []string) {
-	fmt.Println("-->", shellquote.Join(cmd...))
+	progressMsg(shellquote.Join(cmd...))
 	command := exec.Command(cmd[0], cmd[1:]...)
 	command.Stdout = os.Stderr
 	command.Stderr = os.Stderr
