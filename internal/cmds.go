@@ -2,7 +2,6 @@ package internal
 
 import (
 	"fmt"
-	"os"
 	"strings"
 )
 
@@ -32,12 +31,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 func runAdd(language string, args []string, guess bool) {
 	pkgs := map[pkgName]pkgSpec{}
 	for _, arg := range args {
-		fields := strings.Fields(arg)
-		if !(len(fields) >= 1 && len(fields) <= 2) {
-			fmt.Fprintf(os.Stderr, "invalid package/spec: %#v\n", arg)
-			os.Exit(1)
-		}
-
+		fields := strings.SplitN(arg, " ", 2)
 		name := pkgName(fields[0])
 		var spec pkgSpec
 		if len(fields) >= 2 {
