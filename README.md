@@ -206,6 +206,29 @@ If `--all` is given, list also packages already in the specfile.
    VENV/bin/pip install -r requirements.txt &&
    VENV/bin/pip freeze > requirements-lock.txt
 
-<!-- Local Variables: -->
-<!-- truncate-lines: t -->
-<!-- End: -->
+## Backend concepts
+
+Each backend implements three important operations: `add/remove`,
+`lock`, and `install`. Ideally, `add/remove` would only modify the
+specfile, `lock` would only update the lockfile from the specfile, and
+`install` would only install packages from the lockfile.
+Unfortunately, existing package management infrastructure is
+insufficiently expressive and powerful to realize this ideal, so UPM
+has to deal with a variety of different ways backends may implement
+this functionality; for example:
+
+* `add/remove` may also update the lockfile and specfile.
+* `lock` may also install packages.
+* `install` may also update the lockfile (yes, really).
+
+UPM deals with this problem by having each backend give some hints
+about its behavior. This is done through a `quirks` operation which
+returns a bitmask. Supported bits are:
+
+* `quirksNotReproducible`: it's not possible to install from a
+  lockfile; it's only possible to install from the specfile and then
+  update the lockfile from what was installed.
+
+<!--  Local Variables:   -->
+<!--  truncate-lines: t  -->
+<!--  End:               -->

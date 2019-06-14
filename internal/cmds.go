@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -51,8 +52,14 @@ func runAdd(language string, args []string, guess bool) {
 		}
 	}
 
-	for name, _ := range backend.listSpecfile() {
-		delete(pkgs, name)
+	if _, err := os.Stat(backend.specfile); os.IsNotExist(err) {
+		// Nothing to see here.
+	} else if err != nil {
+		die("%s: %s", backend.specfile, err)
+	} else {
+		for name, _ := range backend.listSpecfile() {
+			delete(pkgs, name)
+		}
 	}
 
 	if len(pkgs) >= 1 {
@@ -61,12 +68,17 @@ func runAdd(language string, args []string, guess bool) {
 
 	store := readStore()
 
-	if !doesStoreSpecfileHashMatch(store, backend.specfile) {
-		backend.lock()
-	}
-
-	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
-		backend.install()
+	if quirksIsReproducible(backend) {
+		if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+			backend.lock()
+		}
+		if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+			backend.install()
+		}
+	} else {
+		if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+			backend.install()
+		}
 	}
 
 	updateStoreHashes(store, backend.specfile, backend.lockfile)
@@ -74,6 +86,12 @@ func runAdd(language string, args []string, guess bool) {
 
 func runRemove(language string, args []string) {
 	backend := getBackend(language)
+
+	if _, err := os.Stat(backend.specfile); os.IsNotExist(err) {
+		return
+	} else if err != nil {
+		die("%s: %s", backend.specfile, err)
+	}
 	specfilePkgs := backend.listSpecfile()
 
 	pkgs := map[pkgName]bool{}
@@ -90,12 +108,17 @@ func runRemove(language string, args []string) {
 
 	store := readStore()
 
-	if !doesStoreSpecfileHashMatch(store, backend.specfile) {
-		backend.lock()
-	}
-
-	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
-		backend.install()
+	if quirksIsReproducible(backend) {
+		if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+			backend.lock()
+		}
+		if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+			backend.install()
+		}
+	} else {
+		if !doesStoreSpecfileHashMatch(store, backend.specfile) {
+			backend.install()
+		}
 	}
 
 	updateStoreHashes(store, backend.specfile, backend.lockfile)
@@ -107,9 +130,12 @@ func runLock(language string, force bool) {
 	if doesStoreSpecfileHashMatch(store, backend.specfile) && !force {
 		return
 	}
-	backend.lock()
-
-	if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+	if quirksIsReproducible(backend) {
+		backend.lock()
+		if !doesStoreLockfileHashMatch(store, backend.lockfile) {
+			backend.install()
+		}
+	} else {
 		backend.install()
 	}
 
@@ -129,11 +155,25 @@ func runInstall(language string, force bool) {
 func runList(language string, all bool, outputFormat outputFormat) {
 	backend := getBackend(language)
 	if all {
-		results := backend.listLockfile()
+		var results map[pkgName]pkgVersion
+		if _, err := os.Stat(backend.lockfile); os.IsNotExist(err) {
+			results = map[pkgName]pkgVersion{}
+		} else if err != nil {
+			die("%s: %s", backend.lockfile, err)
+		} else {
+			results = backend.listLockfile()
+		}
 		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
 		notImplemented()
 	} else {
-		results := backend.listSpecfile()
+		var results map[pkgName]pkgSpec
+		if _, err := os.Stat(backend.specfile); os.IsNotExist(err) {
+			results = map[pkgName]pkgSpec{}
+		} else if err != nil {
+			die("%s: %s", backend.specfile, err)
+		} else {
+			results = backend.listSpecfile()
+		}
 		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
 		notImplemented()
 	}

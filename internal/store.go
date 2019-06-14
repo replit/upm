@@ -64,13 +64,11 @@ func writeStore(store store) {
 }
 
 func doesStoreSpecfileHashMatch(store store, specfile string) bool {
-	specfileHash := hashFile(specfile)
-	return specfileHash == store.SpecfileHash
+	return store.LockfileHash != "" && hashFile(specfile) == store.SpecfileHash
 }
 
 func doesStoreLockfileHashMatch(store store, lockfile string) bool {
-	lockfileHash := hashFile(lockfile)
-	return lockfileHash == store.LockfileHash
+	return store.LockfileHash != "" && hashFile(lockfile) == store.LockfileHash
 }
 
 func updateStoreHashes(store store, specfile string, lockfile string) {

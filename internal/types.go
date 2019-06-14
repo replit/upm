@@ -36,11 +36,18 @@ type pkgInfo struct {
 	dependencies []string
 }
 
+type quirks uint8
+const (
+	quirksNone quirks = 0
+	quirksNotReproducible = 1 << iota
+)
+
 // Keep up to date with checkBackends in backends.go
 type languageBackend struct {
 	name string
 	specfile string
 	lockfile string
+	quirks quirks
 	detect func () bool
 	search func ([]string) []pkgInfo
 	info func (pkgName) pkgInfo
