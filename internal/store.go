@@ -1,10 +1,8 @@
 package internal
 
 import (
-	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"github.com/natefinch/atomic"
 	"os"
 	"path/filepath"
 )
@@ -58,9 +56,7 @@ func writeStore(store store) {
 	}
 	content = append(content, '\n')
 
-	if err := atomic.WriteFile(filename, bytes.NewReader(content)); err != nil {
-		die("%s: %s", filename, err)
-	}
+	tryWriteAtomic(filename, content)
 }
 
 func doesStoreSpecfileHashMatch(store store, specfile string) bool {

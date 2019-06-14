@@ -1,10 +1,12 @@
 package internal
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
 	"github.com/kballard/go-shellquote"
+	"github.com/natefinch/atomic"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -77,4 +79,12 @@ func quirksIsNotReproducible(b languageBackend) bool {
 
 func quirksIsReproducible(b languageBackend) bool {
 	return (b.quirks & quirksNotReproducible) == 0
+}
+
+func tryWriteAtomic(filename string, contents []byte) {
+	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
+		if err2 := ioutil.WriteFile(filename, contents, 0666); err2 != nil {
+			die("%s: %s; on non-atomic retry: %s", filename, err1, err2)
+		}
+	}
 }

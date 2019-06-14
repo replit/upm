@@ -1,10 +1,8 @@
 package internal
 
 import (
-	"bytes"
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"github.com/natefinch/atomic"
 	"io/ioutil"
 	"os"
 	"regexp"
@@ -181,7 +179,7 @@ var languageBackends = []languageBackend{{
 
 		contentsB = []byte(contents)
 		progressMsg("update Cask")
-		atomic.WriteFile("Cask", bytes.NewReader(contentsB))
+		tryWriteAtomic("Cask", contentsB)
 	},
 	remove: func (pkgs map[pkgName]bool) {
 		contentsB, err := ioutil.ReadFile("Cask")
@@ -205,14 +203,14 @@ var languageBackends = []languageBackend{{
 
 		contentsB = []byte(contents)
 		progressMsg("update Cask")
-		atomic.WriteFile("Cask", bytes.NewReader(contentsB))
+		tryWriteAtomic("Cask", contentsB)
 	},
 	install: func () {
 		runCmd([]string{"cask", "install"})
 		outputB := getCmdOutput(
 			[]string{"cask", "eval", elispInstallCode},
 		)
-		atomic.WriteFile("packages.txt", bytes.NewReader(outputB))
+		tryWriteAtomic("packages.txt", outputB)
 	},
 	listSpecfile: func () map[pkgName]pkgSpec {
 		outputB := getCmdOutput(
