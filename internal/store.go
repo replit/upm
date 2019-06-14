@@ -1,8 +1,10 @@
 package internal
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"github.com/natefinch/atomic"
 	"os"
 	"path/filepath"
 )
@@ -50,13 +52,13 @@ func writeStore(store store) {
 		die("%s: %s", directory, err)
 	}
 
-	bytes, err := json.MarshalIndent(store, "", "  ")
+	content, err := json.MarshalIndent(store, "", "  ")
 	if err != nil {
 		panicf("writeStore: json.MarshalIndent failed", err)
 	}
-	bytes = append(bytes, '\n')
+	content = append(content, '\n')
 
-	if err := ioutil.WriteFile(filename, bytes, 0666); err != nil {
+	if err := atomic.WriteFile(filename, bytes.NewReader(content)); err != nil {
 		die("%s: %s", filename, err)
 	}
 }
