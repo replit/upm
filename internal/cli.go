@@ -23,7 +23,9 @@ func getVersion() string {
 }
 
 func DoCLI() {
-	checkBackends()
+	if os.Getenv("UPM_NO_CHECK") == "" {
+		checkBackends()
+	}
 
 	var language string
 	var formatStr string
