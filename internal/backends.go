@@ -178,7 +178,7 @@ var languageBackends = []languageBackend{{
 		}
 
 		contentsB = []byte(contents)
-		progressMsg("update Cask")
+		progressMsg("write Cask")
 		tryWriteAtomic("Cask", contentsB)
 	},
 	remove: func (pkgs map[pkgName]bool) {
@@ -202,7 +202,7 @@ var languageBackends = []languageBackend{{
 		}
 
 		contentsB = []byte(contents)
-		progressMsg("update Cask")
+		progressMsg("write Cask")
 		tryWriteAtomic("Cask", contentsB)
 	},
 	install: func () {
