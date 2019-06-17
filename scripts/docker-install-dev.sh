@@ -13,6 +13,7 @@ make
 musl-dev
 python2
 python3
+yarn
 
 "
 
