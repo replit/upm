@@ -238,6 +238,9 @@ var languageBackends = []languageBackend{{
 		}
 		contents := string(contentsB)
 		r, err := regexp.Compile(`(.+)=(.+)`)
+		if err != nil {
+			panic(err)
+		}
 		pkgs := map[pkgName]pkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := pkgName(match[1])
