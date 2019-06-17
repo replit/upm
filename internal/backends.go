@@ -13,6 +13,7 @@ type pyprojectToml struct {
 	Tool struct {
 		Poetry struct {
 			Dependencies map[string]string
+			DevDependencies map[string]string `json:"dev-dependencies"`
 		}
 	}
 }
@@ -108,6 +109,13 @@ var languageBackends = []languageBackend{{
 		}
 		pkgs := map[pkgName]pkgSpec{}
 		for nameStr, specStr := range cfg.Tool.Poetry.Dependencies {
+			if nameStr == "python" {
+				continue
+			}
+
+			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+		}
+		for nameStr, specStr := range cfg.Tool.Poetry.DevDependencies {
 			if nameStr == "python" {
 				continue
 			}
