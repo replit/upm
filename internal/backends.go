@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"io/ioutil"
@@ -23,6 +24,11 @@ type poetryLock struct {
 		Name string
 		Version string
 	}
+}
+
+type packageJson struct {
+	Dependencies map[string]string
+	DevDependencies map[string]string
 }
 
 const elispInstallCode = `
@@ -133,6 +139,82 @@ var languageBackends = []languageBackend{{
 		for _, pkgObj := range cfg.Package {
 			name := pkgName(pkgObj.Name)
 			version := pkgVersion(pkgObj.Version)
+			pkgs[name] = version
+		}
+		return pkgs
+	},
+	guess: func () map[pkgName]bool {
+		notImplemented()
+		return nil
+	},
+}, {
+	name: "nodejs-yarn",
+	specfile: "package.json",
+	lockfile: "yarn.lock",
+	quirks: quirksNone,
+	detect: func () bool {
+		return false
+	},
+	search: func ([]string) []pkgInfo {
+		notImplemented()
+		return nil
+	},
+	info: func (pkgName) pkgInfo {
+		notImplemented()
+		return pkgInfo{}
+	},
+	add: func (pkgs map[pkgName]pkgSpec) {
+		cmd := []string{"yarn", "add"}
+		for name, spec := range pkgs {
+			cmd = append(cmd, string(name) + "@" + string(spec))
+		}
+		runCmd(cmd)
+	},
+	remove: func (pkgs map[pkgName]bool) {
+		cmd := []string{"yarn", "remove"}
+		for name, _ := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		runCmd(cmd)
+	},
+	lock: func () {
+		runCmd([]string{"yarn", "upgrade"})
+	},
+	install: func () {
+		runCmd([]string{"yarn", "install"})
+	},
+	listSpecfile: func () map[pkgName]pkgSpec {
+		contentsB, err := ioutil.ReadFile("package.json")
+		if err != nil {
+			die("package.json: %s", err)
+		}
+		var cfg packageJson
+		if err := json.Unmarshal(contentsB, &cfg); err != nil {
+			die("package.json: %s", err)
+		}
+		pkgs := map[pkgName]pkgSpec{}
+		for nameStr, specStr := range cfg.Dependencies {
+			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+		}
+		for nameStr, specStr := range cfg.DevDependencies {
+			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+		}
+		return pkgs
+	},
+	listLockfile: func () map[pkgName]pkgVersion {
+		contentsB, err := ioutil.ReadFile("yarn.lock")
+		if err != nil {
+			die("yarn.lock: %s", err)
+		}
+		contents := string(contentsB)
+		r, err := regexp.Compile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+		if err != nil {
+			panic(err)
+		}
+		pkgs := map[pkgName]pkgVersion{}
+		for _, match := range r.FindAllStringSubmatch(contents, -1) {
+			name := pkgName(match[1])
+			version := pkgVersion(match[2])
 			pkgs[name] = version
 		}
 		return pkgs
