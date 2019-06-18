@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -152,27 +153,62 @@ func runInstall(language string, force bool) {
 	updateStoreHashes(store, backend.specfile, backend.lockfile)
 }
 
+type listSpecfileJsonEntry struct {
+	Name string `json:"name"`
+	Spec string `json:"spec"`
+}
+
 func runList(language string, all bool, outputFormat outputFormat) {
 	backend := getBackend(language)
-	if all {
-		var results map[pkgName]pkgVersion
-		if _, err := os.Stat(backend.lockfile); os.IsNotExist(err) {
-			results = map[pkgName]pkgVersion{}
-		} else if err != nil {
-			die("%s: %s", backend.lockfile, err)
-		} else {
-			results = backend.listLockfile()
-		}
-		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
-		notImplemented()
-	} else {
-		var results map[pkgName]pkgSpec
+	if !all {
 		if _, err := os.Stat(backend.specfile); os.IsNotExist(err) {
-			results = map[pkgName]pkgSpec{}
+			fmt.Fprintln(os.Stderr, "no specfile")
+			return
 		} else if err != nil {
 			die("%s: %s", backend.specfile, err)
-		} else {
-			results = backend.listSpecfile()
+		}
+		results := backend.listSpecfile()
+		if len(results) == 0 {
+			fmt.Fprintln(os.Stderr, "no packages in specfile")
+			return
+		}
+		switch outputFormat {
+		case outputFormatTable:
+			t := makeTable("name", "spec")
+			for name, spec := range results {
+				t.addRow(string(name), string(spec))
+			}
+			t.sortBy("name")
+			t.print()
+
+		case outputFormatJSON:
+			j := []listSpecfileJsonEntry{}
+			for name, spec := range results {
+				j = append(j, listSpecfileJsonEntry{
+					Name: string(name),
+					Spec: string(spec),
+				})
+			}
+			outputB, err := json.MarshalIndent(j, "", "  ")
+			if err != nil {
+				panic("couldn't marshal json")
+			}
+			fmt.Println(string(outputB))
+
+		default:
+			panicf("unknown output format %d", outputFormat)
+		}
+	} else {
+		if _, err := os.Stat(backend.lockfile); os.IsNotExist(err) {
+			fmt.Fprintln(os.Stderr, "no lockfile")
+			return
+		} else if err != nil {
+			die("%s: %s", backend.lockfile, err)
+		}
+		results := backend.listLockfile()
+		if len(results) == 0 {
+			fmt.Fprintln(os.Stderr, "no packages in lockfile")
+			return
 		}
 		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
 		notImplemented()
@@ -183,7 +219,7 @@ func runGuess(language string, all bool) {
 	backend := getBackend(language)
 	pkgs := backend.guess()
 
-	if (!all) {
+	if !all {
 		for name, _ := range backend.listSpecfile() {
 			delete(pkgs, name)
 		}
