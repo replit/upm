@@ -10,6 +10,12 @@ import (
 	"strings"
 )
 
+type pypiXmlrpcEntry struct {
+	Name string
+	Summary string
+	Version string
+}
+
 type pyprojectToml struct {
 	Tool struct {
 		Poetry struct {
@@ -30,6 +36,18 @@ type packageJson struct {
 	Dependencies map[string]string
 	DevDependencies map[string]string
 }
+
+const pythonSearchCode = `
+import json
+import sys
+import xmlrpc.client
+
+query = sys.argv[1]
+pypi = xmlrpc.client.ServerProxy("https://pypi.org/pypi")
+results = pypi.search({"name": query})
+json.dump(results, sys.stdout, indent=2)
+print()
+`
 
 const elispInstallCode = `
 (dolist (dir load-path)
@@ -65,9 +83,22 @@ var languageBackends = []languageBackend{{
 	detect: func () bool {
 		return false
 	},
-	search: func ([]string) []pkgInfo {
-		notImplemented()
-		return nil
+	search: func (queries []string) []pkgInfo {
+		query := strings.Join(queries, " ")
+		outputB := getCmdOutput([]string{
+			"python3", "-c", pythonSearchCode, query,
+		})
+		var outputJson []pypiXmlrpcEntry
+		json.Unmarshal(outputB, &outputJson)
+		results := []pkgInfo{}
+		for i := range outputJson {
+			results = append(results, pkgInfo{
+				name: outputJson[i].Name,
+				description: outputJson[i].Summary,
+				version: outputJson[i].Version,
+			})
+		}
+		return results
 	},
 	info: func (pkgName) pkgInfo {
 		notImplemented()
