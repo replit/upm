@@ -158,6 +158,11 @@ type listSpecfileJsonEntry struct {
 	Spec string `json:"spec"`
 }
 
+type listLockfileJsonEntry struct {
+	Name string `json:"name"`
+	Version string `json:"version"`
+}
+
 func runList(language string, all bool, outputFormat outputFormat) {
 	backend := getBackend(language)
 	if !all {
@@ -210,8 +215,32 @@ func runList(language string, all bool, outputFormat outputFormat) {
 			fmt.Fprintln(os.Stderr, "no packages in lockfile")
 			return
 		}
-		fmt.Printf("output %#v in format %#v\n", results, outputFormat)
-		notImplemented()
+		switch outputFormat {
+		case outputFormatTable:
+			t := makeTable("name", "version")
+			for name, version := range results {
+				t.addRow(string(name), string(version))
+			}
+			t.sortBy("name")
+			t.print()
+
+		case outputFormatJSON:
+			j := []listLockfileJsonEntry{}
+			for name, version := range results {
+				j = append(j, listLockfileJsonEntry{
+					Name: string(name),
+					Version: string(version),
+				})
+			}
+			outputB, err := json.MarshalIndent(j, "", "  ")
+			if err != nil {
+				panic("couldn't marshal json")
+			}
+			fmt.Println(string(outputB))
+
+		default:
+			panicf("unknown output format %d", outputFormat)
+		}
 	}
 }
 

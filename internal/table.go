@@ -60,7 +60,7 @@ func (t *table) sortBy(header string) {
 func (t *table) print() {
 	widths := make([]int, len(t.headers))
 	for j := range t.headers {
-		widths[j] = len(t.headers)
+		widths[j] = len(t.headers[j])
 	}
 	for i := range t.rows {
 		for j := range t.rows[i] {
