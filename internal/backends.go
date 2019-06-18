@@ -74,10 +74,8 @@ var languageBackends = []languageBackend{{
 		return pkgInfo{}
 	},
 	add: func (pkgs map[pkgName]pkgSpec) {
-		if _, err := os.Stat("pyproject.toml"); os.IsNotExist(err) {
+		if !fileExists("pyproject.toml") {
 			runCmd([]string{"poetry", "init", "--no-interaction"})
-		} else if err != nil {
-			die("pyproject.toml: %s", err)
 		}
 		cmd := []string{"poetry", "add"}
 		for name, spec := range pkgs {
@@ -86,11 +84,6 @@ var languageBackends = []languageBackend{{
 		runCmd(cmd)
 	},
 	remove: func (pkgs map[pkgName]bool) {
-		if _, err := os.Stat("pyproject.toml"); os.IsNotExist(err) {
-			return
-		} else if err != nil {
-			die("pyproject.toml: %s", err)
-		}
 		cmd := []string{"poetry", "remove"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))

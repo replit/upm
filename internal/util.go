@@ -88,3 +88,14 @@ func tryWriteAtomic(filename string, contents []byte) {
 		}
 	}
 }
+
+func fileExists(filename string) bool {
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		return false;
+	} else if err != nil {
+		die("%s: %s", filename, err)
+		return false;
+	} else {
+		return true;
+	}
+}
