@@ -28,9 +28,10 @@ type pkgInfo struct {
 	name string
 	description string
 	version string
-	homepageURL string
-	documentationURL string
-	sourceCodeURL string
+	homepageUrl string
+	documentationUrl string
+	sourceCodeUrl string
+	bugTrackerUrl string
 	author string
 	license string
 	dependencies []string
@@ -50,7 +51,7 @@ type languageBackend struct {
 	quirks quirks
 	detect func () bool
 	search func ([]string) []pkgInfo
-	info func (pkgName) pkgInfo
+	info func (pkgName) *pkgInfo
 	add func (map[pkgName]pkgSpec)
 	remove func (map[pkgName]bool)
 	lock func ()

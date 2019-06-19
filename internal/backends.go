@@ -11,30 +11,42 @@ import (
 )
 
 type pypiXmlrpcEntry struct {
-	Name string
-	Summary string
-	Version string
+	Name string `json:"name"`
+	Summary string `json:"summary"`
+	Version string `json:"version"`
+}
+
+type pypiXmlrpcInfo struct {
+	Author string `json:"author"`
+	AuthorEmail string `json:"author_email"`
+	HomePage string `json:"home_page"`
+	License string `json:"license"`
+	Name string `json:"name"`
+	ProjectUrl []string `json:"project_url"`
+	RequiresDist []string `json:"requires_dist"`
+	Summary string `json:"summary"`
+	Version string `json:"version"`
 }
 
 type pyprojectToml struct {
 	Tool struct {
 		Poetry struct {
-			Dependencies map[string]string
+			Dependencies map[string]string `json:"dependencies"`
 			DevDependencies map[string]string `json:"dev-dependencies"`
-		}
-	}
+		} `json:"poetry"`
+	} `json:"tool"`
 }
 
 type poetryLock struct {
 	Package []struct {
-		Name string
-		Version string
-	}
+		Name string `json:"name"`
+		Version string `json:"version"`
+	} `json:"package"`
 }
 
 type packageJson struct {
-	Dependencies map[string]string
-	DevDependencies map[string]string
+	Dependencies map[string]string `json:"dependencies"`
+	DevDependencies map[string]string `json:"devDependencies"`
 }
 
 const pythonSearchCode = `
@@ -46,6 +58,23 @@ query = sys.argv[1]
 pypi = xmlrpc.client.ServerProxy("https://pypi.org/pypi")
 results = pypi.search({"name": query})
 json.dump(results, sys.stdout, indent=2)
+print()
+`
+
+const pythonInfoCode = `
+import json
+import sys
+import xmlrpc.client
+
+package = sys.argv[1]
+pypi = xmlrpc.client.ServerProxy("https://pypi.org/pypi")
+releases = pypi.package_releases(package)
+if not releases:
+    print("{}")
+    sys.exit(0)
+release, = releases
+info = pypi.release_data(package, release)
+json.dump(info, sys.stdout, indent=2)
 print()
 `
 
@@ -89,7 +118,9 @@ var languageBackends = []languageBackend{{
 			"python3", "-c", pythonSearchCode, query,
 		})
 		var outputJson []pypiXmlrpcEntry
-		json.Unmarshal(outputB, &outputJson)
+		if err := json.Unmarshal(outputB, &outputJson); err != nil {
+			die("PyPI response: %s", err)
+		}
 		results := []pkgInfo{}
 		for i := range outputJson {
 			results = append(results, pkgInfo{
@@ -100,9 +131,85 @@ var languageBackends = []languageBackend{{
 		}
 		return results
 	},
-	info: func (pkgName) pkgInfo {
-		notImplemented()
-		return pkgInfo{}
+	info: func (name pkgName) *pkgInfo {
+		outputB := getCmdOutput([]string{
+			"python3", "-c", pythonInfoCode, string(name),
+		})
+		var output pypiXmlrpcInfo
+		if err := json.Unmarshal(outputB, &output); err != nil {
+			die("PyPI response: %s", err)
+		}
+		if output.Name == "" {
+			return nil
+		}
+		info := &pkgInfo{
+			name: output.Name,
+			description: output.Summary,
+			version: output.Version,
+			homepageUrl: output.HomePage,
+			license: output.License,
+		}
+		for _, line := range output.ProjectUrl {
+			fields := strings.SplitN(line, ", ", 2)
+			if len(fields) != 2 {
+				continue
+			}
+
+			name := fields[0]
+			url := fields[1]
+
+			matched, err := regexp.MatchString(`(?i)doc`, name)
+			if err != nil {
+				panic(err)
+			}
+			if matched {
+				info.documentationUrl = url
+				continue
+			}
+
+			matched, err = regexp.MatchString(`(?i)code`, name)
+			if err != nil {
+				panic(err)
+			}
+			if matched {
+				info.sourceCodeUrl = url
+				continue
+			}
+
+			matched, err = regexp.MatchString(`(?i)track`, name)
+			if err != nil {
+				panic(err)
+			}
+			if matched {
+				info.bugTrackerUrl = url
+				continue
+			}
+		}
+
+		authorParts := []string{}
+		if output.Author != "" {
+			authorParts = append(authorParts, output.Author)
+		}
+		if output.AuthorEmail != "" {
+			authorParts = append(
+				authorParts, fmt.Sprintf(
+					"<%s>", output.AuthorEmail,
+				),
+			)
+		}
+		info.author = strings.Join(authorParts, " ")
+
+		deps := []string{}
+		for _, line := range output.RequiresDist {
+			if strings.Contains(line, "extra ==") {
+				continue
+			}
+
+			deps = append(deps, strings.Fields(line)[0])
+		}
+		info.dependencies = deps
+
+		return info
 	},
 	add: func (pkgs map[pkgName]pkgSpec) {
 		if !fileExists("pyproject.toml") {
@@ -183,9 +290,9 @@ var languageBackends = []languageBackend{{
 		notImplemented()
 		return nil
 	},
-	info: func (pkgName) pkgInfo {
+	info: func (pkgName) *pkgInfo {
 		notImplemented()
-		return pkgInfo{}
+		return &pkgInfo{}
 	},
 	add: func (pkgs map[pkgName]pkgSpec) {
 		cmd := []string{"yarn", "add"}
@@ -259,9 +366,9 @@ var languageBackends = []languageBackend{{
 		notImplemented()
 		return nil
 	},
-	info: func (pkgName) pkgInfo {
+	info: func (pkgName) *pkgInfo {
 		notImplemented()
-		return pkgInfo{}
+		return &pkgInfo{}
 	},
 	add: func (pkgs map[pkgName]pkgSpec) {
 		contentsB, err := ioutil.ReadFile("Cask")
