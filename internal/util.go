@@ -5,16 +5,17 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"github.com/kballard/go-shellquote"
-	"github.com/natefinch/atomic"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/kballard/go-shellquote"
+	"github.com/natefinch/atomic"
 )
 
 func die(format string, a ...interface{}) {
-	fmt.Fprintf(os.Stderr, format + "\n", a...)
+	fmt.Fprintf(os.Stderr, format+"\n", a...)
 	os.Exit(1)
 }
 
@@ -91,11 +92,11 @@ func tryWriteAtomic(filename string, contents []byte) {
 
 func fileExists(filename string) bool {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
-		return false;
+		return false
 	} else if err != nil {
 		die("%s: %s", filename, err)
-		return false;
+		return false
 	} else {
-		return true;
+		return true
 	}
 }

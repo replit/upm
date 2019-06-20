@@ -25,38 +25,39 @@ type pkgSpec string
 type pkgVersion string
 
 type pkgInfo struct {
-	name string
-	description string
-	version string
-	homepageUrl string
+	name             string
+	description      string
+	version          string
+	homepageUrl      string
 	documentationUrl string
-	sourceCodeUrl string
-	bugTrackerUrl string
-	author string
-	license string
-	dependencies []string
+	sourceCodeUrl    string
+	bugTrackerUrl    string
+	author           string
+	license          string
+	dependencies     []string
 }
 
 type quirks uint8
+
 const (
-	quirksNone quirks = 0
-	quirksNotReproducible = 1 << iota
+	quirksNone            quirks = 0
+	quirksNotReproducible        = 1 << iota
 )
 
 // Keep up to date with checkBackends in backends.go
 type languageBackend struct {
-	name string
-	specfile string
-	lockfile string
-	quirks quirks
-	detect func () bool
-	search func ([]string) []pkgInfo
-	info func (pkgName) *pkgInfo
-	add func (map[pkgName]pkgSpec)
-	remove func (map[pkgName]bool)
-	lock func ()
-	install func ()
-	listSpecfile func () map[pkgName]pkgSpec
-	listLockfile func () map[pkgName]pkgVersion
-	guess func () map[pkgName]bool
+	name         string
+	specfile     string
+	lockfile     string
+	quirks       quirks
+	detect       func() bool
+	search       func([]string) []pkgInfo
+	info         func(pkgName) *pkgInfo
+	add          func(map[pkgName]pkgSpec)
+	remove       func(map[pkgName]bool)
+	lock         func()
+	install      func()
+	listSpecfile func() map[pkgName]pkgSpec
+	listLockfile func() map[pkgName]pkgVersion
+	guess        func() map[pkgName]bool
 }

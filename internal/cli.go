@@ -2,8 +2,9 @@ package internal
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
 func parseOutputFormat(formatStr string) outputFormat {

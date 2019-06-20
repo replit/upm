@@ -8,7 +8,7 @@ import (
 
 type table struct {
 	headers []string
-	rows [][]string
+	rows    [][]string
 }
 
 func makeTable(headers ...string) table {

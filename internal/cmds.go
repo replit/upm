@@ -159,7 +159,7 @@ type listSpecfileJsonEntry struct {
 }
 
 type listLockfileJsonEntry struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
@@ -228,7 +228,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 			j := []listLockfileJsonEntry{}
 			for name, version := range results {
 				j = append(j, listLockfileJsonEntry{
-					Name: string(name),
+					Name:    string(name),
 					Version: string(version),
 				})
 			}
