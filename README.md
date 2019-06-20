@@ -6,10 +6,12 @@ Universal Package Manager. More info to come.
 
     % make help
     usage:
-      make upm     Build the UPM binary
-      make docker  Run a shell with UPM inside Docker
-      make clean   Remove build artifacts
-      make help    Show this message
+      make upm    Build the UPM binary
+      make dev    Run a shell with UPM source code and all package managers inside Docker
+      make light  Build a Docker image with just the UPM binary
+      make full   Build a Docker image with the UPM binary and all package managers
+      make clean  Remove build artifacts
+      make help   Show this message
 
 To build UPM, run `make` (or `make upm`). Then add the directory
 `./cmd/upm` to your `$PATH` so that you can run the binary. To remove
@@ -17,16 +19,18 @@ build artifacts, run `make clean`.
 
 You can use [Docker](https://www.docker.com/) to avoid needing to
 install the package managers that UPM drives. To do this, run `make
-docker`. This will build an image and launch a shell inside the
-container with the UPM source directory on your computer synced with
-the filesystem inside the container. The same Makefile targets are
+dev`. This will build an image and launch a shell inside the container
+with the UPM source directory on your computer synced with the
+filesystem inside the container. The same Makefile targets are
 available, and UPM is added to the `$PATH` automatically. You only
 need to restart the shell if you edit the Dockerfile or the scripts
 used by the Dockerfile.
 
 To build a Docker image which has only the UPM binary, for embedding
-in other images, run `make image`. The image will be tagged as
-`upm:latest`.
+in other images, run `make light`. The image will be tagged as
+`upm:light`. Alternatively, to build a Docker image which has the
+binary and all the package managers, but not the UPM source code, run
+`make full`. The image will be tagged as `upm:full`.
 
 ## Command-line interface
 
