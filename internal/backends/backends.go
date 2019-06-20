@@ -1,4 +1,4 @@
-package internal
+package backends
 
 import (
 	"encoding/json"
@@ -9,21 +9,23 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
+	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/util"
 )
 
-type pypiXmlrpcEntry struct {
+type pypiXMLRPCEntry struct {
 	Name    string `json:"name"`
 	Summary string `json:"summary"`
 	Version string `json:"version"`
 }
 
-type pypiXmlrpcInfo struct {
+type pypiXMLRPCInfo struct {
 	Author       string   `json:"author"`
 	AuthorEmail  string   `json:"author_email"`
 	HomePage     string   `json:"home_page"`
 	License      string   `json:"license"`
 	Name         string   `json:"name"`
-	ProjectUrl   []string `json:"project_url"`
+	ProjectURL   []string `json:"project_url"`
 	RequiresDist []string `json:"requires_dist"`
 	Summary      string   `json:"summary"`
 	Version      string   `json:"version"`
@@ -105,52 +107,52 @@ const elispListSpecfileCode = `
                      (if branch (format ":branch %S" branch) ""))))))
 `
 
-var languageBackends = []languageBackend{{
-	name:     "python-poetry",
-	specfile: "pyproject.toml",
-	lockfile: "poetry.lock",
-	quirks:   quirksNone,
-	detect: func() bool {
+var languageBackends = []api.LanguageBackend{{
+	Name:     "python-poetry",
+	Specfile: "pyproject.toml",
+	Lockfile: "poetry.lock",
+	Quirks:   api.QuirksNone,
+	Detect: func() bool {
 		return false
 	},
-	search: func(queries []string) []pkgInfo {
+	Search: func(queries []string) []api.PkgInfo {
 		query := strings.Join(queries, " ")
-		outputB := getCmdOutput([]string{
+		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonSearchCode, query,
 		})
-		var outputJson []pypiXmlrpcEntry
+		var outputJson []pypiXMLRPCEntry
 		if err := json.Unmarshal(outputB, &outputJson); err != nil {
-			die("PyPI response: %s", err)
+			util.Die("PyPI response: %s", err)
 		}
-		results := []pkgInfo{}
+		results := []api.PkgInfo{}
 		for i := range outputJson {
-			results = append(results, pkgInfo{
-				name:        outputJson[i].Name,
-				description: outputJson[i].Summary,
-				version:     outputJson[i].Version,
+			results = append(results, api.PkgInfo{
+				Name:        outputJson[i].Name,
+				Description: outputJson[i].Summary,
+				Version:     outputJson[i].Version,
 			})
 		}
 		return results
 	},
-	info: func(name pkgName) *pkgInfo {
-		outputB := getCmdOutput([]string{
+	Info: func(name api.PkgName) *api.PkgInfo {
+		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonInfoCode, string(name),
 		})
-		var output pypiXmlrpcInfo
+		var output pypiXMLRPCInfo
 		if err := json.Unmarshal(outputB, &output); err != nil {
-			die("PyPI response: %s", err)
+			util.Die("PyPI response: %s", err)
 		}
 		if output.Name == "" {
 			return nil
 		}
-		info := &pkgInfo{
-			name:        output.Name,
-			description: output.Summary,
-			version:     output.Version,
-			homepageUrl: output.HomePage,
-			license:     output.License,
+		info := &api.PkgInfo{
+			Name:        output.Name,
+			Description: output.Summary,
+			Version:     output.Version,
+			HomepageURL: output.HomePage,
+			License:     output.License,
 		}
-		for _, line := range output.ProjectUrl {
+		for _, line := range output.ProjectURL {
 			fields := strings.SplitN(line, ", ", 2)
 			if len(fields) != 2 {
 				continue
@@ -164,7 +166,7 @@ var languageBackends = []languageBackend{{
 				panic(err)
 			}
 			if matched {
-				info.documentationUrl = url
+				info.DocumentationURL = url
 				continue
 			}
 
@@ -173,7 +175,7 @@ var languageBackends = []languageBackend{{
 				panic(err)
 			}
 			if matched {
-				info.sourceCodeUrl = url
+				info.SourceCodeURL = url
 				continue
 			}
 
@@ -182,7 +184,7 @@ var languageBackends = []languageBackend{{
 				panic(err)
 			}
 			if matched {
-				info.bugTrackerUrl = url
+				info.BugTrackerURL = url
 				continue
 			}
 		}
@@ -198,7 +200,7 @@ var languageBackends = []languageBackend{{
 				),
 			)
 		}
-		info.author = strings.Join(authorParts, " ")
+		info.Author = strings.Join(authorParts, " ")
 
 		deps := []string{}
 		for _, line := range output.RequiresDist {
@@ -208,170 +210,170 @@ var languageBackends = []languageBackend{{
 
 			deps = append(deps, strings.Fields(line)[0])
 		}
-		info.dependencies = deps
+		info.Dependencies = deps
 
 		return info
 	},
-	add: func(pkgs map[pkgName]pkgSpec) {
-		if !fileExists("pyproject.toml") {
-			runCmd([]string{"poetry", "init", "--no-interaction"})
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		if !util.FileExists("pyproject.toml") {
+			util.RunCmd([]string{"poetry", "init", "--no-interaction"})
 		}
 		cmd := []string{"poetry", "add"}
 		for name, spec := range pkgs {
 			cmd = append(cmd, string(name)+string(spec))
 		}
-		runCmd(cmd)
+		util.RunCmd(cmd)
 	},
-	remove: func(pkgs map[pkgName]bool) {
+	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"poetry", "remove"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}
-		runCmd(cmd)
+		util.RunCmd(cmd)
 	},
-	lock: func() {
-		runCmd([]string{"poetry", "lock"})
+	Lock: func() {
+		util.RunCmd([]string{"poetry", "lock"})
 	},
-	install: func() {
+	Install: func() {
 		// Unfortunately, this doesn't necessarily uninstall
 		// packages that have been removed from the lockfile,
 		// which happens for example if 'poetry remove' is
 		// interrupted. See
 		// <https://github.com/sdispater/poetry/issues/648>.
-		runCmd([]string{"poetry", "install"})
+		util.RunCmd([]string{"poetry", "install"})
 	},
-	listSpecfile: func() map[pkgName]pkgSpec {
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		var cfg pyprojectToml
 		if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-			die("%s", err.Error())
+			util.Die("%s", err.Error())
 		}
-		pkgs := map[pkgName]pkgSpec{}
+		pkgs := map[api.PkgName]api.PkgSpec{}
 		for nameStr, specStr := range cfg.Tool.Poetry.Dependencies {
 			if nameStr == "python" {
 				continue
 			}
 
-			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 		}
 		for nameStr, specStr := range cfg.Tool.Poetry.DevDependencies {
 			if nameStr == "python" {
 				continue
 			}
 
-			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 		}
 		return pkgs
 	},
-	listLockfile: func() map[pkgName]pkgVersion {
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		var cfg poetryLock
 		if _, err := toml.DecodeFile("poetry.lock", &cfg); err != nil {
-			die("%s", err.Error())
+			util.Die("%s", err.Error())
 		}
-		pkgs := map[pkgName]pkgVersion{}
+		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, pkgObj := range cfg.Package {
-			name := pkgName(pkgObj.Name)
-			version := pkgVersion(pkgObj.Version)
+			name := api.PkgName(pkgObj.Name)
+			version := api.PkgVersion(pkgObj.Version)
 			pkgs[name] = version
 		}
 		return pkgs
 	},
-	guess: func() map[pkgName]bool {
-		notImplemented()
+	Guess: func() map[api.PkgName]bool {
+		util.NotImplemented()
 		return nil
 	},
 }, {
-	name:     "nodejs-yarn",
-	specfile: "package.json",
-	lockfile: "yarn.lock",
-	quirks:   quirksNone,
-	detect: func() bool {
+	Name:     "nodejs-yarn",
+	Specfile: "package.json",
+	Lockfile: "yarn.lock",
+	Quirks:   api.QuirksNone,
+	Detect: func() bool {
 		return false
 	},
-	search: func([]string) []pkgInfo {
-		notImplemented()
+	Search: func([]string) []api.PkgInfo {
+		util.NotImplemented()
 		return nil
 	},
-	info: func(pkgName) *pkgInfo {
-		notImplemented()
-		return &pkgInfo{}
+	Info: func(api.PkgName) *api.PkgInfo {
+		util.NotImplemented()
+		return &api.PkgInfo{}
 	},
-	add: func(pkgs map[pkgName]pkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		cmd := []string{"yarn", "add"}
 		for name, spec := range pkgs {
 			cmd = append(cmd, string(name)+"@"+string(spec))
 		}
-		runCmd(cmd)
+		util.RunCmd(cmd)
 	},
-	remove: func(pkgs map[pkgName]bool) {
+	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"yarn", "remove"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}
-		runCmd(cmd)
+		util.RunCmd(cmd)
 	},
-	lock: func() {
-		runCmd([]string{"yarn", "upgrade"})
+	Lock: func() {
+		util.RunCmd([]string{"yarn", "upgrade"})
 	},
-	install: func() {
-		runCmd([]string{"yarn", "install"})
+	Install: func() {
+		util.RunCmd([]string{"yarn", "install"})
 	},
-	listSpecfile: func() map[pkgName]pkgSpec {
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		contentsB, err := ioutil.ReadFile("package.json")
 		if err != nil {
-			die("package.json: %s", err)
+			util.Die("package.json: %s", err)
 		}
 		var cfg packageJson
 		if err := json.Unmarshal(contentsB, &cfg); err != nil {
-			die("package.json: %s", err)
+			util.Die("package.json: %s", err)
 		}
-		pkgs := map[pkgName]pkgSpec{}
+		pkgs := map[api.PkgName]api.PkgSpec{}
 		for nameStr, specStr := range cfg.Dependencies {
-			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 		}
 		for nameStr, specStr := range cfg.DevDependencies {
-			pkgs[pkgName(nameStr)] = pkgSpec(specStr)
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 		}
 		return pkgs
 	},
-	listLockfile: func() map[pkgName]pkgVersion {
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := ioutil.ReadFile("yarn.lock")
 		if err != nil {
-			die("yarn.lock: %s", err)
+			util.Die("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
 		r, err := regexp.Compile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
 		if err != nil {
 			panic(err)
 		}
-		pkgs := map[pkgName]pkgVersion{}
+		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
-			name := pkgName(match[1])
-			version := pkgVersion(match[2])
+			name := api.PkgName(match[1])
+			version := api.PkgVersion(match[2])
 			pkgs[name] = version
 		}
 		return pkgs
 	},
-	guess: func() map[pkgName]bool {
-		notImplemented()
+	Guess: func() map[api.PkgName]bool {
+		util.NotImplemented()
 		return nil
 	},
 }, {
-	name:     "elisp-cask",
-	specfile: "Cask",
-	lockfile: "packages.txt",
-	quirks:   quirksNotReproducible,
-	detect: func() bool {
+	Name:     "elisp-cask",
+	Specfile: "Cask",
+	Lockfile: "packages.txt",
+	Quirks:   api.QuirksNotReproducible,
+	Detect: func() bool {
 		return false
 	},
-	search: func([]string) []pkgInfo {
-		notImplemented()
+	Search: func([]string) []api.PkgInfo {
+		util.NotImplemented()
 		return nil
 	},
-	info: func(pkgName) *pkgInfo {
-		notImplemented()
-		return &pkgInfo{}
+	Info: func(api.PkgName) *api.PkgInfo {
+		util.NotImplemented()
+		return &api.PkgInfo{}
 	},
-	add: func(pkgs map[pkgName]pkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		contentsB, err := ioutil.ReadFile("Cask")
 		var contents string
 		if os.IsNotExist(err) {
@@ -380,7 +382,7 @@ var languageBackends = []languageBackend{{
 (source org)
 `
 		} else if err != nil {
-			die("Cask: %s", err)
+			util.Die("Cask: %s", err)
 		} else {
 			contents = string(contentsB)
 		}
@@ -400,13 +402,13 @@ var languageBackends = []languageBackend{{
 		}
 
 		contentsB = []byte(contents)
-		progressMsg("write Cask")
-		tryWriteAtomic("Cask", contentsB)
+		util.ProgressMsg("write Cask")
+		util.TryWriteAtomic("Cask", contentsB)
 	},
-	remove: func(pkgs map[pkgName]bool) {
+	Remove: func(pkgs map[api.PkgName]bool) {
 		contentsB, err := ioutil.ReadFile("Cask")
 		if err != nil {
-			die("Cask: %s", err)
+			util.Die("Cask: %s", err)
 		}
 		contents := string(contentsB)
 
@@ -424,107 +426,107 @@ var languageBackends = []languageBackend{{
 		}
 
 		contentsB = []byte(contents)
-		progressMsg("write Cask")
-		tryWriteAtomic("Cask", contentsB)
+		util.ProgressMsg("write Cask")
+		util.TryWriteAtomic("Cask", contentsB)
 	},
-	install: func() {
-		runCmd([]string{"cask", "install"})
-		outputB := getCmdOutput(
+	Install: func() {
+		util.RunCmd([]string{"cask", "install"})
+		outputB := util.GetCmdOutput(
 			[]string{"cask", "eval", elispInstallCode},
 		)
-		tryWriteAtomic("packages.txt", outputB)
+		util.TryWriteAtomic("packages.txt", outputB)
 	},
-	listSpecfile: func() map[pkgName]pkgSpec {
-		outputB := getCmdOutput(
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		outputB := util.GetCmdOutput(
 			[]string{"cask", "eval", elispListSpecfileCode},
 		)
-		pkgs := map[pkgName]pkgSpec{}
+		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, line := range strings.Split(string(outputB), "\n") {
 			if line == "" {
 				continue
 			}
 			fields := strings.SplitN(line, "=", 2)
 			if len(fields) != 2 {
-				die("unexpected output: %s", line)
+				util.Die("unexpected output: %s", line)
 			}
-			name := pkgName(fields[0])
-			spec := pkgSpec(fields[1])
+			name := api.PkgName(fields[0])
+			spec := api.PkgSpec(fields[1])
 			pkgs[name] = spec
 		}
 		return pkgs
 	},
-	listLockfile: func() map[pkgName]pkgVersion {
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := ioutil.ReadFile("packages.txt")
 		if err != nil {
-			die("packages.txt: %s", err)
+			util.Die("packages.txt: %s", err)
 		}
 		contents := string(contentsB)
 		r, err := regexp.Compile(`(.+)=(.+)`)
 		if err != nil {
 			panic(err)
 		}
-		pkgs := map[pkgName]pkgVersion{}
+		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
-			name := pkgName(match[1])
-			version := pkgVersion(match[2])
+			name := api.PkgName(match[1])
+			version := api.PkgVersion(match[2])
 			pkgs[name] = version
 		}
 		return pkgs
 	},
-	guess: func() map[pkgName]bool {
-		notImplemented()
+	Guess: func() map[api.PkgName]bool {
+		util.NotImplemented()
 		return nil
 	},
 }}
 
 // Keep up to date with languageBackend in types.go
-func checkBackends() {
+func CheckAll() {
 	for _, b := range languageBackends {
-		if b.name == "" ||
-			b.specfile == "" ||
-			b.lockfile == "" ||
-			b.detect == nil ||
-			b.search == nil ||
-			b.info == nil ||
-			b.add == nil ||
-			b.remove == nil ||
+		if b.Name == "" ||
+			b.Specfile == "" ||
+			b.Lockfile == "" ||
+			b.Detect == nil ||
+			b.Search == nil ||
+			b.Info == nil ||
+			b.Add == nil ||
+			b.Remove == nil ||
 			// The lock method should be unimplemented if
 			// and only if builds are not reproducible.
-			((b.lock == nil) != quirksIsNotReproducible(b)) ||
-			b.install == nil ||
-			b.listSpecfile == nil ||
-			b.listLockfile == nil ||
-			b.guess == nil {
-			panicf("language backend %s is incomplete", b.name)
+			((b.Lock == nil) != api.QuirksIsNotReproducible(b)) ||
+			b.Install == nil ||
+			b.ListSpecfile == nil ||
+			b.ListLockfile == nil ||
+			b.Guess == nil {
+			util.Panicf("language backend %s is incomplete", b.Name)
 		}
 	}
 }
 
-func getBackend(language string) languageBackend {
+func GetBackend(language string) api.LanguageBackend {
 	if language != "" {
 		for _, languageBackend := range languageBackends {
-			if languageBackend.name == language {
+			if languageBackend.Name == language {
 				return languageBackend
 			}
 		}
 	}
 	for _, languageBackend := range languageBackends {
-		if languageBackend.detect() {
+		if languageBackend.Detect() {
 			return languageBackend
 		}
 	}
 	if language != "" {
-		die("no such language: %s", language)
+		util.Die("no such language: %s", language)
 	} else {
-		die("could not autodetect a language for your project")
+		util.Die("could not autodetect a language for your project")
 	}
-	return languageBackend{}
+	return api.LanguageBackend{}
 }
 
-func getBackendNames() []string {
+func GetBackendNames() []string {
 	backendNames := []string{}
 	for _, languageBackend := range languageBackends {
-		backendNames = append(backendNames, languageBackend.name)
+		backendNames = append(backendNames, languageBackend.Name)
 	}
 	return backendNames
 }

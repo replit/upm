@@ -1,30 +1,29 @@
-package internal
+package table
 
 import (
 	"fmt"
 	"sort"
 	"strings"
+
+	"github.com/replit/upm/internal/util"
 )
 
-type table struct {
-	headers []string
-	rows    [][]string
+func New(headers ...string) Table {
+	return Table{headers: headers}
 }
 
-func makeTable(headers ...string) table {
-	return table{headers: headers}
-}
-
-func (t *table) addRow(row ...string) {
+func (t *Table) AddRow(row ...string) {
 	if len(row) != len(t.headers) {
-		panicf("wrong number of columns in table row (%d != %d)",
-			len(row), len(t.headers))
+		util.Panicf(
+			"wrong number of columns in table row (%d != %d)",
+			len(row), len(t.headers),
+		)
 	}
 	t.rows = append(t.rows, row)
 }
 
 type tableSorter struct {
-	table table
+	table Table
 	index int
 }
 
@@ -40,7 +39,7 @@ func (ts *tableSorter) Less(i, j int) bool {
 	return ts.table.rows[i][ts.index] < ts.table.rows[j][ts.index]
 }
 
-func (t *table) sortBy(header string) {
+func (t *Table) SortBy(header string) {
 	var index int
 	found := false
 	for i := range t.headers {
@@ -51,13 +50,13 @@ func (t *table) sortBy(header string) {
 		}
 	}
 	if !found {
-		panicf("no such header: %s", header)
+		util.Panicf("no such header: %s", header)
 	}
 	sorter := &tableSorter{table: *t, index: index}
 	sort.Sort(sorter)
 }
 
-func (t *table) print() {
+func (t *Table) Print() {
 	widths := make([]int, len(t.headers))
 	for j := range t.headers {
 		widths[j] = len(t.headers[j])

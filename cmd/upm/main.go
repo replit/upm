@@ -1,7 +1,7 @@
 package main
 
-import "github.com/replit/upm/internal"
+import "github.com/replit/upm/internal/cli"
 
 func main() {
-	internal.DoCLI()
+	cli.DoCLI()
 }

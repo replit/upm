@@ -1,9 +1,11 @@
-package internal
+package cli
 
 import (
 	"fmt"
 	"os"
 
+	"github.com/replit/upm/internal/backends"
+	"github.com/replit/upm/internal/util"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +16,7 @@ func parseOutputFormat(formatStr string) outputFormat {
 	case "json":
 		return outputFormatJSON
 	default:
-		die(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
+		util.Die(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
 		return 0
 	}
 }
@@ -25,7 +27,7 @@ func getVersion() string {
 
 func DoCLI() {
 	if os.Getenv("UPM_NO_CHECK") == "" {
-		checkBackends()
+		backends.CheckAll()
 	}
 
 	var language string
