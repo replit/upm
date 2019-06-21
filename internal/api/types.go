@@ -4,6 +4,9 @@ type PkgName string
 type PkgSpec string
 type PkgVersion string
 
+// Note: this struct is parsed with reflection. It must have json and
+// pretty tags, and the only allowed types are string and []string.
+// Any instance of this struct *must* have a non-empty Name.
 type PkgInfo struct {
 	Name             string   `json:"name,omitempty" pretty:"Name"`
 	Description      string   `json:"description,omitempty" pretty:"Description"`
