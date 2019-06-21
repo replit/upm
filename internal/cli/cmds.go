@@ -239,19 +239,21 @@ type listLockfileJsonEntry struct {
 func runList(language string, all bool, outputFormat outputFormat) {
 	backend := backends.GetBackend(language)
 	if !all {
-		if _, err := os.Stat(backend.Specfile); os.IsNotExist(err) {
-			fmt.Fprintln(os.Stderr, "no specfile")
-			return
-		} else if err != nil {
-			util.Die("%s: %s", backend.Specfile, err)
-		}
-		results := backend.ListSpecfile()
-		if len(results) == 0 {
-			fmt.Fprintln(os.Stderr, "no packages in specfile")
-			return
+		var results map[api.PkgName]api.PkgSpec = nil
+		fileExists := util.FileExists(backend.Specfile)
+		if fileExists {
+			results = backend.ListSpecfile()
 		}
 		switch outputFormat {
 		case outputFormatTable:
+			switch {
+			case !fileExists:
+				fmt.Fprintln(os.Stderr, "no specfile")
+				return
+			case len(results) == 0:
+				fmt.Fprintln(os.Stderr, "no packages in specfile")
+				return
+			}
 			t := table.New("name", "spec")
 			for name, spec := range results {
 				t.AddRow(string(name), string(spec))
@@ -277,19 +279,21 @@ func runList(language string, all bool, outputFormat outputFormat) {
 			util.Panicf("unknown output format %d", outputFormat)
 		}
 	} else {
-		if _, err := os.Stat(backend.Lockfile); os.IsNotExist(err) {
-			fmt.Fprintln(os.Stderr, "no lockfile")
-			return
-		} else if err != nil {
-			util.Die("%s: %s", backend.Lockfile, err)
-		}
-		results := backend.ListLockfile()
-		if len(results) == 0 {
-			fmt.Fprintln(os.Stderr, "no packages in lockfile")
-			return
+		var results map[api.PkgName]api.PkgVersion = nil
+		fileExists := util.FileExists(backend.Lockfile)
+		if fileExists {
+			results = backend.ListLockfile()
 		}
 		switch outputFormat {
 		case outputFormatTable:
+			switch {
+			case !fileExists:
+				fmt.Fprintln(os.Stderr, "no lockfile")
+				return
+			case len(results) == 0:
+				fmt.Fprintln(os.Stderr, "no packages in lockfile")
+				return
+			}
 			t := table.New("name", "version")
 			for name, version := range results {
 				t.AddRow(string(name), string(version))
