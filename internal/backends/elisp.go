@@ -57,8 +57,8 @@ var elispBackend = api.LanguageBackend{
 		contentsB, err := ioutil.ReadFile("Cask")
 		var contents string
 		if os.IsNotExist(err) {
-			contents = `(source gnu)
-(source melpa)
+			contents = `(source melpa)
+(source gnu)
 (source org)
 `
 		} else if err != nil {
