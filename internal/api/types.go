@@ -5,16 +5,16 @@ type PkgSpec string
 type PkgVersion string
 
 type PkgInfo struct {
-	Name             string
-	Description      string
-	Version          string
-	HomepageURL      string
-	DocumentationURL string
-	SourceCodeURL    string
-	BugTrackerURL    string
-	Author           string
-	License          string
-	Dependencies     []string
+	Name             string   `json:"name,omitempty" pretty:"Name"`
+	Description      string   `json:"description,omitempty" pretty:"Description"`
+	Version          string   `json:"version,omitempty" pretty:"Version"`
+	HomepageURL      string   `json:"homepageURL,omitempty" pretty:"Homepage"`
+	DocumentationURL string   `json:"documentationURL,omitempty" pretty:"Documentation"`
+	SourceCodeURL    string   `json:"sourceCodeURL,omitempty" pretty:"Source code"`
+	BugTrackerURL    string   `json:"bugTrackerURL,omitempty" pretty:"Bug tracker"`
+	Author           string   `json:"author,omitempty" pretty:"Author"`
+	License          string   `json:"license,omitempty" pretty:"License"`
+	Dependencies     []string `json:"dependencies,omitempty" pretty:"Dependencies"`
 }
 
 type Quirks uint8

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -30,10 +31,76 @@ func runSearch(language string, queries []string, outputFormat outputFormat) {
 	util.NotImplemented()
 }
 
+type infoLine struct {
+	Field string
+	Value string
+}
+
 func runInfo(language string, pkg string, outputFormat outputFormat) {
-	info := backends.GetBackend(language).Info(api.PkgName(pkg))
-	fmt.Printf("output %#v in format %#v\n", info, outputFormat)
-	util.NotImplemented()
+	backend := backends.GetBackend(language)
+	info := backend.Info(api.PkgName(pkg))
+	if info == nil {
+		util.Die("no such package: %s", pkg)
+	}
+
+	switch outputFormat {
+	case outputFormatTable:
+		infoT := reflect.TypeOf(*info)
+		infoV := reflect.ValueOf(*info)
+		rows := []infoLine{}
+		for i := 0; i < infoT.NumField(); i++ {
+			field := infoT.Field(i).Tag.Get("pretty")
+			var value string
+			switch infoV.Field(i).Kind() {
+			case reflect.String:
+				value = infoV.Field(i).String()
+				if value == "" {
+					continue
+				}
+			case reflect.Slice:
+				parts := []string{}
+				length := infoV.Field(i).Len()
+				for j := 0; j < length; j++ {
+					str := infoV.Field(i).Index(j).String()
+					parts = append(parts, str)
+				}
+				if len(parts) > 0 {
+					value = strings.Join(parts, ", ")
+				} else {
+					value = "(none)"
+				}
+			}
+
+			rows = append(rows, infoLine{Field: field, Value: value})
+		}
+
+		if len(rows) == 0 {
+			util.Panicf(
+				"no fields returned from backend %s",
+				backend.Name,
+			)
+		}
+
+		width := len(rows[0].Field)
+		for i := 1; i < len(rows); i++ {
+			if len(rows[i].Field) > width {
+				width = len(rows[i].Field)
+			}
+		}
+
+		for _, row := range rows {
+			padLength := width - len(row.Field)
+			padding := strings.Repeat(" ", padLength)
+			fmt.Println(row.Field + ":" + padding + "   " + row.Value)
+		}
+
+	case outputFormatJSON:
+		outputB, err := json.MarshalIndent(info, "", "  ")
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(string(outputB))
+	}
 }
 
 func runAdd(language string, args []string, guess bool) {
