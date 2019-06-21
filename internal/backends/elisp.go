@@ -1,6 +1,7 @@
 package backends
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -10,6 +11,95 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+const elispSearchInfoCode = `
+(require 'cl-lib)
+(require 'json)
+(require 'package)
+(require 'subr-x)
+
+;; Give MELPA priority as it has more up-to-date versions.
+(setq package-archives '((melpa . "https://melpa.org/packages/")
+                         (gnu . "https://elpa.gnu.org/packages/")
+                         (org . "https://orgmode.org/elpa/")))
+
+(defun upm-convert-package-desc (desc)
+  "Convert package descriptor DESC to alist.
+The JSON representation of the alist can be unmarshaled directly
+into a PkgInfo struct in Go."
+  (let ((extras (package-desc-extras desc)))
+    ~((name . ,(symbol-name (package-desc-name desc)))
+      (description . ,(package-desc-summary desc))
+      (version . ,(package-version-join (package-desc-version desc)))
+      (homepageURL . ,(alist-get :url extras))
+      (author . ,(when-let ((mnt (alist-get :maintainer extras)))
+                   (let ((parts nil))
+                     (when-let ((email (cdr mnt)))
+                       (push (format "<%s>" email) parts))
+                     (when-let ((name (car mnt)))
+                       (push name parts))
+                     (when parts
+                       (string-join parts " ")))))
+      (dependencies . ,(cl-remove-if
+                        (lambda (dep)
+                          (string= dep "emacs"))
+                        (mapcar
+                         (lambda (link)
+                           (symbol-name (car link)))
+                         (package-desc-reqs desc)))))))
+
+(defvar upm-num-archives-fetched 0
+  "Number of package.el archives which have been fetched so far.")
+
+(defun upm-download-callback (status archive-id action arg)
+  "Callback for ~url-retrieve' on a package.el archive.
+ARCHIVE-ID is a symbol (e.g. ~gnu', ~melpa', ...)."
+  (cl-loop for (event data) on status by #'cddr
+           do (when (eq event :error)
+                (signal (car data) (cdr data))))
+  (let* ((archives-dir (expand-file-name "archives" package-user-dir))
+         (archive-dir (expand-file-name
+                       (symbol-name archive-id) archives-dir))
+         (json-encoding-pretty-print t))
+    (make-directory archive-dir 'parents)
+    (delete-region (point-min) url-http-end-of-headers)
+    (write-file (expand-file-name "archive-contents" archive-dir))
+    ;; No race condition, Elisp does not have preemptive
+    ;; multithreading.
+    (when (>= (cl-incf upm-num-archives-fetched) (length package-archives))
+      (package-read-all-archive-contents)
+      (pcase action
+        ("search")
+        ("info"
+         (if-let ((descs (alist-get (intern arg) package-archive-contents)))
+             (princ
+              (json-encode-alist
+               (upm-convert-package-desc
+                ;; If the same package is available from multiple
+                ;; repositories, prefer the one from the repository
+                ;; which is listed first in ~package-archives' (which
+                ;; package.el puts at the *end* of the ~package-desc'
+                ;; list).
+                (car (last descs)))))
+           (princ
+            (json-encode json-null)))
+         (terpri))
+        (_ (error "No such action: %S" action))))))
+
+(cl-destructuring-bind (dir action arg) command-line-args-left
+  (setq command-line-args-left nil)
+  (setq package-user-dir dir)
+  (dolist (link package-archives)
+    (url-retrieve
+     (concat (cdr link) "archive-contents")
+     #'upm-download-callback
+     (list (car link) action arg)
+     'silent)))
+
+(while (< upm-num-archives-fetched (length package-archives))
+  ;; 50ms is small enough to be imperceptible to the user.
+  (accept-process-output nil 0.05))
+`
 
 const elispInstallCode = `
 (dolist (dir load-path)
@@ -49,9 +139,27 @@ var elispBackend = api.LanguageBackend{
 		util.NotImplemented()
 		return nil
 	},
-	Info: func(api.PkgName) *api.PkgInfo {
-		util.NotImplemented()
-		return &api.PkgInfo{}
+	Info: func(name api.PkgName) *api.PkgInfo {
+		tmpdir, err := ioutil.TempDir("", "elpa")
+		if err != nil {
+			util.Die("%s", err)
+		}
+		defer os.RemoveAll(tmpdir)
+
+		code := fmt.Sprintf("(progn %s)", elispSearchInfoCode)
+		code = strings.Replace(code, "~", "`", -1)
+		outputB := util.GetCmdOutput([]string{
+			"emacs", "-Q", "--batch", "--eval", code,
+			tmpdir, "info", string(name),
+		})
+		var info api.PkgInfo
+		if err := json.Unmarshal(outputB, &info); err != nil {
+			util.Die("%s", err)
+		}
+		if info.Name == "" {
+			return nil
+		}
+		return &info
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		contentsB, err := ioutil.ReadFile("Cask")
