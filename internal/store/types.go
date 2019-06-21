@@ -3,6 +3,6 @@ package store
 type Hash string
 
 type Store struct {
-	specfileHash Hash
-	lockfileHash Hash
+	SpecfileHash Hash `json:"specfileHash"`
+	LockfileHash Hash `json:"lockfileHash"`
 }

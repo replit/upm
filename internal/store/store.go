@@ -62,22 +62,22 @@ func (st *Store) Write() {
 }
 
 func (st *Store) DoesSpecfileHashMatch(specfile string) bool {
-	return st.lockfileHash != "" && hashFile(specfile) == st.specfileHash
+	return st.LockfileHash != "" && hashFile(specfile) == st.SpecfileHash
 }
 
 func (st *Store) DoesLockfileHashMatch(lockfile string) bool {
-	return st.lockfileHash != "" && hashFile(lockfile) == st.lockfileHash
+	return st.LockfileHash != "" && hashFile(lockfile) == st.LockfileHash
 }
 
 func (st *Store) UpdateHashes(specfile string, lockfile string) {
-	st.specfileHash = hashFile(specfile)
-	st.lockfileHash = hashFile(lockfile)
+	st.SpecfileHash = hashFile(specfile)
+	st.LockfileHash = hashFile(lockfile)
 
-	if st.specfileHash == "" {
+	if st.SpecfileHash == "" {
 		util.Die("file does not exist: %s", specfile)
 	}
 
-	if st.lockfileHash == "" {
+	if st.LockfileHash == "" {
 		util.Die("file does not exist: %s", lockfile)
 	}
 
