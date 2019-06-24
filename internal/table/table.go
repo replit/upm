@@ -2,6 +2,7 @@ package table
 
 import (
 	"fmt"
+	"reflect"
 	"sort"
 	"strings"
 
@@ -10,6 +11,53 @@ import (
 
 func New(headers ...string) Table {
 	return Table{headers: headers}
+}
+
+// structs should be a slice of structs.
+func FromStructs(structs interface{}) Table {
+	sv := reflect.ValueOf(structs)
+	st := reflect.TypeOf(structs).Elem()
+
+	indices := []int{}
+	headers := []string{}
+	for i := 0; i < st.NumField(); i++ {
+		nonempty := false
+		for j := 0; j < sv.Len(); j++ {
+			if sv.Index(j).Field(i).Len() > 0 {
+				nonempty = true
+				break
+			}
+		}
+		if !nonempty {
+			continue
+		}
+		indices = append(indices, i)
+		header := strings.ToLower(st.Field(i).Tag.Get("pretty"))
+		headers = append(headers, header)
+	}
+
+	t := Table{headers: headers}
+	for j := 0; j < sv.Len(); j++ {
+		row := []string{}
+		for _, i := range indices {
+			var value string
+			rfield := sv.Index(j).Field(i)
+			switch rfield.Kind() {
+			case reflect.String:
+				value = rfield.String()
+			case reflect.Slice:
+				parts := []string{}
+				for j := 0; j < rfield.Len(); j++ {
+					str := rfield.Index(j).String()
+					parts = append(parts, str)
+				}
+				value = strings.Join(parts, ", ")
+			}
+			row = append(row, value)
+		}
+		t.AddRow(row...)
+	}
+	return t
 }
 
 func (t *Table) AddRow(row ...string) {

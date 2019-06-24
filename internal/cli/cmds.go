@@ -27,8 +27,26 @@ func runListLanguages() {
 
 func runSearch(language string, queries []string, outputFormat outputFormat) {
 	results := backends.GetBackend(language).Search(queries)
-	fmt.Printf("output %#v in format %#v\n", results, outputFormat)
-	util.NotImplemented()
+	// Output a reasonable number of results.
+	if len(results) > 20 {
+		results = results[:20]
+	}
+	switch outputFormat {
+	case outputFormatTable:
+		if len(results) == 0 {
+			fmt.Fprintln(os.Stderr, "no search results")
+			return
+		}
+		t := table.FromStructs(results)
+		t.Print()
+
+	case outputFormatJSON:
+		outputB, err := json.MarshalIndent(results, "", "  ")
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(string(outputB))
+	}
 }
 
 type infoLine struct {
