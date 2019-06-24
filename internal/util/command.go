@@ -7,10 +7,13 @@ import (
 	"strings"
 
 	"github.com/kballard/go-shellquote"
+	"github.com/replit/upm/internal/config"
 )
 
 func ProgressMsg(msg string) {
-	fmt.Println("-->", msg)
+	if !config.Quiet {
+		fmt.Println("-->", msg)
+	}
 }
 
 func quoteCmd(cmd []string) string {

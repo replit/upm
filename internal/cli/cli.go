@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/replit/upm/internal/backends"
+	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/util"
 	"github.com/spf13/cobra"
 )
@@ -49,6 +50,9 @@ func DoCLI() {
 	)
 	rootCmd.PersistentFlags().StringVarP(
 		&language, "lang", "l", "", "specify project language(s) manually",
+	)
+	rootCmd.PersistentFlags().BoolVarP(
+		&config.Quiet, "quiet", "q", false, "don't show what commands are being run",
 	)
 
 	cmdWhichLanguage := &cobra.Command{
