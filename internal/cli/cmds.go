@@ -54,9 +54,6 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 			switch infoV.Field(i).Kind() {
 			case reflect.String:
 				value = infoV.Field(i).String()
-				if value == "" {
-					continue
-				}
 			case reflect.Slice:
 				parts := []string{}
 				length := infoV.Field(i).Len()
@@ -64,11 +61,10 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 					str := infoV.Field(i).Index(j).String()
 					parts = append(parts, str)
 				}
-				if len(parts) > 0 {
-					value = strings.Join(parts, ", ")
-				} else {
-					value = "(none)"
-				}
+				value = strings.Join(parts, ", ")
+			}
+			if value == "" {
+				continue
 			}
 
 			rows = append(rows, infoLine{Field: field, Value: value})
