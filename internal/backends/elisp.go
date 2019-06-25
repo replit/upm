@@ -15,6 +15,7 @@ import (
 const elispSearchInfoCode = `
 (require 'cl-lib)
 (require 'json)
+(require 'map)
 (require 'package)
 (require 'subr-x)
 
@@ -48,6 +49,16 @@ into a PkgInfo struct in Go."
                            (symbol-name (car link)))
                          (package-desc-reqs desc)))))))
 
+(defun upm-package-info (package)
+  "Given PACKAGE string, return alist of metadata for it, or nil."
+  (when-let ((descs (alist-get (intern package) package-archive-contents)))
+    ;; If the same package is available from multiple repositories,
+    ;; prefer the one from the repository which is listed first in
+    ;; ~package-archives' (which package.el puts at the *end* of the
+    ;; ~package-desc' list).
+    (upm-convert-package-desc
+     (car (last descs)))))
+
 (defvar upm-num-archives-fetched 0
   "Number of package.el archives which have been fetched so far.")
 
@@ -69,20 +80,25 @@ ARCHIVE-ID is a symbol (e.g. ~gnu', ~melpa', ...)."
     (when (>= (cl-incf upm-num-archives-fetched) (length package-archives))
       (package-read-all-archive-contents)
       (pcase action
-        ("search")
+        ("search"
+         (let ((queries (mapcar
+                         #'regexp-quote (split-string arg nil 'omit-nulls))))
+           (thread-last package-archive-contents
+             (map-keys)
+             (mapcar #'symbol-name)
+             (cl-remove-if-not (lambda (package)
+                                 (cl-every (lambda (query)
+                                             (string-match-p query package))
+                                           queries)))
+             (funcall (lambda (packages)
+                        (cl-sort packages #'< :key #'length)))
+             (mapcar #'upm-package-info)
+             (json-encode)
+             (princ))
+           (terpri)))
         ("info"
-         (if-let ((descs (alist-get (intern arg) package-archive-contents)))
-             (princ
-              (json-encode-alist
-               (upm-convert-package-desc
-                ;; If the same package is available from multiple
-                ;; repositories, prefer the one from the repository
-                ;; which is listed first in ~package-archives' (which
-                ;; package.el puts at the *end* of the ~package-desc'
-                ;; list).
-                (car (last descs)))))
-           (princ
-            (json-encode json-null)))
+         (princ
+          (json-encode (upm-package-info arg)))
          (terpri))
         (_ (error "No such action: %S" action))))))
 
@@ -135,9 +151,24 @@ var elispBackend = api.LanguageBackend{
 	Detect: func() bool {
 		return false
 	},
-	Search: func([]string) []api.PkgInfo {
-		util.NotImplemented()
-		return nil
+	Search: func(queries []string) []api.PkgInfo {
+		tmpdir, err := ioutil.TempDir("", "elpa")
+		if err != nil {
+			util.Die("%s", err)
+		}
+		defer os.RemoveAll(tmpdir)
+
+		code := fmt.Sprintf("(progn %s)", elispSearchInfoCode)
+		code = strings.Replace(code, "~", "`", -1)
+		outputB := util.GetCmdOutput([]string{
+			"emacs", "-Q", "--batch", "--eval", code,
+			tmpdir, "search", strings.Join(queries, " "),
+		})
+		var results []api.PkgInfo
+		if err := json.Unmarshal(outputB, &results); err != nil {
+			util.Die("%s", err)
+		}
+		return results
 	},
 	Info: func(name api.PkgName) *api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
