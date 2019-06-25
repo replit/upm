@@ -25,8 +25,10 @@ func runListLanguages() {
 	}
 }
 
-func runSearch(language string, queries []string, outputFormat outputFormat) {
-	results := backends.GetBackend(language).Search(queries)
+func runSearch(language string, args []string, outputFormat outputFormat) {
+	results := backends.GetBackend(language).Search(
+		strings.Join(args, " "),
+	)
 	// Output a reasonable number of results.
 	if len(results) > 20 {
 		results = results[:20]

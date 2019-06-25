@@ -34,7 +34,7 @@ type LanguageBackend struct {
 	Lockfile     string
 	Quirks       Quirks
 	Detect       func() bool
-	Search       func([]string) []PkgInfo
+	Search       func(string) []PkgInfo
 	Info         func(PkgName) *PkgInfo
 	Add          func(map[PkgName]PkgSpec)
 	Remove       func(map[PkgName]bool)

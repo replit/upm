@@ -22,11 +22,11 @@ var nodejsBackend = api.LanguageBackend{
 	Detect: func() bool {
 		return false
 	},
-	Search: func([]string) []api.PkgInfo {
+	Search: func(query string) []api.PkgInfo {
 		util.NotImplemented()
 		return nil
 	},
-	Info: func(api.PkgName) *api.PkgInfo {
+	Info: func(name api.PkgName) *api.PkgInfo {
 		util.NotImplemented()
 		return &api.PkgInfo{}
 	},

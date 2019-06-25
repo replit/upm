@@ -82,8 +82,7 @@ var pythonBackend = api.LanguageBackend{
 	Detect: func() bool {
 		return false
 	},
-	Search: func(queries []string) []api.PkgInfo {
-		query := strings.Join(queries, " ")
+	Search: func(query string) []api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonSearchCode, query,
 		})

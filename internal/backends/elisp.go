@@ -151,7 +151,7 @@ var elispBackend = api.LanguageBackend{
 	Detect: func() bool {
 		return false
 	},
-	Search: func(queries []string) []api.PkgInfo {
+	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
 		if err != nil {
 			util.Die("%s", err)
@@ -162,7 +162,7 @@ var elispBackend = api.LanguageBackend{
 		code = strings.Replace(code, "~", "`", -1)
 		outputB := util.GetCmdOutput([]string{
 			"emacs", "-Q", "--batch", "--eval", code,
-			tmpdir, "search", strings.Join(queries, " "),
+			tmpdir, "search", query,
 		})
 		var results []api.PkgInfo
 		if err := json.Unmarshal(outputB, &results); err != nil {
