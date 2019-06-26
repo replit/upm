@@ -29,7 +29,7 @@ type pypiXMLRPCInfo struct {
 	Version      string   `json:"version"`
 }
 
-type pyprojectToml struct {
+type pyprojectTOML struct {
 	Tool struct {
 		Poetry struct {
 			Dependencies    map[string]string `json:"dependencies"`
@@ -86,16 +86,16 @@ var pythonBackend = api.LanguageBackend{
 		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonSearchCode, query,
 		})
-		var outputJson []pypiXMLRPCEntry
-		if err := json.Unmarshal(outputB, &outputJson); err != nil {
+		var outputJSON []pypiXMLRPCEntry
+		if err := json.Unmarshal(outputB, &outputJSON); err != nil {
 			util.Die("PyPI response: %s", err)
 		}
 		results := []api.PkgInfo{}
-		for i := range outputJson {
+		for i := range outputJSON {
 			results = append(results, api.PkgInfo{
-				Name:        outputJson[i].Name,
-				Description: outputJson[i].Summary,
-				Version:     outputJson[i].Version,
+				Name:        outputJSON[i].Name,
+				Description: outputJSON[i].Summary,
+				Version:     outputJSON[i].Version,
 			})
 		}
 		return results
@@ -209,7 +209,7 @@ var pythonBackend = api.LanguageBackend{
 		util.RunCmd([]string{"poetry", "install"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-		var cfg pyprojectToml
+		var cfg pyprojectTOML
 		if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
 			util.Die("%s", err.Error())
 		}

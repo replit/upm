@@ -236,12 +236,12 @@ func runInstall(language string, force bool) {
 	store.UpdateHashes(backend.Specfile, backend.Lockfile)
 }
 
-type listSpecfileJsonEntry struct {
+type listSpecfileJSONEntry struct {
 	Name string `json:"name"`
 	Spec string `json:"spec"`
 }
 
-type listLockfileJsonEntry struct {
+type listLockfileJSONEntry struct {
 	Name    string `json:"name"`
 	Version string `json:"version"`
 }
@@ -272,9 +272,9 @@ func runList(language string, all bool, outputFormat outputFormat) {
 			t.Print()
 
 		case outputFormatJSON:
-			j := []listSpecfileJsonEntry{}
+			j := []listSpecfileJSONEntry{}
 			for name, spec := range results {
-				j = append(j, listSpecfileJsonEntry{
+				j = append(j, listSpecfileJSONEntry{
 					Name: string(name),
 					Spec: string(spec),
 				})
@@ -312,9 +312,9 @@ func runList(language string, all bool, outputFormat outputFormat) {
 			t.Print()
 
 		case outputFormatJSON:
-			j := []listLockfileJsonEntry{}
+			j := []listLockfileJSONEntry{}
 			for name, version := range results {
-				j = append(j, listLockfileJsonEntry{
+				j = append(j, listLockfileJSONEntry{
 					Name:    string(name),
 					Version: string(version),
 				})

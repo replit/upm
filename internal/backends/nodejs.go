@@ -9,7 +9,7 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-type packageJson struct {
+type packageJSON struct {
 	Dependencies    map[string]string `json:"dependencies"`
 	DevDependencies map[string]string `json:"devDependencies"`
 }
@@ -55,7 +55,7 @@ var nodejsBackend = api.LanguageBackend{
 		if err != nil {
 			util.Die("package.json: %s", err)
 		}
-		var cfg packageJson
+		var cfg packageJSON
 		if err := json.Unmarshal(contentsB, &cfg); err != nil {
 			util.Die("package.json: %s", err)
 		}
