@@ -74,6 +74,17 @@ json.dump(info, sys.stdout, indent=2)
 print()
 `
 
+const pythonGuessCode = `
+import json
+import pipreqs.pipreqs as pipreqs
+import sys
+
+imports = pipreqs.get_all_imports(".")
+packages = pipreqs.get_pkg_names(imports)
+json.dump(packages, sys.stdout, indent=2)
+print()
+`
+
 var pythonBackend = api.LanguageBackend{
 	Name:     "python-poetry",
 	Specfile: "pyproject.toml",
@@ -244,7 +255,18 @@ var pythonBackend = api.LanguageBackend{
 		return pkgs
 	},
 	Guess: func() map[api.PkgName]bool {
-		util.NotImplemented()
-		return nil
+		outputB := util.GetCmdOutput([]string{
+			"python3", "-c", pythonGuessCode,
+		})
+		var output []string
+		if err := json.Unmarshal(outputB, &output); err != nil {
+			util.Die("pipreqs: %s", err)
+		}
+		pkgs := map[api.PkgName]bool{}
+		for i := range output {
+			name := api.PkgName(output[i])
+			pkgs[name] = true
+		}
+		return pkgs
 	},
 }
