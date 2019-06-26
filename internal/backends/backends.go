@@ -8,6 +8,7 @@ import (
 var languageBackends = []api.LanguageBackend{
 	pythonBackend,
 	nodejsBackend,
+	rubyBackend,
 	elispBackend,
 }
 
