@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/natefinch/atomic"
 )
@@ -24,5 +25,13 @@ func FileExists(filename string) bool {
 		return false
 	} else {
 		return true
+	}
+}
+
+func PatternExists(pattern string) bool {
+	if matches, err := filepath.Glob(pattern); err != nil {
+		panic(err)
+	} else {
+		return len(matches) > 0
 	}
 }

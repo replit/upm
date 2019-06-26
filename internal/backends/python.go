@@ -86,13 +86,11 @@ print()
 `
 
 var pythonBackend = api.LanguageBackend{
-	Name:     "python-poetry",
-	Specfile: "pyproject.toml",
-	Lockfile: "poetry.lock",
-	Quirks:   api.QuirksNone,
-	Detect: func() bool {
-		return false
-	},
+	Name:             "python-poetry",
+	Specfile:         "pyproject.toml",
+	Lockfile:         "poetry.lock",
+	FilenamePatterns: []string{"*.py"},
+	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonSearchCode, query,

@@ -1,6 +1,8 @@
 package backends
 
 import (
+	"strings"
+
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
@@ -18,7 +20,6 @@ func CheckAll() {
 		if b.Name == "" ||
 			b.Specfile == "" ||
 			b.Lockfile == "" ||
-			b.Detect == nil ||
 			b.Search == nil ||
 			b.Info == nil ||
 			b.Add == nil ||
@@ -36,30 +37,45 @@ func CheckAll() {
 }
 
 func GetBackend(language string) api.LanguageBackend {
+	backends := languageBackends
 	if language != "" {
-		for _, languageBackend := range languageBackends {
-			if languageBackend.Name == language {
-				return languageBackend
+		for _, b := range backends {
+			if b.Name == language {
+				return b
+			}
+		}
+		filteredBackends := []api.LanguageBackend{}
+		for _, b := range backends {
+			if strings.HasPrefix(b.Name, language+"-") {
+				filteredBackends = append(filteredBackends, b)
+			}
+		}
+		if len(filteredBackends) == 0 {
+			util.Die("no such language: %s", language)
+		}
+		backends = filteredBackends
+	}
+	for _, b := range backends {
+		if util.FileExists(b.Specfile) ||
+			util.FileExists(b.Lockfile) {
+			return b
+		}
+	}
+	for _, b := range backends {
+		for _, p := range b.FilenamePatterns {
+			if util.PatternExists(p) {
+				return b
 			}
 		}
 	}
-	for _, languageBackend := range languageBackends {
-		if languageBackend.Detect() {
-			return languageBackend
-		}
-	}
-	if language != "" {
-		util.Die("no such language: %s", language)
-	} else {
-		util.Die("could not autodetect a language for your project")
-	}
+	util.Die("could not autodetect a language for your project")
 	return api.LanguageBackend{}
 }
 
 func GetBackendNames() []string {
 	backendNames := []string{}
-	for _, languageBackend := range languageBackends {
-		backendNames = append(backendNames, languageBackend.Name)
+	for _, b := range languageBackends {
+		backendNames = append(backendNames, b.Name)
 	}
 	return backendNames
 }

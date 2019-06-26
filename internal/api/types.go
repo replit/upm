@@ -29,18 +29,18 @@ const (
 
 // Keep up to date with checkBackends in backends.go
 type LanguageBackend struct {
-	Name         string
-	Specfile     string
-	Lockfile     string
-	Quirks       Quirks
-	Detect       func() bool
-	Search       func(string) []PkgInfo
-	Info         func(PkgName) *PkgInfo
-	Add          func(map[PkgName]PkgSpec)
-	Remove       func(map[PkgName]bool)
-	Lock         func()
-	Install      func()
-	ListSpecfile func() map[PkgName]PkgSpec
-	ListLockfile func() map[PkgName]PkgVersion
-	Guess        func() map[PkgName]bool
+	Name             string
+	Specfile         string
+	Lockfile         string
+	FilenamePatterns []string
+	Quirks           Quirks
+	Search           func(string) []PkgInfo
+	Info             func(PkgName) *PkgInfo
+	Add              func(map[PkgName]PkgSpec)
+	Remove           func(map[PkgName]bool)
+	Lock             func()
+	Install          func()
+	ListSpecfile     func() map[PkgName]PkgSpec
+	ListLockfile     func() map[PkgName]PkgVersion
+	Guess            func() map[PkgName]bool
 }

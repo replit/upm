@@ -15,13 +15,11 @@ type packageJSON struct {
 }
 
 var nodejsBackend = api.LanguageBackend{
-	Name:     "nodejs-yarn",
-	Specfile: "package.json",
-	Lockfile: "yarn.lock",
-	Quirks:   api.QuirksNone,
-	Detect: func() bool {
-		return false
-	},
+	Name:             "nodejs-yarn",
+	Specfile:         "package.json",
+	Lockfile:         "yarn.lock",
+	FilenamePatterns: []string{"*.js", "*.ts", "*.jsx", "*.tsx"},
+	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
 		util.NotImplemented()
 		return nil

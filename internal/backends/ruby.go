@@ -37,13 +37,11 @@ puts result.to_json
 `
 
 var rubyBackend = api.LanguageBackend{
-	Name:     "ruby-bundler",
-	Specfile: "Gemfile",
-	Lockfile: "Gemfile.lock",
-	Quirks:   api.QuirksNone,
-	Detect: func() bool {
-		return false
-	},
+	Name:             "ruby-bundler",
+	Specfile:         "Gemfile",
+	Lockfile:         "Gemfile.lock",
+	FilenamePatterns: []string{"*.rb"},
+	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
 		util.NotImplemented()
 		return nil

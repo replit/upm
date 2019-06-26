@@ -144,13 +144,11 @@ const elispListSpecfileCode = `
 `
 
 var elispBackend = api.LanguageBackend{
-	Name:     "elisp-cask",
-	Specfile: "Cask",
-	Lockfile: "packages.txt",
-	Quirks:   api.QuirksNotReproducible,
-	Detect: func() bool {
-		return false
-	},
+	Name:             "elisp-cask",
+	Specfile:         "Cask",
+	Lockfile:         "packages.txt",
+	FilenamePatterns: []string{"*.el"},
+	Quirks:           api.QuirksNotReproducible,
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
 		if err != nil {
