@@ -111,7 +111,6 @@ func DoCLI() {
 	cmdAdd := &cobra.Command{
 		Use:   `add "PACKAGE[ SPEC]"...`,
 		Short: "Add packages to the specfile",
-		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
 			runAdd(language, pkgSpecStrs, guess)
