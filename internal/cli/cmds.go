@@ -142,11 +142,7 @@ func runAdd(language string, args []string, guess bool) {
 		}
 	}
 
-	if _, err := os.Stat(backend.Specfile); os.IsNotExist(err) {
-		// Nothing to see here.
-	} else if err != nil {
-		util.Die("%s: %s", backend.Specfile, err)
-	} else {
+	if util.FileExists(backend.Specfile) {
 		for name, _ := range backend.ListSpecfile() {
 			delete(pkgs, name)
 		}
@@ -177,10 +173,8 @@ func runAdd(language string, args []string, guess bool) {
 func runRemove(language string, args []string) {
 	backend := backends.GetBackend(language)
 
-	if _, err := os.Stat(backend.Specfile); os.IsNotExist(err) {
+	if !util.FileExists(backend.Specfile) {
 		return
-	} else if err != nil {
-		util.Die("%s: %s", backend.Specfile, err)
 	}
 	specfilePkgs := backend.ListSpecfile()
 
@@ -342,8 +336,10 @@ func runGuess(language string, all bool) {
 	pkgs := backend.Guess()
 
 	if !all {
-		for name, _ := range backend.ListSpecfile() {
-			delete(pkgs, name)
+		if util.FileExists(backend.Specfile) {
+			for name, _ := range backend.ListSpecfile() {
+				delete(pkgs, name)
+			}
 		}
 	}
 
