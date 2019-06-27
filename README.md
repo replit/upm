@@ -32,6 +32,23 @@ in other images, run `make light`. The image will be tagged as
 binary and all the package managers, but not the UPM source code, run
 `make full`. The image will be tagged as `upm:full`.
 
+## Dependencies
+
+* `python-poetry`
+  * [Python 3](https://www.python.org/)
+  * [Poetry](https://poetry.eustace.io/)
+  * [Pipreqs](https://github.com/bndr/pipreqs) (for `guess`)
+* `nodejs-yarn`
+  * [Node.js](https://nodejs.org/en/)
+  * [Yarn](https://yarnpkg.com/en/)
+* `ruby-bundler`
+  * [Ruby](https://www.ruby-lang.org/en/)
+  * [Bundler](https://bundler.io/)
+  * [json](https://ruby-doc.org/stdlib/libdoc/json/rdoc/JSON.html)
+* `elisp-cask`
+  * [Emacs](https://www.gnu.org/software/emacs/)
+  * [Cask](https://github.com/cask/cask)
+
 ## Command-line interface
 
     $ upm [-h, -?, -help, --help, help]
