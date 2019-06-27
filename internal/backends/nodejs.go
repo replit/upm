@@ -3,11 +3,55 @@ package backends
 import (
 	"encoding/json"
 	"io/ioutil"
+	"net/http"
+	"net/url"
 	"regexp"
 
+	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+// https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/REGISTRY-API.md
+type npmSearchResults struct {
+	Objects []struct {
+		Package struct {
+			Name        string `json:"name"`
+			Version     string `json:"version"`
+			Description string `json:"description"`
+			Links       struct {
+				Homepage   string `json:"homepage"`
+				Repository string `json:"repository"`
+				Bugs       string `json:"bugs"`
+			} `json:"links"`
+			Author struct {
+				Username string `json:"username"`
+				Email    string `json:"email"`
+			} `json:"author"`
+		} `json:"package"`
+	} `json:"objects"`
+}
+
+// https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/responses/package-metadata.md
+type npmInfoResult struct {
+	Name     string                 `json:"name"`
+	Versions map[string]interface{} `json:"versions"`
+	Author   struct {
+		Name  string `json:"name"`
+		Email string `json:"email"`
+		URL   string `json:"url"`
+	} `json:"author"`
+	Bugs struct {
+		URL string `json:"url"`
+	} `json:"bugs"`
+	Description string `json:"description"`
+	Homepage    string `json:"homepage"`
+	License     string `json:"license"`
+	Repository  struct {
+		Type string `json:"type"`
+		URL  string `json:"url"`
+	} `json:"repository"`
+}
 
 type packageJSON struct {
 	Dependencies    map[string]string `json:"dependencies"`
@@ -21,12 +65,91 @@ var nodejsBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.js", "*.ts", "*.jsx", "*.tsx"},
 	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
-		util.NotImplemented()
-		return nil
+		endpoint := "https://registry.npmjs.org/-/v1/search"
+		query = "?text=" + url.QueryEscape(query)
+
+		resp, err := http.Get(endpoint + query)
+		if err != nil {
+			util.Die("NPM registry: %s", err)
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		var npmResults npmSearchResults
+		if err := json.Unmarshal(body, &npmResults); err != nil {
+			util.Die("NPM registry: %s", err)
+		}
+
+		results := make([]api.PkgInfo, len(npmResults.Objects))
+		for i := range npmResults.Objects {
+			p := npmResults.Objects[i].Package
+			results[i] = api.PkgInfo{
+				Name:          p.Name,
+				Description:   p.Description,
+				Version:       p.Version,
+				HomepageURL:   p.Links.Homepage,
+				SourceCodeURL: p.Links.Repository,
+				BugTrackerURL: p.Links.Bugs,
+				Author: util.AuthorInfo{
+					Name:  p.Author.Username,
+					Email: p.Author.Email,
+				}.String(),
+			}
+		}
+		return results
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
-		util.NotImplemented()
-		return api.PkgInfo{}
+		endpoint := "https://registry.npmjs.org"
+		path := "/" + url.QueryEscape(string(name))
+
+		resp, err := http.Get(endpoint + path)
+		if err != nil {
+			util.Die("NPM registry: %s", err)
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		var npmInfo npmInfoResult
+		if err := json.Unmarshal(body, &npmInfo); err != nil {
+			util.Die("NPM registry: %s", err)
+		}
+
+		lastVersionStr := ""
+		if len(npmInfo.Versions) > 0 {
+			var lastVersion *version.Version = nil
+			for versionStr := range npmInfo.Versions {
+				version, err := version.NewVersion(versionStr)
+				if err != nil {
+					continue
+				}
+
+				if version.Prerelease() != "" {
+					continue
+				}
+
+				if lastVersion == nil || version.GreaterThan(lastVersion) {
+					lastVersion = version
+				}
+			}
+			if lastVersion != nil {
+				lastVersionStr = lastVersion.String()
+			}
+		}
+
+		return api.PkgInfo{
+			Name:          npmInfo.Name,
+			Description:   npmInfo.Description,
+			Version:       lastVersionStr,
+			HomepageURL:   npmInfo.Homepage,
+			SourceCodeURL: npmInfo.Repository.URL,
+			BugTrackerURL: npmInfo.Bugs.URL,
+			Author: util.AuthorInfo{
+				Name:  npmInfo.Author.Name,
+				Email: npmInfo.Author.Email,
+				URL:   npmInfo.Author.URL,
+			}.String(),
+			License: npmInfo.License,
+		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		cmd := []string{"yarn", "add"}

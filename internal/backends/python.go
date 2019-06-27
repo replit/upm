@@ -2,7 +2,6 @@ package backends
 
 import (
 	"encoding/json"
-	"fmt"
 	"regexp"
 	"strings"
 
@@ -122,7 +121,11 @@ var pythonBackend = api.LanguageBackend{
 			Description: output.Summary,
 			Version:     output.Version,
 			HomepageURL: output.HomePage,
-			License:     output.License,
+			Author: util.AuthorInfo{
+				Name:  output.Author,
+				Email: output.AuthorEmail,
+			}.String(),
+			License: output.License,
 		}
 		for _, line := range output.ProjectURL {
 			fields := strings.SplitN(line, ", ", 2)
@@ -160,19 +163,6 @@ var pythonBackend = api.LanguageBackend{
 				continue
 			}
 		}
-
-		authorParts := []string{}
-		if output.Author != "" {
-			authorParts = append(authorParts, output.Author)
-		}
-		if output.AuthorEmail != "" {
-			authorParts = append(
-				authorParts, fmt.Sprintf(
-					"<%s>", output.AuthorEmail,
-				),
-			)
-		}
-		info.Author = strings.Join(authorParts, " ")
 
 		deps := []string{}
 		for _, line := range output.RequiresDist {
