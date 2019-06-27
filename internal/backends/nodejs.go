@@ -24,9 +24,9 @@ var nodejsBackend = api.LanguageBackend{
 		util.NotImplemented()
 		return nil
 	},
-	Info: func(name api.PkgName) *api.PkgInfo {
+	Info: func(name api.PkgName) api.PkgInfo {
 		util.NotImplemented()
-		return &api.PkgInfo{}
+		return api.PkgInfo{}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		cmd := []string{"yarn", "add"}

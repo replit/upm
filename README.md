@@ -45,6 +45,7 @@ binary and all the package managers, but not the UPM source code, run
   * [Ruby](https://www.ruby-lang.org/en/)
   * [Bundler](https://bundler.io/)
   * [json](https://ruby-doc.org/stdlib/libdoc/json/rdoc/JSON.html)
+  * [gems](https://rubygems.org/gems/gems) (for `search` and `info`)
 * `elisp-cask`
   * [Emacs](https://www.gnu.org/software/emacs/)
   * [Cask](https://github.com/cask/cask)

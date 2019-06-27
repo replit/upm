@@ -59,14 +59,14 @@ type infoLine struct {
 func runInfo(language string, pkg string, outputFormat outputFormat) {
 	backend := backends.GetBackend(language)
 	info := backend.Info(api.PkgName(pkg))
-	if info == nil {
+	if info.Name == "" {
 		util.Die("no such package: %s", pkg)
 	}
 
 	switch outputFormat {
 	case outputFormatTable:
-		infoT := reflect.TypeOf(*info)
-		infoV := reflect.ValueOf(*info)
+		infoT := reflect.TypeOf(info)
+		infoV := reflect.ValueOf(info)
 		rows := []infoLine{}
 		for i := 0; i < infoT.NumField(); i++ {
 			field := infoT.Field(i).Tag.Get("pretty")

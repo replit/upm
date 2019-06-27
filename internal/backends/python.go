@@ -109,7 +109,7 @@ var pythonBackend = api.LanguageBackend{
 		}
 		return results
 	},
-	Info: func(name api.PkgName) *api.PkgInfo {
+	Info: func(name api.PkgName) api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
 			"python3", "-c", pythonInfoCode, string(name),
 		})
@@ -117,10 +117,7 @@ var pythonBackend = api.LanguageBackend{
 		if err := json.Unmarshal(outputB, &output); err != nil {
 			util.Die("PyPI response: %s", err)
 		}
-		if output.Name == "" {
-			return nil
-		}
-		info := &api.PkgInfo{
+		info := api.PkgInfo{
 			Name:        output.Name,
 			Description: output.Summary,
 			Version:     output.Version,

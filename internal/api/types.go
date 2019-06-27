@@ -35,7 +35,7 @@ type LanguageBackend struct {
 	FilenamePatterns []string
 	Quirks           Quirks
 	Search           func(string) []PkgInfo
-	Info             func(PkgName) *PkgInfo
+	Info             func(PkgName) PkgInfo
 	Add              func(map[PkgName]PkgSpec)
 	Remove           func(map[PkgName]bool)
 	Lock             func()

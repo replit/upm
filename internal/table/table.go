@@ -107,18 +107,18 @@ func (t *Table) SortBy(header string) {
 func (t *Table) Print() {
 	widths := make([]int, len(t.headers))
 	for j := range t.headers {
-		widths[j] = len(t.headers[j])
+		widths[j] = len([]rune(t.headers[j]))
 	}
 	for i := range t.rows {
 		for j := range t.rows[i] {
-			if len(t.rows[i][j]) > widths[j] {
-				widths[j] = len(t.rows[i][j])
+			if len([]rune(t.rows[i][j])) > widths[j] {
+				widths[j] = len([]rune(t.rows[i][j]))
 			}
 		}
 	}
 	fields := make([]string, len(t.headers))
 	for j := range t.headers {
-		padding := widths[j] - len(t.headers[j])
+		padding := widths[j] - len([]rune(t.headers[j]))
 		fields[j] = t.headers[j] + strings.Repeat(" ", padding)
 	}
 	fmt.Println(strings.Join(fields, "   "))
@@ -128,7 +128,7 @@ func (t *Table) Print() {
 	fmt.Println(strings.Join(fields, "   "))
 	for i := range t.rows {
 		for j := range t.rows[i] {
-			padding := widths[j] - len(t.rows[i][j])
+			padding := widths[j] - len([]rune(t.rows[i][j]))
 			fields[j] = t.rows[i][j] + strings.Repeat(" ", padding)
 		}
 		fmt.Println(strings.Join(fields, "   "))

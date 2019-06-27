@@ -168,7 +168,7 @@ var elispBackend = api.LanguageBackend{
 		}
 		return results
 	},
-	Info: func(name api.PkgName) *api.PkgInfo {
+	Info: func(name api.PkgName) api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
 		if err != nil {
 			util.Die("%s", err)
@@ -185,10 +185,7 @@ var elispBackend = api.LanguageBackend{
 		if err := json.Unmarshal(outputB, &info); err != nil {
 			util.Die("%s", err)
 		}
-		if info.Name == "" {
-			return nil
-		}
-		return &info
+		return info
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		contentsB, err := ioutil.ReadFile("Cask")

@@ -2,10 +2,41 @@ package backends
 
 import (
 	"encoding/json"
+	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+type rubygemsInfo struct {
+	Authors       string `json:"authors"`
+	BugTrackerURI string `json:"bug_tracker_uri"`
+	Dependencies  map[string][]struct {
+		Name         string `json:"name"`
+		Requirements string `json:"requirements"`
+	} `json:"dependencies"`
+	DocumentationURI string   `json:"documentation_uri"`
+	HomepageURI      string   `json:"homepage_uri"`
+	Info             string   `json:"info"`
+	Licenses         []string `json:"licenses"`
+	Name             string   `json:"name"`
+	SourceCodeURI    string   `json:"source_code_uri"`
+	Version          string   `json:"version"`
+}
+
+const rubySearchCode = `
+require 'gems'
+require 'json'
+
+puts Gems.search(ARGV[0]).to_json
+`
+
+const rubyInfoCode = `
+require 'gems'
+require 'json'
+
+puts Gems.info(ARGV[0]).to_json
+`
 
 const rubyListSpecfileCode = `
 require 'bundler'
@@ -43,12 +74,62 @@ var rubyBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
-		util.NotImplemented()
-		return nil
+		outputB := util.GetCmdOutput([]string{
+			"ruby", "-e", rubySearchCode, query,
+		})
+		var outputStructs []rubygemsInfo
+		if err := json.Unmarshal(outputB, &outputStructs); err != nil {
+			util.Die("RubyGems response: %s", err)
+		}
+		results := []api.PkgInfo{}
+		for _, s := range outputStructs {
+			deps := []string{}
+			for _, group := range s.Dependencies {
+				for _, dep := range group {
+					deps = append(deps, dep.Name)
+				}
+			}
+			results = append(results, api.PkgInfo{
+				Name:             s.Name,
+				Description:      s.Info,
+				Version:          s.Version,
+				HomepageURL:      s.HomepageURI,
+				DocumentationURL: s.DocumentationURI,
+				SourceCodeURL:    s.SourceCodeURI,
+				BugTrackerURL:    s.BugTrackerURI,
+				Author:           s.Authors,
+				License:          strings.Join(s.Licenses, ", "),
+				Dependencies:     deps,
+			})
+		}
+		return results
 	},
-	Info: func(name api.PkgName) *api.PkgInfo {
-		util.NotImplemented()
-		return nil
+	Info: func(name api.PkgName) api.PkgInfo {
+		outputB := util.GetCmdOutput([]string{
+			"ruby", "-e", rubyInfoCode, string(name),
+		})
+		var s rubygemsInfo
+		if err := json.Unmarshal(outputB, &s); err != nil {
+			util.Die("RubyGems response: %s", err)
+		}
+		deps := []string{}
+		for _, group := range s.Dependencies {
+			for _, dep := range group {
+				deps = append(deps, dep.Name)
+			}
+		}
+		return api.PkgInfo{
+			Name:             s.Name,
+			Description:      s.Info,
+			Version:          s.Version,
+			HomepageURL:      s.HomepageURI,
+			DocumentationURL: s.DocumentationURI,
+			SourceCodeURL:    s.SourceCodeURI,
+			BugTrackerURL:    s.BugTrackerURI,
+			Author:           s.Authors,
+			License:          strings.Join(s.Licenses, ", "),
+			Dependencies:     deps,
+		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		if !util.FileExists("Gemfile") {
