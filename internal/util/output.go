@@ -15,5 +15,5 @@ func Panicf(format string, a ...interface{}) {
 }
 
 func NotImplemented() {
-	panic("not yet implemented")
+	Die("not yet implemented")
 }
