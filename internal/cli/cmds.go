@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"sort"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -343,7 +344,13 @@ func runGuess(language string, all bool) {
 		}
 	}
 
-	for name, _ := range pkgs {
-		fmt.Println(name)
+	lines := []string{}
+	for pkg := range pkgs {
+		lines = append(lines, string(pkg))
+	}
+	sort.Strings(lines)
+
+	for _, line := range lines {
+		fmt.Println(line)
 	}
 }
