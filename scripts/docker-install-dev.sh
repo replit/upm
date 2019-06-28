@@ -18,6 +18,7 @@ ruby
 ruby-bundler
 ruby-json
 ruby-rdoc
+sqlite
 util-linux
 yarn
 

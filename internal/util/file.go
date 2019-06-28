@@ -2,9 +2,12 @@ package util
 
 import (
 	"bytes"
+	"io"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 
 	"github.com/natefinch/atomic"
 )
@@ -33,5 +36,67 @@ func PatternExists(pattern string) bool {
 		panic(err)
 	} else {
 		return len(matches) > 0
+	}
+}
+
+func SearchRecursive(expr string, patterns []string) [][]string {
+	r, err := regexp.Compile(expr)
+	if err != nil {
+		panic(err)
+	}
+
+	matches := [][]string{}
+	filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			Die("%s: %s", path, err)
+		}
+		didMatch := false
+		for _, pattern := range patterns {
+			matched, err := filepath.Match(pattern, filepath.Base(path))
+			if err != nil {
+				panic(err)
+			}
+			if matched {
+				didMatch = true
+				break
+			}
+		}
+		if !didMatch {
+			return nil
+		}
+		if info.Mode().IsRegular() {
+			contentsB, err := ioutil.ReadFile(path)
+			if err != nil {
+				Die("%s: %s", path, err)
+			}
+			contents := string(contentsB)
+
+			matches = append(matches,
+				r.FindAllStringSubmatch(contents, -1)...,
+			)
+		}
+		return nil
+	})
+
+	return matches
+}
+
+// https://golangcode.com/download-a-file-from-a-url/
+func DownloadFile(filepath string, url string) {
+	ProgressMsg("download " + url)
+	resp, err := http.Get(url)
+	if err != nil {
+		Die("%s: %s", url, err)
+	}
+	defer resp.Body.Close()
+
+	out, err := os.Create(filepath)
+	if err != nil {
+		Die("%s: %s", filepath, err)
+	}
+	defer out.Close()
+
+	if _, err := io.Copy(out, resp.Body); err != nil {
+		Die("%s: %s", filepath, err)
 	}
 }

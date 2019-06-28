@@ -20,7 +20,7 @@ func quoteCmd(cmd []string) string {
 	cleanedCmd := make([]string, len(cmd))
 	copy(cleanedCmd, cmd)
 	for i := range cmd {
-		if strings.ContainsRune(cmd[i], '\n') {
+		if strings.ContainsRune(cmd[i], '\n') || len(cmd[i]) > 50 {
 			cleanedCmd[i] = "<secret sauce>"
 		}
 	}

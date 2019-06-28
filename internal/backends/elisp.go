@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -288,7 +289,57 @@ var elispBackend = api.LanguageBackend{
 		return pkgs
 	},
 	Guess: func() map[api.PkgName]bool {
-		util.NotImplemented()
-		return nil
+		reqExpr := `\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`
+		required := map[string]bool{}
+		for _, match := range util.SearchRecursive(reqExpr, []string{"*.el"}) {
+			required[match[1]] = true
+		}
+
+		prvExpr := `\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`
+		provided := map[string]bool{}
+		for _, match := range util.SearchRecursive(prvExpr, []string{"*.el"}) {
+			provided[match[1]] = true
+		}
+
+		tempdir, err := ioutil.TempDir("", "epkgs")
+		if err != nil {
+			util.Die("%s", err)
+		}
+		defer os.RemoveAll(tempdir)
+
+		url := "https://github.com/emacsmirror/epkgs/raw/master/epkg.sqlite"
+		epkgs := filepath.Join(tempdir, "epkgs.sqlite")
+		util.DownloadFile(epkgs, url)
+
+		clauses := []string{}
+		for feature := range required {
+			if strings.ContainsAny(feature, `\'`) {
+				continue
+			}
+			if provided[feature] {
+				continue
+			}
+			clauses = append(clauses, fmt.Sprintf("feature = '%s'", feature))
+		}
+		where := strings.Join(clauses, " OR ")
+		query := fmt.Sprintf("SELECT package FROM provided PR WHERE (%s) "+
+			"AND NOT EXISTS (SELECT 1 FROM builtin_libraries B "+
+			"WHERE PR.feature = B.feature) "+
+			"AND NOT EXISTS (SELECT 1 FROM packages PK "+
+			"WHERE PR.package = PK.name AND PK.class = 'builtin');",
+			where,
+		)
+		output := string(util.GetCmdOutput([]string{"sqlite3", epkgs, query}))
+
+		r, err := regexp.Compile(`"(.+?)"`)
+		if err != nil {
+			util.Die("%s", err)
+		}
+
+		names := map[api.PkgName]bool{}
+		for _, match := range r.FindAllStringSubmatch(output, -1) {
+			names[api.PkgName(match[1])] = true
+		}
+		return names
 	},
 }

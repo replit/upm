@@ -49,6 +49,7 @@ binary and all the package managers, but not the UPM source code, run
 * `elisp-cask`
   * [Emacs](https://www.gnu.org/software/emacs/)
   * [Cask](https://github.com/cask/cask)
+  * [SQLite](https://www.sqlite.org/index.html) (for `guess`)
 
 ## Command-line interface
 
