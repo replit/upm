@@ -144,11 +144,13 @@ const elispListSpecfileCode = `
                      (if branch (format ":branch %S" branch) ""))))))
 `
 
+var elispPatterns = []string{"*.el"}
+
 var elispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
 	Specfile:         "Cask",
 	Lockfile:         "packages.txt",
-	FilenamePatterns: []string{"*.el"},
+	FilenamePatterns: elispPatterns,
 	Quirks:           api.QuirksNotReproducible,
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
@@ -291,13 +293,13 @@ var elispBackend = api.LanguageBackend{
 	Guess: func() map[api.PkgName]bool {
 		reqExpr := `\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`
 		required := map[string]bool{}
-		for _, match := range util.SearchRecursive(reqExpr, []string{"*.el"}) {
+		for _, match := range util.SearchRecursive(reqExpr, elispPatterns) {
 			required[match[1]] = true
 		}
 
 		prvExpr := `\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`
 		provided := map[string]bool{}
-		for _, match := range util.SearchRecursive(prvExpr, []string{"*.el"}) {
+		for _, match := range util.SearchRecursive(prvExpr, elispPatterns) {
 			provided[match[1]] = true
 		}
 
