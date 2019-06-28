@@ -50,6 +50,20 @@ func SearchRecursive(expr string, patterns []string) [][]string {
 		if err != nil {
 			Die("%s: %s", path, err)
 		}
+		for _, name := range []string{
+			".git",
+			".next",
+			"__generated__",
+			"__pycache__",
+			"__tests__",
+			"node_modules",
+			"test",
+			"vendor",
+		} {
+			if filepath.Base(path) == name {
+				return filepath.SkipDir
+			}
+		}
 		didMatch := false
 		for _, pattern := range patterns {
 			matched, err := filepath.Match(pattern, filepath.Base(path))

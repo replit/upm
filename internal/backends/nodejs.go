@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"strings"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -58,11 +59,13 @@ type packageJSON struct {
 	DevDependencies map[string]string `json:"devDependencies"`
 }
 
+var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
+
 var nodejsBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
-	FilenamePatterns: []string{"*.js", "*.ts", "*.jsx", "*.tsx"},
+	FilenamePatterns: nodejsPatterns,
 	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://registry.npmjs.org/-/v1/search"
@@ -208,7 +211,44 @@ var nodejsBackend = api.LanguageBackend{
 		return pkgs
 	},
 	Guess: func() map[api.PkgName]bool {
-		util.NotImplemented()
-		return nil
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+		exprs := []string{
+			// import defaultExport from "module-name";
+			// import * as name from "module-name";
+			// import { export } from "module-name";
+			`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
+			// import "module-name";
+			`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
+			// const mod = import("module-name")
+			// const mod = require("module-name")
+			`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+		}
+		expr := strings.Join(exprs, "|")
+		pkgs := map[api.PkgName]bool{}
+		for _, match := range util.SearchRecursive(expr, nodejsPatterns) {
+			// Only one group should match, so this join
+			// is really picking out whichever string is
+			// non-empty in the slice.
+			module := strings.Join(match[1:], "")
+			// Skip local modules.
+			if strings.Contains(module, "!") {
+				parts := strings.Split(module, "!")
+				module = parts[len(parts)-1]
+			}
+			if strings.HasPrefix(module, ".") {
+				continue
+			}
+			if strings.Contains(module, "/") {
+				parts := strings.Split(module, "/")
+				if strings.HasPrefix(module, "@") {
+					module = strings.Join(parts[:2], "/")
+				} else {
+					module = parts[0]
+				}
+			}
+			pkgs[api.PkgName(module)] = true
+		}
+
+		return pkgs
 	},
 }
