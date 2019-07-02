@@ -12,7 +12,7 @@ import (
 
 func ProgressMsg(msg string) {
 	if !config.Quiet {
-		fmt.Println("-->", msg)
+		fmt.Fprintln(os.Stderr, "-->", msg)
 	}
 }
 
