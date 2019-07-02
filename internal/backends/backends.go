@@ -7,6 +7,8 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// If more than one backend might match the same project, then one
+// that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
 	pythonBackend,
 	nodejsBackend,
@@ -36,24 +38,37 @@ func CheckAll() {
 	}
 }
 
+func matchesLanguage(backend api.LanguageBackend, language string) bool {
+	bParts := map[string]bool{}
+	for _, bPart := range strings.Split(backend.Name, "-") {
+		bParts[bPart] = true
+	}
+	for _, lPart := range strings.Split(language, "-") {
+		if !bParts[lPart] {
+			return false
+		}
+	}
+	return true
+}
+
 func GetBackend(language string) api.LanguageBackend {
 	backends := languageBackends
 	if language != "" {
-		for _, b := range backends {
-			if b.Name == language {
-				return b
-			}
-		}
 		filteredBackends := []api.LanguageBackend{}
 		for _, b := range backends {
-			if strings.HasPrefix(b.Name, language+"-") {
+			if matchesLanguage(b, language) {
 				filteredBackends = append(filteredBackends, b)
 			}
 		}
-		if len(filteredBackends) == 0 {
+		switch len(filteredBackends) {
+		case 0:
 			util.Die("no such language: %s", language)
+		case 1:
+			return filteredBackends[0]
+		default:
+			backends = filteredBackends
 		}
-		backends = filteredBackends
+
 	}
 	for _, b := range backends {
 		if util.FileExists(b.Specfile) ||
@@ -68,8 +83,10 @@ func GetBackend(language string) api.LanguageBackend {
 			}
 		}
 	}
-	util.Die("could not autodetect a language for your project")
-	return api.LanguageBackend{}
+	if language == "" {
+		util.Die("could not autodetect a language for your project")
+	}
+	return backends[0]
 }
 
 func GetBackendNames() []string {
