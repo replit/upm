@@ -35,9 +35,13 @@ binary and all the package managers, but not the UPM source code, run
 ## Dependencies
 
 * `python-poetry`
-  * [Python 3](https://www.python.org/)
-  * [Poetry](https://poetry.eustace.io/)
-  * [Pipreqs](https://github.com/bndr/pipreqs) (for `guess`)
+  * [Python 2/3](https://www.python.org/)
+  * [Pip](https://pip.pypa.io/en/stable/) for appropriate version(s)
+    of Python
+  * [Poetry](https://poetry.eustace.io/) for appropriate version(s) of
+    Python
+  * [Pipreqs](https://github.com/bndr/pipreqs) for appropriate
+    version(s) of Python (for `guess`)
 * `nodejs-yarn`
   * [Node.js](https://nodejs.org/en/)
   * [Yarn](https://yarnpkg.com/en/)
