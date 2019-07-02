@@ -61,7 +61,7 @@ func DoCLI() {
 		Long:  "Ask which language your project is autodetected as",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runWhichLanguage()
+			runWhichLanguage(language)
 		},
 	}
 	rootCmd.AddCommand(cmdWhichLanguage)

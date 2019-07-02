@@ -15,8 +15,8 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-func runWhichLanguage() {
-	backend := backends.GetBackend("")
+func runWhichLanguage(language string) {
+	backend := backends.GetBackend(language)
 	fmt.Println(backend.Name)
 }
 
