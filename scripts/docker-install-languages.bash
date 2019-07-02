@@ -22,8 +22,10 @@ emacs-nox
 git
 nodejs
 python
+python-pip
 python3
 python3-pip
+python3-venv
 ruby
 ruby-bundler
 sqlite3
@@ -35,6 +37,7 @@ apt-get update
 apt-get install -y $packages
 rm -rf /var/lib/apt/lists/*
 
+pip2 --disable-pip-version-check install pipreqs poetry
 pip3 --disable-pip-version-check install pipreqs poetry
 gem install gems
 curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
