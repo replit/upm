@@ -19,6 +19,7 @@ packages="
 bsdmainutils
 curl
 emacs-nox
+git
 nodejs
 python
 python3
