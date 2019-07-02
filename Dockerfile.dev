@@ -1,4 +1,10 @@
-FROM alpine:3.9 AS dev
+FROM ubuntu:19.04 AS dev
 
-COPY scripts/docker-install-dev.sh /tmp/docker-install-dev.sh
-RUN /tmp/docker-install-dev.sh
+COPY scripts/docker-install-build.bash /tmp/docker-install-build.bash
+RUN /tmp/docker-install-build.bash
+
+COPY scripts/docker-install-languages.bash /tmp/docker-install-languages.bash
+RUN /tmp/docker-install-languages.bash
+
+COPY scripts/docker-setup-env.bash /tmp/docker-setup-env.bash
+RUN /tmp/docker-setup-env.bash

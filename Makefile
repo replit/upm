@@ -7,7 +7,7 @@ cmd/upm/upm: cmd/upm/*.go internal internal/* internal/*/*.go
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker
 	docker build . -f Dockerfile.dev -t upm:dev
-	docker run -it --rm -v "$$PWD:/upm" upm:dev sh -isc "source /upm/scripts/docker-env.sh"
+	docker run -it --rm -v "$$PWD:/upm" upm:dev
 
 .PHONY: light
 light: ## Build a Docker image with just the UPM binary

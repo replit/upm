@@ -1,13 +1,14 @@
-FROM alpine:3.9
+FROM ubuntu:19.04
 
-COPY scripts/docker-install-build.sh /tmp/docker-install-build.sh
-RUN /tmp/docker-install-build.sh
+COPY scripts/docker-install-build.bash /tmp/docker-install-build.bash
+RUN /tmp/docker-install-build.bash
+
 COPY . /upm
 RUN make -C /upm upm
 
-FROM alpine:3.9
+FROM ubuntu:19.04
 
-COPY scripts/docker-install-dev.sh /tmp/docker-install-dev.sh
-RUN /tmp/docker-install-dev.sh
+COPY scripts/docker-install-languages.bash /tmp/docker-install-languages.bash
+RUN /tmp/docker-install-languages.bash
 
 COPY --from=0 /upm/cmd/upm/upm /usr/local/bin/upm
