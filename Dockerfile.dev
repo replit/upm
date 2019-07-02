@@ -3,8 +3,13 @@ FROM ubuntu:19.04 AS dev
 COPY scripts/docker-install-build.bash /tmp/docker-install-build.bash
 RUN /tmp/docker-install-build.bash
 
+ENV PATH="/usr/local/go/bin:$PATH"
+
 COPY scripts/docker-install-languages.bash /tmp/docker-install-languages.bash
 RUN /tmp/docker-install-languages.bash
 
 COPY scripts/docker-setup-env.bash /tmp/docker-setup-env.bash
 RUN /tmp/docker-setup-env.bash
+
+ENV PATH="/upm/cmd/upm:$PATH"
+WORKDIR /upm

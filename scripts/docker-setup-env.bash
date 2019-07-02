@@ -4,9 +4,6 @@ set -e
 set -o pipefail
 
 tee -a "$HOME/.bashrc" >/dev/null <<"EOF"
-export PATH="/upm/cmd/upm:$PATH"
-cd /upm
-
 # Alias to build and run the latest version of UPM.
 alias u='make -s -C /upm upm && upm'
 
