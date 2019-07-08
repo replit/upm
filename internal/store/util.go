@@ -9,12 +9,18 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-func hashFile(filename string) Hash {
-	bytes, err := ioutil.ReadFile(filename)
-	if os.IsNotExist(err) {
-		return ""
-	} else if err != nil {
-		util.Die("%s: %s", filename, err)
+func hashFile(filenames []string) Hash {
+	allBytes := []byte{}
+	for _, filename := range filenames {
+		if !util.FileExists(filename) {
+			return ""
+		}
+		bytes, err := ioutil.ReadFile(filename)
+		if os.IsNotExist(err) {
+			return ""
+		} else if err != nil {
+			util.Die("%s: %s", filename, err)
+		}
 	}
 	sum := md5.Sum(bytes)
 	return Hash(hex.EncodeToString(sum[:]))

@@ -69,8 +69,8 @@ func (st *Store) DoesLockfileHashMatch(lockfile string) bool {
 	return st.LockfileHash != "" && hashFile(lockfile) == st.LockfileHash
 }
 
-func (st *Store) UpdateHashes(specfile string, lockfile string) {
-	st.SpecfileHash = hashFile(specfile)
+func (st *Store) UpdateHashes(specfiles []string, lockfile string) {
+	st.SpecfileHash = hashFile(specfiles...)
 	st.LockfileHash = hashFile(lockfile)
 
 	if st.SpecfileHash == "" {

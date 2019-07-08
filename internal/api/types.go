@@ -30,7 +30,7 @@ const (
 // Keep up to date with checkBackends in backends.go
 type LanguageBackend struct {
 	Name             string
-	Specfile         string
+	Specfiles        []string
 	Lockfile         string
 	FilenamePatterns []string
 	Quirks           Quirks

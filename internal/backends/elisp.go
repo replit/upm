@@ -148,7 +148,7 @@ var elispPatterns = []string{"*.el"}
 
 var elispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
-	Specfile:         "Cask",
+	Specfiles:        []string{"Cask"},
 	Lockfile:         "packages.txt",
 	FilenamePatterns: elispPatterns,
 	Quirks:           api.QuirksNotReproducible,

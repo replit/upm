@@ -21,7 +21,7 @@ var languageBackends = []api.LanguageBackend{
 func CheckAll() {
 	for _, b := range languageBackends {
 		if b.Name == "" ||
-			b.Specfile == "" ||
+			len(b.Specfiles) == 0 ||
 			b.Lockfile == "" ||
 			b.Search == nil ||
 			b.Info == nil ||
@@ -72,8 +72,10 @@ func GetBackend(language string) api.LanguageBackend {
 
 	}
 	for _, b := range backends {
-		if util.FileExists(b.Specfile) ||
-			util.FileExists(b.Lockfile) {
+		if b.SpecfileExists() {
+			return b
+		}
+		if util.FileExists(b.Lockfile) {
 			return b
 		}
 	}

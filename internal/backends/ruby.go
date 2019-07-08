@@ -69,7 +69,7 @@ puts result.to_json
 
 var rubyBackend = api.LanguageBackend{
 	Name:             "ruby-bundler",
-	Specfile:         "Gemfile",
+	Specfiles:        []string{"Gemfile"},
 	Lockfile:         "Gemfile.lock",
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksNone,

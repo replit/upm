@@ -96,7 +96,7 @@ print()
 func pythonMakeBackend(python string) api.LanguageBackend {
 	return api.LanguageBackend{
 		Name:             "python-" + python + "-poetry",
-		Specfile:         "pyproject.toml",
+		Specfiles:        []string{"pyproject.toml"},
 		Lockfile:         "poetry.lock",
 		FilenamePatterns: []string{"*.py"},
 		Quirks:           api.QuirksNone,

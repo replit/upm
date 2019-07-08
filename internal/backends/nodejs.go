@@ -63,7 +63,7 @@ var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
 var nodejsBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
-	Specfile:         "package.json",
+	Specfiles:        []string{"package.json"},
 	Lockfile:         "yarn.lock",
 	FilenamePatterns: nodejsPatterns,
 	Quirks:           api.QuirksNone,

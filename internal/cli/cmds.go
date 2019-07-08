@@ -143,7 +143,7 @@ func runAdd(language string, args []string, guess bool) {
 		}
 	}
 
-	if util.FileExists(backend.Specfile) {
+	if backend.SpecfileExists() {
 		for name, _ := range backend.ListSpecfile() {
 			delete(pkgs, name)
 		}
@@ -174,7 +174,7 @@ func runAdd(language string, args []string, guess bool) {
 func runRemove(language string, args []string) {
 	backend := backends.GetBackend(language)
 
-	if !util.FileExists(backend.Specfile) {
+	if !backend.SpecfileExists() {
 		return
 	}
 	specfilePkgs := backend.ListSpecfile()
@@ -251,7 +251,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 	backend := backends.GetBackend(language)
 	if !all {
 		var results map[api.PkgName]api.PkgSpec = nil
-		fileExists := util.FileExists(backend.Specfile)
+		fileExists := backend.SpecfileExists()
 		if fileExists {
 			results = backend.ListSpecfile()
 		}
@@ -337,7 +337,7 @@ func runGuess(language string, all bool) {
 	pkgs := backend.Guess()
 
 	if !all {
-		if util.FileExists(backend.Specfile) {
+		if backend.SpecfileExists() {
 			for name, _ := range backend.ListSpecfile() {
 				delete(pkgs, name)
 			}

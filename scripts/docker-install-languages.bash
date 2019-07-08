@@ -20,6 +20,7 @@ bsdmainutils
 curl
 emacs-nox
 git
+haskell-stack
 nodejs
 python
 python-pip
