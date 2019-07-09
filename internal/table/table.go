@@ -32,7 +32,7 @@ func FromStructs(structs interface{}) Table {
 			continue
 		}
 		indices = append(indices, i)
-		header := strings.ToLower(st.Field(i).Tag.Get("pretty"))
+		header := st.Field(i).Tag.Get("pretty")
 		headers = append(headers, header)
 	}
 
