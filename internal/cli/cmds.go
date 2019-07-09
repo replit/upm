@@ -44,7 +44,7 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 		t.Print()
 
 	case outputFormatJSON:
-		outputB, err := json.MarshalIndent(results, "", "  ")
+		outputB, err := json.Marshal(results)
 		if err != nil {
 			panic(err)
 		}
@@ -112,7 +112,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 		}
 
 	case outputFormatJSON:
-		outputB, err := json.MarshalIndent(info, "", "  ")
+		outputB, err := json.Marshal(info)
 		if err != nil {
 			panic(err)
 		}
@@ -286,7 +286,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 					Spec: string(spec),
 				})
 			}
-			outputB, err := json.MarshalIndent(j, "", "  ")
+			outputB, err := json.Marshal(j)
 			if err != nil {
 				panic("couldn't marshal json")
 			}
@@ -326,7 +326,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 					Version: string(version),
 				})
 			}
-			outputB, err := json.MarshalIndent(j, "", "  ")
+			outputB, err := json.Marshal(j)
 			if err != nil {
 				panic("couldn't marshal json")
 			}

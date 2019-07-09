@@ -52,9 +52,9 @@ func (st *Store) Write() {
 		util.Die("%s: %s", directory, err)
 	}
 
-	content, err := json.MarshalIndent(st, "", "  ")
+	content, err := json.Marshal(st)
 	if err != nil {
-		util.Panicf("writeStore: json.MarshalIndent failed", err)
+		util.Panicf("writeStore: %s", err)
 	}
 	content = append(content, '\n')
 

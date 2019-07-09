@@ -14,12 +14,16 @@ tee -a /etc/apt/sources.list.d/yarn.list >/dev/null <<"EOF"
 deb https://dl.yarnpkg.com/debian/ stable main
 EOF
 
+# bsdmainutils for the column utility. jq for prettifying JSON output
+# if you want to actually read it as a human.
+
 packages="
 
 bsdmainutils
 curl
 emacs-nox
 git
+jq
 nodejs
 python
 python-pip
