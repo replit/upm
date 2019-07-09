@@ -33,6 +33,7 @@ python3-venv
 ruby
 ruby-bundler
 sqlite3
+yarn
 
 "
 

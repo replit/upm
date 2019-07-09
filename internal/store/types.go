@@ -1,8 +1,9 @@
 package store
 
-type Hash string
+type hash string
 
-type Store struct {
-	SpecfileHash Hash `json:"specfileHash"`
-	LockfileHash Hash `json:"lockfileHash"`
+type store struct {
+	SpecfileHash hash `json:"specfileHash"`
+	LockfileHash hash `json:"lockfileHash"`
+	Global       bool `json:"global"`
 }

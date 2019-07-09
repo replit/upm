@@ -6,8 +6,12 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/util"
 )
+
+var st *store
 
 func getStoreLocation() string {
 	loc, ok := os.LookupEnv("UPM_STORE")
@@ -18,28 +22,31 @@ func getStoreLocation() string {
 	}
 }
 
-func Read() Store {
+func read() {
+	st = &store{}
+
 	filename := getStoreLocation()
 	bytes, err := ioutil.ReadFile(filename)
 
 	if err != nil {
 		if os.IsNotExist(err) {
-			return Store{}
+			return
 		}
 		util.Die("%s: %s", filename, err)
 	}
 
-	var store Store
-	err = json.Unmarshal(bytes, &store)
-
-	if err != nil {
+	if err = json.Unmarshal(bytes, st); err != nil {
 		util.Die("%s: %s", filename, err)
 	}
-
-	return store
 }
 
-func (st *Store) Write() {
+func readMaybe() {
+	if st == nil {
+		read()
+	}
+}
+
+func write() {
 	filename := getStoreLocation()
 
 	filename, err := filepath.Abs(filename)
@@ -54,32 +61,32 @@ func (st *Store) Write() {
 
 	content, err := json.Marshal(st)
 	if err != nil {
-		util.Panicf("writeStore: %s", err)
+		util.Panicf("Store.Write: %s", err)
 	}
 	content = append(content, '\n')
 
 	util.TryWriteAtomic(filename, content)
 }
 
-func (st *Store) DoesSpecfileHashMatch(specfile string) bool {
-	return st.LockfileHash != "" && hashFile(specfile) == st.SpecfileHash
+func HasSpecfileChanged(b api.LanguageBackend) bool {
+	readMaybe()
+	return hashFile(b.Specfile) != st.SpecfileHash
 }
 
-func (st *Store) DoesLockfileHashMatch(lockfile string) bool {
-	return st.LockfileHash != "" && hashFile(lockfile) == st.LockfileHash
+func HasLockfileChanged(b api.LanguageBackend) bool {
+	readMaybe()
+	return hashFile(b.Lockfile) != st.LockfileHash
 }
 
-func (st *Store) UpdateHashes(specfile string, lockfile string) {
-	st.SpecfileHash = hashFile(specfile)
-	st.LockfileHash = hashFile(lockfile)
+func HasGlobalChanged() bool {
+	readMaybe()
+	return config.Global != st.Global
+}
 
-	if st.SpecfileHash == "" {
-		util.Die("file does not exist: %s", specfile)
-	}
-
-	if st.LockfileHash == "" {
-		util.Die("file does not exist: %s", lockfile)
-	}
-
-	st.Write()
+func Update(b api.LanguageBackend) {
+	readMaybe()
+	st.SpecfileHash = hashFile(b.Specfile)
+	st.LockfileHash = hashFile(b.Lockfile)
+	st.Global = config.Global
+	write()
 }

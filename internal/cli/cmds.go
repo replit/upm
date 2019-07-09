@@ -120,7 +120,44 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 	}
 }
 
-func runAdd(language string, args []string, guess bool) {
+func maybeLock(b api.LanguageBackend, forceLock bool) {
+	if api.QuirksIsNotReproducible(b) {
+		return
+	}
+
+	if !forceLock && !store.HasSpecfileChanged(b) {
+		return
+	}
+
+	if !util.FileExists(b.Specfile) {
+		return
+	}
+
+	b.Lock()
+}
+
+func maybeInstall(b api.LanguageBackend, forceInstall bool) {
+	if !forceInstall && !store.HasLockfileChanged(b) && !store.HasGlobalChanged() {
+		return
+	}
+
+	if api.QuirksIsReproducible(b) {
+		if !util.FileExists(b.Lockfile) {
+			return
+		}
+	} else {
+		if !util.FileExists(b.Specfile) {
+			return
+		}
+	}
+
+	b.Install()
+}
+
+func runAdd(
+	language string, args []string, guess bool,
+	forceLock bool, forceInstall bool) {
+
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for _, arg := range args {
 		fields := strings.SplitN(arg, " ", 2)
@@ -133,51 +170,47 @@ func runAdd(language string, args []string, guess bool) {
 		pkgs[name] = spec
 	}
 
-	backend := backends.GetBackend(language)
+	b := backends.GetBackend(language)
 
 	if guess {
-		for name, _ := range backend.Guess() {
+		for name, _ := range b.Guess() {
 			if _, ok := pkgs[name]; !ok {
 				pkgs[name] = ""
 			}
 		}
 	}
 
-	if util.FileExists(backend.Specfile) {
-		for name, _ := range backend.ListSpecfile() {
+	if util.FileExists(b.Specfile) {
+		for name, _ := range b.ListSpecfile() {
 			delete(pkgs, name)
 		}
 	}
 
 	if len(pkgs) >= 1 {
-		backend.Add(pkgs)
-	}
+		b.Add(pkgs)
 
-	store := store.Read()
-
-	if api.QuirksIsReproducible(backend) {
-		if !store.DoesSpecfileHashMatch(backend.Specfile) {
-			backend.Lock()
-		}
-		if !store.DoesLockfileHashMatch(backend.Lockfile) {
-			backend.Install()
-		}
-	} else {
-		if !store.DoesSpecfileHashMatch(backend.Specfile) {
-			backend.Install()
+		if api.QuirksDoesAddRemoveAlsoInstall(b) {
+			store.Update(b)
+			return
 		}
 	}
 
-	store.UpdateHashes(backend.Specfile, backend.Lockfile)
+	maybeLock(b, forceLock)
+
+	if api.QuirksDoesLockNotAlsoInstall(b) {
+		maybeInstall(b, forceInstall)
+	}
+
+	store.Update(b)
 }
 
-func runRemove(language string, args []string) {
-	backend := backends.GetBackend(language)
+func runRemove(language string, args []string, forceLock bool, forceInstall bool) {
+	b := backends.GetBackend(language)
 
-	if !util.FileExists(backend.Specfile) {
+	if !util.FileExists(b.Specfile) {
 		return
 	}
-	specfilePkgs := backend.ListSpecfile()
+	specfilePkgs := b.ListSpecfile()
 
 	pkgs := map[api.PkgName]bool{}
 	for _, arg := range args {
@@ -188,59 +221,41 @@ func runRemove(language string, args []string) {
 	}
 
 	if len(pkgs) >= 1 {
-		backend.Remove(pkgs)
-	}
+		b.Remove(pkgs)
 
-	store := store.Read()
-
-	if api.QuirksIsReproducible(backend) {
-		if !store.DoesSpecfileHashMatch(backend.Specfile) {
-			backend.Lock()
-		}
-		if !store.DoesLockfileHashMatch(backend.Lockfile) {
-			backend.Install()
-		}
-	} else {
-		if !store.DoesSpecfileHashMatch(backend.Specfile) {
-			backend.Install()
+		if api.QuirksDoesAddRemoveAlsoInstall(b) {
+			store.Update(b)
+			return
 		}
 	}
 
-	store.UpdateHashes(backend.Specfile, backend.Lockfile)
+	maybeLock(b, forceLock)
+
+	if api.QuirksDoesLockNotAlsoInstall(b) {
+		maybeInstall(b, forceInstall)
+	}
+
+	store.Update(b)
 }
 
-func runLock(language string, force bool) {
-	backend := backends.GetBackend(language)
-	store := store.Read()
-	if !util.FileExists(backend.Specfile) {
-		return
-	}
-	if store.DoesSpecfileHashMatch(backend.Specfile) && !force {
-		return
-	}
-	if api.QuirksIsReproducible(backend) {
-		backend.Lock()
-		if !store.DoesLockfileHashMatch(backend.Lockfile) {
-			backend.Install()
-		}
-	} else {
-		backend.Install()
+func runLock(language string, forceLock bool, forceInstall bool) {
+	b := backends.GetBackend(language)
+
+	maybeLock(b, forceLock)
+
+	if api.QuirksDoesLockNotAlsoInstall(b) {
+		maybeInstall(b, forceInstall)
 	}
 
-	store.UpdateHashes(backend.Specfile, backend.Lockfile)
+	store.Update(b)
 }
 
 func runInstall(language string, force bool) {
-	backend := backends.GetBackend(language)
-	store := store.Read()
-	if !util.FileExists(backend.Specfile) {
-		return
-	}
-	if store.DoesLockfileHashMatch(backend.Lockfile) && !force {
-		return
-	}
-	backend.Install()
-	store.UpdateHashes(backend.Specfile, backend.Lockfile)
+	b := backends.GetBackend(language)
+
+	maybeInstall(b, force)
+
+	store.Update(b)
 }
 
 type listSpecfileJSONEntry struct {

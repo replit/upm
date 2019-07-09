@@ -72,7 +72,7 @@ var rubyBackend = api.LanguageBackend{
 	Specfile:         "Gemfile",
 	Lockfile:         "Gemfile.lock",
 	FilenamePatterns: []string{"*.rb"},
-	Quirks:           api.QuirksNone,
+	Quirks:           api.QuirksAddRemoveAlsoInstalls,
 	Search: func(query string) []api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
 			"ruby", "-e", rubySearchCode, query,
@@ -142,23 +142,18 @@ var rubyBackend = api.LanguageBackend{
 			}
 		}
 		if len(args) > 0 {
-			cmd := append([]string{"bundle", "add"}, args...)
-			// This argument *has* to come after the gem
-			// name, otherwise it will be silently ignored
-			// (thanks Bundler).
-			cmd = append(cmd, "--skip-install")
-			util.RunCmd(cmd)
+			util.RunCmd(append([]string{"bundle", "add"}, args...))
 		}
 		for name, spec := range pkgs {
 			if spec != "" {
 				nameArg := string(name)
 				versionArg := "--version=" + string(spec)
-				util.RunCmd([]string{"bundle", "add", nameArg, versionArg, "--skip-install"})
+				util.RunCmd([]string{"bundle", "add", nameArg, versionArg})
 			}
 		}
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		cmd := []string{"bundle", "remove"}
+		cmd := []string{"bundle", "remove", "--install"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}

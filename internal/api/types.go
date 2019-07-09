@@ -25,6 +25,8 @@ type Quirks uint8
 const (
 	QuirksNone            Quirks = 0
 	QuirksNotReproducible        = 1 << iota
+	QuirksAddRemoveAlsoInstalls
+	QuirksLockAlsoInstalls
 )
 
 // Keep up to date with checkBackends in backends.go

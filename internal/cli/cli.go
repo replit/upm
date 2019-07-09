@@ -34,25 +34,32 @@ func DoCLI() {
 	var language string
 	var formatStr string
 	var guess bool
-	var force bool
+	var forceLock bool
+	var forceInstall bool
 	var all bool
+
+	cobra.EnableCommandSorting = false
 
 	rootCmd := &cobra.Command{
 		Use:     "upm",
 		Version: getVersion(),
 	}
 	rootCmd.SetVersionTemplate(`{{.Version}}` + "\n")
-	rootCmd.PersistentFlags().BoolP(
-		"help", "h", false, "display command-line usage",
-	)
-	rootCmd.PersistentFlags().BoolP(
-		"version", "v", false, "display command version",
-	)
+	// Not sorting the root command options because none of the
+	// documented ways to disable sorting work for it (the root
+	// command itself has the options sorted correctly, but they
+	// are alphabetized in the help strings for subcommands).
 	rootCmd.PersistentFlags().StringVarP(
 		&language, "lang", "l", "", "specify project language(s) manually",
 	)
 	rootCmd.PersistentFlags().BoolVarP(
 		&config.Quiet, "quiet", "q", false, "don't show what commands are being run",
+	)
+	rootCmd.PersistentFlags().BoolP(
+		"help", "h", false, "display command-line usage",
+	)
+	rootCmd.PersistentFlags().BoolP(
+		"version", "v", false, "display command version",
 	)
 
 	cmdWhichLanguage := &cobra.Command{
@@ -86,7 +93,8 @@ func DoCLI() {
 			runSearch(language, queries, outputFormat)
 		},
 	}
-	cmdSearch.PersistentFlags().StringVarP(
+	cmdSearch.Flags().SortFlags = false
+	cmdSearch.Flags().StringVarP(
 		&formatStr, "format", "f", "table", `output format ("table" or "json")`,
 	)
 	rootCmd.AddCommand(cmdSearch)
@@ -103,7 +111,8 @@ func DoCLI() {
 			runInfo(language, pkg, outputFormat)
 		},
 	}
-	cmdInfo.PersistentFlags().StringVarP(
+	cmdInfo.Flags().SortFlags = false
+	cmdInfo.Flags().StringVarP(
 		&formatStr, "format", "f", "table", `output format ("table" or "json")`,
 	)
 	rootCmd.AddCommand(cmdInfo)
@@ -113,14 +122,21 @@ func DoCLI() {
 		Short: "Add packages to the specfile",
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
-			runAdd(language, pkgSpecStrs, guess)
+			runAdd(language, pkgSpecStrs, guess, forceLock, forceInstall)
 		},
 	}
-	cmdAdd.PersistentFlags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
-	)
-	cmdAdd.PersistentFlags().BoolVarP(
+	cmdAdd.Flags().SortFlags = false
+	cmdAdd.Flags().BoolVarP(
 		&guess, "guess", "g", false, "guess additional packages to add",
+	)
+	cmdAdd.Flags().BoolVarP(
+		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
+	)
+	cmdAdd.Flags().BoolVarP(
+		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
+	)
+	cmdAdd.Flags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdAdd)
 
@@ -130,10 +146,17 @@ func DoCLI() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgs := args
-			runRemove(language, pkgs)
+			runRemove(language, pkgs, forceLock, forceInstall)
 		},
 	}
-	cmdRemove.PersistentFlags().BoolVarP(
+	cmdRemove.Flags().SortFlags = false
+	cmdRemove.Flags().BoolVarP(
+		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
+	)
+	cmdRemove.Flags().BoolVarP(
+		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
+	)
+	cmdRemove.Flags().BoolVarP(
 		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdRemove)
@@ -147,17 +170,21 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			for _, updateAlias := range updateAliases {
 				if cmd.CalledAs() == updateAlias {
-					force = true
+					forceLock = true
 				}
 			}
-			runLock(language, force)
+			runLock(language, forceLock, forceInstall)
 		},
 	}
-	cmdLock.PersistentFlags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
+	cmdLock.Flags().SortFlags = false
+	cmdLock.Flags().BoolVarP(
+		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
 	)
-	cmdLock.PersistentFlags().BoolVarP(
-		&force, "force", "f", false, "rewrite lockfile even if up to date",
+	cmdLock.Flags().BoolVarP(
+		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
+	)
+	cmdLock.Flags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdLock)
 
@@ -166,11 +193,15 @@ func DoCLI() {
 		Short: "Install packages from the lockfile",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runInstall(language, force)
+			runInstall(language, forceInstall)
 		},
 	}
-	cmdInstall.PersistentFlags().BoolVarP(
-		&force, "force", "f", false, "reinstall packages even if up to date",
+	cmdInstall.Flags().SortFlags = false
+	cmdInstall.Flags().BoolVarP(
+		&forceInstall, "force", "F", false, "reinstall packages even if up to date",
+	)
+	cmdInstall.Flags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdInstall)
 
@@ -184,13 +215,11 @@ func DoCLI() {
 			runList(language, all, outputFormat)
 		},
 	}
-	cmdInstall.PersistentFlags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
-	)
-	cmdList.PersistentFlags().BoolVarP(
+	cmdInstall.Flags().SortFlags = false
+	cmdList.Flags().BoolVarP(
 		&all, "all", "a", false, "list packages from the lockfile instead",
 	)
-	cmdList.PersistentFlags().StringVarP(
+	cmdList.Flags().StringVarP(
 		&formatStr, "format", "f", "table", `output format ("table" or "json")`,
 	)
 	rootCmd.AddCommand(cmdList)
@@ -203,7 +232,8 @@ func DoCLI() {
 			runGuess(language, all)
 		},
 	}
-	cmdGuess.PersistentFlags().BoolVarP(
+	cmdGuess.Flags().SortFlags = false
+	cmdGuess.Flags().BoolVarP(
 		&all, "all", "a", false, "list even packages already in the specfile",
 	)
 	rootCmd.AddCommand(cmdGuess)

@@ -9,7 +9,7 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-func hashFile(filename string) Hash {
+func hashFile(filename string) hash {
 	bytes, err := ioutil.ReadFile(filename)
 	if os.IsNotExist(err) {
 		return ""
@@ -17,5 +17,5 @@ func hashFile(filename string) Hash {
 		util.Die("%s: %s", filename, err)
 	}
 	sum := md5.Sum(bytes)
-	return Hash(hex.EncodeToString(sum[:]))
+	return hash(hex.EncodeToString(sum[:]))
 }
