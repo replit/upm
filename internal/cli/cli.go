@@ -117,6 +117,9 @@ func DoCLI() {
 		},
 	}
 	cmdAdd.PersistentFlags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
+	)
+	cmdAdd.PersistentFlags().BoolVarP(
 		&guess, "guess", "g", false, "guess additional packages to add",
 	)
 	rootCmd.AddCommand(cmdAdd)
@@ -130,6 +133,9 @@ func DoCLI() {
 			runRemove(language, pkgs)
 		},
 	}
+	cmdRemove.PersistentFlags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
+	)
 	rootCmd.AddCommand(cmdRemove)
 
 	updateAliases := []string{"update", "upgrade"}
@@ -147,6 +153,9 @@ func DoCLI() {
 			runLock(language, force)
 		},
 	}
+	cmdLock.PersistentFlags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
+	)
 	cmdLock.PersistentFlags().BoolVarP(
 		&force, "force", "f", false, "rewrite lockfile even if up to date",
 	)
@@ -175,6 +184,9 @@ func DoCLI() {
 			runList(language, all, outputFormat)
 		},
 	}
+	cmdInstall.PersistentFlags().BoolVarP(
+		&config.Global, "global", "G", false, "install packages globally",
+	)
 	cmdList.PersistentFlags().BoolVarP(
 		&all, "all", "a", false, "list packages from the lockfile instead",
 	)
