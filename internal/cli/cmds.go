@@ -212,6 +212,9 @@ func runRemove(language string, args []string) {
 func runLock(language string, force bool) {
 	backend := backends.GetBackend(language)
 	store := store.Read()
+	if !util.FileExists(backend.Specfile) {
+		return
+	}
 	if store.DoesSpecfileHashMatch(backend.Specfile) && !force {
 		return
 	}
@@ -230,6 +233,9 @@ func runLock(language string, force bool) {
 func runInstall(language string, force bool) {
 	backend := backends.GetBackend(language)
 	store := store.Read()
+	if !util.FileExists(backend.Specfile) {
+		return
+	}
 	if store.DoesLockfileHashMatch(backend.Lockfile) && !force {
 		return
 	}
