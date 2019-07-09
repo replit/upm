@@ -51,8 +51,14 @@ func SearchRecursive(expr string, patterns []string) [][]string {
 			Die("%s: %s", path, err)
 		}
 		for _, name := range []string{
+			".bundle",
+			".cache",
+			".cask",
+			".config",
 			".git",
+			".local",
 			".next",
+			".npm",
 			"__generated__",
 			"__pycache__",
 			"__tests__",
