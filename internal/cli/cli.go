@@ -135,9 +135,6 @@ func DoCLI() {
 	cmdAdd.Flags().BoolVarP(
 		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
 	)
-	cmdAdd.Flags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
-	)
 	rootCmd.AddCommand(cmdAdd)
 
 	cmdRemove := &cobra.Command{
@@ -155,9 +152,6 @@ func DoCLI() {
 	)
 	cmdRemove.Flags().BoolVarP(
 		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
-	)
-	cmdRemove.Flags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdRemove)
 
@@ -183,9 +177,6 @@ func DoCLI() {
 	cmdLock.Flags().BoolVarP(
 		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
 	)
-	cmdLock.Flags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
-	)
 	rootCmd.AddCommand(cmdLock)
 
 	cmdInstall := &cobra.Command{
@@ -199,9 +190,6 @@ func DoCLI() {
 	cmdInstall.Flags().SortFlags = false
 	cmdInstall.Flags().BoolVarP(
 		&forceInstall, "force", "F", false, "reinstall packages even if up to date",
-	)
-	cmdInstall.Flags().BoolVarP(
-		&config.Global, "global", "G", false, "install packages globally",
 	)
 	rootCmd.AddCommand(cmdInstall)
 

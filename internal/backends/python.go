@@ -7,7 +7,6 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
-	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -93,19 +92,6 @@ packages = pipreqs.get_pkg_names(imports)
 json.dump(packages, sys.stdout, indent=2)
 print()
 `
-
-func poetrySetConfig(python string) {
-	var arg string
-	if config.Global {
-		arg = "false"
-	} else {
-		arg = "true"
-	}
-	util.RunCmd([]string{
-		python, "-m", "poetry", "config",
-		"settings.virtualenvs.create", arg,
-	})
-}
 
 func pythonMakeBackend(python string) api.LanguageBackend {
 	return api.LanguageBackend{
@@ -204,7 +190,6 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 			if !util.FileExists("pyproject.toml") {
 				util.RunCmd([]string{python, "-m", "poetry", "init", "--no-interaction"})
 			}
-			poetrySetConfig(python)
 			cmd := []string{python, "-m", "poetry", "add"}
 			for name, spec := range pkgs {
 				cmd = append(cmd, string(name)+string(spec))
@@ -212,7 +197,6 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Remove: func(pkgs map[api.PkgName]bool) {
-			poetrySetConfig(python)
 			cmd := []string{python, "-m", "poetry", "remove"}
 			for name, _ := range pkgs {
 				cmd = append(cmd, string(name))
@@ -220,11 +204,9 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Lock: func() {
-			poetrySetConfig(python)
 			util.RunCmd([]string{python, "-m", "poetry", "lock"})
 		},
 		Install: func() {
-			poetrySetConfig(python)
 			// Unfortunately, this doesn't necessarily uninstall
 			// packages that have been removed from the lockfile,
 			// which happens for example if 'poetry remove' is

@@ -137,7 +137,7 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 }
 
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
-	if !forceInstall && !store.HasLockfileChanged(b) && !store.HasGlobalChanged() {
+	if !forceInstall && !store.HasLockfileChanged(b) {
 		return
 	}
 

@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 
 	"github.com/replit/upm/internal/api"
-	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -78,15 +77,9 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 	return hashFile(b.Lockfile) != st.LockfileHash
 }
 
-func HasGlobalChanged() bool {
-	readMaybe()
-	return config.Global != st.Global
-}
-
 func Update(b api.LanguageBackend) {
 	readMaybe()
 	st.SpecfileHash = hashFile(b.Specfile)
 	st.LockfileHash = hashFile(b.Lockfile)
-	st.Global = config.Global
 	write()
 }
