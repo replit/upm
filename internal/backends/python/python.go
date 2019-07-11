@@ -87,7 +87,7 @@ import json
 import pipreqs.pipreqs as pipreqs
 import sys
 
-imports = pipreqs.get_all_imports(".")
+imports = pipreqs.get_all_imports(".", extra_ignore_dirs=sys.argv[1].split())
 packages = pipreqs.get_pkg_names(imports)
 json.dump(packages, sys.stdout, indent=2)
 print()
@@ -260,6 +260,7 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 		Guess: func() map[api.PkgName]bool {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c", pythonGuessCode,
+				strings.Join(util.IgnoredPaths, " "),
 			})
 			var output []string
 			if err := json.Unmarshal(outputB, &output); err != nil {
