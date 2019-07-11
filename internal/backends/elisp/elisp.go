@@ -144,14 +144,6 @@ const elispListSpecfileCode = `
                      (if branch (format ":branch %S" branch) ""))))))
 `
 
-var elispRequireRegexp = regexp.MustCompile(
-	`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
-)
-
-var elispProvideRegexp = regexp.MustCompile(
-	`\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`,
-)
-
 var elispPatterns = []string{"*.el"}
 
 var ElispBackend = api.LanguageBackend{
@@ -238,16 +230,12 @@ var ElispBackend = api.LanguageBackend{
 		contents := string(contentsB)
 
 		for name, _ := range pkgs {
-			r, err := regexp.Compile(
+			contents = regexp.MustCompile(
 				fmt.Sprintf(
 					`(?m)^ *\(depends-on +"%s".*\)\n?$`,
 					regexp.QuoteMeta(string(name)),
 				),
-			)
-			if err != nil {
-				panic(err)
-			}
-			contents = r.ReplaceAllLiteralString(contents, "")
+			).ReplaceAllLiteralString(contents, "")
 		}
 
 		contentsB = []byte(contents)
@@ -286,10 +274,7 @@ var ElispBackend = api.LanguageBackend{
 			util.Die("packages.txt: %s", err)
 		}
 		contents := string(contentsB)
-		r, err := regexp.Compile(`(.+)=(.+)`)
-		if err != nil {
-			panic(err)
-		}
+		r := regexp.MustCompile(`(.+)=(.+)`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := api.PkgName(match[1])
@@ -302,13 +287,19 @@ var ElispBackend = api.LanguageBackend{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
 	Guess: func() map[api.PkgName]bool {
+		r := regexp.MustCompile(
+			`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
+		)
 		required := map[string]bool{}
-		for _, match := range util.SearchRecursive(elispRequireRegexp, elispPatterns) {
+		for _, match := range util.SearchRecursive(r, elispPatterns) {
 			required[match[1]] = true
 		}
 
+		r = regexp.MustCompile(
+			`\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`,
+		)
 		provided := map[string]bool{}
-		for _, match := range util.SearchRecursive(elispProvideRegexp, elispPatterns) {
+		for _, match := range util.SearchRecursive(r, elispPatterns) {
 			provided[match[1]] = true
 		}
 
@@ -342,11 +333,7 @@ var ElispBackend = api.LanguageBackend{
 		)
 		output := string(util.GetCmdOutput([]string{"sqlite3", epkgs, query}))
 
-		r, err := regexp.Compile(`"(.+?)"`)
-		if err != nil {
-			util.Die("%s", err)
-		}
-
+		r = regexp.MustCompile(`"(.+?)"`)
 		names := map[api.PkgName]bool{}
 		for _, match := range r.FindAllStringSubmatch(output, -1) {
 			names[api.PkgName(match[1])] = true

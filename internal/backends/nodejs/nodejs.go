@@ -59,19 +59,6 @@ type packageJSON struct {
 	DevDependencies map[string]string `json:"devDependencies"`
 }
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-var nodejsRequireRegexp = regexp.MustCompile(strings.Join([]string{
-	// import defaultExport from "module-name";
-	// import * as name from "module-name";
-	// import { export } from "module-name";
-	`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
-	// import "module-name";
-	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
-	// const mod = import("module-name")
-	// const mod = require("module-name")
-	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
-}, "|"))
-
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
 var NodejsBackend = api.LanguageBackend{
@@ -212,10 +199,7 @@ var NodejsBackend = api.LanguageBackend{
 			util.Die("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
-		r, err := regexp.Compile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
-		if err != nil {
-			panic(err)
-		}
+		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := api.PkgName(match[1])
@@ -225,10 +209,20 @@ var NodejsBackend = api.LanguageBackend{
 		return pkgs
 	},
 	Guess: func() map[api.PkgName]bool {
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+		r := regexp.MustCompile(strings.Join([]string{
+			// import defaultExport from "module-name";
+			// import * as name from "module-name";
+			// import { export } from "module-name";
+			`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
+			// import "module-name";
+			`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
+			// const mod = import("module-name")
+			// const mod = require("module-name")
+			`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+		}, "|"))
 		pkgs := map[api.PkgName]bool{}
-		for _, match := range util.SearchRecursive(
-			nodejsRequireRegexp, nodejsPatterns,
-		) {
+		for _, match := range util.SearchRecursive(r, nodejsPatterns) {
 			// Only one group should match, so this join
 			// is really picking out whichever string is
 			// non-empty in the slice.
