@@ -16,8 +16,8 @@ import (
 )
 
 func runWhichLanguage(language string) {
-	backend := backends.GetBackend(language)
-	fmt.Println(backend.Name)
+	b := backends.GetBackend(language)
+	fmt.Println(b.Name)
 }
 
 func runListLanguages() {
@@ -58,8 +58,8 @@ type infoLine struct {
 }
 
 func runInfo(language string, pkg string, outputFormat outputFormat) {
-	backend := backends.GetBackend(language)
-	info := backend.Info(api.PkgName(pkg))
+	b := backends.GetBackend(language)
+	info := b.Info(api.PkgName(pkg))
 	if info.Name == "" {
 		util.Die("no such package: %s", pkg)
 	}
@@ -94,7 +94,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 		if len(rows) == 0 {
 			util.Panicf(
 				"no fields returned from backend %s",
-				backend.Name,
+				b.Name,
 			)
 		}
 
@@ -275,12 +275,12 @@ type listLockfileJSONEntry struct {
 }
 
 func runList(language string, all bool, outputFormat outputFormat) {
-	backend := backends.GetBackend(language)
+	b := backends.GetBackend(language)
 	if !all {
 		var results map[api.PkgName]api.PkgSpec = nil
-		fileExists := util.FileExists(backend.Specfile)
+		fileExists := util.FileExists(b.Specfile)
 		if fileExists {
-			results = backend.ListSpecfile()
+			results = b.ListSpecfile()
 		}
 		switch outputFormat {
 		case outputFormatTable:
@@ -318,9 +318,9 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		}
 	} else {
 		var results map[api.PkgName]api.PkgVersion = nil
-		fileExists := util.FileExists(backend.Lockfile)
+		fileExists := util.FileExists(b.Lockfile)
 		if fileExists {
-			results = backend.ListLockfile()
+			results = b.ListLockfile()
 		}
 		switch outputFormat {
 		case outputFormatTable:
@@ -360,12 +360,12 @@ func runList(language string, all bool, outputFormat outputFormat) {
 }
 
 func runGuess(language string, all bool) {
-	backend := backends.GetBackend(language)
-	pkgs := store.GuessWithCache(backend)
+	b := backends.GetBackend(language)
+	pkgs := store.GuessWithCache(b)
 
 	if !all {
-		if util.FileExists(backend.Specfile) {
-			for name, _ := range backend.ListSpecfile() {
+		if util.FileExists(b.Specfile) {
+			for name, _ := range b.ListSpecfile() {
 				delete(pkgs, name)
 			}
 		}
