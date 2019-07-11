@@ -12,6 +12,31 @@ import (
 	"github.com/natefinch/atomic"
 )
 
+var IgnoredPaths = []string{
+	".bundle",
+	".cache",
+	".cask",
+	".config",
+	".git",
+	".hg",
+	".local",
+	".next",
+	".npm",
+	".svn",
+	".tox",
+	"__generated__",
+	"__pycache__",
+	"__tests__",
+	"doc",
+	"docs",
+	"documentation",
+	"node_modules",
+	"test",
+	"tests",
+	"vendor",
+	"venv",
+}
+
 func TryWriteAtomic(filename string, contents []byte) {
 	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
 		if err2 := ioutil.WriteFile(filename, contents, 0666); err2 != nil {
@@ -45,22 +70,7 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 		if err != nil {
 			Die("%s: %s", path, err)
 		}
-		for _, name := range []string{
-			".bundle",
-			".cache",
-			".cask",
-			".config",
-			".git",
-			".local",
-			".next",
-			".npm",
-			"__generated__",
-			"__pycache__",
-			"__tests__",
-			"node_modules",
-			"test",
-			"vendor",
-		} {
+		for _, name := range IgnoredPaths {
 			if filepath.Base(path) == name {
 				return filepath.SkipDir
 			}
