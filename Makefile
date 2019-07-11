@@ -1,7 +1,9 @@
 .PHONY: upm
 upm: cmd/upm/upm ## Build the UPM binary
 
-cmd/upm/upm: cmd/upm/*.go internal internal/* internal/*/*.go
+SOURCES := $(shell find cmd internal -type d -o -name "*.go")
+
+cmd/upm/upm: $(SOURCES)
 	cd cmd/upm && go build
 
 .PHONY: dev
