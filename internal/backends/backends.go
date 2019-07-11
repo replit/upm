@@ -4,44 +4,26 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/backends/elisp"
+	"github.com/replit/upm/internal/backends/nodejs"
+	"github.com/replit/upm/internal/backends/python"
+	"github.com/replit/upm/internal/backends/ruby"
 	"github.com/replit/upm/internal/util"
 )
 
 // If more than one backend might match the same project, then one
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
-	python3Backend,
-	python2Backend,
-	nodejsBackend,
-	rubyBackend,
-	elispBackend,
+	python.Python3Backend,
+	python.Python2Backend,
+	nodejs.NodejsBackend,
+	ruby.RubyBackend,
+	elisp.ElispBackend,
 }
 
-// Keep up to date with languageBackend in types.go
-func CheckAll() {
-	for _, b := range languageBackends {
-		if b.Name == "" ||
-			b.Specfile == "" ||
-			b.Lockfile == "" ||
-			b.Search == nil ||
-			b.Info == nil ||
-			b.Add == nil ||
-			b.Remove == nil ||
-			// The lock method should be unimplemented if
-			// and only if builds are not reproducible.
-			((b.Lock == nil) != api.QuirksIsNotReproducible(b)) ||
-			b.Install == nil ||
-			b.ListSpecfile == nil ||
-			b.ListLockfile == nil ||
-			b.Guess == nil {
-			util.Panicf("language backend %s is incomplete", b.Name)
-		}
-	}
-}
-
-func matchesLanguage(backend api.LanguageBackend, language string) bool {
+func matchesLanguage(b api.LanguageBackend, language string) bool {
 	bParts := map[string]bool{}
-	for _, bPart := range strings.Split(backend.Name, "-") {
+	for _, bPart := range strings.Split(b.Name, "-") {
 		bParts[bPart] = true
 	}
 	for _, lPart := range strings.Split(language, "-") {
@@ -96,4 +78,10 @@ func GetBackendNames() []string {
 		backendNames = append(backendNames, b.Name)
 	}
 	return backendNames
+}
+
+func CheckAll() {
+	for _, b := range languageBackends {
+		b.Check()
+	}
 }

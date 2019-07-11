@@ -1,6 +1,10 @@
 package api
 
-import "regexp"
+import (
+	"regexp"
+
+	"github.com/replit/upm/internal/util"
+)
 
 type PkgName string
 type PkgSpec string
@@ -31,7 +35,6 @@ const (
 	QuirksLockAlsoInstalls
 )
 
-// Keep up to date with checkBackends in backends.go
 type LanguageBackend struct {
 	Name             string
 	Specfile         string
@@ -48,4 +51,23 @@ type LanguageBackend struct {
 	ListLockfile     func() map[PkgName]PkgVersion
 	GuessRegexps     []*regexp.Regexp
 	Guess            func() map[PkgName]bool
+}
+
+func (b *LanguageBackend) Check() {
+	if b.Name == "" ||
+		b.Specfile == "" ||
+		b.Lockfile == "" ||
+		b.Search == nil ||
+		b.Info == nil ||
+		b.Add == nil ||
+		b.Remove == nil ||
+		// The lock method should be unimplemented if
+		// and only if builds are not reproducible.
+		((b.Lock == nil) != b.QuirksIsNotReproducible()) ||
+		b.Install == nil ||
+		b.ListSpecfile == nil ||
+		b.ListLockfile == nil ||
+		b.Guess == nil {
+		util.Panicf("language backend %s is incomplete", b.Name)
+	}
 }

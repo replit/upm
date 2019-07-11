@@ -1,4 +1,4 @@
-package backends
+package elisp
 
 import (
 	"encoding/json"
@@ -154,7 +154,7 @@ var elispProvideRegexp = regexp.MustCompile(
 
 var elispPatterns = []string{"*.el"}
 
-var elispBackend = api.LanguageBackend{
+var ElispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
 	Specfile:         "Cask",
 	Lockfile:         "packages.txt",

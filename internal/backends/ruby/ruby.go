@@ -1,4 +1,4 @@
-package backends
+package ruby
 
 import (
 	"encoding/json"
@@ -67,7 +67,7 @@ end
 puts result.to_json
 `
 
-var rubyBackend = api.LanguageBackend{
+var RubyBackend = api.LanguageBackend{
 	Name:             "ruby-bundler",
 	Specfile:         "Gemfile",
 	Lockfile:         "Gemfile.lock",

@@ -1,4 +1,4 @@
-package backends
+package nodejs
 
 import (
 	"encoding/json"
@@ -74,7 +74,7 @@ var nodejsRequireRegexp = regexp.MustCompile(strings.Join([]string{
 
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
-var nodejsBackend = api.LanguageBackend{
+var NodejsBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",

@@ -1,4 +1,4 @@
-package backends
+package python
 
 import (
 	"encoding/json"
@@ -275,5 +275,5 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 	}
 }
 
-var python2Backend = pythonMakeBackend("python2")
-var python3Backend = pythonMakeBackend("python3")
+var Python2Backend = pythonMakeBackend("python2")
+var Python3Backend = pythonMakeBackend("python3")

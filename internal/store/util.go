@@ -21,7 +21,7 @@ func hashFile(filename string) hash {
 	return hash(hex.EncodeToString(sum[:]))
 }
 
-func hashImports(b *api.LanguageBackend) hash {
+func hashImports(b api.LanguageBackend) hash {
 	bytes := []byte{}
 	for _, r := range b.GuessRegexps {
 		// Rely on lexical ordering of filepath.Walk to

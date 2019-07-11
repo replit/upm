@@ -121,7 +121,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 }
 
 func maybeLock(b api.LanguageBackend, forceLock bool) {
-	if api.QuirksIsNotReproducible(b) {
+	if b.QuirksIsNotReproducible() {
 		return
 	}
 
@@ -141,7 +141,7 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 		return
 	}
 
-	if api.QuirksIsReproducible(b) {
+	if b.QuirksIsReproducible() {
 		if !util.FileExists(b.Lockfile) {
 			return
 		}
@@ -189,7 +189,7 @@ func runAdd(
 	if len(pkgs) >= 1 {
 		b.Add(pkgs)
 
-		if api.QuirksDoesAddRemoveAlsoInstall(b) {
+		if b.QuirksDoesAddRemoveAlsoInstall() {
 			store.UpdateFileHashes(b)
 			store.Write()
 			return
@@ -198,7 +198,7 @@ func runAdd(
 
 	maybeLock(b, forceLock)
 
-	if api.QuirksDoesLockNotAlsoInstall(b) {
+	if b.QuirksDoesLockNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
@@ -225,7 +225,7 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 	if len(pkgs) >= 1 {
 		b.Remove(pkgs)
 
-		if api.QuirksDoesAddRemoveAlsoInstall(b) {
+		if b.QuirksDoesAddRemoveAlsoInstall() {
 			store.UpdateFileHashes(b)
 			store.Write()
 			return
@@ -234,7 +234,7 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 
 	maybeLock(b, forceLock)
 
-	if api.QuirksDoesLockNotAlsoInstall(b) {
+	if b.QuirksDoesLockNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
@@ -247,7 +247,7 @@ func runLock(language string, forceLock bool, forceInstall bool) {
 
 	maybeLock(b, forceLock)
 
-	if api.QuirksDoesLockNotAlsoInstall(b) {
+	if b.QuirksDoesLockNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
