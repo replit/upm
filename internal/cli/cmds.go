@@ -173,7 +173,7 @@ func runAdd(
 	b := backends.GetBackend(language)
 
 	if guess {
-		for name, _ := range b.Guess() {
+		for name, _ := range store.GuessWithCache(b) {
 			if _, ok := pkgs[name]; !ok {
 				pkgs[name] = ""
 			}
@@ -190,7 +190,8 @@ func runAdd(
 		b.Add(pkgs)
 
 		if api.QuirksDoesAddRemoveAlsoInstall(b) {
-			store.Update(b)
+			store.UpdateFileHashes(b)
+			store.Write()
 			return
 		}
 	}
@@ -201,7 +202,8 @@ func runAdd(
 		maybeInstall(b, forceInstall)
 	}
 
-	store.Update(b)
+	store.UpdateFileHashes(b)
+	store.Write()
 }
 
 func runRemove(language string, args []string, forceLock bool, forceInstall bool) {
@@ -224,7 +226,8 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 		b.Remove(pkgs)
 
 		if api.QuirksDoesAddRemoveAlsoInstall(b) {
-			store.Update(b)
+			store.UpdateFileHashes(b)
+			store.Write()
 			return
 		}
 	}
@@ -235,7 +238,8 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 		maybeInstall(b, forceInstall)
 	}
 
-	store.Update(b)
+	store.UpdateFileHashes(b)
+	store.Write()
 }
 
 func runLock(language string, forceLock bool, forceInstall bool) {
@@ -247,7 +251,8 @@ func runLock(language string, forceLock bool, forceInstall bool) {
 		maybeInstall(b, forceInstall)
 	}
 
-	store.Update(b)
+	store.UpdateFileHashes(b)
+	store.Write()
 }
 
 func runInstall(language string, force bool) {
@@ -255,7 +260,8 @@ func runInstall(language string, force bool) {
 
 	maybeInstall(b, force)
 
-	store.Update(b)
+	store.UpdateFileHashes(b)
+	store.Write()
 }
 
 type listSpecfileJSONEntry struct {
@@ -355,7 +361,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 
 func runGuess(language string, all bool) {
 	backend := backends.GetBackend(language)
-	pkgs := backend.Guess()
+	pkgs := store.GuessWithCache(backend)
 
 	if !all {
 		if util.FileExists(backend.Specfile) {
@@ -374,4 +380,6 @@ func runGuess(language string, all bool) {
 	for _, line := range lines {
 		fmt.Println(line)
 	}
+
+	store.Write()
 }

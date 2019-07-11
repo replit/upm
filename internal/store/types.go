@@ -3,6 +3,8 @@ package store
 type hash string
 
 type store struct {
-	SpecfileHash hash `json:"specfileHash"`
-	LockfileHash hash `json:"lockfileHash"`
+	SpecfileHash       hash     `json:"specfileHash"`
+	LockfileHash       hash     `json:"lockfileHash"`
+	GuessedImports     []string `json:"guessedImports"`
+	GuessedImportsHash hash     `json:"guessedImportsHash"`
 }

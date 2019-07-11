@@ -249,6 +249,14 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 			}
 			return pkgs
 		},
+		GuessRegexps: util.Regexps([]string{
+			// The (?:.|\\\n) subexpression allows us to
+			// match match multiple lines if
+			// backslash-escapes are used on the newlines.
+			`from (?:.|\\\n) import`,
+			`import ((?:.|\\\n)*) as`,
+			`import ((?:.|\\\n)*)`,
+		}),
 		Guess: func() map[api.PkgName]bool {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c", pythonGuessCode,

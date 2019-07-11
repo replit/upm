@@ -45,7 +45,7 @@ func readMaybe() {
 	}
 }
 
-func write() {
+func Write() {
 	filename := getStoreLocation()
 
 	filename, err := filepath.Abs(filename)
@@ -77,9 +77,29 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 	return hashFile(b.Lockfile) != st.LockfileHash
 }
 
-func Update(b api.LanguageBackend) {
+func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
+	readMaybe()
+	old := st.GuessedImportsHash
+	new := hashImports(&b)
+	st.GuessedImportsHash = new
+	if new != old {
+		pkgs := b.Guess()
+		st.GuessedImports = []string{}
+		for name := range pkgs {
+			st.GuessedImports = append(st.GuessedImports, string(name))
+		}
+		return pkgs
+	} else {
+		pkgs := map[api.PkgName]bool{}
+		for _, name := range st.GuessedImports {
+			pkgs[api.PkgName(name)] = true
+		}
+		return pkgs
+	}
+}
+
+func UpdateFileHashes(b api.LanguageBackend) {
 	readMaybe()
 	st.SpecfileHash = hashFile(b.Specfile)
 	st.LockfileHash = hashFile(b.Lockfile)
-	write()
 }

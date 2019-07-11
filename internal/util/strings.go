@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 )
 
@@ -29,4 +30,12 @@ func (a AuthorInfo) String() string {
 		)
 	}
 	return strings.Join(parts, " ")
+}
+
+func Regexps(patterns []string) []*regexp.Regexp {
+	regexps := []*regexp.Regexp{}
+	for _, pattern := range patterns {
+		regexps = append(regexps, regexp.MustCompile(pattern))
+	}
+	return regexps
 }

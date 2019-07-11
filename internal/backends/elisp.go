@@ -144,6 +144,14 @@ const elispListSpecfileCode = `
                      (if branch (format ":branch %S" branch) ""))))))
 `
 
+var elispRequireRegexp = regexp.MustCompile(
+	`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
+)
+
+var elispProvideRegexp = regexp.MustCompile(
+	`\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`,
+)
+
 var elispPatterns = []string{"*.el"}
 
 var elispBackend = api.LanguageBackend{
@@ -290,16 +298,17 @@ var elispBackend = api.LanguageBackend{
 		}
 		return pkgs
 	},
+	GuessRegexps: util.Regexps([]string{
+		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
+	}),
 	Guess: func() map[api.PkgName]bool {
-		reqExpr := `\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`
 		required := map[string]bool{}
-		for _, match := range util.SearchRecursive(reqExpr, elispPatterns) {
+		for _, match := range util.SearchRecursive(elispRequireRegexp, elispPatterns) {
 			required[match[1]] = true
 		}
 
-		prvExpr := `\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`
 		provided := map[string]bool{}
-		for _, match := range util.SearchRecursive(prvExpr, elispPatterns) {
+		for _, match := range util.SearchRecursive(elispProvideRegexp, elispPatterns) {
 			provided[match[1]] = true
 		}
 

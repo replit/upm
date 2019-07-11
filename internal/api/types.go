@@ -1,5 +1,7 @@
 package api
 
+import "regexp"
+
 type PkgName string
 type PkgSpec string
 type PkgVersion string
@@ -44,5 +46,6 @@ type LanguageBackend struct {
 	Install          func()
 	ListSpecfile     func() map[PkgName]PkgSpec
 	ListLockfile     func() map[PkgName]PkgVersion
+	GuessRegexps     []*regexp.Regexp
 	Guess            func() map[PkgName]bool
 }

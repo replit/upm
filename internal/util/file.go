@@ -39,12 +39,7 @@ func PatternExists(pattern string) bool {
 	}
 }
 
-func SearchRecursive(expr string, patterns []string) [][]string {
-	r, err := regexp.Compile(expr)
-	if err != nil {
-		panic(err)
-	}
-
+func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 	matches := [][]string{}
 	filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
