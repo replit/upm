@@ -14,7 +14,7 @@ alias ub='make -s -C /upm -B upm && upm'
 alias mt='cd "$(mktemp -d)"'
 
 # Alias for listing directories.
-alias l='ls -lA'
+alias l='ls -lAhF'
 EOF
 
 rm /tmp/docker-setup-env.bash

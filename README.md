@@ -1,38 +1,333 @@
 # UPM
 
-Universal Package Manager. More info to come.
+UPM is the **Universal Package Manager**. It allows you to manage
+packages for any (supported) programming language through the same
+interface following the [principle of least
+astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
+At [Repl.it](https://repl.it/), we use UPM to provide deep package
+manager integration for many different programming languages using the
+same infrastructure.
 
-## Build and run
+UPM does not implement package management itself. Instead, it runs a
+package manager for you. The value added is:
 
-    % make help
-    usage:
-      make upm    Build the UPM binary
-      make dev    Run a shell with UPM source code and all package managers inside Docker
-      make light  Build a Docker image with just the UPM binary
-      make full   Build a Docker image with the UPM binary and all package managers
-      make clean  Remove build artifacts
-      make help   Show this message
+* you don't have to figure out whether to use Pip or Pipenv or Poetry
+  to manage your Python packages or wade into the Cabal-versus-Stack
+  holy war in Haskell-land
+* you don't have to puzzle out why `pip search flask` doesn't return
+  Flask in the search results
+* you don't have to debug Bundler silently dropping your command-line
+  options if you don't specify them in the right (undocumented) order
+* you don't have to think about why the developers of NPM and Yarn
+  decided to implement two completely different and mutually
+  incompatible behaviors for `list --depth=0`, neither of which is
+  exactly what you want
+* you don't have to investigate what format the Yarn lockfile is in
+  (turns out: almost YAML, but not quite)
+* et cetera (I could go on all day)
 
-To build UPM, run `make` (or `make upm`). Then add the directory
-`./cmd/upm` to your `$PATH` so that you can run the binary. To remove
-build artifacts, run `make clean`.
+In other words, UPM eliminates the need to remember a huge collection
+of language-specific package manager quirks and weirdness, and adds a
+few nifty extra features like dependency guessing and
+machine-parseable specfile and lockfile listing.
 
-You can use [Docker](https://www.docker.com/) to avoid needing to
-install the package managers that UPM drives. To do this, run `make
-dev`. This will build an image and launch a shell inside the container
-with the UPM source directory on your computer synced with the
-filesystem inside the container. The same Makefile targets are
-available, and UPM is added to the `$PATH` automatically. You only
-need to restart the shell if you edit the Dockerfile or the scripts
-used by the Dockerfile.
+## Supported languages
 
-To build a Docker image which has only the UPM binary, for embedding
-in other images, run `make light`. The image will be tagged as
-`upm:light`. Alternatively, to build a Docker image which has the
-binary and all the package managers, but not the UPM source code, run
-`make full`. The image will be tagged as `upm:full`.
+* Core: `upm add`, `upm remove`, `upm lock`, `upm install`, `upm list`
+* Index: `upm search`, `upm info`
+* Guess: `upm guess`
+
+|                       | core | index | guess |
+|-----------------------|------|-------|-------|
+| python-python3-poetry | yes  | yes   | yes   |
+| python-python2-poetry | yes  | yes   | yes   |
+| nodejs-yarn           | yes  | yes   | yes   |
+| ruby-bundler          | yes  | yes   |       |
+| elisp-cask            | yes  | yes   | yes   |
+
+## Installation
+
+We do not yet distribute binaries of UPM, but plan to. In the
+meantime, you can try UPM quickly using
+[Docker](https://www.docker.com/):
+
+    $ docker run -it --rm replco/upm:full
+
+This Docker image contains the `upm` binary as well as the package
+managers for all currently supported languages, so you can try out any
+of them.
+
+Alternatively, if you wish to embed UPM into another Docker image, as
+we do at Repl.it, use the `replco/upm:light` image, which contains
+only the `upm` binary in an otherwise-standard Ubuntu image.
+
+## Quick start
+
+Let's create a new Python project:
+
+    $ mkdir ~/python
+    $ cd ~/python
+
+We'll start by adding Flask as a dependency. UPM will handle setting
+up the project for us:
+
+    $ upm -l python add flask
+    --> python3 -m poetry init --no-interaction
+
+    This command will guide you through creating your pyproject.toml config.
+
+
+    --> python3 -m poetry add flask
+    Creating virtualenv python-py3.7 in /root/.cache/pypoetry/virtualenvs
+    Using version ^1.1 for flask
+
+    Updating dependencies
+    Resolving dependencies... (0.6s)
+
+    Writing lock file
+
+
+    Package operations: 6 installs, 0 updates, 0 removals
+
+      - Installing markupsafe (1.1.1)
+      - Installing click (7.0)
+      - Installing itsdangerous (1.1.0)
+      - Installing jinja2 (2.10.1)
+      - Installing werkzeug (0.15.4)
+      - Installing flask (1.1.1)
+
+UPM operates on a *specfile* and *lockfile* for each project. The
+specfile says what your project's dependencies are in a human-readable
+format, while the lockfile specifies exact versions for everything,
+including transitive dependencies. For Python, the specfile is
+`pyproject.toml` and the lockfile is `poetry.lock`:
+
+    $ ls
+    poetry.lock  pyproject.toml
+
+We don't have to read them ourselves, because UPM can handle that.
+Notice that UPM is now aware that our project uses Python, because of
+the files that were created:
+
+    $ upm list
+    name    spec
+    -----   ----
+    flask   ^1.1
+
+    $ upm list -a
+    name           version
+    ------------   -------
+    click          7.0
+    flask          1.1.1
+    itsdangerous   1.1.0
+    jinja2         2.10.1
+    markupsafe     1.1.1
+    werkzeug       0.15.4
+
+Let's search for another dependency to add:
+
+    $ upm search nose
+    --> python3 -c '<secret sauce>' nose
+    Name                Description                                                              Version
+    -----------------   ----------------------------------------------------------------------   -------
+    nose                nose extends unittest to make testing easier                             1.3.7
+    nose-detecthttp     A nose plugin to detect tests making http calls.                         1.1.0
+    nose-picker         nose plugin that picks a subset of your unit tests                       0.5.5
+    nose-progressive    A testrunner with a progress bar and smarter tracebacks                  1.5.2
+    nose-unittest       UNKNOWN                                                                  0.1.1
+    nose-blockage       Raise errors when communicating outside of tests                         0.1.2
+    nose-watcher        A nose plugin to watch for changes within the local directory.           0.1.3
+    nose-bisect         A Nose plugin which allows bisection of test failures.                   0.1.0
+    nose-printlog       Print log to console in nose tests                                       0.2.0
+    nose-json           A JSON report plugin for Nose.                                           0.2.4
+    nose-faulthandler   Nose plugin. Activates faulthandler module for test runs.                0.1
+    nose-knows                                                                                   0.2
+    nose-pagerduty      PagerDuty alert plugin for nose                                          0.2.0
+    nose-logpertest     Logging nose plugin to create log per test                               0.0.1
+    nose-bleed          A progressive coverage plugin for Nose.                                  0.5.1
+    nose-numpyseterr    Nose plugin to set how floating-point errors are handled by numpy        0.1
+    nose-skipreq        nose plugin that will skip Google API RequestError exceptions.           2.0
+    nose-selecttests    Specify whitelist of keywords for tests to be run by nose                0.5
+    nose-pacman         A testrunner with a pacman progress bar                                  0.1.0
+    nose-switch         Add special switches in code, based on options set when running tests.   0.1.5
+
+We can get more information about a package like this:
+
+    $ upm info nose
+    --> python3 -c '<secret sauce>' nose
+    Name:          nose
+    Description:   nose extends unittest to make testing easier
+    Version:       1.3.7
+    Homepage:      http://readthedocs.org/docs/nose/
+    Author:        Jason Pellerin <jpellerin+nose@gmail.com>
+    License:       GNU LGPL
+
+For piping into other programs, the `search` and `info` commands can
+also output JSON:
+
+    $ upm info nose --format=json | jq
+    --> python3 -c '<secret sauce>' nose
+    {
+      "name": "nose",
+      "description": "nose extends unittest to make testing easier",
+      "version": "1.3.7",
+      "homepageURL": "http://readthedocs.org/docs/nose/",
+      "author": "Jason Pellerin <jpellerin+nose@gmail.com>",
+      "license": "GNU LGPL"
+    }
+
+UPM can also look at your project's source code and guess what
+packages need to be installed. We use this on Repl.it to help
+developers get started faster. To see it in action, we'll need some
+source code:
+
+    $ git clone https://github.com/replit/play.git ~/play
+    $ cd ~/play
+    $ upm add --guess
+    --> python3 -c '<secret sauce>' '<secret sauce>'
+    --> python3 -m poetry init --no-interaction
+
+    This command will guide you through creating your pyproject.toml config.
+
+
+    --> python3 -m poetry add pygame pymunk setuptools
+    Creating virtualenv play-py3.7 in /root/.cache/pypoetry/virtualenvs
+    Using version ^1.9 for pygame
+    Using version ^5.5 for pymunk
+    Using version ^41.0 for setuptools
+
+    Updating dependencies
+    Resolving dependencies... (1.4s)
+
+    Writing lock file
+
+
+    Package operations: 4 installs, 0 updates, 0 removals
+
+      - Installing pycparser (2.19)
+      - Installing cffi (1.12.3)
+      - Installing pygame (1.9.6)
+      - Installing pymunk (5.5.0)
+
+You can also just get the list of guessed dependencies, if you want.
+The `-a` flag lists all guessed dependencies, even the ones already
+added to the specfile:
+
+    $ upm guess -a
+    pygame
+    pymunk
+    setuptools
+
+All of this might seem a bit too simple to justify a new tool, but the
+real power of UPM is that it works exactly the same for every
+programming language:
+
+    $ upm -l nodejs info express
+    Name:          express
+    Description:   Fast, unopinionated, minimalist web framework
+    Version:       4.17.1
+    Homepage:      http://expressjs.com/
+    Source code:   git+https://github.com/expressjs/express.git
+    Bug tracker:   https://github.com/expressjs/express/issues
+    Author:        TJ Holowaychuk <tj@vision-media.ca>
+    License:       MIT
+
+    $ upm -l ruby info jekyll
+    --> ruby -e '<secret sauce>' jekyll
+    Name:            jekyll
+    Description:     Jekyll is a simple, blog aware, static site generator.
+    Version:         3.8.6
+    Homepage:        https://github.com/jekyll/jekyll
+    Documentation:   http://jekyllrb.com
+    Source code:     https://github.com/jekyll/jekyll
+    Bug tracker:     https://github.com/jekyll/jekyll/issues
+    Author:          Tom Preston-Werner
+    License:         MIT
+    Dependencies:    addressable, colorator, em-websocket, i18n, jekyll-sass-converter, jekyll-watch, kramdown, liquid, mercenary, pathutil, rouge, safe_yaml
+
+    $ upm -l elisp info elnode
+    --> emacs -Q --batch --eval '<secret sauce>' /tmp/elpa552971126 info elnode
+    Name:           elnode
+    Description:    The Emacs webserver.
+    Version:        20190702.1509
+    Dependencies:   web, dash, noflet, s, creole, fakir, db, kv
+
+That includes adding and removing packages, listing the specfile and
+lockfile, searching package indices, and guessing project
+dependencies. UPM knows all the best practices for each language so
+that you don't have to!
+
+## Usage
+
+Explore the command-line interface at your leisure:
+
+    $ upm --help
+    Usage:
+      upm [command]
+
+    Available Commands:
+      which-language Query language autodetection
+      list-languages List supported languages
+      search         Search for packages online
+      info           Show package information from online registry
+      add            Add packages to the specfile
+      remove         Remove packages from the specfile
+      lock           Generate the lockfile from the specfile
+      install        Install packages from the lockfile
+      list           List packages from the specfile (or lockfile)
+      guess          Guess what packages are needed by your project
+      help           Help about any command
+
+    Flags:
+      -h, --help          display command-line usage
+      -l, --lang string   specify project language(s) manually
+      -q, --quiet         don't show what commands are being run
+      -v, --version       display command version
+
+    Use "upm [command] --help" for more information about a command.
+
+Here are useful things to know that aren't obvious:
+
+* **Language detection:** Your project's language is autodetected by
+  the files in the current directory. This can be overridden either
+  partially or completely by specifying a value for the `-l` option.
+  You can see the available languages by running `upm list-languages`.
+  In addition to a full language (e.g. `python-python3-poetry`), you
+  can specify something simpler (e.g. `python`, `python3`, `python2`,
+  `poetry`, `python-poetry`). In that case, UPM will examine all of
+  the matching languages and pick whichever one it thinks is best. You
+  can experiment with this logic by providing the `-l` option to `upm
+  which-language`.
+* **Information flow:** Conceptually, information about packages flows
+  one way in UPM: add/remove -> specfile -> lockfile -> installed
+  packages. You run `upm add` and `upm remove`, which modifies the
+  specfile, and then the lockfile is automatically generated from the
+  specfile, and then packages are automatically installed or
+  uninstalled according to the lockfile. Just running `upm add` or
+  `upm remove` will automatically perform all of these steps. Skipping
+  steps is unfortunately not supported, because few package managers
+  support that. You can however run only later steps in the pipeline
+  by means of the `upm lock` and `upm install` commands.
+* **Caching:** UPM maintains a simple JSON cache in the `.upm`
+  subdirectory of your project, in order to improve performance. This
+  is used to (1) skip generating the lockfile from the specfile if the
+  specfile hasn't changed since last time; (2) skip reinstalling
+  packages from the lockfile if the lockfile hasn't changed since last
+  time; and (3) skip doing a full analysis of your code on `upm guess`
+  if your imports haven't actually changed since last time (according
+  to a quick regexp search). To reset the cache, you can delete that
+  directory. However, this shouldn't be necessary very often, because
+  you can use the `--force-lock` and `--force-install` options to `upm
+  add`, `upm remove`, `upm lock`, and `upm install` (it is just
+  `--force` for `upm install` due to lack of ambiguity) in order to
+  ignore the cache for cases (1) and (2).
 
 ## Dependencies
+
+UPM itself has no dependencies. It is a single statically-linked
+binary. However, if you wish to actually use it to manage packages for
+a language, then the relevant language package manager needs to be
+installed, as follows:
 
 * `python-python3-poetry`/`python-python2-poetry`
   * [Python 2/3](https://www.python.org/)
@@ -55,49 +350,52 @@ binary and all the package managers, but not the UPM source code, run
   * [Cask](https://github.com/cask/cask)
   * [SQLite](https://www.sqlite.org/index.html) (for `guess`)
 
-## Feature matrix
+All of these dependencies are already installed in the
+`replco/upm:full` Docker image.
 
-* Core: `upm add`, `upm remove`, `upm lock`, `upm install`, `upm list`
-* Index: `upm search`, `upm info`
-* Guess: `upm guess`
-* Global: `--global`
+## Contributing
 
-|                       | core | index | guess | global |
-|-----------------------|------|-------|-------|--------|
-| python-python3-poetry | yes  | yes   | yes   | yes    |
-| python-python2-poetry | yes  | yes   | yes   | yes    |
-| nodejs-yarn           | yes  | yes   | yes   |        |
-| ruby-bundler          | yes  | yes   |       |        |
-| elisp-cask            | yes  | yes   | yes   |        |
+    $ make help
+    usage:
+      make upm    Build the UPM binary
+      make dev    Run a shell with UPM source code and all package managers inside Docker
+      make light  Build a Docker image with just the UPM binary
+      make full   Build a Docker image with the UPM binary and all package managers
+      make clean  Remove build artifacts
+      make help   Show this message
 
-## Backend concepts
+To build UPM, run `make upm` (or just `make`). This requires an
+installation of [Go](https://golang.org/). Then add the directory
+`./cmd/upm` to your `$PATH` so that you can run the binary. To remove
+build artifacts, run `make clean`.
 
-Each backend implements three important operations: `add/remove`,
-`lock`, and `install`. Ideally, `add/remove` would only modify the
-specfile, `lock` would only update the lockfile from the specfile, and
-`install` would only install packages from the lockfile.
-Unfortunately, existing package management infrastructure is
-insufficiently expressive and powerful to realize this ideal, so UPM
-has to deal with a variety of different ways backends may implement
-this functionality; for example:
+You can use [Docker](https://www.docker.com/) to avoid needing to
+install the package managers that UPM drives. To do this, run `make
+dev`. This will build an image and launch a shell inside the container
+with the UPM source directory on your computer synced with the
+filesystem inside the container. The same Makefile targets are
+available, and UPM is added to the `$PATH` automatically. You only
+need to restart the shell if you edit the Dockerfile or the scripts
+used by the Dockerfile. Aliases available inside the shell:
 
-* `add/remove` may also update the lockfile and specfile.
-* `lock` may also install packages.
-* `install` may also update the lockfile (yes, really).
+* `l`: `ls -lAhF`
+* `mt`: create temporary directory and cd to it (convenient for
+  switching to a new "project" context)
+* `u`: build UPM binary if source code has been modified, then run
+  with given arguments
+* `ub`: same as `u`, but force rebuilding binary (may be useful if you
+  previously built outside the Docker container)
 
-UPM deals with this problem by having each backend give some hints
-about its behavior. This is done through a `quirks` operation which
-returns a bitmask. Supported bits are:
+To build a Docker image which has only the UPM binary, for embedding
+in other images, run `make light`. The image will be tagged as
+`upm:light`. Alternatively, to build a Docker image which has the
+binary and all the package managers, but not the UPM source code, run
+`make full`. The image will be tagged as `upm:full`. These two images
+are automatically built and deployed to [Docker
+Hub](https://hub.docker.com/r/replco/upm) when a commit is merged to
+`master`.
 
-* `quirksNotReproducible`: it's not possible to install from a
-  lockfile; it's only possible to install from the specfile and then
-  update the lockfile from what was installed.
-
-## Deploy
-
-The `upm:light` and `upm:full` images are automatically deployed to
-[Docker Hub](https://hub.docker.com/r/replco/upm) when a commit is
-merged to `master`.
+UPM does not currently have any tests; however, we plan to fix this.
 
 <!--  Local Variables:   -->
 <!--  truncate-lines: t  -->
