@@ -1,0 +1,24 @@
+version: v1.0
+name: UPM
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: UPM CI
+    task:
+      secrets:
+        - name: dockerhub-secrets
+      jobs:
+        - name: UPM CI
+          commands:
+            - checkout
+            - make light full
+            # The documentation says we should use $BRANCH_NAME, but
+            # Semaphore actually sets $SEMAPHORE_GIT_BRANCH instead.
+            - >-
+              if [ "$SEMAPHORE_GIT_BRANCH" = "master" ]; then
+                echo "$DOCKER_PASSWORD" |
+                  docker login --username "$DOCKER_USERNAME" --password-stdin &&
+                make deploy
+              fi

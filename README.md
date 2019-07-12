@@ -357,12 +357,13 @@ All of these dependencies are already installed in the
 
     $ make help
     usage:
-      make upm    Build the UPM binary
-      make dev    Run a shell with UPM source code and all package managers inside Docker
-      make light  Build a Docker image with just the UPM binary
-      make full   Build a Docker image with the UPM binary and all package managers
-      make clean  Remove build artifacts
-      make help   Show this message
+      make upm     Build the UPM binary
+      make dev     Run a shell with UPM source code and all package managers inside Docker
+      make light   Build a Docker image with just the UPM binary
+      make full    Build a Docker image with the UPM binary and all package managers
+      make deploy  Publish UPM Docker images to Docker Hub
+      make clean   Remove build artifacts
+      make help    Show this message
 
 To build UPM, run `make upm` (or just `make`). This requires an
 installation of [Go](https://golang.org/). Then add the directory

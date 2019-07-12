@@ -19,6 +19,13 @@ light: ## Build a Docker image with just the UPM binary
 full: ## Build a Docker image with the UPM binary and all package managers
 	docker build . -f Dockerfile.full -t upm:full
 
+.PHONY: deploy
+deploy: light full ## Publish UPM Docker images to Docker Hub
+	docker tag upm:light replco/upm:light
+	docker tag upm:full replco/upm:full
+	docker push replco/upm:light
+	docker push replco/upm:full
+
 .PHONY: clean
 clean: ## Remove build artifacts
 	cd cmd/upm && go clean
