@@ -1,0 +1,9 @@
+FROM ubuntu:19.04
+
+ENV GOPATH=/tmp/go PATH="/tmp/go/bin:/usr/local/go/bin:$PATH"
+
+COPY scripts/docker-install-godoc.bash /tmp/
+RUN /tmp/docker-install-godoc.bash
+
+WORKDIR /tmp/go/src/github.com/replit/upm
+CMD watchexec -r -e go "godoc -http=0.0.0.0:6060"

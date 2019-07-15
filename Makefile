@@ -19,6 +19,16 @@ light: ## Build a Docker image with just the UPM binary
 full: ## Build a Docker image with the UPM binary and all package managers
 	docker build . -f Dockerfile.full -t upm:full
 
+.PHONY: doc
+doc: ## Open Godoc in web browser
+	docker build . -f Dockerfile.godoc -t upm:godoc
+	@echo
+	@echo "starting godoc; your browser will be opened once it is ready" >&2
+	@scripts/browse-godoc.bash &
+	@docker run -it --rm -p 6060:6060 \
+		-v "$$PWD:/tmp/go/src/github.com/replit/upm" \
+		upm:godoc
+
 .PHONY: deploy
 deploy: light full ## Publish UPM Docker images to Docker Hub
 	docker tag upm:light replco/upm:light

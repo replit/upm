@@ -361,6 +361,7 @@ All of these dependencies are already installed in the
       make dev     Run a shell with UPM source code and all package managers inside Docker
       make light   Build a Docker image with just the UPM binary
       make full    Build a Docker image with the UPM binary and all package managers
+      make doc     Open Godoc in web browser
       make deploy  Publish UPM Docker images to Docker Hub
       make clean   Remove build artifacts
       make help    Show this message
