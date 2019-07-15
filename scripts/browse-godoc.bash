@@ -9,12 +9,12 @@ for i in $(seq 50); do
     if curl -s localhost:6060 >/dev/null; then
         # Give some extra time for godoc to complete the initial scan.
         sleep 0.2
-        url="http://localhost:6060/pkg/github.com/replit/upm/"
+        url="http://localhost:6060/pkg/github.com/replit/upm/?m=all"
         if command -v xdg-open &>/dev/null; then
-            echo "godoc started; opening with xdg-open(1)" >&2
+            echo "godoc started; opening $url with xdg-open(1)" >&2
             xdg-open "$url"
         elif command -v open &>/dev/null; then
-            echo "godoc started; opening with open(1)" >&2
+            echo "godoc started; opening $url with open(1)" >&2
             open "$url"
         else
             echo "please install either open(1) or xdg-open(1)" >&2
