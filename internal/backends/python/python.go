@@ -2,6 +2,7 @@ package python
 
 import (
 	"encoding/json"
+	"os"
 	"regexp"
 	"strings"
 
@@ -93,9 +94,9 @@ json.dump(packages, sys.stdout, indent=2)
 print()
 `
 
-func pythonMakeBackend(python string) api.LanguageBackend {
+func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	return api.LanguageBackend{
-		Name:             "python-" + python + "-poetry",
+		Name:             "python-" + name + "-poetry",
 		Specfile:         "pyproject.toml",
 		Lockfile:         "poetry.lock",
 		FilenamePatterns: []string{"*.py"},
@@ -276,5 +277,23 @@ func pythonMakeBackend(python string) api.LanguageBackend {
 	}
 }
 
-var Python2Backend = pythonMakeBackend("python2")
-var Python3Backend = pythonMakeBackend("python3")
+func getPython2() string {
+	python2 := os.Getenv("UPM_PYTHON2")
+	if python2 != "" {
+		return python2
+	} else {
+		return "python2"
+	}
+}
+
+func getPython3() string {
+	python3 := os.Getenv("UPM_PYTHON3")
+	if python3 != "" {
+		return python3
+	} else {
+		return "python3"
+	}
+}
+
+var Python2Backend = pythonMakeBackend("python2", getPython2())
+var Python3Backend = pythonMakeBackend("python3", getPython3())

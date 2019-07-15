@@ -322,6 +322,15 @@ Here are useful things to know that aren't obvious:
   `--force` for `upm install` due to lack of ambiguity) in order to
   ignore the cache for cases (1) and (2).
 
+### Environment variables respected
+
+* `UPM_NO_CHECK`: if nonempty, skip the check at startup to ensure
+  that all registered language backends are fully implemented.
+* `UPM_PYTHON3`: if nonempty, use instead of `python3` when invoking
+  Python 3.
+* `UPM_PYTHON2`: if nonempty, use instead of `python2` when invoking
+  Python 2.
+
 ## Dependencies
 
 UPM itself has no dependencies. It is a single statically-linked
