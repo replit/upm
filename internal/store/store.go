@@ -80,11 +80,16 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
 	readMaybe()
 	old := st.GuessedImportsHash
-	new := hashImports(b)
-	st.GuessedImportsHash = new
+	var new hash = "n/a"
+	if old != "" {
+		new = hashImports(b)
+		st.GuessedImportsHash = new
+	}
 	if new != old {
 		pkgs := b.Guess()
-		st.GuessedImports = []string{}
+		if old != "" {
+			st.GuessedImports = []string{}
+		}
 		for name := range pkgs {
 			st.GuessedImports = append(st.GuessedImports, string(name))
 		}
