@@ -1,3 +1,4 @@
+// Package elisp provides a backend for Emacs Lisp using Cask.
 package elisp
 
 import (
@@ -13,6 +14,18 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// elispSearchInfoCode is an Emacs Lisp script for searching ELPA
+// databases. It is called with three command-line arguments: dir,
+// action, and arg. dir is the name of a temporary directory which can
+// be used as package-user-dir for package.el (normally this would be
+// ~/.emacs.d/elpa). action is either "search" or "info". arg in the
+// case of "search" is a search query, which is split on whitespace
+// and applied conjunctively to filter the results. arg in the case of
+// "info" is the name of a package for which to retrieve info. The
+// script writes to stdout in JSON format, either as a map or an array
+// of maps (see api.PkgInfo).
+//
+// Tildes are replaced by backticks before this script is executed.
 const elispSearchInfoCode = `
 (require 'cl-lib)
 (require 'json)
@@ -113,11 +126,15 @@ ARCHIVE-ID is a symbol (e.g. ~gnu', ~melpa', ...)."
      (list (car link) action arg)
      'silent)))
 
+;; Wait until all the code has finished running before exiting.
 (while (< upm-num-archives-fetched (length package-archives))
   ;; 50ms is small enough to be imperceptible to the user.
   (accept-process-output nil 0.05))
 `
 
+// Emacs Lisp code that Cask can evaluate which prints a list of all
+// the currently installed packages to stdout, in "name=version"
+// format.
 const elispInstallCode = `
 (dolist (dir load-path)
   (when (string-match "elpa/\\(.+\\)-\\([^-]+\\)" dir)
@@ -126,6 +143,9 @@ const elispInstallCode = `
                    (match-string 2 dir)))))
 `
 
+// Emacs Lisp code that Cask can evaluate in order to print a list of
+// all packages from the specfile (Cask) to stdout, in "name=spec"
+// format.
 const elispListSpecfileCode = `
 (let* ((bundle (cask-cli--bundle))
        (deps (append (cask-runtime-dependencies bundle)
@@ -144,8 +164,10 @@ const elispListSpecfileCode = `
                      (if branch (format ":branch %S" branch) ""))))))
 `
 
+// elispPatterns is the FilenamePatterns value for ElispBackend.
 var elispPatterns = []string{"*.el"}
 
+// ElispBackend is the UPM language backend for Emacs Lisp using Cask.
 var ElispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
 	Specfile:         "Cask",

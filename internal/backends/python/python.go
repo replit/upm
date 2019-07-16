@@ -1,3 +1,4 @@
+// Package python provides backends for Python 2 and 3 using Poetry.
 package python
 
 import (
@@ -11,12 +12,16 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// pypiXMLRPCEntry represents one element of the response we get from
+// the PyPI XMLRPC API on doing a search.
 type pypiXMLRPCEntry struct {
 	Name    string `json:"name"`
 	Summary string `json:"summary"`
 	Version string `json:"version"`
 }
 
+// pypiXMLRPCInfo represents the response we get from the PyPI XMLRPC
+// API on doing a single-package lookup.
 type pypiXMLRPCInfo struct {
 	Author       string   `json:"author"`
 	AuthorEmail  string   `json:"author_email"`
@@ -29,6 +34,8 @@ type pypiXMLRPCInfo struct {
 	Version      string   `json:"version"`
 }
 
+// pyprojectTOML represents the relevant parts of a pyproject.toml
+// file.
 type pyprojectTOML struct {
 	Tool struct {
 		Poetry struct {
@@ -38,6 +45,8 @@ type pyprojectTOML struct {
 	} `json:"tool"`
 }
 
+// poetryLock represents the relevant parts of a poetry.lock file, in
+// TOML format.
 type poetryLock struct {
 	Package []struct {
 		Name    string `json:"name"`
@@ -45,6 +54,11 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
+// pythonSearchCode is a Python script that does a PyPI search using
+// the XMLRPC API. It takes one argument, the search query (which may
+// contain spaces), and outputs the results in JSON format (a list of
+// pypiXMLRPCEntry maps). The script works on both Python 2 and Python
+// 3.
 const pythonSearchCode = `
 from __future__ import print_function
 import json
@@ -61,6 +75,11 @@ json.dump(results, sys.stdout, indent=2)
 print()
 `
 
+// pythonInfoCode is a Python script that looks up package metadata on
+// PyPI using the XMLRPC API. It takes one argument, the name of the
+// package (not necessarily canonical), and outputs the results in
+// JSON format (a map, see pypiXMLRPCInfo). The script works on both
+// Python 2 and Python 3.
 const pythonInfoCode = `
 from __future__ import print_function
 import json
@@ -82,6 +101,13 @@ json.dump(info, sys.stdout, indent=2)
 print()
 `
 
+// pythonGuessCode is a Python script that implements bare imports for
+// Python using pipreqs. It takes no arguments, and dumps a list of
+// package names (strings) to stdout in JSON format. The script works
+// in both Python 2 and Python 3, but pipreqs has to be installed for
+// the version of Python in use (e.g. you can't be inside a
+// virtualenv; export UPM_PYTHON2 or UPM_PYTHON3 as appropriate if you
+// are).
 const pythonGuessCode = `
 from __future__ import print_function
 import json
@@ -94,6 +120,11 @@ json.dump(packages, sys.stdout, indent=2)
 print()
 `
 
+// pythonMakeBackend returns a language backend for a given version of
+// Python. name is either "python2" or "python3", and python is the
+// name of an executable (either a full path or just a name like
+// "python3") to use when invoking Python. (This is used to implement
+// UPM_PYTHON2 and UPM_PYTHON3.)
 func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	return api.LanguageBackend{
 		Name:             "python-" + name + "-poetry",
@@ -277,6 +308,8 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	}
 }
 
+// getPython2 returns either "python2" or the value of the UPM_PYTHON2
+// environment variable.
 func getPython2() string {
 	python2 := os.Getenv("UPM_PYTHON2")
 	if python2 != "" {
@@ -286,6 +319,8 @@ func getPython2() string {
 	}
 }
 
+// getPython3 returns either "python3" or the value of the UPM_PYTHON3
+// environment variable.
 func getPython3() string {
 	python3 := os.Getenv("UPM_PYTHON3")
 	if python3 != "" {
@@ -295,5 +330,8 @@ func getPython3() string {
 	}
 }
 
+// Python2Backend is a UPM backend for Python 2 that uses Poetry.
 var Python2Backend = pythonMakeBackend("python2", getPython2())
+
+// Python3Backend is a UPM backend for Python 3 that uses Poetry.
 var Python3Backend = pythonMakeBackend("python3", getPython3())

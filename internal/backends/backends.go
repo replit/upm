@@ -1,3 +1,5 @@
+// Package backends contains the language-specific UPM backends, and
+// logic for selecting amongst them.
 package backends
 
 import (
@@ -11,6 +13,9 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// languageBackends is a slice of language backends which may be used
+// from the command line.
+//
 // If more than one backend might match the same project, then one
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
@@ -21,6 +26,11 @@ var languageBackends = []api.LanguageBackend{
 	elisp.ElispBackend,
 }
 
+// matchesLanguage checks if a language backend matches a value for
+// the --lang argument. For example, the python-python3-poetry backend
+// will match --lang=python-poetry and --lang=python3 but not
+// --lang=python2. This is used to filter the available language
+// backends before trying to guess which one should be used.
 func matchesLanguage(b api.LanguageBackend, language string) bool {
 	bParts := map[string]bool{}
 	for _, bPart := range strings.Split(b.Name, "-") {
@@ -34,6 +44,8 @@ func matchesLanguage(b api.LanguageBackend, language string) bool {
 	return true
 }
 
+// GetBackend returns the language backend for a given --lang argument
+// value. If none is applicable, it exits the process.
 func GetBackend(language string) api.LanguageBackend {
 	backends := languageBackends
 	if language != "" {
@@ -72,6 +84,9 @@ func GetBackend(language string) api.LanguageBackend {
 	return backends[0]
 }
 
+// GetBackendNames returns a slice of the canonical names (e.g.
+// python-python3-poetry, not just python3) for all the backends
+// listed in languageBackends.
 func GetBackendNames() []string {
 	backendNames := []string{}
 	for _, b := range languageBackends {
@@ -80,6 +95,9 @@ func GetBackendNames() []string {
 	return backendNames
 }
 
+// CheckAll panics if any registered language backend does not
+// implement its mandatory fields. It is called at process startup
+// unless the UPM_NO_CHECK environment variable is non-empty.
 func CheckAll() {
 	for _, b := range languageBackends {
 		b.Check()

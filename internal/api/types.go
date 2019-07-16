@@ -174,9 +174,10 @@ type LanguageBackend struct {
 
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
-	// of search results, which can be of any length. If the
-	// search fails, terminate the process. If it successfully
-	// returns no results, return an empty slice.
+	// of search results, which can be of any length. (It will be
+	// truncated by the command-line interface.) If the search
+	// fails, terminate the process. If it successfully returns no
+	// results, return an empty slice.
 	//
 	// This field is mandatory.
 	Search func(query string) []PkgInfo

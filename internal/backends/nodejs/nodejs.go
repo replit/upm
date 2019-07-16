@@ -1,3 +1,4 @@
+// Package nodejs provides a backend for Node.js using Yarn.
 package nodejs
 
 import (
@@ -13,7 +14,11 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-// https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/REGISTRY-API.md
+// npmSearchResults represents the data we get from the NPM API when
+// doing a search.
+//
+// See https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/REGISTRY-API.md
+// for documentation on the format.
 type npmSearchResults struct {
 	Objects []struct {
 		Package struct {
@@ -33,7 +38,11 @@ type npmSearchResults struct {
 	} `json:"objects"`
 }
 
-// https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/responses/package-metadata.md
+// npmInfoResult represents the data we get from the NPM API when
+// doing a single package lookup.
+//
+// See https://github.com/npm/registry/blob/5db1bb329f554454467531a3e1bae5e97da160df/docs/responses/package-metadata.md
+// for documentation on the format.
 type npmInfoResult struct {
 	Name     string                 `json:"name"`
 	Versions map[string]interface{} `json:"versions"`
@@ -54,13 +63,16 @@ type npmInfoResult struct {
 	} `json:"repository"`
 }
 
+// packageJSON represents the relevant data in a package.json file.
 type packageJSON struct {
 	Dependencies    map[string]string `json:"dependencies"`
 	DevDependencies map[string]string `json:"devDependencies"`
 }
 
+// nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
+// NodejsBackend is a UPM backend for Node.js that uses Yarn.
 var NodejsBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
