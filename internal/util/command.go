@@ -10,12 +10,16 @@ import (
 	"github.com/replit/upm/internal/config"
 )
 
+// ProgressMsg prints the given message to stderr with a prefix. The
+// message is inhibited in --quiet mode, however.
 func ProgressMsg(msg string) {
 	if !config.Quiet {
 		fmt.Fprintln(os.Stderr, "-->", msg)
 	}
 }
 
+// quoteCmd escapes shell characters in a command. Additionally, it
+// replaces long or multiline arguments with a placeholder.
 func quoteCmd(cmd []string) string {
 	cleanedCmd := make([]string, len(cmd))
 	copy(cleanedCmd, cmd)
@@ -27,6 +31,8 @@ func quoteCmd(cmd []string) string {
 	return shellquote.Join(cleanedCmd...)
 }
 
+// RunCmd prints and runs the given command, exiting the process on
+// error or command failure. Stdout and stderr go to the terminal.
 func RunCmd(cmd []string) {
 	ProgressMsg(quoteCmd(cmd))
 	command := exec.Command(cmd[0], cmd[1:]...)
@@ -37,6 +43,9 @@ func RunCmd(cmd []string) {
 	}
 }
 
+// GetCmdOutput prints and runs the given command, returning its
+// stdout as a string. Stderr goes to the terminal. GetCmdOutput exits
+// the process on error or command failure.
 func GetCmdOutput(cmd []string) []byte {
 	ProgressMsg(quoteCmd(cmd))
 	command := exec.Command(cmd[0], cmd[1:]...)

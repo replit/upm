@@ -12,6 +12,11 @@ import (
 	"github.com/natefinch/atomic"
 )
 
+// IgnoredPaths is a slice of file patterns that are totally ignored
+// by UPM. This means primarily that regexp searches won't descend
+// into directories by these names. Gotcha: external tools run by UPM
+// won't necessarily respect this list, although UPM makes an effort
+// to tell them to when possible.
 var IgnoredPaths = []string{
 	".bundle",
 	".cache",
@@ -37,6 +42,9 @@ var IgnoredPaths = []string{
 	"venv",
 }
 
+// TryWriteAtomic tries to write contents to filename atomically,
+// retrying non-atomically if it can't. If both attempts fail,
+// TryWriteAtomic terminates the process.
 func TryWriteAtomic(filename string, contents []byte) {
 	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
 		if err2 := ioutil.WriteFile(filename, contents, 0666); err2 != nil {
@@ -45,6 +53,8 @@ func TryWriteAtomic(filename string, contents []byte) {
 	}
 }
 
+// FileExists returns true if the given file exists. If an I/O error
+// occurs, FileExists terminates the process.
 func FileExists(filename string) bool {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		return false
@@ -56,6 +66,8 @@ func FileExists(filename string) bool {
 	}
 }
 
+// PatternExists returns true if the given glob matches any file in
+// the current directory.
 func PatternExists(pattern string) bool {
 	if matches, err := filepath.Glob(pattern); err != nil {
 		panic(err)
@@ -64,6 +76,12 @@ func PatternExists(pattern string) bool {
 	}
 }
 
+// SearchRecursive does a recursive regexp search in the current
+// directory. Only files whose basenames match one of the globs in
+// patterns will be searched. The return value is a list of matches as
+// would be returned by regexp.FindAllStringSubmatch. Matches are
+// returned in a deterministic order. If an I/O error occurs,
+// SearchRecursive terminates the process.
 func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 	matches := [][]string{}
 	filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
@@ -106,7 +124,8 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 	return matches
 }
 
-// https://golangcode.com/download-a-file-from-a-url/
+// DownloadFile emulates wget, overwriting any existing file. See
+// https://golangcode.com/download-a-file-from-a-url/.
 func DownloadFile(filepath string, url string) {
 	ProgressMsg("download " + url)
 	resp, err := http.Get(url)
