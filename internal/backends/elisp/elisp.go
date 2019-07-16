@@ -132,9 +132,9 @@ ARCHIVE-ID is a symbol (e.g. ~gnu', ~melpa', ...)."
   (accept-process-output nil 0.05))
 `
 
-// Emacs Lisp code that Cask can evaluate which prints a list of all
-// the currently installed packages to stdout, in "name=version"
-// format.
+// elispInstallCode is Emacs Lisp code that Cask can evaluate which
+// prints a list of all the currently installed packages to stdout, in
+// "name=version" format.
 const elispInstallCode = `
 (dolist (dir load-path)
   (when (string-match "elpa/\\(.+\\)-\\([^-]+\\)" dir)
@@ -143,9 +143,9 @@ const elispInstallCode = `
                    (match-string 2 dir)))))
 `
 
-// Emacs Lisp code that Cask can evaluate in order to print a list of
-// all packages from the specfile (Cask) to stdout, in "name=spec"
-// format.
+// elispListSpecfileCode is Emacs Lisp code that Cask can evaluate in
+// order to print a list of all packages from the specfile (Cask) to
+// stdout, in "name=spec" format.
 const elispListSpecfileCode = `
 (let* ((bundle (cask-cli--bundle))
        (deps (append (cask-runtime-dependencies bundle)

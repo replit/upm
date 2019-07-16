@@ -1,4 +1,4 @@
-// Package ruby provides a UPM backend for Ruby using Bundler.
+// Package ruby provides a backend for Ruby using Bundler.
 package ruby
 
 import (
