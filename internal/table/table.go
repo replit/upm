@@ -1,3 +1,5 @@
+// Package table provides a simple API for outputting tabular data to
+// stdout. It is used to implement --format=table.
 package table
 
 import (
@@ -9,11 +11,27 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// New creates a new table with the given headers. The table has no
+// rows; add them with AddRow. The headers should all be unique.
 func New(headers ...string) Table {
+	seen := map[string]bool{}
+	for _, header := range headers {
+		if seen[header] {
+			util.Panicf("duplicate table header: %s", header)
+		} else {
+			seen[header] = true
+		}
+	}
 	return Table{headers: headers}
 }
 
-// structs should be a slice of structs.
+// FromStructs creates a new table from the given slice of structs.
+// The table headers are generated from the struct field reflection
+// metadata: each struct field must have a reflection metadata key
+// "pretty" whose value is the header to display. The only allowed
+// field types in the struct are string and []string. The strings are
+// used as table cells directly, while the slices are concatenated
+// with commas first.
 func FromStructs(structs interface{}) Table {
 	sv := reflect.ValueOf(structs)
 	st := reflect.TypeOf(structs).Elem()
@@ -60,6 +78,9 @@ func FromStructs(structs interface{}) Table {
 	return t
 }
 
+// AddRow adds a row at the end of a table. The length of the row must
+// be the same as the number of headers in the table, or a panic will
+// be generated.
 func (t *Table) AddRow(row ...string) {
 	if len(row) != len(t.headers) {
 		util.Panicf(
@@ -70,23 +91,35 @@ func (t *Table) AddRow(row ...string) {
 	t.rows = append(t.rows, row)
 }
 
+// tableSorter is a dummy struct used to sort a table by a given
+// column index. It implements sort.Interface.
 type tableSorter struct {
 	table Table
 	index int
 }
 
+// Len implements sort.Interface. It returns the number of rows in the
+// table.
 func (ts *tableSorter) Len() int {
 	return len(ts.table.rows)
 }
 
+// Swap implements sort.Interface. It swaps the given rows, mutating
+// the table.
 func (ts *tableSorter) Swap(i, j int) {
 	ts.table.rows[i], ts.table.rows[j] = ts.table.rows[j], ts.table.rows[i]
 }
 
+// Less implements sort.Interface. It compares the given rows by
+// looking at the sort column.
 func (ts *tableSorter) Less(i, j int) bool {
 	return ts.table.rows[i][ts.index] < ts.table.rows[j][ts.index]
 }
 
+// SortBy sorts a table by the column with the given header. The
+// header must exist in the table, or a panic is generated. Since
+// tables cannot have duplicate headers, any column can be specified
+// unambiguously.
 func (t *Table) SortBy(header string) {
 	var index int
 	found := false
@@ -104,6 +137,8 @@ func (t *Table) SortBy(header string) {
 	sort.Sort(sorter)
 }
 
+// Print writes the table to stdout, aligning columns by inserting
+// whitespace.
 func (t *Table) Print() {
 	widths := make([]int, len(t.headers))
 	for j := range t.headers {

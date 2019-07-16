@@ -326,10 +326,12 @@ Here are useful things to know that aren't obvious:
 
 * `UPM_NO_CHECK`: if nonempty, skip the check at startup to ensure
   that all registered language backends are fully implemented.
-* `UPM_PYTHON3`: if nonempty, use instead of `python3` when invoking
-  Python 3.
 * `UPM_PYTHON2`: if nonempty, use instead of `python2` when invoking
   Python 2.
+* `UPM_PYTHON3`: if nonempty, use instead of `python3` when invoking
+  Python 3.
+* `UPM_STORE`: path of file used to store the JSON cache file,
+  relative or absolute. Defaults to `.upm/store.json`.
 
 ## Dependencies
 

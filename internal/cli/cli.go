@@ -1,3 +1,4 @@
+// Package cli implements the command-line interface of UPM.
 package cli
 
 import (
@@ -10,6 +11,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// parseOutputFormat takes "table" or "json" and returns an
+// outputFormat enum value.
 func parseOutputFormat(formatStr string) outputFormat {
 	switch formatStr {
 	case "table":
@@ -22,10 +25,14 @@ func parseOutputFormat(formatStr string) outputFormat {
 	}
 }
 
+// getVersion returns a string that can be printed when calling 'upm
+// --version'.
 func getVersion() string {
 	return "upm development version"
 }
 
+// DoCLI reads the command-line arguments and runs the appropriate
+// code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
 	if os.Getenv("UPM_NO_CHECK") == "" {
 		backends.CheckAll()

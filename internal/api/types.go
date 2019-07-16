@@ -21,9 +21,9 @@ type PkgVersion string
 // metadata. Any of the fields may be zeroed except for Name. Which
 // fields are nonzero depends on the context and language backend.
 //
-// Note: the PkgInfo struct is parsed with reflection. It must have
-// json and pretty tags, and the only allowed types are string and
-// []string.
+// Note: the PkgInfo struct is parsed with reflection in several
+// places. It must have "json" and "pretty" tags, and the only allowed
+// types are string and []string.
 type PkgInfo struct {
 
 	// The name of the package, e.g. "flask". Package names cannot

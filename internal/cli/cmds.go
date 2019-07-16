@@ -15,17 +15,20 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// runWhichLanguage implements 'upm which-language'.
 func runWhichLanguage(language string) {
 	b := backends.GetBackend(language)
 	fmt.Println(b.Name)
 }
 
+// runListLanguages implements 'upm list-languages'.
 func runListLanguages() {
 	for _, backendName := range backends.GetBackendNames() {
 		fmt.Println(backendName)
 	}
 }
 
+// runSearch implements 'upm search'.
 func runSearch(language string, args []string, outputFormat outputFormat) {
 	results := backends.GetBackend(language).Search(
 		strings.Join(args, " "),
@@ -52,11 +55,13 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 	}
 }
 
+// infoLine represents one line in the table emitted by 'upm info'.
 type infoLine struct {
 	Field string
 	Value string
 }
 
+// runInfo implements 'upm info'.
 func runInfo(language string, pkg string, outputFormat outputFormat) {
 	b := backends.GetBackend(language)
 	info := b.Info(api.PkgName(pkg))
@@ -120,6 +125,8 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 	}
 }
 
+// maybeLock either runs lock or not, depending on the backend, store,
+// and command-line options.
 func maybeLock(b api.LanguageBackend, forceLock bool) {
 	if b.QuirksIsNotReproducible() {
 		return
@@ -136,6 +143,8 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 	b.Lock()
 }
 
+// maybeInstall either runs install or not, depending on the backend,
+// store, and command-line options.
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	if !forceInstall && !store.HasLockfileChanged(b) {
 		return
@@ -154,6 +163,7 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	b.Install()
 }
 
+// runAdd implements 'upm add'.
 func runAdd(
 	language string, args []string, guess bool,
 	forceLock bool, forceInstall bool) {
@@ -206,6 +216,7 @@ func runAdd(
 	store.Write()
 }
 
+// runRemove implements 'upm remove'.
 func runRemove(language string, args []string, forceLock bool, forceInstall bool) {
 	b := backends.GetBackend(language)
 
@@ -242,6 +253,7 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 	store.Write()
 }
 
+// runLock implements 'upm lock'.
 func runLock(language string, forceLock bool, forceInstall bool) {
 	b := backends.GetBackend(language)
 
@@ -255,6 +267,7 @@ func runLock(language string, forceLock bool, forceInstall bool) {
 	store.Write()
 }
 
+// runInstall implements 'upm install'.
 func runInstall(language string, force bool) {
 	b := backends.GetBackend(language)
 
@@ -264,16 +277,21 @@ func runInstall(language string, force bool) {
 	store.Write()
 }
 
+// listSpecfileJSONEntry represents one entry in the JSON list emitted
+// by 'upm list'.
 type listSpecfileJSONEntry struct {
 	Name string `json:"name"`
 	Spec string `json:"spec"`
 }
 
+// listLockfileJSONEntry represents one entry in the JSON list emitted
+// by 'upm list -a'.
 type listLockfileJSONEntry struct {
 	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
+// runList implements 'upm list'.
 func runList(language string, all bool, outputFormat outputFormat) {
 	b := backends.GetBackend(language)
 	if !all {
@@ -359,6 +377,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 	}
 }
 
+// runGuess implements 'upm guess'.
 func runGuess(language string, all bool) {
 	b := backends.GetBackend(language)
 	pkgs := store.GuessWithCache(b)

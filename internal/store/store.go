@@ -1,3 +1,6 @@
+// Package store handles reading and writing the .upm/store.json file.
+// This file is used to cache several things for performance reasons,
+// as described in the README.
 package store
 
 import (
@@ -10,8 +13,11 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// st is a global object representing the store data. All functions in
+// this file read and write to it. Only one store is supported.
 var st *store
 
+// getStoreLocation returns the file path of the JSON store.
 func getStoreLocation() string {
 	loc, ok := os.LookupEnv("UPM_STORE")
 	if ok {
@@ -21,6 +27,8 @@ func getStoreLocation() string {
 	}
 }
 
+// read reads the store from disk and writes it into the global
+// variable st. If there is an error, it terminates the process.
 func read() {
 	st = &store{}
 
@@ -39,12 +47,15 @@ func read() {
 	}
 }
 
+// readMaybe reads the store if it hasn't been read yet.
 func readMaybe() {
 	if st == nil {
 		read()
 	}
 }
 
+// Write writes the current contents of the store from memory back to
+// disk. If there is an error, it terminates the process.
 func Write() {
 	filename := getStoreLocation()
 
@@ -67,16 +78,29 @@ func Write() {
 	util.TryWriteAtomic(filename, content)
 }
 
+// HasSpecfileChanged returns true if the specfile has changed since
+// the last time UpdateFileHashes was called, or if UpdateFileHashes
+// has never been called.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
 	return hashFile(b.Specfile) != st.SpecfileHash
 }
 
+// HasLockfileChanged returns true if the lockfile has changed since
+// the last time UpdateFileHashes was called, or if UpdateFileHashes
+// has never been called.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
 	return hashFile(b.Lockfile) != st.LockfileHash
 }
 
+// GuessWithCache returns b.Guess(), but re-uses a cached return value
+// if possible. The cache is used if the matches of b.GuessRegexps
+// against b.FilenamePatterns has not changed since the last time
+// GuessWithCache was invoked. (This is only possible if the backend
+// specifies b.GuessRegexps, which is not always the case. If the
+// backend does specify b.GuessRegexps, then the return value of this
+// function is cached.)
 func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
 	readMaybe()
 	old := st.GuessedImportsHash
@@ -103,6 +127,8 @@ func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
 	}
 }
 
+// UpdateFileHashes caches the current states of the specfile and
+// lockfile. Neither file need exist.
 func UpdateFileHashes(b api.LanguageBackend) {
 	readMaybe()
 	st.SpecfileHash = hashFile(b.Specfile)
