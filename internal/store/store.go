@@ -105,17 +105,21 @@ func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
 	readMaybe()
 	old := st.GuessedImportsHash
 	var new hash = "n/a"
-	if old != "" {
+	// If no regexps, then we can't hash imports. Skip reading and
+	// writing the hash.
+	if len(b.GuessRegexps) > 0 {
 		new = hashImports(b)
 		st.GuessedImportsHash = new
 	}
 	if new != old {
 		pkgs := b.Guess()
-		if old != "" {
+		// Only cache result if we are going to use the cache.
+		if len(b.GuessRegexps) > 0 {
 			st.GuessedImports = []string{}
-		}
-		for name := range pkgs {
-			st.GuessedImports = append(st.GuessedImports, string(name))
+			for name := range pkgs {
+				st.GuessedImports =
+					append(st.GuessedImports, string(name))
+			}
 		}
 		return pkgs
 	} else {
