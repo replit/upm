@@ -35,6 +35,7 @@ var IgnoredPaths = []string{
 	"doc",
 	"docs",
 	"documentation",
+	"examples",
 	"node_modules",
 	"test",
 	"tests",
