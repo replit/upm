@@ -2,6 +2,8 @@
 package nodejs
 
 import (
+	"bufio"
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -68,6 +70,12 @@ type packageJSON struct {
 	Dependencies    map[string]string `json:"dependencies"`
 	DevDependencies map[string]string `json:"devDependencies"`
 }
+
+// nodejsBuiltinsCode is a Node.js script that prints to stdout all
+// the built-in modules, one per line.
+const nodejsBuiltinsCode = `
+require("module").builtinModules.map(x => console.log(x));
+`
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
@@ -220,6 +228,12 @@ var NodejsBackend = api.LanguageBackend{
 		}
 		return pkgs
 	},
+	GuessRegexps: util.Regexps([]string{
+		// Copied from below. Keep in sync.
+		`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
+		`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
+		`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+	}),
 	Guess: func() map[api.PkgName]bool {
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 		r := regexp.MustCompile(strings.Join([]string{
@@ -256,6 +270,18 @@ var NodejsBackend = api.LanguageBackend{
 				}
 			}
 			pkgs[api.PkgName(module)] = true
+		}
+
+		output := util.GetCmdOutput([]string{"node", "-e", nodejsBuiltinsCode})
+		scanner := bufio.NewScanner(bytes.NewReader(output))
+
+		for scanner.Scan() {
+			module := scanner.Text()
+			delete(pkgs, api.PkgName(module))
+		}
+
+		if err := scanner.Err(); err != nil {
+			util.Die("node: %s", err)
 		}
 
 		return pkgs
