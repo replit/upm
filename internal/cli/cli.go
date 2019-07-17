@@ -63,6 +63,10 @@ func DoCLI() {
 	rootCmd.PersistentFlags().BoolVarP(
 		&config.Quiet, "quiet", "q", false, "don't show what commands are being run",
 	)
+	rootCmd.PersistentFlags().StringSliceVar(
+		&ignoredPackages, "ignored-packages", []string{},
+		"packages to ignore when guessing (comma-separated)",
+	)
 	rootCmd.PersistentFlags().BoolP(
 		"help", "h", false, "display command-line usage",
 	)
@@ -137,10 +141,6 @@ func DoCLI() {
 	cmdAdd.Flags().SortFlags = false
 	cmdAdd.Flags().BoolVarP(
 		&guess, "guess", "g", false, "guess additional packages to add",
-	)
-	cmdAdd.Flags().StringSliceVar(
-		&ignoredPackages, "ignore-packages", []string{},
-		"packages to ignore when guessing (comma-separated)",
 	)
 	cmdAdd.Flags().BoolVarP(
 		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
@@ -236,10 +236,6 @@ func DoCLI() {
 	cmdGuess.Flags().SortFlags = false
 	cmdGuess.Flags().BoolVarP(
 		&all, "all", "a", false, "list even packages already in the specfile",
-	)
-	cmdGuess.Flags().StringSliceVar(
-		&ignoredPackages, "ignore-packages", []string{},
-		"packages to ignore (comma-separated)",
 	)
 	rootCmd.AddCommand(cmdGuess)
 
