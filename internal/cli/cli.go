@@ -44,6 +44,7 @@ func DoCLI() {
 	var forceLock bool
 	var forceInstall bool
 	var all bool
+	var ignoredPackages []string
 
 	cobra.EnableCommandSorting = false
 
@@ -129,12 +130,17 @@ func DoCLI() {
 		Short: "Add packages to the specfile",
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
-			runAdd(language, pkgSpecStrs, guess, forceLock, forceInstall)
+			runAdd(language, pkgSpecStrs, guess,
+				ignoredPackages, forceLock, forceInstall)
 		},
 	}
 	cmdAdd.Flags().SortFlags = false
 	cmdAdd.Flags().BoolVarP(
 		&guess, "guess", "g", false, "guess additional packages to add",
+	)
+	cmdAdd.Flags().StringSliceVar(
+		&ignoredPackages, "ignore-packages", []string{},
+		"packages to ignore when guessing (comma-separated)",
 	)
 	cmdAdd.Flags().BoolVarP(
 		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
@@ -224,12 +230,16 @@ func DoCLI() {
 		Short: "Guess what packages are needed by your project",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runGuess(language, all)
+			runGuess(language, all, ignoredPackages)
 		},
 	}
 	cmdGuess.Flags().SortFlags = false
 	cmdGuess.Flags().BoolVarP(
 		&all, "all", "a", false, "list even packages already in the specfile",
+	)
+	cmdGuess.Flags().StringSliceVar(
+		&ignoredPackages, "ignore-packages", []string{},
+		"packages to ignore (comma-separated)",
 	)
 	rootCmd.AddCommand(cmdGuess)
 
