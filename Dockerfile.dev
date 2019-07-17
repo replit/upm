@@ -8,8 +8,8 @@ ENV PATH="/usr/local/go/bin:$PATH"
 COPY scripts/docker-install-languages.bash /tmp/docker-install-languages.bash
 RUN /tmp/docker-install-languages.bash
 
-COPY scripts/docker-setup-env.bash /tmp/docker-setup-env.bash
-RUN /tmp/docker-setup-env.bash
+COPY go.mod go.sum scripts/docker-setup-dev.bash /tmp/
+RUN /tmp/docker-setup-dev.bash
 
 ENV PATH="/upm/cmd/upm:$PATH"
 WORKDIR /upm
