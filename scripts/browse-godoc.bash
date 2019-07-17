@@ -3,6 +3,15 @@
 set -e
 set -o pipefail
 
+info() {
+    # Since this script is run in the background from the Makefile,
+    # this apparently messes up the shell's ability to move the cursor
+    # back to the leftmost column when a newline is printed. The
+    # problem is fixed if we manually print a carriage return after
+    # the message.
+    echo "$@"$'\r' >&2
+}
+
 # Each loop iteration sleeps for 100ms, so this means an overall
 # timeout of 5s.
 for i in $(seq 50); do
@@ -11,13 +20,13 @@ for i in $(seq 50); do
         sleep 0.2
         url="http://localhost:6060/pkg/github.com/replit/upm/?m=all"
         if command -v xdg-open &>/dev/null; then
-            echo "godoc started; opening $url with xdg-open(1)" >&2
+            info "godoc started; opening $url with xdg-open(1)"
             xdg-open "$url"
         elif command -v open &>/dev/null; then
-            echo "godoc started; opening $url with open(1)" >&2
+            info "godoc started; opening $url with open(1)"
             open "$url"
         else
-            echo "please install either open(1) or xdg-open(1)" >&2
+            info "please install either open(1) or xdg-open(1)"
             exit 1
         fi
         exit 1
@@ -25,5 +34,5 @@ for i in $(seq 50); do
     sleep 0.1
 done
 
-echo "godoc failed to start listening on port 6060" >&2
+info "godoc failed to start listening on port 6060"
 exit 1
