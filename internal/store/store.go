@@ -83,7 +83,7 @@ func Write() {
 // has never been called.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return hashFile(b.Specfile) != st.SpecfileHash
+	return st.SpecfileHash == "" || hashFile(b.Specfile) != st.SpecfileHash
 }
 
 // HasLockfileChanged returns true if the lockfile has changed since
@@ -91,7 +91,7 @@ func HasSpecfileChanged(b api.LanguageBackend) bool {
 // has never been called.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return hashFile(b.Lockfile) != st.LockfileHash
+	return st.LockfileHash == "" || hashFile(b.Lockfile) != st.LockfileHash
 }
 
 // GuessWithCache returns b.Guess(), but re-uses a cached return value
