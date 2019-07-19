@@ -2,8 +2,10 @@
 upm: cmd/upm/upm ## Build the UPM binary
 
 SOURCES := $(shell find cmd internal -type d -o -name "*.go")
+RESOURCES := $(shell find resources)
 
-cmd/upm/upm: $(SOURCES)
+cmd/upm/upm: $(SOURCES) $(RESOURCES)
+	go run github.com/rakyll/statik -src resources -dest internal -f
 	cd cmd/upm && go build
 
 .PHONY: dev
@@ -38,7 +40,7 @@ deploy: light full ## Publish UPM Docker images to Docker Hub
 
 .PHONY: clean
 clean: ## Remove build artifacts
-	cd cmd/upm && go clean
+	rm -rf cmd/upm/upm internal/statik
 
 .PHONY: help
 help: ## Show this message

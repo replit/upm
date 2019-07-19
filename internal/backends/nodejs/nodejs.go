@@ -8,11 +8,15 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
 	"github.com/hashicorp/go-version"
+	sfs "github.com/rakyll/statik/fs"
 	"github.com/replit/upm/internal/api"
+	_ "github.com/replit/upm/internal/statik"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -228,56 +232,59 @@ var NodejsBackend = api.LanguageBackend{
 		}
 		return pkgs
 	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: util.Regexps([]string{
-		// Copied from below. Keep in sync.
+		// import defaultExport from "module-name";
+		// import * as name from "module-name";
+		// import { export } from "module-name";
 		`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
+		// import "module-name";
 		`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
+		// const mod = import("module-name")
+		// const mod = require("module-name")
 		`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 	}),
 	Guess: func() map[api.PkgName]bool {
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-		r := regexp.MustCompile(strings.Join([]string{
-			// import defaultExport from "module-name";
-			// import * as name from "module-name";
-			// import { export } from "module-name";
-			`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
-			// import "module-name";
-			`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
-			// const mod = import("module-name")
-			// const mod = require("module-name")
-			`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
-		}, "|"))
-		pkgs := map[api.PkgName]bool{}
-		for _, match := range util.SearchRecursive(r, nodejsPatterns) {
-			// Only one group should match, so this join
-			// is really picking out whichever string is
-			// non-empty in the slice.
-			module := strings.Join(match[1:], "")
-			// Skip local modules.
-			if strings.Contains(module, "!") {
-				parts := strings.Split(module, "!")
-				module = parts[len(parts)-1]
-			}
-			if strings.HasPrefix(module, ".") {
-				continue
-			}
-			if strings.Contains(module, "/") {
-				parts := strings.Split(module, "/")
-				if strings.HasPrefix(module, "@") {
-					module = strings.Join(parts[:2], "/")
-				} else {
-					module = parts[0]
-				}
-			}
-			pkgs[api.PkgName(module)] = true
+		fs, err := sfs.New()
+		if err != nil {
+			panic(err)
 		}
 
-		output := util.GetCmdOutput([]string{"node", "-e", nodejsBuiltinsCode})
+		tempdir, err := ioutil.TempDir("", "parser")
+		if err != nil {
+			util.Die("%s", err)
+		}
+		defer os.RemoveAll(tempdir)
+
+		babelParserB, err := sfs.ReadFile(fs, "/nodejs/babel-parser.js")
+		if err != nil {
+			panic(err)
+		}
+
+		bareImportsB, err := sfs.ReadFile(fs, "/nodejs/bare-imports.js")
+		if err != nil {
+			panic(err)
+		}
+
+		babelParser := filepath.Join(tempdir, "babel-parser.js")
+		bareImports := filepath.Join(tempdir, "bare-imports.js")
+
+		if err := ioutil.WriteFile(babelParser, babelParserB, 0666); err != nil {
+			util.Die("%s", err)
+		}
+
+		if err := ioutil.WriteFile(bareImports, bareImportsB, 0666); err != nil {
+			util.Die("%s", err)
+		}
+
+		output := util.GetCmdOutput([]string{
+			"node", bareImports, ".", strings.Join(util.IgnoredPaths, ","),
+		})
 		scanner := bufio.NewScanner(bytes.NewReader(output))
 
+		pkgs := map[api.PkgName]bool{}
 		for scanner.Scan() {
-			module := scanner.Text()
-			delete(pkgs, api.PkgName(module))
+			pkgs[api.PkgName(scanner.Text())] = true
 		}
 
 		if err := scanner.Err(); err != nil {
