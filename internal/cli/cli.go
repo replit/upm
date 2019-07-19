@@ -45,6 +45,7 @@ func DoCLI() {
 	var forceInstall bool
 	var all bool
 	var ignoredPackages []string
+	var upgrade bool
 
 	cobra.EnableCommandSorting = false
 
@@ -134,11 +135,14 @@ func DoCLI() {
 		Short: "Add packages to the specfile",
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
-			runAdd(language, pkgSpecStrs, guess,
+			runAdd(language, pkgSpecStrs, upgrade, guess,
 				ignoredPackages, forceLock, forceInstall)
 		},
 	}
 	cmdAdd.Flags().SortFlags = false
+	cmdAdd.Flags().BoolVarP(
+		&upgrade, "upgrade", "u", false, "upgrade all packages to latest allowed versions",
+	)
 	cmdAdd.Flags().BoolVarP(
 		&guess, "guess", "g", false, "guess additional packages to add",
 	)
@@ -156,10 +160,13 @@ func DoCLI() {
 		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgs := args
-			runRemove(language, pkgs, forceLock, forceInstall)
+			runRemove(language, pkgs, upgrade, forceLock, forceInstall)
 		},
 	}
 	cmdRemove.Flags().SortFlags = false
+	cmdRemove.Flags().BoolVarP(
+		&upgrade, "upgrade", "u", false, "upgrade all packages to latest allowed versions",
+	)
 	cmdRemove.Flags().BoolVarP(
 		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
 	)
@@ -177,13 +184,16 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			for _, updateAlias := range updateAliases {
 				if cmd.CalledAs() == updateAlias {
-					forceLock = true
+					upgrade = true
 				}
 			}
-			runLock(language, forceLock, forceInstall)
+			runLock(language, upgrade, forceLock, forceInstall)
 		},
 	}
 	cmdLock.Flags().SortFlags = false
+	cmdLock.Flags().BoolVarP(
+		&upgrade, "upgrade", "u", false, "upgrade all packages to latest allowed versions",
+	)
 	cmdLock.Flags().BoolVarP(
 		&forceLock, "force-lock", "f", false, "rewrite lockfile even if up to date",
 	)

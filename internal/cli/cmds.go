@@ -125,6 +125,14 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 	}
 }
 
+// deleteLockfile deletes the project's lockfile, if one exists.
+func deleteLockfile(b api.LanguageBackend) {
+	if util.FileExists(b.Lockfile) {
+		util.ProgressMsg("delete " + b.Lockfile)
+		os.Remove(b.Lockfile)
+	}
+}
+
 // maybeLock either runs lock or not, depending on the backend, store,
 // and command-line options.
 func maybeLock(b api.LanguageBackend, forceLock bool) {
@@ -132,11 +140,7 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 		return
 	}
 
-	if !forceLock && !store.HasSpecfileChanged(b) {
-		return
-	}
-
-	if !util.FileExists(b.Specfile) {
+	if util.FileExists(b.Lockfile) && !store.HasSpecfileChanged(b) && !forceLock {
 		return
 	}
 
@@ -147,15 +151,11 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 // store, and command-line options.
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	if b.QuirksIsReproducible() {
-		if !forceInstall && !store.HasLockfileChanged(b) ||
-			!util.FileExists(b.Lockfile) {
-
+		if !forceInstall && !store.HasLockfileChanged(b) {
 			return
 		}
 	} else {
-		if !forceInstall && !store.HasSpecfileChanged(b) ||
-			!util.FileExists(b.Specfile) {
-
+		if !forceInstall && !store.HasSpecfileChanged(b) {
 			return
 		}
 	}
@@ -165,7 +165,8 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 
 // runAdd implements 'upm add'.
 func runAdd(
-	language string, args []string, guess bool, ignoredPackages []string,
+	language string, args []string, upgrade bool,
+	guess bool, ignoredPackages []string,
 	forceLock bool, forceInstall bool) {
 
 	pkgs := map[api.PkgName]api.PkgSpec{}
@@ -201,6 +202,10 @@ func runAdd(
 		}
 	}
 
+	if upgrade {
+		deleteLockfile(b)
+	}
+
 	if len(pkgs) >= 1 {
 		b.Add(pkgs)
 
@@ -222,7 +227,9 @@ func runAdd(
 }
 
 // runRemove implements 'upm remove'.
-func runRemove(language string, args []string, forceLock bool, forceInstall bool) {
+func runRemove(language string, args []string, upgrade bool,
+	forceLock bool, forceInstall bool) {
+
 	b := backends.GetBackend(language)
 
 	if !util.FileExists(b.Specfile) {
@@ -236,6 +243,10 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 		if _, ok := specfilePkgs[name]; ok {
 			pkgs[name] = true
 		}
+	}
+
+	if upgrade {
+		deleteLockfile(b)
 	}
 
 	if len(pkgs) >= 1 {
@@ -259,8 +270,12 @@ func runRemove(language string, args []string, forceLock bool, forceInstall bool
 }
 
 // runLock implements 'upm lock'.
-func runLock(language string, forceLock bool, forceInstall bool) {
+func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
 	b := backends.GetBackend(language)
+
+	if upgrade {
+		deleteLockfile(b)
+	}
 
 	maybeLock(b, forceLock)
 

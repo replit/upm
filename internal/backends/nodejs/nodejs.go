@@ -194,7 +194,7 @@ var NodejsBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func() {
-		util.RunCmd([]string{"yarn", "upgrade"})
+		util.RunCmd([]string{"yarn", "install"})
 	},
 	Install: func() {
 		util.RunCmd([]string{"yarn", "install"})

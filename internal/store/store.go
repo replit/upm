@@ -79,16 +79,18 @@ func Write() {
 }
 
 // HasSpecfileChanged returns true if the specfile has changed since
-// the last time UpdateFileHashes was called, or if UpdateFileHashes
-// has never been called.
+// the last time UpdateFileHashes was called. It also returns true if
+// UpdateFileHashes has never been called, or if the specfile does not
+// exist, or if it did not exist then.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
 	return st.SpecfileHash == "" || hashFile(b.Specfile) != st.SpecfileHash
 }
 
 // HasLockfileChanged returns true if the lockfile has changed since
-// the last time UpdateFileHashes was called, or if UpdateFileHashes
-// has never been called.
+// the last time UpdateFileHashes was called. It also returns true if
+// UpdateFileHashes has never been called, or if the lockfile does not
+// exist, or if it did not exist then.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
 	return st.LockfileHash == "" || hashFile(b.Lockfile) != st.LockfileHash
