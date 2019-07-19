@@ -298,7 +298,11 @@ func (b *LanguageBackend) Check() {
 		b.Install == nil ||
 		b.ListSpecfile == nil ||
 		b.ListLockfile == nil ||
-		b.Guess == nil {
-		util.Panicf("language backend %s is incomplete", b.Name)
+		// If the backend isn't reproducible, then lock is
+		// unimplemented. So how could it also do
+		// installation?
+		(b.QuirksDoesLockAlsoInstall() &&
+			b.QuirksIsNotReproducible()) {
+		util.Panicf("language backend %s is incomplete or invalid", b.Name)
 	}
 }
