@@ -146,16 +146,16 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 // maybeInstall either runs install or not, depending on the backend,
 // store, and command-line options.
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
-	if !forceInstall && !store.HasLockfileChanged(b) {
-		return
-	}
-
 	if b.QuirksIsReproducible() {
-		if !util.FileExists(b.Lockfile) {
+		if !forceInstall && !store.HasLockfileChanged(b) ||
+			!util.FileExists(b.Lockfile) {
+
 			return
 		}
 	} else {
-		if !util.FileExists(b.Specfile) {
+		if !forceInstall && !store.HasSpecfileChanged(b) ||
+			!util.FileExists(b.Specfile) {
+
 			return
 		}
 	}
