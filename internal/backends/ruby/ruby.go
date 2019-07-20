@@ -27,63 +27,6 @@ type rubygemsInfo struct {
 	Version          string   `json:"version"`
 }
 
-// rubySearchCode is a Ruby script which uses the Gems gem to search
-// RubyGems. It takes one command-line argument, the search query
-// (which may contain spaces), and writes the list of search results
-// (see rubygemsInfo) to stdout as JSON.
-const rubySearchCode = `
-require 'gems'
-require 'json'
-
-puts Gems.search(ARGV[0]).to_json
-`
-
-// rubyInfoCode is a Ruby script which uses the Gems gem to retrieve
-// package metadata from RubyGems. It takes one command-line argument,
-// the name of the package to look up, and writes the result (see
-// rubygemsInfo) to stdout as JSON.
-const rubyInfoCode = `
-require 'gems'
-require 'json'
-
-puts Gems.info(ARGV[0]).to_json
-`
-
-// rubyListSpecfileCode is a Ruby script which dumps relevant
-// information from the Gemfile to stdout in JSON format. The JSON is
-// a map from package names to specs, both strings.
-const rubyListSpecfileCode = `
-require 'bundler'
-require 'json'
-
-dsl = Bundler::Dsl.new
-
-result = {}
-dsl.eval_gemfile("Gemfile").each do |dep|
-  result[dep.name] = dep.requirement.requirements.map{ |req| req.join(" ") }.join(", ")
-end
-
-puts result.to_json
-`
-
-// rubyListLockfileCode is a Ruby script which dumps relevant
-// information from the Gemfile.lock to stdout in JSON format. The
-// JSON is a map from package names to versions, both strings.
-const rubyListLockfileCode = `
-require 'bundler'
-require 'json'
-
-# https://stackoverflow.com/a/40098825/3538165
-lockfile = Bundler::LockfileParser.new(Bundler.read_file(Bundler.default_lockfile))
-
-result = {}
-lockfile.specs.each do |spec|
-  result[spec.name] = spec.version
-end
-
-puts result.to_json
-`
-
 // RubyBackend is a UPM language backend for Ruby using Bundler.
 var RubyBackend = api.LanguageBackend{
 	Name:             "ruby-bundler",
@@ -93,7 +36,9 @@ var RubyBackend = api.LanguageBackend{
 	Quirks:           api.QuirksAddRemoveAlsoInstalls,
 	Search: func(query string) []api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e", rubySearchCode, query,
+			"ruby", "-e",
+			util.GetResource("/ruby/rubygems-search.rb"),
+			query,
 		})
 		var outputStructs []rubygemsInfo
 		if err := json.Unmarshal(outputB, &outputStructs); err != nil {
@@ -124,7 +69,9 @@ var RubyBackend = api.LanguageBackend{
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e", rubyInfoCode, string(name),
+			"ruby", "-e",
+			util.GetResource("/ruby/rubygems-info.rb"),
+			string(name),
 		})
 		var s rubygemsInfo
 		if err := json.Unmarshal(outputB, &s); err != nil {
@@ -192,7 +139,7 @@ var RubyBackend = api.LanguageBackend{
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e", rubyListSpecfileCode,
+			"ruby", "-e", util.GetResource("/ruby/list-specfile.rb"),
 		})
 		results := map[api.PkgName]api.PkgSpec{}
 		if err := json.Unmarshal(outputB, &results); err != nil {
@@ -202,7 +149,7 @@ var RubyBackend = api.LanguageBackend{
 	},
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e", rubyListLockfileCode,
+			"ruby", "-e", util.GetResource("/ruby/list-lockfile.rb"),
 		})
 		results := map[api.PkgName]api.PkgVersion{}
 		if err := json.Unmarshal(outputB, &results); err != nil {

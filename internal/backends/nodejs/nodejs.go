@@ -9,14 +9,11 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 
 	"github.com/hashicorp/go-version"
-	sfs "github.com/rakyll/statik/fs"
 	"github.com/replit/upm/internal/api"
-	_ "github.com/replit/upm/internal/statik"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -74,12 +71,6 @@ type packageJSON struct {
 	Dependencies    map[string]string `json:"dependencies"`
 	DevDependencies map[string]string `json:"devDependencies"`
 }
-
-// nodejsBuiltinsCode is a Node.js script that prints to stdout all
-// the built-in modules, one per line.
-const nodejsBuiltinsCode = `
-require("module").builtinModules.map(x => console.log(x));
-`
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
@@ -245,40 +236,14 @@ var NodejsBackend = api.LanguageBackend{
 		`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 	}),
 	Guess: func() map[api.PkgName]bool {
-		fs, err := sfs.New()
-		if err != nil {
-			panic(err)
-		}
-
-		tempdir, err := ioutil.TempDir("", "parser")
-		if err != nil {
-			util.Die("%s", err)
-		}
+		tempdir := util.TempDir()
 		defer os.RemoveAll(tempdir)
 
-		babelParserB, err := sfs.ReadFile(fs, "/nodejs/babel-parser.js")
-		if err != nil {
-			panic(err)
-		}
-
-		bareImportsB, err := sfs.ReadFile(fs, "/nodejs/bare-imports.js")
-		if err != nil {
-			panic(err)
-		}
-
-		babelParser := filepath.Join(tempdir, "babel-parser.js")
-		bareImports := filepath.Join(tempdir, "bare-imports.js")
-
-		if err := ioutil.WriteFile(babelParser, babelParserB, 0666); err != nil {
-			util.Die("%s", err)
-		}
-
-		if err := ioutil.WriteFile(bareImports, bareImportsB, 0666); err != nil {
-			util.Die("%s", err)
-		}
+		util.WriteResource("/nodejs/babel-parser.js", tempdir)
+		script := util.WriteResource("/nodejs/bare-imports.js", tempdir)
 
 		output := util.GetCmdOutput([]string{
-			"node", bareImports, ".", strings.Join(util.IgnoredPaths, ","),
+			"node", script, ".", strings.Join(util.IgnoredPaths, ","),
 		})
 		scanner := bufio.NewScanner(bytes.NewReader(output))
 

@@ -1,3 +1,9 @@
+// This script is called with two command-line arguments: a directory
+// to search for module requires, and a comma-delimited list of names
+// to ignore in the filesystem traversal. It prints to stdout a list
+// of modules that were required, excluding builtins, local modules,
+// etc.
+
 const builtinModules = require("module").builtinModules;
 const fs = require("fs");
 const path = require("path");

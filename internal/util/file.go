@@ -6,10 +6,13 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 	"regexp"
 
 	"github.com/natefinch/atomic"
+	sfs "github.com/rakyll/statik/fs"
+	_ "github.com/replit/upm/internal/statik"
 )
 
 // IgnoredPaths is a slice of file patterns that are totally ignored
@@ -144,4 +147,46 @@ func DownloadFile(filepath string, url string) {
 	if _, err := io.Copy(out, resp.Body); err != nil {
 		Die("%s: %s", filepath, err)
 	}
+}
+
+// TempDir creates and returns the name of temporary directory. If
+// creation fails, it terminates the process. The caller is
+// responsible for cleaning up the temporary directory afterwards.
+func TempDir() string {
+	if tempdir, err := ioutil.TempDir("", "upm"); err != nil {
+		Die("%s", err)
+		return ""
+	} else {
+		return tempdir
+	}
+}
+
+// GetResource returns a statik resource as a string. Resources are
+// inside the resources/ directory of the UPM source repository. url
+// is HTTP-style, e.g. "/nodejs/bare-imports.js". The return value is
+// the file contents. If the resource does not exist, GetResource
+// panics.
+func GetResource(url string) string {
+	if hfs, err := sfs.New(); err != nil {
+		panic(err)
+	} else if bytes, err := sfs.ReadFile(hfs, url); err != nil {
+		panic(err)
+	} else {
+		return string(bytes)
+	}
+}
+
+// WriteResource writes a statik resource to a temporary directory.
+// url is as in GetResource. The file is put inside tempdir, with the
+// same basename as from url. If the resource does not exist,
+// WriteResource panics. If the write fails, it terminates the
+// process. Otherwise, it returns the name of the newly created file.
+func WriteResource(url string, tempdir string) string {
+	contents := GetResource(url)
+	basename := path.Base(url)
+	filename := filepath.Join(tempdir, basename)
+	if err := ioutil.WriteFile(filename, []byte(contents), 0666); err != nil {
+		Die("%s", err)
+	}
+	return filename
 }

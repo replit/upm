@@ -54,72 +54,6 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
-// pythonSearchCode is a Python script that does a PyPI search using
-// the XMLRPC API. It takes one argument, the search query (which may
-// contain spaces), and outputs the results in JSON format (a list of
-// pypiXMLRPCEntry maps). The script works on both Python 2 and Python
-// 3.
-const pythonSearchCode = `
-from __future__ import print_function
-import json
-import sys
-try:
-    from xmlrpc import client as xmlrpc
-except ImportError:
-    import xmlrpclib as xmlrpc
-
-query = sys.argv[1]
-pypi = xmlrpc.ServerProxy("https://pypi.org/pypi")
-results = pypi.search({"name": query})
-json.dump(results, sys.stdout, indent=2)
-print()
-`
-
-// pythonInfoCode is a Python script that looks up package metadata on
-// PyPI using the XMLRPC API. It takes one argument, the name of the
-// package (not necessarily canonical), and outputs the results in
-// JSON format (a map, see pypiXMLRPCInfo). The script works on both
-// Python 2 and Python 3.
-const pythonInfoCode = `
-from __future__ import print_function
-import json
-import sys
-try:
-    from xmlrpc import client as xmlrpc
-except ImportError:
-    import xmlrpclib as xmlrpc
-
-package = sys.argv[1]
-pypi = xmlrpc.ServerProxy("https://pypi.org/pypi")
-releases = pypi.package_releases(package)
-if not releases:
-    print("{}")
-    sys.exit(0)
-release, = releases
-info = pypi.release_data(package, release)
-json.dump(info, sys.stdout, indent=2)
-print()
-`
-
-// pythonGuessCode is a Python script that implements bare imports for
-// Python using pipreqs. It takes no arguments, and dumps a list of
-// package names (strings) to stdout in JSON format. The script works
-// in both Python 2 and Python 3, but pipreqs has to be installed for
-// the version of Python in use (e.g. you can't be inside a
-// virtualenv; export UPM_PYTHON2 or UPM_PYTHON3 as appropriate if you
-// are).
-const pythonGuessCode = `
-from __future__ import print_function
-import json
-import pipreqs.pipreqs as pipreqs
-import sys
-
-imports = pipreqs.get_all_imports(".", extra_ignore_dirs=sys.argv[1].split())
-packages = pipreqs.get_pkg_names(imports)
-json.dump(packages, sys.stdout, indent=2)
-print()
-`
-
 // pythonMakeBackend returns a language backend for a given version of
 // Python. name is either "python2" or "python3", and python is the
 // name of an executable (either a full path or just a name like
@@ -134,7 +68,9 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Quirks:           api.QuirksAddRemoveAlsoInstalls,
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
-				python, "-c", pythonSearchCode, query,
+				python, "-c",
+				util.GetResource("/python/pypi-search.py"),
+				query,
 			})
 			var outputJSON []pypiXMLRPCEntry
 			if err := json.Unmarshal(outputB, &outputJSON); err != nil {
@@ -152,7 +88,9 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		},
 		Info: func(name api.PkgName) api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
-				python, "-c", pythonInfoCode, string(name),
+				python, "-c",
+				util.GetResource("/python/pypi-info.py"),
+				string(name),
 			})
 			var output pypiXMLRPCInfo
 			if err := json.Unmarshal(outputB, &output); err != nil {
@@ -291,7 +229,8 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		}),
 		Guess: func() map[api.PkgName]bool {
 			outputB := util.GetCmdOutput([]string{
-				python, "-c", pythonGuessCode,
+				python, "-c",
+				util.GetResource("/python/bare-imports.py"),
 				strings.Join(util.IgnoredPaths, " "),
 			})
 			var output []string
