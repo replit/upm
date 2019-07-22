@@ -170,7 +170,11 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				// Poetry that can't be worked around.
 				// It looks like that bug might be
 				// fixed in the 1.0 release though :/
-				cmd = append(cmd, name+" "+spec)
+				if spec != "" {
+					cmd = append(cmd, name+" "+spec)
+				} else {
+					cmd = append(cmd, name)
+				}
 			}
 			util.RunCmd(cmd)
 		},
