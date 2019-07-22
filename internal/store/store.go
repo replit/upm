@@ -102,8 +102,9 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // GuessWithCache was invoked. (This is only possible if the backend
 // specifies b.GuessRegexps, which is not always the case. If the
 // backend does specify b.GuessRegexps, then the return value of this
-// function is cached.)
-func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
+// function is cached.) If forceGuess is true, then write to but do
+// not read from the cache.
+func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
 	readMaybe()
 	old := st.GuessedImportsHash
 	var new hash = "n/a"
@@ -113,7 +114,7 @@ func GuessWithCache(b api.LanguageBackend) map[api.PkgName]bool {
 		new = hashImports(b)
 		st.GuessedImportsHash = new
 	}
-	if new != old {
+	if forceGuess || new != old {
 		pkgs := b.Guess()
 		// Only cache result if we are going to use the cache.
 		if len(b.GuessRegexps) > 0 {

@@ -172,7 +172,7 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 // runAdd implements 'upm add'.
 func runAdd(
 	language string, args []string, upgrade bool,
-	guess bool, ignoredPackages []string,
+	guess bool, forceGuess bool, ignoredPackages []string,
 	forceLock bool, forceInstall bool) {
 
 	pkgs := map[api.PkgName]api.PkgSpec{}
@@ -190,7 +190,7 @@ func runAdd(
 	b := backends.GetBackend(language)
 
 	if guess {
-		guessed := store.GuessWithCache(b)
+		guessed := store.GuessWithCache(b, forceGuess)
 		for _, pkg := range ignoredPackages {
 			delete(guessed, api.PkgName(pkg))
 		}
@@ -404,9 +404,12 @@ func runList(language string, all bool, outputFormat outputFormat) {
 }
 
 // runGuess implements 'upm guess'.
-func runGuess(language string, all bool, ignoredPackages []string) {
+func runGuess(
+	language string, all bool,
+	forceGuess bool, ignoredPackages []string) {
+
 	b := backends.GetBackend(language)
-	pkgs := store.GuessWithCache(b)
+	pkgs := store.GuessWithCache(b, forceGuess)
 
 	if !all {
 		if util.FileExists(b.Specfile) {

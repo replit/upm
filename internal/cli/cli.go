@@ -43,6 +43,7 @@ func DoCLI() {
 	var guess bool
 	var forceLock bool
 	var forceInstall bool
+	var forceGuess bool
 	var all bool
 	var ignoredPackages []string
 	var upgrade bool
@@ -135,7 +136,7 @@ func DoCLI() {
 		Short: "Add packages to the specfile",
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
-			runAdd(language, pkgSpecStrs, upgrade, guess,
+			runAdd(language, pkgSpecStrs, upgrade, guess, forceGuess,
 				ignoredPackages, forceLock, forceInstall)
 		},
 	}
@@ -151,6 +152,9 @@ func DoCLI() {
 	)
 	cmdAdd.Flags().BoolVarP(
 		&forceInstall, "force-install", "F", false, "reinstall packages even if up to date",
+	)
+	cmdAdd.Flags().BoolVar(
+		&forceGuess, "force-guess", false, "bypass cache when guessing dependencies",
 	)
 	rootCmd.AddCommand(cmdAdd)
 
@@ -240,12 +244,15 @@ func DoCLI() {
 		Short: "Guess what packages are needed by your project",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			runGuess(language, all, ignoredPackages)
+			runGuess(language, all, forceGuess, ignoredPackages)
 		},
 	}
 	cmdGuess.Flags().SortFlags = false
 	cmdGuess.Flags().BoolVarP(
 		&all, "all", "a", false, "list even packages already in the specfile",
+	)
+	cmdGuess.Flags().BoolVarP(
+		&forceGuess, "force", "f", false, "bypass cache",
 	)
 	rootCmd.AddCommand(cmdGuess)
 
