@@ -190,3 +190,31 @@ func WriteResource(url string, tempdir string) string {
 	}
 	return filename
 }
+
+// ChdirToUPM traverses upwards in the filesystem from the current
+// directory until it finds a directory entry named .upm, and changes
+// to the directory containing it. If it doesn't find any such
+// directory entry, ChdirToUPM doesn't do anything.
+func ChdirToUPM() {
+	cur, err := os.Getwd()
+	if err != nil {
+		Die("%s", err)
+	}
+	for {
+		if Exists(filepath.Join(cur, ".upm")) {
+			if err := os.Chdir(cur); err != nil {
+				Die("%s", err)
+			}
+			return
+		}
+
+		next := filepath.Dir(cur)
+		if next == cur {
+			// We reached the filesystem root without
+			// finding .upm.
+			return
+		}
+
+		cur = next
+	}
+}

@@ -277,5 +277,6 @@ func DoCLI() {
 		}
 	}
 
+	util.ChdirToUPM()
 	rootCmd.Execute()
 }
