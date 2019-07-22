@@ -162,7 +162,15 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			}
 			cmd := []string{python, "-m", "poetry", "add"}
 			for name, spec := range pkgs {
-				cmd = append(cmd, string(name)+string(spec))
+				name := string(name)
+				spec := string(spec)
+
+				// NB: this doesn't work if spec has
+				// spaces in it, because of a bug in
+				// Poetry that can't be worked around.
+				// It looks like that bug might be
+				// fixed in the 1.0 release though :/
+				cmd = append(cmd, name+" "+spec)
 			}
 			util.RunCmd(cmd)
 		},
