@@ -57,54 +57,60 @@ into a PkgInfo struct in Go."
 (defvar upm-num-archives-fetched 0
   "Number of package.el archives which have been fetched so far.")
 
-(defun upm-download-callback (status archive-id action arg)
-  "Callback for `url-retrieve' on a package.el archive.
-ARCHIVE-ID is a symbol (e.g. `gnu', `melpa', ...)."
-  (cl-loop for (event data) on status by #'cddr
-           do (when (eq event :error)
-                (signal (car data) (cdr data))))
-  (let* ((archives-dir (expand-file-name "archives" package-user-dir))
-         (archive-dir (expand-file-name
-                       (symbol-name archive-id) archives-dir)))
-    (make-directory archive-dir 'parents)
-    (delete-region (point-min) url-http-end-of-headers)
-    (write-file (expand-file-name "archive-contents" archive-dir))
-    ;; No race condition, Elisp does not have preemptive
-    ;; multithreading.
-    (when (>= (cl-incf upm-num-archives-fetched) (length package-archives))
-      (package-read-all-archive-contents)
-      (pcase action
-        ("search"
-         (let ((queries (mapcar
-                         #'regexp-quote (split-string arg nil 'omit-nulls))))
-           (thread-last package-archive-contents
-             (map-keys)
-             (mapcar #'symbol-name)
-             (cl-remove-if-not (lambda (package)
-                                 (cl-every (lambda (query)
-                                             (string-match-p query package))
-                                           queries)))
-             (funcall (lambda (packages)
-                        (cl-sort packages #'< :key #'length)))
-             (mapcar #'upm-package-info)
-             (json-encode)
-             (princ))
-           (terpri)))
-        ("info"
-         (princ
-          (json-encode (upm-package-info arg)))
-         (terpri))
-        (_ (error "No such action: %S" action))))))
+(defun upm-download-callback (action arg)
+  "Callback for downloading on a package.el archive.
+ACTION is either \"search\" or \"info\". ARG for \"search\" is a
+search query; ARG for \"info\" is a package name (in either case
+ARG is a string). Write JSON to stdout."
+  ;; No race condition, Elisp does not have preemptive multithreading.
+  (when (>= (cl-incf upm-num-archives-fetched) (length package-archives))
+    (package-read-all-archive-contents)
+    (pcase action
+      ("search"
+       (let ((queries (mapcar
+                       #'regexp-quote (split-string arg nil 'omit-nulls))))
+         (thread-last package-archive-contents
+           (map-keys)
+           (mapcar #'symbol-name)
+           (cl-remove-if-not (lambda (package)
+                               (cl-every (lambda (query)
+                                           (string-match-p query package))
+                                         queries)))
+           (funcall (lambda (packages)
+                      (cl-sort packages #'< :key #'length)))
+           (mapcar #'upm-package-info)
+           (json-encode)
+           (princ))
+         (terpri)))
+      ("info"
+       (princ
+        (json-encode (upm-package-info arg)))
+       (terpri))
+      (_ (error "No such action: %S" action)))))
 
 (cl-destructuring-bind (dir action arg) command-line-args-left
   (setq command-line-args-left nil)
   (setq package-user-dir dir)
-  (dolist (link package-archives)
-    (url-retrieve
-     (concat (cdr link) "archive-contents")
-     #'upm-download-callback
-     (list (car link) action arg)
-     'silent)))
+  (let ((archives-dir (expand-file-name "archives" package-user-dir)))
+    (dolist (elt package-archives)
+      (cl-destructuring-bind (archive . url) elt
+        (let* ((url (concat url "archive-contents"))
+               (archive-dir
+                (expand-file-name (symbol-name archive) archives-dir))
+               (archive-file (expand-file-name "archive-contents" archive-dir)))
+          (make-directory archive-dir 'parents)
+          (make-process
+           :name (format "upm-elpa-%S" archive)
+           :command `("curl" "-s" "-o" ,archive-file "--" ,url)
+           :noquery t
+           :sentinel
+           (lambda (proc _event)
+             (unless (process-live-p proc)
+               (unless (zerop (process-exit-status proc))
+                 (error "Failed to download %s: exit code %d"
+                        url (process-exit-status proc)))
+               (with-current-buffer (find-file-noselect archive-file)
+                 (upm-download-callback action arg))))))))))
 
 ;; Wait until all the code has finished running before exiting.
 (while (< upm-num-archives-fetched (length package-archives))

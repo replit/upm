@@ -31,8 +31,11 @@ var ElispBackend = api.LanguageBackend{
 		}
 		defer os.RemoveAll(tmpdir)
 
+		// Run script with lexical binding (any header comment
+		// in the script would not be respected, so we have to
+		// do it this way).
 		code := fmt.Sprintf(
-			"(progn %s)", util.GetResource("/elisp/elpa-search.el"),
+			"(eval '(progn %s) t)", util.GetResource("/elisp/elpa-search.el"),
 		)
 		code = strings.Replace(code, "~", "`", -1)
 		outputB := util.GetCmdOutput([]string{
@@ -52,8 +55,11 @@ var ElispBackend = api.LanguageBackend{
 		}
 		defer os.RemoveAll(tmpdir)
 
+		// Run script with lexical binding (any header comment
+		// in the script would not be respected, so we have to
+		// do it this way).
 		code := fmt.Sprintf(
-			"(progn %s)", util.GetResource("/elisp/elpa-search.el"),
+			"(eval '(progn %s) t)", util.GetResource("/elisp/elpa-search.el"),
 		)
 		code = strings.Replace(code, "~", "`", -1)
 		outputB := util.GetCmdOutput([]string{

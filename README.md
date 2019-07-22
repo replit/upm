@@ -359,6 +359,7 @@ installed, as follows:
 * `elisp-cask`
   * [Emacs](https://www.gnu.org/software/emacs/)
   * [Cask](https://github.com/cask/cask)
+  * [curl](https://curl.haxx.se/) (for `search` and `info`)
   * [SQLite](https://www.sqlite.org/index.html) (for `guess`)
 
 All of these dependencies are already installed in the
