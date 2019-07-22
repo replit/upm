@@ -140,27 +140,33 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 		return
 	}
 
-	if util.FileExists(b.Lockfile) && !store.HasSpecfileChanged(b) && !forceLock {
+	if !util.FileExists(b.Specfile) {
 		return
 	}
 
-	b.Lock()
+	if forceLock || !util.FileExists(b.Lockfile) || store.HasSpecfileChanged(b) {
+		b.Lock()
+	}
 }
 
 // maybeInstall either runs install or not, depending on the backend,
 // store, and command-line options.
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	if b.QuirksIsReproducible() {
-		if !forceInstall && !store.HasLockfileChanged(b) {
+		if !util.FileExists(b.Lockfile) {
 			return
+		}
+		if forceInstall || store.HasLockfileChanged(b) {
+			b.Install()
 		}
 	} else {
-		if !forceInstall && !store.HasSpecfileChanged(b) {
+		if !util.FileExists(b.Specfile) {
 			return
 		}
+		if forceInstall || store.HasSpecfileChanged(b) {
+			b.Install()
+		}
 	}
-
-	b.Install()
 }
 
 // runAdd implements 'upm add'.

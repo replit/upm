@@ -78,22 +78,22 @@ func Write() {
 	util.TryWriteAtomic(filename, content)
 }
 
-// HasSpecfileChanged returns true if the specfile has changed since
-// the last time UpdateFileHashes was called. It also returns true if
-// UpdateFileHashes has never been called, or if the specfile does not
-// exist, or if it did not exist then.
+// HasSpecfileChanged returns false if the specfile exists and has not
+// changed since the last time UpdateFileHashes was called, or if it
+// doesn't exist and it didn't exist last time either. Otherwise, it
+// returns true.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return st.SpecfileHash == "" || hashFile(b.Specfile) != st.SpecfileHash
+	return hashFile(b.Specfile) != st.SpecfileHash
 }
 
-// HasLockfileChanged returns true if the lockfile has changed since
-// the last time UpdateFileHashes was called. It also returns true if
-// UpdateFileHashes has never been called, or if the lockfile does not
-// exist, or if it did not exist then.
+// HasLockfileChanged returns false if the lockfile exists and has not
+// changed since the last time UpdateFileHashes was called, or if it
+// doesn't exist and it didn't exist last time either. Otherwise, it
+// returns true.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return st.LockfileHash == "" || hashFile(b.Lockfile) != st.LockfileHash
+	return hashFile(b.Lockfile) != st.LockfileHash
 }
 
 // GuessWithCache returns b.Guess(), but re-uses a cached return value
