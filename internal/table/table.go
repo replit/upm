@@ -4,11 +4,15 @@ package table
 
 import (
 	"fmt"
+	"io"
+	"os"
+	"os/exec"
 	"reflect"
 	"sort"
 	"strings"
 
 	"github.com/replit/upm/internal/util"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 // New creates a new table with the given headers. The table has no
@@ -137,9 +141,54 @@ func (t *Table) SortBy(header string) {
 	sort.Sort(sorter)
 }
 
+// printOrPage either prints text to stdout or invokes the 'less'
+// utility to display it. 'less' is invoked if stdout is connected to
+// a tty, the provided width is too wide for the tty, and 'less' is
+// actually installed.
+func printOrPage(text string, width int) {
+	termWidth, _, err := terminal.GetSize(1)
+	if err != nil || width < termWidth {
+		fmt.Print(text)
+		return
+	}
+
+	less, err := exec.LookPath("less")
+	if err != nil {
+		fmt.Print(text)
+		return
+	}
+
+	util.ProgressMsg("less -S")
+
+	cmd := exec.Cmd{
+		Path:   less,
+		Args:   []string{"less", "-S"},
+		Stdout: os.Stdout,
+		Stderr: os.Stderr,
+	}
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		util.Die("connecting pipe to pager stdin: %s", err)
+	}
+
+	if _, err := io.WriteString(stdin, text); err != nil {
+		util.Die("writing to pager: %s", err)
+	}
+	if err := stdin.Close(); err != nil {
+		util.Die("closing pipe to pager stdin: %s", err)
+	}
+
+	if err := cmd.Run(); err != nil {
+		util.Die("running pager: %s", err)
+	}
+}
+
 // Print writes the table to stdout, aligning columns by inserting
-// whitespace.
+// whitespace. If the table is too wide for the current terminal, and
+// the 'less' utility is installed, Print invokes it with the -S
+// option to truncate long lines and allow horizontal scrolling.
 func (t *Table) Print() {
+	lines := []string{}
 	widths := make([]int, len(t.headers))
 	for j := range t.headers {
 		widths[j] = len([]rune(t.headers[j]))
@@ -156,16 +205,20 @@ func (t *Table) Print() {
 		padding := widths[j] - len([]rune(t.headers[j]))
 		fields[j] = t.headers[j] + strings.Repeat(" ", padding)
 	}
-	fmt.Println(strings.Join(fields, "   "))
+	lines = append(lines, strings.Join(fields, "   "))
 	for j := range t.headers {
 		fields[j] = strings.Repeat("-", widths[j])
 	}
-	fmt.Println(strings.Join(fields, "   "))
+	lines = append(lines, strings.Join(fields, "   "))
 	for i := range t.rows {
 		for j := range t.rows[i] {
 			padding := widths[j] - len([]rune(t.rows[i][j]))
 			fields[j] = t.rows[i][j] + strings.Repeat(" ", padding)
 		}
-		fmt.Println(strings.Join(fields, "   "))
+		lines = append(lines, strings.Join(fields, "   "))
 	}
+	// A bit of a hack; we should really compute this directly
+	// from the widths array, but this is simple.
+	totalWidth := len([]rune(lines[1]))
+	printOrPage(strings.Join(lines, "\n")+"\n", totalWidth)
 }

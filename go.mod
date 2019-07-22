@@ -9,4 +9,5 @@ require (
 	github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc
 	github.com/rakyll/statik v0.1.6
 	github.com/spf13/cobra v0.0.5
+	golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9
 )
