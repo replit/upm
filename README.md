@@ -346,8 +346,6 @@ installed, as follows:
     of Python
   * [Poetry](https://poetry.eustace.io/) for appropriate version(s) of
     Python
-  * [Pipreqs](https://github.com/bndr/pipreqs) for appropriate
-    version(s) of Python (for `guess`)
 * `nodejs-yarn`
   * [Node.js](https://nodejs.org/en/)
   * [Yarn](https://yarnpkg.com/en/)

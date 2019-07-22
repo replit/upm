@@ -236,10 +236,16 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*)`,
 		}),
 		Guess: func() map[api.PkgName]bool {
+			tempdir := util.TempDir()
+			defer os.RemoveAll(tempdir)
+
+			util.WriteResource("/python/stdlib", tempdir)
+			util.WriteResource("/python/mapping", tempdir)
+			util.WriteResource("/python/pipreqs.py", tempdir)
+			script := util.WriteResource("/python/bare-imports.py", tempdir)
+
 			outputB := util.GetCmdOutput([]string{
-				python, "-c",
-				util.GetResource("/python/bare-imports.py"),
-				strings.Join(util.IgnoredPaths, " "),
+				python, script, strings.Join(util.IgnoredPaths, " "),
 			})
 			var output []string
 			if err := json.Unmarshal(outputB, &output); err != nil {
