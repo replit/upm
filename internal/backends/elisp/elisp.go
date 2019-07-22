@@ -131,6 +131,7 @@ var ElispBackend = api.LanguageBackend{
 				"/elisp/cask-list-installed.el",
 			)},
 		)
+		util.ProgressMsg("write packages.txt")
 		util.TryWriteAtomic("packages.txt", outputB)
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
