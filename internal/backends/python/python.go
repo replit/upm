@@ -157,7 +157,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return info
 		},
 		Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-			if !util.FileExists("pyproject.toml") {
+			if !util.Exists("pyproject.toml") {
 				util.RunCmd([]string{python, "-m", "poetry", "init", "--no-interaction"})
 			}
 			cmd := []string{python, "-m", "poetry", "add"}

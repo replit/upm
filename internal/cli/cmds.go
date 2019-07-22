@@ -127,7 +127,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 
 // deleteLockfile deletes the project's lockfile, if one exists.
 func deleteLockfile(b api.LanguageBackend) {
-	if util.FileExists(b.Lockfile) {
+	if util.Exists(b.Lockfile) {
 		util.ProgressMsg("delete " + b.Lockfile)
 		os.Remove(b.Lockfile)
 	}
@@ -140,11 +140,11 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 		return
 	}
 
-	if !util.FileExists(b.Specfile) {
+	if !util.Exists(b.Specfile) {
 		return
 	}
 
-	if forceLock || !util.FileExists(b.Lockfile) || store.HasSpecfileChanged(b) {
+	if forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b) {
 		b.Lock()
 	}
 }
@@ -153,14 +153,14 @@ func maybeLock(b api.LanguageBackend, forceLock bool) {
 // store, and command-line options.
 func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	if b.QuirksIsReproducible() {
-		if !util.FileExists(b.Lockfile) {
+		if !util.Exists(b.Lockfile) {
 			return
 		}
 		if forceInstall || store.HasLockfileChanged(b) {
 			b.Install()
 		}
 	} else {
-		if !util.FileExists(b.Specfile) {
+		if !util.Exists(b.Specfile) {
 			return
 		}
 		if forceInstall || store.HasSpecfileChanged(b) {
@@ -202,7 +202,7 @@ func runAdd(
 		}
 	}
 
-	if util.FileExists(b.Specfile) {
+	if util.Exists(b.Specfile) {
 		for name, _ := range b.ListSpecfile() {
 			delete(pkgs, name)
 		}
@@ -238,7 +238,7 @@ func runRemove(language string, args []string, upgrade bool,
 
 	b := backends.GetBackend(language)
 
-	if !util.FileExists(b.Specfile) {
+	if !util.Exists(b.Specfile) {
 		return
 	}
 	specfilePkgs := b.ListSpecfile()
@@ -322,7 +322,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 	b := backends.GetBackend(language)
 	if !all {
 		var results map[api.PkgName]api.PkgSpec = nil
-		fileExists := util.FileExists(b.Specfile)
+		fileExists := util.Exists(b.Specfile)
 		if fileExists {
 			results = b.ListSpecfile()
 		}
@@ -362,7 +362,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		}
 	} else {
 		var results map[api.PkgName]api.PkgVersion = nil
-		fileExists := util.FileExists(b.Lockfile)
+		fileExists := util.Exists(b.Lockfile)
 		if fileExists {
 			results = b.ListLockfile()
 		}
@@ -412,7 +412,7 @@ func runGuess(
 	pkgs := store.GuessWithCache(b, forceGuess)
 
 	if !all {
-		if util.FileExists(b.Specfile) {
+		if util.Exists(b.Specfile) {
 			for name, _ := range b.ListSpecfile() {
 				delete(pkgs, name)
 			}

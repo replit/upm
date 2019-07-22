@@ -66,8 +66,8 @@ func GetBackend(language string) api.LanguageBackend {
 
 	}
 	for _, b := range backends {
-		if util.FileExists(b.Specfile) ||
-			util.FileExists(b.Lockfile) {
+		if util.Exists(b.Specfile) ||
+			util.Exists(b.Lockfile) {
 			return b
 		}
 	}

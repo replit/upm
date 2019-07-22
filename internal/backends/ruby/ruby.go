@@ -97,7 +97,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		if !util.FileExists("Gemfile") {
+		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
 		}
 		args := []string{}
@@ -131,7 +131,7 @@ var RubyBackend = api.LanguageBackend{
 		// Don't install gems system-globally, unless the user
 		// has already created a config file and presumably
 		// knows what they are doing.
-		if !util.FileExists(".bundle/config") {
+		if !util.Exists(".bundle/config") {
 			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
 		}
 		// We need --clean to handle uninstalls.

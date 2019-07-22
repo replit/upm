@@ -57,9 +57,9 @@ func TryWriteAtomic(filename string, contents []byte) {
 	}
 }
 
-// FileExists returns true if the given file exists. If an I/O error
-// occurs, FileExists terminates the process.
-func FileExists(filename string) bool {
+// Exists returns true if a directory entry by the given filename
+// exists. If an I/O error occurs, FileExists terminates the process.
+func Exists(filename string) bool {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		return false
 	} else if err != nil {
