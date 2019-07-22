@@ -3,8 +3,7 @@ package store
 // hash is used in the store to represent a serializable MD5 hash.
 type hash string
 
-// store represents the JSON written (by default) to .upm/store.json.
-type store struct {
+type storeLanguage struct {
 
 	// The hash of the specfile, or an empty string to indicate
 	// that the file doesn't exist or the hash has never been
@@ -24,4 +23,9 @@ type store struct {
 	// The hash of the last sequence of matches for GuessRegexps
 	// against the project code.
 	GuessedImportsHash hash `json:"guessedImportsHash"`
+}
+
+// store represents the JSON written (by default) to .upm/store.json.
+type store struct {
+	Languages map[string]*storeLanguage `json:"languages"`
 }

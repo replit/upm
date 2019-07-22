@@ -54,6 +54,17 @@ func readMaybe() {
 	}
 }
 
+// initLanguage creates an entry in the store for the given language,
+// if necessary. (A language is just the name of a backend.)
+func initLanguage(language string) {
+	if st.Languages == nil {
+		st.Languages = map[string]*storeLanguage{}
+	}
+	if st.Languages[language] == nil {
+		st.Languages[language] = &storeLanguage{}
+	}
+}
+
 // Write writes the current contents of the store from memory back to
 // disk. If there is an error, it terminates the process.
 func Write() {
@@ -84,7 +95,7 @@ func Write() {
 // returns true.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return hashFile(b.Specfile) != st.SpecfileHash
+	return hashFile(b.Specfile) != st.Languages[b.Name].SpecfileHash
 }
 
 // HasLockfileChanged returns false if the lockfile exists and has not
@@ -93,7 +104,7 @@ func HasSpecfileChanged(b api.LanguageBackend) bool {
 // returns true.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	return hashFile(b.Lockfile) != st.LockfileHash
+	return hashFile(b.Lockfile) != st.Languages[b.Name].LockfileHash
 }
 
 // GuessWithCache returns b.Guess(), but re-uses a cached return value
@@ -106,28 +117,29 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // not read from the cache.
 func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
 	readMaybe()
-	old := st.GuessedImportsHash
+	initLanguage(b.Name)
+	old := st.Languages[b.Name].GuessedImportsHash
 	var new hash = "n/a"
 	// If no regexps, then we can't hash imports. Skip reading and
 	// writing the hash.
 	if len(b.GuessRegexps) > 0 {
 		new = hashImports(b)
-		st.GuessedImportsHash = new
+		st.Languages[b.Name].GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
 		pkgs := b.Guess()
 		// Only cache result if we are going to use the cache.
 		if len(b.GuessRegexps) > 0 {
-			st.GuessedImports = []string{}
+			guessed := []string{}
 			for name := range pkgs {
-				st.GuessedImports =
-					append(st.GuessedImports, string(name))
+				guessed = append(guessed, string(name))
 			}
+			st.Languages[b.Name].GuessedImports = guessed
 		}
 		return pkgs
 	} else {
 		pkgs := map[api.PkgName]bool{}
-		for _, name := range st.GuessedImports {
+		for _, name := range st.Languages[b.Name].GuessedImports {
 			pkgs[api.PkgName(name)] = true
 		}
 		return pkgs
@@ -138,6 +150,7 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 // lockfile. Neither file need exist.
 func UpdateFileHashes(b api.LanguageBackend) {
 	readMaybe()
-	st.SpecfileHash = hashFile(b.Specfile)
-	st.LockfileHash = hashFile(b.Lockfile)
+	initLanguage(b.Name)
+	st.Languages[b.Name].SpecfileHash = hashFile(b.Specfile)
+	st.Languages[b.Name].LockfileHash = hashFile(b.Lockfile)
 }
