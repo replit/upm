@@ -6,9 +6,10 @@ require 'bundler'
 require 'json'
 
 dsl = Bundler::Dsl.new
+dsl.eval_gemfile("Gemfile")
 
 result = {}
-dsl.eval_gemfile("Gemfile").each do |dep|
+dsl.dependencies.each do |dep|
   result[dep.name] = dep.requirement.requirements.map{ |req| req.join(" ") }.join(", ")
 end
 
