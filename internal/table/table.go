@@ -161,8 +161,16 @@ func printOrPage(text string, width int) {
 	util.ProgressMsg("less -S")
 
 	cmd := exec.Cmd{
-		Path:   less,
-		Args:   []string{"less", "-S"},
+		Path: less,
+		Args: []string{"less", "-S"},
+		// Normally, LANG or equivalent environment variables
+		// will be set, so less will use the right charset out
+		// of the box. Unfortunately this doesn't happen in
+		// Docker, so we have to configure less manually
+		// (otherwise it will display some non-ASCII
+		// characters as escape sequences). See the man page
+		// for less.
+		Env:    append(os.Environ(), "LESSCHARSET=utf-8"),
 		Stdout: os.Stdout,
 		Stderr: os.Stderr,
 	}
