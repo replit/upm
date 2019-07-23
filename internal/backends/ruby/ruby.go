@@ -1,8 +1,4 @@
 // Package ruby provides a backend for Ruby using Bundler.
-//
-// We invoke Bundler as 'bundler' instead of the equivalent 'bundle'
-// because the Go team thought it would be neat to ship a 'bundle'
-// binary as well, and we might end up calling that instead.
 package ruby
 
 import (
@@ -43,7 +39,7 @@ func setConfig() {
 		// The --local option is undocumented in the help for
 		// bundle config, thanks Bundler.
 		util.RunCmd([]string{
-			"bundler", "config", "--local", "path", ".bundle"})
+			"bundle", "config", "--local", "path", ".bundle"})
 	}
 }
 
@@ -147,7 +143,7 @@ var RubyBackend = api.LanguageBackend{
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		setConfig()
 		if !util.Exists("Gemfile") {
-			util.RunCmd([]string{"bundler", "init"})
+			util.RunCmd([]string{"bundle", "init"})
 		}
 		args := []string{}
 		for name, spec := range pkgs {
@@ -156,19 +152,19 @@ var RubyBackend = api.LanguageBackend{
 			}
 		}
 		if len(args) > 0 {
-			util.RunCmd(append([]string{"bundler", "add"}, args...))
+			util.RunCmd(append([]string{"bundle", "add"}, args...))
 		}
 		for name, spec := range pkgs {
 			if spec != "" {
 				nameArg := string(name)
 				versionArg := "--version=" + string(spec)
-				util.RunCmd([]string{"bundler", "add", nameArg, versionArg})
+				util.RunCmd([]string{"bundle", "add", nameArg, versionArg})
 			}
 		}
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		setConfig()
-		cmd := []string{"bundler", "remove", "--install"}
+		cmd := []string{"bundle", "remove", "--install"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}
@@ -176,12 +172,12 @@ var RubyBackend = api.LanguageBackend{
 	},
 	Lock: func() {
 		setConfig()
-		util.RunCmd([]string{"bundler", "lock"})
+		util.RunCmd([]string{"bundle", "lock"})
 	},
 	Install: func() {
 		setConfig()
 		// We need --clean to handle uninstalls.
-		util.RunCmd([]string{"bundler", "install", "--clean"})
+		util.RunCmd([]string{"bundle", "install", "--clean"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
