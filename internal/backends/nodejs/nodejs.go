@@ -186,7 +186,11 @@ var NodejsBackend = api.LanguageBackend{
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		cmd := []string{"yarn", "add"}
 		for name, spec := range pkgs {
-			cmd = append(cmd, string(name)+"@"+string(spec))
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
 		}
 		util.RunCmd(cmd)
 	},
