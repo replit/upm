@@ -128,6 +128,9 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		if !util.Exists(".bundle/config") {
+			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
+		}
 		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
 		}
@@ -149,6 +152,9 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
+		if !util.Exists(".bundle/config") {
+			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
+		}
 		cmd := []string{"bundle", "remove", "--install"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
@@ -156,6 +162,9 @@ var RubyBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func() {
+		if !util.Exists(".bundle/config") {
+			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
+		}
 		util.RunCmd([]string{"bundle", "lock"})
 	},
 	Install: func() {
