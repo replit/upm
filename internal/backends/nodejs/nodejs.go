@@ -85,15 +85,19 @@ var NodejsBackend = api.LanguageBackend{
 		api.QuirksLockAlsoInstalls,
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://registry.npmjs.org/-/v1/search"
-		query = "?text=" + url.QueryEscape(query)
+		queryParams := "?text=" + url.QueryEscape(query)
 
-		resp, err := http.Get(endpoint + query)
+		resp, err := http.Get(endpoint + queryParams)
 		if err != nil {
 			util.Die("NPM registry: %s", err)
 		}
 		defer resp.Body.Close()
 
 		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			util.Die("NPM registry: %s", err)
+		}
+
 		var npmResults npmSearchResults
 		if err := json.Unmarshal(body, &npmResults); err != nil {
 			util.Die("NPM registry: %s", err)
@@ -126,6 +130,15 @@ var NodejsBackend = api.LanguageBackend{
 			util.Die("NPM registry: %s", err)
 		}
 		defer resp.Body.Close()
+
+		switch resp.StatusCode {
+		case 200:
+			break
+		case 404:
+			return api.PkgInfo{}
+		default:
+			util.Die("NPM registry: HTTP status %d", resp.StatusCode)
+		}
 
 		body, err := ioutil.ReadAll(resp.Body)
 		var npmInfo npmInfoResult

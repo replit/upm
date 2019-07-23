@@ -3,6 +3,9 @@ package ruby
 
 import (
 	"encoding/json"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -35,15 +38,25 @@ var RubyBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksAddRemoveAlsoInstalls,
 	Search: func(query string) []api.PkgInfo {
-		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e",
-			util.GetResource("/ruby/rubygems-search.rb"),
-			query,
-		})
+		endpoint := "https://rubygems.org/api/v1/search.json"
+		queryParams := "?query=" + url.QueryEscape(query)
+
+		resp, err := http.Get(endpoint + queryParams)
+		if err != nil {
+			util.Die("RubyGems: %s", err)
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			util.Die("RubyGems: %s", err)
+		}
+
 		var outputStructs []rubygemsInfo
-		if err := json.Unmarshal(outputB, &outputStructs); err != nil {
+		if err := json.Unmarshal(body, &outputStructs); err != nil {
 			util.Die("RubyGems response: %s", err)
 		}
+
 		results := []api.PkgInfo{}
 		for _, s := range outputStructs {
 			deps := []string{}
@@ -68,13 +81,31 @@ var RubyBackend = api.LanguageBackend{
 		return results
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
-		outputB := util.GetCmdOutput([]string{
-			"ruby", "-e",
-			util.GetResource("/ruby/rubygems-info.rb"),
-			string(name),
-		})
+		endpoint := "https://rubygems.org/api/v1/gems/"
+		path := url.QueryEscape(string(name)) + ".json"
+
+		resp, err := http.Get(endpoint + path)
+		if err != nil {
+			util.Die("RubyGems: %s", err)
+		}
+		defer resp.Body.Close()
+
+		switch resp.StatusCode {
+		case 200:
+			break
+		case 404:
+			return api.PkgInfo{}
+		default:
+			util.Die("RubyGems: HTTP status %d", resp.StatusCode)
+		}
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			util.Die("RubyGems: %s", err)
+		}
+
 		var s rubygemsInfo
-		if err := json.Unmarshal(outputB, &s); err != nil {
+		if err := json.Unmarshal(body, &s); err != nil {
 			util.Die("RubyGems response: %s", err)
 		}
 		deps := []string{}
