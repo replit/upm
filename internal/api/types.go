@@ -99,8 +99,13 @@ const (
 	QuirksNotReproducible = 1 << iota
 
 	// This constant indicates that add/remove also executes lock
+	// subsequently, so it doesn't need to be run afterwards.
+	QuirksAddRemoveAlsoLocks
+
+	// This constant indicates that add/remove also executes lock
 	// and install subsequently, so they don't need to be run
-	// afterwards.
+	// afterwards. If specified, then QuirksAddRemoveAlsoLocks
+	// also must be specified.
 	QuirksAddRemoveAlsoInstalls
 
 	// This constant indicates that lock also executes install
@@ -301,8 +306,11 @@ func (b *LanguageBackend) Check() {
 		// If the backend isn't reproducible, then lock is
 		// unimplemented. So how could it also do
 		// installation?
-		(b.QuirksDoesLockAlsoInstall() &&
-			b.QuirksIsNotReproducible()) {
+		b.QuirksDoesLockAlsoInstall() &&
+			b.QuirksIsNotReproducible() ||
+		// If you install, then you have to lock.
+		b.QuirksDoesAddRemoveAlsoInstall() &&
+			!b.QuirksDoesAddRemoveAlsoLock() {
 		util.Panicf("language backend %s is incomplete or invalid", b.Name)
 	}
 }

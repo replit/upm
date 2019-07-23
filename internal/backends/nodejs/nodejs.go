@@ -81,7 +81,8 @@ var NodejsBackend = api.LanguageBackend{
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
 	FilenamePatterns: nodejsPatterns,
-	Quirks: api.QuirksAddRemoveAlsoInstalls |
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://registry.npmjs.org/-/v1/search"

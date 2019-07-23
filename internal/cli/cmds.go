@@ -214,17 +214,15 @@ func runAdd(
 
 	if len(pkgs) >= 1 {
 		b.Add(pkgs)
-
-		if b.QuirksDoesAddRemoveAlsoInstall() {
-			store.UpdateFileHashes(b)
-			store.Write()
-			return
-		}
 	}
 
-	maybeLock(b, forceLock)
+	if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
+		maybeLock(b, forceLock)
 
-	if b.QuirksDoesLockNotAlsoInstall() {
+		if b.QuirksDoesLockNotAlsoInstall() {
+			maybeInstall(b, forceInstall)
+		}
+	} else if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
@@ -257,17 +255,15 @@ func runRemove(language string, args []string, upgrade bool,
 
 	if len(pkgs) >= 1 {
 		b.Remove(pkgs)
-
-		if b.QuirksDoesAddRemoveAlsoInstall() {
-			store.UpdateFileHashes(b)
-			store.Write()
-			return
-		}
 	}
 
-	maybeLock(b, forceLock)
+	if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
+		maybeLock(b, forceLock)
 
-	if b.QuirksDoesLockNotAlsoInstall() {
+		if b.QuirksDoesLockNotAlsoInstall() {
+			maybeInstall(b, forceInstall)
+		}
+	} else if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 

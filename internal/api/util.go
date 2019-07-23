@@ -23,9 +23,24 @@ func (b *LanguageBackend) QuirksDoesAddRemoveAlsoInstall() bool {
 
 // QuirksDoesAddRemoveNotAlsoInstall returns true if the language
 // backend does *not* specify QuirksAddRemoveAlsoInstalls, i.e.
-// running add or remove does not also run lock or install.
+// running add or remove does *not* also run install (though it might
+// run lock; see QuirksDoesAddRemoveAlsoLock).
 func (b *LanguageBackend) QuirksDoesAddRemoveNotAlsoInstall() bool {
 	return (b.Quirks & QuirksAddRemoveAlsoInstalls) == 0
+}
+
+// QuirksDoesAddRemoveAlsoLock returns true if the language backend
+// specifies QuirksAddRemoveAlsoLocks, i.e. it also runs lock (but not
+// install) when running add or remove.
+func (b *LanguageBackend) QuirksDoesAddRemoveAlsoLock() bool {
+	return (b.Quirks & QuirksAddRemoveAlsoLocks) != 0
+}
+
+// QuirksDoesAddRemoveNotAlsoLock returns true if the language backend
+// does *not* specify QuirksAddRemoveAlsoLocks, i.e. running add or
+// remove does *not* also run lock or install.
+func (b *LanguageBackend) QuirksDoesAddRemoveNotAlsoLock() bool {
+	return (b.Quirks & QuirksAddRemoveAlsoLocks) == 0
 }
 
 // QuirksDoesLockAlsoInstall returns true if the language backend

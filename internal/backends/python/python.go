@@ -65,7 +65,8 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Specfile:         "pyproject.toml",
 		Lockfile:         "poetry.lock",
 		FilenamePatterns: []string{"*.py"},
-		Quirks:           api.QuirksAddRemoveAlsoInstalls,
+		Quirks: api.QuirksAddRemoveAlsoLocks |
+			api.QuirksAddRemoveAlsoInstalls,
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c",

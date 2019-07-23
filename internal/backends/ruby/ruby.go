@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -30,16 +31,32 @@ type rubygemsInfo struct {
 	Version          string   `json:"version"`
 }
 
-// setConfig will configure Bundler to install gems project-locally.
-// If Bundler has already been configured, setConfig silently does
-// nothing. (Yes, by default Bundler really does install your
-// project-local gems system-globally.)
-func setConfig() {
-	if !util.Exists(".bundle/config") {
-		// The --local option is undocumented in the help for
-		// bundle config, thanks Bundler.
-		util.RunCmd([]string{
-			"bundle", "config", "--local", "path", ".bundle"})
+// getPath returns the appropriate --path for 'bundle install'. This
+// will normally be '.bundle' (in the current directory), but may
+// instead be the empty string, indicating that no --path argument
+// should be passed. (This is for the case where the user has
+// explicitly configured a different path.)
+func getPath() string {
+	tempdir := util.TempDir()
+	defer os.RemoveAll(tempdir)
+
+	// The --parseable option is completely undocumented outside
+	// of the source code, thanks Bundler.
+	outputB := util.GetCmdOutput([]string{
+		"bundle", "config", "--parseable", "path"})
+
+	if len(outputB) == 0 {
+		// Nothing configured, use our default.
+		return ".bundle"
+	} else {
+		// If on the other hand there *is* something
+		// configured, we'll return the empty string to
+		// indicate that a --path argument should *not* be
+		// used, which will allow Bundler to use the default
+		// we just looked up. (In fact, we *must* refrain from
+		// passing --path in this case; otherwise a
+		// superfluous .bundle/config file might get created.)
+		return ""
 	}
 }
 
@@ -49,7 +66,7 @@ var RubyBackend = api.LanguageBackend{
 	Specfile:         "Gemfile",
 	Lockfile:         "Gemfile.lock",
 	FilenamePatterns: []string{"*.rb"},
-	Quirks:           api.QuirksAddRemoveAlsoInstalls,
+	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://rubygems.org/api/v1/search.json"
 		queryParams := "?query=" + url.QueryEscape(query)
@@ -141,7 +158,6 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		setConfig()
 		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
 		}
@@ -152,7 +168,11 @@ var RubyBackend = api.LanguageBackend{
 			}
 		}
 		if len(args) > 0 {
-			util.RunCmd(append([]string{"bundle", "add"}, args...))
+			// We need to --skip-install here and run that
+			// separately, because there's no way to get
+			// Bundler to --clean when installing via add.
+			util.RunCmd(append([]string{
+				"bundle", "add", "--skip-install"}, args...))
 		}
 		for name, spec := range pkgs {
 			if spec != "" {
@@ -163,21 +183,22 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		setConfig()
-		cmd := []string{"bundle", "remove", "--install"}
+		cmd := []string{"bundle", "remove", "--skip-install"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
 	},
 	Lock: func() {
-		setConfig()
 		util.RunCmd([]string{"bundle", "lock"})
 	},
 	Install: func() {
-		setConfig()
 		// We need --clean to handle uninstalls.
-		util.RunCmd([]string{"bundle", "install", "--clean"})
+		args := []string{"bundle", "install", "--clean"}
+		if path := getPath(); path != "" {
+			args = append(args, "--path", path)
+		}
+		util.RunCmd(args)
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
