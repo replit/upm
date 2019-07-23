@@ -1,4 +1,8 @@
 // Package ruby provides a backend for Ruby using Bundler.
+//
+// We invoke Bundler as 'bundler' instead of the equivalent 'bundle'
+// because the Go team thought it would be neat to ship a 'bundle'
+// binary as well, and we might end up calling that instead.
 package ruby
 
 import (
@@ -28,6 +32,19 @@ type rubygemsInfo struct {
 	Name             string   `json:"name"`
 	SourceCodeURI    string   `json:"source_code_uri"`
 	Version          string   `json:"version"`
+}
+
+// setConfig will configure Bundler to install gems project-locally.
+// If Bundler has already been configured, setConfig silently does
+// nothing. (Yes, by default Bundler really does install your
+// project-local gems system-globally.)
+func setConfig() {
+	if !util.Exists(".bundle/config") {
+		// The --local option is undocumented in the help for
+		// bundle config, thanks Bundler.
+		util.RunCmd([]string{
+			"bundler", "config", "--local", "path", ".bundle"})
+	}
 }
 
 // RubyBackend is a UPM language backend for Ruby using Bundler.
@@ -128,11 +145,9 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		if !util.Exists(".bundle/config") {
-			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
-		}
+		setConfig()
 		if !util.Exists("Gemfile") {
-			util.RunCmd([]string{"bundle", "init"})
+			util.RunCmd([]string{"bundler", "init"})
 		}
 		args := []string{}
 		for name, spec := range pkgs {
@@ -141,41 +156,32 @@ var RubyBackend = api.LanguageBackend{
 			}
 		}
 		if len(args) > 0 {
-			util.RunCmd(append([]string{"bundle", "add"}, args...))
+			util.RunCmd(append([]string{"bundler", "add"}, args...))
 		}
 		for name, spec := range pkgs {
 			if spec != "" {
 				nameArg := string(name)
 				versionArg := "--version=" + string(spec)
-				util.RunCmd([]string{"bundle", "add", nameArg, versionArg})
+				util.RunCmd([]string{"bundler", "add", nameArg, versionArg})
 			}
 		}
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		if !util.Exists(".bundle/config") {
-			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
-		}
-		cmd := []string{"bundle", "remove", "--install"}
+		setConfig()
+		cmd := []string{"bundler", "remove", "--install"}
 		for name, _ := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
 	},
 	Lock: func() {
-		if !util.Exists(".bundle/config") {
-			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
-		}
-		util.RunCmd([]string{"bundle", "lock"})
+		setConfig()
+		util.RunCmd([]string{"bundler", "lock"})
 	},
 	Install: func() {
-		// Don't install gems system-globally, unless the user
-		// has already created a config file and presumably
-		// knows what they are doing.
-		if !util.Exists(".bundle/config") {
-			util.RunCmd([]string{"bundle", "config", "path", "vendor/bundle"})
-		}
+		setConfig()
 		// We need --clean to handle uninstalls.
-		util.RunCmd([]string{"bundle", "install", "--clean"})
+		util.RunCmd([]string{"bundler", "install", "--clean"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
