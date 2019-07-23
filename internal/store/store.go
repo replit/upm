@@ -95,6 +95,7 @@ func Write() {
 // returns true.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
+	initLanguage(b.Name)
 	return hashFile(b.Specfile) != st.Languages[b.Name].SpecfileHash
 }
 
@@ -104,6 +105,7 @@ func HasSpecfileChanged(b api.LanguageBackend) bool {
 // returns true.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
+	initLanguage(b.Name)
 	return hashFile(b.Lockfile) != st.Languages[b.Name].LockfileHash
 }
 
