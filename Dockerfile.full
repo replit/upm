@@ -5,6 +5,9 @@ RUN /tmp/docker-install-build.bash
 
 ENV PATH="/usr/local/go/bin:$PATH"
 
+COPY go.mod go.sum scripts/docker-prefetch.bash /tmp/
+RUN /tmp/docker-prefetch.bash
+
 COPY . /upm
 RUN make -C /upm upm
 
