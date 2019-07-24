@@ -1,22 +1,12 @@
 package util
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 
 	"github.com/kballard/go-shellquote"
-	"github.com/replit/upm/internal/config"
 )
-
-// ProgressMsg prints the given message to stderr with a prefix. The
-// message is inhibited in --quiet mode, however.
-func ProgressMsg(msg string) {
-	if !config.Quiet {
-		fmt.Fprintln(os.Stderr, "-->", msg)
-	}
-}
 
 // quoteCmd escapes shell characters in a command. Additionally, it
 // replaces long or multiline arguments with a placeholder.

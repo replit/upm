@@ -30,17 +30,25 @@ func runListLanguages() {
 
 // runSearch implements 'upm search'.
 func runSearch(language string, args []string, outputFormat outputFormat) {
-	results := backends.GetBackend(language).Search(
-		strings.Join(args, " "),
-	)
+	query := strings.Join(args, " ")
+	b := backends.GetBackend(language)
+
+	var results []api.PkgInfo
+	if strings.TrimSpace(query) == "" {
+		results = []api.PkgInfo{}
+	} else {
+		results = b.Search(query)
+	}
+
 	// Output a reasonable number of results.
 	if len(results) > 20 {
 		results = results[:20]
 	}
+
 	switch outputFormat {
 	case outputFormatTable:
 		if len(results) == 0 {
-			fmt.Fprintln(os.Stderr, "no search results")
+			util.Log("no search results")
 			return
 		}
 		t := table.FromStructs(results)
@@ -326,10 +334,10 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		case outputFormatTable:
 			switch {
 			case !fileExists:
-				fmt.Fprintln(os.Stderr, "no specfile")
+				util.Log("no specfile")
 				return
 			case len(results) == 0:
-				fmt.Fprintln(os.Stderr, "no packages in specfile")
+				util.Log("no packages in specfile")
 				return
 			}
 			t := table.New("name", "spec")
@@ -366,10 +374,10 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		case outputFormatTable:
 			switch {
 			case !fileExists:
-				fmt.Fprintln(os.Stderr, "no lockfile")
+				util.Log("no lockfile")
 				return
 			case len(results) == 0:
-				fmt.Fprintln(os.Stderr, "no packages in lockfile")
+				util.Log("no packages in lockfile")
 				return
 			}
 			t := table.New("name", "version")
