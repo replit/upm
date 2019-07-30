@@ -1,4 +1,4 @@
-// Package nodejs provides a backend for Node.js using Yarn.
+// Package nodejs provides backends for Node.js using Yarn and NPM.
 package nodejs
 
 import (
@@ -72,11 +72,183 @@ type packageJSON struct {
 	DevDependencies map[string]string `json:"devDependencies"`
 }
 
+// packageLockJSON represents the relevant data in a package-lock.json
+// file.
+type packageLockJSON struct {
+	Dependencies map[string]struct {
+		Version string `json:"version"`
+	} `json:"dependencies"`
+}
+
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
-// NodejsBackend is a UPM backend for Node.js that uses Yarn.
-var NodejsBackend = api.LanguageBackend{
+// nodejsSearch implements Search for nodejs-yarn and nodejs-npm.
+func nodejsSearch(query string) []api.PkgInfo {
+	endpoint := "https://registry.npmjs.org/-/v1/search"
+	queryParams := "?text=" + url.QueryEscape(query)
+
+	resp, err := http.Get(endpoint + queryParams)
+	if err != nil {
+		util.Die("NPM registry: %s", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		util.Die("NPM registry: %s", err)
+	}
+
+	var npmResults npmSearchResults
+	if err := json.Unmarshal(body, &npmResults); err != nil {
+		util.Die("NPM registry: %s", err)
+	}
+
+	results := make([]api.PkgInfo, len(npmResults.Objects))
+	for i := range npmResults.Objects {
+		p := npmResults.Objects[i].Package
+		results[i] = api.PkgInfo{
+			Name:          p.Name,
+			Description:   p.Description,
+			Version:       p.Version,
+			HomepageURL:   p.Links.Homepage,
+			SourceCodeURL: p.Links.Repository,
+			BugTrackerURL: p.Links.Bugs,
+			Author: util.AuthorInfo{
+				Name:  p.Author.Username,
+				Email: p.Author.Email,
+			}.String(),
+		}
+	}
+	return results
+}
+
+// nodejsInfo implements Info for nodejs-yarn and nodejs-npm.
+func nodejsInfo(name api.PkgName) api.PkgInfo {
+	endpoint := "https://registry.npmjs.org"
+	path := "/" + url.QueryEscape(string(name))
+
+	resp, err := http.Get(endpoint + path)
+	if err != nil {
+		util.Die("NPM registry: %s", err)
+	}
+	defer resp.Body.Close()
+
+	switch resp.StatusCode {
+	case 200:
+		break
+	case 404:
+		return api.PkgInfo{}
+	default:
+		util.Die("NPM registry: HTTP status %d", resp.StatusCode)
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	var npmInfo npmInfoResult
+	if err := json.Unmarshal(body, &npmInfo); err != nil {
+		util.Die("NPM registry: %s", err)
+	}
+
+	lastVersionStr := ""
+	if len(npmInfo.Versions) > 0 {
+		var lastVersion *version.Version = nil
+		for versionStr := range npmInfo.Versions {
+			version, err := version.NewVersion(versionStr)
+			if err != nil {
+				continue
+			}
+
+			if version.Prerelease() != "" {
+				continue
+			}
+
+			if lastVersion == nil || version.GreaterThan(lastVersion) {
+				lastVersion = version
+			}
+		}
+		if lastVersion != nil {
+			lastVersionStr = lastVersion.String()
+		}
+	}
+
+	return api.PkgInfo{
+		Name:          npmInfo.Name,
+		Description:   npmInfo.Description,
+		Version:       lastVersionStr,
+		HomepageURL:   npmInfo.Homepage,
+		SourceCodeURL: npmInfo.Repository.URL,
+		BugTrackerURL: npmInfo.Bugs.URL,
+		Author: util.AuthorInfo{
+			Name:  npmInfo.Author.Name,
+			Email: npmInfo.Author.Email,
+			URL:   npmInfo.Author.URL,
+		}.String(),
+		License: npmInfo.License,
+	}
+}
+
+// nodejsListSpecfile implements ListSpecfile for nodejs-yarn and
+// nodejs-npm.
+func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
+	contentsB, err := ioutil.ReadFile("package.json")
+	if err != nil {
+		util.Die("package.json: %s", err)
+	}
+	var cfg packageJSON
+	if err := json.Unmarshal(contentsB, &cfg); err != nil {
+		util.Die("package.json: %s", err)
+	}
+	pkgs := map[api.PkgName]api.PkgSpec{}
+	for nameStr, specStr := range cfg.Dependencies {
+		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+	}
+	for nameStr, specStr := range cfg.DevDependencies {
+		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+	}
+	return pkgs
+}
+
+// nodejsGuessRegexps is the value of GuessRegexps for nodejs-yarn and
+// nodejs-npm.
+var nodejsGuessRegexps = util.Regexps([]string{
+	// import defaultExport from "module-name";
+	// import * as name from "module-name";
+	// import { export } from "module-name";
+	`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
+	// import "module-name";
+	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
+	// const mod = import("module-name")
+	// const mod = require("module-name")
+	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+})
+
+// nodejsGuess implements Guess for nodejs-yarn and nodejs-npm.
+func nodejsGuess() map[api.PkgName]bool {
+	tempdir := util.TempDir()
+	defer os.RemoveAll(tempdir)
+
+	util.WriteResource("/nodejs/babel-parser.js", tempdir)
+	script := util.WriteResource("/nodejs/bare-imports.js", tempdir)
+
+	output := util.GetCmdOutput([]string{
+		"node", script, ".", strings.Join(util.IgnoredPaths, ","),
+	})
+	scanner := bufio.NewScanner(bytes.NewReader(output))
+
+	pkgs := map[api.PkgName]bool{}
+	for scanner.Scan() {
+		pkgs[api.PkgName(scanner.Text())] = true
+	}
+
+	if err := scanner.Err(); err != nil {
+		util.Die("node: %s", err)
+	}
+
+	return pkgs
+}
+
+// NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
+var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
@@ -84,107 +256,12 @@ var NodejsBackend = api.LanguageBackend{
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
-	Search: func(query string) []api.PkgInfo {
-		endpoint := "https://registry.npmjs.org/-/v1/search"
-		queryParams := "?text=" + url.QueryEscape(query)
-
-		resp, err := http.Get(endpoint + queryParams)
-		if err != nil {
-			util.Die("NPM registry: %s", err)
-		}
-		defer resp.Body.Close()
-
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			util.Die("NPM registry: %s", err)
-		}
-
-		var npmResults npmSearchResults
-		if err := json.Unmarshal(body, &npmResults); err != nil {
-			util.Die("NPM registry: %s", err)
-		}
-
-		results := make([]api.PkgInfo, len(npmResults.Objects))
-		for i := range npmResults.Objects {
-			p := npmResults.Objects[i].Package
-			results[i] = api.PkgInfo{
-				Name:          p.Name,
-				Description:   p.Description,
-				Version:       p.Version,
-				HomepageURL:   p.Links.Homepage,
-				SourceCodeURL: p.Links.Repository,
-				BugTrackerURL: p.Links.Bugs,
-				Author: util.AuthorInfo{
-					Name:  p.Author.Username,
-					Email: p.Author.Email,
-				}.String(),
-			}
-		}
-		return results
-	},
-	Info: func(name api.PkgName) api.PkgInfo {
-		endpoint := "https://registry.npmjs.org"
-		path := "/" + url.QueryEscape(string(name))
-
-		resp, err := http.Get(endpoint + path)
-		if err != nil {
-			util.Die("NPM registry: %s", err)
-		}
-		defer resp.Body.Close()
-
-		switch resp.StatusCode {
-		case 200:
-			break
-		case 404:
-			return api.PkgInfo{}
-		default:
-			util.Die("NPM registry: HTTP status %d", resp.StatusCode)
-		}
-
-		body, err := ioutil.ReadAll(resp.Body)
-		var npmInfo npmInfoResult
-		if err := json.Unmarshal(body, &npmInfo); err != nil {
-			util.Die("NPM registry: %s", err)
-		}
-
-		lastVersionStr := ""
-		if len(npmInfo.Versions) > 0 {
-			var lastVersion *version.Version = nil
-			for versionStr := range npmInfo.Versions {
-				version, err := version.NewVersion(versionStr)
-				if err != nil {
-					continue
-				}
-
-				if version.Prerelease() != "" {
-					continue
-				}
-
-				if lastVersion == nil || version.GreaterThan(lastVersion) {
-					lastVersion = version
-				}
-			}
-			if lastVersion != nil {
-				lastVersionStr = lastVersion.String()
-			}
-		}
-
-		return api.PkgInfo{
-			Name:          npmInfo.Name,
-			Description:   npmInfo.Description,
-			Version:       lastVersionStr,
-			HomepageURL:   npmInfo.Homepage,
-			SourceCodeURL: npmInfo.Repository.URL,
-			BugTrackerURL: npmInfo.Bugs.URL,
-			Author: util.AuthorInfo{
-				Name:  npmInfo.Author.Name,
-				Email: npmInfo.Author.Email,
-				URL:   npmInfo.Author.URL,
-			}.String(),
-			License: npmInfo.License,
-		}
-	},
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"yarn", "init", "-y"})
+		}
 		cmd := []string{"yarn", "add"}
 		for name, spec := range pkgs {
 			arg := string(name)
@@ -208,24 +285,7 @@ var NodejsBackend = api.LanguageBackend{
 	Install: func() {
 		util.RunCmd([]string{"yarn", "install"})
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-		contentsB, err := ioutil.ReadFile("package.json")
-		if err != nil {
-			util.Die("package.json: %s", err)
-		}
-		var cfg packageJSON
-		if err := json.Unmarshal(contentsB, &cfg); err != nil {
-			util.Die("package.json: %s", err)
-		}
-		pkgs := map[api.PkgName]api.PkgSpec{}
-		for nameStr, specStr := range cfg.Dependencies {
-			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
-		}
-		for nameStr, specStr := range cfg.DevDependencies {
-			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
-		}
-		return pkgs
-	},
+	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := ioutil.ReadFile("yarn.lock")
 		if err != nil {
@@ -242,38 +302,65 @@ var NodejsBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: util.Regexps([]string{
-		// import defaultExport from "module-name";
-		// import * as name from "module-name";
-		// import { export } from "module-name";
-		`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
-		// import "module-name";
-		`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
-		// const mod = import("module-name")
-		// const mod = require("module-name")
-		`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
-	}),
-	Guess: func() map[api.PkgName]bool {
-		tempdir := util.TempDir()
-		defer os.RemoveAll(tempdir)
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
+}
 
-		util.WriteResource("/nodejs/babel-parser.js", tempdir)
-		script := util.WriteResource("/nodejs/bare-imports.js", tempdir)
-
-		output := util.GetCmdOutput([]string{
-			"node", script, ".", strings.Join(util.IgnoredPaths, ","),
-		})
-		scanner := bufio.NewScanner(bytes.NewReader(output))
-
-		pkgs := map[api.PkgName]bool{}
-		for scanner.Scan() {
-			pkgs[api.PkgName(scanner.Text())] = true
+// NodejsNPMBackend is a UPM backend for Node.js that uses NPM.
+var NodejsNPMBackend = api.LanguageBackend{
+	Name:             "nodejs-npm",
+	Specfile:         "package.json",
+	Lockfile:         "package-lock.json",
+	FilenamePatterns: nodejsPatterns,
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"npm", "init", "-y"})
 		}
-
-		if err := scanner.Err(); err != nil {
-			util.Die("node: %s", err)
+		cmd := []string{"npm", "install"}
+		for name, spec := range pkgs {
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
 		}
-
+		util.RunCmd(cmd)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		cmd := []string{"npm", "uninstall"}
+		for name, _ := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		util.RunCmd(cmd)
+	},
+	Lock: func() {
+		util.RunCmd([]string{"npm", "install"})
+	},
+	Install: func() {
+		util.RunCmd([]string{"npm", "ci"})
+	},
+	ListSpecfile: nodejsListSpecfile,
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		contentsB, err := ioutil.ReadFile("package-lock.json")
+		if err != nil {
+			util.Die("package-lock.json: %s", err)
+		}
+		var cfg packageLockJSON
+		if err := json.Unmarshal(contentsB, &cfg); err != nil {
+			util.Die("package-lock.json: %s", err)
+		}
+		pkgs := map[api.PkgName]api.PkgVersion{}
+		for nameStr, data := range cfg.Dependencies {
+			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+		}
 		return pkgs
 	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
 }

@@ -21,7 +21,8 @@ import (
 var languageBackends = []api.LanguageBackend{
 	python.Python3Backend,
 	python.Python2Backend,
-	nodejs.NodejsBackend,
+	nodejs.NodejsYarnBackend,
+	nodejs.NodejsNPMBackend,
 	ruby.RubyBackend,
 	elisp.ElispBackend,
 }
@@ -64,6 +65,12 @@ func GetBackend(language string) api.LanguageBackend {
 			backends = filteredBackends
 		}
 
+	}
+	for _, b := range backends {
+		if util.Exists(b.Specfile) &&
+			util.Exists(b.Lockfile) {
+			return b
+		}
 	}
 	for _, b := range backends {
 		if util.Exists(b.Specfile) ||

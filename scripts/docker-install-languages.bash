@@ -25,6 +25,7 @@ emacs-nox
 git
 jq
 nodejs
+npm
 python
 python-pip
 python3

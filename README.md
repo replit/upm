@@ -42,6 +42,7 @@ machine-parseable specfile and lockfile listing.
 | python-python3-poetry | yes  | yes   | yes   |
 | python-python2-poetry | yes  | yes   | yes   |
 | nodejs-yarn           | yes  | yes   | yes   |
+| nodejs-npm            | yes  | yes   | yes   |
 | ruby-bundler          | yes  | yes   |       |
 | elisp-cask            | yes  | yes   | yes   |
 
@@ -348,7 +349,8 @@ installed, as follows:
     Python
 * `nodejs-yarn`
   * [Node.js](https://nodejs.org/en/)
-  * [Yarn](https://yarnpkg.com/en/)
+  * [Yarn](https://yarnpkg.com/en/) for Yarn backend
+  * [NPM](https://www.npmjs.com/get-npm) for NPM backend
 * `ruby-bundler`
   * [Ruby](https://www.ruby-lang.org/en/)
   * [Bundler](https://bundler.io/)
