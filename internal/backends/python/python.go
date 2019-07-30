@@ -161,7 +161,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			if !util.Exists("pyproject.toml") {
 				util.RunCmd([]string{python, "-m", "poetry", "init", "--no-interaction"})
 			}
-			cmd := []string{python, "-m", "poetry", "add"}
+			cmd := []string{python, "-m", "poetry", "add", "--allow-prereleases"}
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
