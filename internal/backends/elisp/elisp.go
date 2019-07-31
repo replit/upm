@@ -182,6 +182,10 @@ var ElispBackend = api.LanguageBackend{
 			required[match[1]] = true
 		}
 
+		if len(required) == 0 {
+			return map[api.PkgName]bool{}
+		}
+
 		r = regexp.MustCompile(
 			`\(\s*provide\s*'\s*([^)[:space:]]+)[^)]*\)`,
 		)
