@@ -27,5 +27,12 @@ type storeLanguage struct {
 
 // store represents the JSON written (by default) to .upm/store.json.
 type store struct {
+
+	// The version of the store file. This gets incremented every
+	// time we make a backwards-incompatible change, and causes
+	// the store to be invalidated.
+	Version int `json:"version,omitempty"`
+
+	// Map from backend names to per-backend data.
 	Languages map[string]*storeLanguage `json:"languages,omitempty"`
 }

@@ -17,6 +17,10 @@ import (
 // this file read and write to it. Only one store is supported.
 var st *store
 
+// currentVersion is the current store schema version. See the Version
+// field in the store struct.
+const currentVersion = 1
+
 // getStoreLocation returns the file path of the JSON store.
 func getStoreLocation() string {
 	loc, ok := os.LookupEnv("UPM_STORE")
@@ -31,6 +35,9 @@ func getStoreLocation() string {
 // variable st. If there is an error, it terminates the process.
 func read() {
 	st = &store{}
+	defer func() {
+		st.Version = currentVersion
+	}()
 
 	filename := getStoreLocation()
 	bytes, err := ioutil.ReadFile(filename)
@@ -44,6 +51,10 @@ func read() {
 
 	if err = json.Unmarshal(bytes, st); err != nil {
 		util.Die("%s: %s", filename, err)
+	}
+
+	if st.Version != currentVersion {
+		st = &store{}
 	}
 }
 
