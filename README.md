@@ -336,6 +336,10 @@ Here are useful things to know that aren't obvious:
   Python 2.
 * `UPM_PYTHON3`: if nonempty, use instead of `python3` when invoking
   Python 3.
+* `UPM_SILENCE_SUBROUTINES`: if nonempty, then enable `-q` when
+  running commands that are not directly related to the operation the
+  user requested (e.g. if running `upm add`, enable `-q` when reading
+  the specfile to check which packages are already added).
 * `UPM_STORE`: path of file used to store the JSON cache file,
   relative or absolute. Defaults to `.upm/store.json`.
 

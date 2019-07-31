@@ -10,10 +10,33 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/backends"
+	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/store"
 	"github.com/replit/upm/internal/table"
 	"github.com/replit/upm/internal/util"
 )
+
+// subroutineSilencer is used to easily enable and restore
+// config.Quiet for part of a function.
+type subroutineSilencer struct {
+	origQuiet bool
+}
+
+// silenceSubroutines turns on config.Quiet and returns a struct that
+// can be used to restore its value. This only happens if
+// UPM_SILENCE_SUBROUTINES is non-empty.
+func silenceSubroutines() subroutineSilencer {
+	s := subroutineSilencer{origQuiet: config.Quiet}
+	if os.Getenv("UPM_SILENCE_SUBROUTINES") != "" {
+		config.Quiet = true
+	}
+	return s
+}
+
+// restore restores the previous value of config.Quiet.
+func (s *subroutineSilencer) restore() {
+	config.Quiet = s.origQuiet
+}
 
 // runWhichLanguage implements 'upm which-language'.
 func runWhichLanguage(language string) {
@@ -211,9 +234,11 @@ func runAdd(
 	}
 
 	if util.Exists(b.Specfile) {
+		s := silenceSubroutines()
 		for name, _ := range b.ListSpecfile() {
 			delete(pkgs, name)
 		}
+		s.restore()
 	}
 
 	if upgrade {
@@ -247,7 +272,10 @@ func runRemove(language string, args []string, upgrade bool,
 	if !util.Exists(b.Specfile) {
 		return
 	}
+
+	s := silenceSubroutines()
 	specfilePkgs := b.ListSpecfile()
+	s.restore()
 
 	pkgs := map[api.PkgName]bool{}
 	for _, arg := range args {
