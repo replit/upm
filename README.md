@@ -331,6 +331,11 @@ Here are useful things to know that aren't obvious:
   Python 2.
 * `UPM_PYTHON3`: if nonempty, use instead of `python3` when invoking
   Python 3.
+* `UPM_PROJECT`: path to top-level directory containing project files.
+  UPM uses this as its working directory. Defaults to the first parent
+  directory containing a directory entry named `.upm` (like Git
+  searches for `.git`), or the current directory if `.upm` is not
+  found.
 * `UPM_STORE`: path of file used to store the JSON cache file,
   relative or absolute. Defaults to `.upm/store.json`.
 
