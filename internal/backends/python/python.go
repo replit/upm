@@ -39,8 +39,8 @@ type pypiXMLRPCInfo struct {
 type pyprojectTOML struct {
 	Tool struct {
 		Poetry struct {
-			Dependencies    map[string]string `json:"dependencies"`
-			DevDependencies map[string]string `json:"dev-dependencies"`
+			Dependencies    map[string]interface{} `json:"dependencies"`
+			DevDependencies map[string]interface{} `json:"dev-dependencies"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
@@ -52,6 +52,23 @@ type poetryLock struct {
 		Name    string `json:"name"`
 		Version string `json:"version"`
 	} `json:"package"`
+}
+
+// normalizeSpec returns the version string from a Poetry spec, or the
+// empty string. The Poetry spec may be either a string or a
+// map[string]interface{} with a "version" key that is a string. If
+// neither, then the empty string is returned.
+func normalizeSpec(spec interface{}) string {
+	switch spec := spec.(type) {
+	case string:
+		return spec
+	case map[string]interface{}:
+		switch spec := spec["version"].(type) {
+		case string:
+			return spec
+		}
+	}
+	return ""
 }
 
 // pythonMakeBackend returns a language backend for a given version of
@@ -203,18 +220,26 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				util.Die("%s", err.Error())
 			}
 			pkgs := map[api.PkgName]api.PkgSpec{}
-			for nameStr, specStr := range cfg.Tool.Poetry.Dependencies {
+			for nameStr, spec := range cfg.Tool.Poetry.Dependencies {
 				if nameStr == "python" {
 					continue
 				}
 
+				specStr := normalizeSpec(spec)
+				if specStr == "" {
+					continue
+				}
 				pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 			}
-			for nameStr, specStr := range cfg.Tool.Poetry.DevDependencies {
+			for nameStr, spec := range cfg.Tool.Poetry.DevDependencies {
 				if nameStr == "python" {
 					continue
 				}
 
+				specStr := normalizeSpec(spec)
+				if specStr == "" {
+					continue
+				}
 				pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 			}
 			return pkgs
