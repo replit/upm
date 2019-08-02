@@ -71,6 +71,15 @@ func normalizeSpec(spec interface{}) string {
 	return ""
 }
 
+// normalizePackageName implements NormalizePackageName for the Python
+// backends.
+func normalizePackageName(name api.PkgName) api.PkgName {
+	nameStr := string(name)
+	nameStr = strings.ToLower(nameStr)
+	nameStr = strings.Replace(nameStr, "_", "-", -1)
+	return api.PkgName(nameStr)
+}
+
 // pythonMakeBackend returns a language backend for a given version of
 // Python. name is either "python2" or "python3", and python is the
 // name of an executable (either a full path or just a name like
@@ -84,12 +93,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
-		NormalizePackageName: func(name api.PkgName) api.PkgName {
-			nameStr := string(name)
-			nameStr = strings.ToLower(nameStr)
-			nameStr = strings.Replace(nameStr, "_", "-", -1)
-			return api.PkgName(nameStr)
-		},
+		NormalizePackageName: normalizePackageName,
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c",
@@ -280,6 +284,12 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.WriteResource("/python/pipreqs.py", tempdir)
 			script := util.WriteResource("/python/bare-imports.py", tempdir)
 
+			pypi := util.GetResource("/python/pypi")
+			allPkgs := map[api.PkgName]bool{}
+			for _, pkg := range strings.Fields(pypi) {
+				allPkgs[api.PkgName(pkg)] = true
+			}
+
 			outputB := util.GetCmdOutput([]string{
 				python, script, strings.Join(util.IgnoredPaths, " "),
 			})
@@ -288,8 +298,14 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				util.Die("pipreqs: %s", err)
 			}
 			pkgs := map[api.PkgName]bool{}
-			for i := range output {
-				name := api.PkgName(output[i])
+			for _, nameStr := range output {
+				name := api.PkgName(nameStr)
+				if !allPkgs[normalizePackageName(name)] {
+					// Package not listed on PyPI,
+					// we better not try to
+					// install it.
+					continue
+				}
 				pkgs[name] = true
 			}
 			return pkgs
