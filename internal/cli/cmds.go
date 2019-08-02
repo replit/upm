@@ -200,13 +200,24 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	}
 }
 
+// pkgNameAndSpec is a tuple of a PkgName and a PkgSpec. It's used to
+// put both of them as a value in the same map entry.
+type pkgNameAndSpec struct {
+	name api.PkgName
+	spec api.PkgSpec
+}
+
 // runAdd implements 'upm add'.
 func runAdd(
 	language string, args []string, upgrade bool,
 	guess bool, forceGuess bool, ignoredPackages []string,
 	forceLock bool, forceInstall bool) {
 
-	pkgs := map[api.PkgName]api.PkgSpec{}
+	b := backends.GetBackend(language)
+
+	// Map from normalized package names to the corresponding
+	// original package names and specs.
+	normPkgs := map[api.PkgName]pkgNameAndSpec{}
 	for _, arg := range args {
 		fields := strings.SplitN(arg, " ", 2)
 		name := api.PkgName(fields[0])
@@ -215,20 +226,32 @@ func runAdd(
 			spec = api.PkgSpec(fields[1])
 		}
 
-		pkgs[name] = spec
+		normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
+			name: name,
+			spec: spec,
+		}
 	}
-
-	b := backends.GetBackend(language)
 
 	if guess {
 		guessed := store.GuessWithCache(b, forceGuess)
+
+		// Map from normalized package names to original
+		// names.
+		guessedNorm := map[api.PkgName]api.PkgName{}
+		for name := range guessed {
+			guessedNorm[b.NormalizePackageName(name)] = name
+		}
+
 		for _, pkg := range ignoredPackages {
-			delete(guessed, api.PkgName(pkg))
+			delete(guessedNorm, b.NormalizePackageName(api.PkgName(pkg)))
 		}
 
 		for name, _ := range guessed {
-			if _, ok := pkgs[name]; !ok {
-				pkgs[name] = ""
+			if _, ok := normPkgs[b.NormalizePackageName(name)]; !ok {
+				normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
+					name: name,
+					spec: "",
+				}
 			}
 		}
 	}
@@ -236,7 +259,7 @@ func runAdd(
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
 		for name, _ := range b.ListSpecfile() {
-			delete(pkgs, name)
+			delete(normPkgs, b.NormalizePackageName(name))
 		}
 		s.restore()
 	}
@@ -245,17 +268,21 @@ func runAdd(
 		deleteLockfile(b)
 	}
 
-	if len(pkgs) >= 1 {
+	if len(normPkgs) >= 1 {
+		pkgs := map[api.PkgName]api.PkgSpec{}
+		for _, nameAndSpec := range normPkgs {
+			pkgs[nameAndSpec.name] = nameAndSpec.spec
+		}
 		b.Add(pkgs)
 	}
 
-	if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
+	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
 		maybeLock(b, forceLock)
 
 		if b.QuirksDoesLockNotAlsoInstall() {
 			maybeInstall(b, forceInstall)
 		}
-	} else if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
+	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
@@ -277,11 +304,20 @@ func runRemove(language string, args []string, upgrade bool,
 	specfilePkgs := b.ListSpecfile()
 	s.restore()
 
-	pkgs := map[api.PkgName]bool{}
+	// Map whose keys are normalized package names.
+	normSpecfilePkgs := map[api.PkgName]bool{}
+	for name := range specfilePkgs {
+		normSpecfilePkgs[b.NormalizePackageName(name)] = true
+	}
+
+	// Map from normalized package names to original package
+	// names.
+	normPkgs := map[api.PkgName]api.PkgName{}
 	for _, arg := range args {
 		name := api.PkgName(arg)
-		if _, ok := specfilePkgs[name]; ok {
-			pkgs[name] = true
+		norm := b.NormalizePackageName(name)
+		if _, ok := normSpecfilePkgs[norm]; ok {
+			normPkgs[norm] = name
 		}
 	}
 
@@ -289,17 +325,21 @@ func runRemove(language string, args []string, upgrade bool,
 		deleteLockfile(b)
 	}
 
-	if len(pkgs) >= 1 {
+	if len(normPkgs) >= 1 {
+		pkgs := map[api.PkgName]bool{}
+		for _, name := range normPkgs {
+			pkgs[name] = true
+		}
 		b.Remove(pkgs)
 	}
 
-	if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
+	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
 		maybeLock(b, forceLock)
 
 		if b.QuirksDoesLockNotAlsoInstall() {
 			maybeInstall(b, forceInstall)
 		}
-	} else if len(pkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
+	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
 		maybeInstall(b, forceInstall)
 	}
 
@@ -443,20 +483,26 @@ func runGuess(
 	b := backends.GetBackend(language)
 	pkgs := store.GuessWithCache(b, forceGuess)
 
+	// Map from normalized to original names.
+	normPkgs := map[api.PkgName]api.PkgName{}
+	for pkg := range pkgs {
+		normPkgs[b.NormalizePackageName(pkg)] = pkg
+	}
+
 	if !all {
 		if util.Exists(b.Specfile) {
 			for name, _ := range b.ListSpecfile() {
-				delete(pkgs, name)
+				delete(normPkgs, b.NormalizePackageName(name))
 			}
 		}
 	}
 
 	for _, pkg := range ignoredPackages {
-		delete(pkgs, api.PkgName(pkg))
+		delete(normPkgs, b.NormalizePackageName(api.PkgName(pkg)))
 	}
 
 	lines := []string{}
-	for pkg := range pkgs {
+	for _, pkg := range normPkgs {
 		lines = append(lines, string(pkg))
 	}
 	sort.Strings(lines)

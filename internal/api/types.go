@@ -177,6 +177,15 @@ type LanguageBackend struct {
 	// This field is optional, and defaults to QuirksNone.
 	Quirks Quirks
 
+	// Function that normalizes a package name. This is used to
+	// prevent duplicate packages getting added to the specfile.
+	// For example, in Python the package names "flask" and
+	// "Flask" are the same, so all package names are lowercased
+	// before comparison.
+	//
+	// This field is optional.
+	NormalizePackageName func(name PkgName) PkgName
+
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
 	// of search results, which can be of any length. (It will be

@@ -84,6 +84,12 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
+		NormalizePackageName: func(name api.PkgName) api.PkgName {
+			nameStr := string(name)
+			nameStr = strings.ToLower(nameStr)
+			nameStr = strings.Replace(nameStr, "_", "-", -1)
+			return api.PkgName(nameStr)
+		},
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c",
