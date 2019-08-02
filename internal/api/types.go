@@ -186,6 +186,10 @@ type LanguageBackend struct {
 	// This field is optional.
 	NormalizePackageName func(name PkgName) PkgName
 
+	// Return the path (relative to the project directory) in
+	// which packages are installed. The path need not exist.
+	GetPackageDir func() string
+
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
 	// of search results, which can be of any length. (It will be
@@ -307,6 +311,7 @@ func (b *LanguageBackend) Setup() {
 		b.Specfile == "" ||
 		b.Lockfile == "" ||
 		len(b.FilenamePatterns) == 0 ||
+		b.GetPackageDir == nil ||
 		b.Search == nil ||
 		b.Info == nil ||
 		b.Add == nil ||

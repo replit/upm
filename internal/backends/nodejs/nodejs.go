@@ -256,6 +256,9 @@ var NodejsYarnBackend = api.LanguageBackend{
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
@@ -315,6 +318,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {

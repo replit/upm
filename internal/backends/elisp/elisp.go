@@ -24,6 +24,9 @@ var ElispBackend = api.LanguageBackend{
 	Lockfile:         "packages.txt",
 	FilenamePatterns: elispPatterns,
 	Quirks:           api.QuirksNotReproducible,
+	GetPackageDir: func() string {
+		return ".cask"
+	},
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := ioutil.TempDir("", "elpa")
 		if err != nil {

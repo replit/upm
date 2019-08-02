@@ -4,6 +4,7 @@ package python
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -39,6 +40,9 @@ type pypiXMLRPCInfo struct {
 type pyprojectTOML struct {
 	Tool struct {
 		Poetry struct {
+			Name string `json:"name"`
+			// interface{} because they can be either
+			// strings or maps (why?? good lord).
 			Dependencies    map[string]interface{} `json:"dependencies"`
 			DevDependencies map[string]interface{} `json:"dev-dependencies"`
 		} `json:"poetry"`
@@ -94,6 +98,51 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
 		NormalizePackageName: normalizePackageName,
+		GetPackageDir: func() string {
+			// Ideally Poetry would provide some way of
+			// actually checking where the virtualenv will
+			// go. But it doesn't. So we have to
+			// reimplement the logic ourselves, which is
+			// totally fragile and disgusting. (No, we
+			// can't use 'poetry run which python' because
+			// that will *create* a virtualenv if one
+			// doesn't exist, and there's no workaround
+			// for that without mutating the global config
+			// file.)
+
+			outputB := util.GetCmdOutput([]string{
+				python, "-m", "poetry",
+				"config", "settings.virtualenvs.path",
+			})
+			var path string
+			if err := json.Unmarshal(outputB, &path); err != nil {
+				util.Die("parsing output from Poetry: %s", err)
+			}
+
+			base := ""
+			if util.Exists("pyproject.toml") {
+				var cfg pyprojectTOML
+				if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
+					util.Die("%s", err.Error())
+				}
+				base = cfg.Tool.Poetry.Name
+			}
+
+			if base == "" {
+				cwd, err := os.Getwd()
+				if err != nil {
+					util.Die("%s", err)
+				}
+				base = strings.ToLower(filepath.Base(cwd))
+			}
+
+			version := strings.TrimSpace(string(util.GetCmdOutput([]string{
+				python, "-c",
+				`import sys; print(".".join(map(str, sys.version_info[:2])))`,
+			})))
+
+			return filepath.Join(path, base+"-py"+version)
+		},
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
 				python, "-c",

@@ -254,6 +254,16 @@ func DoCLI() {
 	)
 	rootCmd.AddCommand(cmdGuess)
 
+	cmdShowPackageDir := &cobra.Command{
+		Use:   "show-package-dir",
+		Short: "Print the directory where packages are installed",
+		Args:  cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			runShowPackageDir(language)
+		},
+	}
+	rootCmd.AddCommand(cmdShowPackageDir)
+
 	specialArgs := map[string](func()){}
 	for _, helpFlag := range []string{"-help", "-?"} {
 		specialArgs[helpFlag] = func() {

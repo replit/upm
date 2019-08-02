@@ -67,6 +67,17 @@ var RubyBackend = api.LanguageBackend{
 	Lockfile:         "Gemfile.lock",
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
+	GetPackageDir: func() string {
+		path := string(util.GetCmdOutput([]string{
+			"bundle", "config", "--parseable", "path"}))
+		path = strings.TrimSuffix(path, "\n")
+		path = strings.TrimPrefix(path, "path=")
+		if path == "" {
+			return ".bundle"
+		} else {
+			return path
+		}
+	},
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://rubygems.org/api/v1/search.json"
 		queryParams := "?query=" + url.QueryEscape(query)

@@ -513,3 +513,10 @@ func runGuess(
 
 	store.Write()
 }
+
+// runShowPackageDir implements 'upm show-package-dir'.
+func runShowPackageDir(language string) {
+	b := backends.GetBackend(language)
+	dir := b.GetPackageDir()
+	fmt.Println(dir)
+}

@@ -267,23 +267,25 @@ Explore the command-line interface at your leisure:
       upm [command]
 
     Available Commands:
-      which-language Query language autodetection
-      list-languages List supported languages
-      search         Search for packages online
-      info           Show package information from online registry
-      add            Add packages to the specfile
-      remove         Remove packages from the specfile
-      lock           Generate the lockfile from the specfile
-      install        Install packages from the lockfile
-      list           List packages from the specfile (or lockfile)
-      guess          Guess what packages are needed by your project
-      help           Help about any command
+      which-language   Query language autodetection
+      list-languages   List supported languages
+      search           Search for packages online
+      info             Show package information from online registry
+      add              Add packages to the specfile
+      remove           Remove packages from the specfile
+      lock             Generate the lockfile from the specfile
+      install          Install packages from the lockfile
+      list             List packages from the specfile (or lockfile)
+      guess            Guess what packages are needed by your project
+      show-package-dir Print the directory where packages are installed
+      help             Help about any command
 
     Flags:
-      -h, --help          display command-line usage
-      -l, --lang string   specify project language(s) manually
-      -q, --quiet         don't show what commands are being run
-      -v, --version       display command version
+      -h, --help                       display command-line usage
+          --ignored-packages strings   packages to ignore when guessing (comma-separated)
+      -l, --lang string                specify project language(s) manually
+      -q, --quiet                      don't show what commands are being run
+      -v, --version                    display command version
 
     Use "upm [command] --help" for more information about a command.
 
