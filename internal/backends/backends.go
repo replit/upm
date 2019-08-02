@@ -102,11 +102,13 @@ func GetBackendNames() []string {
 	return backendNames
 }
 
-// CheckAll panics if any registered language backend does not
-// implement its mandatory fields. It is called at process startup
-// unless the UPM_NO_CHECK environment variable is non-empty.
-func CheckAll() {
-	for _, b := range languageBackends {
-		b.Check()
+// SetupAll panics if any registered language backend does not
+// implement its mandatory fields. It also assigns defaults for all
+// registered language backends.
+func SetupAll() {
+	for i := range languageBackends {
+		// Make sure that the Setup function can make changes
+		// to the struct.
+		(&languageBackends[i]).Setup()
 	}
 }

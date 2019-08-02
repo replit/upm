@@ -34,9 +34,7 @@ func getVersion() string {
 // DoCLI reads the command-line arguments and runs the appropriate
 // code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
-	if os.Getenv("UPM_NO_CHECK") == "" {
-		backends.CheckAll()
-	}
+	backends.SetupAll()
 
 	var language string
 	var formatStr string

@@ -325,8 +325,6 @@ Here are useful things to know that aren't obvious:
 
 ### Environment variables respected
 
-* `UPM_NO_CHECK`: if nonempty, skip the check at startup to ensure
-  that all registered language backends are fully implemented.
 * `UPM_PROJECT`: path to top-level directory containing project files.
   UPM uses this as its working directory. Defaults to the first parent
   directory containing a directory entry named `.upm` (like Git

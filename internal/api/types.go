@@ -295,9 +295,14 @@ type LanguageBackend struct {
 	Guess func() map[PkgName]bool
 }
 
-// Check panics if the given language backend does not specify all of
-// the mandatory fields.
-func (b *LanguageBackend) Check() {
+// Setup panics if the given language backend does not specify all of
+// the mandatory fields. It also assigns some defaults.
+//
+// Honestly, this is a bit of a hack. We should really not expose the
+// struct fields through the API directly, or at least we should have
+// a builder function which can perform this normalization and
+// validation.
+func (b *LanguageBackend) Setup() {
 	if b.Name == "" ||
 		b.Specfile == "" ||
 		b.Lockfile == "" ||
@@ -321,5 +326,11 @@ func (b *LanguageBackend) Check() {
 		b.QuirksDoesAddRemoveAlsoInstall() &&
 			!b.QuirksDoesAddRemoveAlsoLock() {
 		util.Panicf("language backend %s is incomplete or invalid", b.Name)
+	}
+
+	if b.NormalizePackageName == nil {
+		b.NormalizePackageName = func(name PkgName) PkgName {
+			return name
+		}
 	}
 }
