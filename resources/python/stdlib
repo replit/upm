@@ -334,6 +334,7 @@ robotparser
 runpy
 sched
 ScrolledText
+secrets
 select
 sets
 sgmllib
