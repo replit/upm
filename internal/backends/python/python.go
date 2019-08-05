@@ -99,6 +99,12 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			api.QuirksAddRemoveAlsoInstalls,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
+			// Check if we're already inside an activated
+			// virtualenv. If so, just use it.
+			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
+				return venv
+			}
+
 			// Ideally Poetry would provide some way of
 			// actually checking where the virtualenv will
 			// go. But it doesn't. So we have to
@@ -109,6 +115,11 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// doesn't exist, and there's no workaround
 			// for that without mutating the global config
 			// file.)
+			//
+			// Note, we don't yet support Poetry's
+			// settings.virtualenvs.in-project. That would
+			// be a pretty easy fix, though. (Why is this
+			// so complicated??)
 
 			outputB := util.GetCmdOutput([]string{
 				python, "-m", "poetry",
