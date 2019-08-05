@@ -514,6 +514,16 @@ func runGuess(
 	store.Write()
 }
 
+// runShowSpecfile implements 'upm show-specfile'.
+func runShowSpecfile(language string) {
+	fmt.Println(backends.GetBackend(language).Specfile)
+}
+
+// runShowLockfile implements 'upm show-lockfile'.
+func runShowLockfile(language string) {
+	fmt.Println(backends.GetBackend(language).Lockfile)
+}
+
 // runShowPackageDir implements 'upm show-package-dir'.
 func runShowPackageDir(language string) {
 	b := backends.GetBackend(language)

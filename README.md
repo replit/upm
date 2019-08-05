@@ -277,6 +277,8 @@ Explore the command-line interface at your leisure:
       install          Install packages from the lockfile
       list             List packages from the specfile (or lockfile)
       guess            Guess what packages are needed by your project
+      show-specfile    Print the filename of the specfile
+      show-lockfile    Print the filename of the lockfile
       show-package-dir Print the directory where packages are installed
       help             Help about any command
 

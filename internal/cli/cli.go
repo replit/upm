@@ -254,6 +254,26 @@ func DoCLI() {
 	)
 	rootCmd.AddCommand(cmdGuess)
 
+	cmdShowSpecfile := &cobra.Command{
+		Use:   "show-specfile",
+		Short: "Print the filename of the specfile",
+		Args:  cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			runShowSpecfile(language)
+		},
+	}
+	rootCmd.AddCommand(cmdShowSpecfile)
+
+	cmdShowLockfile := &cobra.Command{
+		Use:   "show-lockfile",
+		Short: "Print the filename of the lockfile",
+		Args:  cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			runShowLockfile(language)
+		},
+	}
+	rootCmd.AddCommand(cmdShowLockfile)
+
 	cmdShowPackageDir := &cobra.Command{
 		Use:   "show-package-dir",
 		Short: "Print the directory where packages are installed",
