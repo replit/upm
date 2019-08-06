@@ -161,19 +161,32 @@ func TempDir() string {
 	}
 }
 
+// hfs is the statik http.FileSystem, once initialized.
+var statikFS *http.FileSystem
+
+// GetResourceBytes is like GetResource but returns a []byte.
+func GetResourceBytes(url string) []byte {
+	if statikFS == nil {
+		if hfs, err := sfs.New(); err != nil {
+			panic(err)
+		} else {
+			statikFS = &hfs
+		}
+	}
+	if bytes, err := sfs.ReadFile(*statikFS, url); err != nil {
+		panic(err)
+	} else {
+		return bytes
+	}
+}
+
 // GetResource returns a statik resource as a string. Resources are
 // inside the resources/ directory of the UPM source repository. url
 // is HTTP-style, e.g. "/nodejs/bare-imports.js". The return value is
 // the file contents. If the resource does not exist, GetResource
 // panics.
 func GetResource(url string) string {
-	if hfs, err := sfs.New(); err != nil {
-		panic(err)
-	} else if bytes, err := sfs.ReadFile(hfs, url); err != nil {
-		panic(err)
-	} else {
-		return string(bytes)
-	}
+	return string(GetResourceBytes(url))
 }
 
 // WriteResource writes a statik resource to a temporary directory.

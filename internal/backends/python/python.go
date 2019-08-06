@@ -2,6 +2,8 @@
 package python
 
 import (
+	"bufio"
+	"bytes"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -344,10 +346,14 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.WriteResource("/python/pipreqs.py", tempdir)
 			script := util.WriteResource("/python/bare-imports.py", tempdir)
 
-			pypi := util.GetResource("/python/pypi")
+			pypi := util.GetResourceBytes("/python/pypi")
+			scanner := bufio.NewScanner(bytes.NewReader(pypi))
 			allPkgs := map[api.PkgName]bool{}
-			for _, pkg := range strings.Fields(pypi) {
-				allPkgs[api.PkgName(pkg)] = true
+			for scanner.Scan() {
+				allPkgs[api.PkgName(scanner.Text())] = true
+			}
+			if err := scanner.Err(); err != nil {
+				panic(err)
 			}
 
 			outputB := util.GetCmdOutput([]string{
