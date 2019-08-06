@@ -165,19 +165,22 @@ func deleteLockfile(b api.LanguageBackend) {
 }
 
 // maybeLock either runs lock or not, depending on the backend, store,
-// and command-line options.
-func maybeLock(b api.LanguageBackend, forceLock bool) {
+// and command-line options. It returns true if it actually ran lock.
+func maybeLock(b api.LanguageBackend, forceLock bool) bool {
 	if b.QuirksIsNotReproducible() {
-		return
+		return false
 	}
 
 	if !util.Exists(b.Specfile) {
-		return
+		return false
 	}
 
 	if forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b) {
 		b.Lock()
+		return true
 	}
+
+	return false
 }
 
 // maybeInstall either runs install or not, depending on the backend,
@@ -277,9 +280,9 @@ func runAdd(
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
-		maybeLock(b, forceLock)
+		didLock := maybeLock(b, forceLock)
 
-		if b.QuirksDoesLockNotAlsoInstall() {
+		if !(didLock && b.QuirksDoesLockAlsoInstall()) {
 			maybeInstall(b, forceInstall)
 		}
 	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
@@ -334,9 +337,9 @@ func runRemove(language string, args []string, upgrade bool,
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
-		maybeLock(b, forceLock)
+		didLock := maybeLock(b, forceLock)
 
-		if b.QuirksDoesLockNotAlsoInstall() {
+		if !(didLock && b.QuirksDoesLockAlsoInstall()) {
 			maybeInstall(b, forceInstall)
 		}
 	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
@@ -355,9 +358,9 @@ func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
 		deleteLockfile(b)
 	}
 
-	maybeLock(b, forceLock)
+	didLock := maybeLock(b, forceLock)
 
-	if b.QuirksDoesLockNotAlsoInstall() {
+	if !(didLock && b.QuirksDoesLockAlsoInstall()) {
 		maybeInstall(b, forceInstall)
 	}
 
