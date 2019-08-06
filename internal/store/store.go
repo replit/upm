@@ -140,7 +140,18 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 		st.Languages[b.Name].GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
-		pkgs := b.Guess()
+		var pkgs map[api.PkgName]bool
+		if new != "" {
+			pkgs = b.Guess()
+		} else {
+			// If new is the empty string, that means
+			// (according to the interface of hashImports)
+			// that there were no regexp matches. In that
+			// case we shouldn't have any packages
+			// returned by the bare imports search. Might
+			// as well just skip the search, right?
+			pkgs = map[api.PkgName]bool{}
+		}
 		// Only cache result if we are going to use the cache.
 		if len(b.GuessRegexps) > 0 {
 			guessed := []string{}

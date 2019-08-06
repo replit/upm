@@ -26,7 +26,9 @@ func hashFile(filename string) hash {
 // hashImports computes the MD5 hash of the matches of b.GuessRegexps
 // against b.FilenamePatterns within the project. It is guaranteed to
 // be deterministic as long as the project files do not change in such
-// a way as to change what any of the regexps match against.
+// a way as to change what any of the regexps match against. If there
+// are no regexp matches, then as a special case the empty string is
+// returned.
 func hashImports(b api.LanguageBackend) hash {
 	bytes := []byte{}
 	for _, r := range b.GuessRegexps {
@@ -41,6 +43,9 @@ func hashImports(b api.LanguageBackend) hash {
 				}
 			}
 		}
+	}
+	if len(bytes) == 0 {
+		return ""
 	}
 	sum := md5.Sum(bytes)
 	return hash(hex.EncodeToString(sum[:]))
