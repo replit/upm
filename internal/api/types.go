@@ -295,8 +295,17 @@ type LanguageBackend struct {
 	// to consult the specfile; return all guessed packages, even
 	// those already listed.
 	//
+	// The second value indicates whether the bare imports search
+	// was fully successful. One reason why it might not be
+	// successful is if there is a syntax error in the code. It is
+	// important to get this right because a syntax error can
+	// cause an entire file to be skipped. Then if the error is
+	// fixed later, the GuessRegexps may return the same results,
+	// causing UPM to re-use the existing Guess return value
+	// (which is now wrong).
+	//
 	// This field is mandatory.
-	Guess func() map[PkgName]bool
+	Guess func() (map[PkgName]bool, bool)
 }
 
 // Setup panics if the given language backend does not specify all of

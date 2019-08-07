@@ -2,8 +2,6 @@
 package nodejs
 
 import (
-	"bufio"
-	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -223,28 +221,30 @@ var nodejsGuessRegexps = util.Regexps([]string{
 })
 
 // nodejsGuess implements Guess for nodejs-yarn and nodejs-npm.
-func nodejsGuess() map[api.PkgName]bool {
+func nodejsGuess() (map[api.PkgName]bool, bool) {
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
 	util.WriteResource("/nodejs/babel-parser.js", tempdir)
 	script := util.WriteResource("/nodejs/bare-imports.js", tempdir)
 
-	output := util.GetCmdOutput([]string{
+	outputB := util.GetCmdOutput([]string{
 		"node", script, ".", strings.Join(util.IgnoredPaths, ","),
 	})
-	scanner := bufio.NewScanner(bytes.NewReader(output))
-
-	pkgs := map[api.PkgName]bool{}
-	for scanner.Scan() {
-		pkgs[api.PkgName(scanner.Text())] = true
+	var output struct {
+		Modules []string `json:"modules"`
+		Success bool     `json:"success"`
 	}
-
-	if err := scanner.Err(); err != nil {
+	if err := json.Unmarshal(outputB, &output); err != nil {
 		util.Die("node: %s", err)
 	}
 
-	return pkgs
+	pkgs := map[api.PkgName]bool{}
+	for _, module := range output.Modules {
+		pkgs[api.PkgName(module)] = true
+	}
+
+	return pkgs, output.Success
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.

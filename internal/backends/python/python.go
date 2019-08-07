@@ -337,7 +337,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*) as`,
 			`import ((?:.|\\\n)*)`,
 		}),
-		Guess: func() map[api.PkgName]bool {
+		Guess: func() (map[api.PkgName]bool, bool) {
 			tempdir := util.TempDir()
 			defer os.RemoveAll(tempdir)
 
@@ -359,12 +359,15 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			outputB := util.GetCmdOutput([]string{
 				python, script, strings.Join(util.IgnoredPaths, " "),
 			})
-			var output []string
+			var output struct {
+				Packages []string `json:"packages"`
+				Success  bool     `json:"success"`
+			}
 			if err := json.Unmarshal(outputB, &output); err != nil {
 				util.Die("pipreqs: %s", err)
 			}
 			pkgs := map[api.PkgName]bool{}
-			for _, nameStr := range output {
+			for _, nameStr := range output.Packages {
 				name := api.PkgName(nameStr)
 				if !allPkgs[normalizePackageName(name)] {
 					// Package not listed on PyPI,
@@ -374,7 +377,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				}
 				pkgs[name] = true
 			}
-			return pkgs
+			return pkgs, output.Success
 		},
 	}
 }

@@ -176,7 +176,7 @@ var ElispBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
-	Guess: func() map[api.PkgName]bool {
+	Guess: func() (map[api.PkgName]bool, bool) {
 		r := regexp.MustCompile(
 			`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 		)
@@ -186,7 +186,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 
 		if len(required) == 0 {
-			return map[api.PkgName]bool{}
+			return map[api.PkgName]bool{}, true
 		}
 
 		r = regexp.MustCompile(
@@ -232,6 +232,6 @@ var ElispBackend = api.LanguageBackend{
 		for _, match := range r.FindAllStringSubmatch(output, -1) {
 			names[api.PkgName(match[1])] = true
 		}
-		return names
+		return names, true
 	},
 }

@@ -4,10 +4,9 @@
 # Vendored from master branch of pipreqs post-0.4.7, with this header
 # comment added and several import lines commented out (because we use
 # the pipreqs library directly, and all of pipreqs' dependencies are
-# only necessary for command-line usage). Also with ignore_errors made
-# into a keyword argument on get_all_imports instead of being
-# hardcoded to False. And with the error messages commented out when
-# ignore_errors is True (what else is "ignore" supposed to mean?).
+# only necessary for command-line usage). Also with the interface of
+# get_all_imports changed so that it doesn't abort on errors, but
+# rather returns a boolean to indicate whether there were any.
 #
 # From https://github.com/bndr/pipreqs/blob/15208540da03fdacf48fcb0a8b88b26da76b64f3/pipreqs/pipreqs.py.
 
@@ -105,8 +104,7 @@ def _open(filename=None, mode='r'):
 
 
 def get_all_imports(
-        path, encoding=None, extra_ignore_dirs=None, follow_links=True,
-        ignore_errors=False):
+        path, encoding=None, extra_ignore_dirs=None, follow_links=True):
     imports = set()
     raw_imports = set()
     candidates = []
@@ -118,6 +116,7 @@ def get_all_imports(
             ignore_dirs_parsed.append(os.path.basename(os.path.realpath(e)))
         ignore_dirs.extend(ignore_dirs_parsed)
 
+    had_errors = False
     walk = os.walk(path, followlinks=follow_links)
     for root, dirs, files in walk:
         dirs[:] = [d for d in dirs if d not in ignore_dirs]
@@ -139,13 +138,8 @@ def get_all_imports(
                     elif isinstance(node, ast.ImportFrom):
                         raw_imports.add(node.module)
             except Exception as exc:
-                if ignore_errors:
-                    # traceback.print_exc(exc)
-                    # logging.warn("Failed on file: %s" % file_name)
-                    continue
-                else:
-                    logging.error("Failed on file: %s" % file_name)
-                    raise exc
+                had_errors = True
+                continue
 
     # Clean up imports
     for name in [n for n in raw_imports if n]:
@@ -164,7 +158,7 @@ def get_all_imports(
         data = {x.strip() for x in f}
 
     data = {x for x in data if x not in py2_exclude} if py2 else data
-    return list(packages - data)
+    return list(packages - data), had_errors
 
 
 def filter_line(l):

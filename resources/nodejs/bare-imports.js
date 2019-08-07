@@ -41,7 +41,8 @@ async function walkTree({ directory, callback, ignored }) {
   return [].concat.apply([], fromDirectories);
 }
 
-// Return list of modules required by code in the given filename.
+// Return list of modules required by code in the given filename, or
+// null if there was a parse error.
 async function parseFile(filename) {
   const code = await util.promisify(fs.readFile)(filename, {
     encoding: "utf-8"
@@ -84,7 +85,7 @@ async function parseFile(filename) {
       ]
     });
   } catch (err) {
-    return [];
+    return null;
   }
 
   return parseNode(ast);
@@ -135,12 +136,18 @@ async function commandLine(args) {
     ignored[name] = true;
   }
 
+  let hadErrors = false;
   const modules = {};
   await walkTree({
     directory,
     callback: async filename => {
-      for (const module of await parseFile(filename)) {
-        modules[module] = true;
+      const foundModules = await parseFile(filename);
+      if (foundModules === null) {
+        hadErrors = true;
+      } else {
+        for (const module of foundModules) {
+          modules[module] = true;
+        }
       }
     },
     ignored
@@ -182,9 +189,12 @@ async function commandLine(args) {
     delete filteredModules[module];
   }
 
-  for (const module in filteredModules) {
-    console.log(module);
-  }
+  console.log(
+    JSON.stringify({
+      modules: Object.keys(filteredModules),
+      success: !hadErrors
+    })
+  );
 }
 
 // process.argv has only one element in the case that this module is

@@ -231,8 +231,8 @@ var RubyBackend = api.LanguageBackend{
 		}
 		return results
 	},
-	Guess: func() map[api.PkgName]bool {
+	Guess: func() (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
-		return nil
+		panic("unreachable code")
 	},
 }
