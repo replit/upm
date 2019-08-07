@@ -10,6 +10,8 @@ import json
 import pipreqs
 import sys
 
-imports = pipreqs.get_all_imports(".", extra_ignore_dirs=sys.argv[1].split())
+imports = pipreqs.get_all_imports(
+    ".", extra_ignore_dirs=sys.argv[1].split(), ignore_errors=True
+)
 packages = pipreqs.get_pkg_names(imports)
 json.dump(packages, sys.stdout)
