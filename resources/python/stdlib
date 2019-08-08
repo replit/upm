@@ -337,6 +337,7 @@ ScrolledText
 secrets
 select
 sets
+setuptools
 sgmllib
 sha
 shelve
