@@ -217,6 +217,9 @@ var ElispBackend = api.LanguageBackend{
 			}
 			clauses = append(clauses, fmt.Sprintf("feature = '%s'", feature))
 		}
+		if len(clauses) == 0 {
+			return map[api.PkgName]bool{}, true
+		}
 		where := strings.Join(clauses, " OR ")
 		query := fmt.Sprintf("SELECT package FROM provided PR WHERE (%s) "+
 			"AND NOT EXISTS (SELECT 1 FROM builtin_libraries B "+
