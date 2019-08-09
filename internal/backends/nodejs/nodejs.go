@@ -83,6 +83,20 @@ var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
 
 // nodejsSearch implements Search for nodejs-yarn and nodejs-npm.
 func nodejsSearch(query string) []api.PkgInfo {
+	// Special case: if search query is only one character, the
+	// API doesn't return any results. The web interface to NPM
+	// deals with this by just jumping to the package with that
+	// exact name, or returning a 404 if there isn't one. Let's
+	// try to do something similar.
+	if len(query) == 1 {
+		info := nodejsInfo(api.PkgName(query))
+		if info.Name != "" {
+			return []api.PkgInfo{info}
+		} else {
+			return []api.PkgInfo{}
+		}
+	}
+
 	endpoint := "https://registry.npmjs.org/-/v1/search"
 	queryParams := "?text=" + url.QueryEscape(query)
 
