@@ -21,8 +21,8 @@ import (
 var languageBackends = []api.LanguageBackend{
 	python.Python3Backend,
 	python.Python2Backend,
-	nodejs.NodejsYarnBackend,
 	nodejs.NodejsNPMBackend,
+	nodejs.NodejsYarnBackend,
 	ruby.RubyBackend,
 	elisp.ElispBackend,
 }
