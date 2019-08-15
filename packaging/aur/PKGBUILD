@@ -7,7 +7,7 @@ arch=('any')
 url=""
 license=('MIT')
 source=("https://github.com/replit/upm/releases/download/v${pkgver}/upm_${pkgver}_linux_amd64.tar.gz")
-md5sums=()  # update with updpkgsums
+md5sums=('b5447e9387ac5d9c0d7c78106941cbef')
 
 package() {
   install -d "${pkgdir}/usr/bin"
