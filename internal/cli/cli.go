@@ -25,10 +25,14 @@ func parseOutputFormat(formatStr string) outputFormat {
 	}
 }
 
+// version is set at build time to a Git tag or the string
+// "development version" when not tagging a release.
+var version = "unknown version"
+
 // getVersion returns a string that can be printed when calling 'upm
 // --version'.
 func getVersion() string {
-	return "upm development version"
+	return "upm " + version
 }
 
 // DoCLI reads the command-line arguments and runs the appropriate

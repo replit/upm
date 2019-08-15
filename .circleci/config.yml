@@ -19,6 +19,44 @@ jobs:
             docker login --username "$DOCKER_USERNAME" --password-stdin
       - run: apk add --no-cache --no-progress make
       - run: make deploy
+  release:
+    docker:
+      - image: ubuntu:19.04
+    steps:
+      - checkout
+      - run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt update
+          apt install -y curl docker gcc git jq make python3 rpm snapcraft wget
+      - run: curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+      - run: sh /tmp/get-docker.sh
+      - run: |
+          cd /tmp
+          wget -nv https://dl.google.com/go/go1.11.11.linux-amd64.tar.gz
+          tar -C /usr/local -xzf go1.11.11.linux-amd64.tar.gz
+      - setup_remote_docker
+      - run: >-
+          echo "$DOCKER_PASSWORD" |
+            docker login --username "$DOCKER_USERNAME" --password-stdin
+      - run: >-
+          snapcraft login --with <(
+            echo "$SNAPCRAFT_LOGIN_FILE" |
+              base64 --decode --ignore-garbage)
+      # Build the UPM binary outside of Docker because that will
+      # trigger building its dependencies (e.g. statik) which
+      # goreleaser won't realize is needed otherwise. *Don't* build
+      # the Docker images here (even though this would improve logging
+      # output) because goreleaser needs to pass the version it's
+      # using as a Dockerfile build argument.
+      - run: |
+          export PATH="/usr/local/go/bin:$PATH"
+          make upm
+      - run: curl -sL https://git.io/goreleaser > /tmp/goreleaser
+      - run: chmod +x /tmp/goreleaser
+      - run: |
+          export PATH="/usr/local/go/bin:$PATH"
+          /tmp/goreleaser --release-notes=<(scripts/extract-changelog.py)
+      - run: scripts/upload-snap.bash
 workflows:
   version: 2
   ci:
@@ -27,8 +65,19 @@ workflows:
           filters:
             branches:
               ignore: master
+            tags:
+              ignore: /.*/
       - build_test_and_deploy:
           filters:
             branches:
               only: master
+            tags:
+              ignore: /.*/
           context: "Docker Hub"
+      - release:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(-.*)*/
+          context: "UPM"

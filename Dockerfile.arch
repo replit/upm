@@ -1,0 +1,7 @@
+FROM archlinux/base
+
+COPY scripts/docker-install-arch.bash /tmp/
+RUN /tmp/docker-install-arch.bash
+USER builder
+
+COPY scripts/update-pkgbuild.bash /tmp/

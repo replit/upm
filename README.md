@@ -48,19 +48,61 @@ machine-parseable specfile and lockfile listing.
 
 ## Installation
 
-We do not yet distribute binaries of UPM, but plan to. In the
-meantime, you can try UPM quickly using
-[Docker](https://www.docker.com/):
+You have many options. UPM is a single binary with no dependencies, so
+you can install it anywhere. Tarballs are available on the [releases
+page](https://github.com/replit/upm/releases). Read on for
+instructions on installing via a package manager.
 
-    $ docker run -it --rm replco/upm:full
+### macOS
 
-This Docker image contains the `upm` binary as well as the package
-managers for all currently supported languages, so you can try out any
-of them.
+Available on [Homebrew](https://brew.sh/) in a [custom
+tap](https://docs.brew.sh/Taps).
 
-Alternatively, if you wish to embed UPM into another Docker image, as
-we do at Repl.it, use the `replco/upm:light` image, which contains
-only the `upm` binary in an otherwise-standard Ubuntu image.
+    $ brew install replit/tap/upm
+
+### Debian-based Linux
+
+.deb packages are available on the [releases
+page](https://github.com/replit/upm/releases).
+
+### RPM-based Linux
+
+.rpm packages are available on the [releases
+page](https://github.com/replit/upm/releases).
+
+### Arch Linux
+
+Soon to be available on the [Arch User
+Repository](https://aur.archlinux.org/). Right now, you can clone this
+repository and install with `makepkg` using the PKGBUILD in
+[`packaging/aur`](packaging/aur).
+
+### Windows
+
+Available on [Scoop](https://scoop.sh/) in a [custom
+bucket](https://github.com/lukesampson/scoop/wiki/Buckets).
+
+    $ scoop bucket add replit https://github.com/replit/scoop-bucket.git
+    $ scoop install upm
+
+### Snappy
+
+Soon to be available on the [Snap Store](https://snapcraft.io/store).
+Right now, .snap packages are available on the [releases
+page](https://github.com/replit/upm/releases).
+
+### Docker
+
+You can try out UPM right away in a Docker image based on Ubuntu that
+has all the supported languages and package managers already
+installed.
+
+    $ docker run -it --rm replco/upm
+
+Additional tags are also available. `replco/upm:full` is the same as
+the above, while `replco/upm:light` just has the UPM binary installed
+to `/usr/local/bin` and none of the languages or package managers
+installed.
 
 ## Quick start
 
@@ -379,14 +421,15 @@ All of these dependencies are already installed in the
 
     $ make help
     usage:
-      make upm     Build the UPM binary
-      make dev     Run a shell with UPM source code and all package managers inside Docker
-      make light   Build a Docker image with just the UPM binary
-      make full    Build a Docker image with the UPM binary and all package managers
-      make doc     Open Godoc in web browser
-      make deploy  Publish UPM Docker images to Docker Hub
-      make clean   Remove build artifacts
-      make help    Show this message
+      make upm       Build the UPM binary
+      make dev       Run a shell with UPM source code and all package managers inside Docker
+      make light     Build a Docker image with just the UPM binary
+      make full      Build a Docker image with the UPM binary and all package managers
+      make doc       Open Godoc in web browser
+      make deploy    Publish UPM snapshot Docker images to Docker Hub
+      make pkgbuild  Update and test PKGBUILD
+      make clean     Remove build artifacts
+      make help      Show this message
 
 To build UPM, run `make upm` (or just `make`). This requires an
 installation of [Go](https://golang.org/). Then add the directory
@@ -420,6 +463,35 @@ Hub](https://hub.docker.com/r/replco/upm) when a commit is merged to
 `master`.
 
 UPM does not currently have any tests; however, we plan to fix this.
+
+### Deployment
+
+Whenever a commit is merged to `master`, snapshot Docker images are
+built and pushed to Docker Hub by CircleCI. Whenever a tagged release
+(e.g. `v1.0`) is pushed to GitHub, the following happens:
+
+* Release Docker images are tagged and pushed to Docker Hub.
+* The [changelog](CHANGELOG.md) is parsed and published as a GitHub
+  Release with the following assets:
+  * source code (.zip and .tar.gz)
+  * binary (.tar.gz; darwin, freebsd, linux, and windows; 386 and
+    amd64)
+  * Debian package (.deb; 386 and amd64)
+  * RPM package (.rpm; 386 and amd64)
+  * Snappy package (.snap; 386 and amd64)
+  * checksums (.txt)
+* The [Repl.it Homebrew tap](https://github.com/replit/homebrew-tap)
+  is updated.
+* The [Repl.it Scoop bucket](https://github.com/replit/scoop-bucket)
+  is updated.
+
+Once you push a release and it passes CI, the following must be done
+**manually**:
+
+* Edit [`packaging/aur/PKGBUILD`](packaging/aur/PKGBUILD) with the new
+  version and run `make pkgbuild` to update and test the AUR package.
+  Then push a new commit. (Once we are allowed to publish to AUR, you
+  should also push `packaging/aur` there.)
 
 <!--  Local Variables:   -->
 <!--  truncate-lines: t  -->

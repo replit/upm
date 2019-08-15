@@ -1,0 +1,96 @@
+archives:
+  # https://github.com/goreleaser/goreleaser/issues/602
+  - files:
+      - none*
+before:
+  hooks:
+    - go mod download
+brews:
+  - commit_author:
+      email: contact+replbot@repl.it
+      name: replbot
+    description: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
+    folder: Formula
+    github:
+      owner: replit
+      name: homebrew-tap
+    homepage: https://github.com/replit/upm
+    install: bin.install "upm"
+    test: |
+      assert_match "upm #{version.to_s}", shell_output("#{bin}/upm --version")
+builds:
+  - goos:
+      - darwin
+      - freebsd
+      - linux
+      - windows
+    ldflags:
+      - -s -w -X github.com/replit/upm/internal/cli.version={{.Version}}
+    main: ./cmd/upm/main.go
+checksum:
+  name_template: "checksums.txt"
+dockers:
+  - binaries: []
+    build_flag_templates:
+      - "--build-arg"
+      - "VERSION={{.Version}}"
+    dockerfile: Dockerfile.full
+    extra_files:
+      - Makefile
+      - cmd
+      - go.mod
+      - go.sum
+      - internal
+      - resources
+      - scripts
+    image_templates:
+      - replco/upm:{{.Version}}-full
+      - replco/upm:{{.Version}}
+  - binaries: []
+    build_flag_templates:
+      - "--build-arg"
+      - "VERSION={{.Version}}"
+    dockerfile: Dockerfile.light
+    extra_files:
+      - Makefile
+      - cmd
+      - go.mod
+      - go.sum
+      - internal
+      - resources
+      - scripts
+    image_templates:
+      - replco/upm:{{.Version}}-light
+nfpms:
+  - bindir: /usr/bin
+    description: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
+    formats:
+      - deb
+      - rpm
+    homepage: https://github.com/replit/upm
+    license: MIT
+    maintainer: Repl.it <contact+upm@repl.it>
+    vendor: Repl.it
+release:
+  name_template: "UPM {{.Version}}"
+scoop:
+  bucket:
+    name: scoop-bucket
+    owner: replit
+  commit_author:
+    email: contact+replbot@repl.it
+    name: replbot
+  description: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
+  homepage: https://github.com/replit/upm
+  license: MIT
+snapcrafts:
+  - confinement: classic
+    description: |
+      UPM is the Universal Package Manager. It allows you to manage
+      packages for any (supported) programming language through the
+      same interface following the principle of least astonishment. At
+      Repl.it, we use UPM to provide deep package manager integration
+      for many different programming languages using the same
+      infrastructure.
+    license: MIT
+    summary: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."

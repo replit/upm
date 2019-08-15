@@ -6,7 +6,7 @@ RESOURCES := $(shell find resources)
 
 cmd/upm/upm: $(SOURCES) $(RESOURCES)
 	go run github.com/rakyll/statik -src resources -dest internal -f
-	cd cmd/upm && go build
+	cd cmd/upm && go build -ldflags "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker
@@ -15,11 +15,11 @@ dev: ## Run a shell with UPM source code and all package managers inside Docker
 
 .PHONY: light
 light: ## Build a Docker image with just the UPM binary
-	docker build . -f Dockerfile.light -t upm:light
+	docker build . -f Dockerfile.light -t upm:light --build-arg VERSION
 
 .PHONY: full
 full: ## Build a Docker image with the UPM binary and all package managers
-	docker build . -f Dockerfile.full -t upm:full
+	docker build . -f Dockerfile.full -t upm:full --build-arg VERSION
 
 .PHONY: doc
 doc: ## Open Godoc in web browser
@@ -34,14 +34,22 @@ doc: ## Open Godoc in web browser
 .PHONY: deploy
 deploy: light full ## Publish UPM snapshot Docker images to Docker Hub
 	docker tag upm:light replco/upm:light
-	docker tag upm:full replco/upm:full replco/upm:latest
+	docker tag upm:full replco/upm:full
+	docker tag upm:full replco/upm:latest
 	docker push replco/upm:light
 	docker push replco/upm:full
 	docker push replco/upm:latest
 
+.PHONY: pkgbuild
+pkgbuild: ## Update and test PKGBUILD
+	git clean -fdX packaging/aur
+	docker build . -f Dockerfile.arch -t upm:arch
+	docker run -it --rm -v "$$PWD/packaging/aur:/upm" upm:arch \
+		/tmp/update-pkgbuild.bash
+
 .PHONY: clean
 clean: ## Remove build artifacts
-	rm -rf cmd/upm/upm internal/statik
+	rm -rf cmd/upm/upm dist internal/statik
 
 .PHONY: help
 help: ## Show this message
