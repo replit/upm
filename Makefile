@@ -32,11 +32,12 @@ doc: ## Open Godoc in web browser
 		upm:godoc
 
 .PHONY: deploy
-deploy: light full ## Publish UPM Docker images to Docker Hub
+deploy: light full ## Publish UPM snapshot Docker images to Docker Hub
 	docker tag upm:light replco/upm:light
-	docker tag upm:full replco/upm:full
+	docker tag upm:full replco/upm:full replco/upm:latest
 	docker push replco/upm:light
 	docker push replco/upm:full
+	docker push replco/upm:latest
 
 .PHONY: clean
 clean: ## Remove build artifacts
