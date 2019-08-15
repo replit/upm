@@ -102,7 +102,9 @@ installed.
 Additional tags are also available. `replco/upm:full` is the same as
 the above, while `replco/upm:light` just has the UPM binary installed
 to `/usr/local/bin` and none of the languages or package managers
-installed.
+installed. If you want to run a specific tagged release, rather than
+the latest development snapshot, use e.g. `replco/upm:1.0`,
+`replco/upm:1.0-full`, or `replco/upm:1.0-light`.
 
 ## Quick start
 
