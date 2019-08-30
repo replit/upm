@@ -4,6 +4,7 @@ package dart
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -42,21 +43,15 @@ type dartPubspecYaml struct {
 
 // dartListPubspecYaml lists all deps in a pubspec.yaml file
 func dartListPubspecYaml() map[api.PkgName]api.PkgSpec {
-	contentsB, err := ioutil.ReadFile("pubspec.yaml")
-	if err != nil {
-		util.Die("pubspec.yaml: %s", err)
-	}
 
-	var cfg dartPubspecYaml
-	if err := yaml.Unmarshal(contentsB, &cfg); err != nil {
-		util.Die("pubspec.yaml: %s", err)
-	}
+	var specs dartPubspecYaml
+	specs = readSpecFile()
 
 	pkgs := map[api.PkgName]api.PkgSpec{}
-	for nameStr, specStr := range cfg.Dependencies {
+	for nameStr, specStr := range specs.Dependencies {
 		pkgs[api.PkgName(nameStr)] = api.PkgSpec(dartParseSpec(specStr))
 	}
-	for nameStr, specStr := range cfg.DevDependencies {
+	for nameStr, specStr := range specs.DevDependencies {
 		pkgs[api.PkgName(nameStr)] = api.PkgSpec(dartParseSpec(specStr))
 	}
 	return pkgs
@@ -156,6 +151,80 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 		License: ""}
 }
 
+func createSpecFile() {
+	if util.Exists("pubspec.yaml") {
+		util.Die("pubspec.yaml already exists")
+	}
+
+	pubspec := dartPubspecYaml{
+		Name: "MyApp",
+	}
+	writeSpecFile(pubspec)
+}
+
+func writeSpecFile(specs dartPubspecYaml) {
+	var data []byte
+	var err error
+	data, err = yaml.Marshal(&specs)
+	if err != nil {
+		fmt.Println("Marshal Error")
+	}
+
+	ioutil.WriteFile("pubspec.yaml", data, 0666)
+}
+
+func readSpecFile() dartPubspecYaml {
+	contentsB, err := ioutil.ReadFile("pubspec.yaml")
+	if err != nil {
+		util.Die("pubspec.yaml: %s", err)
+	}
+
+	var specs dartPubspecYaml
+	if err := yaml.Unmarshal(contentsB, &specs); err != nil {
+		util.Die("pubspec.yaml: %s", err)
+	}
+
+	return specs
+}
+
+func dartAdd(pkgs map[api.PkgName]api.PkgSpec) {
+	if !util.Exists("pubspec.yaml") {
+		createSpecFile()
+	}
+
+	var specs dartPubspecYaml
+	specs = readSpecFile()
+
+	for name, spec := range pkgs {
+		arg := string(name)
+		if spec != "" {
+			specs.Dependencies[arg] = string(spec)
+		} else {
+			specs.Dependencies[arg] = nil
+		}
+	}
+
+	writeSpecFile(specs)
+}
+
+func dartRemove(pkgs map[api.PkgName]bool) {
+	var specs dartPubspecYaml
+	specs = readSpecFile()
+
+	for name := range pkgs {
+		delete(specs.Dependencies, string(name))
+	}
+
+	writeSpecFile(specs)
+}
+
+// dartGuess stub.
+func dartGuess() (map[api.PkgName]bool, bool) {
+	pkgs := map[api.PkgName]bool{}
+
+	return pkgs, true
+}
+
 // DartPubBackend is a UPM backend for Dart that uses Pub.dev.
 var DartPubBackend = api.LanguageBackend{
 	Name:             "dart-pub",
@@ -166,27 +235,8 @@ var DartPubBackend = api.LanguageBackend{
 	GetPackageDir:    dartGetPackageDir,
 	Search:           dartSearch,
 	Info:             dartInfo,
-	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		if !util.Exists("package.json") {
-			util.RunCmd([]string{"npm", "init", "-y"})
-		}
-		cmd := []string{"npm", "install"}
-		for name, spec := range pkgs {
-			arg := string(name)
-			if spec != "" {
-				arg += "@" + string(spec)
-			}
-			cmd = append(cmd, arg)
-		}
-		util.RunCmd(cmd)
-	},
-	Remove: func(pkgs map[api.PkgName]bool) {
-		cmd := []string{"npm", "uninstall"}
-		for name, _ := range pkgs {
-			cmd = append(cmd, string(name))
-		}
-		util.RunCmd(cmd)
-	},
+	Add:              dartAdd,
+	Remove:           dartRemove,
 	Lock: func() {
 		util.RunCmd([]string{"pub", "get"})
 	},
@@ -197,11 +247,4 @@ var DartPubBackend = api.LanguageBackend{
 	ListLockfile: dartListPubspecLock,
 	GuessRegexps: nil,
 	Guess:        dartGuess,
-}
-
-// dartGuess implements Guess for nodejs-yarn and nodejs-npm.
-func dartGuess() (map[api.PkgName]bool, bool) {
-	pkgs := map[api.PkgName]bool{}
-
-	return pkgs, true
 }
