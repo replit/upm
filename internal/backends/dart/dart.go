@@ -17,6 +17,18 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// getPubBaseUrl returns pub.dartlang.org (the primary API endpoint for pub.dev)
+// or a local override if set.
+func getPubBaseURL() string {
+	const defaultPubBaseURL = "https://pub.dartlang.org"
+
+	baseURL := os.Getenv("PUB_HOSTED_URL")
+	if baseURL != "" {
+		return baseURL
+	}
+	return defaultPubBaseURL
+}
+
 // TODO: Properly implement package dir
 // Blocked on https://github.com/dart-lang/pub/issues/2009
 // Workaround inspired by https://github.com/google/pub_cache/blob/master/lib/pub_cache.dart#L17
@@ -105,10 +117,17 @@ type pubDevSearchResults struct {
 
 // dartSearch implements Search for Pub.dev.
 func dartSearch(query string) []api.PkgInfo {
-	endpoint := "https://pub.dev/api/search"
-	queryParams := "?q=" + url.QueryEscape(query)
+	endpoint := fmt.Sprintf("%s/api/search/?q=%s", getPubBaseURL(), url.QueryEscape(query))
 
-	resp, err := http.Get(endpoint + queryParams)
+	req, err := http.NewRequest("GET", endpoint, nil)
+	if err != nil {
+		util.Die("Pub.dev: %s", err)
+	}
+
+	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -152,9 +171,17 @@ type pubDevInfoResults struct {
 
 // dartInfo implements Info for Pub.dev.
 func dartInfo(name api.PkgName) api.PkgInfo {
-	endpoint := fmt.Sprintf("%s/%s", "https://pub.dev/api/packages", name)
+	endpoint := fmt.Sprintf("%s/api/packages/%s", getPubBaseURL(), name)
 
-	resp, err := http.Get(endpoint)
+	req, err := http.NewRequest("GET", endpoint, nil)
+	if err != nil {
+		util.Die("Pub.dev: %s", err)
+	}
+
+	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
