@@ -95,7 +95,7 @@ func dartListPubspecLock() map[api.PkgName]api.PkgVersion {
 }
 
 // pubDevSearchResults represents the data we get from Pub.dev when
-// doing a search.
+// calling /api/search.
 type pubDevSearchResults struct {
 	Packages []struct {
 		Name string `json:"package"`
@@ -134,17 +134,51 @@ func dartSearch(query string) []api.PkgInfo {
 	return results
 }
 
-// dartInfo is an empty stub implementation.
+// pubDevInfoResults represents the data we get from Pub.dev when
+// calling /api/packages/[package identifier].
+type pubDevInfoResults struct {
+	Name   string `json:"name"`
+	Latest struct {
+		ArchiveURL string `json:"archive_url"`
+		Pubspec    struct {
+			Version     string `json:"version"`
+			Author      string `json:"author"`
+			Description string `json:"description"`
+			Homepage    string `json:"homepage"`
+		} `json:"pubspec"`
+	} `json:"latest"`
+	Version string `json:"version"`
+}
+
+// dartInfo implements Info for Pub.dev.
 func dartInfo(name api.PkgName) api.PkgInfo {
+	endpoint := fmt.Sprintf("%s/%s", "https://pub.dev/api/packages", name)
+
+	resp, err := http.Get(endpoint)
+	if err != nil {
+		util.Die("Pub.dev: %s", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		util.Die("Pub.dev: %s", err)
+	}
+
+	var pubDevResults pubDevInfoResults
+	if err := json.Unmarshal(body, &pubDevResults); err != nil {
+		util.Die("Pub.dev: %s", err)
+	}
+
 	return api.PkgInfo{
-		Name:          "",
-		Description:   "",
-		Version:       "",
-		HomepageURL:   "",
+		Name:          pubDevResults.Name,
+		Description:   pubDevResults.Latest.Pubspec.Description,
+		Version:       pubDevResults.Version,
+		HomepageURL:   pubDevResults.Latest.Pubspec.Homepage,
 		SourceCodeURL: "",
 		BugTrackerURL: "",
 		Author: util.AuthorInfo{
-			Name:  "",
+			Name:  pubDevResults.Latest.Pubspec.Author,
 			Email: "",
 			URL:   "",
 		}.String(),
