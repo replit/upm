@@ -63,7 +63,7 @@ func dartParseSpec(spec interface{}) string {
 	version, ok := spec.(string)
 	// Handle cases like Flutter SDK deps where the spec is a map.
 	if !ok {
-		version = "Unknown"
+		version = ""
 	}
 	return version
 }
@@ -254,9 +254,9 @@ func dartRemove(pkgs map[api.PkgName]bool) {
 
 // dartGuess stub.
 func dartGuess() (map[api.PkgName]bool, bool) {
-	pkgs := map[api.PkgName]bool{}
+	util.Die("Guess not implemented!")
 
-	return pkgs, true
+	return nil, false
 }
 
 // DartPubBackend is a UPM backend for Dart that uses Pub.dev.
@@ -265,7 +265,7 @@ var DartPubBackend = api.LanguageBackend{
 	Specfile:         "pubspec.yaml",
 	Lockfile:         "pubspec.lock",
 	FilenamePatterns: []string{"*.dart"},
-	Quirks:           api.QuirksNone,
+	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir:    dartGetPackageDir,
 	Search:           dartSearch,
 	Info:             dartInfo,
