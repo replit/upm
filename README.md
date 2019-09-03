@@ -45,6 +45,7 @@ machine-parseable specfile and lockfile listing.
 | nodejs-npm            | yes  | yes   | yes   |
 | ruby-bundler          | yes  | yes   |       |
 | elisp-cask            | yes  | yes   | yes   |
+| dart-pub.dev          | yes  | yes   |       |
 
 ## Installation
 
