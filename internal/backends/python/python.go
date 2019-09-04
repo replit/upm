@@ -2,8 +2,6 @@
 package python
 
 import (
-	"bufio"
-	"bytes"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -14,6 +12,10 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+// this generates a mapping of pypi packages <-> modules
+// moduleToPypiPackage pypiPackageToModules are provided
+//go:generate go run ./gen_pypi_map -from pypi_packages.json -pkg python -out pypi_map.gen.go
 
 // pypiXMLRPCEntry represents one element of the response we get from
 // the PyPI XMLRPC API on doing a search.
@@ -341,42 +343,34 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			tempdir := util.TempDir()
 			defer os.RemoveAll(tempdir)
 
-			util.WriteResource("/python/stdlib", tempdir)
-			util.WriteResource("/python/mapping", tempdir)
 			util.WriteResource("/python/pipreqs.py", tempdir)
 			script := util.WriteResource("/python/bare-imports.py", tempdir)
-
-			pypi := util.GetResourceBytes("/python/pypi")
-			scanner := bufio.NewScanner(bytes.NewReader(pypi))
-			allPkgs := map[api.PkgName]bool{}
-			for scanner.Scan() {
-				allPkgs[api.PkgName(scanner.Text())] = true
-			}
-			if err := scanner.Err(); err != nil {
-				panic(err)
-			}
 
 			outputB := util.GetCmdOutput([]string{
 				python, script, strings.Join(util.IgnoredPaths, " "),
 			})
+
 			var output struct {
-				Packages []string `json:"packages"`
-				Success  bool     `json:"success"`
+				Imports []string `json:"imports"`
+				Success bool     `json:"success"`
 			}
+
 			if err := json.Unmarshal(outputB, &output); err != nil {
 				util.Die("pipreqs: %s", err)
 			}
+
 			pkgs := map[api.PkgName]bool{}
-			for _, nameStr := range output.Packages {
-				name := api.PkgName(nameStr)
-				if !allPkgs[normalizePackageName(name)] {
-					// Package not listed on PyPI,
-					// we better not try to
-					// install it.
-					continue
+
+			for _, modname := range output.Imports {
+
+				// provided
+				pkg, ok := moduleToPypiPackage[modname]
+				if ok {
+					name := api.PkgName(pkg)
+					pkgs[normalizePackageName(name)] = true
 				}
-				pkgs[name] = true
 			}
+
 			return pkgs, output.Success
 		},
 	}

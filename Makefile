@@ -1,8 +1,10 @@
-.PHONY: upm
-upm: cmd/upm/upm ## Build the UPM binary
-
 SOURCES := $(shell find cmd internal -type d -o -name "*.go")
 RESOURCES := $(shell find resources)
+
+export GO111MODULE=on
+
+.PHONY: upm
+upm: cmd/upm/upm ## Build the UPM binary
 
 cmd/upm/upm: $(SOURCES) $(RESOURCES)
 	go run github.com/rakyll/statik -src resources -dest internal -f

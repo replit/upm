@@ -13,5 +13,4 @@ import sys
 imports, had_errors = pipreqs.get_all_imports(
     ".", extra_ignore_dirs=sys.argv[1].split()
 )
-packages = pipreqs.get_pkg_names(imports)
-json.dump({"packages": packages, "success": not had_errors}, sys.stdout)
+json.dump({"imports": imports, "success": not had_errors}, sys.stdout)

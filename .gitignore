@@ -5,3 +5,4 @@
 /packaging/aur/*.tar.xz
 /packaging/aur/pkg/
 /packaging/aur/src/
+*.gen.go
