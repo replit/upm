@@ -292,8 +292,7 @@ type LanguageBackend struct {
 	// sorry: only packages which are *definitely* project
 	// dependencies should be returned. Names should be returned
 	// in a format suitable for the Add method. There is no need
-	// to consult the specfile; return all guessed packages, even
-	// those already listed.
+	// to eliminate packages already installed.
 	//
 	// The second value indicates whether the bare imports search
 	// was fully successful. One reason why it might not be
