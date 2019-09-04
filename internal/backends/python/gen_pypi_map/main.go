@@ -1,3 +1,10 @@
+// This command generates go source holding a mapping of:
+// packages -> modules
+// and
+// modules -> most likely package
+//
+// these are provided as the maps pypiPackageToModules and moduleToPypiPackage
+// respectively.
 package main
 
 import (
