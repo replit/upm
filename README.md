@@ -1,5 +1,7 @@
 # UPM
 
+[![GoDoc](https://godoc.org/github.com/replit/upm?status.svg)](https://godoc.org/github.com/replit/upm)
+
 UPM is the **Universal Package Manager**. It allows you to manage
 packages for any (supported) programming language through the same
 interface following the [principle of least
