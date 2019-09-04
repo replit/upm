@@ -109,7 +109,7 @@ nextpkg:
 		}
 
 		for _, candidate := range pkgs {
-			if strings.ReplaceAll(strings.ToLower(candidate.Pkg), "-", "_") ==
+			if strings.Replace(strings.ToLower(candidate.Pkg), "-", "_", -1) ==
 				strings.ToLower(mod) {
 				addMap(mod, candidate.Pkg, "exact match")
 				continue nextpkg
