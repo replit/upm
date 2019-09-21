@@ -288,7 +288,14 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// <https://github.com/sdispater/poetry/issues/648>.
 			util.RunCmd([]string{python, "-m", "poetry", "install"})
 		},
-		ListSpecfile: listSpecfile,
+		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+			pkgs, err := listSpecfile()
+			if err != nil {
+				util.Die("%s", err.Error())
+			}
+
+			return pkgs
+		},
 		ListLockfile: func() map[api.PkgName]api.PkgVersion {
 			var cfg poetryLock
 			if _, err := toml.DecodeFile("poetry.lock", &cfg); err != nil {
@@ -314,10 +321,10 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	}
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-		util.Die("%s", err.Error())
+		return nil, err
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for nameStr, spec := range cfg.Tool.Poetry.Dependencies {
@@ -342,7 +349,8 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 		}
 		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
 	}
-	return pkgs
+
+	return pkgs, nil
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
@@ -367,11 +375,13 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	availMods := map[string]bool{}
 
-	for pkgName := range listSpecfile() {
-		mods, ok := pypiPackageToModules[string(pkgName)]
-		if ok {
-			for _, mod := range strings.Split(mods, ",") {
-				availMods[mod] = true
+	if knownPkgs, err := listSpecfile(); err == nil {
+		for pkgName := range knownPkgs {
+			mods, ok := pypiPackageToModules[string(pkgName)]
+			if ok {
+				for _, mod := range strings.Split(mods, ",") {
+					availMods[mod] = true
+				}
 			}
 		}
 	}
