@@ -1,5 +1,6 @@
 # UPM
 
+![upm](https://amasad.me/public/images/long.png)
 [![GoDoc](https://godoc.org/github.com/replit/upm?status.svg)](https://godoc.org/github.com/replit/upm)
 
 UPM is the **Universal Package Manager**. It allows you to manage
