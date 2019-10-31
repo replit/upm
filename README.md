@@ -69,6 +69,10 @@ tap](https://docs.brew.sh/Taps).
 .deb packages are available on the [releases
 page](https://github.com/replit/upm/releases).
 
+If you trust third-party scripts you can more easily install UPM with this installation script.
+
+    $ curl https://git.io/install-upm | bash
+
 ### RPM-based Linux
 
 .rpm packages are available on the [releases
