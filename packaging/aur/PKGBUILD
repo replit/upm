@@ -1,15 +1,16 @@
 # Maintainer: Repl.it <contact+upm@repl.it>
-pkgname=upm
+
+pkgname=upm-bin
 pkgver=1.0
 pkgrel=1
 pkgdesc="Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
-arch=('any')
-url=""
+arch=('x86_64')
+url="https://repl.it/site/blog/upm"
 license=('MIT')
 source=("https://github.com/replit/upm/releases/download/v${pkgver}/upm_${pkgver}_linux_amd64.tar.gz")
-md5sums=('b5447e9387ac5d9c0d7c78106941cbef')
+sha256sums=('3f02ccd8bf5d486f1809dc73566c9be41b265626ad0ca7b062d1739505a819b4')
 
 package() {
-  install -d "${pkgdir}/usr/bin"
-  cp "upm" "${pkgdir}/usr/bin/"
+  install -Dm755 upm "$pkgdir"/usr/bin/$pkgname
+  install -Dm644 LICENSE.md "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }

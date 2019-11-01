@@ -1,11 +1,12 @@
-pkgbase = upm
+pkgbase = upm-bin
 	pkgdesc = Universal package manager: Python, Node.js, Ruby, Emacs Lisp.
 	pkgver = 1.0
 	pkgrel = 1
-	arch = any
+	url = https://repl.it/site/blog/upm
+	arch = x86_64
 	license = MIT
 	source = https://github.com/replit/upm/releases/download/v1.0/upm_1.0_linux_amd64.tar.gz
-	md5sums = b5447e9387ac5d9c0d7c78106941cbef
+	sha256sums = 3f02ccd8bf5d486f1809dc73566c9be41b265626ad0ca7b062d1739505a819b4
 
-pkgname = upm
+pkgname = upm-bin
 
