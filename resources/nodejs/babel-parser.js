@@ -4168,9 +4168,7 @@ var typescript = (superClass => class extends superClass {
     this.expect(types.parenL);
     signature.parameters = this.tsParseBindingListForSignature();
 
-    if (returnTokenRequired) {
-      signature.typeAnnotation = this.tsParseTypeOrTypePredicateAnnotation(returnToken);
-    } else if (this.match(returnToken)) {
+    if (returnTokenRequired || this.match(returnToken)) {
       signature.typeAnnotation = this.tsParseTypeOrTypePredicateAnnotation(returnToken);
     }
   }
