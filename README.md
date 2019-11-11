@@ -83,10 +83,8 @@ repository and install with `makepkg` using the PKGBUILD in
 
 ### Windows
 
-Available on [Scoop](https://scoop.sh/) in a [custom
-bucket](https://github.com/lukesampson/scoop/wiki/Buckets).
+Available on [Scoop](https://scoop.sh/) in a the `main` (default) bucket.
 
-    $ scoop bucket add replit https://github.com/replit/scoop-bucket.git
     $ scoop install upm
 
 ### Snappy
