@@ -48,6 +48,11 @@ pip3 --disable-pip-version-check install poetry
 curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
 ln -s "$HOME/.cask/bin/cask" /usr/local/bin/
 
+# Install Wasmer/WAPM
+curl https://get.wasmer.io -sSfL | sh
+ln -s "$HOME/.wasmer/bin/wasmer" /usr/local/bin/
+ln -s "$HOME/.wasmer/bin/wapm" /usr/local/bin/
+
 # https://github.com/docker-library/rails/issues/10#issuecomment-169957222
 bundle config --global silence_root_warning 1
 
