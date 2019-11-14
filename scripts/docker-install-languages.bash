@@ -49,7 +49,13 @@ curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
 ln -s "$HOME/.cask/bin/cask" /usr/local/bin/
 
 # Install Wasmer/WAPM
-curl https://get.wasmer.io -sSfL | sh
+wget https://github.com/wasmerio/wasmer/releases/download/0.10.1/wasmer-linux-amd64.tar.gz -o /tmp/wasmer.tar.gz
+mkdir /usr/local/wasmer
+tar -xvf /tmp/wasmer.tar.gz -C /usr/local/wasmer --strip-components=1
+ln -s /usr/local/wasmer/wasmer /usr/local/bin/wasmer
+ln -s /usr/local/wasmer/wapm /usr/local/bin/wapm
+rm /tmp/wasmer.tar.gz
+
 ln -s "$HOME/.wasmer/bin/wasmer" /usr/local/bin/
 ln -s "$HOME/.wasmer/bin/wapm" /usr/local/bin/
 
