@@ -63,7 +63,7 @@ var WasmBackend = api.LanguageBackend{
 	Specfile:         "wapm.toml",
 	Lockfile:         "wapm.lock",
 	FilenamePatterns: []string{"*.wasm"},
-	Quirks:           api.QuirksAddRemoveAlsoLocks,
+	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir: func() string {
 		path := string(util.GetCmdOutput([]string{"wapm", "bin"}))
 		path = strings.TrimSuffix(path, "\n")
@@ -170,8 +170,6 @@ var WasmBackend = api.LanguageBackend{
 			cmd = append(cmd, arg)
 		}
 		util.RunCmd(cmd)
-		// We run install after adding the package, to generate the lockfile
-		util.RunCmd([]string{"wapm", "install"})
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"wapm", "remove"}
@@ -184,7 +182,7 @@ var WasmBackend = api.LanguageBackend{
 		util.RunCmd([]string{"wapm", "install"})
 	},
 	Install: func() {
-		util.RunCmd([]string{"wapm", "install"})
+		util.RunCmd([]string{"wapm", "install", "-y"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		var cfg wapmTOML
