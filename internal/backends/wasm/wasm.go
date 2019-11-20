@@ -158,7 +158,7 @@ var WasmBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		if !util.Exists("wapm.lock") {
+		if !util.Exists("wapm.toml") {
 			util.RunCmd([]string{"wapm", "init", "-y"})
 		}
 		cmd := []string{"wapm", "add"}
