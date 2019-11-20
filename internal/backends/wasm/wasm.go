@@ -179,7 +179,7 @@ var WasmBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func() {
-		util.RunCmd([]string{"wapm", "install"})
+		util.RunCmd([]string{"wapm", "install", "-y"})
 	},
 	Install: func() {
 		util.RunCmd([]string{"wapm", "install", "-y"})
