@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
@@ -163,6 +164,9 @@ outer:
 				insideDeps = false
 				continue
 			}
+
+			regexp.MustCompile("{")
+
 			fmt.Println(line)
 		} else {
 			split := strings.Split(line, " ")
