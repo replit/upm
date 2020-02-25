@@ -11,6 +11,7 @@ import (
 	"github.com/replit/upm/internal/backends/nodejs"
 	"github.com/replit/upm/internal/backends/python"
 	"github.com/replit/upm/internal/backends/ruby"
+	"github.com/replit/upm/internal/backends/wasm"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -27,6 +28,7 @@ var languageBackends = []api.LanguageBackend{
 	ruby.RubyBackend,
 	elisp.ElispBackend,
 	dart.DartPubBackend,
+	wasm.WasmBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for
