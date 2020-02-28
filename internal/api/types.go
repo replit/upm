@@ -315,30 +315,39 @@ type LanguageBackend struct {
 // a builder function which can perform this normalization and
 // validation.
 func (b *LanguageBackend) Setup() {
-	if b.Name == "" ||
-		b.Specfile == "" ||
-		b.Lockfile == "" ||
-		len(b.FilenamePatterns) == 0 ||
-		b.GetPackageDir == nil ||
-		b.Search == nil ||
-		b.Info == nil ||
-		b.Add == nil ||
-		b.Remove == nil ||
+	condition2flag := map[string]bool{
+		"b.Name == \"\"": b.Name == "",
+		"b.Specfile == \"\"": b.Specfile == "",
+		"b.Lockfile == \"\"": b.Lockfile == "",
+		"len(b.FilenamePatterns) == 0": len(b.FilenamePatterns) == 0,
+		"b.GetPackageDir == nil": b.GetPackageDir == nil,
+		"b.Search == nil": b.Search == nil,
+		"b.Info == nil": b.Info == nil,
+		"b.Add == nil": b.Add == nil,
+		"b.Remove == nil": b.Remove == nil,
 		// The lock method should be unimplemented if
 		// and only if builds are not reproducible.
-		((b.Lock == nil) != b.QuirksIsNotReproducible()) ||
-		b.Install == nil ||
-		b.ListSpecfile == nil ||
-		b.ListLockfile == nil ||
+		"((b.Lock == nil) != b.QuirksIsNotReproducible())": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
+		"b.Install == nil": b.Install == nil,
+		"b.ListSpecfile == nil": b.ListSpecfile == nil,
+		"b.ListLockfile == nil": b.ListLockfile == nil,
 		// If the backend isn't reproducible, then lock is
 		// unimplemented. So how could it also do
 		// installation?
-		b.QuirksDoesLockAlsoInstall() &&
-			b.QuirksIsNotReproducible() ||
+		"b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible()": b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible(),
 		// If you install, then you have to lock.
-		b.QuirksDoesAddRemoveAlsoInstall() &&
-			!b.QuirksDoesAddRemoveAlsoLock() {
-		util.Panicf("language backend %s is incomplete or invalid", b.Name)
+		"b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock()": b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock(),
+	}
+
+	reasons := []string{};
+	for reason, flag := range condition2flag {
+		if (flag) {
+			reasons = append(reasons, reason)
+		}
+	}
+
+	if (len(reasons) > 0) {
+		util.Panicf("language backend %s is incomplete or invalid: %s", b.Name, reasons)
 	}
 
 	if b.NormalizePackageName == nil {
