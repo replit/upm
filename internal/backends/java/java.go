@@ -2,28 +2,41 @@
 package java
 
 import (
+	"encoding/xml"
+
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
 
-const hardcodedPom = `
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
- 
-  <groupId>com.mycompany.app</groupId>
-  <artifactId>my-app</artifactId>
-  <version>1.0-SNAPSHOT</version>
- 
-<dependencies>
-	<dependency>
-		<groupId>com.google.guava</groupId>
-		<artifactId>guava</artifactId>
-		<version>28.2-jre</version>
-	</dependency>
-</dependencies>
-</project>
-`
+type Dependency struct {
+	XMLName xml.Name `xml:"dependency"`	
+	GroupId string `xml:"groupId"`
+	ArtifactId string `xml:"artifactId"`
+	Version string `xml:"version"`	
+}
+
+type Project struct {
+	XMLName xml.Name `xml:"project"`
+	ModelVersion string `xml:"modelVersion"`
+	GroupId string `xml:"groupId"`
+	ArtifactId string `xml:"artifactId"`
+	Version string `xml:"version"`
+	Dependencies []Dependency `xml:"dependencies>dependency"`
+}
+
+var hardcodedProject = Project{
+	ModelVersion: "4.0.0",
+	GroupId: "co.repl",
+	ArtifactId: "artifact",
+	Version: "0.0-SNAPSHOT",
+	Dependencies: []Dependency{
+		{
+			GroupId: "com.google.guava",
+			ArtifactId: "guava",
+			Version: "28.2-jre",
+		},
+	},
+}
 
 // javaPatterns is the FilenamePatterns value for JavaBackend.
 var javaPatterns = []string{"*.java"}
@@ -34,7 +47,7 @@ var JavaBackend = api.LanguageBackend{
 	Specfile:         "pom.xml",
 	Lockfile:         "pom.xml",
 	FilenamePatterns: javaPatterns,
-	// Quirks:           api.QuirksNotReproducible,
+	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	GetPackageDir: func() string {
 		return "target/dependency"
 	},
@@ -46,12 +59,22 @@ var JavaBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		contentsB := []byte(hardcodedPom)
+		marshalled, err := xml.MarshalIndent(hardcodedProject, "", "  ")
+		if err != nil {
+			util.Die("could not marshal pom: %s", err)
+		}
+
+		contentsB := []byte(marshalled)
 		util.ProgressMsg("write pom.xml")
 		util.TryWriteAtomic("pom.xml", contentsB)
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		contentsB := []byte(hardcodedPom)
+		marshalled, err := xml.MarshalIndent(hardcodedProject, "", "  ")
+		if err != nil {
+			util.Die("could not marshal pom: %s", err)
+		}
+
+		contentsB := []byte(marshalled)
 		util.ProgressMsg("write pom.xml")
 		util.TryWriteAtomic("pom.xml", contentsB)
 	},
