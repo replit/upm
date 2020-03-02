@@ -4,6 +4,7 @@ package java
 import (
 	"encoding/xml"
 	"io/ioutil"
+  "os"
 	"regexp"
   "strings"
 
@@ -115,14 +116,30 @@ var JavaBackend = api.LanguageBackend{
 		util.TryWriteAtomic("pom.xml", contentsB)
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		marshalled, err := xml.MarshalIndent(emptyProject, "", "  ")
-		if err != nil {
-			util.Die("could not marshal pom: %s", err)
-		}
+    project := readProjectOrMakeEmpty(pomdotxml)
 
+    dependenciesToKeep := []Dependency{}
+    for _, dependency := range(project.Dependencies) {
+      dependencyString := strings.Join([]string{dependency.GroupId, dependency.ArtifactId, dependency.Version}, ":")
+      if _, ok := pkgs[api.PkgName(dependencyString)]; ok {
+        // removing this dependency
+      } else {
+        dependenciesToKeep = append(dependenciesToKeep, dependency)
+      }
+    }
+
+    projectWithFilteredDependencies := project
+    projectWithFilteredDependencies.Dependencies = dependenciesToKeep
+
+    marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
+    if err != nil {
+      util.Die("error marshalling pom.xml: %s", err)
+    }
 		contentsB := []byte(marshalled)
 		util.ProgressMsg("write pom.xml")
 		util.TryWriteAtomic("pom.xml", contentsB)
+
+    os.RemoveAll("target/dependency")
 	},
 	Install: func() {
 		util.RunCmd([]string{"mvn", "dependency:copy-dependencies"})
