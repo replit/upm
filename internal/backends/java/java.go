@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"io/ioutil"
 	"regexp"
+  "strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -39,11 +40,30 @@ var packageRegexp = regexp.MustCompile("^([^:]+):([^:]+):([^:]+)")
 // javaPatterns is the FilenamePatterns value for JavaBackend.
 var javaPatterns = []string{"*.java"}
 
+func readProjectOrMakeEmpty(path string) Project {
+  var project Project
+  if util.Exists("pom.xml") {
+    xmlbytes, err := ioutil.ReadFile("pom.xml")
+    if err != nil {
+      util.Die("error reading pom.xml: %s", err)
+    }
+    err = xml.Unmarshal(xmlbytes, &project)
+    if err != nil {
+      util.Die("error unmarshalling pom.xml: %s", err)
+    }
+  } else {
+    project = emptyProject
+  }
+  return project
+}
+
+const pomdotxml = "pom.xml"
+
 // JavaBackend is the UPM language backend for Java using Maven.
 var JavaBackend = api.LanguageBackend{
 	Name:             "java-maven",
-	Specfile:         "pom.xml",
-	Lockfile:         "pom.xml",
+	Specfile:         pomdotxml,
+	Lockfile:         pomdotxml,
 	FilenamePatterns: javaPatterns,
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	GetPackageDir: func() string {
@@ -57,32 +77,30 @@ var JavaBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		var project Project
-		if util.Exists("pom.xml") {
-			xmlbytes, err := ioutil.ReadFile("pom.xml")
-			if err != nil {
-				util.Die("error reading pom.xml: %s", err)
-			}
-			err = xml.Unmarshal(xmlbytes, &project)
-			if err != nil {
-				util.Die("error unmarshalling pom.xml: %s", err)
-			}
-		} else {
-			project = emptyProject
-		}
+		project := readProjectOrMakeEmpty(pomdotxml)
+    existingDependencies := map[string]bool{}
+    for _, dependency := range project.Dependencies {
+      dependencyString := strings.Join([]string{dependency.GroupId, dependency.ArtifactId, dependency.Version}, ":")
+      existingDependencies[dependencyString] = true
+    }
 
 		newDependencies := []Dependency{}
 		for name, _ := range pkgs {
-			submatches := packageRegexp.FindStringSubmatch(string(name))
+      nameString := string(name)
+			submatches := packageRegexp.FindStringSubmatch(nameString)
 			if nil == submatches {
 				util.Die("package name %s does not match groupid:artifactid:version pattern")
 			} else {
-				dependency := Dependency{
-					GroupId: submatches[1],
-					ArtifactId: submatches[2],
-					Version: submatches[3],
-				}
-				newDependencies = append(newDependencies, dependency)
+        if _, ok := existingDependencies[nameString]; ok {
+          // this package is already in the lock file
+        } else {
+          dependency := Dependency{
+            GroupId: submatches[1],
+            ArtifactId: submatches[2],
+            Version: submatches[3],
+          }
+          newDependencies = append(newDependencies, dependency)
+        }
 			}
 		}
 
