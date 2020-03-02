@@ -3,6 +3,7 @@ package java
 
 import (
 	"encoding/xml"
+	"regexp"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -24,19 +25,15 @@ type Project struct {
 	Dependencies []Dependency `xml:"dependencies>dependency"`
 }
 
-var hardcodedProject = Project{
+var emptyProject = Project{
 	ModelVersion: "4.0.0",
 	GroupId: "co.repl",
 	ArtifactId: "artifact",
 	Version: "0.0-SNAPSHOT",
-	Dependencies: []Dependency{
-		{
-			GroupId: "com.google.guava",
-			ArtifactId: "guava",
-			Version: "28.2-jre",
-		},
-	},
+	Dependencies: []Dependency{},
 }
+
+var packageRegexp = regexp.MustCompile("^([^:]+):([^:]+):([^:]+)")
 
 // javaPatterns is the FilenamePatterns value for JavaBackend.
 var javaPatterns = []string{"*.java"}
@@ -59,7 +56,24 @@ var JavaBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-		marshalled, err := xml.MarshalIndent(hardcodedProject, "", "  ")
+		newDependencies := []Dependency{}
+		for name, _ := range pkgs {
+			submatches := packageRegexp.FindStringSubmatch(string(name))
+			if nil == submatches {
+				util.Die("package name %s does not match groupid:artifactid:version pattern")
+			} else {
+				dependency := Dependency{
+					GroupId: submatches[1],
+					ArtifactId: submatches[2],
+					Version: submatches[3],
+				}
+				newDependencies = append(newDependencies, dependency)
+			}
+		}
+
+		project := emptyProject
+		project.Dependencies = newDependencies
+		marshalled, err := xml.MarshalIndent(project, "", "  ")
 		if err != nil {
 			util.Die("could not marshal pom: %s", err)
 		}
@@ -69,7 +83,7 @@ var JavaBackend = api.LanguageBackend{
 		util.TryWriteAtomic("pom.xml", contentsB)
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		marshalled, err := xml.MarshalIndent(hardcodedProject, "", "  ")
+		marshalled, err := xml.MarshalIndent(emptyProject, "", "  ")
 		if err != nil {
 			util.Die("could not marshal pom: %s", err)
 		}
