@@ -36,7 +36,7 @@ var emptyProject = Project{
 	Dependencies: []Dependency{},
 }
 
-var packageRegexp = regexp.MustCompile("^([^:]+):([^:]+):([^:]+)")
+var pkgNameRegexp = regexp.MustCompile("^([^:]+):([^:]+)") // groupid:artifactid
 
 // javaPatterns is the FilenamePatterns value for JavaBackend.
 var javaPatterns = []string{"*.java"}
@@ -79,26 +79,26 @@ var JavaBackend = api.LanguageBackend{
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		project := readProjectOrMakeEmpty(pomdotxml)
-    existingDependencies := map[string]bool{}
+    existingDependencies := map[api.PkgName]api.PkgVersion{}
     for _, dependency := range project.Dependencies {
-      dependencyString := strings.Join([]string{dependency.GroupId, dependency.ArtifactId, dependency.Version}, ":")
-      existingDependencies[dependencyString] = true
+      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+      pkgVersion := api.PkgVersion(dependency.Version)
+      existingDependencies[pkgName] = pkgVersion
     }
 
 		newDependencies := []Dependency{}
-		for name, _ := range pkgs {
-      nameString := string(name)
-			submatches := packageRegexp.FindStringSubmatch(nameString)
+		for pkgName, pkgSpec := range pkgs {
+			submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
 			if nil == submatches {
-				util.Die("package name %s does not match groupid:artifactid:version pattern")
+				util.Die("package name %s does not match groupid:artifactid pattern")
 			} else {
-        if _, ok := existingDependencies[nameString]; ok {
+        if _, ok := existingDependencies[pkgName]; ok {
           // this package is already in the lock file
         } else {
           dependency := Dependency{
             GroupId: submatches[1],
             ArtifactId: submatches[2],
-            Version: submatches[3],
+            Version: string(pkgSpec),
           }
           newDependencies = append(newDependencies, dependency)
         }
@@ -120,8 +120,8 @@ var JavaBackend = api.LanguageBackend{
 
     dependenciesToKeep := []Dependency{}
     for _, dependency := range(project.Dependencies) {
-      dependencyString := strings.Join([]string{dependency.GroupId, dependency.ArtifactId, dependency.Version}, ":")
-      if _, ok := pkgs[api.PkgName(dependencyString)]; ok {
+      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+      if _, ok := pkgs[pkgName]; ok {
         // removing this dependency
       } else {
         dependenciesToKeep = append(dependenciesToKeep, dependency)
@@ -145,14 +145,23 @@ var JavaBackend = api.LanguageBackend{
 		util.RunCmd([]string{"mvn", "dependency:copy-dependencies"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+    project := readProjectOrMakeEmpty(pomdotxml)
 		pkgs := map[api.PkgName]api.PkgSpec{}
+    for _, dependency := range(project.Dependencies) {
+      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+      pkgSpec := api.PkgSpec(dependency.Version)
+      pkgs[pkgName] = pkgSpec
+    }
 		return pkgs
 	},
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+    project := readProjectOrMakeEmpty(pomdotxml)
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		name := api.PkgName("guava")
-		version := api.PkgVersion("28.2-jre")
-		pkgs[name] = version
+    for _, dependency := range(project.Dependencies) {
+      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+      pkgVersion := api.PkgVersion(dependency.Version)
+      pkgs[pkgName] = pkgVersion
+    }
 		return pkgs
 	},
 	Lock: func(){},
