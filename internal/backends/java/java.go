@@ -3,6 +3,7 @@ package java
 
 import (
 	"encoding/xml"
+	"io/ioutil"
 	"regexp"
 
 	"github.com/replit/upm/internal/api"
@@ -56,6 +57,20 @@ var JavaBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		var project Project
+		if util.Exists("pom.xml") {
+			xmlbytes, err := ioutil.ReadFile("pom.xml")
+			if err != nil {
+				util.Die("error reading pom.xml: %s", err)
+			}
+			err = xml.Unmarshal(xmlbytes, &project)
+			if err != nil {
+				util.Die("error unmarshalling pom.xml: %s", err)
+			}
+		} else {
+			project = emptyProject
+		}
+
 		newDependencies := []Dependency{}
 		for name, _ := range pkgs {
 			submatches := packageRegexp.FindStringSubmatch(string(name))
@@ -71,8 +86,7 @@ var JavaBackend = api.LanguageBackend{
 			}
 		}
 
-		project := emptyProject
-		project.Dependencies = newDependencies
+		project.Dependencies = append(project.Dependencies, newDependencies...)
 		marshalled, err := xml.MarshalIndent(project, "", "  ")
 		if err != nil {
 			util.Die("could not marshal pom: %s", err)
