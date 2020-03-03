@@ -24,6 +24,7 @@ curl
 emacs-nox
 git
 jq
+maven
 nodejs
 npm
 python
