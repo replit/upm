@@ -88,7 +88,9 @@ var JavaBackend = api.LanguageBackend{
     return pkgInfos
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
-		return api.PkgInfo{}
+		return api.PkgInfo{
+      Name: string(name),
+    }
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		project := readProjectOrMakeEmpty(pomdotxml)
