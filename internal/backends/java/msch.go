@@ -27,6 +27,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+
+  "github.com/replit/upm/internal/util"
 )
 
 const (
@@ -46,7 +48,9 @@ type SearchResult struct {
 }
 
 func Search(keyword string) ([]SearchDoc, error) {
-	res, err := http.Get(mavenURL + url.QueryEscape(keyword))
+  searchUrl := mavenURL + url.QueryEscape(keyword)
+  util.Log("maven search ", searchUrl)
+	res, err := http.Get(searchUrl)
 	if err != nil {
 		return []SearchDoc{}, err
 	}

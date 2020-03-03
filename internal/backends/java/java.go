@@ -107,13 +107,31 @@ var JavaBackend = api.LanguageBackend{
 			if nil == submatches {
 				util.Die("package name %s does not match groupid:artifactid pattern")
 			} else {
+        groupId := submatches[1]
+        artifactId := submatches[2]
         if _, ok := existingDependencies[pkgName]; ok {
           // this package is already in the lock file
         } else {
+          var versionString string
+          if pkgSpec == "" {
+            searchDocs, err := Search(fmt.Sprintf("g:%s AND a:%s", groupId, artifactId))
+            if err != nil {
+              util.Log("error searching maven for latest version of %s:%s: %s", groupId, artifactId, err)
+              return
+            }
+            if len(searchDocs) == 0 {
+              util.Log("did not find a package %s:%s", groupId, artifactId)
+              return
+            }
+            searchDoc := searchDocs[0]
+            versionString = searchDoc.Version
+          } else {
+            versionString = string(pkgSpec)
+          }
           dependency := Dependency{
             GroupId: submatches[1],
             ArtifactId: submatches[2],
-            Version: string(pkgSpec),
+            Version: versionString,
           }
           newDependencies = append(newDependencies, dependency)
         }
