@@ -80,7 +80,7 @@ var JavaBackend = api.LanguageBackend{
     pkgInfos := []api.PkgInfo{}
     for _, searchDoc := range(searchDocs) {
       pkgInfo := api.PkgInfo{
-        Name: fmt.Sprintf("%s %s", searchDoc.Group, searchDoc.Artifact),
+        Name: fmt.Sprintf("%s:%s", searchDoc.Group, searchDoc.Artifact),
         Version: searchDoc.Version,
       }
       pkgInfos = append(pkgInfos, pkgInfo)
