@@ -3,6 +3,7 @@ package java
 
 import (
 	"encoding/xml"
+  "fmt"
 	"io/ioutil"
   "os"
 	"regexp"
@@ -71,8 +72,20 @@ var JavaBackend = api.LanguageBackend{
 		return "target/dependency"
 	},
 	Search: func(query string) []api.PkgInfo {
-		var results []api.PkgInfo
-		return results
+    searchDocs, err := Search(query)
+    if err != nil {
+      util.Log("error searching maven %s", err)
+      return []api.PkgInfo{}
+    }
+    pkgInfos := []api.PkgInfo{}
+    for _, searchDoc := range(searchDocs) {
+      pkgInfo := api.PkgInfo{
+        Name: fmt.Sprintf("%s %s", searchDoc.Group, searchDoc.Artifact),
+        Version: searchDoc.Version,
+      }
+      pkgInfos = append(pkgInfos, pkgInfo)
+    }
+    return pkgInfos
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		return api.PkgInfo{}
