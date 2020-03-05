@@ -34,9 +34,9 @@ const (
 )
 
 type SearchDoc struct {
-  Group    string `json:"g"`
-  Artifact string `json:"a"`
-  Version  string `json:"latestVersion"`
+	Group    string `json:"g"`
+	Artifact string `json:"a"`
+	Version  string `json:"latestVersion"`
 }
 
 type SearchResult struct {
@@ -46,7 +46,7 @@ type SearchResult struct {
 }
 
 func Search(keyword string) ([]SearchDoc, error) {
-  searchUrl := mavenURL + url.QueryEscape(keyword)
+	searchUrl := mavenURL + url.QueryEscape(keyword)
 	res, err := http.Get(searchUrl)
 	if err != nil {
 		return []SearchDoc{}, err
@@ -58,5 +58,5 @@ func Search(keyword string) ([]SearchDoc, error) {
 	if err != nil {
 		return []SearchDoc{}, err
 	}
-  return searchResult.Response.Docs, nil
+	return searchResult.Response.Docs, nil
 }

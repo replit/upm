@@ -3,37 +3,37 @@ package java
 
 import (
 	"encoding/xml"
-  "fmt"
+	"fmt"
 	"io/ioutil"
-  "os"
+	"os"
 	"regexp"
-  "strings"
+	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
 
 type Dependency struct {
-	XMLName xml.Name `xml:"dependency"`	
-	GroupId string `xml:"groupId"`
-	ArtifactId string `xml:"artifactId"`
-	Version string `xml:"version"`	
+	XMLName    xml.Name `xml:"dependency"`
+	GroupId    string   `xml:"groupId"`
+	ArtifactId string   `xml:"artifactId"`
+	Version    string   `xml:"version"`
 }
 
 type Project struct {
-	XMLName xml.Name `xml:"project"`
-	ModelVersion string `xml:"modelVersion"`
-	GroupId string `xml:"groupId"`
-	ArtifactId string `xml:"artifactId"`
-	Version string `xml:"version"`
+	XMLName      xml.Name     `xml:"project"`
+	ModelVersion string       `xml:"modelVersion"`
+	GroupId      string       `xml:"groupId"`
+	ArtifactId   string       `xml:"artifactId"`
+	Version      string       `xml:"version"`
 	Dependencies []Dependency `xml:"dependencies>dependency"`
 }
 
 var emptyProject = Project{
 	ModelVersion: "4.0.0",
-	GroupId: "co.repl",
-	ArtifactId: "artifact",
-	Version: "0.0-SNAPSHOT",
+	GroupId:      "co.repl",
+	ArtifactId:   "artifact",
+	Version:      "0.0-SNAPSHOT",
 	Dependencies: []Dependency{},
 }
 
@@ -43,20 +43,20 @@ var pkgNameRegexp = regexp.MustCompile("^([^:]+):([^:]+)") // groupid:artifactid
 var javaPatterns = []string{"*.java"}
 
 func readProjectOrMakeEmpty(path string) Project {
-  var project Project
-  if util.Exists("pom.xml") {
-    xmlbytes, err := ioutil.ReadFile("pom.xml")
-    if err != nil {
-      util.Die("error reading pom.xml: %s", err)
-    }
-    err = xml.Unmarshal(xmlbytes, &project)
-    if err != nil {
-      util.Die("error unmarshalling pom.xml: %s", err)
-    }
-  } else {
-    project = emptyProject
-  }
-  return project
+	var project Project
+	if util.Exists("pom.xml") {
+		xmlbytes, err := ioutil.ReadFile("pom.xml")
+		if err != nil {
+			util.Die("error reading pom.xml: %s", err)
+		}
+		err = xml.Unmarshal(xmlbytes, &project)
+		if err != nil {
+			util.Die("error unmarshalling pom.xml: %s", err)
+		}
+	} else {
+		project = emptyProject
+	}
+	return project
 }
 
 const pomdotxml = "pom.xml"
@@ -72,34 +72,34 @@ var JavaBackend = api.LanguageBackend{
 		return "target/dependency"
 	},
 	Search: func(query string) []api.PkgInfo {
-    searchDocs, err := Search(query)
-    if err != nil {
-      util.Log("error searching maven %s", err)
-      return []api.PkgInfo{}
-    }
-    pkgInfos := []api.PkgInfo{}
-    for _, searchDoc := range(searchDocs) {
-      pkgInfo := api.PkgInfo{
-        Name: fmt.Sprintf("%s:%s", searchDoc.Group, searchDoc.Artifact),
-        Version: searchDoc.Version,
-      }
-      pkgInfos = append(pkgInfos, pkgInfo)
-    }
-    return pkgInfos
+		searchDocs, err := Search(query)
+		if err != nil {
+			util.Log("error searching maven %s", err)
+			return []api.PkgInfo{}
+		}
+		pkgInfos := []api.PkgInfo{}
+		for _, searchDoc := range searchDocs {
+			pkgInfo := api.PkgInfo{
+				Name:    fmt.Sprintf("%s:%s", searchDoc.Group, searchDoc.Artifact),
+				Version: searchDoc.Version,
+			}
+			pkgInfos = append(pkgInfos, pkgInfo)
+		}
+		return pkgInfos
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		return api.PkgInfo{
-      Name: string(name),
-    }
+			Name: string(name),
+		}
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 		project := readProjectOrMakeEmpty(pomdotxml)
-    existingDependencies := map[api.PkgName]api.PkgVersion{}
-    for _, dependency := range project.Dependencies {
-      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
-      pkgVersion := api.PkgVersion(dependency.Version)
-      existingDependencies[pkgName] = pkgVersion
-    }
+		existingDependencies := map[api.PkgName]api.PkgVersion{}
+		for _, dependency := range project.Dependencies {
+			pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+			pkgVersion := api.PkgVersion(dependency.Version)
+			existingDependencies[pkgName] = pkgVersion
+		}
 
 		newDependencies := []Dependency{}
 		for pkgName, pkgSpec := range pkgs {
@@ -107,34 +107,34 @@ var JavaBackend = api.LanguageBackend{
 			if nil == submatches {
 				util.Die("package name %s does not match groupid:artifactid pattern")
 			} else {
-        groupId := submatches[1]
-        artifactId := submatches[2]
-        if _, ok := existingDependencies[pkgName]; ok {
-          // this package is already in the lock file
-        } else {
-          var versionString string
-          if pkgSpec == "" {
-            searchDocs, err := Search(fmt.Sprintf("g:%s AND a:%s", groupId, artifactId))
-            if err != nil {
-              util.Log("error searching maven for latest version of %s:%s: %s", groupId, artifactId, err)
-              return
-            }
-            if len(searchDocs) == 0 {
-              util.Log("did not find a package %s:%s", groupId, artifactId)
-              return
-            }
-            searchDoc := searchDocs[0]
-            versionString = searchDoc.Version
-          } else {
-            versionString = string(pkgSpec)
-          }
-          dependency := Dependency{
-            GroupId: submatches[1],
-            ArtifactId: submatches[2],
-            Version: versionString,
-          }
-          newDependencies = append(newDependencies, dependency)
-        }
+				groupId := submatches[1]
+				artifactId := submatches[2]
+				if _, ok := existingDependencies[pkgName]; ok {
+					// this package is already in the lock file
+				} else {
+					var versionString string
+					if pkgSpec == "" {
+						searchDocs, err := Search(fmt.Sprintf("g:%s AND a:%s", groupId, artifactId))
+						if err != nil {
+							util.Log("error searching maven for latest version of %s:%s: %s", groupId, artifactId, err)
+							return
+						}
+						if len(searchDocs) == 0 {
+							util.Log("did not find a package %s:%s", groupId, artifactId)
+							return
+						}
+						searchDoc := searchDocs[0]
+						versionString = searchDoc.Version
+					} else {
+						versionString = string(pkgSpec)
+					}
+					dependency := Dependency{
+						GroupId:    submatches[1],
+						ArtifactId: submatches[2],
+						Version:    versionString,
+					}
+					newDependencies = append(newDependencies, dependency)
+				}
 			}
 		}
 
@@ -149,53 +149,53 @@ var JavaBackend = api.LanguageBackend{
 		util.TryWriteAtomic("pom.xml", contentsB)
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-    project := readProjectOrMakeEmpty(pomdotxml)
+		project := readProjectOrMakeEmpty(pomdotxml)
 
-    dependenciesToKeep := []Dependency{}
-    for _, dependency := range(project.Dependencies) {
-      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
-      if _, ok := pkgs[pkgName]; ok {
-        // removing this dependency
-      } else {
-        dependenciesToKeep = append(dependenciesToKeep, dependency)
-      }
-    }
+		dependenciesToKeep := []Dependency{}
+		for _, dependency := range project.Dependencies {
+			pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+			if _, ok := pkgs[pkgName]; ok {
+				// removing this dependency
+			} else {
+				dependenciesToKeep = append(dependenciesToKeep, dependency)
+			}
+		}
 
-    projectWithFilteredDependencies := project
-    projectWithFilteredDependencies.Dependencies = dependenciesToKeep
+		projectWithFilteredDependencies := project
+		projectWithFilteredDependencies.Dependencies = dependenciesToKeep
 
-    marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
-    if err != nil {
-      util.Die("error marshalling pom.xml: %s", err)
-    }
+		marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
+		if err != nil {
+			util.Die("error marshalling pom.xml: %s", err)
+		}
 		contentsB := []byte(marshalled)
 		util.ProgressMsg("write pom.xml")
 		util.TryWriteAtomic("pom.xml", contentsB)
 
-    os.RemoveAll("target/dependency")
+		os.RemoveAll("target/dependency")
 	},
 	Install: func() {
 		util.RunCmd([]string{"mvn", "dependency:copy-dependencies"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-    project := readProjectOrMakeEmpty(pomdotxml)
+		project := readProjectOrMakeEmpty(pomdotxml)
 		pkgs := map[api.PkgName]api.PkgSpec{}
-    for _, dependency := range(project.Dependencies) {
-      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
-      pkgSpec := api.PkgSpec(dependency.Version)
-      pkgs[pkgName] = pkgSpec
-    }
+		for _, dependency := range project.Dependencies {
+			pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+			pkgSpec := api.PkgSpec(dependency.Version)
+			pkgs[pkgName] = pkgSpec
+		}
 		return pkgs
 	},
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-    project := readProjectOrMakeEmpty(pomdotxml)
+		project := readProjectOrMakeEmpty(pomdotxml)
 		pkgs := map[api.PkgName]api.PkgVersion{}
-    for _, dependency := range(project.Dependencies) {
-      pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
-      pkgVersion := api.PkgVersion(dependency.Version)
-      pkgs[pkgName] = pkgVersion
-    }
+		for _, dependency := range project.Dependencies {
+			pkgName := api.PkgName(strings.Join([]string{dependency.GroupId, dependency.ArtifactId}, ":"))
+			pkgVersion := api.PkgVersion(dependency.Version)
+			pkgs[pkgName] = pkgVersion
+		}
 		return pkgs
 	},
-	Lock: func(){},
+	Lock: func() {},
 }
