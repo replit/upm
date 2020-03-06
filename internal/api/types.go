@@ -316,27 +316,27 @@ type LanguageBackend struct {
 // validation.
 func (b *LanguageBackend) Setup() {
 	condition2flag := map[string]bool{
-		"b.Name == \"\"": b.Name == "",
-		"b.Specfile == \"\"": b.Specfile == "",
-		"b.Lockfile == \"\"": b.Lockfile == "",
-		"len(b.FilenamePatterns) == 0": len(b.FilenamePatterns) == 0,
-		"b.GetPackageDir == nil": b.GetPackageDir == nil,
-		"b.Search == nil": b.Search == nil,
-		"b.Info == nil": b.Info == nil,
-		"b.Add == nil": b.Add == nil,
-		"b.Remove == nil": b.Remove == nil,
+		"missing name": b.Name == "",
+		"missing specfile": b.Specfile == "",
+		"missing lockfile": b.Lockfile == "",
+		"need at least 1 filename pattern": len(b.FilenamePatterns) == 0,
+		"missing package dir": b.GetPackageDir == nil,
+		"missing Search": b.Search == nil,
+		"missing Info": b.Info == nil,
+		"missing Add": b.Add == nil,
+		"missing Remove": b.Remove == nil,
 		// The lock method should be unimplemented if
 		// and only if builds are not reproducible.
-		"((b.Lock == nil) != b.QuirksIsNotReproducible())": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
-		"b.Install == nil": b.Install == nil,
-		"b.ListSpecfile == nil": b.ListSpecfile == nil,
-		"b.ListLockfile == nil": b.ListLockfile == nil,
+		"either implement Lock or mark QuirksIsNotReproducible": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
+		"missing install": b.Install == nil,
+		"missing ListSpecfile": b.ListSpecfile == nil,
+		"missing ListLockfile": b.ListLockfile == nil,
 		// If the backend isn't reproducible, then lock is
 		// unimplemented. So how could it also do
 		// installation?
-		"b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible()": b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible(),
+		"Lock installs, but is not implemented": b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible(),
 		// If you install, then you have to lock.
-		"b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock()": b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock(),
+		"Add and Remove install, so they must also Lock": b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock(),
 	}
 
 	reasons := []string{};
