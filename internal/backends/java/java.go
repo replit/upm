@@ -101,8 +101,7 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
 				)
 			}
 			if len(searchDocs) == 0 {
-				util.Log("did not find a package %s:%s", groupId, artifactId)
-				return
+				util.Die("did not find a package %s:%s", groupId, artifactId)
 			}
 			searchDoc := searchDocs[0]
 			versionString = searchDoc.Version
