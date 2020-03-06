@@ -316,19 +316,19 @@ type LanguageBackend struct {
 // validation.
 func (b *LanguageBackend) Setup() {
 	condition2flag := map[string]bool{
-		"missing name": b.Name == "",
-		"missing specfile": b.Specfile == "",
-		"missing lockfile": b.Lockfile == "",
+		"missing name":                     b.Name == "",
+		"missing specfile":                 b.Specfile == "",
+		"missing lockfile":                 b.Lockfile == "",
 		"need at least 1 filename pattern": len(b.FilenamePatterns) == 0,
-		"missing package dir": b.GetPackageDir == nil,
-		"missing Search": b.Search == nil,
-		"missing Info": b.Info == nil,
-		"missing Add": b.Add == nil,
-		"missing Remove": b.Remove == nil,
+		"missing package dir":              b.GetPackageDir == nil,
+		"missing Search":                   b.Search == nil,
+		"missing Info":                     b.Info == nil,
+		"missing Add":                      b.Add == nil,
+		"missing Remove":                   b.Remove == nil,
 		// The lock method should be unimplemented if
 		// and only if builds are not reproducible.
 		"either implement Lock or mark QuirksIsNotReproducible": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
-		"missing install": b.Install == nil,
+		"missing install":      b.Install == nil,
 		"missing ListSpecfile": b.ListSpecfile == nil,
 		"missing ListLockfile": b.ListLockfile == nil,
 		// If the backend isn't reproducible, then lock is
@@ -339,14 +339,14 @@ func (b *LanguageBackend) Setup() {
 		"Add and Remove install, so they must also Lock": b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock(),
 	}
 
-	reasons := []string{};
+	reasons := []string{}
 	for reason, flag := range condition2flag {
-		if (flag) {
+		if flag {
 			reasons = append(reasons, reason)
 		}
 	}
 
-	if (len(reasons) > 0) {
+	if len(reasons) > 0 {
 		util.Panicf("language backend %s is incomplete or invalid: %s", b.Name, reasons)
 	}
 

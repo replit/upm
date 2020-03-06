@@ -216,12 +216,12 @@ var JavaBackend = api.LanguageBackend{
 			Name: string(name),
 		}
 	},
-	Add: addPackages,
+	Add:    addPackages,
 	Remove: removePackages,
 	Install: func() {
 		util.RunCmd([]string{"mvn", "dependency:copy-dependencies"})
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Lock: func() {},
+	Lock:         func() {},
 }
