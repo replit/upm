@@ -19,6 +19,28 @@ type Dependency struct {
 	Version    string   `xml:"version"`
 }
 
+type DynamicDependency struct {
+	XMLName        xml.Name `xml:"DynamicDependency"`
+	GroupId        string   `xml:"groupId"`
+	ArtifactId     string   `xml:"artifactId"`
+	Version        string   `xml:"version"`
+	Classifier     string   `xml:"classifier"`
+	RepositoryType string   `xml:"repositoryType"`
+}
+
+type PluginConfiguration struct {
+	XMLName             xml.Name            `xml:"configuration"`
+	DynamicDependencies []DynamicDependency `xml:"dynamicDependencies>DynamicDependency"`
+}
+
+type Plugin struct {
+	XMLName       xml.Name            `xml:"plugin"`
+	GroupId       string              `xml:"groupId"`
+	ArtifactId    string              `xml:"artifactId"`
+	Version       string              `xml:"version"`
+	Configuration PluginConfiguration `xml:"configuration"`
+}
+
 type Project struct {
 	XMLName      xml.Name     `xml:"project"`
 	ModelVersion string       `xml:"modelVersion"`
@@ -26,15 +48,43 @@ type Project struct {
 	ArtifactId   string       `xml:"artifactId"`
 	Version      string       `xml:"version"`
 	Dependencies []Dependency `xml:"dependencies>dependency"`
+	Plugins      []Plugin     `xml:"build>plugins>plugin"`
 }
 
-var emptyProject = Project{
-	ModelVersion: "4.0.0",
-	GroupId:      "mygroupid",
-	ArtifactId:   "myartifactid",
-	Version:      "0.0-SNAPSHOT",
-	Dependencies: []Dependency{},
-}
+const initialPomXml = `
+<project>
+<modelVersion>4.0.0</modelVersion>
+<groupId>mygroupid</groupId>
+<artifactId>myartifactid</artifactId>
+<version>0.0-SNAPSHOT</version>
+<build>
+<plugins>
+<plugin>
+    <groupId>de.qaware.maven</groupId>
+    <artifactId>go-offline-maven-plugin</artifactId>
+    <version>1.2.5</version>
+    <configuration>
+        <dynamicDependencies>
+            <DynamicDependency>
+                <groupId>org.apache.maven.surefire</groupId>
+                <artifactId>surefire-junit4</artifactId>
+                <version>2.20.1</version>
+                <repositoryType>PLUGIN</repositoryType>
+            </DynamicDependency>
+            <DynamicDependency>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-apt</artifactId>
+                <version>4.2.1</version>
+                <classifier>jpa</classifier>
+                <repositoryType>MAIN</repositoryType>
+            </DynamicDependency>
+        </dynamicDependencies>
+    </configuration>
+</plugin>
+</plugins>
+</build>
+</project>
+`
 
 var pkgNameRegexp = regexp.MustCompile("^([^:]+):([^:]+)") // groupid:artifactid
 
@@ -43,17 +93,19 @@ var javaPatterns = []string{"*.java"}
 
 func readProjectOrMakeEmpty(path string) Project {
 	var project Project
+	var xmlbytes []byte
 	if util.Exists("pom.xml") {
-		xmlbytes, err := ioutil.ReadFile("pom.xml")
+		var err error
+		xmlbytes, err = ioutil.ReadFile("pom.xml")
 		if err != nil {
 			util.Die("error reading pom.xml: %s", err)
 		}
-		err = xml.Unmarshal(xmlbytes, &project)
-		if err != nil {
-			util.Die("error unmarshalling pom.xml: %s", err)
-		}
 	} else {
-		project = emptyProject
+		xmlbytes = []byte(initialPomXml)
+	}
+	err := xml.Unmarshal(xmlbytes, &project)
+	if err != nil {
+		util.Die("error unmarshalling pom.xml: %s", err)
 	}
 	return project
 }
@@ -218,7 +270,11 @@ var JavaBackend = api.LanguageBackend{
 	Add:    addPackages,
 	Remove: removePackages,
 	Install: func() {
-		util.RunCmd([]string{"mvn", "dependency:copy-dependencies"})
+		util.RunCmd([]string{
+			"mvn",
+			"de.qaware.maven:go-offline-maven-plugin:resolve-dependencies",
+			"dependency:copy-dependencies",
+		})
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
