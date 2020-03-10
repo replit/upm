@@ -48,6 +48,7 @@ func DoCLI() {
 	var forceGuess bool
 	var all bool
 	var ignoredPackages []string
+	var ignoredPaths []string
 	var upgrade bool
 
 	cobra.EnableCommandSorting = false
@@ -69,7 +70,11 @@ func DoCLI() {
 	)
 	rootCmd.PersistentFlags().StringSliceVar(
 		&ignoredPackages, "ignored-packages", []string{},
-		"packages to ignore when guessing (comma-separated)",
+		"packages to ignore when guessing or adding (comma-separated)",
+	)
+	rootCmd.PersistentFlags().StringSliceVar(
+		&ignoredPaths, "ignored-paths", []string{},
+		"paths to ignore when guessing (comma-separated)",
 	)
 	rootCmd.PersistentFlags().BoolP(
 		"help", "h", false, "display command-line usage",
@@ -246,6 +251,7 @@ func DoCLI() {
 		Short: "Guess what packages are needed by your project",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
+			util.AddIngoredPaths(ignoredPaths)
 			runGuess(language, all, forceGuess, ignoredPackages)
 		},
 	}

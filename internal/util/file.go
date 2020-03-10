@@ -46,6 +46,11 @@ var IgnoredPaths = []string{
 	"venv",
 }
 
+// AddIngoredPaths globally appends to the IngoredPaths list.
+func AddIngoredPaths(paths []string) {
+	IgnoredPaths = append(IgnoredPaths, paths...)
+}
+
 // TryWriteAtomic tries to write contents to filename atomically,
 // retrying non-atomically if it can't. If both attempts fail,
 // TryWriteAtomic terminates the process.
