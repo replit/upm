@@ -171,6 +171,11 @@ async function commandLine(args) {
       continue;
     }
 
+    // Skip absolute modules.
+    if (module[0] === "/") {
+      continue;
+    }
+
     // Resolve "express/router" into just "express", but
     // "@types/express/router" into "@types/express".
     if (module[0] === "@") {
