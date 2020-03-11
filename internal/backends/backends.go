@@ -29,6 +29,7 @@ var languageBackends = []api.LanguageBackend{
 	elisp.ElispBackend,
 	dart.DartPubBackend,
 	java.JavaBackend,
+	java.JavaGradleBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for
