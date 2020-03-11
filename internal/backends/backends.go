@@ -28,7 +28,7 @@ var languageBackends = []api.LanguageBackend{
 	ruby.RubyBackend,
 	elisp.ElispBackend,
 	dart.DartPubBackend,
-	java.JavaBackend,
+	java.JavaMavenBackend,
 	java.JavaGradleBackend,
 }
 

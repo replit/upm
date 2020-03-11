@@ -1,4 +1,4 @@
-// Package java provides a backend for Java using maven.
+// Package nodejs provides backends for Java using Gradle and Maven.
 package java
 
 import (
@@ -11,6 +11,8 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+// Maven
 
 type Dependency struct {
 	XMLName    xml.Name `xml:"dependency"`
@@ -41,7 +43,7 @@ type Plugin struct {
 	Configuration PluginConfiguration `xml:"configuration"`
 }
 
-type Project struct {
+type MavenProject struct {
 	XMLName      xml.Name     `xml:"project"`
 	ModelVersion string       `xml:"modelVersion"`
 	GroupId      string       `xml:"groupId"`
@@ -51,7 +53,7 @@ type Project struct {
 	Plugins      []Plugin     `xml:"build>plugins>plugin"`
 }
 
-const initialPomXml = `
+const initialPom = `
 <project>
 <modelVersion>4.0.0</modelVersion>
 <groupId>mygroupid</groupId>
@@ -86,13 +88,11 @@ const initialPomXml = `
 </project>
 `
 
-var pkgNameRegexp = regexp.MustCompile("^([^:]+):([^:]+)") // groupid:artifactid
-
 // javaPatterns is the FilenamePatterns value for JavaBackend.
 var javaPatterns = []string{"*.java"}
 
-func readProjectOrMakeEmpty(path string) Project {
-	var project Project
+func readMavenProjectOrMakeEmpty(path string) MavenProject {
+	var project MavenProject
 	var xmlbytes []byte
 	if util.Exists("pom.xml") {
 		var err error
@@ -101,7 +101,7 @@ func readProjectOrMakeEmpty(path string) Project {
 			util.Die("error reading pom.xml: %s", err)
 		}
 	} else {
-		xmlbytes = []byte(initialPomXml)
+		xmlbytes = []byte(initialPom)
 	}
 	err := xml.Unmarshal(xmlbytes, &project)
 	if err != nil {
@@ -112,79 +112,98 @@ func readProjectOrMakeEmpty(path string) Project {
 
 const pomdotxml = "pom.xml"
 
-func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
-	project := readProjectOrMakeEmpty(pomdotxml)
-	existingDependencies := map[api.PkgName]api.PkgVersion{}
-	for _, dependency := range project.Dependencies {
+var pkgNameRegexp = regexp.MustCompile("^([^:]+):([^:]+)") // groupid:artifactid
+
+func pkgNameToGA(pkgName api.PkgName) (string, string) {
+	submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
+	if nil == submatches {
+		util.Die(
+			"package name %s does not match groupid:artifactid pattern",
+			pkgName,
+		)
+	}
+
+	groupId := submatches[1]
+	artifactId := submatches[2]
+	return groupId, artifactId
+}
+
+func lookupLatestVersion(groupId, artifactId string) string {
+	query := fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
+	searchDocs, err := Search(query)
+	if err != nil {
+		util.Die(
+			"error searching maven for latest version of %s:%s: %s",
+			groupId,
+			artifactId,
+			err,
+		)
+	}
+	if len(searchDocs) == 0 {
+		util.Die("did not find a package %s:%s", groupId, artifactId)
+	}
+	searchDoc := searchDocs[0]
+	return searchDoc.Version
+}
+
+func addPackages(
+	existingDependencies []Dependency,
+	pkgs map[api.PkgName]api.PkgSpec,
+) []Dependency {
+
+	existingPkgs := map[api.PkgName]api.PkgVersion{}
+	for _, dependency := range existingDependencies {
 		pkgName := api.PkgName(
 			fmt.Sprintf("%s:%s", dependency.GroupId, dependency.ArtifactId),
 		)
 		pkgVersion := api.PkgVersion(dependency.Version)
-		existingDependencies[pkgName] = pkgVersion
+		existingPkgs[pkgName] = pkgVersion
 	}
 
 	newDependencies := []Dependency{}
 	for pkgName, pkgSpec := range pkgs {
-		submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
-		if nil == submatches {
-			util.Die(
-				"package name %s does not match groupid:artifactid pattern",
-				pkgName,
-			)
-		}
-
-		groupId := submatches[1]
-		artifactId := submatches[2]
-		if _, ok := existingDependencies[pkgName]; ok {
+		groupId, artifactId := pkgNameToGA(pkgName)
+		if _, ok := existingPkgs[pkgName]; ok {
 			// this package is already in the lock file
 			continue
 		}
 
 		var versionString string
 		if pkgSpec == "" {
-			query := fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
-			searchDocs, err := Search(query)
-			if err != nil {
-				util.Die(
-					"error searching maven for latest version of %s:%s: %s",
-					groupId,
-					artifactId,
-					err,
-				)
-			}
-			if len(searchDocs) == 0 {
-				util.Die("did not find a package %s:%s", groupId, artifactId)
-			}
-			searchDoc := searchDocs[0]
-			versionString = searchDoc.Version
+			versionString = lookupLatestVersion(groupId, artifactId)
 		} else {
 			versionString = string(pkgSpec)
 		}
 		dependency := Dependency{
-			GroupId:    submatches[1],
-			ArtifactId: submatches[2],
+			GroupId:    groupId,
+			ArtifactId: artifactId,
 			Version:    versionString,
 		}
 		newDependencies = append(newDependencies, dependency)
 
 	}
 
-	project.Dependencies = append(project.Dependencies, newDependencies...)
+	return append(existingDependencies, newDependencies...)
+}
+
+func writeMavenProject(project MavenProject) {
 	marshalled, err := xml.MarshalIndent(project, "", "  ")
 	if err != nil {
 		util.Die("could not marshal pom: %s", err)
 	}
 
 	contentsB := []byte(marshalled)
-	util.ProgressMsg("write pom.xml")
-	util.TryWriteAtomic("pom.xml", contentsB)
+	util.ProgressMsg(fmt.Sprintf("write %s", pomdotxml))
+	util.TryWriteAtomic(pomdotxml, contentsB)
 }
 
-func removePackages(pkgs map[api.PkgName]bool) {
-	project := readProjectOrMakeEmpty(pomdotxml)
+func removePackages(
+	existingDependencies []Dependency,
+	pkgs map[api.PkgName]bool,
+) []Dependency {
 
 	dependenciesToKeep := []Dependency{}
-	for _, dependency := range project.Dependencies {
+	for _, dependency := range existingDependencies {
 		pkgName := api.PkgName(
 			fmt.Sprintf("%s:%s", dependency.GroupId, dependency.ArtifactId),
 		)
@@ -195,24 +214,12 @@ func removePackages(pkgs map[api.PkgName]bool) {
 		}
 	}
 
-	projectWithFilteredDependencies := project
-	projectWithFilteredDependencies.Dependencies = dependenciesToKeep
-
-	marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
-	if err != nil {
-		util.Die("error marshalling pom.xml: %s", err)
-	}
-	contentsB := []byte(marshalled)
-	util.ProgressMsg("write pom.xml")
-	util.TryWriteAtomic("pom.xml", contentsB)
-
-	os.RemoveAll("target/dependency")
+	return dependenciesToKeep
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
-	project := readProjectOrMakeEmpty(pomdotxml)
+func dependenciesToSpecs(dependencies []Dependency) map[api.PkgName]api.PkgSpec {
 	pkgs := map[api.PkgName]api.PkgSpec{}
-	for _, dependency := range project.Dependencies {
+	for _, dependency := range dependencies {
 		pkgName := api.PkgName(
 			fmt.Sprintf("%s:%s", dependency.GroupId, dependency.ArtifactId),
 		)
@@ -222,10 +229,9 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 	return pkgs
 }
 
-func listLockfile() map[api.PkgName]api.PkgVersion {
-	project := readProjectOrMakeEmpty(pomdotxml)
+func dependenciesToVersions(dependencies []Dependency) map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
-	for _, dependency := range project.Dependencies {
+	for _, dependency := range dependencies {
 		pkgName := api.PkgName(
 			fmt.Sprintf("%s:%s", dependency.GroupId, dependency.ArtifactId),
 		)
@@ -251,24 +257,34 @@ func search(query string) []api.PkgInfo {
 	return pkgInfos
 }
 
-// JavaBackend is the UPM language backend for Java using Maven.
-var JavaBackend = api.LanguageBackend{
+const mavenPackageDir = "target/dependency"
+
+var JavaMavenBackend = api.LanguageBackend{
 	Name:             "java-maven",
 	Specfile:         pomdotxml,
 	Lockfile:         pomdotxml,
 	FilenamePatterns: javaPatterns,
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
-	GetPackageDir: func() string {
-		return "target/dependency"
-	},
-	Search: search,
+	GetPackageDir:    func() string { return mavenPackageDir },
+	Search:           search,
 	Info: func(name api.PkgName) api.PkgInfo {
-		return api.PkgInfo{
-			Name: string(name),
-		}
+		return api.PkgInfo{Name: string(name)}
 	},
-	Add:    addPackages,
-	Remove: removePackages,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		project := readMavenProjectOrMakeEmpty(pomdotxml)
+		dependencies := addPackages(project.Dependencies, pkgs)
+		updatedProject := project
+		updatedProject.Dependencies = dependencies
+		writeMavenProject(updatedProject)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		project := readMavenProjectOrMakeEmpty(pomdotxml)
+		dependencies := removePackages(project.Dependencies, pkgs)
+		updatedProject := project
+		updatedProject.Dependencies = dependencies
+		writeMavenProject(updatedProject)
+		os.RemoveAll("target/dependency")
+	},
 	Install: func() {
 		util.RunCmd([]string{
 			"mvn",
@@ -276,7 +292,13 @@ var JavaBackend = api.LanguageBackend{
 			"dependency:copy-dependencies",
 		})
 	},
-	ListSpecfile: listSpecfile,
-	ListLockfile: listLockfile,
-	Lock:         func() {},
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		project := readMavenProjectOrMakeEmpty(pomdotxml)
+		return dependenciesToSpecs(project.Dependencies)
+	},
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		project := readMavenProjectOrMakeEmpty(pomdotxml)
+		return dependenciesToVersions(project.Dependencies)
+	},
+	Lock: func() {},
 }
