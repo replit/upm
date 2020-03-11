@@ -434,7 +434,7 @@ var JavaGradleBackend = api.LanguageBackend{
 		os.RemoveAll(gradlePackageDir)
 	},
 	Install: func() {
-		util.RunCmd([]string{"gradle", "-b", "upm.build.gradle", "copyDependencies"})
+		util.RunCmd([]string{"gradle", "--no-daemon", "-b", "upm.build.gradle", "copyDependencies"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		project := readGradleProjectOrMakeEmpty(buildDotGradle)
