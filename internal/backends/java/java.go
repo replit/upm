@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -339,7 +340,7 @@ func readGradleProjectOrMakeEmpty(path string) GradleProject {
 			util.Die("error reading %s: %s", path, err)
 		}
 	} else {
-		buildfilebytes = []byte(emptyBuildFile)
+		buildfilebytes = []byte(emptyBuildDotGradle)
 	}
 
 	dependencies := []Dependency{}
