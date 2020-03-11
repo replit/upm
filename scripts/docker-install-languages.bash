@@ -23,6 +23,7 @@ bsdmainutils
 curl
 emacs-nox
 git
+gradle
 jq
 maven
 nodejs
