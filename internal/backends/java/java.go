@@ -302,3 +302,146 @@ var JavaMavenBackend = api.LanguageBackend{
 	},
 	Lock: func() {},
 }
+
+const buildDotGradle = "upm.build.gradle"
+const gradlePackageDir = "upmdependencies"
+
+const emptyBuildDotGradle = `
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+task copyDependencies(type: Copy) {
+    from configurations.default
+    into 'upmdependencies'
+}
+`
+
+var gradleDependencyRegexp = regexp.MustCompile("implementation\\s+'[^']+'")
+
+type GradleProject struct {
+	Dependencies []Dependency
+}
+
+func readGradleProjectOrMakeEmpty(path string) GradleProject {
+	var buildfilebytes []byte
+	if util.Exists(path) {
+		var err error
+		buildfilebytes, err = ioutil.ReadFile(path)
+		if err != nil {
+			util.Die("error reading %s: %s", path, err)
+		}
+	} else {
+		buildfilebytes = []byte(emptyBuildFile)
+	}
+
+	dependencies := []Dependency{}
+	for _, gav := range gradleDependencyRegexp.FindAll(buildfilebytes, -1) {
+		submatches := pkgNameRegexp.FindStringSubmatch(string(gav))
+		if nil == submatches {
+			util.Die(
+				"package name %s does not match groupid:artifactid pattern",
+				gav,
+			)
+		}
+
+		groupId := submatches[1]
+		artifactId := submatches[2]
+		version := submatches[3]
+
+		dependency := Dependency{
+			GroupId:    groupId,
+			ArtifactId: artifactId,
+			Version:    version,
+		}
+
+		dependencies = append(dependencies, dependency)
+	}
+	return GradleProject{
+		Dependencies: dependencies,
+	}
+}
+
+const buildDotGradleTemplate = `
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+%s
+}
+
+task copyDependencies(type: Copy) {
+    from configurations.default
+    into 'upmdependencies'
+}
+`
+
+func writeGradleProject(project GradleProject) {
+	gavs := []string{}
+	for _, dependency := range project.Dependencies {
+		gav := fmt.Sprintf(
+			"    implementation '%s:%s:%s'",
+			dependency.GroupId,
+			dependency.ArtifactId,
+			dependency.Version,
+		)
+		gavs = append(gavs, gav)
+	}
+	marshalled := fmt.Sprintf(buildDotGradleTemplate, strings.Join(gavs, "\n"))
+
+	contentsB := []byte(marshalled)
+	util.ProgressMsg(fmt.Sprintf("write %s", buildDotGradle))
+	util.TryWriteAtomic(buildDotGradle, contentsB)
+}
+
+var JavaGradleBackend = api.LanguageBackend{
+	Name:             "java-gradle",
+	Specfile:         buildDotGradle,
+	Lockfile:         buildDotGradle,
+	FilenamePatterns: javaPatterns,
+	Quirks:           api.QuirksAddRemoveAlsoLocks,
+	GetPackageDir:    func() string { return gradlePackageDir },
+	Search:           search,
+	Info: func(name api.PkgName) api.PkgInfo {
+		return api.PkgInfo{Name: string(name)}
+	},
+	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		project := readGradleProjectOrMakeEmpty(buildDotGradle)
+		dependencies := addPackages(project.Dependencies, pkgs)
+		updatedProject := project
+		updatedProject.Dependencies = dependencies
+		writeGradleProject(updatedProject)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		project := readGradleProjectOrMakeEmpty(buildDotGradle)
+		dependencies := removePackages(project.Dependencies, pkgs)
+		updatedProject := project
+		updatedProject.Dependencies = dependencies
+		writeGradleProject(updatedProject)
+		os.RemoveAll(gradlePackageDir)
+	},
+	Install: func() {
+		util.RunCmd([]string{"gradle", "-b", "upm.build.gradle", "copyDependencies"})
+	},
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		project := readGradleProjectOrMakeEmpty(buildDotGradle)
+		return dependenciesToSpecs(project.Dependencies)
+	},
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		project := readGradleProjectOrMakeEmpty(buildDotGradle)
+		return dependenciesToVersions(project.Dependencies)
+	},
+	Lock: func() {},
+}
