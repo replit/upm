@@ -141,7 +141,12 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
 			continue
 		}
 
-		query := fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
+		var query string
+		if pkgSpec == "" {
+			query = fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
+		} else {
+			query = fmt.Sprintf("g:%s AND a:%s AND v:%s", groupId, artifactId, pkgSpec)
+		}
 		searchDocs, err := Search(query)
 		if err != nil {
 			util.Die(
@@ -152,7 +157,11 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
 			)
 		}
 		if len(searchDocs) == 0 {
-			util.Die("did not find a package %s:%s", groupId, artifactId)
+			if pkgSpec == "" {
+				util.Die("did not find a package %s:%s", groupId, artifactId)
+			} else {
+				util.Die("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
+			}
 		}
 		searchDoc := searchDocs[0]
 
