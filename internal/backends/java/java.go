@@ -13,10 +13,11 @@ import (
 )
 
 type Dependency struct {
-	XMLName    xml.Name `xml:"dependency"`
-	GroupId    string   `xml:"groupId"`
-	ArtifactId string   `xml:"artifactId"`
-	Version    string   `xml:"version"`
+	XMLName     xml.Name `xml:"dependency"`
+	GroupId     string   `xml:"groupId"`
+	ArtifactId  string   `xml:"artifactId"`
+	Version     string   `xml:"version"`
+	PackageType string   `xml:"type"`
 }
 
 type DynamicDependency struct {
@@ -140,30 +141,49 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
 			continue
 		}
 
+		var query string
+		if pkgSpec == "" {
+			query = fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
+		} else {
+			query = fmt.Sprintf("g:%s AND a:%s AND v:%s", groupId, artifactId, pkgSpec)
+		}
+		searchDocs, err := Search(query)
+		if err != nil {
+			util.Die(
+				"error searching maven for latest version of %s:%s: %s",
+				groupId,
+				artifactId,
+				err,
+			)
+		}
+		if len(searchDocs) == 0 {
+			if pkgSpec == "" {
+				util.Die("did not find a package %s:%s", groupId, artifactId)
+			} else {
+				util.Die("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
+			}
+		}
+		searchDoc := searchDocs[0]
+
 		var versionString string
 		if pkgSpec == "" {
-			query := fmt.Sprintf("g:%s AND a:%s", groupId, artifactId)
-			searchDocs, err := Search(query)
-			if err != nil {
-				util.Die(
-					"error searching maven for latest version of %s:%s: %s",
-					groupId,
-					artifactId,
-					err,
-				)
-			}
-			if len(searchDocs) == 0 {
-				util.Die("did not find a package %s:%s", groupId, artifactId)
-			}
-			searchDoc := searchDocs[0]
 			versionString = searchDoc.Version
 		} else {
 			versionString = string(pkgSpec)
 		}
+
+		var packageType string
+		if searchDoc.PackageType == "pom" {
+			packageType = "pom"
+		} else {
+			packageType = "jar"
+		}
+
 		dependency := Dependency{
-			GroupId:    submatches[1],
-			ArtifactId: submatches[2],
-			Version:    versionString,
+			GroupId:     submatches[1],
+			ArtifactId:  submatches[2],
+			Version:     versionString,
+			PackageType: packageType,
 		}
 		newDependencies = append(newDependencies, dependency)
 

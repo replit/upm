@@ -34,9 +34,10 @@ const (
 )
 
 type SearchDoc struct {
-	Group    string `json:"g"`
-	Artifact string `json:"a"`
-	Version  string `json:"latestVersion"`
+	Group       string `json:"g"`
+	Artifact    string `json:"a"`
+	Version     string `json:"latestVersion"`
+	PackageType string `json:"p"`
 }
 
 type SearchResult struct {
