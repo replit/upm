@@ -15,9 +15,7 @@ jobs:
       - setup_remote_docker
       - run: |
           git tag "circleci_pipeline<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
-          git tag -l
-          git remote -v
-          git push origin -u "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
+          git push -v origin "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
       - run: make light full
   build_test_and_deploy:
     docker:
