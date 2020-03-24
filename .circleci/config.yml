@@ -13,10 +13,8 @@ jobs:
           command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
       - run: |
-          git tag "tag_<< pipeline.number >>"
-          git tag -l
-          git remote -v
-          git push -v origin "tag_<< pipeline.number >>:tag_<< pipeline.number >>"
+          git tag "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
+          git push -v origin "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}:circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
       - setup_remote_docker
       - run: make light full
   build_test_and_deploy:
