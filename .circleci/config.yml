@@ -12,12 +12,12 @@ jobs:
           name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
           command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
+      - setup_remote_docker
       - run: |
           git tag "circleci_pipeline<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
           git tag -l
           git remote -v
           git push origin -u "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
-      - setup_remote_docker
       - run: make light full
   build_test_and_deploy:
     docker:
