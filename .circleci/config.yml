@@ -12,15 +12,19 @@ jobs:
           name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
           command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
-      - run: |
-          git tag "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
-          git push -v origin "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}:circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
       - setup_remote_docker
       - run: make light full
   build_test_and_deploy:
     docker:
       - image: docker:18.09
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "6d:ae:08:71:61:cc:a1:b7:c8:87:f2:a3:84:ca:db:ad"
+      - run: apk add --no-cache --no-progress make git openssh
+      - run:
+          name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
+          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
       - setup_remote_docker
       - run: >-
@@ -28,10 +32,20 @@ jobs:
             docker login --username "$DOCKER_USERNAME" --password-stdin
       - run: apk add --no-cache --no-progress make
       - run: make deploy
+      - run: |
+          git tag "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
+          git push -v origin "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}:circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
   release:
     docker:
       - image: ubuntu:19.04
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "6d:ae:08:71:61:cc:a1:b7:c8:87:f2:a3:84:ca:db:ad"
+      - run: apk add --no-cache --no-progress make git openssh
+      - run:
+          name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
+          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - checkout
       - run: |
           export DEBIAN_FRONTEND=noninteractive
