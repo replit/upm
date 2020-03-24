@@ -30,7 +30,6 @@ jobs:
       - run: >-
           echo "$DOCKER_PASSWORD" |
             docker login --username "$DOCKER_USERNAME" --password-stdin
-      - run: apk add --no-cache --no-progress make
       - run: make deploy
       - run: |
           git tag "circleci_pipeline_<< pipeline.number >>_build_${CIRCLE_BUILD_NUM}"
