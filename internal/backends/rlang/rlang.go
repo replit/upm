@@ -27,7 +27,7 @@ func updateLibPaths() {
 	rgo.Eval(`.libPaths("~/R/x86_64-pc-linux-gnu-library/3.4")`)
 }
 
-var Rlang = api.LanguageBackend {
+var RlangBackend = api.LanguageBackend {
 	Name: "rlang",
 	Specfile: "Rconfig.json",
 	Lockfile: "Rconfig.json.lock",
