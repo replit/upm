@@ -11,4 +11,5 @@ require (
 	github.com/spf13/cobra v0.0.5
 	golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9
 	gopkg.in/yaml.v2 v2.2.2
+	github.com/ALANVF/rgo v0.0.0-20200324171131-7f868d8e11f2
 )
