@@ -14,8 +14,8 @@ func getImports(imports string) []string {
 }
 
 func createRPkgDir() {
-	if _, err := os.Stat("~/R"); os.IsNotExist(err) {
-		if err := os.MkdirAll("~/R/x86_64-pc-linux-gnu-library/3.4", os.ModeDir); err != nil {
+	if _, err := os.Stat("./R"); os.IsNotExist(err) {
+		if err := os.MkdirAll("./R/x86_64-pc-linux-gnu-library/3.4", os.ModeDir); err != nil {
 			panic(err)
 		}
 	} else if err != nil {
@@ -24,7 +24,7 @@ func createRPkgDir() {
 }
 
 func updateLibPaths() {
-	rgo.Eval(`.libPaths("~/R/x86_64-pc-linux-gnu-library/3.4")`)
+	rgo.Eval(`.libPaths("./R/x86_64-pc-linux-gnu-library/3.4")`)
 }
 
 var RlangBackend = api.LanguageBackend {
