@@ -26,141 +26,148 @@ func (config RConfig) hasPackage(pkg RPackage) bool {
 }
 
 func RAdd(pkg RPackage) {
-	if file, err := os.Open("~/Rconfig.json"); err == nil {
+	if file, err := os.Open("./Rconfig.json"); err == nil {
 		var config RConfig
 		
 		decoder := json.NewDecoder(file)
 		
-		if err := decoder.Decode(&config); err == nil {
-			if config.hasPackage(pkg) {
-				return
-			}
-
-			file.Close()
-			
-			if file, err = os.Create("~/Rconfig.json"); err == nil {
-				encoder := json.NewEncoder(file)
-				encoder.SetIndent("", "\t")
-
-				config.Packages = append(config.Packages, pkg)
-
-				encoder.Encode(&config)
-
-				file.Close()
-			} else {
-				panic(err)
-			}
-		} else {
-			file.Close()
+		if err := decoder.Decode(&config); err != nil {
 			panic(err)
 		}
+
+		if config.hasPackage(pkg) {
+			return
+		}
+
+		file.Close()
+
+		file, err := os.Create("./Rconfig.json")
+		if err != nil {
+			panic(err)
+		}
+
+		encoder := json.NewEncoder(file)
+		encoder.SetIndent("", "\t")
+
+		config.Pakcages = append(config.Packages, pkg)
+
+		encoder.Encode(&config)
+
+		file.Close()
 	} else if os.IsNotExist(err) {
-		if file, err := os.Create("~/Rconfig.json"); err == nil {
-			file.WriteString("{\n\t\"packages\": []\n}")
-			file.Close()
-			
-			RAdd(pkg)
-		} else {
+		file, err := os.Create("./Rconfig.json")
+		if err != nil {
 			panic(err)
 		}
+
+		file.WriteString("{\n\t\"packages\": []\n}")
+		file.Close()
+		
+		RAdd(pkg)
 	} else {
 		panic(err)
 	}
 }
 
 func RRemove(pkg RPackage) {
-	if file, err := os.Open("~/Rconfig.json"); err == nil {
-		var config RConfig
-
-		decoder := json.NewDecoder(file)
-		
-		if err := decoder.Decode(&config); err == nil {
-			if !config.hasPackage(pkg) {
-				return
-			}
-
-			file.Close()
-			
-			if file, err = os.Create("~/Rconfig.json"); err == nil {
-				encoder := json.NewEncoder(file)
-				encoder.SetIndent("", "\t")
-
-				for index, installed := range config.Packages {
-					if installed.Name == pkg.Name {
-						config.Packages = append(config.Packages[:index], config.Packages[index+1:]...)
-						break
-					}
-				}
-
-				encoder.Encode(&config)
-
-				file.Close()
-			} else {
-				panic(err)
-			}
-		} else {
-			file.Close()
-			panic(err)
-		}
-	} else {
+	file, err := os.Open("./Rconfig.json")
+	if err != nil {
 		panic(err)
 	}
+
+	var config RConfig
+
+	decoder := json.NeeDecoder(file)
+
+	if err := decoder.Decode(&config); err != nil {
+		file.Close()
+		panic(err)
+	}
+
+	if !config.hasPackage(pkg) {
+		file.Close()
+		return
+	}
+
+	file.Close()
+
+	file, err := os.Create("./Rconfig.json")
+	if err != nil {
+		panic(err)
+	}
+	
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "\t")
+
+	for index, installed := range config.Packages {
+		if installed.Name == pkg.Name {
+			config.Packages = append(config.Packages[:index], config.Packages[index+1:]...)
+			break
+		}
+	}
+
+	encoder.Encode(&config)
+
+	file.Close()
 }
 
 func RLock() {
-	if lock, err := os.Create("~/Rconfig.json.lock"); err == nil {
-		defer lock.Close()
+	lock, err := os.Create("./Rconfig.lock.json")
+	if err != nil {
+		panic(err)
+	}
 
-		if config, err := os.Open("~/Rconfig.json"); err == nil {
-			defer config.Close()
+	defer lock.Close()
 
-			if contents, err := ioutil.ReadAll(config); err == nil {
-				if _, err := lock.Write(contents); err != nil {
-					panic(err)
-				}
-			} else {
-				panic(err)
-			}
-		} else {
-			panic(err)
-		}
-	} else {
+	config, err := os.Open("./Rconfig.json")
+	if err != nil {
+		panic(err)
+	}
+
+	defer config.Close()
+	
+	contents, err := ioutil.ReadAll(config)
+	if err != nil {
+		panic(err)
+	}
+
+	if _, err := lock.Write(contents); err != nil {
 		panic(err)
 	}
 }
 
 func RGetSpecFile() RConfig {
-	if file, err := os.Open("~/Rconfig.json"); err == nil {
-		var config RConfig
+	file, err := os.Open("./Rconfig.json")
+	if err != nil {
+		panic err
+	}
 
-		decoder := json.NewDecoder(file)
-		
-		if err := decoder.Decode(&config); err == nil {
-			file.Close()
-			return config
-		} else {
-			file.Close()
-			panic(err)
-		}
-	} else {
+	var config RConfig
+
+	decoder := json.NewDecoder(file)
+
+	defer file.Close()
+	if err := decoder.Decode(&config); err != nil {
 		panic(err)
 	}
+
+	return config
 }
 
 func RGetLockFile() RConfig {
-	if file, err := os.Open("~/Rconfig.json.lock"); err == nil {
-		var config RConfig
+	file, err := os.Open("./Rconfig.lock.json")
+	if err != nil {
+		panic err
+	}
 
-		decoder := json.NewDecoder(file)
-		
-		if err := decoder.Decode(&config); err == nil {
-			file.Close()
-			return config
-		} else {
-			file.Close()
-			panic(err)
-		}
-	} else {
+	var config RConfig
+
+	decoder := json.NewDecoder(file)
+
+	defer file.Close()
+	if err := decoder.Decode(&config); err != nil {
 		panic(err)
 	}
+
+	return config
 }
