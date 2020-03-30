@@ -11,6 +11,7 @@ gcc
 git
 make
 wget
+r-base-dev
 
 "
 
