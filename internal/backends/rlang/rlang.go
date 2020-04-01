@@ -1,7 +1,6 @@
 package rlang
 
 import (
-	"fmt"
 	"regexp"
 	"github.com/ALANVF/rgo"
 	
