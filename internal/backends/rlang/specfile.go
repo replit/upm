@@ -139,7 +139,7 @@ func RLock() {
 func RGetSpecFile() RConfig {
 	file, err := os.Open("./Rconfig.json")
 	if err != nil {
-		panic err
+		panic(err)
 	}
 
 	var config RConfig
@@ -157,7 +157,7 @@ func RGetSpecFile() RConfig {
 func RGetLockFile() RConfig {
 	file, err := os.Open("./Rconfig.lock.json")
 	if err != nil {
-		panic err
+		panic(err)
 	}
 
 	var config RConfig
