@@ -31,7 +31,7 @@ func RAdd(pkg RPackage) {
 		
 		decoder := json.NewDecoder(file)
 		
-		if err := decoder.Decode(&config); err != nil {
+		if err = decoder.Decode(&config); err != nil {
 			panic(err)
 		}
 
@@ -41,7 +41,7 @@ func RAdd(pkg RPackage) {
 
 		file.Close()
 
-		file, err := os.Create("./Rconfig.json")
+		file, err = os.Create("./Rconfig.json")
 		if err != nil {
 			panic(err)
 		}
@@ -49,7 +49,7 @@ func RAdd(pkg RPackage) {
 		encoder := json.NewEncoder(file)
 		encoder.SetIndent("", "\t")
 
-		config.Pakcages = append(config.Packages, pkg)
+		config.Packages = append(config.Packages, pkg)
 
 		encoder.Encode(&config)
 
@@ -77,9 +77,9 @@ func RRemove(pkg RPackage) {
 
 	var config RConfig
 
-	decoder := json.NeeDecoder(file)
+	decoder := json.NewDecoder(file)
 
-	if err := decoder.Decode(&config); err != nil {
+	if err = decoder.Decode(&config); err != nil {
 		file.Close()
 		panic(err)
 	}
@@ -91,7 +91,7 @@ func RRemove(pkg RPackage) {
 
 	file.Close()
 
-	file, err := os.Create("./Rconfig.json")
+	file, err = os.Create("./Rconfig.json")
 	if err != nil {
 		panic(err)
 	}
@@ -147,7 +147,7 @@ func RGetSpecFile() RConfig {
 	decoder := json.NewDecoder(file)
 
 	defer file.Close()
-	if err := decoder.Decode(&config); err != nil {
+	if err = decoder.Decode(&config); err != nil {
 		panic(err)
 	}
 
@@ -165,7 +165,7 @@ func RGetLockFile() RConfig {
 	decoder := json.NewDecoder(file)
 
 	defer file.Close()
-	if err := decoder.Decode(&config); err != nil {
+	if err = decoder.Decode(&config); err != nil {
 		panic(err)
 	}
 
