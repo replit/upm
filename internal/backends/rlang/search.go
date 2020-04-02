@@ -39,10 +39,10 @@ type CranHitSource struct {
 }
 
 type CranHit struct {
-	Index string         `json:"_index"`
-	Type  string         `json:"_type"`
-	Id    string         `json:"_id"`
-	Score float32        `json:"_score"`
+	Index  string        `json:"_index"`
+	Type   string        `json:"_type"`
+	Id     string        `json:"_id"`
+	Score  float32       `json:"_score"`
 	Source CranHitSource `json:"_source"`
 }
 
@@ -74,7 +74,7 @@ func searchPackages(name string, size int) CranResponse {
 		
 		decoder := json.NewDecoder(req.Body)
 		
-		if err := decoder.Decode(&res); err == nil {
+		if err = decoder.Decode(&res); err == nil {
 			return res
 		} else {
 			panic(err)
