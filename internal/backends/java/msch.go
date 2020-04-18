@@ -25,8 +25,11 @@ package java
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 const (
@@ -34,10 +37,11 @@ const (
 )
 
 type SearchDoc struct {
-	Group       string `json:"g"`
-	Artifact    string `json:"a"`
-	Version     string `json:"latestVersion"`
-	PackageType string `json:"p"`
+	Group          string `json:"g"`
+	Artifact       string `json:"a"`
+	Version        string `json:"latestVersion"`
+	PackageType    string `json:"p"`
+	CurrentVersion string `json:"v"`
 }
 
 type SearchResult struct {
@@ -46,18 +50,45 @@ type SearchResult struct {
 	} `json:"response"`
 }
 
-func Search(keyword string) ([]SearchDoc, error) {
-	searchUrl := mavenURL + url.QueryEscape(keyword)
-	res, err := http.Get(searchUrl)
+func mavenSearch(searchURL string) ([]SearchDoc, error) {
+	res, err := http.Get(searchURL)
 	if err != nil {
 		return []SearchDoc{}, err
 	}
 	defer res.Body.Close()
-	decoder := json.NewDecoder(res.Body)
-	var searchResult SearchResult
-	err = decoder.Decode(&searchResult)
+
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
+		fmt.Printf("Could not read response\n")
 		return []SearchDoc{}, err
 	}
+
+	var searchResult SearchResult
+	if err := json.Unmarshal(body, &searchResult); err != nil {
+		fmt.Printf("Failed to decode response %q\n", body)
+		return []SearchDoc{}, err
+	}
+
 	return searchResult.Response.Docs, nil
+}
+
+func Search(keyword string) ([]SearchDoc, error) {
+	searchURL := mavenURL + url.QueryEscape(keyword)
+
+	return mavenSearch(searchURL)
+}
+
+func Info(name string) (SearchDoc, error) {
+	parts := strings.Split(string(name), ":")
+	searchURL := fmt.Sprintf("%sg:%%22%s%%22+AND+a:%%22%s%%22&core=gav", mavenURL, parts[0], parts[1])
+
+	docs, err := mavenSearch(searchURL)
+
+	if err != nil {
+		return SearchDoc{}, err
+	}
+
+	latest := docs[0]
+
+	return latest, nil
 }
