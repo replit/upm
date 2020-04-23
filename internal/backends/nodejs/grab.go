@@ -5,7 +5,7 @@ import (
 	"github.com/amasad/esparse/logging"
 	"github.com/amasad/esparse/parser"
 	"github.com/replit/upm/internal/api"
-  "github.com/replit/upm/internal/util"
+	"github.com/replit/upm/internal/util"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -95,12 +95,12 @@ func guessBareImports() map[api.PkgName]bool {
 	var visitDir func(dirName string)
 
 	visitDir = func(dirName string) {
-    for _, ignoredPath := range util.IgnoredPaths {
-      if ignoredPath == filepath.Base(dirName) {
-        return
-      }
-    }
-    
+		for _, ignoredPath := range util.IgnoredPaths {
+			if ignoredPath == filepath.Base(dirName) {
+				return
+			}
+		}
+
 		files, err := ioutil.ReadDir(dirName)
 		if err != nil {
 			log.Fatalln(err)
