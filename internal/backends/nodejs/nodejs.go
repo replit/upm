@@ -237,7 +237,7 @@ var nodejsGuessRegexps = util.Regexps([]string{
 func nodejsGuess() (map[api.PkgName]bool, bool) {
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
-  pkgs := guessBareImports()
+	pkgs := guessBareImports()
 
 	return pkgs, true
 }
