@@ -91,7 +91,7 @@ func parseFile(source logging.Source, results chan parseResult) {
 func guessBareImports() map[api.PkgName]bool {
 	pkgs := map[api.PkgName]bool{}
 	results := make(chan parseResult)
-	remaining := 0
+	numParsedFiles := 0
 	var visitDir func(dirName string)
 
 	visitDir = func(dirName string) {
@@ -132,7 +132,7 @@ func guessBareImports() map[api.PkgName]bool {
 				PrettyPath:   absPath,
 				Contents:     string(contents),
 			}
-			remaining++
+			numParsedFiles++
 			go parseFile(source, results)
 		}
 
@@ -145,18 +145,23 @@ func guessBareImports() map[api.PkgName]bool {
 
 	visitDir(dir)
 
-	for remaining > 0 {
+	for i := 0; i < numParsedFiles; i++ {
 		result := <-results
 		if !result.ok {
 			continue
 		}
-	outer:
+
 		for _, importPath := range result.ast.ImportPaths {
 			mod := importPath.Path.Text
+			isInternalMod := false
 			for _, internal := range internalModules {
 				if internal == mod {
-					continue outer
+					isInternalMod = true
+					break
 				}
+			}
+			if isInternalMod {
+				continue
 			}
 
 			if mod[0] == '.' {
@@ -175,7 +180,6 @@ func guessBareImports() map[api.PkgName]bool {
 
 			pkgs[api.PkgName(mod)] = true
 		}
-		remaining--
 	}
 
 	return pkgs
