@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/BurntSushi/toml v0.3.1
+	github.com/amasad/esparse v0.0.0-20200423043217-e2a08a964677
 	github.com/hashicorp/go-version v1.2.0
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
 	github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc

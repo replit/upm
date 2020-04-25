@@ -8,7 +8,6 @@ import (
 	"net/url"
 	"os"
 	"regexp"
-	"strings"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -238,27 +237,9 @@ var nodejsGuessRegexps = util.Regexps([]string{
 func nodejsGuess() (map[api.PkgName]bool, bool) {
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
+	pkgs := guessBareImports()
 
-	util.WriteResource("/nodejs/babel-parser.js", tempdir)
-	script := util.WriteResource("/nodejs/bare-imports.js", tempdir)
-
-	outputB := util.GetCmdOutput([]string{
-		"node", script, ".", strings.Join(util.IgnoredPaths, ","),
-	})
-	var output struct {
-		Modules []string `json:"modules"`
-		Success bool     `json:"success"`
-	}
-	if err := json.Unmarshal(outputB, &output); err != nil {
-		util.Die("node: %s", err)
-	}
-
-	pkgs := map[api.PkgName]bool{}
-	for _, module := range output.Modules {
-		pkgs[api.PkgName(module)] = true
-	}
-
-	return pkgs, output.Success
+	return pkgs, true
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.

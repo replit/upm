@@ -1,4 +1,4 @@
-FROM ubuntu:19.04 AS dev
+FROM ubuntu:18.04 AS dev
 
 COPY scripts/docker-install-build.bash /tmp/
 RUN /tmp/docker-install-build.bash
