@@ -80,7 +80,13 @@ func Search(keyword string) ([]SearchDoc, error) {
 
 func Info(name string) (SearchDoc, error) {
 	parts := strings.Split(string(name), ":")
-	searchURL := fmt.Sprintf("%sg:%%22%s%%22+AND+a:%%22%s%%22&core=gav", mavenURL, parts[0], parts[1])
+
+	var searchURL string
+	if len(parts) >= 2 {
+		searchURL = fmt.Sprintf("%sg:%%22%s%%22+AND+a:%%22%s%%22&core=gav", mavenURL, parts[0], parts[1])
+	} else {
+		searchURL = fmt.Sprintf("%sa:%%22%s%%22&core=gav", mavenURL, parts[0])
+	}
 
 	docs, err := mavenSearch(searchURL)
 
@@ -88,7 +94,10 @@ func Info(name string) (SearchDoc, error) {
 		return SearchDoc{}, err
 	}
 
-	latest := docs[0]
+	var latest = SearchDoc{}
+	if len(docs) > 0 {
+		latest = docs[0]
+	}
 
 	return latest, nil
 }

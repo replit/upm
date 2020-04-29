@@ -28,7 +28,7 @@ func TestSearchMavenCentral(t *testing.T) {
 
 func TestInfoMavenCentral(t *testing.T) {
 	pkg := "org.apache.logging.log4j:log4j-core"
-	info, err := Info("org.apache.logging.log4j:log4j-core")
+	info, err := Info(pkg)
 
 	if err != nil {
 		t.Errorf("Failed to find package with \n%q\n", err)
@@ -36,5 +36,31 @@ func TestInfoMavenCentral(t *testing.T) {
 
 	if info.CurrentVersion == "" {
 		t.Errorf("Did not find info for %q", pkg)
+	}
+}
+
+func TestInfoWithArtifactNameOnly(t *testing.T) {
+	artifact := "log4j-core"
+	info, err := Info(artifact)
+
+	if err != nil {
+		t.Errorf("Failed to find package with \n%q\n", err)
+	}
+
+	if info.CurrentVersion == "" {
+		t.Errorf("Did not find infor for %q", artifact)
+	}
+}
+
+func TestInfoWithUnknownArtifact(t *testing.T) {
+	artifact := "yyy"
+	info, err := Info(artifact)
+
+	if err != nil {
+		t.Errorf("Failed to find package with \n%q\n", err)
+	}
+
+	if &info == nil {
+		t.Error("Got nil instead of zero record")
 	}
 }

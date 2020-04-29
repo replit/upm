@@ -277,6 +277,11 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	if err != nil {
 		util.Die("error searching maven %s", err)
 	}
+
+	if searchDoc.Artifact == "" {
+		return api.PkgInfo{}
+	}
+
 	pkgInfo := api.PkgInfo{
 		Name:    fmt.Sprintf("%s:%s", searchDoc.Group, searchDoc.Artifact),
 		Version: searchDoc.CurrentVersion,
