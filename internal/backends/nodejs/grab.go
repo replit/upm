@@ -164,9 +164,27 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
+			// Skip empty imports
+			if mod == "" {
+				continue
+			}
+
+			// Skip absolute imports
+			if mod[0] == '/' {
+				continue
+			}
+
+			// Skip relative imports
 			if mod[0] == '.' {
 				continue
 			}
+
+			// Skip script loaders
+			if strings.Contains(mod, "!") {
+				continue
+			}
+
+			// Handle scoped modules
 			if mod[0] == '@' {
 				parts := strings.Split(mod, "/")
 				if len(parts) < 2 {
