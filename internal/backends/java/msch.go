@@ -83,9 +83,9 @@ func Info(name string) (SearchDoc, error) {
 
 	var searchURL string
 	if len(parts) >= 2 {
-		searchURL = fmt.Sprintf("%sg:%%22%s%%22+AND+a:%%22%s%%22&core=gav", mavenURL, parts[0], parts[1])
+		searchURL = fmt.Sprintf("%sg:%s+AND+a:%s&core=gav", mavenURL, url.QueryEscape(fmt.Sprintf("%q", parts[0])), url.QueryEscape(fmt.Sprintf("%q", parts[1])))
 	} else {
-		searchURL = fmt.Sprintf("%sa:%%22%s%%22&core=gav", mavenURL, parts[0])
+		searchURL = fmt.Sprintf("%sa:%s&core=gav", mavenURL, url.QueryEscape(fmt.Sprintf("%q", parts[0])))
 	}
 
 	docs, err := mavenSearch(searchURL)
