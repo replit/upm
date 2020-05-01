@@ -271,6 +271,24 @@ func search(query string) []api.PkgInfo {
 	return pkgInfos
 }
 
+func info(pkgName api.PkgName) api.PkgInfo {
+	searchDoc, err := Info(string(pkgName))
+
+	if err != nil {
+		util.Die("error searching maven %s", err)
+	}
+
+	if searchDoc.Artifact == "" {
+		return api.PkgInfo{}
+	}
+
+	pkgInfo := api.PkgInfo{
+		Name:    fmt.Sprintf("%s:%s", searchDoc.Group, searchDoc.Artifact),
+		Version: searchDoc.CurrentVersion,
+	}
+	return pkgInfo
+}
+
 // JavaBackend is the UPM language backend for Java using Maven.
 var JavaBackend = api.LanguageBackend{
 	Name:             "java-maven",
@@ -282,11 +300,7 @@ var JavaBackend = api.LanguageBackend{
 		return "target/dependency"
 	},
 	Search: search,
-	Info: func(name api.PkgName) api.PkgInfo {
-		return api.PkgInfo{
-			Name: string(name),
-		}
-	},
+	Info:   info,
 	Add:    addPackages,
 	Remove: removePackages,
 	Install: func() {
