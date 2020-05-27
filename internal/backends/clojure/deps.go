@@ -16,15 +16,29 @@ type JavaPackage struct {
 	Artifact string
 }
 
-func formatJavaPackage(pkg JavaPackage) string {
+func (pkg JavaPackage) toString() string {
 	return pkg.Group + "/" + pkg.Artifact
 }
 
-type Pkg struct {
-	JarName     string `json:"jar_name"`
-	GroupName   string `json:"group_name"`
-	Version     string `json:"version"`
-	Description string `json:"description"`
+func (self JavaPackage) fromString(s string) error {
+	parts := strings.Split(string(name), "/")
+	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
+		return errors.New("Package name: " + s + " is not of the form <group id>/<artifact id>")
+	}
+	self.Group = parts[0]
+	self.Artifact = parts[1]
+	return nil
+}
+
+type MPkgInfo struct {
+	Id            JavaPackage
+	LatestVersion string
+	Versions      []string
+	Description   string
+	Homepage      string
+	ScmUrl        string
+	IssuesUrl     string
+	Author        string
 }
 
 type ClojarsSearchOp struct {
@@ -45,43 +59,64 @@ type ClojarsFetchOp struct {
 	User string `json:"user"`
 }
 
-func GetPackageInfoClojars(pkg JavaPackage) (api.PkgInfo, error) {
-	res, err := http.Get("https://clojars.org/api/artifacts/" + formatJavaPackage(pkg))
+func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
+	res, err := http.Get("https://clojars.org/api/artifacts/" + pkg.toString())
 	if err != nil {
-		return api.PkgInfo{}, err
+		return MPkgInfo{}, err
 	}
 	bs, err := ioutil.ReadAll(res.Body)
 	var pinfo ClojarsFetchOp
 	err = json.Unmarshal(bs, &pinfo)
+	return MPkgInfo {
+		Id: JavaPackage{
+			pinfo.GroupName,
+			pinfo.JarName,
+		},
+		Description: pinfo.Description,
+		LatestVersion: pinfo.Version,
+		Homepage: pinfo.Homepage,
+		Author: pinfo.User,
+	}, nil
+}
+
+func GetMPackageInfoMaven(pkg JavaPackage) (MPkgInfo, error) {
+	return MPkgInfo{}, errors.New("unimplemented")
+}
+
+func GetMPackageInfo(pkg JavaPackage) (MPkgInfo, error) {
+	cinfo, err := GetMPackageInfoClojars(pkg)
+	if err == nil {
+		return cinfo, nil
+	} else {
+		minfo, err := GetMPackageInfoMaven(pkg)
+		if err == nil {
+			return minfo, nil
+		}
+		return MPkgInfo{}, errors.New("Couldn't fetch info for package: " + pkg.toString() + " from any sources")
+	}
+}
+
+func GenPkgInfo(pinfo MPkgInfo) api.PkgInfo {
 	return api.PkgInfo{
-		Name:             pinfo.GroupName + "/" + pinfo.JarName,
+		Name:             pinfo.Id.Group + "/" + pinfo.Id.Artifact,
 		Description:      pinfo.Description,
-		Version:          pinfo.Version,
+		Version:          pinfo.LatestVersion,
 		HomepageURL:      pinfo.Homepage,
 		DocumentationURL: "",
 		SourceCodeURL:    "",
 		BugTrackerURL:    "",
-		Author:           pinfo.User,
+		Author:           pinfo.Author,
 		License:          "",
 		Dependencies:     nil,
-	}, err
-}
-
-func GetPackageInfoMaven(pkg JavaPackage) (api.PkgInfo, error) {
-	return api.PkgInfo{}, errors.New("unimplemented")
+	}
 }
 
 func GetPackageInfo(pkg JavaPackage) (api.PkgInfo, error) {
-	pinfo, err := GetPackageInfoClojars(pkg)
-	if err == nil {
-		return pinfo, nil
-	} else {
-		pinfo, err = GetPackageInfoMaven(pkg)
+	pinfo, err := GetMPackageInfo(pkg)
+	if err != nil {
+		return api.PkgInfo{}, err
 	}
-	if err == nil {
-		return pinfo, nil
-	}
-	return api.PkgInfo{}, errors.New("Couldn't fetch info for package: " + formatJavaPackage(pkg) + " from any sources")
+	return GenPkgInfo(pinfo), nil
 }
 
 func findPackagesClojars(name string) ([]api.PkgInfo, error) {
@@ -99,14 +134,14 @@ func findPackagesClojars(name string) ([]api.PkgInfo, error) {
 
 	fres := []api.PkgInfo{}
 	for _, p := range resp.Results {
-		pinfo, err := GetPackageInfoClojars(JavaPackage{
+		pinfo, err := GetMPackageInfoClojars(JavaPackage{
 			Artifact: p.JarName,
 			Group:    p.GroupName,
 		})
 		if err != nil {
 			panic(err)
 		}
-		fres = append(fres, pinfo)
+		fres = append(fres, GenPkgInfo(pinfo))
 	}
 
 	return fres, nil
@@ -155,7 +190,7 @@ var DepsBackend = api.LanguageBackend{
 	Lockfile:             "trace.edn",
 	FilenamePatterns:     []string{"*.clj", "*.cljc"},
 	Quirks:               api.QuirksNotReproducible,
-	//NormalizePackageName: normalize,
+	NormalizePackageName: normalize,
 	GetPackageDir: func() string {
 		return "."
 	},
@@ -166,6 +201,15 @@ var DepsBackend = api.LanguageBackend{
 	Install:      install,
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
+}
+
+func normalize(name api.PkgName) api.PkgName {
+	parts := strings.Split(string(name), "/")
+	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
+		fmt.Println("Package name must be of the form <group id>/<artifact id>")
+		os.Exit(1)
+	}
+	return name
 }
 
 func listLockfile() map[api.PkgName]api.PkgVersion {
@@ -184,6 +228,37 @@ func removePackages(m map[api.PkgName]bool) {
 
 }
 
-func addPackages(m map[api.PkgName]api.PkgSpec) {
+type DepsFormat struct {
+	Deps map[string] map[string]string `edn:"deps"`
+}
 
+func addPackages(m map[api.PkgName]api.PkgSpec) {
+	var pkg JavaPackage
+	for name, spec := range m {
+		err := pkg.fromString(string(name))
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+		mPkgInfo, err := GetMPackageInfo(pkg)
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+		version := string(spec)
+		if version == "" {
+			m[name] = api.PkgSpec(mPkgInfo.LatestVersion)
+		} else {
+			versionValid := false
+			for _, v := range mPkgInfo.Versions {
+				if v == version {
+					versionValid = true
+				}
+			}
+			if ! versionValid {
+				fmt.Println("No artifact with version: \"" + string(spec) + "\" found for package: \"" + string(name) + "\"")
+				os.Exit(1)
+			}
+		}
+	}
 }
