@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/backends/clojure"
 	"github.com/replit/upm/internal/backends/dart"
 	"github.com/replit/upm/internal/backends/elisp"
 	"github.com/replit/upm/internal/backends/java"
@@ -29,6 +30,7 @@ var languageBackends = []api.LanguageBackend{
 	elisp.ElispBackend,
 	dart.DartPubBackend,
 	java.JavaBackend,
+	clojure.DepsBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for
