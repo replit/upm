@@ -23,6 +23,11 @@ func (pkg JavaPackage) toString() string {
 
 func (self *JavaPackage) FromString(s string) error {
 	parts := strings.Split(s, "/")
+	if len(parts) == 1 && len(s) != 0 {
+		self.Artifact = s
+		self.Group = s
+		return nil
+	}
 	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
 		return errors.New("Package name: " + s + " is not of the form <group id>/<artifact id>")
 	}
@@ -365,7 +370,27 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 }
 
 func listLockfile() map[api.PkgName]api.PkgVersion {
-	return map[api.PkgName]api.PkgVersion{}
+	traceEdn := struct {
+		Log []struct {
+			Lib edn.Symbol `edn:"lib"`
+			UsedVersion struct {
+				Version string `edn:"mvn/version"`
+			} `edn:"use-coord"`
+		} `edn:"log"`
+	} {}
+	bs, err := ioutil.ReadFile("trace.edn")
+	if err != nil {
+		util.Die("Error while reading trace.edn", err)
+	}
+	err = edn.Unmarshal(bs, &traceEdn)
+
+	res := map[api.PkgName]api.PkgVersion{}
+
+	for _, entry := range traceEdn.Log {
+		res[api.PkgName(string(entry.Lib))] = api.PkgVersion(entry.UsedVersion.Version)
+	}
+
+	return res
 }
 
 func install() {
