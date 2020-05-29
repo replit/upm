@@ -5,8 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/util"
 	"io/ioutil"
 	"net/http"
+	"olympos.io/encoding/edn"
 	"os"
 	"strings"
 )
@@ -20,8 +22,8 @@ func (pkg JavaPackage) toString() string {
 	return pkg.Group + "/" + pkg.Artifact
 }
 
-func (self JavaPackage) fromString(s string) error {
-	parts := strings.Split(string(name), "/")
+func (self *JavaPackage) FromString(s string) error {
+	parts := strings.Split(s, "/")
 	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
 		return errors.New("Package name: " + s + " is not of the form <group id>/<artifact id>")
 	}
@@ -212,35 +214,91 @@ func normalize(name api.PkgName) api.PkgName {
 	return name
 }
 
-func listLockfile() map[api.PkgName]api.PkgVersion {
-	return map[api.PkgName]api.PkgVersion{}
+var DefaultEdn = map[edn.Keyword]interface{} {
+	edn.Keyword("deps"): map[string]string{},
+	edn.Keyword("aliases"): map[edn.Keyword]interface{} {
+		edn.Keyword("main"): map[edn.Keyword]interface{} {
+			edn.Keyword("main-opts"): []string { "-m", "main" },
+		},
+	},
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
-	return map[api.PkgName]api.PkgSpec{}
+var DefaultMainClj = `
+(ns main)
+
+(defn -main [& args]
+  (println "Hello, upm!"))
+`
+
+func InitProject() {
+	bs, err := edn.MarshalIndent(DefaultEdn, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	ioutil.WriteFile("deps.edn", bs, 0644)
+
+	os.Mkdir("src", 0755)
+
+	if _, err := os.Stat("src/main.clj"); err == nil {
+		fmt.Println("NOTE: src/main.clj already exists, skipping generating the main function, you'll have to set it up yourself")
+	} else {
+		ioutil.WriteFile("src/main.clj", []byte(DefaultMainClj), 0644)
+	}
 }
 
-func install() {
-
+func ReadDeps() map[edn.Keyword]interface{} {
+	if _, err := os.Stat("deps.edn"); err != nil {
+		InitProject()
+	}
+	var pedn map[edn.Keyword]interface{}
+	if bs, err := ioutil.ReadFile("deps.edn"); err == nil {
+		err = edn.Unmarshal(bs, &pedn)
+		if err != nil {
+			fmt.Println("invalid \"deps.edn\", aborting")
+			os.Exit(1)
+		} else {
+			depsMap, ok := pedn[edn.Keyword("deps")].(map[interface{}]interface{})
+			if ! ok {
+				fmt.Println("invalid \"deps.edn\", aborting")
+				os.Exit(1)
+			}
+			for k, _ := range depsMap {
+				v := depsMap[k].(map[interface{}]interface{})
+				if _, ok := v[edn.Keyword("mvn/version")]; ! ok {
+					fmt.Println("invalid \"deps.edn\", aborting")
+					os.Exit(1)
+				}
+			}
+			return pedn
+		}
+	} else {
+		fmt.Println("error while reading \"deps.edn\", aborting")
+		os.Exit(1)
+	}
+	panic("fglng")
 }
 
-func removePackages(m map[api.PkgName]bool) {
-
-}
-
-type DepsFormat struct {
-	Deps map[string] map[string]string `edn:"deps"`
+func WriteDeps(ednMap interface{}) error {
+	bs, err := edn.MarshalIndent(ednMap, "", "  ")
+	if err != nil {
+		return err
+	} else {
+		ioutil.WriteFile("deps.edn", bs, 0644)
+		return nil
+	}
+	panic("fglng")
 }
 
 func addPackages(m map[api.PkgName]api.PkgSpec) {
-	var pkg JavaPackage
+	pedn := ReadDeps()
+	var jpkg JavaPackage
 	for name, spec := range m {
-		err := pkg.fromString(string(name))
+		err := jpkg.FromString(string(name))
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
 		}
-		mPkgInfo, err := GetMPackageInfo(pkg)
+		mPkgInfo, err := GetMPackageInfo(jpkg)
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
@@ -261,4 +319,57 @@ func addPackages(m map[api.PkgName]api.PkgSpec) {
 			}
 		}
 	}
+
+	depsMap := pedn[edn.Keyword("deps")].(map[interface{}]interface{})
+	for name, spec := range m {
+		depsMap[edn.Symbol(string(name))] = map[edn.Keyword]string {
+			edn.Keyword("mvn/version"): string(spec),
+		}
+	}
+
+	WriteDeps(pedn)
+}
+
+func removePackages(m map[api.PkgName]bool) {
+	pedn := ReadDeps()
+	var jpkg JavaPackage
+
+	for name, _ := range m {
+		err := jpkg.FromString(string(name))
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+	}
+
+	depsMap := pedn[edn.Keyword("deps")].(map[interface{}]interface{})
+	for name, _ := range m {
+		sname := string(name)
+		delete(depsMap, edn.Symbol(sname))
+	}
+
+	WriteDeps(pedn)
+}
+
+func listSpecfile() map[api.PkgName]api.PkgSpec {
+	pedn := ReadDeps()
+	depsMap := pedn[edn.Keyword("deps")].(map[interface{}]interface{})
+
+	res := map[api.PkgName]api.PkgSpec{}
+	for k, v := range depsMap {
+		name := k.(edn.Symbol).String()
+		t := v.(map[interface{}]interface{})
+		spec := t[edn.Keyword("mvn/version")].(string)
+		res[api.PkgName(name)] = api.PkgSpec(spec)
+	}
+	return res
+}
+
+func listLockfile() map[api.PkgName]api.PkgVersion {
+	return map[api.PkgName]api.PkgVersion{}
+}
+
+func install() {
+	util.Log("installing, this will download the dependencies")
+	util.RunCmd([]string {"clj", "--eval", "(System/exit 0)"})
 }
