@@ -109,7 +109,7 @@ type MavenFetchOp struct {
 func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 	res, err := http.Get("https://clojars.org/api/artifacts/" + pkg.toString())
 	if err != nil || res.StatusCode != 200 {
-		return MPkgInfo{}, err
+		return MPkgInfo{}, errors.New("Couldn't fetch package info")
 	}
 	bs, err := ioutil.ReadAll(res.Body)
 	var pinfo ClojarsFetchOp
@@ -135,7 +135,7 @@ func MavenGetVersionInfo(pkg JavaPackage) (MavenVersionInfoOp, error) {
 	path := strings.Replace(pkg.toString(), ".", "/", -1)
 	resp, err := http.Get("http://search.maven.org/maven2/" + path + "/maven-metadata.xml")
 	if err != nil || resp.StatusCode != 200 {
-		return MavenVersionInfoOp{}, err
+		return MavenVersionInfoOp{}, errors.New("Couldn't fetch package info")
 	}
 	bs, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -159,7 +159,7 @@ func GetMPackageInfoMaven(pkg JavaPackage) (MPkgInfo, error) {
 	url := "http://search.maven.org/maven2/" + path + "/" + metadata.Versioning.LatestVersion + "/" + pkg.Artifact + "-" + metadata.Versioning.LatestVersion + ".pom"
 	resp, err := http.Get(url)
 	if err != nil || resp.StatusCode != 200 {
-		return MPkgInfo{}, err
+		return MPkgInfo{}, errors.New("Couldn't fetch package info")
 	}
 	bs, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -222,7 +222,7 @@ func findPackagesClojars(name string) ([]api.PkgInfo, error) {
 	s := "https://clojars.org/search?q=" + name + "&format=json"
 	res, err := http.Get(s)
 	if err != nil || res.StatusCode != 200 {
-		return nil, err
+		return nil, errors.New("Couldn't fetch package info")
 	}
 	var resp ClojarsSearchOp
 	bs, err := ioutil.ReadAll(res.Body)
@@ -250,7 +250,7 @@ func findPackagesMaven(name string) ([]api.PkgInfo, error) {
 	s := "https://search.maven.org/solrsearch/select?q=\"" + name + "\"&rows=20&wt=json"
 	res, err := http.Get(s)
 	if err != nil || res.StatusCode != 200 {
-		return nil, err
+		return nil, errors.New("Couldn't fetch package info")
 	}
 	var resp MavenSearchOp
 	bs, err := ioutil.ReadAll(res.Body)
