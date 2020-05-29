@@ -29,7 +29,7 @@ func (self *JavaPackage) FromString(s string) error {
 		return nil
 	}
 	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
-		return errors.New("Package name: " + s + " is not of the form <group id>/<artifact id>")
+		return errors.New("Package name: " + s + " is not of the form (<group id>/)<artifact id>")
 	}
 	self.Group = parts[0]
 	self.Artifact = parts[1]
@@ -77,6 +77,9 @@ func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 	bs, err := ioutil.ReadAll(res.Body)
 	var pinfo ClojarsFetchOp
 	err = json.Unmarshal(bs, &pinfo)
+	if err != nil {
+		return MPkgInfo{}, err
+	}
 	versions := []string{}
 	for _, v := range pinfo.AllVersions {
 		versions = append(versions, v.Version)
@@ -167,16 +170,12 @@ func findPackagesMaven(name string) ([]api.PkgInfo, error) {
 }
 
 func info(name api.PkgName) api.PkgInfo {
-	s := string(name)
-	parts := strings.Split(s, "/")
-	if len(parts) != 2 {
-		util.Die("Package name must be of the form <group id>/<artifact id>")
+	jpkg := JavaPackage{}
+	err := jpkg.FromString(string(name))
+	if err != nil {
+		util.Die("Error while parsing package name", err)
 	}
-	group, artifact := parts[0], parts[1]
-	res, err := GetPackageInfo(JavaPackage{
-		group,
-		artifact,
-	})
+	res, err := GetPackageInfo(jpkg)
 	if err != nil {
 		util.Die(err.Error())
 	}
@@ -217,9 +216,10 @@ var DepsBackend = api.LanguageBackend{
 }
 
 func normalize(name api.PkgName) api.PkgName {
-	parts := strings.Split(string(name), "/")
-	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
-		util.Die("Package name must be of the form <group id>/<artifact id>")
+	jpkg := JavaPackage{}
+	err := jpkg.FromString(string(name))
+	if err != nil {
+		util.Die("Error while parsing package name", err)
 	}
 	return name
 }
