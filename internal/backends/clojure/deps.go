@@ -3,7 +3,6 @@ package clojure
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 	"io/ioutil"
@@ -58,6 +57,10 @@ type ClojarsFetchOp struct {
 	Description string `json:"description"`
 	Homepage string `json:"homepage"`
 	Version string `json:"latest_version"`
+	AllVersions []struct {
+		Version string `json:"version"`
+		Downloads int `json:"downloads"`
+	} `json:"recent_versions"`
 	User string `json:"user"`
 }
 
@@ -69,6 +72,10 @@ func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 	bs, err := ioutil.ReadAll(res.Body)
 	var pinfo ClojarsFetchOp
 	err = json.Unmarshal(bs, &pinfo)
+	versions := []string{}
+	for _, v := range pinfo.AllVersions {
+		versions = append(versions, v.Version)
+	}
 	return MPkgInfo {
 		Id: JavaPackage{
 			pinfo.GroupName,
@@ -76,6 +83,7 @@ func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 		},
 		Description: pinfo.Description,
 		LatestVersion: pinfo.Version,
+		Versions: versions,
 		Homepage: pinfo.Homepage,
 		Author: pinfo.User,
 	}, nil
@@ -157,8 +165,7 @@ func info(name api.PkgName) api.PkgInfo {
 	s := string(name)
 	parts := strings.Split(s, "/")
 	if len(parts) != 2 {
-		fmt.Println("Package name must be of the form <group id>/<artifact id>")
-		os.Exit(1)
+		util.Die("Package name must be of the form <group id>/<artifact id>")
 	}
 	group, artifact := parts[0], parts[1]
 	res, err := GetPackageInfo(JavaPackage{
@@ -166,8 +173,7 @@ func info(name api.PkgName) api.PkgInfo {
 		artifact,
 	})
 	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+		util.Die(err.Error())
 	}
 	return res
 }
@@ -175,11 +181,11 @@ func info(name api.PkgName) api.PkgInfo {
 func Search(name string) []api.PkgInfo {
 	cpkg, err := findPackagesClojars(name)
 	if err != nil {
-		fmt.Println("Error while querying clojars: " + err.Error())
+		util.Log("Error while querying clojars: " + err.Error())
 	}
 	mpkg, err := findPackagesMaven(name)
 	if err != nil {
-		fmt.Println("Error while querying maven: " + err.Error())
+		util.Log("Error while querying maven: " + err.Error())
 	}
 	return append(cpkg, mpkg...)
 }
@@ -208,8 +214,7 @@ var DepsBackend = api.LanguageBackend{
 func normalize(name api.PkgName) api.PkgName {
 	parts := strings.Split(string(name), "/")
 	if len(parts) != 2 || len(parts[0]) == 0 || len(parts[1]) == 0 {
-		fmt.Println("Package name must be of the form <group id>/<artifact id>")
-		os.Exit(1)
+		util.Die("Package name must be of the form <group id>/<artifact id>")
 	}
 	return name
 }
@@ -240,9 +245,10 @@ func InitProject() {
 	os.Mkdir("src", 0755)
 
 	if _, err := os.Stat("src/main.clj"); err == nil {
-		fmt.Println("NOTE: src/main.clj already exists, skipping generating the main function, you'll have to set it up yourself")
+		util.Log("NOTE: src/main.clj already exists, skipping generating the main function, you'll have to set it up yourself")
 	} else {
 		ioutil.WriteFile("src/main.clj", []byte(DefaultMainClj), 0644)
+		util.Log("tools.deps project has been initialized, run with \"clj -Amain\"")
 	}
 }
 
@@ -254,26 +260,22 @@ func ReadDeps() map[edn.Keyword]interface{} {
 	if bs, err := ioutil.ReadFile("deps.edn"); err == nil {
 		err = edn.Unmarshal(bs, &pedn)
 		if err != nil {
-			fmt.Println("invalid \"deps.edn\", aborting")
-			os.Exit(1)
+			util.Die("invalid \"deps.edn\", aborting")
 		} else {
 			depsMap, ok := pedn[edn.Keyword("deps")].(map[interface{}]interface{})
 			if ! ok {
-				fmt.Println("invalid \"deps.edn\", aborting")
-				os.Exit(1)
+				util.Die("invalid \"deps.edn\", aborting")
 			}
 			for k, _ := range depsMap {
 				v := depsMap[k].(map[interface{}]interface{})
 				if _, ok := v[edn.Keyword("mvn/version")]; ! ok {
-					fmt.Println("invalid \"deps.edn\", aborting")
-					os.Exit(1)
+					util.Die("invalid \"deps.edn\", aborting")
 				}
 			}
 			return pedn
 		}
 	} else {
-		fmt.Println("error while reading \"deps.edn\", aborting")
-		os.Exit(1)
+		util.Die("error while reading \"deps.edn\", aborting")
 	}
 	panic("fglng")
 }
@@ -295,16 +297,15 @@ func addPackages(m map[api.PkgName]api.PkgSpec) {
 	for name, spec := range m {
 		err := jpkg.FromString(string(name))
 		if err != nil {
-			fmt.Println(err.Error())
-			os.Exit(1)
+			util.Die(err.Error())
 		}
 		mPkgInfo, err := GetMPackageInfo(jpkg)
 		if err != nil {
-			fmt.Println(err.Error())
-			os.Exit(1)
+			util.Die(err.Error())
 		}
 		version := string(spec)
 		if version == "" {
+			util.Log("Using version: " + mPkgInfo.LatestVersion + " for package: " + string(name))
 			m[name] = api.PkgSpec(mPkgInfo.LatestVersion)
 		} else {
 			versionValid := false
@@ -314,8 +315,7 @@ func addPackages(m map[api.PkgName]api.PkgSpec) {
 				}
 			}
 			if ! versionValid {
-				fmt.Println("No artifact with version: \"" + string(spec) + "\" found for package: \"" + string(name) + "\"")
-				os.Exit(1)
+				util.Die("No artifact with version: \"" + string(spec) + "\" found for package: \"" + string(name) + "\"")
 			}
 		}
 	}
@@ -337,8 +337,7 @@ func removePackages(m map[api.PkgName]bool) {
 	for name, _ := range m {
 		err := jpkg.FromString(string(name))
 		if err != nil {
-			fmt.Println(err.Error())
-			os.Exit(1)
+			util.Die(err.Error())
 		}
 	}
 
