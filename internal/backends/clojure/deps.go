@@ -8,6 +8,7 @@ import (
 	"github.com/replit/upm/internal/util"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"olympos.io/encoding/edn"
 	"os"
 	"strings"
@@ -77,6 +78,7 @@ type MavenSearchOp struct {
 		Docs []struct {
 			Group string `json:"g"`
 			Artifact string `json:"a"`
+			Version string `json:"latestVersion"`
 		} `json:"docs"`
 	} `json:"response"`
 }
@@ -109,7 +111,7 @@ type MavenFetchOp struct {
 func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 	res, err := http.Get("https://clojars.org/api/artifacts/" + pkg.toString())
 	if err != nil || res.StatusCode != 200 {
-		return MPkgInfo{}, errors.New("Couldn't fetch package info")
+		return MPkgInfo{}, errors.New("Couldn't fetch info for package " + pkg.toString() + " from clojars")
 	}
 	bs, err := ioutil.ReadAll(res.Body)
 	var pinfo ClojarsFetchOp
@@ -132,10 +134,11 @@ func GetMPackageInfoClojars(pkg JavaPackage) (MPkgInfo, error) {
 }
 
 func MavenGetVersionInfo(pkg JavaPackage) (MavenVersionInfoOp, error) {
-	path := strings.Replace(pkg.toString(), ".", "/", -1)
-	resp, err := http.Get("http://search.maven.org/maven2/" + path + "/maven-metadata.xml")
+	path := strings.Replace(pkg.Group, ".", "/", -1) + "/" + pkg.Artifact
+	u := "http://search.maven.org/maven2/" + path + "/maven-metadata.xml"
+	resp, err := http.Get(u)
 	if err != nil || resp.StatusCode != 200 {
-		return MavenVersionInfoOp{}, errors.New("Couldn't fetch package info")
+		return MavenVersionInfoOp{}, errors.New("Couldn't fetch version info for package " + pkg.toString() + " from maven")
 	}
 	bs, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -155,11 +158,11 @@ func GetMPackageInfoMaven(pkg JavaPackage) (MPkgInfo, error) {
 	for _, entry := range metadata.Versioning.Versions.VersionList {
 		versions = append(versions, entry)
 	}
-	path := strings.Replace(pkg.toString(), ".", "/", -1)
+	path := strings.Replace(pkg.Group, ".", "/", -1) + "/" + pkg.Artifact
 	url := "http://search.maven.org/maven2/" + path + "/" + metadata.Versioning.LatestVersion + "/" + pkg.Artifact + "-" + metadata.Versioning.LatestVersion + ".pom"
 	resp, err := http.Get(url)
 	if err != nil || resp.StatusCode != 200 {
-		return MPkgInfo{}, errors.New("Couldn't fetch package info")
+		return MPkgInfo{}, errors.New("Couldn't fetch info for package" + pkg.toString() + " from maven")
 	}
 	bs, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -222,7 +225,7 @@ func findPackagesClojars(name string) ([]api.PkgInfo, error) {
 	s := "https://clojars.org/search?q=" + name + "&format=json"
 	res, err := http.Get(s)
 	if err != nil || res.StatusCode != 200 {
-		return nil, errors.New("Couldn't fetch package info")
+		return nil, errors.New("Couldn't search clojars for packages")
 	}
 	var resp ClojarsSearchOp
 	bs, err := ioutil.ReadAll(res.Body)
@@ -233,24 +236,24 @@ func findPackagesClojars(name string) ([]api.PkgInfo, error) {
 
 	fres := []api.PkgInfo{}
 	for _, p := range resp.Results {
-		pinfo, err := GetMPackageInfoClojars(JavaPackage{
+		pkg := JavaPackage{
 			Artifact: p.JarName,
 			Group:    p.GroupName,
-		})
-		if err != nil {
-			panic(err)
 		}
-		fres = append(fres, GenPkgInfo(pinfo))
+		fres = append(fres, api.PkgInfo {
+			Name: pkg.toString(),
+			Version: p.Version,
+		})
 	}
 
 	return fres, nil
 }
 
 func findPackagesMaven(name string) ([]api.PkgInfo, error) {
-	s := "https://search.maven.org/solrsearch/select?q=\"" + name + "\"&rows=20&wt=json"
+	s := "https://search.maven.org/solrsearch/select?q=" + url.QueryEscape(name) + "&rows=20&wt=json"
 	res, err := http.Get(s)
 	if err != nil || res.StatusCode != 200 {
-		return nil, errors.New("Couldn't fetch package info")
+		return nil, errors.New("Couldn't search maven for packages")
 	}
 	var resp MavenSearchOp
 	bs, err := ioutil.ReadAll(res.Body)
@@ -261,14 +264,14 @@ func findPackagesMaven(name string) ([]api.PkgInfo, error) {
 
 	fres := []api.PkgInfo{}
 	for _, p := range resp.Response.Docs {
-		pinfo, err := GetMPackageInfoMaven(JavaPackage{
+		pkg := JavaPackage{
 			Artifact: p.Artifact,
 			Group:    p.Group,
-		})
-		if err != nil {
-			panic(err)
 		}
-		fres = append(fres, GenPkgInfo(pinfo))
+		fres = append(fres, api.PkgInfo{
+			Name: pkg.toString(),
+			Version:  p.Version,
+		})
 	}
 
 	return fres, nil
@@ -283,7 +286,17 @@ func Search(name string) []api.PkgInfo {
 	if err != nil {
 		util.Log("Error while querying maven: " + err.Error())
 	}
-	return append(mpkg, cpkg...)
+	res := append(mpkg, cpkg...)
+	// good enough for 15 element arrays
+	for i := 0; i < len(res); i++ {
+		for i2 := i + 1; i2 < len(res); i2++ {
+			if res[i].Name == res[i2].Name {
+				res = append(res[:i2], res[i2+1:]...)
+				i2--
+			}
+		}
+	}
+	return res
 }
 
 func info(name api.PkgName) api.PkgInfo {
@@ -499,6 +512,6 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 }
 
 func install() {
-	util.Log("installing, this will download the dependencies")
+	util.Log("installing, this will download the dependencies and update trace.edn")
 	util.RunCmd([]string {"clj", "--eval", "(System/exit 0)"})
 }
