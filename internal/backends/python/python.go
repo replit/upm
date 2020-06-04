@@ -3,6 +3,7 @@ package python
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -88,6 +89,27 @@ func normalizePackageName(name api.PkgName) api.PkgName {
 	return api.PkgName(nameStr)
 }
 
+func getVirtualEnv(python string) (string, error) {
+	if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
+		return venv, nil
+	}
+	wd, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(wd, fmt.Sprintf(".upm/virtualenvs/%s", python)), nil
+}
+
+func runWithVenv(python string, pythonargs []string) {
+	venv, err := getVirtualEnv(python)
+	if err != nil {
+		util.Die("error getting virtualenv: %s", err)
+		return
+	}
+	cmd := append([]string{python}, pythonargs...)
+	util.RunCmdWithEnv(cmd, []string{"VIRTUALENV=" + venv})
+}
+
 // pythonMakeBackend returns a language backend for a given version of
 // Python. name is either "python2" or "python3", and python is the
 // name of an executable (either a full path or just a name like
@@ -103,60 +125,10 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			api.QuirksAddRemoveAlsoInstalls,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
-			// Check if we're already inside an activated
-			// virtualenv. If so, just use it.
 			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
 				return venv
 			}
-
-			// Ideally Poetry would provide some way of
-			// actually checking where the virtualenv will
-			// go. But it doesn't. So we have to
-			// reimplement the logic ourselves, which is
-			// totally fragile and disgusting. (No, we
-			// can't use 'poetry run which python' because
-			// that will *create* a virtualenv if one
-			// doesn't exist, and there's no workaround
-			// for that without mutating the global config
-			// file.)
-			//
-			// Note, we don't yet support Poetry's
-			// settings.virtualenvs.in-project. That would
-			// be a pretty easy fix, though. (Why is this
-			// so complicated??)
-
-			outputB := util.GetCmdOutput([]string{
-				python, "-m", "poetry",
-				"config", "settings.virtualenvs.path",
-			})
-			var path string
-			if err := json.Unmarshal(outputB, &path); err != nil {
-				util.Die("parsing output from Poetry: %s", err)
-			}
-
-			base := ""
-			if util.Exists("pyproject.toml") {
-				var cfg pyprojectTOML
-				if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-					util.Die("%s", err.Error())
-				}
-				base = cfg.Tool.Poetry.Name
-			}
-
-			if base == "" {
-				cwd, err := os.Getwd()
-				if err != nil {
-					util.Die("%s", err)
-				}
-				base = strings.ToLower(filepath.Base(cwd))
-			}
-
-			version := strings.TrimSpace(string(util.GetCmdOutput([]string{
-				python, "-c",
-				`import sys; print(".".join(map(str, sys.version_info[:2])))`,
-			})))
-
-			return filepath.Join(path, base+"-py"+version)
+			return ".upm/virtualenvs/%s-venv"
 		},
 		Search: func(query string) []api.PkgInfo {
 			outputB := util.GetCmdOutput([]string{
@@ -249,10 +221,17 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return info
 		},
 		Add: func(pkgs map[api.PkgName]api.PkgSpec) {
-			if !util.Exists("pyproject.toml") {
-				util.RunCmd([]string{python, "-m", "poetry", "init", "--no-interaction"})
+			venv, err := getVirtualEnv(python)
+			if err != nil {
+				util.Die("error getting virtualenv: %s", err)
 			}
-			cmd := []string{python, "-m", "poetry", "add"}
+			if !util.Exists(venv) {
+				util.RunCmd([]string{python, "-m", "virtualenv", "--system-site-packages", venv})
+			}
+			if !util.Exists("pyproject.toml") {
+				runWithVenv(python, []string{"-m", "poetry", "init", "--no-interaction"})
+			}
+			cmd := []string{"-m", "poetry", "add"}
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
@@ -268,17 +247,17 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 					cmd = append(cmd, name)
 				}
 			}
-			util.RunCmd(cmd)
+			runWithVenv(python, cmd)
 		},
 		Remove: func(pkgs map[api.PkgName]bool) {
-			cmd := []string{python, "-m", "poetry", "remove"}
+			cmd := []string{"-m", "poetry", "remove"}
 			for name, _ := range pkgs {
 				cmd = append(cmd, string(name))
 			}
-			util.RunCmd(cmd)
+			runWithVenv(python, cmd)
 		},
 		Lock: func() {
-			util.RunCmd([]string{python, "-m", "poetry", "lock"})
+			runWithVenv(python, []string{"-m", "poetry", "lock"})
 		},
 		Install: func() {
 			// Unfortunately, this doesn't necessarily uninstall
@@ -286,7 +265,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// which happens for example if 'poetry remove' is
 			// interrupted. See
 			// <https://github.com/sdispater/poetry/issues/648>.
-			util.RunCmd([]string{python, "-m", "poetry", "install"})
+			runWithVenv(python, []string{"-m", "poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			pkgs, err := listSpecfile()

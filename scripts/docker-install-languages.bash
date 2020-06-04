@@ -44,8 +44,8 @@ apt-get update
 apt-get install -y $packages
 rm -rf /var/lib/apt/lists/*
 
-pip2 --disable-pip-version-check install poetry
-pip3 --disable-pip-version-check install poetry
+pip2 --disable-pip-version-check install poetry==1.0.5 virtualenv
+pip3 --disable-pip-version-check install poetry==1.0.5 virtualenv
 curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python3
 ln -s "$HOME/.cask/bin/cask" /usr/local/bin/
 

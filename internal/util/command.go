@@ -33,6 +33,20 @@ func RunCmd(cmd []string) {
 	}
 }
 
+// RunCmdWithEnv prints and runs the given command with the passed-in
+// environment variables (plus upm's environment), exiting the process on
+// error or command failure. Stdout and stderr go to the terminal.
+func RunCmdWithEnv(cmd []string, env []string) {
+	ProgressMsg(quoteCmd(cmd))
+	command := exec.Command(cmd[0], cmd[1:]...)
+	command.Stdout = os.Stderr
+	command.Stderr = os.Stderr
+	command.Env = append(os.Environ(), env...)
+	if err := command.Run(); err != nil {
+		Die("%s", err)
+	}
+}
+
 // GetCmdOutput prints and runs the given command, returning its
 // stdout as a string. Stderr goes to the terminal. GetCmdOutput exits
 // the process on error or command failure.
