@@ -20,6 +20,7 @@ EOF
 packages="
 
 bsdmainutils
+clojure
 curl
 emacs-nox
 git
