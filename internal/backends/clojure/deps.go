@@ -513,5 +513,5 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 
 func install() {
 	util.Log("installing, this will download the dependencies and update trace.edn")
-	util.RunCmd([]string {"clj", "--eval", "(System/exit 0)"})
+	util.RunCmd([]string {"clojure", "--eval", "(System/exit 0)"})
 }
