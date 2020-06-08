@@ -1,15 +1,17 @@
 package rlang
 
 import (
-	"os"
-	"io/ioutil"
 	"encoding/json"
+	"io/ioutil"
+	"os"
 )
 
+// RConfig represents the JSON structure of the package manager file
 type RConfig struct {
 	Packages []RPackage `json:"packages"`
 }
 
+// RPackage represents the JSON structure of a package dependency
 type RPackage struct {
 	Name    string `json:"name"`
 	Version string `json:"version,omitempty"`
@@ -25,12 +27,13 @@ func (config RConfig) hasPackage(pkg RPackage) bool {
 	return false
 }
 
+// RAdd adds an external package dependency
 func RAdd(pkg RPackage) {
 	if file, err := os.Open("./Rconfig.json"); err == nil {
 		var config RConfig
-		
+
 		decoder := json.NewDecoder(file)
-		
+
 		if err = decoder.Decode(&config); err != nil {
 			panic(err)
 		}
@@ -62,13 +65,14 @@ func RAdd(pkg RPackage) {
 
 		file.WriteString("{\n\t\"packages\": []\n}")
 		file.Close()
-		
+
 		RAdd(pkg)
 	} else {
 		panic(err)
 	}
 }
 
+// RRemove removes an extenal package dependency
 func RRemove(pkg RPackage) {
 	file, err := os.Open("./Rconfig.json")
 	if err != nil {
@@ -95,7 +99,7 @@ func RRemove(pkg RPackage) {
 	if err != nil {
 		panic(err)
 	}
-	
+
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "\t")
 
@@ -111,6 +115,7 @@ func RRemove(pkg RPackage) {
 	file.Close()
 }
 
+// RLock backs up the contents of the spec file to the lock file
 func RLock() {
 	lock, err := os.Create("./Rconfig.lock.json")
 	if err != nil {
@@ -125,7 +130,7 @@ func RLock() {
 	}
 
 	defer config.Close()
-	
+
 	contents, err := ioutil.ReadAll(config)
 	if err != nil {
 		panic(err)
@@ -136,6 +141,7 @@ func RLock() {
 	}
 }
 
+// RGetSpecFile gets the contents of the spec file
 func RGetSpecFile() RConfig {
 	file, err := os.Open("./Rconfig.json")
 	if err != nil {
@@ -154,6 +160,7 @@ func RGetSpecFile() RConfig {
 	return config
 }
 
+// RGetLockFile gets the contents of the lock file
 func RGetLockFile() RConfig {
 	file, err := os.Open("./Rconfig.lock.json")
 	if err != nil {

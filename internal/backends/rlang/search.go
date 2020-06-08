@@ -1,14 +1,15 @@
 package rlang
 
 import (
-	"strings"
-	"strconv"
-	"sort"
+	"encoding/json"
 	"net/http"
 	"net/url"
-	"encoding/json"
+	"sort"
+	"strconv"
+	"strings"
 )
 
+// CranHitSource represents the JSON we get about the information for a single package from a package search
 type CranHitSource struct {
 	Date             string `json:"date"`
 	Author           string `json:"Author"`
@@ -38,20 +39,23 @@ type CranHitSource struct {
 	Repository       string `json:"Repository"`
 }
 
+// CranHit represents the JSON we get about a single package from a package search
 type CranHit struct {
 	Index  string        `json:"_index"`
 	Type   string        `json:"_type"`
-	Id     string        `json:"_id"`
+	ID     string        `json:"_id"`
 	Score  float32       `json:"_score"`
 	Source CranHitSource `json:"_source"`
 }
 
+// CranHits represents the JSON we get about the packages from a package search
 type CranHits struct {
 	Total    int       `json:"total"`
 	MaxScore float32   `json:"max_score"`
 	Hits     []CranHit `json:"hits"`
 }
 
+// CranShards represents the JSON we get about unimportant data so it doesn't matter
 type CranShards struct {
 	Total      int `json:"total"`
 	Successful int `json:"successful"`
@@ -59,6 +63,7 @@ type CranShards struct {
 	Failed     int `json:"failed"`
 }
 
+// CranResponse represents the JSON we get from a package search
 type CranResponse struct {
 	Took     int        `json:"took"`
 	TimedOut bool       `json:"timed_out"`
@@ -67,31 +72,32 @@ type CranResponse struct {
 }
 
 func searchPackages(name string, size int) CranResponse {
-	searchUrl := "http://search.r-pkg.org/package/_search?q=" + url.QueryEscape(name) + "&size=" + strconv.Itoa(size)
+	searchURL := "http://search.r-pkg.org/package/_search?q=" + url.QueryEscape(name) + "&size=" + strconv.Itoa(size)
 
-	if req, err := http.Get(searchUrl); err == nil {
+	if req, err := http.Get(searchURL); err == nil {
 		var res CranResponse
-		
+
 		decoder := json.NewDecoder(req.Body)
-		
+
 		if err = decoder.Decode(&res); err == nil {
 			return res
-		} else {
-			panic(err)
 		}
+
+		panic(err)
 	} else {
 		panic(err)
 	}
 }
 
+// SearchPackages searches for the top (<= 50) package results
 func SearchPackages(name string) []CranHit {
-	res := searchPackages(name + "*", 0) // needed in order to get the total amount of matching packages
-	res = searchPackages(name + "*", res.Hits.Total)
+	res := searchPackages(name+"*", 0) // needed in order to get the total amount of matching packages
+	res = searchPackages(name+"*", res.Hits.Total)
 
-	hits := []CranHit {}
+	hits := []CranHit{}
 
 	for _, hit := range res.Hits.Hits {
-		if strings.Contains(hit.Id, name) {
+		if strings.Contains(hit.ID, name) {
 			hits = append(hits, hit)
 		}
 	}
@@ -102,17 +108,18 @@ func SearchPackages(name string) []CranHit {
 
 	if len(hits) > 50 {
 		return hits[:50]
-	} else {
-		return hits
 	}
+
+	return hits
 }
 
+// SearchPackage searches for the first package result
 func SearchPackage(name string) *CranHit {
-	res := searchPackages(name + "*", 0) // needed in order to get the total amount of matching packages
-	res = searchPackages(name + "*", res.Hits.Total)
+	res := searchPackages(name+"*", 0) // needed in order to get the total amount of matching packages
+	res = searchPackages(name+"*", res.Hits.Total)
 
 	for _, hit := range res.Hits.Hits {
-		if hit.Id == name {
+		if hit.ID == name {
 			return &hit
 		}
 	}

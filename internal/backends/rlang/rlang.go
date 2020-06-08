@@ -3,8 +3,9 @@ package rlang
 import (
 	"os"
 	"regexp"
+
 	"github.com/ALANVF/rgo"
-	
+
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
@@ -27,17 +28,18 @@ func updateLibPaths() {
 	rgo.Eval(`.libPaths("./R/x86_64-pc-linux-gnu-library/3.4")`)
 }
 
-var RlangBackend = api.LanguageBackend {
+// RlangBackend is a custom UPM backend for R
+var RlangBackend = api.LanguageBackend{
 	Name:             "rlang",
 	Specfile:         "Rconfig.json",
 	Lockfile:         "Rconfig.json.lock",
-	FilenamePatterns: []string {"*.r", "*.R"},
+	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksNone,
 	Search: func(query string) []api.PkgInfo {
-		pkgs := []api.PkgInfo {}
-		
+		pkgs := []api.PkgInfo{}
+
 		for _, hit := range SearchPackages(query) {
-			pkg := api.PkgInfo {
+			pkg := api.PkgInfo{
 				Name:             hit.Source.Package,
 				Description:      hit.Source.Title,
 				Version:          hit.Source.Version,
@@ -58,7 +60,7 @@ var RlangBackend = api.LanguageBackend {
 	Info: func(name api.PkgName) api.PkgInfo {
 		if pkg := SearchPackage(string(name)); pkg != nil {
 			hit := *pkg
-			return api.PkgInfo {
+			return api.PkgInfo{
 				Name:             hit.Source.Package,
 				Description:      hit.Source.Title,
 				Version:          hit.Source.Version,
@@ -70,13 +72,13 @@ var RlangBackend = api.LanguageBackend {
 				License:          hit.Source.License,
 				Dependencies:     getImports(hit.Source.Imports),
 			}
-		} else {
-			return api.PkgInfo {}
 		}
+
+		return api.PkgInfo{}
 	},
 	Add: func(packages map[api.PkgName]api.PkgSpec) {
 		for name, info := range packages {
-			pkg := RPackage {
+			pkg := RPackage{
 				Name:    string(name),
 				Version: string(info),
 			}
@@ -88,8 +90,8 @@ var RlangBackend = api.LanguageBackend {
 
 		updateLibPaths()
 
-		for name, _ := range packages {
-			RRemove(RPackage {Name: string(name)})
+		for name := range packages {
+			RRemove(RPackage{Name: string(name)})
 
 			rgo.Eval(`remove.packages("` + string(name) + `")`)
 		}
@@ -112,7 +114,7 @@ var RlangBackend = api.LanguageBackend {
 		rgo.Close()
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-		out := map[api.PkgName]api.PkgSpec {}
+		out := map[api.PkgName]api.PkgSpec{}
 
 		for _, pkg := range RGetSpecFile().Packages {
 			out[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
@@ -121,7 +123,7 @@ var RlangBackend = api.LanguageBackend {
 		return out
 	},
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		out := map[api.PkgName]api.PkgVersion {}
+		out := map[api.PkgName]api.PkgVersion{}
 
 		for _, pkg := range RGetSpecFile().Packages {
 			out[api.PkgName(pkg.Name)] = api.PkgVersion(pkg.Version)
@@ -132,7 +134,7 @@ var RlangBackend = api.LanguageBackend {
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
 	Guess: func() (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
-		
+
 		return nil, false
 	},
 }
