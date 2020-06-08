@@ -35,6 +35,9 @@ var RlangBackend = api.LanguageBackend{
 	Lockfile:         "Rconfig.json.lock",
 	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksNone,
+	GetPackageDir: func() string {
+		return "./R/x86_64-pc-linux-gnu-library/3.4"
+	},
 	Search: func(query string) []api.PkgInfo {
 		pkgs := []api.PkgInfo{}
 
