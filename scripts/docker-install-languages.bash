@@ -32,6 +32,9 @@ python-pip
 python3
 python3-pip
 python3-venv
+r-base
+r-base-dev
+r-recommended
 ruby
 ruby-bundler
 sqlite3

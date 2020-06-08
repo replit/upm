@@ -50,6 +50,7 @@ machine-parseable specfile and lockfile listing.
 | ruby-bundler          | yes  | yes   |       |
 | elisp-cask            | yes  | yes   | yes   |
 | dart-pub.dev          | yes  | yes   |       |
+| rlang                 | yes  | yes   |       |
 
 ## Installation
 

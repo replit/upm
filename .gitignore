@@ -6,3 +6,4 @@
 /packaging/aur/pkg/
 /packaging/aur/src/
 *.gen.go
+/.vscode/

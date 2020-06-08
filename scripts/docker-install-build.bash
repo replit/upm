@@ -12,6 +12,7 @@ git
 make
 software-properties-common
 wget
+r-base-dev
 
 "
 
