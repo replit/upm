@@ -4,8 +4,6 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/ALANVF/rgo"
-
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
@@ -25,7 +23,12 @@ func createRPkgDir() {
 }
 
 func updateLibPaths() {
-	rgo.Eval(`.libPaths("./R/x86_64-pc-linux-gnu-library/3.4")`)
+	util.RunCmd([]string{
+		"R",
+		"--no-echo",
+		"-e",
+		`".libPaths('./R/x86_64-pc-linux-gnu-library/3.4')"`,
+	})
 }
 
 // RlangBackend is a custom UPM backend for R
@@ -89,32 +92,32 @@ var RlangBackend = api.LanguageBackend{
 		}
 	},
 	Remove: func(packages map[api.PkgName]bool) {
-		rgo.Open()
-
 		updateLibPaths()
 
 		for name := range packages {
 			RRemove(RPackage{Name: string(name)})
 
-			rgo.Eval(`remove.packages("` + string(name) + `")`)
+			util.RunCmd([]string{
+				"R",
+				"--no-echo",
+				"-e",
+				`"remove.packages('` + string(name) + `')"`,
+			})
 		}
-
-		rgo.Close()
 	},
 	Lock: RLock,
 	Install: func() {
-		rgo.Open()
-
 		createRPkgDir()
 		updateLibPaths()
 
 		for _, pkg := range RGetSpecFile().Packages {
-			if !rgo.Eval(`find.package("` + pkg.Name + `", quiet=T)`).IsValidString() {
-				rgo.Eval(`install.packages("` + pkg.Name + `")`)
-			}
+			util.RunCmd([]string{
+				"R",
+				"--no-echo",
+				"-e",
+				`"if(length(find.package('` + pkg.Name + "', quiet=T)) == 1) install.packages('" + pkg.Name + `')"`,
+			})
 		}
-
-		rgo.Close()
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		out := map[api.PkgName]api.PkgSpec{}
