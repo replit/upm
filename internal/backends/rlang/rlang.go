@@ -24,10 +24,8 @@ func createRPkgDir() {
 
 func updateLibPaths() {
 	util.RunCmd([]string{
-		"R",
-		"--no-echo",
-		"-e",
-		`".libPaths('./R/x86_64-pc-linux-gnu-library/3.4')"`,
+		"export",
+		`R_LIBS_USER=./R/x86_64-pc-linux-gnu-library/3.4`,
 	})
 }
 
