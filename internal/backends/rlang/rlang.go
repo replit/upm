@@ -3,6 +3,7 @@ package rlang
 import (
 	"os"
 	"regexp"
+	"path"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -13,20 +14,20 @@ func getImports(imports string) []string {
 }
 
 func createRPkgDir() {
-	if _, err := os.Stat("./R"); os.IsNotExist(err) {
-		if err = os.MkdirAll("./R/x86_64-pc-linux-gnu-library/3.4", os.ModeDir); err != nil {
+	home := os.Getenv("HOME")
+
+	if _, err := os.Stat(path.Join(home, "R")); os.IsNotExist(err) {
+		rPath := path.Join(home, "R", "x86_64-pc-linux-gnu-library", "3.4")
+		if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
+			rPath = rLibsUser
+		}
+
+		if err = os.MkdirAll(rPath, os.ModeDir + os.ModePerm); err != nil {
 			panic(err)
 		}
 	} else if err != nil {
 		panic(err)
 	}
-}
-
-func updateLibPaths() {
-	util.RunCmd([]string{
-		"export",
-		`R_LIBS_USER=./R/x86_64-pc-linux-gnu-library/3.4`,
-	})
 }
 
 // RlangBackend is a custom UPM backend for R
@@ -35,9 +36,13 @@ var RlangBackend = api.LanguageBackend{
 	Specfile:         "Rconfig.json",
 	Lockfile:         "Rconfig.json.lock",
 	FilenamePatterns: []string{"*.r", "*.R"},
-	Quirks:           api.QuirksNone,
+	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir: func() string {
-		return "./R/x86_64-pc-linux-gnu-library/3.4"
+		if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
+			return rLibsUser
+		}
+		
+		return path.Join(os.Getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", "3.4")
 	},
 	Search: func(query string) []api.PkgInfo {
 		pkgs := []api.PkgInfo{}
@@ -81,39 +86,45 @@ var RlangBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(packages map[api.PkgName]api.PkgSpec) {
+		createRPkgDir()
+		
 		for name, info := range packages {
 			pkg := RPackage{
 				Name:    string(name),
 				Version: string(info),
 			}
 			RAdd(pkg)
-		}
-	},
-	Remove: func(packages map[api.PkgName]bool) {
-		updateLibPaths()
-
-		for name := range packages {
-			RRemove(RPackage{Name: string(name)})
-
+			
 			util.RunCmd([]string{
 				"R",
 				"--no-echo",
 				"-e",
-				`"remove.packages('` + string(name) + `')"`,
+				"if(length(find.package('" + pkg.Name + "', quiet=T)) == 0) install.packages('" + pkg.Name + "')",
+			})
+		}
+	},
+	Remove: func(packages map[api.PkgName]bool) {
+		for name := range packages {
+			RRemove(RPackage{Name: string(name)})
+			
+			util.RunCmd([]string{
+				"R",
+				"--no-echo",
+				"-e",
+				"remove.packages('" + string(name) + "')",
 			})
 		}
 	},
 	Lock: RLock,
 	Install: func() {
 		createRPkgDir()
-		updateLibPaths()
-
+		
 		for _, pkg := range RGetSpecFile().Packages {
 			util.RunCmd([]string{
 				"R",
 				"--no-echo",
 				"-e",
-				`"if(length(find.package('` + pkg.Name + "', quiet=T)) == 1) install.packages('" + pkg.Name + `')"`,
+				"if(length(find.package('" + pkg.Name + "', quiet=T)) == 0) install.packages('" + pkg.Name + "')",
 			})
 		}
 	},
