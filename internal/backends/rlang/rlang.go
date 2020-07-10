@@ -13,16 +13,19 @@ func getImports(imports string) []string {
 	return regexp.MustCompile(`[a-zA-Z_]\w*`).FindAllString(imports, -1)
 }
 
+func getRPkgDir() string {
+	if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
+		return rLibsUser
+	}
+
+	return path.Join(os.Getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", "3.4")
+}
+
 func createRPkgDir() {
-	home := os.Getenv("HOME")
+	dir := getRPkgDir()
 
-	if _, err := os.Stat(path.Join(home, "R")); os.IsNotExist(err) {
-		rPath := path.Join(home, "R", "x86_64-pc-linux-gnu-library", "3.4")
-		if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
-			rPath = rLibsUser
-		}
-
-		if err = os.MkdirAll(rPath, os.ModeDir + os.ModePerm); err != nil {
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		if err = os.MkdirAll(dir, os.ModeDir + os.ModePerm); err != nil {
 			panic(err)
 		}
 	} else if err != nil {
@@ -37,13 +40,7 @@ var RlangBackend = api.LanguageBackend{
 	Lockfile:         "Rconfig.json.lock",
 	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksLockAlsoInstalls,
-	GetPackageDir: func() string {
-		if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
-			return rLibsUser
-		}
-		
-		return path.Join(os.Getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", "3.4")
-	},
+	GetPackageDir:    getRPkgDir,
 	Search: func(query string) []api.PkgInfo {
 		pkgs := []api.PkgInfo{}
 
