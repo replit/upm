@@ -2,7 +2,9 @@ package rlang
 
 import (
 	"os"
+	"path"
 	"regexp"
+	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -12,9 +14,19 @@ func getImports(imports string) []string {
 	return regexp.MustCompile(`[a-zA-Z_]\w*`).FindAllString(imports, -1)
 }
 
+func getRPkgDir() string {
+	if rLibsUser := os.Getenv("R_LIBS_USER"); rLibsUser != "" {
+		return rLibsUser
+	}
+
+	return path.Join(os.Getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", "3.4")
+}
+
 func createRPkgDir() {
-	if _, err := os.Stat("./R"); os.IsNotExist(err) {
-		if err = os.MkdirAll("./R/x86_64-pc-linux-gnu-library/3.4", os.ModeDir); err != nil {
+	dir := getRPkgDir()
+
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		if err = os.MkdirAll(dir, os.ModeDir+os.ModePerm); err != nil {
 			panic(err)
 		}
 	} else if err != nil {
@@ -22,13 +34,41 @@ func createRPkgDir() {
 	}
 }
 
-func updateLibPaths() {
+func installRPkg(name string) {
+	if strings.Contains(name, "'") {
+		name = strings.ReplaceAll(name, "'", `\'`)
+	}
+
+	// Checking this first makes sure that we aren't running regex on everything
+	if strings.HasSuffix(name, `\`) {
+		suffix := regexp.MustCompile(`\\+$`).FindString(name)
+		if len(suffix)%2 == 1 {
+			name += `\`
+		}
+	}
+
 	util.RunCmd([]string{
 		"R",
 		"--no-echo",
 		"-e",
-		`".libPaths('./R/x86_64-pc-linux-gnu-library/3.4')"`,
+		"if(length(find.package('" + name + "', quiet=T)) == 0) install.packages('" + name + "')",
 	})
+}
+
+func normalizePkgName(name string) string {
+	if strings.Contains(name, "'") {
+		name = strings.ReplaceAll(name, "'", `\'`)
+	}
+
+	// Checking this first makes sure that we aren't running regex on everything
+	if strings.HasSuffix(name, `\`) {
+		suffix := regexp.MustCompile(`\\+$`).FindString(name)
+		if len(suffix)%2 == 1 {
+			name += `\`
+		}
+	}
+
+	return name
 }
 
 // RlangBackend is a custom UPM backend for R
@@ -37,13 +77,9 @@ var RlangBackend = api.LanguageBackend{
 	Specfile:         "Rconfig.json",
 	Lockfile:         "Rconfig.json.lock",
 	FilenamePatterns: []string{"*.r", "*.R"},
-	Quirks:           api.QuirksNone,
-	GetPackageDir: func() string {
-		return "./R/x86_64-pc-linux-gnu-library/3.4"
-	},
-	Search: func(query string) []api.PkgInfo {
-		pkgs := []api.PkgInfo{}
-
+	Quirks:           api.QuirksLockAlsoInstalls,
+	GetPackageDir:    getRPkgDir,
+	Search: func(query string) (pkgs []api.PkgInfo) {
 		for _, hit := range SearchPackages(query) {
 			pkg := api.PkgInfo{
 				Name:             hit.Source.Package,
@@ -60,8 +96,7 @@ var RlangBackend = api.LanguageBackend{
 
 			pkgs = append(pkgs, pkg)
 		}
-
-		return pkgs
+		return
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		if pkg := SearchPackage(string(name)); pkg != nil {
@@ -83,17 +118,18 @@ var RlangBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(packages map[api.PkgName]api.PkgSpec) {
+		createRPkgDir()
+
 		for name, info := range packages {
 			pkg := RPackage{
 				Name:    string(name),
 				Version: string(info),
 			}
 			RAdd(pkg)
+			installRPkg(pkg.Name)
 		}
 	},
 	Remove: func(packages map[api.PkgName]bool) {
-		updateLibPaths()
-
 		for name := range packages {
 			RRemove(RPackage{Name: string(name)})
 
@@ -101,41 +137,29 @@ var RlangBackend = api.LanguageBackend{
 				"R",
 				"--no-echo",
 				"-e",
-				`"remove.packages('` + string(name) + `')"`,
+				"remove.packages('" + string(name) + "')",
 			})
 		}
 	},
 	Lock: RLock,
 	Install: func() {
 		createRPkgDir()
-		updateLibPaths()
 
 		for _, pkg := range RGetSpecFile().Packages {
-			util.RunCmd([]string{
-				"R",
-				"--no-echo",
-				"-e",
-				`"if(length(find.package('` + pkg.Name + "', quiet=T)) == 1) install.packages('" + pkg.Name + `')"`,
-			})
+			installRPkg(pkg.Name)
 		}
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-		out := map[api.PkgName]api.PkgSpec{}
-
+	ListSpecfile: func() (pkgs map[api.PkgName]api.PkgSpec) {
 		for _, pkg := range RGetSpecFile().Packages {
-			out[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
+			pkgs[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
 		}
-
-		return out
+		return
 	},
-	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		out := map[api.PkgName]api.PkgVersion{}
-
+	ListLockfile: func() (pkgs map[api.PkgName]api.PkgVersion) {
 		for _, pkg := range RGetSpecFile().Packages {
-			out[api.PkgName(pkg.Name)] = api.PkgVersion(pkg.Version)
+			pkgs[api.PkgName(pkg.Name)] = api.PkgVersion(pkg.Version)
 		}
-
-		return out
+		return
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
 	Guess: func() (map[api.PkgName]bool, bool) {
