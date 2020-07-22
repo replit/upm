@@ -47,9 +47,9 @@ func installRPkg(name string) {
 		}
 	}
 
-	util.RunCmd([]string{
+	_ = util.GetCmdOutput([]string{
 		"R",
-		"--no-echo",
+		"-q",
 		"-e",
 		"if(length(find.package('" + name + "', quiet=T)) == 0) install.packages('" + name + "')",
 	})
@@ -75,11 +75,12 @@ func normalizePkgName(name string) string {
 var RlangBackend = api.LanguageBackend{
 	Name:             "rlang",
 	Specfile:         "Rconfig.json",
-	Lockfile:         "Rconfig.json.lock",
+	Lockfile:         "Rconfig.lock.json",
 	FilenamePatterns: []string{"*.r", "*.R"},
-	Quirks:           api.QuirksLockAlsoInstalls,
+	Quirks:           api.QuirksNone,
 	GetPackageDir:    getRPkgDir,
-	Search: func(query string) (pkgs []api.PkgInfo) {
+	Search: func(query string) []api.PkgInfo {
+		pkgs := []api.PkgInfo{}
 		for _, hit := range SearchPackages(query) {
 			pkg := api.PkgInfo{
 				Name:             hit.Source.Package,
@@ -96,7 +97,7 @@ var RlangBackend = api.LanguageBackend{
 
 			pkgs = append(pkgs, pkg)
 		}
-		return
+		return pkgs
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		if pkg := SearchPackage(string(name)); pkg != nil {
@@ -118,24 +119,20 @@ var RlangBackend = api.LanguageBackend{
 		return api.PkgInfo{}
 	},
 	Add: func(packages map[api.PkgName]api.PkgSpec) {
-		createRPkgDir()
-
 		for name, info := range packages {
-			pkg := RPackage{
+			RAdd(RPackage{
 				Name:    string(name),
 				Version: string(info),
-			}
-			RAdd(pkg)
-			installRPkg(pkg.Name)
+			})
 		}
 	},
 	Remove: func(packages map[api.PkgName]bool) {
 		for name := range packages {
 			RRemove(RPackage{Name: string(name)})
 
-			util.RunCmd([]string{
+			_ = util.GetCmdOutput([]string{
 				"R",
-				"--no-echo",
+				"-q",
 				"-e",
 				"remove.packages('" + string(name) + "')",
 			})
@@ -149,17 +146,19 @@ var RlangBackend = api.LanguageBackend{
 			installRPkg(pkg.Name)
 		}
 	},
-	ListSpecfile: func() (pkgs map[api.PkgName]api.PkgSpec) {
+	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, pkg := range RGetSpecFile().Packages {
 			pkgs[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
 		}
-		return
+		return pkgs
 	},
-	ListLockfile: func() (pkgs map[api.PkgName]api.PkgVersion) {
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, pkg := range RGetSpecFile().Packages {
 			pkgs[api.PkgName(pkg.Name)] = api.PkgVersion(pkg.Version)
 		}
-		return
+		return pkgs
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
 	Guess: func() (map[api.PkgName]bool, bool) {
