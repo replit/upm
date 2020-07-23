@@ -34,7 +34,7 @@ func createRPkgDir() {
 	}
 }
 
-func installRPkg(name string) {
+func installRPkg(name string) bool {
 	if strings.Contains(name, "'") {
 		name = strings.ReplaceAll(name, "'", `\'`)
 	}
@@ -47,12 +47,12 @@ func installRPkg(name string) {
 		}
 	}
 
-	_ = util.GetCmdOutput([]string{
+	return 0 == util.GetExitCode([]string{
 		"R",
 		"-q",
 		"-e",
 		"if(length(find.package('" + name + "', quiet=T)) == 0) install.packages('" + name + "')",
-	})
+	}, false, true)
 }
 
 func normalizePkgName(name string) string {
@@ -143,7 +143,9 @@ var RlangBackend = api.LanguageBackend{
 		createRPkgDir()
 
 		for _, pkg := range RGetSpecFile().Packages {
-			installRPkg(pkg.Name)
+			if !installRPkg(pkg.Name) {
+				RRemove(pkg)
+			}
 		}
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
