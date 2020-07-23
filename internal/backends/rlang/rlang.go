@@ -145,6 +145,7 @@ var RlangBackend = api.LanguageBackend{
 		for _, pkg := range RGetSpecFile().Packages {
 			if !installRPkg(pkg.Name) {
 				RRemove(pkg)
+				RLock()
 			}
 		}
 	},
