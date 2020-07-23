@@ -46,3 +46,20 @@ func GetCmdOutput(cmd []string) []byte {
 	}
 	return output
 }
+
+// GetExitCode runs a commands, and optionally prints the output to
+// stdout and/or stderr, and it returns the exit code afterwards.
+func GetExitCode(cmd []string, printStdout bool, printStderr bool) int {
+	ProgressMsg(quoteCmd(cmd))
+	command := exec.Command(cmd[0], cmd[1:]...)
+	if printStdout {
+		command.Stdout = os.Stdout
+	}
+	if printStderr {
+		command.Stderr = os.Stderr
+	}
+	if err := command.Run(); err != nil {
+		return err.(*exec.ExitError).ExitCode()
+	}
+	return 0
+}
