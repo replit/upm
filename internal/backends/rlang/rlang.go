@@ -35,24 +35,16 @@ func createRPkgDir() {
 }
 
 func installRPkg(name string) bool {
-	if strings.Contains(name, "'") {
-		name = strings.ReplaceAll(name, "'", `\'`)
-	}
+	name = normalizePkgName(name)
 
-	// Checking this first makes sure that we aren't running regex on everything
-	if strings.HasSuffix(name, `\`) {
-		suffix := regexp.MustCompile(`\\+$`).FindString(name)
-		if len(suffix)%2 == 1 {
-			name += `\`
-		}
-	}
+	ifNotInstalled := "if(length(find.package('" + name + "', quiet=T)) == 0) "
 
-	return 0 == util.GetExitCode([]string{
+	return util.GetExitCode([]string{
 		"R",
 		"-q",
 		"-e",
-		"if(length(find.package('" + name + "', quiet=T)) == 0) install.packages('" + name + "')",
-	}, false, true)
+		ifNotInstalled + "install.packages('" + name + "'); " + ifNotInstalled + "q('no', 1)",
+	}, false, true) == 0
 }
 
 func normalizePkgName(name string) string {
@@ -130,12 +122,12 @@ var RlangBackend = api.LanguageBackend{
 		for name := range packages {
 			RRemove(RPackage{Name: string(name)})
 
-			_ = util.GetCmdOutput([]string{
+			_ = util.GetExitCode([]string{
 				"R",
 				"-q",
 				"-e",
-				"remove.packages('" + string(name) + "')",
-			})
+				"remove.packages('" + normalizePkgName(string(name)) + "')",
+			}, false, true)
 		}
 	},
 	Lock: RLock,
