@@ -51,8 +51,27 @@ def get_all_imports(
             with open_func(file_name, "r", encoding=encoding) as f:
                 contents = f.read()
             try:
+                # We need to be able to reference a pragma in the comments
+                lines = contents.split('\n')
                 tree = ast.parse(contents)
                 for node in ast.walk(tree):
+                    try:
+                        # Which lines are part of this statement
+                        statement_lines = lines[node.lineno - 1:
+                                                node.end_lineno]
+
+                        # Reconstruct the statement
+                        line = ''.join([l.rstrip('\\')
+                                        for l in statement_lines])
+
+                        # If this line ends in a upm pragma, don't process it
+                        m = re.match('^.*#upm\\((.*)\\).*$', line)
+                        if m:
+                            raw_imports.add(m.group(1))
+                            continue
+                    except AttributeError:
+                        pass
+
                     if isinstance(node, ast.Import):
                         for subnode in node.names:
                             raw_imports.add(subnode.name)
