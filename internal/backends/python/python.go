@@ -394,10 +394,17 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			continue
 		}
 
-		pkg, ok := moduleToPypiPackage[modname]
-		if ok {
+		if modname[0] == '"' && modname[len(modname) - 1] == '"' {
+			pkg := modname[1:len(modname) - 1]
+
 			name := api.PkgName(pkg)
 			pkgs[normalizePackageName(name)] = true
+		} else {
+			pkg, ok := moduleToPypiPackage[modname]
+			if ok {
+				name := api.PkgName(pkg)
+				pkgs[normalizePackageName(name)] = true
+			}
 		}
 	}
 

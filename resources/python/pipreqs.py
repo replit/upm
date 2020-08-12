@@ -67,7 +67,7 @@ def get_all_imports(
                         # If this line ends in a upm pragma, don't process it
                         m = re.match('^.*#upm\\((.*)\\).*$', line)
                         if m:
-                            raw_imports.add(m.group(1))
+                            raw_imports.add('"' + m.group(1) + '"')
                             continue
                     except AttributeError:
                         pass
