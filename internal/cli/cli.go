@@ -50,6 +50,7 @@ func DoCLI() {
 	var ignoredPackages []string
 	var ignoredPaths []string
 	var upgrade bool
+	var name string
 
 	cobra.EnableCommandSorting = false
 
@@ -81,6 +82,9 @@ func DoCLI() {
 	)
 	rootCmd.PersistentFlags().BoolP(
 		"version", "v", false, "display command version",
+	)
+	rootCmd.PersistentFlags().StringVarP(
+		&name, "name", "n", "", "specify project name",
 	)
 
 	cmdWhichLanguage := &cobra.Command{
@@ -144,7 +148,7 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
 			runAdd(language, pkgSpecStrs, upgrade, guess, forceGuess,
-				ignoredPackages, forceLock, forceInstall)
+				ignoredPackages, forceLock, forceInstall, name)
 		},
 	}
 	cmdAdd.Flags().SortFlags = false

@@ -248,10 +248,18 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 
 			return info
 		},
-		Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+		Init: func(name string) {
 			if !util.Exists("pyproject.toml") {
-				util.RunCmd([]string{python, "-m", "poetry", "init", "--no-interaction"})
+				cmd := []string{python, "-m", "poetry", "init", "--no-interaction"}
+
+				if name != "" {
+					cmd = append(cmd, "--name", name)
+				}
+
+				util.RunCmd(cmd)
 			}
+		},
+		Add: func(pkgs map[api.PkgName]api.PkgSpec) {
 			cmd := []string{python, "-m", "poetry", "add"}
 			for name, spec := range pkgs {
 				name := string(name)

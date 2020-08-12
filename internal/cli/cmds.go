@@ -214,7 +214,7 @@ type pkgNameAndSpec struct {
 func runAdd(
 	language string, args []string, upgrade bool,
 	guess bool, forceGuess bool, ignoredPackages []string,
-	forceLock bool, forceInstall bool) {
+	forceLock bool, forceInstall bool, name string) {
 
 	b := backends.GetBackend(language)
 
@@ -276,6 +276,12 @@ func runAdd(
 		for _, nameAndSpec := range normPkgs {
 			pkgs[nameAndSpec.name] = nameAndSpec.spec
 		}
+
+		// Init is an optional function, skip if not defined
+		if b.Init != nil {
+			b.Init(name)
+		}
+
 		b.Add(pkgs)
 	}
 

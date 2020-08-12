@@ -206,6 +206,14 @@ type LanguageBackend struct {
 	// This field is mandatory.
 	Info func(PkgName) PkgInfo
 
+	// Initalizes the specfile. If the language backend supports
+	// setting a project name, it will use the name specified. An
+	// empty name will use the default name as decided by the language
+	// backend.
+	//
+	// This field is optional.
+	Init func(project_name string)
+
 	// Add packages to the specfile. The map is guaranteed to have
 	// at least one package, and all of the packages are
 	// guaranteed to not already be in the specfile (according to
