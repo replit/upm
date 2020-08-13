@@ -55,7 +55,15 @@ def get_all_imports(
                 lines = contents.split('\n')
                 tree = ast.parse(contents)
                 for node in ast.walk(tree):
-                    try:
+                    modname = None
+                    if isinstance(node, ast.Import):
+                        for subnode in node.names:
+                            modname = subnode.name
+                    elif isinstance(node, ast.ImportFrom):
+                        modname = node.module
+
+                    # If the node was an import, look for pragmas
+                    if modname:
                         # Which lines are part of this statement
                         statement_lines = lines[node.lineno - 1:
                                                 node.end_lineno]
@@ -64,19 +72,14 @@ def get_all_imports(
                         line = ''.join([l.rstrip('\\')
                                         for l in statement_lines])
 
-                        # If this line ends in a upm pragma, don't process it
+                        # If this line ends in a upm use that instead
                         m = re.match('^.*#upm\\((.*)\\).*$', line)
                         if m:
-                            raw_imports.add('"' + m.group(1) + '"')
-                            continue
-                    except AttributeError:
-                        pass
+                            # Wrap the pragma argument in quotes so it is not
+                            # mistaken for a module name
+                            modname = '"' + m.group(1) + '"'
 
-                    if isinstance(node, ast.Import):
-                        for subnode in node.names:
-                            raw_imports.add(subnode.name)
-                    elif isinstance(node, ast.ImportFrom):
-                        raw_imports.add(node.module)
+                    raw_imports.add(modname)
             except Exception as exc:
                 had_errors = True
                 continue
