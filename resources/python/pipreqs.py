@@ -26,8 +26,8 @@ else:
 
 def get_all_imports(
         path, encoding=None, extra_ignore_dirs=None, follow_links=True):
-    imports = set()
-    raw_imports = set()
+    imports = {}
+    raw_imports = {}
     candidates = []
     ignore_dirs = [".hg", ".svn", ".git", ".tox", "__pycache__", "env", "venv"]
 
@@ -63,6 +63,7 @@ def get_all_imports(
                         modname = node.module
 
                     # If the node was an import, look for pragmas
+                    pragmas = {}
                     if modname:
                         # Which lines are part of this statement
                         statement_lines = lines[node.lineno - 1:
@@ -72,30 +73,30 @@ def get_all_imports(
                         line = ''.join([l.rstrip('\\')
                                         for l in statement_lines])
 
-                        # If this line ends in a upm use that instead
-                        m = re.match('^.*#upm\\((.*)\\).*$', line)
+                        # If this line ends in a pragma add it
+                        m = re.match('^.*#upm package\\((.*)\\).*$', line)
                         if m:
-                            # Wrap the pragma argument in quotes so it is not
-                            # mistaken for a module name
-                            modname = '"' + m.group(1) + '"'
+                            pragmas['package'] = m.group(1)
 
-                    raw_imports.add(modname)
+                        # Record the module name
+                        # Name could have been None if the import
+                        # statement was as ``from . import X``. We drop that
+                        # case but including the insert in ``if modname``
+                        raw_imports[modname] = pragmas
             except Exception as exc:
                 had_errors = True
                 continue
 
     # Clean up imports
-    for name in [n for n in raw_imports if n]:
-        # Sanity check: Name could have been None if the import
-        # statement was as ``from . import X``
+    for name in raw_imports.keys():
         # Cleanup: We only want to first part of the import.
         # Ex: from django.conf --> django.conf. But we only want django
         # as an import.
         cleaned_name, _, _ = name.partition('.')
-        imports.add(cleaned_name)
+        imports[cleaned_name] = raw_imports[name]
 
-    return list(imports - (set(candidates) & imports)), had_errors
-
+    missing_modules = imports.keys() - (set(candidates) & imports.keys())
+    return {k: imports[k] for k in missing_modules}, had_errors
 
 def join(f):
     return os.path.join(os.path.dirname(__file__), f)
