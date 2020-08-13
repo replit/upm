@@ -277,12 +277,7 @@ func runAdd(
 			pkgs[nameAndSpec.name] = nameAndSpec.spec
 		}
 
-		// Init is an optional function, skip if not defined
-		if b.Init != nil {
-			b.Init(name)
-		}
-
-		b.Add(pkgs)
+		b.Add(pkgs, name)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {

@@ -256,7 +256,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		if !util.Exists("package.json") {
 			util.RunCmd([]string{"yarn", "init", "-y"})
 		}
@@ -318,7 +318,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		if !util.Exists("package.json") {
 			util.RunCmd([]string{"npm", "init", "-y"})
 		}

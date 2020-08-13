@@ -113,7 +113,7 @@ func readProjectOrMakeEmpty(path string) Project {
 
 const pomdotxml = "pom.xml"
 
-func addPackages(pkgs map[api.PkgName]api.PkgSpec) {
+func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	project := readProjectOrMakeEmpty(pomdotxml)
 	existingDependencies := map[api.PkgName]api.PkgVersion{}
 	for _, dependency := range project.Dependencies {

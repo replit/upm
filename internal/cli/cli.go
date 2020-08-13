@@ -83,9 +83,6 @@ func DoCLI() {
 	rootCmd.PersistentFlags().BoolP(
 		"version", "v", false, "display command version",
 	)
-	rootCmd.PersistentFlags().StringVarP(
-		&name, "name", "n", "", "specify project name",
-	)
 
 	cmdWhichLanguage := &cobra.Command{
 		Use:   "which-language",
@@ -166,6 +163,9 @@ func DoCLI() {
 	)
 	cmdAdd.Flags().BoolVar(
 		&forceGuess, "force-guess", false, "bypass cache when guessing dependencies",
+	)
+	cmdAdd.Flags().StringVarP(
+		&name, "name", "n", "", "specify project name",
 	)
 	rootCmd.AddCommand(cmdAdd)
 

@@ -206,14 +206,6 @@ type LanguageBackend struct {
 	// This field is mandatory.
 	Info func(PkgName) PkgInfo
 
-	// Initalizes the specfile. If the language backend supports
-	// setting a project name, it will use the name specified. An
-	// empty name will use the default name as decided by the language
-	// backend.
-	//
-	// This field is optional.
-	Init func(project_name string)
-
 	// Add packages to the specfile. The map is guaranteed to have
 	// at least one package, and all of the packages are
 	// guaranteed to not already be in the specfile (according to
@@ -221,14 +213,18 @@ type LanguageBackend struct {
 	// already. The specs may be empty, in which case default
 	// specs should be generated (for example, specifying the
 	// latest version or newer). This method must create the
-	// specfile if it does not exist already.
+	// specfile if it does not exist already. Additional
+	// information needed to create the specfile can be passed
+	// as well. If a significant amount of additional info is
+	// required for initalizing specfiles, we can break that out
+	// to a seperate step.
 	//
 	// If QuirksAddRemoveAlsoInstalls, then also lock and install.
 	// In this case this method must also create the lockfile if
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Add func(map[PkgName]PkgSpec)
+	Add func(map[PkgName]PkgSpec, string)
 
 	// Remove packages from the specfile. The map is guaranteed to
 	// have at least one package, and all of the packages are
