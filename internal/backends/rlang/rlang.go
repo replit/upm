@@ -110,7 +110,7 @@ var RlangBackend = api.LanguageBackend{
 
 		return api.PkgInfo{}
 	},
-	Add: func(packages map[api.PkgName]api.PkgSpec) {
+	Add: func(packages map[api.PkgName]api.PkgSpec, projectName string) {
 		for name, info := range packages {
 			RAdd(RPackage{
 				Name:    string(name),

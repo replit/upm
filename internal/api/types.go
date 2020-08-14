@@ -213,14 +213,18 @@ type LanguageBackend struct {
 	// already. The specs may be empty, in which case default
 	// specs should be generated (for example, specifying the
 	// latest version or newer). This method must create the
-	// specfile if it does not exist already.
+	// specfile if it does not exist already. Additional
+	// information needed to create the specfile can be passed
+	// as well. If a significant amount of additional info is
+	// required for initalizing specfiles, we can break that out
+	// to a seperate step.
 	//
 	// If QuirksAddRemoveAlsoInstalls, then also lock and install.
 	// In this case this method must also create the lockfile if
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Add func(map[PkgName]PkgSpec)
+	Add func(map[PkgName]PkgSpec, string)
 
 	// Remove packages from the specfile. The map is guaranteed to
 	// have at least one package, and all of the packages are

@@ -248,7 +248,7 @@ func readSpecFile() dartPubspecYaml {
 	return specs
 }
 
-func dartAdd(pkgs map[api.PkgName]api.PkgSpec) {
+func dartAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	if !util.Exists("pubspec.yaml") {
 		createSpecFile()
 	}

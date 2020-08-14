@@ -75,7 +75,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 		return info
 	},
-	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		contentsB, err := ioutil.ReadFile("Cask")
 		var contents string
 		if os.IsNotExist(err) {
