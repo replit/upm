@@ -62,6 +62,12 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
+// moduleMetadata represents the information that could be associated with
+// a module using a #upm pragma
+type modulePragmas struct {
+	Package string `json:"package"`
+}
+
 // normalizeSpec returns the version string from a Poetry spec, or the
 // empty string. The Poetry spec may be either a string or a
 // map[string]interface{} with a "version" key that is a string. If
@@ -365,8 +371,8 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 	})
 
 	var output struct {
-		Imports []string `json:"imports"`
-		Success bool     `json:"success"`
+		Imports map[string]modulePragmas `json:"imports"`
+		Success bool                     `json:"success"`
 	}
 
 	if err := json.Unmarshal(outputB, &output); err != nil {
@@ -388,16 +394,24 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	pkgs := map[api.PkgName]bool{}
 
-	for _, modname := range output.Imports {
+	for modname, pragmas := range output.Imports {
 		// provided by an existing package or perhaps by the system
 		if availMods[modname] {
 			continue
 		}
 
-		pkg, ok := moduleToPypiPackage[modname]
-		if ok {
-			name := api.PkgName(pkg)
+		// If this module has a package pragma, use that
+		if pragmas.Package != ""{
+			name := api.PkgName(pragmas.Package)
 			pkgs[normalizePackageName(name)] = true
+
+		} else {
+			// Otherwise, try and look it up in Pypi
+			pkg, ok := moduleToPypiPackage[modname]
+			if ok {
+				name := api.PkgName(pkg)
+				pkgs[normalizePackageName(name)] = true
+			}
 		}
 	}
 
