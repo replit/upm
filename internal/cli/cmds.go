@@ -214,7 +214,7 @@ type pkgNameAndSpec struct {
 func runAdd(
 	language string, args []string, upgrade bool,
 	guess bool, forceGuess bool, ignoredPackages []string,
-	forceLock bool, forceInstall bool) {
+	forceLock bool, forceInstall bool, name string) {
 
 	b := backends.GetBackend(language)
 
@@ -276,7 +276,8 @@ func runAdd(
 		for _, nameAndSpec := range normPkgs {
 			pkgs[nameAndSpec.name] = nameAndSpec.spec
 		}
-		b.Add(pkgs)
+
+		b.Add(pkgs, name)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {

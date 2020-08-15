@@ -50,6 +50,7 @@ func DoCLI() {
 	var ignoredPackages []string
 	var ignoredPaths []string
 	var upgrade bool
+	var name string
 
 	cobra.EnableCommandSorting = false
 
@@ -144,7 +145,7 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
 			runAdd(language, pkgSpecStrs, upgrade, guess, forceGuess,
-				ignoredPackages, forceLock, forceInstall)
+				ignoredPackages, forceLock, forceInstall, name)
 		},
 	}
 	cmdAdd.Flags().SortFlags = false
@@ -162,6 +163,9 @@ func DoCLI() {
 	)
 	cmdAdd.Flags().BoolVar(
 		&forceGuess, "force-guess", false, "bypass cache when guessing dependencies",
+	)
+	cmdAdd.Flags().StringVarP(
+		&name, "name", "n", "", "specify project name",
 	)
 	rootCmd.AddCommand(cmdAdd)
 

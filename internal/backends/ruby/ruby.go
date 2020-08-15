@@ -168,7 +168,7 @@ var RubyBackend = api.LanguageBackend{
 			Dependencies:     deps,
 		}
 	},
-	Add: func(pkgs map[api.PkgName]api.PkgSpec) {
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
 		}
