@@ -13,6 +13,7 @@ import (
 	"github.com/replit/upm/internal/backends/python"
 	"github.com/replit/upm/internal/backends/rlang"
 	"github.com/replit/upm/internal/backends/ruby"
+	"github.com/replit/upm/internal/backends/haskell"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -31,6 +32,7 @@ var languageBackends = []api.LanguageBackend{
 	dart.DartPubBackend,
 	java.JavaBackend,
 	rlang.RlangBackend,
+	haskell.HaskellBackend
 }
 
 // matchesLanguage checks if a language backend matches a value for
