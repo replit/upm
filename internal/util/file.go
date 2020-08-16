@@ -44,6 +44,7 @@ var IgnoredPaths = []string{
 	"tests",
 	"vendor",
 	"venv",
+    ".stack-work",
 }
 
 // AddIngoredPaths globally appends to the IngoredPaths list.

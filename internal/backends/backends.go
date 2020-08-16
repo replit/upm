@@ -32,7 +32,7 @@ var languageBackends = []api.LanguageBackend{
 	dart.DartPubBackend,
 	java.JavaBackend,
 	rlang.RlangBackend,
-	haskell.HaskellBackend
+	haskell.HaskellBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for
