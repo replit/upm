@@ -149,7 +149,7 @@ func main() {
 
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		select {
-		case _ = <- errQueue:
+		case err := <- errQueue:
 			fmt.Fprintf(os.Stderr, "%v\n", err)
 		case info := <- infoQueue:
 			// Grab the write lock and update the cache
