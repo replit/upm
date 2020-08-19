@@ -25,7 +25,7 @@ func FakePackageIndex(packages ...string) PackageIndex {
 	return PackageIndex{Next: next, Package: pkg}
 }
 
-func NewPackageIndex(index string) (PackageIndex, error) {
+func NewPackageIndex(index string, limit int) (PackageIndex, error) {
 	resp, err := http.Get(index)
 
 	if err != nil {
@@ -51,9 +51,15 @@ func NewPackageIndex(index string) (PackageIndex, error) {
 		}
 	}
 
+	i := 0
 	advanceScanner := func() bool {
 		// Scan until end of scanner or valid package
 		for {
+			// If we are past the limit, terminate
+			if limit > -1 && i >= limit {
+				return false
+			}
+
 			if !scanner.Scan() {
 				resp.Body.Close()
 				return false
@@ -61,6 +67,7 @@ func NewPackageIndex(index string) (PackageIndex, error) {
 
 			packageName := parsePackage()
 			if packageName != "" {
+				i++
 				return true
 			}
 		}

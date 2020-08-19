@@ -89,7 +89,7 @@ func main() {
 
 	// Scan pypi for all packages
 	discoveredPackages := 0
-	packages, _ := NewPackageIndex("https://pypi.org/simple/")
+	packages, _ := NewPackageIndex("https://pypi.org/simple/", 1000)
 
 	workers := 200
 
