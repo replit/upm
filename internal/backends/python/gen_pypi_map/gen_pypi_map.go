@@ -26,7 +26,7 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 }
 
 // NOTE: cache is read only
-func ProcessPackage(packageName string, cache PackageCache) (PackageInfo, error) {
+func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error) {
 	// Get the package metadata from pypi
 	metadata, err := GetPackageMetadata(packageName)
 
@@ -51,7 +51,7 @@ func ProcessPackage(packageName string, cache PackageCache) (PackageInfo, error)
 	})
 
 	// Check if cached module extraction is out of date
-	if latest[0].MD5 != cache[packageName].MD5 {
+	if latest[0].MD5 != cached.MD5 {
 
 		// Download the distribution and extract the modules
 		modules, err := GetModules(latest[0])
@@ -61,7 +61,7 @@ func ProcessPackage(packageName string, cache PackageCache) (PackageInfo, error)
 
 		// TODO(@zabot) Pypi stats cannot be fetched from the API and have to be
 		// preinserted into the cache
-		metadata.Info.Downloads = cache[packageName].Downloads
+		metadata.Info.Downloads = cached.Downloads
 
 		// Copy the information from the specific dist into the info
 		metadata.Info.Modules = modules
@@ -70,7 +70,7 @@ func ProcessPackage(packageName string, cache PackageCache) (PackageInfo, error)
 	}
 
 	// If we hit in the cache, no need to download the distribution
-	return cache[packageName], nil
+	return cached, nil
 }
 
 func main() {
@@ -125,8 +125,10 @@ func main() {
 			// that must aquire a write lock. Explicitly releasing the lock before
 			// writing to the channel prevents this possible deadlock
 			packageCacheLock.RLock()
-			packageInfo, err := ProcessPackage(packageName, packageCache)
+			cached := packageCache[packageName]
 			packageCacheLock.RUnlock()
+
+			packageInfo, err := ProcessPackage(packageName, cached)
 
 			if err != nil {
 				errQueue <- err
@@ -147,15 +149,16 @@ func main() {
 	defer cacheWriter.Close()
 	cacheEncoder := json.NewEncoder(cacheWriter)
 
+	cacheBuffer := make([]PackageInfo, 0, workers)
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		select {
 		case err := <- errQueue:
 			fmt.Fprintf(os.Stderr, "%v\n", err)
 		case info := <- infoQueue:
-			// Grab the write lock and update the cache
-			packageCacheLock.Lock()
-			packageCache[info.Name] = info
-			packageCacheLock.Unlock()
+			// Grabbing the cache lock after every message is written to the channel
+			// destroys any multithreading benefit. Buffer up cache updates and write
+			// them all at once
+			//cacheBuffer = append(cacheBuffer, info)
 
 			// Update the disk cache
 			cacheEncoder.Encode(info)
@@ -169,6 +172,16 @@ func main() {
 
 		if processedPackages % ppu == 0 {
 			fmt.Printf("%v/%v %v%%\n", processedPackages, discoveredPackages, 100 * float64(processedPackages)/float64(discoveredPackages))
+		}
+
+		// Grab the write lock and update the cache
+		if len(cacheBuffer) > int(float64(workers) * 0.8) {
+			packageCacheLock.Lock()
+			for _, info := range cacheBuffer {
+				packageCache[info.Name] = info
+				cacheBuffer = cacheBuffer[:0]
+			}
+			packageCacheLock.Unlock()
 		}
 	}
 
