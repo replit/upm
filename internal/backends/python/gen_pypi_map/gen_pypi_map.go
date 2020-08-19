@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"flag"
 	"net/http"
 	"os"
 	"sort"
@@ -74,13 +75,19 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 }
 
 func main() {
+	cacheFile := flag.String("cache", "cache.json", "A json file to seed the map from. This file will be rewritten with up to date information.")
+	bigqueryFile := flag.String("bq", "bq.json", "The result of a BigQuery against the pypi downloads dataset.")
+	pkg := flag.String("pkg", "python", "the pkg name for the output source")
+	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
+	flag.Parse()
+
 	// Load info from the package cache
-	packageCache, err := LoadCache("cache.json")
+	packageCache, err := LoadCache(*cacheFile)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Skippping cache: %v\n", err)
 	}
 
-	bqCache, err := LoadCache("bq.json")
+	bqCache, err := LoadCache(*bigqueryFile)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Skippping bq data, downloads will not be available: %v\n", err)
 	} else {
@@ -142,7 +149,7 @@ func main() {
 	fmt.Printf("Discovered %v packages\n", discoveredPackages)
 
 	// Open a JSON encoder to stream the package list to a file as it comes in
-	cacheWriter, err := os.Create("cache.json")
+	cacheWriter, err := os.Create(*cacheFile)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to open cache file for writing\n")
 	}
@@ -212,14 +219,14 @@ func main() {
 		}
 	}
 
-	codeWriter, err := os.Create("pypi_map.gen.go")
+	codeWriter, err := os.Create(*out)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to open output file for writing\n")
 		return
 	}
 	defer codeWriter.Close()
 
-	fmt.Fprintf(codeWriter, "package python\n\n")
+	fmt.Fprintf(codeWriter, "package %v\n\n", *pkg)
 	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, codeWriter)
 	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, codeWriter)
 }
