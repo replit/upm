@@ -13,4 +13,3 @@ func DumpMapToGoVar(name string, m map[string]string, writer io.Writer) {
 	}
 	fmt.Fprintf(writer, "}\n\n")
 }
-

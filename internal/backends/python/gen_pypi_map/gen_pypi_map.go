@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"flag"
+	"fmt"
 	"net/http"
 	"os"
 	"sort"
@@ -159,9 +159,9 @@ func main() {
 	cacheBuffer := make([]PackageInfo, 0, workers)
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		select {
-		case err := <- errQueue:
+		case err := <-errQueue:
 			fmt.Fprintf(os.Stderr, "%v\n", err)
-		case info := <- infoQueue:
+		case info := <-infoQueue:
 			// Grabbing the cache lock after every message is written to the channel
 			// destroys any multithreading benefit. Buffer up cache updates and write
 			// them all at once
@@ -177,12 +177,12 @@ func main() {
 			ppu = 1
 		}
 
-		if processedPackages % ppu == 0 {
-			fmt.Printf("%v/%v %v%%\n", processedPackages, discoveredPackages, 100 * float64(processedPackages)/float64(discoveredPackages))
+		if processedPackages%ppu == 0 {
+			fmt.Printf("%v/%v %v%%\n", processedPackages, discoveredPackages, 100*float64(processedPackages)/float64(discoveredPackages))
 		}
 
 		// Grab the write lock and update the cache
-		if len(cacheBuffer) > int(float64(workers) * 0.8) {
+		if len(cacheBuffer) > int(float64(workers)*0.8) {
 			packageCacheLock.Lock()
 			for _, info := range cacheBuffer {
 				packageCache[info.Name] = info
