@@ -115,12 +115,9 @@ func GetModules(pkg PackageURL) ([]string, error) {
 
 	// Get the right archive reader
 	var reader ArchiveReader
-	if path.Ext(pkg.Filename) == ".zip" {
-		reader, err = MakeZipReader(resp.Body, pkg.Size)
-		if err != nil {
-			return nil, err
-		}
-	} else if path.Ext(pkg.Filename) == ".whl" {
+	if path.Ext(pkg.Filename) == ".zip" ||
+			path.Ext(pkg.Filename) == ".whl" ||
+			path.Ext(pkg.Filename) == ".egg" {
 		reader, err = MakeZipReader(resp.Body, pkg.Size)
 		if err != nil {
 			return nil, err
