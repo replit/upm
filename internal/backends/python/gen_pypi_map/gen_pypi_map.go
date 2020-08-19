@@ -199,15 +199,14 @@ func main() {
 		}
 	}
 
-	fmt.Println("var moduleToPypiPackage = map[string]string{")
-	for module, pkg := range moduleToPypiPackage {
-		fmt.Printf("  \"%v\":  \"%v\",\n", module, pkg)
+	codeWriter, err := os.Create("pypi_map.gen.go")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to open output file for writing\n")
+		return
 	}
-	fmt.Println("}")
+	defer codeWriter.Close()
 
-	fmt.Println("var pypiPackageToModules = map[string]string{")
-	for pkg, modules := range pypiPackageToModules {
-		fmt.Printf("  \"%v\":  \"%v\",\n", pkg, modules)
-	}
-	fmt.Println("}")
+	fmt.Fprintf(codeWriter, "package python\n\n")
+	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, codeWriter)
+	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, codeWriter)
 }
