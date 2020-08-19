@@ -1,58 +1,57 @@
 package main
 
 import (
-  "strings"
-  "sort"
+	"sort"
+	"strings"
 )
 
-
 func GuessPackage(module string, packages []PackageInfo) (PackageInfo, bool) {
-  // Never try and guess packages in the python stdlib
-  if stdlibMods[module] {
-    return PackageInfo{}, false
-  }
+	// Never try and guess packages in the python stdlib
+	if stdlibMods[module] {
+		return PackageInfo{}, false
+	}
 
-  // If no packages provide this module, give up
-  if len(packages) == 0 {
-    return PackageInfo{}, false
-  }
+	// If no packages provide this module, give up
+	if len(packages) == 0 {
+		return PackageInfo{}, false
+	}
 
-  // If there is only one package that provides this module, use that
-  if len(packages) == 1 {
-    return packages[0], true
-  }
+	// If there is only one package that provides this module, use that
+	if len(packages) == 1 {
+		return packages[0], true
+	}
 
-  // There are at least two packages that provide this module
-  ///////////////////////////////////////////////////////////
+	// There are at least two packages that provide this module
+	///////////////////////////////////////////////////////////
 
-  // Got through all the matches, if any package name is an exact match to the
-  // module name, use that
-  for _, candidate := range packages {
-    if strings.Replace(strings.ToLower(candidate.Name), "-", "_", -1) ==
-      strings.ToLower(module) {
-      return candidate, true
-    }
-  }
+	// Got through all the matches, if any package name is an exact match to the
+	// module name, use that
+	for _, candidate := range packages {
+		if strings.Replace(strings.ToLower(candidate.Name), "-", "_", -1) ==
+			strings.ToLower(module) {
+			return candidate, true
+		}
+	}
 
-  // Sort the packages by downloads
-  sort.Slice(packages, func(a, b int) bool {
-    return packages[a].Downloads > packages[b].Downloads
-  })
+	// Sort the packages by downloads
+	sort.Slice(packages, func(a, b int) bool {
+		return packages[a].Downloads > packages[b].Downloads
+	})
 
-  // If the most downloaded package that provides this module has been
-  // downloaded fewer then 100 times, skip the module
-  if packages[0].Downloads < 100 {
-    return PackageInfo{}, false
-  }
+	// If the most downloaded package that provides this module has been
+	// downloaded fewer then 100 times, skip the module
+	if packages[0].Downloads < 100 {
+		return PackageInfo{}, false
+	}
 
-  // if the top package is 10x more popular than the next, we'll go with
-  // it. We've added a cost for every module as well, this seems to get
-  // the best results
-  if packages[0].Downloads/len(packages[0].Modules) > packages[1].Downloads*10/len(packages[1].Modules) {
-    return packages[0], true
-  }
+	// if the top package is 10x more popular than the next, we'll go with
+	// it. We've added a cost for every module as well, this seems to get
+	// the best results
+	if packages[0].Downloads/len(packages[0].Modules) > packages[1].Downloads*10/len(packages[1].Modules) {
+		return packages[0], true
+	}
 
-  return PackageInfo{}, false
+	return PackageInfo{}, false
 }
 
 // pythonStdlibModules this build is built from
