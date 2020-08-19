@@ -91,35 +91,53 @@ func main() {
 	discoveredPackages := 0
 	packages, _ := NewPackageIndex("https://pypi.org/simple/")
 
+	workers := 200
+
 	// Each package is handled in a seperate goroutine, the total number
 	// concurrent is limited by the buffer size of this channel
-	infoQueue := make(chan PackageInfo)
-	concurrencyLimiter := make(chan struct{}, 10)
+	infoQueue := make(chan PackageInfo, workers)
+	errQueue := make(chan error, workers)
+	concurrencyLimiter := make(chan struct{}, workers)
 	var wg sync.WaitGroup
+
+	// Once goroutines start returning, we need to update the cache while still
+	// reading it for future packages
+	packageCacheLock := sync.RWMutex{}
 
 	for packages.Next() {
 		discoveredPackages++
 		packageName := packages.Package()
 
+		// Register every goroutine with the wait group before we start it
+		wg.Add(1)
 		go func() {
-			// Register with the wait group
-			wg.Add(1)
+			// Notify the wait group when finished
 			defer wg.Done()
 
-			// Push to the limiter channel and pop when done
+			// Block until there is room for more goroutines. This way we don't
+			// overload the number of open connections. Release our spot when finished
 			concurrencyLimiter <- struct{}{}
 			defer func() { <-concurrencyLimiter }()
 
 			// Get the package info for this package
+			// Sync note: We have to explicitly release the lock instead of releasing
+			// it in a defer because the other end of infoQueue is read in a function
+			// that must aquire a write lock. Explicitly releasing the lock before
+			// writing to the channel prevents this possible deadlock
+			packageCacheLock.RLock()
 			packageInfo, err := ProcessPackage(packageName, packageCache)
+			packageCacheLock.RUnlock()
+
 			if err != nil {
-				fmt.Println(err)
+				errQueue <- err
 				return
 			}
 
 			infoQueue <- packageInfo
 		}()
 	}
+
+	fmt.Printf("Discovered %v packages\n", discoveredPackages)
 
 	// Open a JSON encoder to stream the package list to a file as it comes in
 	cacheWriter, err := os.Create("cache.json")
@@ -129,21 +147,34 @@ func main() {
 	defer cacheWriter.Close()
 	cacheEncoder := json.NewEncoder(cacheWriter)
 
-	processedPackages := 0
-	for info := range infoQueue {
-		packageCache[info.Name] = info
-		cacheEncoder.Encode(info)
-		processedPackages++
+	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
+		select {
+		case _ = <- errQueue:
+			//fmt.Println(err)
+		case info := <- infoQueue:
+			// Grab the write lock and update the cache
+			packageCacheLock.Lock()
+			packageCache[info.Name] = info
+			packageCacheLock.Unlock()
 
-		if processedPackages%10 == 0 {
-			fmt.Println(processedPackages, "/", discoveredPackages)
+			// Update the disk cache
+			cacheEncoder.Encode(info)
 		}
 
-		// If we've processed everything, close the channel
-		if processedPackages == discoveredPackages {
-			close(infoQueue)
+		// Print progress updates to stdout
+		ppu := discoveredPackages / 100
+		if ppu < 1 {
+			ppu = 1
+		}
+
+		if processedPackages % ppu == 0 {
+			fmt.Printf("%v/%v %v%%\n", processedPackages, discoveredPackages, 100 * float64(processedPackages)/float64(discoveredPackages))
 		}
 	}
+
+	// After all packages have been processed, close channels
+	close(infoQueue)
+	close(errQueue)
 
 	// packageCache is now a map of every python package name to the PackageInfo
 	// for that package, with downloads and modules populated
