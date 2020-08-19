@@ -165,7 +165,7 @@ func main() {
 			// Grabbing the cache lock after every message is written to the channel
 			// destroys any multithreading benefit. Buffer up cache updates and write
 			// them all at once
-			//cacheBuffer = append(cacheBuffer, info)
+			cacheBuffer = append(cacheBuffer, info)
 
 			// Update the disk cache
 			cacheEncoder.Encode(info)
