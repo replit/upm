@@ -77,12 +77,12 @@ func main() {
 	// Load info from the package cache
 	packageCache, err := LoadCache("cache.json")
 	if err != nil {
-		fmt.Printf("Skippping cache: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Skippping cache: %v\n", err)
 	}
 
 	bqCache, err := LoadCache("bq.json")
 	if err != nil {
-		fmt.Printf("Skippping bq data, downloads will not be available: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Skippping bq data, downloads will not be available: %v\n", err)
 	} else {
 		MergeCache(packageCache, bqCache)
 	}
@@ -142,7 +142,7 @@ func main() {
 	// Open a JSON encoder to stream the package list to a file as it comes in
 	cacheWriter, err := os.Create("cache.json")
 	if err != nil {
-		fmt.Println("Failed to open cache file for writing")
+		fmt.Fprintf(os.Stderr, "Failed to open cache file for writing\n")
 	}
 	defer cacheWriter.Close()
 	cacheEncoder := json.NewEncoder(cacheWriter)
@@ -150,7 +150,7 @@ func main() {
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		select {
 		case _ = <- errQueue:
-			//fmt.Println(err)
+			fmt.Fprintf(os.Stderr, "%v\n", err)
 		case info := <- infoQueue:
 			// Grab the write lock and update the cache
 			packageCacheLock.Lock()
