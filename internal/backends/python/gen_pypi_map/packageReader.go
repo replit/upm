@@ -1,6 +1,7 @@
 package main
 
 import (
+  "fmt"
   "errors"
   "strings"
   "net/http"
@@ -131,7 +132,7 @@ func GetModules(pkg PackageURL) ([]string, error) {
       return nil, err
     }
   } else {
-    return nil, errors.New("Unknown file type")
+    return nil, fmt.Errorf("Unknown file type: %v", path.Ext(pkg.Filename))
   }
 
   if pkg.PackageType == "bdist_wheel" {
@@ -142,5 +143,5 @@ func GetModules(pkg PackageURL) ([]string, error) {
     return extractSdist(reader)
   }
 
-  return nil, errors.New("Unknown package type")
+  return nil, fmt.Errorf("Unknown package type: %v", pkg.PackageType)
 }
