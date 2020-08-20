@@ -15,7 +15,7 @@ import (
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
-//go:generate go run ./gen_pypi_map -from pypi_packages.json -pkg python -out pypi_map.gen.go
+//go:generate go run ./gen_pypi_map -bq bq.json -pkg python -out pypi_map.gen.go
 
 // pypiXMLRPCEntry represents one element of the response we get from
 // the PyPI XMLRPC API on doing a search.
