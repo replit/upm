@@ -3,27 +3,36 @@ package main
 import (
 	"archive/tar"
 	"archive/zip"
-	"bytes"
 	"compress/gzip"
 	"io"
+	"fmt"
+	"os"
+	"io/ioutil"
 )
 
 type ArchiveReader struct {
 	Next   func() (string, error)
 	Reader func() (io.Reader, error)
-	//Read(p []byte) (n int, err error)
+	Close  func()
 }
 
 func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
-	// TODO Create an unbuffered ReaderAt to read zip from
-	buff := bytes.NewBuffer([]byte{})
-	size, err := io.Copy(buff, reader)
+	cacheFile, err := ioutil.TempFile(os.TempDir(), "pypi-")
 	if err != nil {
-		return ArchiveReader{}, err
+		return ArchiveReader{}, fmt.Errorf("Cannot open cache for zip: %v", err)
 	}
-	memReader := bytes.NewReader(buff.Bytes())
 
-	zipReader, err := zip.NewReader(memReader, size)
+	// Copy the contents of the reader to disk
+	io.Copy(cacheFile, reader)
+
+	cacheFile.Close()
+
+	zipFile, err := os.Open(cacheFile.Name())
+	if err != nil {
+		return ArchiveReader{}, fmt.Errorf("Cannot open cache for zip: %v", err)
+	}
+
+	zipReader, err := zip.NewReader(zipFile, size)
 	if err != nil {
 		return ArchiveReader{}, err
 	}
@@ -41,7 +50,12 @@ func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
 		return zipReader.File[i].Open()
 	}
 
-	return ArchiveReader{Next: next, Reader: fileReader}, nil
+	archiveClose := func() {
+		zipFile.Close()
+		os.Remove(zipFile.Name())
+	}
+
+	return ArchiveReader{Next: next, Reader: fileReader, Close: archiveClose}, nil
 }
 
 func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
@@ -65,5 +79,9 @@ func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
 		return tarReader, nil
 	}
 
-	return ArchiveReader{Next: next, Reader: fileReader}, nil
+	closeGzip := func() () {
+		gzipReader.Close()
+	}
+
+	return ArchiveReader{Next: next, Reader: fileReader, Close: closeGzip}, nil
 }

@@ -130,6 +130,7 @@ func GetModules(pkg PackageURL) ([]string, error) {
 	} else {
 		return nil, fmt.Errorf("Unknown file type: %v", path.Ext(pkg.Filename))
 	}
+	defer reader.Close()
 
 	if pkg.PackageType == "bdist_wheel" {
 		return extractWheel(reader)
