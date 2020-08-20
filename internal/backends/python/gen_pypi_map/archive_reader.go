@@ -4,10 +4,10 @@ import (
 	"archive/tar"
 	"archive/zip"
 	"compress/gzip"
-	"io"
 	"fmt"
-	"os"
+	"io"
 	"io/ioutil"
+	"os"
 )
 
 type ArchiveReader struct {
@@ -79,7 +79,7 @@ func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
 		return tarReader, nil
 	}
 
-	closeGzip := func() () {
+	closeGzip := func() {
 		gzipReader.Close()
 	}
 

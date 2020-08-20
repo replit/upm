@@ -31,8 +31,8 @@ type PackageData struct {
 type PypiErrorType int
 
 type PypiError struct {
-	Class PypiErrorType
-	Info string
+	Class        PypiErrorType
+	Info         string
 	WrappedError error
 }
 
@@ -45,10 +45,10 @@ const (
 )
 
 func (e PypiError) Error() string {
-	message := [...]string{"No top level module", 
-										 "Unknown archive type:" + e.Info,
-										 "Unknown distribution type: " + e.Info,
-										 "No distributions for latest version: " + e.Info,
-									 }[e.Class]
+	message := [...]string{"No top level module",
+		"Unknown archive type:" + e.Info,
+		"Unknown distribution type: " + e.Info,
+		"No distributions for latest version: " + e.Info,
+	}[e.Class]
 	return fmt.Sprintf("{\"type\": %v, \"message\": \"%v\"}", e.Class, message)
 }

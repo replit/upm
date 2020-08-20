@@ -76,7 +76,7 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 
 type PackageResults struct {
 	info PackageInfo
-	err error
+	err  error
 }
 
 func main() {
