@@ -82,6 +82,7 @@ type PackageResults struct {
 func main() {
 	cacheFile := flag.String("cache", "cache.json", "A json file to seed the map from. This file will be rewritten with up to date information.")
 	bigqueryFile := flag.String("bq", "bq.json", "The result of a BigQuery against the pypi downloads dataset.")
+	gcp := flag.String("gcp", "", "A GCP project ID to use to query bigquery directly. The result will be written to bq.")
 	pkg := flag.String("pkg", "python", "the pkg name for the output source")
 	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
 	flag.Parse()
@@ -92,7 +93,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Skippping cache: %v\n", err)
 	}
 
-	bqCache, err := LoadCache(*bigqueryFile)
+	var bqCache PackageCache
+	if *gcp != "" {
+		bqCache, err = GetPypiStats(*gcp)
+		DumpCache(*bigqueryFile, bqCache)
+	} else {
+		bqCache, err = LoadCache(*bigqueryFile)
+	}
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Skippping bq data, downloads will not be available: %v\n", err)
 	} else {

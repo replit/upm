@@ -40,3 +40,16 @@ func MergeCache(baseCache PackageCache, caches ...PackageCache) PackageCache {
 	}
 	return baseCache
 }
+
+func DumpCache(path string, cache PackageCache) {
+	writer, err := os.Create(path)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to open cache file for writing %v\n", err)
+	}
+	defer writer.Close()
+
+	cacheEncoder := json.NewEncoder(writer)
+	for _, info := range cache {
+		cacheEncoder.Encode(info)
+	}
+}
