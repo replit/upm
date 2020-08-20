@@ -9,19 +9,20 @@ import (
     "github.com/replit/upm/internal/api"
     "github.com/replit/upm/internal/util"
     "strings"
+    "os"
 )
 
 var HaskellBackend = api.LanguageBackend {
     Name:                "haskell-stack",
     Specfile:            "package.yaml",
-    Lockfile:            "stack.yaml.lock",
-    // also present: a .cabal and stack.yaml
+    Lockfile:            "stack.yaml",
+    // also present: a package-name.cabal file, a stack.yaml.lock that stores hashes
     FilenamePatterns:    []string{"*.hs"},
-    Quirks:              api.QuirksLockAlsoInstalls,
+    Quirks:              api.QuirksAddRemoveAlsoLocks,
     GetPackageDir:       func () string {
         return ".stack-work"
     },
-    // note : Stack actually uses two package directories:
+    // Stack actually uses two package directories:
     // ~/.stack/ for stackage packages and .stack-work for others
     Search:              func(q string) []api.PkgInfo {
         return searchFunction(q,false)
@@ -29,10 +30,14 @@ var HaskellBackend = api.LanguageBackend {
     Info:                func(i api.PkgName) api.PkgInfo {
         return searchFunction(string(i),true)[0]
     },
-    Add:                 func(map[api.PkgName]api.PkgSpec, string){},
+    Add:                 Add,
     Remove:              func(map[api.PkgName]bool) {},
-    Lock:                util.NotImplemented,
+    // Stack's baseline philosophy is that build plans are always reproducible.
+    // Which means locking is automatic. Versions are precise. This spares a lot of spec trouble.
+    // https://docs.haskellstack.org/en/stable/stack_yaml_vs_cabal_package_file/
+    Lock:                func(){},
     Install:             util.NotImplemented,
+    // lock will be used for non-stackage packages and spec for stackage ones
     ListSpecfile:        func()map[api.PkgName]api.PkgSpec{
         return map[api.PkgName]api.PkgSpec{}
     },
@@ -45,8 +50,6 @@ var HaskellBackend = api.LanguageBackend {
 
     
 }
-
-
 
 func searchFunction(query string, indiv bool) []api.PkgInfo {
     // search stackage[hoogle] first
@@ -94,6 +97,50 @@ func searchFunction(query string, indiv bool) []api.PkgInfo {
 }
 
 
+var initialCabal = 
+`name:                project
+version:             0.0.0
+build-type:          Simple
+cabal-version:       >=1.10
 
+executable main
+  hs-source-dirs:      .
+  main-is:             main.hs
+  default-language:    Haskell2010
+  build-depends:       
+    base >= 4.7 && < 5
+`
+
+//TODO: more sophisticated cabal/yaml parsing
+func Add(packages map[api.PkgName]api.PkgSpec, projectName string){
+    if _,err := os.Open("./project.cabal"); os.IsNotExist(err) {
+        file, _ := os.Create("./project.cabal")
+        file.Write([]byte(initialCabal))
+        file.Close()
+        file, _ = os.Create("./stack.yaml")
+        file.Write([]byte("resolver: lts-16.10\n"))
+        file.Close()
+    }
+    for name, version := range(packages){
+        packageInfo := searchFunction(string(name),true)[0]
+        onStackage := !strings.Contains(string(packageInfo.Description), "Not on Stackage")
+        if !onStackage{
+            if contents,_ := ioutil.ReadFile("stack.yaml"); !strings.Contains(string(contents),"extra-deps"){
+                f, _ := os.OpenFile("stack.yaml", os.O_APPEND | os.O_WRONLY, 0644)
+                f.Write([]byte("extra-deps:\n"))
+                f.Close()
+            }
+            if version == ""{
+                version = api.PkgSpec(packageInfo.Version)
+            }
+            f, _ := os.OpenFile("stack.yaml", os.O_APPEND | os.O_WRONLY, 0644)
+            f.WriteString("- " + string(name) + "-" + string(version) + "\n")
+            f.Close()     
+        } 
+        f, _ := os.OpenFile("project.cabal", os.O_APPEND | os.O_WRONLY, 0644)
+        f.WriteString("    , " + string(name) + "\n" )
+        f.Close() 
+    }
+}
     
      
