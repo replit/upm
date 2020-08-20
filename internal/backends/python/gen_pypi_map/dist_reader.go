@@ -2,8 +2,6 @@ package main
 
 import (
 	"bufio"
-	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"path"
@@ -32,7 +30,7 @@ func extractWheel(reader ArchiveReader) ([]string, error) {
 			if err == io.EOF {
 				// If we never found any modules, error
 				if len(packages) == 0 {
-					return nil, errors.New("No top level modules found")
+					return nil, PypiError{NoTopLevel, "", nil}
 				}
 
 				return packages, nil
@@ -74,7 +72,7 @@ func extractSdist(reader ArchiveReader) ([]string, error) {
 				// guess from the package structure
 				//return nil, errors.New("EOF reached without top_level.txt")
 				if len(packages) == 0 {
-					return nil, errors.New("No top level modules found")
+					return nil, PypiError{NoTopLevel, "", nil}
 				}
 
 				return packages, nil
@@ -128,7 +126,7 @@ func GetModules(pkg PackageURL) ([]string, error) {
 			return nil, err
 		}
 	} else {
-		return nil, fmt.Errorf("Unknown file type: %v", path.Ext(pkg.Filename))
+		return nil, PypiError{UnknownArchive, path.Ext(pkg.Filename), nil}
 	}
 	defer reader.Close()
 
@@ -140,5 +138,5 @@ func GetModules(pkg PackageURL) ([]string, error) {
 		return extractSdist(reader)
 	}
 
-	return nil, fmt.Errorf("Unknown package type: %v", pkg.PackageType)
+	return nil, PypiError{UnknownDist, pkg.PackageType, nil}
 }

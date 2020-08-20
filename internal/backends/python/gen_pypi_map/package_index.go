@@ -55,12 +55,8 @@ func NewPackageIndex(index string, limit int) (PackageIndex, error) {
 	advanceScanner := func() bool {
 		// Scan until end of scanner or valid package
 		for {
-			// If we are past the limit, terminate
-			if limit > -1 && i >= limit {
-				return false
-			}
-
-			if !scanner.Scan() {
+			// If we are past the limit or nothing is left terminate
+			if limit > -1 && i >= limit || !scanner.Scan() {
 				resp.Body.Close()
 				return false
 			}

@@ -32,13 +32,13 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 	metadata, err := GetPackageMetadata(packageName)
 
 	if err != nil {
-		return PackageInfo{}, fmt.Errorf("Encountered error while fetching %v: %v", packageName, err)
+		return PackageInfo{}, PypiError{DownloadFailure, "", err}
 	}
 
 	// Determine which dist we want to use to determine modules
 	latest := metadata.Releases[metadata.Info.Version]
 	if len(latest) == 0 {
-		return PackageInfo{}, fmt.Errorf("No package for latest release: %v", packageName)
+		return PackageInfo{}, PypiError{NoDistributions, metadata.Info.Version, nil}
 	}
 
 	// Sort the releases by priority we want to parse
@@ -57,7 +57,7 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 		// Download the distribution and extract the modules
 		modules, err := GetModules(latest[0])
 		if err != nil {
-			return PackageInfo{}, fmt.Errorf("Encounter error while resolving packages for %v: %v", packageName, err)
+			return PackageInfo{}, err
 		}
 
 		// TODO(@zabot) Pypi stats cannot be fetched from the API and have to be
@@ -72,6 +72,11 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 
 	// If we hit in the cache, no need to download the distribution
 	return cached, nil
+}
+
+type PackageResults struct {
+	info PackageInfo
+	err error
 }
 
 func main() {
@@ -102,8 +107,7 @@ func main() {
 
 	// Each package is handled in a seperate goroutine, the total number
 	// concurrent is limited by the buffer size of this channel
-	infoQueue := make(chan PackageInfo, workers)
-	errQueue := make(chan error, workers)
+	resultQueue := make(chan PackageResults, workers)
 	concurrencyLimiter := make(chan struct{}, workers)
 	var wg sync.WaitGroup
 
@@ -136,13 +140,8 @@ func main() {
 			packageCacheLock.RUnlock()
 
 			packageInfo, err := ProcessPackage(packageName, cached)
-
-			if err != nil {
-				errQueue <- err
-				return
-			}
-
-			infoQueue <- packageInfo
+			packageInfo.Name = packageName
+			resultQueue <- PackageResults{packageInfo, err}
 		}()
 	}
 
@@ -158,17 +157,18 @@ func main() {
 
 	cacheBuffer := make([]PackageInfo, 0, workers)
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
-		select {
-		case err := <-errQueue:
-			fmt.Fprintf(os.Stderr, "%v\n", err)
-		case info := <-infoQueue:
+		result := <-resultQueue
+
+		if result.err != nil {
+			fmt.Fprintf(os.Stderr, "{\"package\": \"%v\", \"error\": %v\n", result.info.Name, result.err)
+		} else {
 			// Grabbing the cache lock after every message is written to the channel
 			// destroys any multithreading benefit. Buffer up cache updates and write
 			// them all at once
-			cacheBuffer = append(cacheBuffer, info)
+			cacheBuffer = append(cacheBuffer, result.info)
 
 			// Update the disk cache
-			cacheEncoder.Encode(info)
+			cacheEncoder.Encode(result.info)
 		}
 
 		// Print progress updates to stdout
@@ -193,8 +193,7 @@ func main() {
 	}
 
 	// After all packages have been processed, close channels
-	close(infoQueue)
-	close(errQueue)
+	close(resultQueue)
 
 	// packageCache is now a map of every python package name to the PackageInfo
 	// for that package, with downloads and modules populated
