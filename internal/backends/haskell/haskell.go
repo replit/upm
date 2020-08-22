@@ -36,7 +36,9 @@ var HaskellBackend = api.LanguageBackend {
     // Which means locking is automatic. Versions are precise. This spares a lot of spec trouble.
     // https://docs.haskellstack.org/en/stable/stack_yaml_vs_cabal_package_file/
     Lock:                func(){},
-    Install:             util.NotImplemented,
+    Install:             func(){
+        util.RunCmd([]string{"stack", "build", "--dependencies-only"})
+    },
     // lock will be used for non-stackage packages and spec for stackage ones
     ListSpecfile:        func()map[api.PkgName]api.PkgSpec{
         return map[api.PkgName]api.PkgSpec{}
@@ -124,9 +126,14 @@ func Add(packages map[api.PkgName]api.PkgSpec, projectName string){
         file.Write([]byte(initialCabal))
         file.Close()
         file, _ = os.Create("./stack.yaml")
-        file.Write([]byte("resolver: lts-16.10\n"))
+        file.Write([]byte("resolver: lts-16.10\nsystem-ghc: true\n"))
+        // the system-ghc flag *allows* stack to use system ghc if version required by resolver and system ghc version match.
+        // 16.10 is the latest ltc at the time of writing. ghc version 8.8.3 preferred.
+        // default behaviour is to download the necessary version of ghc on the fly, which consumes both time and memory
         file.Close()
     }
+    // the canon way to add dependencies to stack projects is to manually write them in the cabal file.
+    // non-stackage packages should be mentioned with version in the stack.yaml file
     for name, version := range(packages){
         packageInfo := searchFunction(string(name),true)[0]
         onStackage := !strings.Contains(string(packageInfo.Description), "Not on Stackage")
