@@ -64,6 +64,9 @@ func searchFunction(query string, indiv bool) []api.PkgInfo {
     finresults := []api.PkgInfo{}
     if indiv {results = results[:1]} // so we can skip implementing the search function again
     for _,result := range results{
+        if result["item"] == ""{
+            continue
+        }
         getCabal, err := http.Get(result["url"] + "/src/" + result["item"][8:] + ".cabal")
         if err!= nil {
             util.Die("hackage [cabal file] response:" + err.Error())
@@ -92,6 +95,9 @@ func searchFunction(query string, indiv bool) []api.PkgInfo {
             // will implement Dependencies later
         }
         finresults = append(finresults,info)
+    }
+    if indiv && (len(finresults) == 0 || finresults[0].Name != query){
+        util.Die("cannot find package " + query)
     }
     return finresults
 }
