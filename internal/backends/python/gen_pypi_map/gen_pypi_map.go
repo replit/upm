@@ -9,6 +9,7 @@ import (
 	"sort"
 	"strings"
 	"sync"
+	"time"
 )
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
@@ -95,10 +96,14 @@ func main() {
 
 	var bqCache PackageCache
 	if *gcp != "" {
+		fmt.Printf("Fetching latest pypi stats from big query. This may take some time...\n")
 		bqCache, err = GetPypiStats(*gcp)
 		DumpCache(*bigqueryFile, bqCache)
+		fmt.Printf("Fetched %v records, saved results to %v", len(bqCache), *bigqueryFile)
 	} else {
+		fmt.Printf("Loading pypi stats from cache file\n")
 		bqCache, err = LoadCache(*bigqueryFile)
+		fmt.Printf("Loaded %v stats\n", len(bqCache))
 	}
 
 	if err != nil {
@@ -109,6 +114,7 @@ func main() {
 
 	// Scan pypi for all packages
 	discoveredPackages := 0
+	fmt.Printf("Scanning package index...\n")
 	packages, _ := NewPackageIndex("https://pypi.org/simple/", -1)
 
 	workers := 200
@@ -163,13 +169,23 @@ func main() {
 	defer cacheWriter.Close()
 	cacheEncoder := json.NewEncoder(cacheWriter)
 
+	errors := 0
+	packageCount := 0
+	modules := 0
+	startTime := time.Now()
+	lastStatus := startTime
 	cacheBuffer := make([]PackageInfo, 0, workers)
+	fmt.Printf("Scanning package modules...\n")
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		result := <-resultQueue
 
 		if result.err != nil {
+			errors++
 			fmt.Fprintf(os.Stderr, "{\"package\": \"%v\", \"error\": %v\n", result.info.Name, result.err)
 		} else {
+			packageCount++
+			modules += len(result.info.Modules)
+
 			// Grabbing the cache lock after every message is written to the channel
 			// destroys any multithreading benefit. Buffer up cache updates and write
 			// them all at once
@@ -180,13 +196,15 @@ func main() {
 		}
 
 		// Print progress updates to stdout
-		ppu := discoveredPackages / 100
-		if ppu < 1 {
-			ppu = 1
-		}
+		if time.Since(lastStatus).Seconds() > 1 {
+			lastStatus = time.Now()
+			percentage := float64(processedPackages) / float64(discoveredPackages)
 
-		if processedPackages%ppu == 0 {
-			fmt.Printf("%v/%v %v%%\n", processedPackages, discoveredPackages, 100*float64(processedPackages)/float64(discoveredPackages))
+			elapsed := time.Since(startTime)
+			rate := float64(processedPackages) / elapsed.Seconds()
+			remaining := float64(discoveredPackages - processedPackages) / rate
+
+			fmt.Printf("%v/%v %.2f%% [%.0fs]\n", processedPackages, discoveredPackages, 100*percentage, remaining)
 		}
 
 		// Grab the write lock and update the cache
@@ -202,6 +220,8 @@ func main() {
 
 	// After all packages have been processed, close channels
 	close(resultQueue)
+
+	fmt.Printf("Found %v modules in %v packages in %.0f seconds. %v packages failed\n", modules, packageCount, time.Since(startTime).Seconds(), errors)
 
 	// packageCache is now a map of every python package name to the PackageInfo
 	// for that package, with downloads and modules populated
