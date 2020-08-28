@@ -10,11 +10,12 @@ import (
     "github.com/replit/upm/internal/util"
     "strings"
     "os"
+    "fmt"
 )
 
 var HaskellBackend = api.LanguageBackend {
     Name:                "haskell-stack",
-    Specfile:            "package.yaml",
+    Specfile:            "project.cabal",
     Lockfile:            "stack.yaml",
     // also present: a package-name.cabal file, a stack.yaml.lock that stores hashes
     FilenamePatterns:    []string{"*.hs"},
@@ -31,7 +32,7 @@ var HaskellBackend = api.LanguageBackend {
         return searchFunction(string(i),true)[0]
     },
     Add:                 Add,
-    Remove:              func(map[api.PkgName]bool) {},
+    Remove:              Remove,
     // Stack's baseline philosophy is that build plans are always reproducible.
     // Which means locking is automatic. Versions are precise. This spares a lot of spec trouble.
     // https://docs.haskellstack.org/en/stable/stack_yaml_vs_cabal_package_file/
@@ -40,14 +41,11 @@ var HaskellBackend = api.LanguageBackend {
         util.RunCmd([]string{"stack", "build", "--dependencies-only"})
     },
     // lock will be used for non-stackage packages and spec for stackage ones
-    ListSpecfile:        func()map[api.PkgName]api.PkgSpec{
-        return map[api.PkgName]api.PkgSpec{}
-    },
-    ListLockfile:        func()map[api.PkgName]api.PkgVersion{
-        return map[api.PkgName]api.PkgVersion{}
-    },
+    ListSpecfile:        ListSpecfile,
+    ListLockfile:        ListLockfile,
     Guess:               func()(map[api.PkgName]bool,bool){
-        return map[api.PkgName]bool{},false
+        util.Die("not implemented")
+        return nil,false
     },
 
     
@@ -137,7 +135,7 @@ func Add(packages map[api.PkgName]api.PkgSpec, projectName string){
     for name, version := range(packages){
         packageInfo := searchFunction(string(name),true)[0]
         onStackage := !strings.Contains(string(packageInfo.Description), "Not on Stackage")
-        if !onStackage{
+        if !onStackage {
             if contents,_ := ioutil.ReadFile("stack.yaml"); !strings.Contains(string(contents),"extra-deps"){
                 f, _ := os.OpenFile("stack.yaml", os.O_APPEND | os.O_WRONLY, 0644)
                 f.Write([]byte("extra-deps:\n"))
@@ -157,3 +155,45 @@ func Add(packages map[api.PkgName]api.PkgSpec, projectName string){
 }
     
      
+func ListSpecfile() map[api.PkgName]api.PkgSpec {
+    // spec is simply an empty string
+    // while cabal does allow </>/= specification, it won't be needed because stack
+    specRegex := regexp.MustCompile(`    , (.+)`)
+    contents, _ := ioutil.ReadFile("project.cabal")
+    matches := specRegex.FindAllSubmatch(contents, -1)
+    packages := make(map[api.PkgName]api.PkgSpec)
+    for _,match := range matches {
+        packages[api.PkgName(match[1])] = ""
+    }
+    return packages
+}
+
+func ListLockfile() map[api.PkgName]api.PkgVersion{
+    lockRegex := regexp.MustCompile(`- (.+)`)
+    contents, _ := ioutil.ReadFile("stack.yaml")
+    matches := lockRegex.FindAllSubmatch(contents, -1)
+    packages := make(map[api.PkgName]api.PkgVersion)
+    for _,match := range matches{
+        l := strings.Split(string(match[1]), "-")
+        packages[api.PkgName(strings.Join(l[:len(l)-1],"-"))] = api.PkgVersion(l[len(l)-1])
+    }
+    return packages
+}
+
+func Remove(pkgs map[api.PkgName]bool){
+    nonStackage := ListLockfile()
+    spec,_ := ioutil.ReadFile("project.cabal")
+    lock,_ := ioutil.ReadFile("stack.yaml")
+    specFile,_ := os.OpenFile("project.cabal", os.O_WRONLY | os.O_TRUNC, 0644)
+    lockFile,_ := os.OpenFile("stack.yaml", os.O_WRONLY | os.O_TRUNC, 0644)
+    for name := range pkgs{
+        if val,ok := nonStackage[name]; ok{           
+            lock = []byte(strings.Replace(string(lock),"- "+string(name)+"-"+string(val)+"\n","",-1))
+            fmt.Println("- "+string(name)+"-"+string(val)+"\n")
+        }
+        spec = []byte(strings.Replace(string(spec),"    , "+string(name)+"\n", "",-1))
+    }
+    specFile.Write(spec)
+    lockFile.Write(lock)
+    return
+}
