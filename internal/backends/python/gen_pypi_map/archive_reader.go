@@ -8,12 +8,16 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"os/exec"
 )
 
 type ArchiveReader struct {
-	Next   func() (string, error)
+	Next   func() bool
+	Error  func() error
+	File   func() string
 	Reader func() (io.Reader, error)
 	Close  func()
+	Dump   func(dir string) error
 }
 
 func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
@@ -38,12 +42,20 @@ func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
 	}
 
 	i := -1
-	next := func() (string, error) {
+	next := func() bool {
 		i++
-		if i < len(zipReader.File) {
-			return zipReader.File[i].Name, nil
+		return i < len(zipReader.File)
+	}
+
+	archiveFile := func() string {
+		return zipReader.File[i].Name
+	}
+
+	archiveError := func() error {
+		if i >= len(zipReader.File) {
+			return io.EOF
 		}
-		return "", io.EOF
+		return nil
 	}
 
 	fileReader := func() (io.Reader, error) {
@@ -55,7 +67,12 @@ func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
 		os.Remove(zipFile.Name())
 	}
 
-	return ArchiveReader{Next: next, Reader: fileReader, Close: archiveClose}, nil
+	archiveDump := func(dir string) error {
+		cmd := exec.Command("unzip", "-d", dir, cacheFile.Name())
+		return cmd.Run()
+	}
+
+	return ArchiveReader{Next: next, Error: archiveError, File: archiveFile, Reader: fileReader, Close: archiveClose, Dump: archiveDump}, nil
 }
 
 func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
@@ -65,14 +82,19 @@ func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
 	}
 
 	tarReader := tar.NewReader(gzipReader)
+	var header *tar.Header
 
-	next := func() (string, error) {
-		header, err := tarReader.Next()
-		if err != nil {
-			return "", err
-		}
+	next := func() bool {
+		header, err = tarReader.Next()
+		return err != nil
+	}
 
-		return header.Name, nil
+	tarballError := func() error {
+		return err
+	}
+
+	tarballFile := func() string {
+		return header.Name
 	}
 
 	fileReader := func() (io.Reader, error) {
@@ -83,5 +105,15 @@ func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
 		gzipReader.Close()
 	}
 
-	return ArchiveReader{Next: next, Reader: fileReader, Close: closeGzip}, nil
+	archiveDump := func(dir string) error {
+		cmd := exec.Command("tar", "-x", "-C", dir)
+		p, _ := cmd.StdinPipe()
+		defer p.Close()
+		cmd.Start()
+		io.Copy(p, gzipReader)
+		cmd.Wait()
+		return nil
+	}
+
+	return ArchiveReader{Next: next, Error: tarballError, File: tarballFile, Reader: fileReader, Close: closeGzip, Dump: archiveDump}, nil
 }

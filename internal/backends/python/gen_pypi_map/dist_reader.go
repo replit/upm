@@ -5,8 +5,19 @@ import (
 	"io"
 	"net/http"
 	"path"
-	"strings"
 )
+
+// These modules are always ignored
+var ignoredModules = map[string]bool{
+	"test": true,
+	"tests": true,
+	"testing": true,
+	"doc": true,
+	"docs": true,
+	"documentation": true,
+	"_private": true,
+	"setup": true,
+}
 
 func parseTopLevel(reader io.Reader) []string {
 	modules := make([]string, 0)
@@ -18,89 +29,6 @@ func parseTopLevel(reader io.Reader) []string {
 	}
 
 	return modules
-}
-
-func extractWheel(reader ArchiveReader) ([]string, error) {
-	packages := []string{}
-	for {
-		name, err := reader.Next()
-
-		// Handle errors and EOF
-		if err != nil {
-			if err == io.EOF {
-				// If we never found any modules, error
-				if len(packages) == 0 {
-					return nil, PypiError{NoTopLevel, "", nil}
-				}
-
-				return packages, nil
-			}
-
-			return nil, err
-		}
-
-		// top_level.txt contains a list of all the top level modules of a package
-		if path.Base(name) == "top_level.txt" {
-			toplevel, err := reader.Reader()
-			if err != nil {
-				return nil, err
-			}
-
-			return parseTopLevel(toplevel), nil
-		}
-
-		// In wheels, the packages are in the root of the archive
-		if path.Base(name) == "__init__.py" {
-			packageDir := path.Dir(name)
-			components := strings.Split(packageDir, "/")
-			if len(components) == 1 {
-				packages = append(packages, components[0])
-			}
-		}
-	}
-}
-
-func extractSdist(reader ArchiveReader) ([]string, error) {
-	packages := []string{}
-	for {
-		name, err := reader.Next()
-
-		// Handle tar reader errors
-		if err != nil {
-			if err == io.EOF {
-				// We made it to the end of the package without finding a manifest,
-				// guess from the package structure
-				//return nil, errors.New("EOF reached without top_level.txt")
-				if len(packages) == 0 {
-					return nil, PypiError{NoTopLevel, "", nil}
-				}
-
-				return packages, nil
-			}
-
-			return nil, err
-		}
-
-		// top_level.txt is a python package distribution file that contains a list
-		// of the top level modules defined in a package
-		if path.Base(name) == "top_level.txt" {
-			toplevel, err := reader.Reader()
-			if err != nil {
-				return nil, err
-			}
-
-			return parseTopLevel(toplevel), nil
-		}
-
-		// In sdist, package is in a folder with the name of the distribution
-		if path.Base(name) == "__init__.py" {
-			packageDir := path.Dir(name)
-			components := strings.Split(packageDir, "/")
-			if len(components) == 2 {
-				packages = append(packages, components[1])
-			}
-		}
-	}
 }
 
 func GetModules(pkg PackageURL) ([]string, error) {
@@ -130,13 +58,39 @@ func GetModules(pkg PackageURL) ([]string, error) {
 	}
 	defer reader.Close()
 
-	if pkg.PackageType == "bdist_wheel" {
-		return extractWheel(reader)
-	} else if pkg.PackageType == "bdist_egg" {
-		return extractWheel(reader)
-	} else if pkg.PackageType == "sdist" {
-		return extractSdist(reader)
+	var modules []string
+	switch (pkg.PackageType) {
+	case "bdist_wheel":
+		modules, err = ExtractBdist(reader)
+	case "bdist_egg":
+		modules, err = ExtractBdist(reader)
+	case "bdist_dumb":
+		modules, err = ExtractBdist(reader)
+	case "sdist":
+		modules, err = ExtractSdist(reader)
+	default:
+		return nil, PypiError{UnknownDist, pkg.PackageType, nil}
 	}
 
-	return nil, PypiError{UnknownDist, pkg.PackageType, nil}
+	if err != nil {
+		return nil, err
+	}
+
+	// Filter out modules that aren't useful
+	ret := make([]string, 0, len(modules))
+	for _, m := range modules {
+		// Only add top level modules, sub modules aren't useful for guessing
+		if path.Dir(m) != "." {
+			continue
+		}
+
+		// Skip modules that are common in many packages
+		if _, hit := ignoredModules[path.Base(m)]; hit {
+			continue
+		}
+
+		ret = append(ret, m)
+	}
+
+	return ret, nil
 }
