@@ -391,7 +391,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	if knownPkgs, err := listSpecfile(); err == nil {
 		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules[string(pkgName)]
+			mods, ok := pypiPackageToModules()[string(pkgName)]
 			if ok {
 				for _, mod := range strings.Split(mods, ",") {
 					availMods[mod] = true
@@ -409,13 +409,13 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 		}
 
 		// If this module has a package pragma, use that
-		if pragmas.Package != ""{
+		if pragmas.Package != "" {
 			name := api.PkgName(pragmas.Package)
 			pkgs[normalizePackageName(name)] = true
 
 		} else {
 			// Otherwise, try and look it up in Pypi
-			pkg, ok := moduleToPypiPackage[modname]
+			pkg, ok := moduleToPypiPackage()[modname]
 			if ok {
 				name := api.PkgName(pkg)
 				pkgs[normalizePackageName(name)] = true

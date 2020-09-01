@@ -307,7 +307,11 @@ func main() {
 // moduleToPypiPackage holds a map of all known modules to their corresponding
 // best matching package. This helps us guess which packages should be installed
 // for the given imports.
-var moduleToPypiPackage = map[string]string{
+var moduleToPypiPackageCached = map[string]string{}
+
+func moduleToPypiPackage() map[string]string {
+    if len(moduleToPypiPackageCached) == 0 {
+        moduleToPypiPackageCached = map[string]string{
 `)
 
 	addMap := func(mod, pkg, comment string) {
@@ -368,7 +372,7 @@ nextpkg:
 		}
 	}
 
-	fmt.Fprintf(outgo, "}\n")
+	fmt.Fprintf(outgo, "}\n}\nreturn moduleToPypiPackageCached }\n")
 
 	fmt.Fprintf(outgo, `
 // pypiPackageToModules holds a map of every known python package to the modules
@@ -378,8 +382,11 @@ nextpkg:
 //
 // The module names are comma separated because go's compiler seems to vomit
 // when you create too many slices.
+var pypiPackageToModulesCached = map[string]string{}
 
-var pypiPackageToModules = map[string]string{
+func pypiPackageToModules() map[string]string {
+    if len(pypiPackageToModulesCached) == 0 {
+        pypiPackageToModulesCached = map[string]string{
 		`)
 
 	for _, pkg := range pkgs {
@@ -403,7 +410,7 @@ var pypiPackageToModules = map[string]string{
 		fmt.Fprintf(outgo, "\n")
 	}
 
-	fmt.Fprintf(outgo, "}\n")
+	fmt.Fprintf(outgo, "}\n}\nreturn pypiPackageToModulesCached\n}")
 
 	err = outgo.Close()
 	if err != nil {
