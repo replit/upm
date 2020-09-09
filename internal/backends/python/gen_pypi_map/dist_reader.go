@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"path"
+	"sort"
 )
 
 // These modules are always ignored
@@ -31,8 +32,25 @@ func parseTopLevel(reader io.Reader) []string {
 	return modules
 }
 
-func GetModules(pkg PackageURL) ([]string, error) {
-	// Get the package file
+func GetModules(metadata PackageData) ([]string, error) {
+	latest := metadata.Releases[metadata.Info.Version]
+	if len(latest) == 0 {
+		return nil, PypiError{NoDistributions, metadata.Info.Version, nil}
+	}
+
+	// Sort the releases by priority we want to parse
+	distPriorities := map[string]int{
+		"bdist_wheel": 1,
+		"sdist":       2,
+	}
+
+	sort.Slice(latest, func(a, b int) bool {
+		return distPriorities[latest[a].PackageType] < distPriorities[latest[b].PackageType]
+	})
+
+	pkg := latest[0]
+
+	// Download the distribution
 	resp, err := http.Get(pkg.URL)
 	if err != nil {
 		return nil, err

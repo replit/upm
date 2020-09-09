@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -28,7 +27,7 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 }
 
 // NOTE: cache is read only
-func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error) {
+func ProcessPackage(packageName string, cached PackageInfo, distMods bool) (PackageInfo, error) {
 	// Get the package metadata from pypi
 	metadata, err := GetPackageMetadata(packageName)
 
@@ -36,43 +35,32 @@ func ProcessPackage(packageName string, cached PackageInfo) (PackageInfo, error)
 		return PackageInfo{}, PypiError{DownloadFailure, "", err}
 	}
 
-	// Determine which dist we want to use to determine modules
-	latest := metadata.Releases[metadata.Info.Version]
-	if len(latest) == 0 {
-		return PackageInfo{}, PypiError{NoDistributions, metadata.Info.Version, nil}
+	// Check if cached module is out of date
+	if metadata.Info.Version == cached.Version {
+		// If we hit in the cache, no need to download the distribution
+		return cached, nil
 	}
 
-	// Sort the releases by priority we want to parse
-	distPriorities := map[string]int{
-		"bdist_wheel": 2,
-		"sdist":       1,
+	var modules []string;
+	if distMods {
+		// Determine moudles by examining a distribution
+		modules, err = GetModules(metadata)
+	} else {
+		// Determine the modules by installing the package
+		modules, err = InstallDiff(metadata)
 	}
 
-	sort.Slice(latest, func(a, b int) bool {
-		return distPriorities[latest[a].PackageType] < distPriorities[latest[b].PackageType]
-	})
-
-	// Check if cached module extraction is out of date
-	if latest[0].MD5 != cached.MD5 {
-
-		// Download the distribution and extract the modules
-		modules, err := GetModules(latest[0])
-		if err != nil {
-			return PackageInfo{}, err
-		}
-
-		// TODO(@zabot) Pypi stats cannot be fetched from the API and have to be
-		// preinserted into the cache
-		metadata.Info.Downloads = cached.Downloads
-
-		// Copy the information from the specific dist into the info
-		metadata.Info.Modules = modules
-		metadata.Info.MD5 = latest[0].MD5
-		return metadata.Info, nil
+	if err != nil {
+		return PackageInfo{}, err
 	}
 
-	// If we hit in the cache, no need to download the distribution
-	return cached, nil
+	// Retrive the stats from the cache since they are no longer available from
+	// pypi
+	metadata.Info.Downloads = cached.Downloads
+
+	// Copy the modules from the specific dist into the overall metadata
+	metadata.Info.Modules = modules
+	return metadata.Info, nil
 }
 
 type PackageResults struct {
@@ -86,6 +74,8 @@ func main() {
 	gcp := flag.String("gcp", "", "A GCP project ID to use to query bigquery directly. The result will be written to bq.")
 	pkg := flag.String("pkg", "python", "the pkg name for the output source")
 	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
+	workers := flag.Int("workers", 16, "The number of simultaenous workers to run")
+	distMods := flag.Bool("dist", false, "Determine modules by examining dists")
 	flag.Parse()
 
 	// Load info from the package cache
@@ -117,12 +107,10 @@ func main() {
 	fmt.Printf("Scanning package index...\n")
 	packages, _ := NewPackageIndex("https://pypi.org/simple/", -1)
 
-	workers := 200
-
 	// Each package is handled in a seperate goroutine, the total number
 	// concurrent is limited by the buffer size of this channel
-	resultQueue := make(chan PackageResults, workers)
-	concurrencyLimiter := make(chan struct{}, workers)
+	resultQueue := make(chan PackageResults, *workers)
+	concurrencyLimiter := make(chan struct{}, *workers)
 	var wg sync.WaitGroup
 
 	// Once goroutines start returning, we need to update the cache while still
@@ -153,7 +141,7 @@ func main() {
 			cached := packageCache[packageName]
 			packageCacheLock.RUnlock()
 
-			packageInfo, err := ProcessPackage(packageName, cached)
+			packageInfo, err := ProcessPackage(packageName, cached, *distMods)
 			packageInfo.Name = packageName
 			resultQueue <- PackageResults{packageInfo, err}
 		}()
@@ -174,7 +162,7 @@ func main() {
 	modules := 0
 	startTime := time.Now()
 	lastStatus := startTime
-	cacheBuffer := make([]PackageInfo, 0, workers)
+	cacheBuffer := make([]PackageInfo, 0, *workers)
 	fmt.Printf("Scanning package modules...\n")
 	for processedPackages := 0; processedPackages < discoveredPackages; processedPackages++ {
 		result := <-resultQueue
@@ -208,7 +196,7 @@ func main() {
 		}
 
 		// Grab the write lock and update the cache
-		if len(cacheBuffer) > int(float64(workers)*0.8) {
+		if len(cacheBuffer) > int(float64(*workers)*0.8) {
 			packageCacheLock.Lock()
 			for _, info := range cacheBuffer {
 				packageCache[info.Name] = info

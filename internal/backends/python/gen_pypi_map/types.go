@@ -7,11 +7,10 @@ type PackageCache = map[string]PackageInfo
 type PackageInfo struct {
 	Name      string `json:"name,omitempty"`
 	Downloads int    `json:"downloads,string,omitempty"`
-	Version   string `json:"omitempty"`
+	Version   string `json:"version,omitempty"`
 
 	// Specific to the dist we use to get modules from
-	Modules []string `json:"omitempty"`
-	MD5     string   `json:"md5_digest,omitempty"`
+	Modules []string `json:"modules,omitempty"`
 }
 
 type PackageURL struct {
@@ -42,6 +41,7 @@ const (
 	UnknownDist
 	NoDistributions
 	DownloadFailure
+	InstallFailure
 )
 
 func (e PypiError) Error() string {
@@ -49,6 +49,8 @@ func (e PypiError) Error() string {
 		"Unknown archive type:" + e.Info,
 		"Unknown distribution type: " + e.Info,
 		"No distributions for latest version: " + e.Info,
+		"Failed to download: " + e.Info,
+		"Failed to install: " + e.Info,
 	}[e.Class]
 	return fmt.Sprintf("{\"type\": %v, \"message\": \"%v\"}", e.Class, message)
 }
