@@ -1,6 +1,6 @@
 SOURCES := $(shell find cmd internal -type d -o -name "*.go")
 RESOURCES := $(shell find resources)
-GENERATED := internal/backends/python/pypi_map.gen.go
+GENERATED := internal/backends/python/pypi_map.gen.go internal/backends/ruby/rubygems_map.gen.go
 
 export GO111MODULE=on
 
@@ -13,6 +13,9 @@ cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED)
 
 internal/backends/python/pypi_map.gen.go: internal/backends/python/pypi_packages.json
 	go generate ./internal/backends/python
+
+internal/backends/ruby/rubygems_map.gen.go: internal/backends/ruby/rubygems.json
+	go generate ./internal/backends/ruby
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker

@@ -39,16 +39,7 @@ def process_require(req_str, guesses)
     return
   end
 
-  # Skip absolute or relative requires
-  if req_str.start_with?('/') || req_str.start_with?('.')
-    return
-  end
-
-  # Handle requires like 'sinatra' or 'sinatra/content_for'
-  gem = req_str.split('/')[0]
-  if $allowed_gems.include?(gem)
-    guesses[gem] = true
-  end
+  guesses[req_str] = true
 end
 
 guesses = {}

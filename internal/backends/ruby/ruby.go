@@ -13,6 +13,8 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+//go:generate go run ./gen_rubygems_map -from rubygems.json -pkg ruby -out rubygems_map.gen.go
+
 // rubygemsInfo represents the information we get from Gems.search (a
 // list of maps) or Gems.info (just one map) in JSON format.
 type rubygemsInfo struct {
@@ -238,10 +240,20 @@ var RubyBackend = api.LanguageBackend{
 		guessedGems := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),
 		})
-		results := map[api.PkgName]bool{}
+
+		results := map[string]bool{}
 		if err := json.Unmarshal(guessedGems, &results); err != nil {
 			util.Die("ruby: %s", err)
 		}
-		return results, true
+
+		guesses := map[api.PkgName]bool{}
+		for result, _ := range results {
+			gem := requireToGemMap()[result]
+			if len(gem) != 0 {
+				guesses[api.PkgName(gem)] = true
+			}
+		}
+
+		return guesses, true
 	},
 }
