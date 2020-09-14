@@ -5,10 +5,11 @@ require 'json'
 # The mapping between what you require and the gem name is not always 1-to-1,
 # so we will need some sort of mapping like what we do with PyPi if we want
 # to do complete ruby gem guessing.
-$allowed_gems = [
-  "sinatra",
-  "stripe"
-]
+$allowed_gems = { 
+  "sinatra" => "sinatra",
+  "sinatra/base" => "sinatra",
+  "stripe" => "stripe"
+}
 
 def guess_gems(code, guesses)
   root = Parser::CurrentRuby.parse(code)
@@ -44,9 +45,8 @@ def process_require(req_str, guesses)
     return
   end
 
-  # Handle requires like 'sinatra' or 'sinatra/content_for'
-  gem = req_str.split('/')[0]
-  if $allowed_gems.include?(gem)
+  gem = $allowed_gems[req_str]
+  if gem
     guesses[gem] = true
   end
 end
