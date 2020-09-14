@@ -231,8 +231,17 @@ var RubyBackend = api.LanguageBackend{
 		}
 		return results
 	},
+	GuessRegexps: util.Regexps([]string{
+		`require\s*['"]([^'"]+)['"]`,
+	}),
 	Guess: func() (map[api.PkgName]bool, bool) {
-		util.NotImplemented()
-		panic("unreachable code")
+		guessedGems := util.GetCmdOutput([]string{
+			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),
+		})
+		results := map[api.PkgName]bool{}
+		if err := json.Unmarshal(guessedGems, &results); err != nil {
+			util.Die("ruby: %s", err)
+		}
+		return results, true
 	},
 }
