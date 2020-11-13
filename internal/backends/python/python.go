@@ -204,8 +204,12 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 
 			defer res.Body.Close()
 
-			if res.StatusCode != 200 {
+			if res.StatusCode == 404 {
 				return api.PkgInfo{}
+			}
+
+			if res.StatusCode != 200 {
+				util.Die("Received status code: %d", res.StatusCode)
 			}
 
 			body, err := ioutil.ReadAll(res.Body)
