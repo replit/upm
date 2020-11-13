@@ -3,6 +3,9 @@ package python
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -22,6 +25,12 @@ type pypiEntry struct {
 	Name    string `json:"name"`
 	Summary string `json:"summary"`
 	Version string `json:"version"`
+}
+
+// pypiEntryInfoResponse is a wrapper around pypiEntryInfo
+// that matches the format of the REST API
+type pypiEntryInfoResponse struct {
+	Info pypiEntryInfo `json:"info"`
 }
 
 // pypiEntryInfo represents the response we get from the
@@ -187,32 +196,44 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return results
 		},
 		Info: func(name api.PkgName) api.PkgInfo {
-			outputB := util.GetCmdOutput([]string{
-				python, "-c",
-				util.GetResource("/python/pypi-info.py"),
-				string(name),
-			})
-			var output pypiEntryInfo
-			if err := json.Unmarshal(outputB, &output); err != nil {
+			res, err := http.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
+
+			if err != nil {
+				util.Die("HTTP Request failed with error: %s", err)
+			}
+
+			defer res.Body.Close()
+
+			if res.StatusCode != 200 {
+				return api.PkgInfo{}
+			}
+
+			body, err := ioutil.ReadAll(res.Body)
+			if err != nil {
+				util.Die("Res body read failed with error: %s", err)
+			}
+
+			var output pypiEntryInfoResponse
+			if err := json.Unmarshal(body, &output); err != nil {
 				util.Die("PyPI response: %s", err)
 			}
 
 			info := api.PkgInfo{
-				Name:             output.Name,
-				Description:      output.Summary,
-				Version:          output.Version,
-				HomepageURL:      output.HomePage,
-				DocumentationURL: output.DocsURL,
-				BugTrackerURL:    output.BugTrackerURL,
+				Name:             output.Info.Name,
+				Description:      output.Info.Summary,
+				Version:          output.Info.Version,
+				HomepageURL:      output.Info.HomePage,
+				DocumentationURL: output.Info.DocsURL,
+				BugTrackerURL:    output.Info.BugTrackerURL,
 				Author: util.AuthorInfo{
-					Name:  output.Author,
-					Email: output.AuthorEmail,
+					Name:  output.Info.Author,
+					Email: output.Info.AuthorEmail,
 				}.String(),
-				License: output.License,
+				License: output.Info.License,
 			}
 
 			deps := []string{}
-			for _, line := range output.RequiresDist {
+			for _, line := range output.Info.RequiresDist {
 				if strings.Contains(line, "extra ==") {
 					continue
 				}
