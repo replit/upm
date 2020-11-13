@@ -3,9 +3,11 @@ package python
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -17,26 +19,35 @@ import (
 // moduleToPypiPackage pypiPackageToModules are provided
 //go:generate go run ./gen_pypi_map -from pypi_packages.json -pkg python -out pypi_map.gen.go
 
-// pypiXMLRPCEntry represents one element of the response we get from
-// the PyPI XMLRPC API on doing a search.
-type pypiXMLRPCEntry struct {
+// pypiEntry represents one element of the response we get from
+// the PyPI API search results.
+type pypiEntry struct {
 	Name    string `json:"name"`
 	Summary string `json:"summary"`
 	Version string `json:"version"`
 }
 
-// pypiXMLRPCInfo represents the response we get from the PyPI XMLRPC
-// API on doing a single-package lookup.
-type pypiXMLRPCInfo struct {
-	Author       string   `json:"author"`
-	AuthorEmail  string   `json:"author_email"`
-	HomePage     string   `json:"home_page"`
-	License      string   `json:"license"`
-	Name         string   `json:"name"`
-	ProjectURL   []string `json:"project_url"`
-	RequiresDist []string `json:"requires_dist"`
-	Summary      string   `json:"summary"`
-	Version      string   `json:"version"`
+// pypiEntryInfoResponse is a wrapper around pypiEntryInfo
+// that matches the format of the REST API
+type pypiEntryInfoResponse struct {
+	Info pypiEntryInfo `json:"info"`
+}
+
+// pypiEntryInfo represents the response we get from the
+// PyPI API on doing a single-package lookup.
+type pypiEntryInfo struct {
+	Author        string   `json:"author"`
+	AuthorEmail   string   `json:"author_email"`
+	HomePage      string   `json:"home_page"`
+	License       string   `json:"license"`
+	Name          string   `json:"name"`
+	ProjectURL    string   `json:"project_url"`
+	PackageURL    string   `json:"package_url"`
+	BugTrackerURL string   `json:"bugtrack_url"`
+	DocsURL       string   `json:"docs_url"`
+	RequiresDist  []string `json:"requires_dist"`
+	Summary       string   `json:"summary"`
+	Version       string   `json:"version"`
 }
 
 // pyprojectTOML represents the relevant parts of a pyproject.toml
@@ -170,7 +181,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				util.GetResource("/python/pypi-search.py"),
 				query,
 			})
-			var outputJSON []pypiXMLRPCEntry
+			var outputJSON []pypiEntry
 			if err := json.Unmarshal(outputB, &outputJSON); err != nil {
 				util.Die("PyPI response: %s", err)
 			}
@@ -185,65 +196,48 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return results
 		},
 		Info: func(name api.PkgName) api.PkgInfo {
-			outputB := util.GetCmdOutput([]string{
-				python, "-c",
-				util.GetResource("/python/pypi-info.py"),
-				string(name),
-			})
-			var output pypiXMLRPCInfo
-			if err := json.Unmarshal(outputB, &output); err != nil {
+			res, err := http.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
+
+			if err != nil {
+				util.Die("HTTP Request failed with error: %s", err)
+			}
+
+			defer res.Body.Close()
+
+			if res.StatusCode == 404 {
+				return api.PkgInfo{}
+			}
+
+			if res.StatusCode != 200 {
+				util.Die("Received status code: %d", res.StatusCode)
+			}
+
+			body, err := ioutil.ReadAll(res.Body)
+			if err != nil {
+				util.Die("Res body read failed with error: %s", err)
+			}
+
+			var output pypiEntryInfoResponse
+			if err := json.Unmarshal(body, &output); err != nil {
 				util.Die("PyPI response: %s", err)
 			}
+
 			info := api.PkgInfo{
-				Name:        output.Name,
-				Description: output.Summary,
-				Version:     output.Version,
-				HomepageURL: output.HomePage,
+				Name:             output.Info.Name,
+				Description:      output.Info.Summary,
+				Version:          output.Info.Version,
+				HomepageURL:      output.Info.HomePage,
+				DocumentationURL: output.Info.DocsURL,
+				BugTrackerURL:    output.Info.BugTrackerURL,
 				Author: util.AuthorInfo{
-					Name:  output.Author,
-					Email: output.AuthorEmail,
+					Name:  output.Info.Author,
+					Email: output.Info.AuthorEmail,
 				}.String(),
-				License: output.License,
-			}
-			for _, line := range output.ProjectURL {
-				fields := strings.SplitN(line, ", ", 2)
-				if len(fields) != 2 {
-					continue
-				}
-
-				name := fields[0]
-				url := fields[1]
-
-				matched, err := regexp.MatchString(`(?i)doc`, name)
-				if err != nil {
-					panic(err)
-				}
-				if matched {
-					info.DocumentationURL = url
-					continue
-				}
-
-				matched, err = regexp.MatchString(`(?i)code`, name)
-				if err != nil {
-					panic(err)
-				}
-				if matched {
-					info.SourceCodeURL = url
-					continue
-				}
-
-				matched, err = regexp.MatchString(`(?i)track`, name)
-				if err != nil {
-					panic(err)
-				}
-				if matched {
-					info.BugTrackerURL = url
-					continue
-				}
+				License: output.Info.License,
 			}
 
 			deps := []string{}
-			for _, line := range output.RequiresDist {
+			for _, line := range output.Info.RequiresDist {
 				if strings.Contains(line, "extra ==") {
 					continue
 				}
