@@ -412,6 +412,22 @@ func pypiPackageToModules() map[string]string {
 
 	fmt.Fprintf(outgo, "}\n}\nreturn pypiPackageToModulesCached\n}")
 
+	fmt.Fprintf(outgo, `
+// pypiPackageToDownloads holds a map of every known python package to the number
+// of times it has been downloaded. This is used for ordering the python search
+// results.
+var pypiPackageToDownloadsCached = map[string]int{}
+
+func pypiPackageToDownloads() map[string]int {
+    if len(pypiPackageToDownloadsCached) == 0 {
+        pypiPackageToDownloadsCached = map[string]int{
+		`)
+
+	for _, pkg := range pkgs {
+		fmt.Fprintf(outgo, "\t\"%v\": %d,\n", pkg.Pkg, pkg.Downloads)
+	}
+	fmt.Fprintf(outgo, "}\n}\nreturn pypiPackageToDownloadsCached\n}")
+
 	err = outgo.Close()
 	if err != nil {
 		panic(err)
