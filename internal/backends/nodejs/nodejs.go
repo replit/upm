@@ -228,9 +228,9 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
 	// import "module-name";
 	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
-	// const mod = import("module-name")
-	// const mod = require("module-name")
-	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+	// import("module-name") / import('module-name') / import(`module-name`)
+	// require("module-name") / require('module-name') / require(`module-name`)
+	`(?m)(?:require|import)\s*\(\s*['"` + "`" + `]([^'"{}]+)['"` + "`" + `]\s*\)`,
 })
 
 // nodejsGuess implements Guess for nodejs-yarn and nodejs-npm.
