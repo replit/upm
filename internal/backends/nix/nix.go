@@ -54,6 +54,12 @@ func nixInfo(api.PkgName) api.PkgInfo {
 }
 
 func nixAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	cmd := []string{"nix-env", "-iA"}
+	for name, _ := range pkgs {
+		name := "nixpkgs." + string(name)
+		cmd = append(cmd, name)
+	}
+	util.RunCmd(cmd)
 }
 
 func nixRemove(pkgs map[api.PkgName]bool) {
