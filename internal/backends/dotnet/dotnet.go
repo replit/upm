@@ -1,9 +1,11 @@
 package dotnet
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -26,6 +28,25 @@ type project struct {
 	XMLName       xml.Name           `xml:"Project"`
 	PropertyGroup propertyGroup      `xml:"PropertyGroup"`
 	Packages      []packageReference `xml:"ItemGroup>PackageReference"`
+}
+
+type infoResult struct {
+	Versions []string `json:"versions"`
+}
+
+type packageMetadata struct {
+	XMLName     xml.Name `xml:"metadata"`
+	ID          string   `xml:"id"`
+	Version     string   `xml:"version"`
+	Title       string   `xml:"title"`
+	Author      string   `xml:"author"`
+	Description string   `xml:"description"`
+	License     string   `xml:"license"`
+	ProjectURL  string   `xml:"projectUrl"`
+}
+type nugetPackage struct {
+	XMLName  xml.Name        `xml:"package"`
+	Metadata packageMetadata `xml:"metadata"`
 }
 
 func removePackages(pkgs map[api.PkgName]bool) {}
@@ -52,7 +73,51 @@ func findSpecFile() string {
 }
 
 func info(pkgName api.PkgName) api.PkgInfo {
-	return api.PkgInfo{}
+	lowID := strings.ToLower(string(pkgName))
+	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
+	util.ProgressMsg(fmt.Sprintf("Looking up versions at: %s", infoURL))
+	res, err := http.Get(infoURL)
+	if err != nil {
+		util.Die("failed to get the versions")
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		util.Die("Could not read response\n")
+	}
+	var infoResult infoResult
+	err = json.Unmarshal(body, &infoResult)
+	if err != nil {
+		util.Die("Could not read json body")
+	}
+	latestVersion := infoResult.Versions[len(infoResult.Versions)-1]
+	util.ProgressMsg(fmt.Sprintf("latest version of %s is %s", pkgName, latestVersion))
+	specURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/%s/%s.nuspec", lowID, latestVersion, lowID)
+	util.ProgressMsg(fmt.Sprintf("Getting spec from %s", specURL))
+	res, err = http.Get(specURL)
+	if err != nil {
+		util.Die("Failed to get the spec")
+	}
+	defer res.Body.Close()
+	body, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		util.Die("Could not read response\n")
+	}
+	var nugetPackage nugetPackage
+	err = xml.Unmarshal(body, &nugetPackage)
+	if err != nil {
+		util.Die(fmt.Sprintf("Failed to read spec %s", err))
+	}
+
+	pkgInfo := api.PkgInfo{
+		Name:        nugetPackage.Metadata.ID,
+		Version:     nugetPackage.Metadata.Version,
+		Description: nugetPackage.Metadata.Description,
+		Author:      nugetPackage.Metadata.Author,
+		License:     nugetPackage.Metadata.License,
+		HomepageURL: nugetPackage.Metadata.ProjectURL,
+	}
+	return pkgInfo
 }
 
 func listSpecfile() map[api.PkgName]api.PkgSpec {
