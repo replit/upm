@@ -34,15 +34,22 @@ type infoResult struct {
 	Versions []string `json:"versions"`
 }
 
+type repository struct {
+	XMLName xml.Name `xml:"repository"`
+	Type    string   `xml:"type,attr"`
+	URL     string   `xml:"url,attr"`
+	Commit  string   `xml:"commit,attr"`
+}
 type packageMetadata struct {
-	XMLName     xml.Name `xml:"metadata"`
-	ID          string   `xml:"id"`
-	Version     string   `xml:"version"`
-	Title       string   `xml:"title"`
-	Author      string   `xml:"author"`
-	Description string   `xml:"description"`
-	License     string   `xml:"license"`
-	ProjectURL  string   `xml:"projectUrl"`
+	XMLName     xml.Name   `xml:"metadata"`
+	ID          string     `xml:"id"`
+	Version     string     `xml:"version"`
+	Title       string     `xml:"title"`
+	Author      string     `xml:"author"`
+	Description string     `xml:"description"`
+	License     string     `xml:"license"`
+	Repository  repository `xml:"repository"`
+	ProjectURL  string     `xml:"projectUrl"`
 }
 type nugetPackage struct {
 	XMLName  xml.Name        `xml:"package"`
@@ -110,12 +117,13 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	}
 
 	pkgInfo := api.PkgInfo{
-		Name:        nugetPackage.Metadata.ID,
-		Version:     nugetPackage.Metadata.Version,
-		Description: nugetPackage.Metadata.Description,
-		Author:      nugetPackage.Metadata.Author,
-		License:     nugetPackage.Metadata.License,
-		HomepageURL: nugetPackage.Metadata.ProjectURL,
+		Name:          nugetPackage.Metadata.ID,
+		Version:       nugetPackage.Metadata.Version,
+		Description:   nugetPackage.Metadata.Description,
+		Author:        nugetPackage.Metadata.Author,
+		License:       nugetPackage.Metadata.License,
+		SourceCodeURL: nugetPackage.Metadata.Repository.URL,
+		HomepageURL:   nugetPackage.Metadata.ProjectURL,
 	}
 	return pkgInfo
 }
