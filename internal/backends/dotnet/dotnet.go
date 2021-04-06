@@ -60,7 +60,15 @@ type nugetPackage struct {
 
 func removePackages(pkgs map[api.PkgName]bool) {}
 
-func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {}
+func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	for packageName, spec := range pkgs {
+		command := []string{"dotnet", "add", "package", string(packageName)}
+		if string(spec) != "" {
+			command = append(command, "--version", string(spec))
+		}
+		util.RunCmd(command)
+	}
+}
 
 func search(query string) []api.PkgInfo {
 	return []api.PkgInfo{}
