@@ -12,6 +12,8 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+const lockFile = "packages.lock.json"
+
 type packageReference struct {
 	XMLName xml.Name `xml:"PackageReference"`
 	Include string   `xml:"Include,attr"`
@@ -130,21 +132,17 @@ func info(pkgName api.PkgName) api.PkgInfo {
 
 func listSpecfile() map[api.PkgName]api.PkgSpec {
 	pkgs := map[api.PkgName]api.PkgSpec{}
-	util.ProgressMsg("looking for project file")
 	projectFile := findSpecFile()
 	if util.Exists(projectFile) {
-		util.ProgressMsg(fmt.Sprintf("Found %s", projectFile))
 		var project project
 		var xmlbytes []byte
 		var err error
 
 		xmlbytes, err = ioutil.ReadFile(projectFile)
-		util.ProgressMsg("Read inputfile")
 		if err != nil {
 			util.Die("error reading spec file: %s", err)
 		}
 		err = xml.Unmarshal(xmlbytes, &project)
-		util.ProgressMsg("unmarshed xml")
 		if err != nil {
 			util.Die("error unmarshaling spec file: %s", err)
 		}
@@ -160,6 +158,27 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
+	if util.Exists(lockFile) {
+		jsonBytes, err := ioutil.ReadFile(lockFile)
+		if err != nil {
+			util.Die("error reading lock file: %s", err)
+		}
+		var rawJson interface{}
+		err = json.Unmarshal(jsonBytes, &rawJson)
+		if err != nil {
+			util.Die("error unmashaling lock file: %s", err)
+		}
+
+		m := rawJson.(map[string]interface{})
+		dependencies := m["dependencies"].(map[string]interface{})
+		for _, v := range dependencies {
+			packages := v.(map[string]interface{})
+			for packageName, details := range packages {
+				pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
+			}
+		}
+
+	}
 	return pkgs
 }
 
@@ -167,7 +186,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 var DotNetBackend = api.LanguageBackend{
 	Name:             "csharp-dotnet",
 	Specfile:         findSpecFile(),
-	Lockfile:         "packages.lock.json",
+	Lockfile:         lockFile,
 	FilenamePatterns: []string{"*.cs", "*.csproj"},
 	Remove:           removePackages,
 	Add:              addPackages,
