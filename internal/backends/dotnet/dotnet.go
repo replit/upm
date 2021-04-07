@@ -13,6 +13,7 @@ import (
 )
 
 const lockFile = "packages.lock.json"
+const searchQueryURL = "https://azuresearch-usnc.nuget.org/query"
 
 type packageReference struct {
 	XMLName xml.Name `xml:"PackageReference"`
@@ -58,6 +59,18 @@ type nugetPackage struct {
 	Metadata packageMetadata `xml:"metadata"`
 }
 
+type searchResultData struct {
+	ID          string
+	Version     string
+	Description string
+	ProjectURL  string
+}
+
+type searchResult struct {
+	TotalHits int
+	Data      []searchResultData
+}
+
 func removePackages(pkgs map[api.PkgName]bool) {}
 
 func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
@@ -71,7 +84,41 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 }
 
 func search(query string) []api.PkgInfo {
-	return []api.PkgInfo{}
+	pkgs := []api.PkgInfo{}
+	queryURL := fmt.Sprintf("%s?q=%s&take=10", searchQueryURL, query)
+
+	res, err := http.Get(queryURL)
+	if err != nil {
+		util.Die("failed to query for packages: %s", err)
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode != http.StatusOK {
+		return pkgs
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		util.Die("Could not read response: %s", err)
+	}
+
+	var searchResult searchResult
+	err = json.Unmarshal(body, &searchResult)
+	if err != nil {
+		util.Die("Could not unmarshar response data: %", err)
+	}
+
+	for _, data := range searchResult.Data {
+		util.ProgressMsg(data.ID)
+		pkgs = append(pkgs, api.PkgInfo{
+			Name:          data.ID,
+			Version:       data.Version,
+			Description:   data.Description,
+			SourceCodeURL: data.ProjectURL,
+		})
+	}
+
+	return pkgs
 }
 
 func findSpecFile() string {
@@ -92,7 +139,7 @@ func findSpecFile() string {
 func info(pkgName api.PkgName) api.PkgInfo {
 	lowID := strings.ToLower(string(pkgName))
 	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
-	util.ProgressMsg(fmt.Sprintf("Looking up versions at: %s", infoURL))
+
 	res, err := http.Get(infoURL)
 	if err != nil {
 		util.Die("failed to get the versions")
