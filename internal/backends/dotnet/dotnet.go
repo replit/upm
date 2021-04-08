@@ -71,7 +71,13 @@ type searchResult struct {
 	Data      []searchResultData
 }
 
-func removePackages(pkgs map[api.PkgName]bool) {}
+func removePackages(pkgs map[api.PkgName]bool) {
+	for packageName := range pkgs {
+		command := []string{"dotnet", "remove", findSpecFile(), "package", string(packageName)}
+		util.RunCmd(command)
+	}
+	lock()
+}
 
 func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	for packageName, spec := range pkgs {
@@ -81,6 +87,14 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		}
 		util.RunCmd(command)
 	}
+}
+
+func install() {
+	util.RunCmd([]string{"dotnet", "restore"})
+}
+
+func lock() {
+	util.RunCmd([]string{"dotnet", "restore", "--use-lock-file"})
 }
 
 func search(query string) []api.PkgInfo {
@@ -247,11 +261,14 @@ var DotNetBackend = api.LanguageBackend{
 	Add:              addPackages,
 	Search:           search,
 	Info:             info,
-	Install:          func() {},
-	Lock:             func() {},
+	Install:          install,
+	Lock:             lock,
 	ListSpecfile:     listSpecfile,
 	ListLockfile:     listLockfile,
 	GetPackageDir: func() string {
 		return "bin/"
 	},
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
 }
