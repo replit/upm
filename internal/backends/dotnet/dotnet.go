@@ -1,11 +1,14 @@
+// Package dotnet provides a backend for c# using dotnet and nuget.org
 package dotnet
 
 import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -200,55 +203,84 @@ func info(pkgName api.PkgName) api.PkgInfo {
 }
 
 func listSpecfile() map[api.PkgName]api.PkgSpec {
-	pkgs := map[api.PkgName]api.PkgSpec{}
+	var pkgs map[api.PkgName]api.PkgSpec
 	projectFile := findSpecFile()
 	if util.Exists(projectFile) {
-		var project project
-		var xmlbytes []byte
-		var err error
 
-		xmlbytes, err = ioutil.ReadFile(projectFile)
+		specReader, err := os.Open(projectFile)
 		if err != nil {
-			util.Die("error reading spec file: %s", err)
+			util.Die("Could not open %s, with error: %q", projectFile, err)
 		}
-		err = xml.Unmarshal(xmlbytes, &project)
+		defer specReader.Close()
+
+		pkgs, err = ReadSpec(specReader)
 		if err != nil {
-			util.Die("error unmarshaling spec file: %s", err)
-		}
-		util.ProgressMsg(fmt.Sprintf("Project: %s", project))
-		for _, packageReference := range project.Packages {
-			pkgName := packageReference.Include
-			pkgVersion := api.PkgVersion(packageReference.Version)
-			pkgs[api.PkgName(pkgName)] = api.PkgSpec(pkgVersion)
+			util.Die("Failed to read spec file %s, with error: %q", projectFile, err)
 		}
 	}
 	return pkgs
 }
 
+func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
+	xmlbytes, err := ioutil.ReadAll(specReader)
+	if err != nil {
+		return nil, err
+	}
+
+	var project project
+	err = xml.Unmarshal(xmlbytes, &project)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to unmarshal file content %q", err)
+	}
+
+	pkgs := map[api.PkgName]api.PkgSpec{}
+	for _, packageReference := range project.Packages {
+		pkgName := packageReference.Include
+		pkgVersion := api.PkgVersion(packageReference.Version)
+		pkgs[api.PkgName(pkgName)] = api.PkgSpec(pkgVersion)
+	}
+	return pkgs, nil
+}
+
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
 	if util.Exists(lockFile) {
-		jsonBytes, err := ioutil.ReadFile(lockFile)
+		specReader, err := os.Open(lockFile)
 		if err != nil {
-			util.Die("error reading lock file: %s", err)
+			util.Die("Could not open %s, with error: %q", lockFile, err)
 		}
-		var rawJson interface{}
-		err = json.Unmarshal(jsonBytes, &rawJson)
+		defer specReader.Close()
+
+		pkgs, err = ReadLock(specReader)
 		if err != nil {
-			util.Die("error unmashaling lock file: %s", err)
+			util.Die("Error reading lockFile %s %q", lockFile, err)
 		}
-
-		m := rawJson.(map[string]interface{})
-		dependencies := m["dependencies"].(map[string]interface{})
-		for _, v := range dependencies {
-			packages := v.(map[string]interface{})
-			for packageName, details := range packages {
-				pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
-			}
-		}
-
 	}
 	return pkgs
+}
+
+func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) {
+	jsonBytes, err := ioutil.ReadAll(lockFileReader)
+	if err != nil {
+		return nil, err
+	}
+	var rawJson interface{}
+	err = json.Unmarshal(jsonBytes, &rawJson)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to unmarshal lock file data %q", err)
+	}
+
+	m := rawJson.(map[string]interface{})
+	dependencies := m["dependencies"].(map[string]interface{})
+	pkgs := map[api.PkgName]api.PkgVersion{}
+	for _, v := range dependencies {
+		packages := v.(map[string]interface{})
+		for packageName, details := range packages {
+			pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
+		}
+	}
+
+	return pkgs, nil
 }
 
 //DotNetBackend is the UPM language backend for C# using dotnet
