@@ -18,34 +18,33 @@ import (
 const lockFile = "packages.lock.json"
 const searchQueryURL = "https://azuresearch-usnc.nuget.org/query"
 
+// an individual package record from .csproj file
 type packageReference struct {
 	XMLName xml.Name `xml:"PackageReference"`
 	Include string   `xml:"Include,attr"`
 	Version string   `xml:"Version,attr"`
 }
 
-type propertyGroup struct {
-	XMLName         xml.Name `xml:"PropertyGroup"`
-	OutputType      string   `xml:"OutputType"`
-	TargetFramework string   `xml:"TargetFramework"`
-}
-
+// .csproj file structure
 type project struct {
-	XMLName       xml.Name           `xml:"Project"`
-	PropertyGroup propertyGroup      `xml:"PropertyGroup"`
-	Packages      []packageReference `xml:"ItemGroup>PackageReference"`
+	XMLName  xml.Name           `xml:"Project"`
+	Packages []packageReference `xml:"ItemGroup>PackageReference"`
 }
 
+// nuget.org info lookup result
 type infoResult struct {
 	Versions []string `json:"versions"`
 }
 
+// nuget .nuspec file package repository data
 type repository struct {
 	XMLName xml.Name `xml:"repository"`
 	Type    string   `xml:"type,attr"`
 	URL     string   `xml:"url,attr"`
 	Commit  string   `xml:"commit,attr"`
 }
+
+// nuget .nuspec file package metadata
 type packageMetadata struct {
 	XMLName     xml.Name   `xml:"metadata"`
 	ID          string     `xml:"id"`
@@ -57,11 +56,14 @@ type packageMetadata struct {
 	Repository  repository `xml:"repository"`
 	ProjectURL  string     `xml:"projectUrl"`
 }
+
+// nuget .nuspec file data
 type nugetPackage struct {
 	XMLName  xml.Name        `xml:"package"`
 	Metadata packageMetadata `xml:"metadata"`
 }
 
+// nuget search service result entry
 type searchResultData struct {
 	ID          string
 	Version     string
@@ -69,11 +71,13 @@ type searchResultData struct {
 	ProjectURL  string
 }
 
+// nuget search service result record
 type searchResult struct {
 	TotalHits int
 	Data      []searchResultData
 }
 
+// removes packages using dotnet command and updates lock file
 func removePackages(pkgs map[api.PkgName]bool) {
 	for packageName := range pkgs {
 		command := []string{"dotnet", "remove", findSpecFile(), "package", string(packageName)}
@@ -82,6 +86,7 @@ func removePackages(pkgs map[api.PkgName]bool) {
 	lock()
 }
 
+// adds packages using dotnet command which automatically updates lock files
 func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	for packageName, spec := range pkgs {
 		command := []string{"dotnet", "add", "package", string(packageName)}
@@ -92,14 +97,17 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	}
 }
 
+// installs all packages using dotnet command
 func install() {
 	util.RunCmd([]string{"dotnet", "restore"})
 }
 
+// generates or updates the lock file using dotnet command
 func lock() {
 	util.RunCmd([]string{"dotnet", "restore", "--use-lock-file"})
 }
 
+// find the first ten projects that match the query string on nuget.org
 func search(query string) []api.PkgInfo {
 	pkgs := []api.PkgInfo{}
 	queryURL := fmt.Sprintf("%s?q=%s&take=10", searchQueryURL, query)
@@ -138,6 +146,7 @@ func search(query string) []api.PkgInfo {
 	return pkgs
 }
 
+// looks for the .csproj file in the current directory
 func findSpecFile() string {
 	files, err := ioutil.ReadDir("./")
 	if err != nil {
@@ -153,6 +162,7 @@ func findSpecFile() string {
 	return ".csproj"
 }
 
+// looks up all the versions of the package and gets retails for the latest version from nuget.org
 func info(pkgName api.PkgName) api.PkgInfo {
 	lowID := strings.ToLower(string(pkgName))
 	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
@@ -202,6 +212,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	return pkgInfo
 }
 
+// loads the details of the project spec file
 func listSpecfile() map[api.PkgName]api.PkgSpec {
 	var pkgs map[api.PkgName]api.PkgSpec
 	projectFile := findSpecFile()
@@ -221,6 +232,7 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 	return pkgs
 }
 
+// reads the spec and builds up packages
 func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 	xmlbytes, err := ioutil.ReadAll(specReader)
 	if err != nil {
@@ -242,6 +254,7 @@ func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 	return pkgs, nil
 }
 
+// loads the details of the lock file
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
 	if util.Exists(lockFile) {
@@ -259,6 +272,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 	return pkgs
 }
 
+// reads the lock file and buils up packages
 func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) {
 	jsonBytes, err := ioutil.ReadAll(lockFileReader)
 	if err != nil {
