@@ -3,6 +3,7 @@ package dotnet
 
 import (
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/util"
 )
 
 //DotNetBackend is the UPM language backend for C# using dotnet
@@ -11,14 +12,16 @@ var DotNetBackend = api.LanguageBackend{
 	Specfile:         findSpecFile(),
 	Lockfile:         lockFile,
 	FilenamePatterns: []string{"*.cs", "*.csproj"},
-	Remove:           removePackages,
-	Add:              addPackages,
-	Search:           search,
-	Info:             info,
-	Install:          install,
-	Lock:             lock,
-	ListSpecfile:     listSpecfile,
-	ListLockfile:     listLockfile,
+	Remove:           func(pkgs map[api.PkgName]bool) { removePackages(pkgs, findSpecFile(), util.RunCmd) },
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		addPackages(pkgs, projectName, util.RunCmd)
+	},
+	Search:       search,
+	Info:         info,
+	Install:      func() { install(util.RunCmd) },
+	Lock:         func() { lock(util.RunCmd) },
+	ListSpecfile: listSpecfile,
+	ListLockfile: listLockfile,
 	GetPackageDir: func() string {
 		return "bin/"
 	},

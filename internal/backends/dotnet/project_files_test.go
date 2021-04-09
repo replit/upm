@@ -7,34 +7,6 @@ import (
 	"github.com/replit/upm/internal/api"
 )
 
-func TestSearchNuget(t *testing.T) {
-	pkgs := DotNetBackend.Search("Microsoft.Extensions.Logging")
-
-	if len(pkgs) < 1 {
-		t.Error("No results found for Micorosft.Extensions.Logging")
-	}
-
-	for _, pkg := range pkgs {
-		if pkg.Name == "" {
-			t.Errorf("pkg %q has no name", pkg)
-		}
-		if pkg.Version == "" {
-			t.Errorf("pkg %q has no version", pkg)
-		}
-	}
-}
-
-func TestInfoFromNuget(t *testing.T) {
-	pkg := DotNetBackend.Info("Microsoft.Extensions.Logging")
-
-	if pkg.Name == "" {
-		t.Errorf("pkg %q has no name", pkg)
-	}
-	if pkg.Version == "" {
-		t.Errorf("pkg %q has no version", pkg)
-	}
-}
-
 func TestReadSpec(t *testing.T) {
 	spec := strings.NewReader(
 		`<Project Sdk="Microsoft.NET.Sdk">
