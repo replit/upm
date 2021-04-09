@@ -12,6 +12,8 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
+// Used the documentation provided here https://docs.microsoft.com/en-us/nuget/api/overview
+
 // nuget.org info lookup result
 type infoResult struct {
 	Versions []string `json:"versions"`
