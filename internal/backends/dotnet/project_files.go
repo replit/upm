@@ -122,7 +122,10 @@ func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) 
 	for _, v := range dependencies {
 		packages := v.(map[string]interface{})
 		for packageName, details := range packages {
-			pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
+			version := details.(map[string]interface{})["resolved"]
+			if version != nil {
+				pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
+			}
 		}
 	}
 
