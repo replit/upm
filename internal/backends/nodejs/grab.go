@@ -153,6 +153,13 @@ func guessBareImports() map[api.PkgName]bool {
 
 		for _, importPath := range result.ast.ImportPaths {
 			mod := importPath.Path.Text
+
+			// Since Node.js 16, you can prefix the import path with `node:` to denote that the
+			// module is a core module.
+			if strings.HasPrefix(mod, "node:") {
+				continue
+			}
+
 			isInternalMod := false
 			for _, internal := range internalModules {
 				if internal == mod {
