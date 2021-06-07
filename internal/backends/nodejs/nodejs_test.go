@@ -76,6 +76,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 	}
 
 	for _, tc := range tcs {
+		tc := tc
 		t.Run(tc.scenario, func(t *testing.T) {
 			dir, err := ioutil.TempDir(".", "temp")
 			if err != nil {
