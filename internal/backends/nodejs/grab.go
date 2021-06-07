@@ -186,6 +186,11 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
+			// Skip external files, don't import from http or https
+			if strings.HasPrefix(mod, "http:") || strings.HasPrefix(mod, "https:") {
+				continue
+			}
+
 			// Skip script loaders
 			if strings.Contains(mod, "!") {
 				continue
