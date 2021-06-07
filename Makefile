@@ -70,5 +70,4 @@ help: ## Show this message
 
 .PHONY: test
 test: statik ## Run the tests
-	make upm
 	go test ./... -v
