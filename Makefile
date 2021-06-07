@@ -65,3 +65,8 @@ help: ## Show this message
 		sed 's/:[^#]*[#]# /|/'		| \
 		sed 's/%/LANG/'			| \
 		column -t -s'|' >&2
+
+.PHONY: test
+test: ## Run the tests
+	make upm
+	go test ./... -v
