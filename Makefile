@@ -7,10 +7,10 @@ export GO111MODULE=on
 .PHONY: upm
 upm: cmd/upm/upm ## Build the UPM binary
 
-cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED) statik
+cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
 	cd cmd/upm && go build -ldflags "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
-statik:
+internal/statik/statik.go: $(shell find resources -type f)
 	go run github.com/rakyll/statik -src resources -dest internal -f
 
 internal/backends/python/pypi_map.gen.go: internal/backends/python/pypi_packages.json
@@ -69,5 +69,5 @@ help: ## Show this message
 		column -t -s'|' >&2
 
 .PHONY: test
-test: statik ## Run the tests
+test: internal/statik/statik.go ## Run the tests
 	go test ./... -v
