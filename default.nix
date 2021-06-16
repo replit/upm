@@ -6,13 +6,11 @@ let
     runCommand = pkgs.runCommand;
 in
 let
-    src = ./.;
-
-    gitSrc = pkgs.copyPathToStore ./.;
+    src = pkgs.copyPathToStore ./.;
     revision = runCommand "get-rev" {
         nativeBuildInputs = [ git ];
         dummy = builtins.currentTime;
-    } "GIT_DIR=${gitSrc}/.git git rev-parse --short HEAD | tr -d '\n' > $out";
+    } "GIT_DIR=${src}/.git git rev-parse --short HEAD | tr -d '\n' > $out";
 in buildGoModule {
     pname = "upm";
     version = builtins.readFile revision;
