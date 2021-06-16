@@ -6,19 +6,20 @@ let
     runCommand = pkgs.runCommand;
 in
 let
-    gitSrc = builtins.filterSource
-               (path: type: true)
-               ./.;
-in
-buildGoModule rec {
-    pname = "upm";
     src = ./.;
 
+    gitSrc = builtins.filterSource
+                   (path: type: true)
+                   ./.;
     revision = runCommand "get-rev" {
         nativeBuildInputs = [ git ];
         dummy = builtins.currentTime;
     } "GIT_DIR=${gitSrc}/.git git rev-parse --short HEAD | tr -d '\n' > $out";
+in buildGoModule {
+    pname = "upm";
     version = builtins.readFile revision;
+
+    inherit src;
 
     vendorSha256 = "1fjk4wjcqdkwhwgvx907pxd9ga8lfa36xrkh64ld5b8d0cv62mzv";
 
