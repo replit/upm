@@ -1,15 +1,24 @@
-{ lib, buildGoModule, fetchFromGitHub, statik }:
-
+{ pkgs ? import <nixpkgs>{} } :
+let
+    buildGoModule = pkgs.buildGoModule;
+    statik = pkgs.statik;
+    git = pkgs.git;
+    runCommand = pkgs.runCommand;
+in
+let
+    gitSrc = builtins.filterSource
+               (path: type: true)
+               ./.;
+in
 buildGoModule rec {
-    name = "upm";
-    version = "908674b";
+    pname = "upm";
+    src = ./.;
 
-    src = fetchFromGitHub{
-        owner = "replit";
-        repo = "upm";
-        rev = "${version}";
-        sha256 = "0y50q2fxz1q1xbxirjka70y247x70xxz8kj1h8dmgrzd793k3y6s";
-    };
+    revision = runCommand "get-rev" {
+        nativeBuildInputs = [ git ];
+        dummy = builtins.currentTime;
+    } "GIT_DIR=${gitSrc}/.git git rev-parse --short HEAD | tr -d '\n' > $out";
+    version = builtins.readFile revision;
 
     vendorSha256 = "1fjk4wjcqdkwhwgvx907pxd9ga8lfa36xrkh64ld5b8d0cv62mzv";
 
