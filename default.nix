@@ -8,9 +8,7 @@ in
 let
     src = ./.;
 
-    gitSrc = builtins.filterSource
-                   (path: type: true)
-                   ./.;
+    gitSrc = pkgs.copyPathToStore ./.;
     revision = runCommand "get-rev" {
         nativeBuildInputs = [ git ];
         dummy = builtins.currentTime;
