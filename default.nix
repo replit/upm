@@ -1,14 +1,16 @@
 { pkgs ? import <nixpkgs>{} } :
 let
-    buildGoModule = pkgs.buildGoModule;
-    statik = pkgs.statik;
-    git = pkgs.git;
-    runCommand = pkgs.runCommand;
+    inherit(pkgs)
+        buildGoModule
+        statik
+        git
+        runCommand;
 in
 let
     src = pkgs.copyPathToStore ./.;
     revision = runCommand "get-rev" {
         nativeBuildInputs = [ git ];
+        # impure, do every time, see https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/fetchgitlocal/default.nix#L9
         dummy = builtins.currentTime;
     } "GIT_DIR=${src}/.git git rev-parse --short HEAD | tr -d '\n' > $out";
 in buildGoModule {
