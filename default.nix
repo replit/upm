@@ -8,8 +8,6 @@ let
         runCommand;
 in
 let
-    packageName = "upm";
-
     src = pkgs.copyPathToStore ./.;
     versionFile = builtins.fetchurl https://api.github.com/repos/replit/upm/commits/master;
     revision = runCommand "get-rev" {
@@ -25,7 +23,7 @@ let
         fi
     '';
 in buildGoModule {
-    pname = packageName;
+    pname = "upm";
     version = builtins.readFile revision;
 
     inherit src;
