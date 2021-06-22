@@ -1,15 +1,13 @@
-{ pkgs ? import <nixpkgs>{} } :
+{ pkgs ? import <nixpkgs>{}, versionArg ? "" } :
 let
     inherit(pkgs)
         buildGoModule
         statik
         git
-        python3
         runCommand;
 in
 let
     src = pkgs.copyPathToStore ./.;
-    versionFile = builtins.fetchurl https://api.github.com/repos/replit/upm/commits/master;
     revision = runCommand "get-rev" {
         nativeBuildInputs = [ git python3 ];
         # impure, do every time, see https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/fetchgitlocal/default.nix#L9
@@ -19,7 +17,7 @@ let
             cd ${src}
             git rev-parse --short HEAD | tr -d '\n' > $out
         else
-            cat ${versionFile} | python3 -c "import sys, json; print(json.load(sys.stdin)['sha'][0:7])" | tr -d '\n' > $out
+            echo ${versionArg} | tr -d '\n' > $out
         fi
     '';
 in buildGoModule {
