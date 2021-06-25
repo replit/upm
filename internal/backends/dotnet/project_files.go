@@ -13,7 +13,7 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-const lockFile = "packages.lock.json"
+const lockFileName = "packages.lock.json"
 
 // an individual package record from .csproj file
 type packageReference struct {
@@ -89,19 +89,31 @@ func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 // loads the details of the lock file
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
-	if util.Exists(lockFile) {
-		specReader, err := os.Open(lockFile)
+	if util.Exists(lockFileName) {
+		specReader, err := os.Open(lockFileName)
 		if err != nil {
-			util.Die("Could not open %s, with error: %q", lockFile, err)
+			util.Die("Could not open %s, with error: %q", lockFileName, err)
 		}
 		defer specReader.Close()
 
 		pkgs, err = ReadLock(specReader)
 		if err != nil {
-			util.Die("Error reading lockFile %s %q", lockFile, err)
+			util.Die("Error reading lockFile %s %q", lockFileName, err)
 		}
 	}
 	return pkgs
+}
+
+type lockFilePackage struct {
+	Type         string
+	Resolved     string
+	ContentHash  string
+	Dependencies map[string]string
+}
+
+type lockFile struct {
+	Version      int
+	Dependencies map[string]map[string]lockFilePackage
 }
 
 // reads the lock file and buils up packages
@@ -110,21 +122,19 @@ func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) 
 	if err != nil {
 		return nil, err
 	}
-	var rawJson interface{}
-	err = json.Unmarshal(jsonBytes, &rawJson)
+	var lockFile lockFile
+	err = json.Unmarshal(jsonBytes, &lockFile)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to unmarshal lock file data %q", err)
 	}
 
-	m := rawJson.(map[string]interface{})
-	dependencies := m["dependencies"].(map[string]interface{})
+	dependencies := lockFile.Dependencies
 	pkgs := map[api.PkgName]api.PkgVersion{}
 	for _, v := range dependencies {
-		packages := v.(map[string]interface{})
-		for packageName, details := range packages {
-			version := details.(map[string]interface{})["resolved"]
-			if version != nil {
-				pkgs[api.PkgName(packageName)] = api.PkgVersion(details.(map[string]interface{})["resolved"].(string))
+		for packageName, packageDetails := range v {
+			version := packageDetails.Resolved
+			if version != "" {
+				pkgs[api.PkgName(packageName)] = api.PkgVersion(packageDetails.Resolved)
 			}
 		}
 	}

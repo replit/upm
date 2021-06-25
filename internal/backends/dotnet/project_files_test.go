@@ -131,7 +131,7 @@ func TestReadLockWithProjectDependency(t *testing.T) {
 
 	for pkg, version := range map[string]string{"System.Text.Json": "5.0.1"} {
 		if pkgs[api.PkgName(pkg)] != api.PkgVersion(version) {
-			t.Errorf("Wring version %s for %s", pkgs[api.PkgName(pkg)], pkg)
+			t.Errorf("Wrong version %s for %s", pkgs[api.PkgName(pkg)], pkg)
 		}
 	}
 }

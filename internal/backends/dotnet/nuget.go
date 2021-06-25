@@ -89,7 +89,6 @@ func search(query string) []api.PkgInfo {
 	}
 
 	for _, data := range searchResult.Data {
-		util.ProgressMsg(data.ID)
 		pkgs = append(pkgs, api.PkgInfo{
 			Name:          data.ID,
 			Version:       data.Version,

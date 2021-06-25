@@ -10,7 +10,7 @@ import (
 var DotNetBackend = api.LanguageBackend{
 	Name:             "csharp-dotnet",
 	Specfile:         findSpecFile(),
-	Lockfile:         lockFile,
+	Lockfile:         lockFileName,
 	FilenamePatterns: []string{"*.cs", "*.csproj"},
 	Remove:           func(pkgs map[api.PkgName]bool) { removePackages(pkgs, findSpecFile(), util.RunCmd) },
 	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
