@@ -1,18 +1,20 @@
 { pkgs ? import <nixpkgs>{}, versionArg ? "" } :
 let
+
     src = pkgs.copyPathToStore ./.;
+
     revision = pkgs.runCommand "get-rev" {
-        nativeBuildInputs = with pkgs; [ git python3 ];
+        nativeBuildInputs = with pkgs; [ git ];
         # impure, do every time, see https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/fetchgitlocal/default.nix#L9
         dummy = builtins.currentTime;
     } ''
         if [ -d ${src}/.git ]; then
-            cd ${src}
-            git rev-parse --short HEAD | tr -d '\n' > $out
+            git --git-dir="${src}/.git" -C "${src}" rev-parse --short HEAD | tr -d '\n' > $out
         else
             echo ${versionArg} | tr -d '\n' > $out
         fi
     '';
+
 in pkgs.buildGoModule {
     pname = "upm";
     version = builtins.readFile revision;
