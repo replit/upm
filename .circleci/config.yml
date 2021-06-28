@@ -14,6 +14,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: make light full
+  nix_build:
+    docker:
+      - image: docker.nix-community.org/nixpkgs/nix
+    steps:
+      - checkout
+      - run: nix-build
   build_test_and_deploy:
     docker:
       - image: docker:18.09
