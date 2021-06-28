@@ -96,6 +96,12 @@ workflows:
               ignore: master
             tags:
               ignore: /.*/
+      - nix_build:
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
       - build_test_and_deploy:
           filters:
             branches:
