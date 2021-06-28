@@ -16,7 +16,7 @@ jobs:
       - run: make light full
   nix_build:
     docker:
-      - image: docker.nix-community.org/nixpkgs/nix
+      - image: nixos/nix
     steps:
       - checkout
       - run: nix-build
