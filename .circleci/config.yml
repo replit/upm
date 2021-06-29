@@ -14,6 +14,19 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: make light full
+  nix_build:
+    docker:
+      - image: nixos/nix
+    steps:
+      - checkout
+      - restore_cache:
+          key: nix-store
+      - run: nix-build
+      - save_cache:
+          key: nix-store
+          when: always
+          paths:
+            - /nix
   build_test_and_deploy:
     docker:
       - image: docker:18.09
@@ -85,6 +98,12 @@ workflows:
   ci:
     jobs:
       - build_and_test:
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - nix_build:
           filters:
             branches:
               ignore: master
