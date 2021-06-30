@@ -6,12 +6,12 @@ import (
 	"github.com/replit/upm/internal/util"
 )
 
-//DotNetBackend is the UPM language backend for C# using dotnet
+// DotNetBackend is the UPM language backend .NET languages with support for C#
 var DotNetBackend = api.LanguageBackend{
-	Name:             "csharp-dotnet",
+	Name:             "dotnet",
 	Specfile:         findSpecFile(),
 	Lockfile:         lockFileName,
-	FilenamePatterns: []string{"*.cs", "*.csproj"},
+	FilenamePatterns: []string{"*.cs", "*.csproj"}, // C# support so far
 	Remove:           func(pkgs map[api.PkgName]bool) { removePackages(pkgs, findSpecFile(), util.RunCmd) },
 	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		addPackages(pkgs, projectName, util.RunCmd)
