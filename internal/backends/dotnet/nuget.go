@@ -85,7 +85,7 @@ func search(query string) []api.PkgInfo {
 	var searchResult searchResult
 	err = json.Unmarshal(body, &searchResult)
 	if err != nil {
-		util.Die("Could not unmarshal response data: %", err)
+		util.Die("Could not unmarshal response data: %s", err)
 	}
 
 	for _, data := range searchResult.Data {
