@@ -120,9 +120,9 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	if err != nil {
 		util.Die("could not read json body: %s", err)
 	}
-	latestVersion := url.PathEscape(infoResult.Versions[len(infoResult.Versions)-1])
+	latestVersion := infoResult.Versions[len(infoResult.Versions)-1]
 	util.ProgressMsg(fmt.Sprintf("latest version of %s is %s", pkgName, latestVersion))
-	specURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/%s/%s.nuspec", lowID, latestVersion, lowID)
+	specURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/%s/%s.nuspec", lowID, url.PathEscape(latestVersion), lowID)
 	util.ProgressMsg(fmt.Sprintf("Getting spec from %s", specURL))
 	res, err = http.Get(specURL)
 	if err != nil {
