@@ -120,7 +120,7 @@ type lockFile struct {
 	Dependencies map[string]map[string]lockFilePackage
 }
 
-// reads the lock file and buils up packages
+// ReadLock reads the lock file and buils up packages.
 func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) {
 	jsonBytes, err := ioutil.ReadAll(lockFileReader)
 	if err != nil {
