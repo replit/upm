@@ -65,7 +65,7 @@ const searchQueryURL = "https://azuresearch-usnc.nuget.org/query"
 // find the first ten projects that match the query string on nuget.org
 func search(query string) []api.PkgInfo {
 	pkgs := []api.PkgInfo{}
-	queryURL := fmt.Sprintf("%s?q=%s&take=10", searchQueryURL, query)
+	queryURL := fmt.Sprintf("%s?q=%s&take=10", searchQueryURL, url.QueryEscape(query))
 
 	res, err := http.Get(queryURL)
 	if err != nil {
