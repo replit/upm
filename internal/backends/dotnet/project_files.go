@@ -33,7 +33,7 @@ type project struct {
 func findSpecFile() string {
 	files, err := ioutil.ReadDir("./")
 	if err != nil {
-		util.Die("Can't read current directory")
+		util.Die("can't read current directory: %s", err)
 	}
 
 	for _, f := range files {
