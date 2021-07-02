@@ -107,7 +107,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 
 	res, err := http.Get(infoURL)
 	if err != nil {
-		util.Die("failed to get the versions")
+		util.Die("failed to get the versions: %s", err)
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
