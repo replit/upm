@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -102,8 +103,8 @@ func search(query string) []api.PkgInfo {
 
 // looks up all the versions of the package and gets retails for the latest version from nuget.org
 func info(pkgName api.PkgName) api.PkgInfo {
-	lowID := strings.ToLower(string(pkgName))
-	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", url.PathEscape(lowID))
+	lowID := url.PathEscape(strings.ToLower(string(pkgName)))
+	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
 
 	res, err := http.Get(infoURL)
 	if err != nil {
@@ -112,30 +113,30 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		util.Die("Could not read response\n")
+		util.Die("could not read response: %s", err)
 	}
 	var infoResult infoResult
 	err = json.Unmarshal(body, &infoResult)
 	if err != nil {
-		util.Die("Could not read json body")
+		util.Die("could not read json body: %s", err)
 	}
-	latestVersion := infoResult.Versions[len(infoResult.Versions)-1]
+	latestVersion := url.PathEscape(infoResult.Versions[len(infoResult.Versions)-1])
 	util.ProgressMsg(fmt.Sprintf("latest version of %s is %s", pkgName, latestVersion))
 	specURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/%s/%s.nuspec", lowID, latestVersion, lowID)
 	util.ProgressMsg(fmt.Sprintf("Getting spec from %s", specURL))
 	res, err = http.Get(specURL)
 	if err != nil {
-		util.Die("Failed to get the spec")
+		util.Die("failed to get the spec: %s", err)
 	}
 	defer res.Body.Close()
 	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		util.Die("Could not read response\n")
+		util.Die("could not read response: %s", err)
 	}
 	var nugetPackage nugetPackage
 	err = xml.Unmarshal(body, &nugetPackage)
 	if err != nil {
-		util.Die(fmt.Sprintf("Failed to read spec %s", err))
+		util.Die(fmt.Sprintf("failed to read spec %s", err))
 	}
 
 	pkgInfo := api.PkgInfo{
