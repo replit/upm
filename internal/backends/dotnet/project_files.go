@@ -48,10 +48,14 @@ func findSpecFile() string {
 func listSpecfile() map[api.PkgName]api.PkgSpec {
 	var pkgs map[api.PkgName]api.PkgSpec
 	projectFile := findSpecFile()
-	if util.Exists(projectFile) {
-
-		specReader, err := os.Open(projectFile)
-		if err != nil {
+	specReader, err := os.Open(projectFile)
+	if errors.Is(err, os.ErrNotExist) {
+		return pkgs
+	}
+	if err != nil {
+		util.Die("Could not open %s, with error: %q", projectFile, err)	
+	}
+	defer specReader.Close()
 			util.Die("Could not open %s, with error: %q", projectFile, err)
 		}
 		defer specReader.Close()
