@@ -103,7 +103,7 @@ func search(query string) []api.PkgInfo {
 // looks up all the versions of the package and gets retails for the latest version from nuget.org
 func info(pkgName api.PkgName) api.PkgInfo {
 	lowID := strings.ToLower(string(pkgName))
-	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
+	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", url.PathEscape(lowID))
 
 	res, err := http.Get(infoURL)
 	if err != nil {
