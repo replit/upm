@@ -3,6 +3,7 @@ package dotnet
 import (
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -53,22 +54,19 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 		return pkgs
 	}
 	if err != nil {
-		util.Die("Could not open %s, with error: %q", projectFile, err)	
+		util.Die("Could not open %s, with error: %q", projectFile, err)
 	}
 	defer specReader.Close()
-			util.Die("Could not open %s, with error: %q", projectFile, err)
-		}
-		defer specReader.Close()
 
-		pkgs, err = ReadSpec(specReader)
-		if err != nil {
-			util.Die("Failed to read spec file %s, with error: %q", projectFile, err)
-		}
+	pkgs, err = ReadSpec(specReader)
+	if err != nil {
+		util.Die("Failed to read spec file %s, with error: %q", projectFile, err)
 	}
+
 	return pkgs
 }
 
-// reads the spec and builds up packages
+// ReadSpec reads the spec and builds up packages.
 func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 	xmlbytes, err := ioutil.ReadAll(specReader)
 	if err != nil {
@@ -78,7 +76,7 @@ func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 	var project project
 	err = xml.Unmarshal(xmlbytes, &project)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to unmarshal file content %q", err)
+		return nil, fmt.Errorf("failed to unmarshal file content %q", err)
 	}
 
 	pkgs := map[api.PkgName]api.PkgSpec{}
@@ -93,18 +91,21 @@ func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
 // loads the details of the lock file
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	pkgs := map[api.PkgName]api.PkgVersion{}
-	if util.Exists(lockFileName) {
-		specReader, err := os.Open(lockFileName)
-		if err != nil {
-			util.Die("Could not open %s, with error: %q", lockFileName, err)
-		}
-		defer specReader.Close()
 
-		pkgs, err = ReadLock(specReader)
-		if err != nil {
-			util.Die("Error reading lockFile %s %q", lockFileName, err)
-		}
+	specReader, err := os.Open(lockFileName)
+	if errors.Is(err, os.ErrNotExist) {
+		return pkgs
 	}
+	if err != nil {
+		util.Die("Could not open %s, with error: %q", lockFileName, err)
+	}
+	defer specReader.Close()
+
+	pkgs, err = ReadLock(specReader)
+	if err != nil {
+		util.Die("error reading lockFile %s: %q", lockFileName, err)
+	}
+
 	return pkgs
 }
 
@@ -129,7 +130,7 @@ func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) 
 	var lockFile lockFile
 	err = json.Unmarshal(jsonBytes, &lockFile)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to unmarshal lock file data %q", err)
+		return nil, fmt.Errorf("failed to unmarshal lock file data: %q", err)
 	}
 
 	dependencies := lockFile.Dependencies
