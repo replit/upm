@@ -11,7 +11,7 @@ var DotNetBackend = api.LanguageBackend{
 	Name:             "dotnet",
 	Specfile:         findSpecFile(),
 	Lockfile:         lockFileName,
-	FilenamePatterns: []string{"*.cs", "*.csproj"}, // C# support so far
+	FilenamePatterns: []string{"*.cs", "*.csproj", "*.fs", "*.fsproj"}, // C# support so far
 	Remove:           func(pkgs map[api.PkgName]bool) { removePackages(pkgs, findSpecFile(), util.RunCmd) },
 	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		addPackages(pkgs, projectName, util.RunCmd)
