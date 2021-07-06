@@ -1,7 +1,8 @@
-{ buildGoModule, statik } :
+{ buildGoModule, statik, rev } :
 
 buildGoModule {
-    name = "upm";
+    pname = "upm";
+    version = rev;
 
     src = ./.;
 

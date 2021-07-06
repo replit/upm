@@ -9,10 +9,17 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem
       (system:
-        let pkgs = nixpkgs.legacyPackages.${system}; upm = pkgs.callPackage ./default.nix {}; in
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          upm = pkgs.callPackage ./default.nix {
+            rev = if self ? rev then "0.1.0-${builtins.substring 0 7 self.rev}" else "0.1.0-dirty";
+          };
+        in
         {
-          packages = [ upm ];
           defaultPackage = upm;
+          packages = {
+            inherit upm;
+          };
         }
       );
 }
