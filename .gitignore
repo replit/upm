@@ -8,3 +8,6 @@
 *.gen.go
 /.vscode/
 /.idea/
+
+# nix build creates a "result" symlink to the nix store output
+result
