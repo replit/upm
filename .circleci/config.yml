@@ -21,6 +21,7 @@ jobs:
       - checkout
       - restore_cache:
           key: nix-store
+      - run: nix-env -iA nixpkgs.git
       - run: nix-build
       - save_cache:
           key: nix-store
