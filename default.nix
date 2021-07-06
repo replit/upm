@@ -1,17 +1,7 @@
-{ buildGoModule, statik, rev } :
-
-buildGoModule {
-    pname = "upm";
-    version = rev;
-
-    src = ./.;
-
-    vendorSha256 = "1fjk4wjcqdkwhwgvx907pxd9ga8lfa36xrkh64ld5b8d0cv62mzv";
-
-    preBuild = ''
-        ${statik}/bin/statik -src resources -dest internal -f
-        go generate ./internal/backends/python
-    '';
-
-    doCheck = false;
-}
+(import (
+  fetchTarball {
+    url = "https://github.com/edolstra/flake-compat/archive/99f1c2157fba4bfe6211a321fd0ee43199025dbf.tar.gz";
+    sha256 = "0x2jn3vrawwv9xp15674wjz9pixwjyj3j771izayl962zziivbx2"; }
+) {
+  src =  ./.;
+}).defaultNix

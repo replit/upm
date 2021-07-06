@@ -11,7 +11,7 @@
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          upm = pkgs.callPackage ./default.nix {
+          upm = pkgs.callPackage ./upm.nix {
             rev = if self ? rev then "0.1.0-${builtins.substring 0 7 self.rev}" else "0.1.0-dirty";
           };
         in
