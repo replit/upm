@@ -30,7 +30,7 @@ func TestGetBackends(t *testing.T) {
 		}
 
 		if err := os.Chdir(dir); err != nil {
-			t.Errorf("failed to chang to directory: %s err: %v", dir, err)
+			t.Errorf("failed to change to directory: %s err: %v", dir, err)
 		}
 
 		actualBackend := GetBackend("")
