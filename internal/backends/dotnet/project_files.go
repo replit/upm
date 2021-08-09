@@ -16,20 +16,20 @@ import (
 
 const lockFileName = "packages.lock.json"
 
-// an individual package record from .csproj file
+// an individual package record from .NET project file
 type packageReference struct {
 	XMLName xml.Name `xml:"PackageReference"`
 	Include string   `xml:"Include,attr"`
 	Version string   `xml:"Version,attr"`
 }
 
-// .csproj file structure
+// .NET project file structure
 type project struct {
 	XMLName  xml.Name           `xml:"Project"`
 	Packages []packageReference `xml:"ItemGroup>PackageReference"`
 }
 
-// looks for the .csproj file in the current directory
+// looks for the .NET project files file in the current directory
 func findSpecFile() string {
 	files, err := ioutil.ReadDir("./")
 	if err != nil {
@@ -37,7 +37,7 @@ func findSpecFile() string {
 	}
 
 	for _, f := range files {
-		if strings.HasSuffix(f.Name(), ".csproj") {
+		if strings.HasSuffix(f.Name(), ".csproj") || strings.HasSuffix(f.Name(), ".fsproj") {
 			return f.Name()
 		}
 	}
