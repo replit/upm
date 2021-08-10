@@ -19,7 +19,18 @@ func getRPkgDir() string {
 		return rLibsUser
 	}
 
-	return path.Join(os.Getenv("HOME"), "R", "x86_64-pc-linux-gnu-library", "3.4")
+	libPath := string(util.GetCmdOutput([]string{
+		"R",
+		"-s",
+		"-e",
+		`cat(.expand_R_libs_env_var("R/%p-library/%v"))`,
+	}))
+
+	libPath = path.Join(os.Getenv("HOME"), libPath)
+
+	os.Setenv("R_LIBS_USER", libPath)
+
+	return libPath
 }
 
 func createRPkgDir() {
