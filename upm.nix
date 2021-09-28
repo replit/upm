@@ -6,7 +6,7 @@ buildGoModule {
 
     src = ./.;
 
-    vendorSha256 = "1fjk4wjcqdkwhwgvx907pxd9ga8lfa36xrkh64ld5b8d0cv62mzv";
+    vendorSha256 = "1a4y55gyzin4gdvgx5dkh0bkm1jv24cwj106nd35i1liwwy3w89c";
 
     buildFlagsArray = [
       "-ldflags=-X github.com/replit/upm/internal/cli.version=${rev}"

@@ -10,6 +10,7 @@ require (
 	github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc
 	github.com/rakyll/statik v0.1.6
 	github.com/spf13/cobra v0.0.5
+	github.com/stretchr/testify v1.7.0 // indirect
 	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
 	golang.org/x/tools v0.0.0-20200605181038-cef9fc3bc8f0 // indirect
 	gopkg.in/yaml.v2 v2.2.2
