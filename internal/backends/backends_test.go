@@ -14,7 +14,9 @@ func TestGetBackends(t *testing.T) {
 		"Setup.fs":       "dotnet",
 		"project.fsproj": "dotnet",
 		"pom.xml":        "java-maven",
-		"package.json":   "nodejs-npm"}
+		"package.json":   "nodejs-npm",
+		"Cargo.toml":     "rust",
+	}
 
 	dir, err := ioutil.TempDir("", "TestGetBackends")
 	if err != nil {
