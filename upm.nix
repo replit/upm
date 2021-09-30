@@ -1,15 +1,22 @@
-{ buildGoModule, statik, rev } :
+{ buildGoModule, statik, rev, go_1_17 } :
 
-buildGoModule {
+let
+
+  # TODO: buildGo117Module is not available in nixpkgs right now because it doesn't work
+  # on darwin yet. Once that has been fixed, we won't need this override anymore.
+  buildGo117Module = buildGoModule.override { go = go_1_17; };
+
+in
+buildGo117Module {
     pname = "upm";
     version = rev;
 
     src = ./.;
 
-    vendorSha256 = "1a4y55gyzin4gdvgx5dkh0bkm1jv24cwj106nd35i1liwwy3w89c";
+    vendorSha256 = "sha256-tgatP9gIfzbxzPSPcL6ZiO8gg/i4kH94YtMyzJs6SnY=";
 
-    buildFlagsArray = [
-      "-ldflags=-X github.com/replit/upm/internal/cli.version=${rev}"
+    ldflags = [
+      "-X github.com/replit/upm/internal/cli.version=${rev}"
     ];
 
     preBuild = ''
