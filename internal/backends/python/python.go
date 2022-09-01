@@ -303,7 +303,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Lock: func() {
-			util.RunCmd([]string{python, "-m", "poetry", "lock"})
+			util.RunCmd([]string{python, "-m", "poetry", "lock", "--no-update"})
 		},
 		Install: func() {
 			// Unfortunately, this doesn't necessarily uninstall
