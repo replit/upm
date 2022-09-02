@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"sort"
@@ -447,4 +448,21 @@ func pypiPackageToDownloads() map[string]int {
 		panic(err)
 	}
 
+	bytes, err := json.MarshalIndent(moduleToPypiPackage, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to serialize mapping to json: %s", err.Error())
+	}
+	err = ioutil.WriteFile("module_to_pypi.json", bytes, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to write json file: %s", err.Error())
+	}
+
+	bytes, err = json.MarshalIndent(pypiPackageToModules, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to serialize mapping to json: %s", err.Error())
+	}
+	err = ioutil.WriteFile("pypi_to_module.json", bytes, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to write json file: %s", err.Error())
+	}
 }
