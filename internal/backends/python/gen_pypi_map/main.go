@@ -278,6 +278,9 @@ func main() {
 	mods := map[string][]*mapEntry{}
 	guessable := map[string]bool{}
 
+	var moduleToPypiPackage = map[string]string{}
+	var pypiPackageToModules = map[string]string{}
+
 	for dec.More() {
 		var m mapEntry
 
@@ -324,6 +327,8 @@ func moduleToPypiPackage() map[string]string {
 		fmt.Fprintf(outgo, "\t")
 		fmt.Fprintf(outgo, `%#v: %#v, // %s`, mod, pkg, comment)
 		fmt.Fprintf(outgo, "\n")
+
+		moduleToPypiPackage[mod] = pkg
 	}
 
 nextpkg:
@@ -406,8 +411,11 @@ func pypiPackageToModules() map[string]string {
 
 		// sadly putting these in slices kills the go compiler. Would be nice to
 		// find some other way to intern these though.
-		fmt.Fprintf(outgo, `%#v: %#v,`, pkg.Pkg, strings.Join(guessableMods, ","))
+		modules := strings.Join(guessableMods, ",")
+		fmt.Fprintf(outgo, `%#v: %#v,`, pkg.Pkg, modules)
 		fmt.Fprintf(outgo, "\n")
+
+		pypiPackageToModules[pkg.Pkg] = modules
 	}
 
 	fmt.Fprintf(outgo, "}\n}\nreturn pypiPackageToModulesCached\n}")
@@ -438,4 +446,5 @@ func pypiPackageToDownloads() map[string]int {
 		fmt.Println(string(output))
 		panic(err)
 	}
+
 }
