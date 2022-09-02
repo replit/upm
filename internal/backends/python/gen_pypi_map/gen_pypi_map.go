@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
@@ -41,7 +42,7 @@ func ProcessPackage(packageName string, cached PackageInfo, distMods bool) (Pack
 		return cached, nil
 	}
 
-	var modules []string;
+	var modules []string
 	if distMods {
 		// Determine moudles by examining a distribution
 		modules, err = GetModules(metadata)
@@ -74,6 +75,8 @@ func main() {
 	gcp := flag.String("gcp", "", "A GCP project ID to use to query bigquery directly. The result will be written to bq.")
 	pkg := flag.String("pkg", "python", "the pkg name for the output source")
 	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
+	m2pout := flag.String("m2p-out", "module_to_pypi.json", "the destination file for the module to package mapping in json")
+	p2mout := flag.String("p2m-out", "pypi_to_module.json", "the destination file for the module to package mapping in json")
 	workers := flag.Int("workers", 16, "The number of simultaenous workers to run")
 	distMods := flag.Bool("dist", false, "Determine modules by examining dists")
 	flag.Parse()
@@ -105,7 +108,8 @@ func main() {
 	// Scan pypi for all packages
 	discoveredPackages := 0
 	fmt.Printf("Scanning package index...\n")
-	packages, _ := NewPackageIndex("https://pypi.org/simple/", -1)
+	// packages, _ := NewPackageIndex("https://pypi.org/simple/", -1)
+	packages := FakePackageIndex("Flask", "boto3", "discord.py")
 
 	// Each package is handled in a seperate goroutine, the total number
 	// concurrent is limited by the buffer size of this channel
@@ -190,20 +194,18 @@ func main() {
 
 			elapsed := time.Since(startTime)
 			rate := float64(processedPackages) / elapsed.Seconds()
-			remaining := float64(discoveredPackages - processedPackages) / rate
+			remaining := float64(discoveredPackages-processedPackages) / rate
 
 			fmt.Printf("%v/%v %.2f%% [%.0fs]\n", processedPackages, discoveredPackages, 100*percentage, remaining)
 		}
 
 		// Grab the write lock and update the cache
-		if len(cacheBuffer) > int(float64(*workers)*0.8) {
-			packageCacheLock.Lock()
-			for _, info := range cacheBuffer {
-				packageCache[info.Name] = info
-				cacheBuffer = cacheBuffer[:0]
-			}
-			packageCacheLock.Unlock()
+		packageCacheLock.Lock()
+		for _, info := range cacheBuffer {
+			packageCache[info.Name] = info
+			cacheBuffer = cacheBuffer[:0]
 		}
+		packageCacheLock.Unlock()
 	}
 
 	// After all packages have been processed, close channels
@@ -244,4 +246,22 @@ func main() {
 	fmt.Fprintf(codeWriter, "package %v\n\n", *pkg)
 	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, codeWriter)
 	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, codeWriter)
+
+	bytes, err := json.MarshalIndent(moduleToPypiPackage, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to serialize mapping to json: %s", err.Error())
+	}
+	err = ioutil.WriteFile(*m2pout, bytes, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to write json file: %s", err.Error())
+	}
+
+	bytes, err = json.MarshalIndent(pypiPackageToModules, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to serialize mapping to json: %s", err.Error())
+	}
+	err = ioutil.WriteFile(*p2mout, bytes, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to write json file: %s", err.Error())
+	}
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"net/http"
 	"path"
@@ -10,14 +11,14 @@ import (
 
 // These modules are always ignored
 var ignoredModules = map[string]bool{
-	"test": true,
-	"tests": true,
-	"testing": true,
-	"doc": true,
-	"docs": true,
+	"test":          true,
+	"tests":         true,
+	"testing":       true,
+	"doc":           true,
+	"docs":          true,
 	"documentation": true,
-	"_private": true,
-	"setup": true,
+	"_private":      true,
+	"setup":         true,
 }
 
 func parseTopLevel(reader io.Reader) []string {
@@ -33,6 +34,7 @@ func parseTopLevel(reader io.Reader) []string {
 }
 
 func GetModules(metadata PackageData) ([]string, error) {
+	fmt.Println("GetModules")
 	latest := metadata.Releases[metadata.Info.Version]
 	if len(latest) == 0 {
 		return nil, PypiError{NoDistributions, metadata.Info.Version, nil}
@@ -77,7 +79,7 @@ func GetModules(metadata PackageData) ([]string, error) {
 	defer reader.Close()
 
 	var modules []string
-	switch (pkg.PackageType) {
+	switch pkg.PackageType {
 	case "bdist_wheel":
 		modules, err = ExtractBdist(reader)
 	case "bdist_egg":

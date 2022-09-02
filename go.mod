@@ -3,6 +3,7 @@ module github.com/replit/upm
 go 1.12
 
 require (
+	cloud.google.com/go/bigquery v1.39.0 // indirect
 	github.com/BurntSushi/toml v0.3.1
 	github.com/amasad/esparse v0.0.0-20200423043217-e2a08a964677
 	github.com/hashicorp/go-version v1.2.0
@@ -10,7 +11,8 @@ require (
 	github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc
 	github.com/rakyll/statik v0.1.6
 	github.com/spf13/cobra v0.0.5
-	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
-	golang.org/x/tools v0.0.0-20200605181038-cef9fc3bc8f0 // indirect
-	gopkg.in/yaml.v2 v2.2.2
+	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+	golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e // indirect
+	google.golang.org/api v0.94.0 // indirect
+	gopkg.in/yaml.v2 v2.2.3
 )

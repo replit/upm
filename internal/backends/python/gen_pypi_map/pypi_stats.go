@@ -1,8 +1,9 @@
 package main
 
 import (
-	"cloud.google.com/go/bigquery"
 	"fmt"
+
+	"cloud.google.com/go/bigquery"
 	"golang.org/x/net/context"
 	"google.golang.org/api/iterator"
 )
@@ -14,12 +15,13 @@ func GetPypiStats(projectID string) (PackageCache, error) {
 		return PackageCache{}, fmt.Errorf("Failed to connect to bigquery: %v", err)
 	}
 
-	q := client.Query(`
-			SELECT file.project AS name, COUNT(*) AS downloads
-						FROM ` + "`the-psf.pypi.downloads*`" + `
-						WHERE _TABLE_SUFFIX BETWEEN FORMAT_DATE( '%Y%m%d', DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY))
-									AND FORMAT_DATE('%Y%m%d', CURRENT_DATE())
-						GROUP BY file.project`)
+	q := client.Query(
+		`select project as name, count(*) as downloads
+		from ` + "`bigquery-public-data.pypi.file_downloads`" + ` downloads
+		where
+		Date(timestamp) >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)
+		group by project
+		order by downloads desc;`)
 
 	it, err := q.Read(ctx)
 	if err != nil {
