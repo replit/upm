@@ -14,11 +14,10 @@ cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED)
 	go run github.com/rakyll/statik -src resources -dest internal -f
 	cd cmd/upm && go build -ldflags "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
-internal/backends/python/pypi_map.gen.go: internal/backends/python/bq.json
+internal/backends/python/pypi_map.gen.go: internal/backends/python/download_stats.json
 	go generate ./internal/backends/python
 
 clean-gen:
-	rm ./internal/backends/python/cache.json
 	rm ./internal/backends/python/pypi_map.gen.go
 
 .PHONY: dev

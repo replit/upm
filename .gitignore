@@ -7,3 +7,4 @@
 /packaging/aur/src/
 *.gen.go
 /.vscode/
+/internal/backends/python/cache

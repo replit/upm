@@ -15,7 +15,7 @@ import (
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
-//go:generate go run ./gen_pypi_map -bq bq.json -pkg python -out pypi_map.gen.go
+//go:generate go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.gen.go -cache cache -cmd gen
 
 // pypiXMLRPCEntry represents one element of the response we get from
 // the PyPI XMLRPC API on doing a search.
@@ -409,7 +409,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 		}
 
 		// If this module has a package pragma, use that
-		if pragmas.Package != ""{
+		if pragmas.Package != "" {
 			name := api.PkgName(pragmas.Package)
 			pkgs[normalizePackageName(name)] = true
 

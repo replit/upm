@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func GuessPackage(module string, packages []PackageInfo) (PackageInfo, bool) {
+func GuessPackage(module string, packages []PackageInfo, downloadStats map[string]int) (PackageInfo, bool) {
 	// Never try and guess packages in the python stdlib
 	if stdlibMods[module] {
 		return PackageInfo{}, false
@@ -35,19 +35,20 @@ func GuessPackage(module string, packages []PackageInfo) (PackageInfo, bool) {
 
 	// Sort the packages by downloads
 	sort.Slice(packages, func(a, b int) bool {
-		return packages[a].Downloads > packages[b].Downloads
+		return downloadStats[packages[a].Name] > downloadStats[packages[b].Name]
 	})
 
 	// If the most downloaded package that provides this module has been
 	// downloaded fewer then 100 times, skip the module
-	if packages[0].Downloads < 100 {
+	if downloadStats[packages[0].Name] < 100 {
 		return PackageInfo{}, false
 	}
 
 	// if the top package is 10x more popular than the next, we'll go with
 	// it. We've added a cost for every module as well, this seems to get
 	// the best results
-	if packages[0].Downloads/len(packages[0].Modules) > packages[1].Downloads*10/len(packages[1].Modules) {
+	if downloadStats[packages[0].Name]/len(packages[0].Modules) >
+		downloadStats[packages[1].Name]*10/len(packages[1].Modules) {
 		return packages[0], true
 	}
 

@@ -11,6 +11,7 @@ type PackageInfo struct {
 
 	// Specific to the dist we use to get modules from
 	Modules []string `json:"modules,omitempty"`
+	Error   string   `json:"error,omitempty"`
 }
 
 type PackageURL struct {

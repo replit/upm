@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"os/exec"
 )
@@ -24,7 +23,7 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 	}
 
 	// Run a python script to find the newly installed modules
-	cmd = exec.Command("sh", "-c", ". "+path+"/bin/activate; python3 /home/toby/replit/upm/internal/backends/python/gen_pypi_map/install_diff.py "+metadata.Info.Name)
+	cmd = exec.Command("sh", "-c", ". "+path+"/bin/activate; python3 /home/toby/upm/internal/backends/python/gen_pypi_map/install_diff.py "+metadata.Info.Name)
 
 	cmdReader, err := cmd.StdoutPipe()
 
@@ -52,8 +51,6 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 	if r.Error != "" {
 		return nil, PypiError{InstallFailure, r.Error, nil}
 	}
-
-	fmt.Printf("Done InstallDiff(%s)\n", metadata.Info.Name)
 
 	return r.Modules, nil
 }
