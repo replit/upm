@@ -33,11 +33,6 @@ func GuessPackage(module string, packages []PackageInfo, downloadStats map[strin
 		}
 	}
 
-	// Sort the packages by downloads
-	sort.Slice(packages, func(a, b int) bool {
-		return downloadStats[packages[a].Name] > downloadStats[packages[b].Name]
-	})
-
 	// If the most downloaded package that provides this module has been
 	// downloaded fewer then 100 times, skip the module
 	if downloadStats[packages[0].Name] < 100 {
@@ -52,7 +47,24 @@ func GuessPackage(module string, packages []PackageInfo, downloadStats map[strin
 		return packages[0], true
 	}
 
-	return PackageInfo{}, false
+	minNumModules := 100000
+	var matchedPkgs []PackageInfo = nil
+	for _, pkg := range packages {
+		numModules := len(pkg.Modules)
+		if numModules < minNumModules {
+			minNumModules = numModules
+			matchedPkgs = []PackageInfo{pkg}
+		} else if numModules == minNumModules {
+			matchedPkgs = append(matchedPkgs, pkg)
+		}
+	}
+
+	// Sort the packages by downloads
+	sort.Slice(matchedPkgs, func(a, b int) bool {
+		return downloadStats[matchedPkgs[a].Name] > downloadStats[matchedPkgs[b].Name]
+	})
+
+	return matchedPkgs[0], true
 }
 
 // pythonStdlibModules this build is built from

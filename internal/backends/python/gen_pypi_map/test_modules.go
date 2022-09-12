@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, distMods bool, workers int) {
+func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, distMods bool, workers int, force bool) {
 	fmt.Printf("Loading pypi stats from cache file\n")
 	bqCache, err := LoadDownloadStats(bigqueryFile)
 	if err != nil {
@@ -43,7 +43,7 @@ func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, di
 			concurrencyLimiter <- struct{}{}
 			defer func() { <-concurrencyLimiter }()
 
-			packageInfo, err := ProcessPackage(packageName, cacheDir, distMods)
+			packageInfo, err := ProcessPackage(packageName, cacheDir, distMods, force)
 			packageInfo.Name = packageName
 			if err != nil {
 				packageInfo.Error = err.Error()
@@ -107,7 +107,7 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 }
 
 // NOTE: cache is read only
-func ProcessPackage(packageName string, cacheDir string, distMods bool) (PackageInfo, error) {
+func ProcessPackage(packageName string, cacheDir string, distMods bool, force bool) (PackageInfo, error) {
 	// Get the package metadata from pypi
 	metadata, err := GetPackageMetadata(packageName)
 	if err != nil {
@@ -118,7 +118,7 @@ func ProcessPackage(packageName string, cacheDir string, distMods bool) (Package
 	loadPackageInfo(packageName, cacheDir, &cached)
 
 	// Check if cached module is out of date
-	if metadata.Info.Version == cached.Version {
+	if !force && metadata.Info.Version == cached.Version {
 		// If we hit in the cache, no need to download the distribution
 		return cached, nil
 	}

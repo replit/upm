@@ -15,6 +15,7 @@ func main() {
 	index := flag.String("index", "", "An json index file for packages containing an array of strings")
 	workers := flag.Int("workers", 16, "The number of simultaenous workers to run")
 	distMods := flag.Bool("dist", false, "Determine modules by examining dists")
+	force := flag.Bool("force", false, "Force re-test when cached")
 	pkg := flag.String("pkg", "python", "the pkg name for the output source")
 	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
 	flag.Parse()
@@ -53,7 +54,7 @@ func main() {
 		} else {
 			packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 		}
-		testModules(packages, *bq, *cache, *distMods, *workers)
+		testModules(packages, *bq, *cache, *distMods, *workers, *force)
 	} else if *command == "gen" {
 		/*
 			Generate source file that provides pypi mappings
