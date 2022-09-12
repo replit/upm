@@ -57,15 +57,13 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 	// fmt.Printf("Sorted modules by package list size\n")
 
 	var moduleToPypiPackage = map[string]string{}
+	var moduleToPypiPackageReason = map[string]string{}
 	var pypiPackageToModules = map[string]string{}
 
 	// Guess at every module, add the guess and the package that was guessed to
 	// the masp
 	for _, module := range moduleList {
 		moduleName := module.Module
-		if moduleName == "configparser" {
-			fmt.Println("Guessing configparser")
-		}
 		candidates := module.PackageList
 		// // Filter out packages that have already been matched
 		// // We start with ones that have the fewest modules, so it will
@@ -76,8 +74,9 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 		// 		candidates = append(candidates, pkg)
 		// 	}
 		// }
-		if guess, guessable := GuessPackage(moduleName, candidates, downloadStats); guessable {
+		if guess, reason, guessable := GuessPackage(moduleName, candidates, downloadStats); guessable {
 			moduleToPypiPackage[moduleName] = guess.Name
+			moduleToPypiPackageReason[moduleName] = reason
 			pypiPackageToModules[guess.Name] = strings.Join(guess.Modules, ",")
 		}
 	}
@@ -89,8 +88,8 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 	}
 
 	fmt.Fprintf(codeWriter, "package %v\n\n", pkg)
-	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, codeWriter)
-	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, codeWriter)
+	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, moduleToPypiPackageReason, codeWriter)
+	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, map[string]string{}, codeWriter)
 
 	fmt.Printf("Wrote %s\n", outputFilePath)
 	codeWriter.Close()
@@ -98,11 +97,15 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 
 }
 
-func DumpMapToGoVar(name string, m map[string]string, writer io.Writer) {
+func DumpMapToGoVar(name string, m map[string]string, reasons map[string]string, writer io.Writer) {
 	fmt.Fprintf(writer, "var %v= map[string]string{\n", name)
 
 	for key, value := range m {
-		fmt.Fprintf(writer, "\t\"%v\":  \"%v\",\n", key, value)
+		reason := reasons[key]
+		if reason != "" {
+			reason = "// " + reason
+		}
+		fmt.Fprintf(writer, "\t\"%v\":  \"%v\", %s\n", key, value, reason)
 	}
 	fmt.Fprintf(writer, "}\n\n")
 }

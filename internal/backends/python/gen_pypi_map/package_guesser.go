@@ -1,24 +1,28 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 )
 
-func GuessPackage(module string, packages []PackageInfo, downloadStats map[string]int) (PackageInfo, bool) {
+func GuessPackage(module string, packages []PackageInfo, downloadStats map[string]int) (PackageInfo, string, bool) {
+	if module == "pattern" {
+		fmt.Println("Guessing pattern")
+	}
 	// Never try and guess packages in the python stdlib
 	if stdlibMods[module] {
-		return PackageInfo{}, false
+		return PackageInfo{}, "", false
 	}
 
 	// If no packages provide this module, give up
 	if len(packages) == 0 {
-		return PackageInfo{}, false
+		return PackageInfo{}, "", false
 	}
 
 	// If there is only one package that provides this module, use that
 	if len(packages) == 1 {
-		return packages[0], true
+		return packages[0], "only one", true
 	}
 
 	// There are at least two packages that provide this module
@@ -29,42 +33,47 @@ func GuessPackage(module string, packages []PackageInfo, downloadStats map[strin
 	for _, candidate := range packages {
 		if strings.Replace(strings.ToLower(candidate.Name), "-", "_", -1) ==
 			strings.ToLower(module) {
-			return candidate, true
+			return candidate, "exact name match", true
 		}
 	}
+
+	// Sort the packages by downloads
+	sort.Slice(packages, func(a, b int) bool {
+		return downloadStats[packages[a].Name] > downloadStats[packages[b].Name]
+	})
 
 	// If the most downloaded package that provides this module has been
 	// downloaded fewer then 100 times, skip the module
 	if downloadStats[packages[0].Name] < 100 {
-		return PackageInfo{}, false
+		return PackageInfo{}, "", false
 	}
 
 	// if the top package is 10x more popular than the next, we'll go with
 	// it. We've added a cost for every module as well, this seems to get
 	// the best results
-	if downloadStats[packages[0].Name]/len(packages[0].Modules) >
-		downloadStats[packages[1].Name]*10/len(packages[1].Modules) {
-		return packages[0], true
+	first := packages[0]
+	second := packages[1]
+
+	if downloadStats[first.Name]/len(first.Modules) >
+		downloadStats[second.Name]*5/len(second.Modules) {
+		return packages[0], "5x more popular than next", true
 	}
 
-	minNumModules := 100000
-	var matchedPkgs []PackageInfo = nil
-	for _, pkg := range packages {
-		numModules := len(pkg.Modules)
-		if numModules < minNumModules {
-			minNumModules = numModules
-			matchedPkgs = []PackageInfo{pkg}
-		} else if numModules == minNumModules {
-			matchedPkgs = append(matchedPkgs, pkg)
-		}
-	}
+	return PackageInfo{}, "", false
 
-	// Sort the packages by downloads
-	sort.Slice(matchedPkgs, func(a, b int) bool {
-		return downloadStats[matchedPkgs[a].Name] > downloadStats[matchedPkgs[b].Name]
-	})
+	// minNumModules := 100000
+	// var matchedPkgs []PackageInfo = nil
+	// for _, pkg := range packages {
+	// 	numModules := len(pkg.Modules)
+	// 	if numModules < minNumModules {
+	// 		minNumModules = numModules
+	// 		matchedPkgs = []PackageInfo{pkg}
+	// 	} else if numModules == minNumModules {
+	// 		matchedPkgs = append(matchedPkgs, pkg)
+	// 	}
+	// }
 
-	return matchedPkgs[0], true
+	// return matchedPkgs[0], true
 }
 
 // pythonStdlibModules this build is built from
