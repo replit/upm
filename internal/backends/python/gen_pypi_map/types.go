@@ -5,13 +5,20 @@ import "fmt"
 type PackageCache = map[string]PackageInfo
 
 type PackageInfo struct {
-	Name      string `json:"name,omitempty"`
-	Downloads int    `json:"downloads,string,omitempty"`
-	Version   string `json:"version,omitempty"`
+	Name         string   `json:"name,omitempty"`
+	Downloads    int      `json:"downloads,string,omitempty"`
+	Version      string   `json:"version,omitempty"`
+	RequiresDist []string `json:"requires_dist,omitempty"`
 
 	// Specific to the dist we use to get modules from
 	Modules []string `json:"modules,omitempty"`
 	Error   string   `json:"error,omitempty"`
+}
+
+type LegacyPackageInfo struct {
+	Pkg       string   `json:"p"`
+	Mods      []string `json:"m"`
+	Downloads int      `json:"d"`
 }
 
 type PackageURL struct {

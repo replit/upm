@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -35,6 +36,7 @@ func savePackageInfo(packageName string, cacheDir string, info *PackageInfo) err
 	cacheEncoder := json.NewEncoder(writer)
 	cacheEncoder.SetIndent("", "  ")
 	err = cacheEncoder.Encode(&info)
+	fmt.Printf("Wrote %s\n", filePath)
 	if err != nil {
 		return err
 	}

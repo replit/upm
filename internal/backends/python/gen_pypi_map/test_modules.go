@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"regexp"
 	"sync"
 	"time"
 )
@@ -103,6 +104,17 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 	data := PackageData{}
 	decoder.Decode(&data)
 
+	idRegex := regexp.MustCompile("^([a-zA-Z-_0-9.]+)")
+	var stripedRequiresDist []string
+
+	for _, dep := range data.Info.RequiresDist {
+		match := idRegex.FindStringSubmatch(dep)
+		if len(match) > 0 {
+			stripedRequiresDist = append(stripedRequiresDist, match[0])
+		}
+	}
+	data.Info.RequiresDist = stripedRequiresDist
+
 	return data, nil
 }
 
@@ -136,6 +148,7 @@ func ProcessPackage(packageName string, cacheDir string, distMods bool, force bo
 	retval.Version = metadata.Info.Version
 	retval.Modules = modules
 	retval.Name = metadata.Info.Name
+	retval.RequiresDist = metadata.Info.RequiresDist
 
 	if err != nil {
 		retval.Error = err.Error()

@@ -1,15 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 )
 
 func GuessPackage(module string, packages []PackageInfo, downloadStats map[string]int) (PackageInfo, string, bool) {
-	if module == "pattern" {
-		fmt.Println("Guessing pattern")
-	}
 	// Never try and guess packages in the python stdlib
 	if stdlibMods[module] {
 		return PackageInfo{}, "", false
@@ -28,52 +24,99 @@ func GuessPackage(module string, packages []PackageInfo, downloadStats map[strin
 	// There are at least two packages that provide this module
 	///////////////////////////////////////////////////////////
 
-	// Got through all the matches, if any package name is an exact match to the
+	// Got through all the matches, if any package name is almost an exact match to the
 	// module name, use that
+	var nameMatches []PackageInfo = nil
 	for _, candidate := range packages {
-		if strings.Replace(strings.ToLower(candidate.Name), "-", "_", -1) ==
-			strings.ToLower(module) {
-			return candidate, "exact name match", true
+
+		if strings.Replace(strings.ToLower(candidate.Name), "-", "_", -1) == strings.ToLower(module) ||
+			strings.Replace(strings.ToLower(candidate.Name), "-", "", -1) == strings.ToLower(module) ||
+			strings.Replace(strings.ToLower(candidate.Name), "_", "", -1) == strings.ToLower(module) {
+			nameMatches = append(nameMatches, candidate)
 		}
+	}
+
+	if len(nameMatches) > 0 {
+		// Pick the most popular match
+		sort.Slice(nameMatches, func(a, b int) bool {
+			return downloadStats[nameMatches[a].Name] > downloadStats[nameMatches[b].Name]
+		})
+
+		return nameMatches[0], "name match", true
+	}
+
+	candidates := removeParentPackages(packages)
+
+	if len(candidates) > 0 {
+		packages = candidates
+	}
+
+	if len(packages) == 1 {
+		return packages[0], "only one after trimming", true
 	}
 
 	// Sort the packages by downloads
 	sort.Slice(packages, func(a, b int) bool {
-		return downloadStats[packages[a].Name] > downloadStats[packages[b].Name]
+		return downloadStats[strings.ToLower(packages[a].Name)] >
+			downloadStats[strings.ToLower(packages[b].Name)]
 	})
 
 	// If the most downloaded package that provides this module has been
 	// downloaded fewer then 100 times, skip the module
-	if downloadStats[packages[0].Name] < 100 {
+	if downloadStats[strings.ToLower(packages[0].Name)] < 100 {
 		return PackageInfo{}, "", false
 	}
 
-	// if the top package is 10x more popular than the next, we'll go with
-	// it. We've added a cost for every module as well, this seems to get
-	// the best results
-	first := packages[0]
-	second := packages[1]
+	return packages[0], "most popular of remaining", true
+}
 
-	if downloadStats[first.Name]/len(first.Modules) >
-		downloadStats[second.Name]*5/len(second.Modules) {
-		return packages[0], "5x more popular than next", true
+/*
+Go through all input packages and look through their dependencies (RequiresDist).
+If they depend on one or more of the other packages in this list, they are removed
+from the candidate list (returned).
+*/
+func removeParentPackages(packages []PackageInfo) []PackageInfo {
+	candidateSet := make(map[string]PackageInfo)
+	for _, pkg := range packages {
+		candidateSet[pkg.Name] = pkg
 	}
 
-	return PackageInfo{}, "", false
+	for _, pkg := range packages {
+		found := false
+		for _, dep := range pkg.RequiresDist {
+			for _, otherPkg := range packages {
+				if strings.EqualFold(dep, otherPkg.Name) {
+					// we found otherPkg is depended on by pkg
+					// but does otherPkg also depend on pkg?
+					// if so, it's a mutual dependency, and we don't count it
+					innerFound := false
+					for _, otherPkgDep := range otherPkg.RequiresDist {
+						if strings.EqualFold(otherPkgDep, pkg.Name) {
+							innerFound = true
+							break
+						}
+					}
+					if !innerFound {
+						found = true
+						break
+					}
+				}
+			}
+			if found {
+				break
+			}
+		}
+		if found {
+			delete(candidateSet, pkg.Name)
+		}
+	}
 
-	// minNumModules := 100000
-	// var matchedPkgs []PackageInfo = nil
-	// for _, pkg := range packages {
-	// 	numModules := len(pkg.Modules)
-	// 	if numModules < minNumModules {
-	// 		minNumModules = numModules
-	// 		matchedPkgs = []PackageInfo{pkg}
-	// 	} else if numModules == minNumModules {
-	// 		matchedPkgs = append(matchedPkgs, pkg)
-	// 	}
-	// }
+	var candidates []PackageInfo
+	for _, pkg := range candidateSet {
+		candidates = append(candidates, pkg)
+	}
 
-	// return matchedPkgs[0], true
+	return candidates
 }
 
 // pythonStdlibModules this build is built from

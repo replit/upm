@@ -7,11 +7,22 @@ import (
 	"os"
 )
 
+/*
+
+This CLI program operates with one of 3 commands:
+
+* bq - fetch pypi download stats
+* test - test modules on pypi and save the results (1 file per package) in the cache directory
+* gen - generate pypi_map.gen.go file which contains 2 mappings used for package guessing by upm
+
+*/
+
 func main() {
 	command := flag.String("cmd", "", "A command to perform. One of bq, test, and gen.")
 	gcp := flag.String("gcp", "", "A GCP project ID to use to query bigquery directly. The result will be written to bq.")
 	bq := flag.String("bq", "download_stats.json", "The result of a BigQuery against the pypi downloads dataset.")
 	cache := flag.String("cache", "cache", "A directory where to store cached information for each module.")
+	pypiPackages := flag.String("pypipackages", "pypi_packages.json", "Legacy dependencies information for each module - used as a fallback")
 	index := flag.String("index", "", "An json index file for packages containing an array of strings")
 	workers := flag.Int("workers", 16, "The number of simultaenous workers to run")
 	distMods := flag.Bool("dist", false, "Determine modules by examining dists")
@@ -58,9 +69,9 @@ func main() {
 	} else if *command == "gen" {
 		/*
 			Generate source file that provides pypi mappings
-			Parameters: pkg, out, cache, bq
+			Parameters: pkg, out, cache, bq, pypipackages
 		*/
-		err := generateSource(*pkg, *out, *cache, *bq)
+		err := generateSource(*pkg, *out, *cache, *bq, *pypiPackages)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to generate %s: %s", *out, err.Error())
 		}

@@ -415,7 +415,12 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 		} else {
 			// Otherwise, try and look it up in Pypi
-			pkg, ok := moduleToPypiPackage[modname]
+			var pkg string
+			var ok bool
+			pkg, ok = moduleToPypiPackageOverride[modname]
+			if !ok {
+				pkg, ok = moduleToPypiPackage[modname]
+			}
 			if ok {
 				name := api.PkgName(pkg)
 				pkgs[normalizePackageName(name)] = true

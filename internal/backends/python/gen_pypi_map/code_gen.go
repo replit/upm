@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -13,18 +14,23 @@ type ModuleItem struct {
 	PackageList []PackageInfo
 }
 
-func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePath string) error {
+func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePath string, pypiPackagesPath string) error {
 	downloadStats, err := LoadDownloadStats(bqFilePath)
 	if err != nil {
 		return err
 	}
+
+	legacyPypiPackages := loadLegacyPypyPackages(pypiPackagesPath)
+
 	// Map every module to a list of packages that can provide it
 	files, err := ioutil.ReadDir(cacheDir)
 	if err != nil {
 		return err
 	}
 
+	packagesProcessed := make(map[string]bool)
 	var moduleToPackageList = map[string][]PackageInfo{}
+
 	for _, file := range files {
 		var info PackageInfo
 		filePath := cacheDir + "/" + file.Name()
@@ -33,19 +39,33 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 			fmt.Fprintf(os.Stderr, "Warning: failed to load %s: %s\n", filePath, err.Error())
 			continue
 		}
+		pkgName := strings.ToLower(info.Name)
+		if info.Error != "" {
+			// fallback to legacy package module info
+			legacyInfo, ok := legacyPypiPackages[pkgName]
+			if ok {
+				info.Modules = legacyInfo.Mods
+			}
+		}
+		packagesProcessed[pkgName] = true
 		for _, module := range info.Modules {
 			moduleToPackageList[module] = append(moduleToPackageList[module], info)
 		}
 	}
 
-	// Sort entries by the number of modules the have: ascending order
-	var moduleList []ModuleItem
+	// Backfill legacy package info that is missing from our cache
+	for pkg, legacyInfo := range legacyPypiPackages {
+		_, ok := packagesProcessed[pkg]
+		if ok {
+			continue
+		}
+		var info PackageInfo
+		info.Name = legacyInfo.Pkg
+		info.Modules = legacyInfo.Mods
 
-	for module, packages := range moduleToPackageList {
-		moduleList = append(moduleList, ModuleItem{
-			Module:      module,
-			PackageList: packages,
-		})
+		for _, module := range info.Modules {
+			moduleToPackageList[module] = append(moduleToPackageList[module], info)
+		}
 	}
 
 	fmt.Printf("Loaded %d modules\n", len(moduleToPackageList))
@@ -62,9 +82,7 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 
 	// Guess at every module, add the guess and the package that was guessed to
 	// the masp
-	for _, module := range moduleList {
-		moduleName := module.Module
-		candidates := module.PackageList
+	for moduleName, candidates := range moduleToPackageList {
 		// // Filter out packages that have already been matched
 		// // We start with ones that have the fewest modules, so it will
 		// // match the atomic packages first
@@ -110,6 +128,24 @@ func DumpMapToGoVar(name string, m map[string]string, reasons map[string]string,
 	fmt.Fprintf(writer, "}\n\n")
 }
 
-func LoadOverrides(filePath string) {
+func loadLegacyPypyPackages(filePath string) map[string]LegacyPackageInfo {
+	injson, err := os.Open(filePath)
+	if err != nil {
+		return make(map[string]LegacyPackageInfo)
+	}
+	infoMap := make(map[string]LegacyPackageInfo)
 
+	dec := json.NewDecoder(injson)
+	for dec.More() {
+		var info LegacyPackageInfo
+
+		err = dec.Decode(&info)
+		if err != nil {
+			continue
+		}
+		info.Pkg = strings.ToLower(info.Pkg)
+		infoMap[info.Pkg] = info
+	}
+
+	return infoMap
 }
