@@ -1,0 +1,15 @@
+{
+  "name": "casttube",
+  "version": "0.2.1",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "casttube",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

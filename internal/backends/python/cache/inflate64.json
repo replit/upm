@@ -1,0 +1,24 @@
+{
+  "name": "inflate64",
+  "version": "0.3.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "mypy",
+    "mypy-extensions",
+    "check-manifest",
+    "flake8",
+    "flake8-black",
+    "flake8-deprecated",
+    "isort",
+    "pygments",
+    "readme-renderer",
+    "twine",
+    "sphinx",
+    "docutils",
+    "pytest",
+    "pyannotate"
+  ],
+  "modules": [
+    "inflate64"
+  ]
+}

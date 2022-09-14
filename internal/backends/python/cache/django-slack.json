@@ -1,0 +1,21 @@
+{
+  "name": "django-slack",
+  "version": "5.18.0",
+  "requires_dist": [
+    "Django",
+    "requests"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "django",
+    "django_slack",
+    "idna",
+    "requests",
+    "sqlparse",
+    "tests",
+    "urllib3"
+  ]
+}

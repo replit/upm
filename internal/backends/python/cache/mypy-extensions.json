@@ -1,0 +1,10 @@
+{
+  "name": "mypy-extensions",
+  "version": "0.4.3",
+  "requires_dist": [
+    "typing"
+  ],
+  "modules": [
+    "mypy_extensions"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "iteration-utilities",
+  "version": "0.11.0",
+  "requires_dist": [
+    "pytest",
+    "sphinx",
+    "numpydoc",
+    "sphinx",
+    "numpydoc",
+    "pytest"
+  ],
+  "modules": [
+    "iteration_utilities"
+  ]
+}

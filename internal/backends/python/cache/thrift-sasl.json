@@ -1,0 +1,16 @@
+{
+  "name": "thrift-sasl",
+  "version": "0.4.3",
+  "requires_dist": [
+    "pure-sasl",
+    "six",
+    "thrift",
+    "thrift"
+  ],
+  "modules": [
+    "puresasl",
+    "six",
+    "thrift",
+    "thrift_sasl"
+  ]
+}

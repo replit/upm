@@ -1,0 +1,27 @@
+{
+  "name": "pysnow",
+  "version": "0.7.17",
+  "requires_dist": [
+    "requests",
+    "oauthlib",
+    "python-magic",
+    "requests-oauthlib",
+    "six",
+    "ijson",
+    "pytz"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "ijson",
+    "magic",
+    "oauthlib",
+    "pysnow",
+    "pytz",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "urllib3"
+  ]
+}

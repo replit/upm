@@ -1,0 +1,36 @@
+{
+  "name": "kili",
+  "version": "2.119.1",
+  "requires_dist": [
+    "pandas",
+    "click",
+    "requests",
+    "six",
+    "tabulate",
+    "tqdm",
+    "typeguard",
+    "typing-extensions",
+    "pyparsing",
+    "websocket-client"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "dateutil",
+    "idna",
+    "kili",
+    "numpy",
+    "pandas",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "six",
+    "tabulate",
+    "tqdm",
+    "typeguard",
+    "typing_extensions",
+    "urllib3",
+    "websocket"
+  ]
+}

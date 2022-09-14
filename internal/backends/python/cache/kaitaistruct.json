@@ -1,0 +1,10 @@
+{
+  "name": "kaitaistruct",
+  "version": "0.10",
+  "requires_dist": [
+    "enum34"
+  ],
+  "modules": [
+    "kaitaistruct"
+  ]
+}

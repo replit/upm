@@ -1,0 +1,11 @@
+{
+  "name": "readerwriterlock",
+  "version": "1.0.9",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "readerwriterlock",
+    "typing_extensions"
+  ]
+}

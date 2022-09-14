@@ -1,0 +1,27 @@
+{
+  "name": "ovh",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests",
+    "coverage",
+    "mock",
+    "nose",
+    "yanc",
+    "Sphinx",
+    "coveralls",
+    "setuptools",
+    "wheel",
+    "coverage",
+    "mock",
+    "nose",
+    "yanc"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "ovh",
+    "requests",
+    "urllib3"
+  ]
+}

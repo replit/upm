@@ -1,0 +1,12 @@
+{
+  "name": "stups-tokens",
+  "version": "1.1.19",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "tokens",
+    "urllib3"
+  ]
+}

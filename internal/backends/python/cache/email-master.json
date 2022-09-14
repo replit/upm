@@ -1,0 +1,29 @@
+{
+  "name": "email-master",
+  "version": "0.6.0",
+  "requires_dist": [
+    "pendulum",
+    "compressed-rtf",
+    "extract-msg",
+    "PGPy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "compressed_rtf",
+    "cryptography",
+    "dateutil",
+    "email_master",
+    "extract_msg",
+    "imapclient",
+    "olefile",
+    "pendulum",
+    "pgpy",
+    "pyasn1",
+    "pycparser",
+    "pytz",
+    "pytzdata",
+    "six",
+    "tzlocal"
+  ]
+}

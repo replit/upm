@@ -1,0 +1,22 @@
+{
+  "name": "crochet",
+  "version": "2.0.0",
+  "requires_dist": [
+    "Twisted",
+    "wrapt"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "automat",
+    "constantly",
+    "crochet",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "six",
+    "twisted",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

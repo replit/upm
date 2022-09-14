@@ -1,0 +1,7 @@
+{
+  "name": "fastavro",
+  "version": "1.6.1",
+  "modules": [
+    "fastavro"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "tencentcloud-sdk-python-sslpod",
+  "version": "3.0.730",
+  "modules": [
+    "tencentcloud"
+  ]
+}

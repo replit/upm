@@ -1,0 +1,7 @@
+{
+  "name": "pyzmq",
+  "version": "23.2.1",
+  "modules": [
+    "zmq"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "rstcheck",
+  "version": "6.1.0",
+  "requires_dist": [
+    "sphinx",
+    "tomli",
+    "pytest",
+    "pytest-cov",
+    "coverage",
+    "coverage-conditional-plugin",
+    "pytest-sugar",
+    "pytest-randomly",
+    "sphinx-autobuild",
+    "m2r2",
+    "sphinx-rtd-theme",
+    "sphinx-rtd-dark-mode",
+    "sphinxcontrib-spelling",
+    "sphinx-click",
+    "rstcheck-core",
+    "importlib-metadata",
+    "typing-extensions",
+    "docutils",
+    "types-docutils",
+    "pydantic",
+    "typer"
+  ],
+  "modules": [
+    "click",
+    "colorama",
+    "commonmark",
+    "docutils",
+    "pydantic",
+    "pygments",
+    "rich",
+    "rstcheck",
+    "rstcheck_core",
+    "shellingham",
+    "typer",
+    "typing_extensions"
+  ]
+}

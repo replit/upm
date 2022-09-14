@@ -1,0 +1,7 @@
+{
+  "name": "email-reply-parser",
+  "version": "0.5.12",
+  "modules": [
+    "email_reply_parser"
+  ]
+}

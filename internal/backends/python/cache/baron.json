@@ -1,0 +1,12 @@
+{
+  "name": "baron",
+  "version": "0.10.1",
+  "requires_dist": [
+    "rply"
+  ],
+  "modules": [
+    "appdirs",
+    "baron",
+    "rply"
+  ]
+}

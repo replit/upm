@@ -1,0 +1,19 @@
+{
+  "name": "sox",
+  "version": "1.4.1",
+  "requires_dist": [
+    "numpy",
+    "sphinx",
+    "sphinxcontrib-napoleon",
+    "sphinx-rtd-theme",
+    "numpydoc",
+    "pytest",
+    "pytest-cov",
+    "pytest-pep8",
+    "pysoundfile"
+  ],
+  "modules": [
+    "numpy",
+    "sox"
+  ]
+}

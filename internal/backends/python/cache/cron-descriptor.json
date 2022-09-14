@@ -1,0 +1,7 @@
+{
+  "name": "cron-descriptor",
+  "version": "1.2.31",
+  "modules": [
+    "cron_descriptor"
+  ]
+}

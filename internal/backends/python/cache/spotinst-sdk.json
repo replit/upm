@@ -1,0 +1,14 @@
+{
+  "name": "spotinst-sdk",
+  "version": "1.0.56",
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "spotinst_sdk",
+    "urllib3",
+    "yaml"
+  ]
+}

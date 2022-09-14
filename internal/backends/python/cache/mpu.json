@@ -1,0 +1,30 @@
+{
+  "name": "mpu",
+  "version": "0.23.1",
+  "requires_dist": [
+    "pandas",
+    "python-magic",
+    "pytz",
+    "Pillow",
+    "tzlocal",
+    "boto3",
+    "pytest",
+    "pytest-cov",
+    "pytest-mccabe",
+    "pytest-flake8",
+    "simplejson",
+    "boto3",
+    "pytz",
+    "Pillow",
+    "pytz",
+    "tzlocal",
+    "pytest",
+    "pytest-cov",
+    "pytest-mccabe",
+    "pytest-flake8",
+    "simplejson"
+  ],
+  "modules": [
+    "mpu"
+  ]
+}

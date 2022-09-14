@@ -1,0 +1,9 @@
+{
+  "name": "zope.sequencesort",
+  "version": "4.2",
+  "requires_dist": [
+    "setuptools",
+    "Sphinx",
+    "zope.testrunner"
+  ]
+}

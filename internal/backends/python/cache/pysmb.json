@@ -1,0 +1,9 @@
+{
+  "name": "pysmb",
+  "version": "1.2.8",
+  "modules": [
+    "nmb",
+    "pyasn1",
+    "smb"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "django-discover-runner",
+  "version": "1.0",
+  "modules": [
+    "discover_runner"
+  ]
+}

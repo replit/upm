@@ -1,0 +1,17 @@
+{
+  "name": "mozrunner",
+  "version": "8.2.1",
+  "modules": [
+    "blessings",
+    "distro",
+    "mozdevice",
+    "mozfile",
+    "mozinfo",
+    "mozlog",
+    "mozprocess",
+    "mozprofile",
+    "mozrunner",
+    "mozterm",
+    "six"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "eth-keyfile",
+  "version": "0.6.0",
+  "requires_dist": [
+    "eth-utils",
+    "eth-keys",
+    "pycryptodome",
+    "eth-utils",
+    "eth-keys",
+    "pycryptodome",
+    "bumpversion",
+    "wheel",
+    "setuptools",
+    "pluggy",
+    "idna",
+    "requests",
+    "tox",
+    "twine",
+    "pytest",
+    "flake8",
+    "eth-utils",
+    "eth-keys",
+    "pycryptodome",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "Crypto",
+    "cytoolz",
+    "eth_hash",
+    "eth_keyfile",
+    "eth_keys",
+    "eth_typing",
+    "eth_utils",
+    "tlz",
+    "toolz"
+  ]
+}

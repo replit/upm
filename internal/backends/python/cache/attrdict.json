@@ -1,0 +1,11 @@
+{
+  "name": "attrdict",
+  "version": "2.0.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "attrdict",
+    "six"
+  ]
+}

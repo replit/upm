@@ -1,0 +1,12 @@
+{
+  "name": "opyoid",
+  "version": "1.6.0",
+  "requires_dist": [
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "opyoid"
+  ]
+}

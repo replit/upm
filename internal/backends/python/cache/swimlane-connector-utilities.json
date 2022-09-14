@@ -1,0 +1,23 @@
+{
+  "name": "swimlane-connector-utilities",
+  "version": "1.0.1",
+  "requires_dist": [
+    "swimlane-connector-exceptions",
+    "datetime-parser",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "datetime_parser",
+    "dateutil",
+    "idna",
+    "pendulum",
+    "pytzdata",
+    "requests",
+    "six",
+    "swimlane_connector_exceptions",
+    "swimlane_connector_utilities",
+    "urllib3"
+  ]
+}

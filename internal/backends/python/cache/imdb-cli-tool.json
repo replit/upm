@@ -1,0 +1,14 @@
+{
+  "name": "imdb-cli-tool",
+  "version": "1.0.1",
+  "requires_dist": [
+    "IMDbPY"
+  ],
+  "modules": [
+    "greenlet",
+    "imdb",
+    "imdb_cli_tool",
+    "lxml",
+    "sqlalchemy"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "typed-ast",
+  "version": "1.5.4",
+  "modules": [
+    "typed_ast"
+  ]
+}

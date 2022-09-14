@@ -1,0 +1,13 @@
+{
+  "name": "meson",
+  "version": "0.63.2",
+  "requires_dist": [
+    "ninja",
+    "tqdm",
+    "mypy",
+    "typing-extensions"
+  ],
+  "modules": [
+    "mesonbuild"
+  ]
+}

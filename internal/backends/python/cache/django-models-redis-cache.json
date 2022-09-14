@@ -1,0 +1,16 @@
+{
+  "name": "django-models-redis-cache",
+  "version": "4.4.3",
+  "requires_dist": [
+    "redis",
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "django",
+    "django_models_redis_cache",
+    "pytz",
+    "redis",
+    "sqlparse"
+  ]
+}

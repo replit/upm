@@ -1,0 +1,31 @@
+{
+  "name": "pytest-pgsql",
+  "version": "1.1.2",
+  "requires_dist": [
+    "freezegun",
+    "pytest",
+    "sqlalchemy",
+    "testing.postgresql"
+  ],
+  "modules": [
+    "_pytest",
+    "asn1crypto",
+    "attr",
+    "attrs",
+    "dateutil",
+    "freezegun",
+    "greenlet",
+    "iniconfig",
+    "packaging",
+    "pg8000",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_pgsql",
+    "scramp",
+    "six",
+    "sqlalchemy",
+    "tomli"
+  ]
+}

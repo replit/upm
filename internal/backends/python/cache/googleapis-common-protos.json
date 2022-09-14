@@ -1,0 +1,8 @@
+{
+  "name": "googleapis-common-protos",
+  "version": "1.56.4",
+  "requires_dist": [
+    "protobuf",
+    "grpcio"
+  ]
+}

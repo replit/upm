@@ -1,0 +1,13 @@
+{
+  "name": "sailthru-client",
+  "version": "2.3.5",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "sailthru",
+    "simplejson",
+    "urllib3"
+  ]
+}

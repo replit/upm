@@ -1,0 +1,31 @@
+{
+  "name": "paddlepaddle-gpu",
+  "version": "2.3.2",
+  "requires_dist": [
+    "requests",
+    "numpy",
+    "protobuf",
+    "Pillow",
+    "six",
+    "decorator",
+    "astor",
+    "paddle-bfloat",
+    "opt-einsum"
+  ],
+  "modules": [
+    "PIL",
+    "_foo",
+    "astor",
+    "certifi",
+    "charset_normalizer",
+    "decorator",
+    "idna",
+    "numpy",
+    "opt_einsum",
+    "paddle",
+    "paddle_bfloat",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "livy",
+  "version": "0.8.0",
+  "requires_dist": [
+    "requests",
+    "pandas",
+    "dataclasses",
+    "sphinx",
+    "sphinx-autodoc-typehints"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "livy",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "hypothesis-graphql",
+  "version": "0.9.1",
+  "requires_dist": [
+    "attrs",
+    "graphql-core",
+    "hypothesis"
+  ],
+  "modules": [
+    "_hypothesis_pytestplugin",
+    "attr",
+    "attrs",
+    "exceptiongroup",
+    "graphql",
+    "hypothesis",
+    "hypothesis_graphql",
+    "sortedcontainers"
+  ]
+}

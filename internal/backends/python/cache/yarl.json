@@ -1,0 +1,14 @@
+{
+  "name": "yarl",
+  "version": "1.8.1",
+  "requires_dist": [
+    "multidict",
+    "idna",
+    "typing-extensions"
+  ],
+  "modules": [
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

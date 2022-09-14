@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-rekognition",
+  "version": "1.24.53",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_rekognition",
+    "typing_extensions"
+  ]
+}

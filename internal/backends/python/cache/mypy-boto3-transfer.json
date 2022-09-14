@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-transfer",
+  "version": "1.24.72",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_transfer",
+    "typing_extensions"
+  ]
+}

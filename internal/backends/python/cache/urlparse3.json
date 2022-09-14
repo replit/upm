@@ -1,0 +1,7 @@
+{
+  "name": "urlparse3",
+  "version": "1.1",
+  "modules": [
+    "urlparse3"
+  ]
+}

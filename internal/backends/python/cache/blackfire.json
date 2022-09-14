@@ -1,0 +1,8 @@
+{
+  "name": "blackfire",
+  "version": "1.14.0",
+  "modules": [
+    "_blackfire_profiler",
+    "blackfire"
+  ]
+}

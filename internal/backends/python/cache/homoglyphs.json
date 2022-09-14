@@ -1,0 +1,7 @@
+{
+  "name": "homoglyphs",
+  "version": "2.0.4",
+  "modules": [
+    "homoglyphs"
+  ]
+}

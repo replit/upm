@@ -1,0 +1,14 @@
+{
+  "name": "mercantile",
+  "version": "1.2.1",
+  "requires_dist": [
+    "click",
+    "check-manifest",
+    "hypothesis",
+    "pytest"
+  ],
+  "modules": [
+    "click",
+    "mercantile"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "discord-ext-ipc",
+  "version": "2.1.1",
+  "requires_dist": [
+    "discord.py",
+    "sphinx",
+    "sphinxcontrib-trio",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

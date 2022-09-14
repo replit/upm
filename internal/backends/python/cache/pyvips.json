@@ -1,0 +1,10 @@
+{
+  "name": "pyvips",
+  "version": "2.2.1",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "pyvips"
+  ]
+}

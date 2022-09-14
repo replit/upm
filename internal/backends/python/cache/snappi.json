@@ -1,0 +1,33 @@
+{
+  "name": "snappi",
+  "version": "0.9.5",
+  "requires_dist": [
+    "PyYAML",
+    "urllib3",
+    "requests",
+    "protobuf",
+    "grpcio",
+    "grpcio-tools",
+    "grpcio",
+    "grpcio-tools",
+    "protobuf",
+    "snappi-convergence",
+    "snappi-ixnetwork",
+    "pytest",
+    "flask",
+    "snappi-trex"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_tools",
+    "idna",
+    "requests",
+    "six",
+    "snappi",
+    "urllib3",
+    "yaml"
+  ]
+}

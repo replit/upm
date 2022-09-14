@@ -1,0 +1,7 @@
+{
+  "name": "plyvel",
+  "version": "1.4.0",
+  "modules": [
+    "plyvel"
+  ]
+}

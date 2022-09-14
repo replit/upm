@@ -1,0 +1,14 @@
+{
+  "name": "hdf5plugin",
+  "version": "3.3.1",
+  "requires_dist": [
+    "h5py",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "h5py",
+    "hdf5plugin",
+    "numpy"
+  ]
+}

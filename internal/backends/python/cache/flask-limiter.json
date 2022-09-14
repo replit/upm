@@ -1,0 +1,33 @@
+{
+  "name": "Flask-Limiter",
+  "version": "2.6.2",
+  "requires_dist": [
+    "limits",
+    "Flask",
+    "rich",
+    "typing-extensions",
+    "limits",
+    "limits",
+    "limits"
+  ],
+  "modules": [
+    "click",
+    "commonmark",
+    "deprecated",
+    "flask",
+    "flask_limiter",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "limits",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "rich",
+    "typing_extensions",
+    "werkzeug",
+    "wrapt",
+    "zipp"
+  ]
+}

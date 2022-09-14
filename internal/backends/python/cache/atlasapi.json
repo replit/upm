@@ -1,0 +1,34 @@
+{
+  "name": "atlasapi",
+  "version": "2.0.3",
+  "requires_dist": [
+    "requests",
+    "python-dateutil",
+    "isodate",
+    "future",
+    "pytz",
+    "coolname",
+    "humanfriendly",
+    "nose"
+  ],
+  "modules": [
+    "atlasapi",
+    "atlascli",
+    "certifi",
+    "charset_normalizer",
+    "coolname",
+    "dateutil",
+    "future",
+    "humanfriendly",
+    "idna",
+    "isodate",
+    "libfuturize",
+    "libpasteurize",
+    "nose",
+    "past",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

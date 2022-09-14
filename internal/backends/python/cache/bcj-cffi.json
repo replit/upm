@@ -1,0 +1,25 @@
+{
+  "name": "bcj-cffi",
+  "version": "0.5.1",
+  "requires_dist": [
+    "cffi",
+    "importlib-metadata",
+    "mypy",
+    "check-manifest",
+    "flake8",
+    "readme-renderer",
+    "pygments",
+    "isort",
+    "twine",
+    "pytest",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "_bcj",
+    "_cffi_backend",
+    "bcj",
+    "cffi",
+    "pycparser"
+  ]
+}

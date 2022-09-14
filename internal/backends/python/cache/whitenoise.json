@@ -1,0 +1,10 @@
+{
+  "name": "whitenoise",
+  "version": "6.2.0",
+  "requires_dist": [
+    "Brotli"
+  ],
+  "modules": [
+    "whitenoise"
+  ]
+}

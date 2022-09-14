@@ -1,0 +1,20 @@
+{
+  "name": "model-archiver",
+  "version": "1.0.3",
+  "requires_dist": [
+    "future",
+    "enum-compat",
+    "mxnet",
+    "mxnet-cu90mkl",
+    "mxnet-cu92mkl",
+    "mxnet-mkl",
+    "onnx"
+  ],
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "model_archiver",
+    "past"
+  ]
+}

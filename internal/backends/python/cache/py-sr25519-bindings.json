@@ -1,0 +1,7 @@
+{
+  "name": "py-sr25519-bindings",
+  "version": "0.1.5",
+  "modules": [
+    "sr25519"
+  ]
+}

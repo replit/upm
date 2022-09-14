@@ -1,0 +1,22 @@
+{
+  "name": "fintech",
+  "version": "7.2.6",
+  "requires_dist": [
+    "certifi",
+    "cryptography",
+    "defusedxml",
+    "fpdf",
+    "lxml"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "cryptography",
+    "defusedxml",
+    "fintech",
+    "fpdf",
+    "lxml",
+    "pycparser"
+  ]
+}

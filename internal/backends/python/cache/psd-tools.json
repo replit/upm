@@ -1,0 +1,31 @@
+{
+  "name": "psd-tools",
+  "version": "1.9.22",
+  "requires_dist": [
+    "docopt",
+    "attrs",
+    "Pillow",
+    "aggdraw",
+    "numpy",
+    "scipy",
+    "scikit-image",
+    "enum34"
+  ],
+  "modules": [
+    "PIL",
+    "aggdraw",
+    "attr",
+    "attrs",
+    "docopt",
+    "imageio",
+    "networkx",
+    "numpy",
+    "packaging",
+    "psd_tools",
+    "pyparsing",
+    "pywt",
+    "scipy",
+    "skimage",
+    "tifffile"
+  ]
+}

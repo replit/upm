@@ -1,0 +1,11 @@
+{
+  "name": "toml-sort",
+  "version": "0.20.1",
+  "requires_dist": [
+    "tomlkit"
+  ],
+  "modules": [
+    "toml_sort",
+    "tomlkit"
+  ]
+}

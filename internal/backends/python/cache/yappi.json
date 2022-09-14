@@ -1,0 +1,11 @@
+{
+  "name": "yappi",
+  "version": "1.3.6",
+  "requires_dist": [
+    "gevent"
+  ],
+  "modules": [
+    "_yappi",
+    "yappi"
+  ]
+}

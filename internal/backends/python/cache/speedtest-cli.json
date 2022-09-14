@@ -1,0 +1,8 @@
+{
+  "name": "speedtest-cli",
+  "version": "2.1.3",
+  "modules": [
+    "speedtest",
+    "speedtest_cli"
+  ]
+}

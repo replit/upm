@@ -1,0 +1,7 @@
+{
+  "name": "petname",
+  "version": "2.6",
+  "modules": [
+    "petname"
+  ]
+}

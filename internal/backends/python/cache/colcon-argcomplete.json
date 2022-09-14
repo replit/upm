@@ -1,0 +1,30 @@
+{
+  "name": "colcon-argcomplete",
+  "version": "0.3.3",
+  "requires_dist": [
+    "argcomplete",
+    "colcon-core"
+  ],
+  "modules": [
+    "_pytest",
+    "argcomplete",
+    "attr",
+    "attrs",
+    "colcon",
+    "colcon_argcomplete",
+    "colcon_core",
+    "coverage",
+    "distlib",
+    "em",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "pytest_repeat",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

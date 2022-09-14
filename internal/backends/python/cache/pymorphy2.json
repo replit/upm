@@ -1,0 +1,16 @@
+{
+  "name": "pymorphy2",
+  "version": "0.9.1",
+  "requires_dist": [
+    "dawg-python",
+    "pymorphy2-dicts-ru",
+    "docopt",
+    "DAWG"
+  ],
+  "modules": [
+    "dawg_python",
+    "docopt",
+    "pymorphy2",
+    "pymorphy2_dicts_ru"
+  ]
+}

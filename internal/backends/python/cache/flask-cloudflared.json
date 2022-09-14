@@ -1,0 +1,24 @@
+{
+  "name": "flask-cloudflared",
+  "version": "0.0.10",
+  "requires_dist": [
+    "Flask",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "flask_cloudflared",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

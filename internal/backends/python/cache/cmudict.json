@@ -1,0 +1,7 @@
+{
+  "name": "cmudict",
+  "version": "1.0.2",
+  "modules": [
+    "cmudict"
+  ]
+}

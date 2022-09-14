@@ -1,0 +1,14 @@
+{
+  "name": "pandarallel",
+  "version": "1.6.3",
+  "modules": [
+    "dateutil",
+    "dill",
+    "numpy",
+    "pandarallel",
+    "pandas",
+    "psutil",
+    "pytz",
+    "six"
+  ]
+}

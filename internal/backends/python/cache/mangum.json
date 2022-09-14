@@ -1,0 +1,11 @@
+{
+  "name": "mangum",
+  "version": "0.15.1",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mangum",
+    "typing_extensions"
+  ]
+}

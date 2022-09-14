@@ -1,0 +1,12 @@
+{
+  "name": "django-jsoneditor",
+  "version": "0.2.2",
+  "requires_dist": [
+    "packaging"
+  ],
+  "modules": [
+    "jsoneditor",
+    "packaging",
+    "pyparsing"
+  ]
+}

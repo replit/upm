@@ -1,0 +1,8 @@
+{
+  "name": "fake-factory",
+  "version": "9999.9.9",
+  "modules": [
+    "docs",
+    "faker"
+  ]
+}

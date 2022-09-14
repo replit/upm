@@ -1,0 +1,32 @@
+{
+  "name": "zope.publisher",
+  "version": "6.1.0",
+  "requires_dist": [
+    "setuptools",
+    "six",
+    "zope.browser",
+    "zope.component",
+    "zope.configuration",
+    "zope.contenttype",
+    "zope.event",
+    "zope.exceptions",
+    "zope.i18n",
+    "zope.interface",
+    "zope.location",
+    "zope.proxy",
+    "zope.security",
+    "multipart",
+    "multipart",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "sphinx-rtd-theme",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "multipart",
+    "pythongettext",
+    "pytz",
+    "six"
+  ]
+}

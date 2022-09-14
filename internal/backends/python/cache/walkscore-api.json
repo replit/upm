@@ -1,0 +1,34 @@
+{
+  "name": "walkscore-api",
+  "version": "1.0.1",
+  "requires_dist": [
+    "validator-collection",
+    "backoff-utils",
+    "check-manifest",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-tabs",
+    "readme-renderer",
+    "restview",
+    "coverage",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "tox",
+    "codecov"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "backoff_utils",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "validator_collection",
+    "walkscore",
+    "zipp"
+  ]
+}

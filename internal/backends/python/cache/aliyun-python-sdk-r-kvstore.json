@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-r-kvstore",
+  "version": "2.20.6",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkr_kvstore",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

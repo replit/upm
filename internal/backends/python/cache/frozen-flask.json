@@ -1,0 +1,18 @@
+{
+  "name": "Frozen-Flask",
+  "version": "0.18",
+  "requires_dist": [
+    "Flask"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_frozen",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

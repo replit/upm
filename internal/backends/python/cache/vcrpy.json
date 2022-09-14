@@ -1,0 +1,20 @@
+{
+  "name": "vcrpy",
+  "version": "4.2.1",
+  "requires_dist": [
+    "PyYAML",
+    "wrapt",
+    "six",
+    "yarl"
+  ],
+  "modules": [
+    "_yaml",
+    "idna",
+    "multidict",
+    "six",
+    "vcr",
+    "wrapt",
+    "yaml",
+    "yarl"
+  ]
+}

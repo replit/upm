@@ -1,0 +1,30 @@
+{
+  "name": "pytest-pudb",
+  "version": "0.7.0",
+  "requires_dist": [
+    "pytest",
+    "pudb",
+    "pexpect",
+    "tox",
+    "flake8"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "jedi",
+    "packaging",
+    "parso",
+    "pluggy",
+    "pudb",
+    "py",
+    "pygments",
+    "pyparsing",
+    "pytest",
+    "pytest_pudb",
+    "tomli",
+    "urwid",
+    "urwid_readline"
+  ]
+}

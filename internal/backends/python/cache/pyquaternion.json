@@ -1,0 +1,13 @@
+{
+  "name": "pyquaternion",
+  "version": "0.9.9",
+  "requires_dist": [
+    "numpy",
+    "mkdocs",
+    "nose"
+  ],
+  "modules": [
+    "numpy",
+    "pyquaternion"
+  ]
+}

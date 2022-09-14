@@ -1,0 +1,8 @@
+{
+  "name": "ez_setup",
+  "version": "0.9",
+  "modules": [
+    "distribute_setup",
+    "ez_setup"
+  ]
+}

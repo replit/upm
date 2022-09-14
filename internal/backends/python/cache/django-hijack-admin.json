@@ -1,0 +1,14 @@
+{
+  "name": "django-hijack-admin",
+  "version": "2.1.10",
+  "modules": [
+    "asgiref",
+    "backports",
+    "compat",
+    "django",
+    "hijack",
+    "hijack_admin",
+    "six",
+    "sqlparse"
+  ]
+}

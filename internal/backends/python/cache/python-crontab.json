@@ -1,0 +1,11 @@
+{
+  "name": "python-crontab",
+  "version": "2.6.0",
+  "modules": [
+    "cronlog",
+    "crontab",
+    "crontabs",
+    "dateutil",
+    "six"
+  ]
+}

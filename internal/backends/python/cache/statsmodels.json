@@ -1,0 +1,16 @@
+{
+  "name": "statsmodels",
+  "version": "0.13.2",
+  "modules": [
+    "dateutil",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels"
+  ]
+}

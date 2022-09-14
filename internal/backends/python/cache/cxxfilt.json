@@ -1,0 +1,10 @@
+{
+  "name": "cxxfilt",
+  "version": "0.3.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "cxxfilt"
+  ]
+}

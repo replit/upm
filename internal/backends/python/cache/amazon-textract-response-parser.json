@@ -1,0 +1,20 @@
+{
+  "name": "amazon-textract-response-parser",
+  "version": "0.1.33",
+  "requires_dist": [
+    "boto3",
+    "marshmallow"
+  ],
+  "modules": [
+    "a2i",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "marshmallow",
+    "s3transfer",
+    "six",
+    "trp",
+    "urllib3"
+  ]
+}

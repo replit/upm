@@ -1,0 +1,5 @@
+{
+  "name": "pyobjc-framework-LocalAuthenticationEmbeddedUI",
+  "version": "8.5",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-LocalAuthenticationEmbeddedUI/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-LocalAuthenticationEmbeddedUI']' returned non-zero exit status 1.\"}"
+}

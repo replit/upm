@@ -1,0 +1,16 @@
+{
+  "name": "cloudpathlib",
+  "version": "0.10.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "azure-storage-blob",
+    "google-cloud-storage",
+    "boto3",
+    "azure-storage-blob",
+    "google-cloud-storage",
+    "boto3"
+  ],
+  "modules": [
+    "cloudpathlib"
+  ]
+}

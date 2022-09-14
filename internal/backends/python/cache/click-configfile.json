@@ -1,0 +1,18 @@
+{
+  "name": "click-configfile",
+  "version": "0.2.3",
+  "requires_dist": [
+    "click",
+    "configparser",
+    "six",
+    "configparser",
+    "configparser",
+    "configparser",
+    "configparser"
+  ],
+  "modules": [
+    "click",
+    "click_configfile",
+    "six"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "tableprint",
+  "version": "0.9.1",
+  "requires_dist": [
+    "future",
+    "wcwidth",
+    "pandas",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "tableprint",
+    "wcwidth"
+  ]
+}

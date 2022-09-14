@@ -1,0 +1,7 @@
+{
+  "name": "jupyterlab-pygments",
+  "version": "0.2.2",
+  "modules": [
+    "jupyterlab_pygments"
+  ]
+}

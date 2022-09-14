@@ -1,0 +1,12 @@
+{
+  "name": "commonmark",
+  "version": "0.9.1",
+  "requires_dist": [
+    "future",
+    "flake8",
+    "hypothesis"
+  ],
+  "modules": [
+    "commonmark"
+  ]
+}

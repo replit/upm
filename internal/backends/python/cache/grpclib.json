@@ -1,0 +1,11 @@
+{
+  "name": "grpclib",
+  "version": "0.4.3",
+  "modules": [
+    "grpclib",
+    "h2",
+    "hpack",
+    "hyperframe",
+    "multidict"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "execnb",
+  "version": "0.1.3",
+  "requires_dist": [
+    "fastcore",
+    "ipython",
+    "matplotlib",
+    "Pillow"
+  ],
+  "modules": [
+    "IPython",
+    "asttokens",
+    "backcall",
+    "decorator",
+    "execnb",
+    "executing",
+    "fastcore",
+    "jedi",
+    "matplotlib_inline",
+    "packaging",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pygments",
+    "pyparsing",
+    "six",
+    "stack_data",
+    "traitlets",
+    "wcwidth"
+  ]
+}

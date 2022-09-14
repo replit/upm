@@ -1,0 +1,12 @@
+{
+  "name": "tensorboardX",
+  "version": "2.5.1",
+  "requires_dist": [
+    "numpy",
+    "protobuf"
+  ],
+  "modules": [
+    "numpy",
+    "tensorboardX"
+  ]
+}

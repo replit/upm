@@ -1,0 +1,18 @@
+{
+  "name": "pySqsListener",
+  "version": "0.8.10",
+  "requires_dist": [
+    "boto3"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "sqs_launcher",
+    "sqs_listener",
+    "urllib3"
+  ]
+}

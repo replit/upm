@@ -1,0 +1,13 @@
+{
+  "name": "amply",
+  "version": "0.1.5",
+  "requires_dist": [
+    "docutils",
+    "pyparsing"
+  ],
+  "modules": [
+    "amply",
+    "docutils",
+    "pyparsing"
+  ]
+}

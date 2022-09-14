@@ -1,0 +1,11 @@
+{
+  "name": "simple-ddl-parser",
+  "version": "0.27.0",
+  "requires_dist": [
+    "ply"
+  ],
+  "modules": [
+    "ply",
+    "simple_ddl_parser"
+  ]
+}

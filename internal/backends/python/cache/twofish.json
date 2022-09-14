@@ -1,0 +1,8 @@
+{
+  "name": "twofish",
+  "version": "0.3.0",
+  "modules": [
+    "_twofish",
+    "twofish"
+  ]
+}

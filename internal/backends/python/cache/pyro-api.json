@@ -1,0 +1,14 @@
+{
+  "name": "pyro-api",
+  "version": "0.1.2",
+  "requires_dist": [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "ipython",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "pyroapi"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "datatile",
+  "version": "1.0.3",
+  "requires_dist": [
+    "traceml",
+    "pandas"
+  ],
+  "modules": [
+    "datatile",
+    "traceml"
+  ]
+}

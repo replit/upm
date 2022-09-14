@@ -1,0 +1,7 @@
+{
+  "name": "pep562",
+  "version": "1.1",
+  "modules": [
+    "pep562"
+  ]
+}

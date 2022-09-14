@@ -1,0 +1,23 @@
+{
+  "name": "pytorch-tabnet",
+  "version": "3.1.1",
+  "requires_dist": [
+    "numpy",
+    "torch",
+    "tqdm",
+    "scikit_learn",
+    "scipy"
+  ],
+  "modules": [
+    "caffe2",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "typing_extensions"
+  ]
+}

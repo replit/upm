@@ -1,0 +1,19 @@
+{
+  "name": "eli5",
+  "version": "0.13.0",
+  "modules": [
+    "attr",
+    "attrs",
+    "eli5",
+    "graphviz",
+    "jinja2",
+    "joblib",
+    "markupsafe",
+    "numpy",
+    "scipy",
+    "six",
+    "sklearn",
+    "tabulate",
+    "threadpoolctl"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "imantics",
+  "version": "0.1.12",
+  "modules": [
+    "cv2",
+    "imantics",
+    "lxml",
+    "numpy",
+    "xmljson"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "POT",
+  "version": "0.8.2",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "ot",
+    "scipy"
+  ]
+}

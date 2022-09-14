@@ -1,0 +1,18 @@
+{
+  "name": "cornice",
+  "version": "6.0.1",
+  "requires_dist": [
+    "pyramid",
+    "venusian"
+  ],
+  "modules": [
+    "cornice",
+    "hupper",
+    "plaster",
+    "plaster_pastedeploy",
+    "pyramid",
+    "translationstring",
+    "venusian",
+    "webob"
+  ]
+}

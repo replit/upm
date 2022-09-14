@@ -1,0 +1,7 @@
+{
+  "name": "blob",
+  "version": "0.16",
+  "modules": [
+    "blob"
+  ]
+}

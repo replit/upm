@@ -1,0 +1,22 @@
+{
+  "name": "normality",
+  "version": "2.4.0",
+  "requires_dist": [
+    "banal",
+    "text-unidecode",
+    "chardet",
+    "charset-normalizer",
+    "pyicu",
+    "mypy",
+    "pytest",
+    "types-chardet",
+    "pyicu"
+  ],
+  "modules": [
+    "banal",
+    "chardet",
+    "charset_normalizer",
+    "normality",
+    "text_unidecode"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "querystring-parser",
+  "version": "1.2.4",
+  "modules": [
+    "querystring_parser",
+    "six"
+  ]
+}

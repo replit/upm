@@ -1,0 +1,25 @@
+{
+  "name": "fastapi-mail",
+  "version": "1.1.4",
+  "requires_dist": [
+    "Jinja2",
+    "aiosmtplib",
+    "pydantic",
+    "email-validator",
+    "blinker",
+    "fakeredis",
+    "httpx"
+  ],
+  "modules": [
+    "aiosmtplib",
+    "blinker",
+    "dns",
+    "email_validator",
+    "fastapi_mail",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "pydantic",
+    "typing_extensions"
+  ]
+}

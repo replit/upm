@@ -1,0 +1,8 @@
+{
+  "name": "attr",
+  "version": "0.3.2",
+  "modules": [
+    "attr",
+    "dry_attr"
+  ]
+}

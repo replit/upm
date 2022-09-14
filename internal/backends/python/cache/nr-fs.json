@@ -1,0 +1,11 @@
+{
+  "name": "nr.fs",
+  "version": "1.6.3",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "nr",
+    "six"
+  ]
+}

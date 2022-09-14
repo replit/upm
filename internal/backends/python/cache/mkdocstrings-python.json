@@ -1,0 +1,30 @@
+{
+  "name": "mkdocstrings-python",
+  "version": "0.7.1",
+  "requires_dist": [
+    "griffe",
+    "mkdocstrings"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "griffe",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_autorefs",
+    "packaging",
+    "pymdownx",
+    "pyparsing",
+    "six",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

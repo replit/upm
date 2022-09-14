@@ -1,0 +1,14 @@
+{
+  "name": "django-lifecycle",
+  "version": "1.0.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_lifecycle",
+    "packaging",
+    "pyparsing",
+    "sqlparse",
+    "urlman"
+  ]
+}

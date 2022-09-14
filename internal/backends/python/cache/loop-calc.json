@@ -1,0 +1,11 @@
+{
+  "name": "loop-calc",
+  "version": "0.1.2",
+  "requires_dist": [
+    "pyparsing"
+  ],
+  "modules": [
+    "loop",
+    "pyparsing"
+  ]
+}

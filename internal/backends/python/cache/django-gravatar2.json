@@ -1,0 +1,7 @@
+{
+  "name": "django-gravatar2",
+  "version": "1.4.4",
+  "modules": [
+    "django_gravatar"
+  ]
+}

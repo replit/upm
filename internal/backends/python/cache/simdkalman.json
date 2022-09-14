@@ -1,0 +1,15 @@
+{
+  "name": "simdkalman",
+  "version": "1.0.2",
+  "requires_dist": [
+    "numpy",
+    "check-manifest",
+    "sphinx",
+    "nose",
+    "pylint"
+  ],
+  "modules": [
+    "numpy",
+    "simdkalman"
+  ]
+}

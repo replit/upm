@@ -1,0 +1,29 @@
+{
+  "name": "uvloop",
+  "version": "0.16.0",
+  "requires_dist": [
+    "Cython",
+    "pytest",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-rtd-theme",
+    "aiohttp",
+    "flake8",
+    "psutil",
+    "pycodestyle",
+    "pyOpenSSL",
+    "mypy",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-rtd-theme",
+    "aiohttp",
+    "flake8",
+    "psutil",
+    "pycodestyle",
+    "pyOpenSSL",
+    "mypy"
+  ],
+  "modules": [
+    "uvloop"
+  ]
+}

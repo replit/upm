@@ -1,0 +1,7 @@
+{
+  "name": "colorclass",
+  "version": "2.2.2",
+  "modules": [
+    "colorclass"
+  ]
+}

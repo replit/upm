@@ -1,0 +1,11 @@
+{
+  "name": "scooby",
+  "version": "0.6.0",
+  "requires_dist": [
+    "psutil",
+    "mkl"
+  ],
+  "modules": [
+    "scooby"
+  ]
+}

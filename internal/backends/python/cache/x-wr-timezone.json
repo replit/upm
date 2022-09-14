@@ -1,0 +1,15 @@
+{
+  "name": "x-wr-timezone",
+  "version": "0.0.5",
+  "requires_dist": [
+    "icalendar",
+    "pytz"
+  ],
+  "modules": [
+    "dateutil",
+    "icalendar",
+    "pytz",
+    "six",
+    "x_wr_timezone"
+  ]
+}

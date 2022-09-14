@@ -1,0 +1,7 @@
+{
+  "name": "aioimaplib",
+  "version": "1.0.0",
+  "modules": [
+    "aioimaplib"
+  ]
+}

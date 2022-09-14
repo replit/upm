@@ -1,0 +1,7 @@
+{
+  "name": "imageio-ffmpeg",
+  "version": "0.4.7",
+  "modules": [
+    "imageio_ffmpeg"
+  ]
+}

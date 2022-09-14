@@ -1,0 +1,7 @@
+{
+  "name": "comtypes",
+  "version": "1.1.14",
+  "modules": [
+    "comtypes"
+  ]
+}

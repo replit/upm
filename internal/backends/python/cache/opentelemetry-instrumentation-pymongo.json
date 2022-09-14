@@ -1,0 +1,16 @@
+{
+  "name": "opentelemetry-instrumentation-pymongo",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "opentelemetry-instrumentation",
+    "pymongo",
+    "opentelemetry-test-utils",
+    "pymongo"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

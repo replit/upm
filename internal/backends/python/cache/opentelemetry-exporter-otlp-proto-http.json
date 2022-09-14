@@ -1,0 +1,24 @@
+{
+  "name": "opentelemetry-exporter-otlp-proto-http",
+  "version": "1.12.0",
+  "requires_dist": [
+    "requests",
+    "googleapis-common-protos",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-proto",
+    "backoff",
+    "backoff"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "wrapt"
+  ]
+}

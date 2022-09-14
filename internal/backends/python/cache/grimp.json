@@ -1,0 +1,8 @@
+{
+  "name": "grimp",
+  "version": "1.3",
+  "modules": [
+    "grimp",
+    "networkx"
+  ]
+}

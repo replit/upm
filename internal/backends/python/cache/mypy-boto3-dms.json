@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-dms",
+  "version": "1.24.46",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_dms",
+    "typing_extensions"
+  ]
+}

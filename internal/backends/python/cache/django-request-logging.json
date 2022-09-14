@@ -1,0 +1,14 @@
+{
+  "name": "django-request-logging",
+  "version": "0.7.5",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "request_logging",
+    "sqlparse"
+  ]
+}

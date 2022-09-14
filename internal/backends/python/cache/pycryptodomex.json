@@ -1,0 +1,7 @@
+{
+  "name": "pycryptodomex",
+  "version": "3.15.0",
+  "modules": [
+    "Cryptodome"
+  ]
+}

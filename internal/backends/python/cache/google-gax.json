@@ -1,0 +1,33 @@
+{
+  "name": "google-gax",
+  "version": "0.16.0",
+  "requires_dist": [
+    "dill",
+    "future",
+    "googleapis-common-protos",
+    "grpcio",
+    "google-auth",
+    "ply",
+    "protobuf",
+    "requests"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dill",
+    "future",
+    "grpc",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "ply",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

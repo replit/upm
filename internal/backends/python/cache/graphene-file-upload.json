@@ -1,0 +1,23 @@
+{
+  "name": "graphene-file-upload",
+  "version": "1.3.0",
+  "requires_dist": [
+    "six",
+    "Flask",
+    "graphene",
+    "Flask-Graphql",
+    "graphene-django",
+    "graphene-django",
+    "Flask",
+    "graphene",
+    "Flask-Graphql",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-django"
+  ],
+  "modules": [
+    "graphene_file_upload",
+    "six"
+  ]
+}

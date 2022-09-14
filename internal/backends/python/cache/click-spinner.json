@@ -1,0 +1,12 @@
+{
+  "name": "click-spinner",
+  "version": "0.1.10",
+  "requires_dist": [
+    "click",
+    "pytest",
+    "six"
+  ],
+  "modules": [
+    "click_spinner"
+  ]
+}

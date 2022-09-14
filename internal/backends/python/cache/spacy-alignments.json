@@ -1,0 +1,7 @@
+{
+  "name": "spacy-alignments",
+  "version": "0.8.5",
+  "modules": [
+    "spacy_alignments"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "django-tools",
+  "version": "0.53.0",
+  "requires_dist": [
+    "bleach",
+    "bx_py_utils",
+    "django",
+    "icdiff",
+    "pprintpp"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bleach",
+    "bx_py_utils",
+    "django",
+    "django_tools",
+    "django_tools_test_project",
+    "icdiff",
+    "pprintpp",
+    "six",
+    "sqlparse",
+    "webencodings"
+  ]
+}

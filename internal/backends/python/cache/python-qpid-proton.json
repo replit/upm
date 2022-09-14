@@ -1,0 +1,9 @@
+{
+  "name": "python-qpid-proton",
+  "version": "0.37.0",
+  "modules": [
+    "_cproton",
+    "cproton",
+    "proton"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "sphinxcontrib.datatemplates",
+  "version": "0.9.1",
+  "requires_dist": [
+    "pbr",
+    "Sphinx",
+    "PyYAML",
+    "defusedxml",
+    "sphinxcontrib-runcmd",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "_yaml",
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "defusedxml",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pbr",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

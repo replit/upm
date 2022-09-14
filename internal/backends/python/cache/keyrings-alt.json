@@ -1,0 +1,30 @@
+{
+  "name": "keyrings.alt",
+  "version": "4.2.0",
+  "requires_dist": [
+    "jaraco.classes",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "backports.unittest-mock",
+    "keyring",
+    "fs",
+    "pycryptodomex",
+    "pycryptodome",
+    "pytest-black",
+    "pytest-mypy",
+    "gdata",
+    "python-keyczar"
+  ],
+  "modules": [
+    "keyrings",
+    "more_itertools"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "scout-apm",
+  "version": "2.26.1",
+  "requires_dist": [
+    "psutil",
+    "wrapt",
+    "urllib3",
+    "importlib-metadata",
+    "asgiref",
+    "urllib3",
+    "contextvars"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "asgiref",
+    "certifi",
+    "cffi",
+    "cryptography",
+    "idna",
+    "psutil",
+    "pycparser",
+    "scout_apm",
+    "urllib3",
+    "urllib3_secure_extra",
+    "wrapt"
+  ]
+}

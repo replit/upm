@@ -1,0 +1,36 @@
+{
+  "name": "ggshield",
+  "version": "1.13.2",
+  "requires_dist": [
+    "appdirs",
+    "click",
+    "marshmallow-dataclass",
+    "marshmallow",
+    "oauthlib",
+    "pygitguardian",
+    "python-dotenv",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "appdirs",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "dotenv",
+    "ggshield",
+    "idna",
+    "marshmallow",
+    "marshmallow_dataclass",
+    "mypy_extensions",
+    "oauthlib",
+    "packaging",
+    "pygitguardian",
+    "pyparsing",
+    "requests",
+    "typing_extensions",
+    "typing_inspect",
+    "urllib3",
+    "yaml"
+  ]
+}

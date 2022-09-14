@@ -1,0 +1,16 @@
+{
+  "name": "dacite",
+  "version": "1.6.0",
+  "requires_dist": [
+    "dataclasses",
+    "pytest",
+    "pytest-cov",
+    "coveralls",
+    "black",
+    "mypy",
+    "pylint"
+  ],
+  "modules": [
+    "dacite"
+  ]
+}

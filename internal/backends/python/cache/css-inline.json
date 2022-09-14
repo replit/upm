@@ -1,0 +1,7 @@
+{
+  "name": "css-inline",
+  "version": "0.8.3",
+  "modules": [
+    "css_inline"
+  ]
+}

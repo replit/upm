@@ -1,0 +1,11 @@
+{
+  "name": "django-taggit",
+  "version": "3.0.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse",
+    "taggit"
+  ]
+}

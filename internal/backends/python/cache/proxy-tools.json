@@ -1,0 +1,7 @@
+{
+  "name": "proxy_tools",
+  "version": "0.1.0",
+  "modules": [
+    "proxy_tools"
+  ]
+}

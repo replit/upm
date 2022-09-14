@@ -1,0 +1,5 @@
+{
+  "name": "repoze.who-friendlyform",
+  "version": "1.0.8",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/repoze.who-friendlyform/bin/python3', '-m', 'pip', 'install', 'repoze.who-friendlyform']' returned non-zero exit status 1.\"}"
+}

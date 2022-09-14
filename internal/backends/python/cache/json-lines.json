@@ -1,0 +1,8 @@
+{
+  "name": "json-lines",
+  "version": "0.5.0",
+  "modules": [
+    "json_lines",
+    "six"
+  ]
+}

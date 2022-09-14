@@ -1,0 +1,14 @@
+{
+  "name": "flake8-broken-line",
+  "version": "0.5.0",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_broken_line",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

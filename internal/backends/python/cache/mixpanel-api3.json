@@ -1,0 +1,7 @@
+{
+  "name": "mixpanel-api3",
+  "version": "0.2.1",
+  "modules": [
+    "mixpanel_api"
+  ]
+}

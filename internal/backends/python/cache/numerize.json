@@ -1,0 +1,7 @@
+{
+  "name": "numerize",
+  "version": "0.12",
+  "modules": [
+    "numerize"
+  ]
+}

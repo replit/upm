@@ -1,0 +1,9 @@
+{
+  "name": "gardener-cicd-dso",
+  "version": "1.1869.0",
+  "requires_dist": [
+    "gardener-cicd-libs",
+    "gardener-cicd-cli"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/gardener-cicd-dso/bin/python3', '-m', 'pip', 'install', 'gardener-cicd-dso']' returned non-zero exit status 1.\"}"
+}

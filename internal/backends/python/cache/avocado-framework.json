@@ -1,0 +1,10 @@
+{
+  "name": "avocado-framework",
+  "version": "98.0",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "avocado"
+  ]
+}

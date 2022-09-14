@@ -1,0 +1,15 @@
+{
+  "name": "libtaxii",
+  "version": "1.1.119",
+  "requires_dist": [
+    "python-dateutil",
+    "six",
+    "lxml"
+  ],
+  "modules": [
+    "dateutil",
+    "libtaxii",
+    "lxml",
+    "six"
+  ]
+}

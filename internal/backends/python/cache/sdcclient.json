@@ -1,0 +1,42 @@
+{
+  "name": "sdcclient",
+  "version": "0.16.4",
+  "requires_dist": [
+    "requests",
+    "pyaml",
+    "requests-toolbelt",
+    "urllib3",
+    "tatsu",
+    "tatsu",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "_yaml",
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pyaml",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "requests_toolbelt",
+    "sdcclient",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_rtd_theme",
+    "tatsu",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

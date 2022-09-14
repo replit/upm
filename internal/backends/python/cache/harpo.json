@@ -1,0 +1,29 @@
+{
+  "name": "harpo",
+  "version": "1.1.17",
+  "requires_dist": [
+    "PyYAML",
+    "click",
+    "colorlog",
+    "filelock",
+    "pbr",
+    "python-gnupg",
+    "setuptools",
+    "six",
+    "tabulate",
+    "twine",
+    "wheel"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "colorlog",
+    "filelock",
+    "gnupg",
+    "harpo",
+    "pbr",
+    "six",
+    "tabulate",
+    "yaml"
+  ]
+}

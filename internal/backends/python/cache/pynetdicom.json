@@ -1,0 +1,21 @@
+{
+  "name": "pynetdicom",
+  "version": "2.0.2",
+  "requires_dist": [
+    "pydicom",
+    "sqlalchemy",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-copybutton",
+    "sphinx-issues",
+    "sphinxcontrib-napoleon",
+    "numpydoc",
+    "pytest",
+    "pyfakefs",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "pydicom",
+    "pynetdicom"
+  ]
+}

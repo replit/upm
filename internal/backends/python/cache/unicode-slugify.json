@@ -1,0 +1,13 @@
+{
+  "name": "unicode-slugify",
+  "version": "0.1.5",
+  "requires_dist": [
+    "six",
+    "unidecode"
+  ],
+  "modules": [
+    "six",
+    "slugify",
+    "unidecode"
+  ]
+}

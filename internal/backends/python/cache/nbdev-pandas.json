@@ -1,0 +1,13 @@
+{
+  "name": "nbdev-pandas",
+  "version": "0.0.293",
+  "requires_dist": [
+    "pip",
+    "packaging"
+  ],
+  "modules": [
+    "nbdev_pandas",
+    "packaging",
+    "pyparsing"
+  ]
+}

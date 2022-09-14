@@ -1,0 +1,10 @@
+{
+  "name": "oauth2",
+  "version": "1.9.0.post1",
+  "modules": [
+    "httplib2",
+    "oauth2",
+    "pyparsing",
+    "tests"
+  ]
+}

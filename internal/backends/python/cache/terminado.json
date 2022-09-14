@@ -1,0 +1,17 @@
+{
+  "name": "terminado",
+  "version": "0.15.0",
+  "requires_dist": [
+    "ptyprocess",
+    "pywinpty",
+    "tornado",
+    "pre-commit",
+    "pytest-timeout",
+    "pytest"
+  ],
+  "modules": [
+    "ptyprocess",
+    "terminado",
+    "tornado"
+  ]
+}

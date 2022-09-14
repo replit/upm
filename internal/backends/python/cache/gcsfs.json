@@ -1,0 +1,42 @@
+{
+  "name": "gcsfs",
+  "version": "2022.8.2",
+  "requires_dist": [
+    "google-auth",
+    "google-auth-oauthlib",
+    "google-cloud-storage",
+    "requests",
+    "decorator",
+    "fsspec",
+    "aiohttp",
+    "crcmod",
+    "fusepy"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "decorator",
+    "frozenlist",
+    "fsspec",
+    "gcsfs",
+    "google_auth_oauthlib",
+    "google_crc32c",
+    "idna",
+    "multidict",
+    "oauthlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "urllib3",
+    "yarl"
+  ]
+}

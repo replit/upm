@@ -1,0 +1,10 @@
+{
+  "name": "Acquisition",
+  "version": "4.10",
+  "modules": [
+    "Acquisition",
+    "ComputedAttribute",
+    "ExtensionClass",
+    "MethodObject"
+  ]
+}

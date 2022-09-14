@@ -1,0 +1,9 @@
+{
+  "name": "neotime",
+  "version": "1.7.4",
+  "modules": [
+    "neotime",
+    "pytz",
+    "six"
+  ]
+}

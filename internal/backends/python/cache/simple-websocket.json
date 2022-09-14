@@ -1,0 +1,12 @@
+{
+  "name": "simple-websocket",
+  "version": "0.8.1",
+  "requires_dist": [
+    "wsproto"
+  ],
+  "modules": [
+    "h11",
+    "simple_websocket",
+    "wsproto"
+  ]
+}

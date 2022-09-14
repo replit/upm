@@ -1,0 +1,11 @@
+{
+  "name": "pytest-spec",
+  "version": "3.2.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pytest_spec",
+    "six"
+  ]
+}

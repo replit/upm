@@ -1,0 +1,8 @@
+{
+  "name": "PyScreeze",
+  "version": "0.1.28",
+  "modules": [
+    "PIL",
+    "pyscreeze"
+  ]
+}

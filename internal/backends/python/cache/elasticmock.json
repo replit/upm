@@ -1,0 +1,14 @@
+{
+  "name": "ElasticMock",
+  "version": "1.8.1",
+  "modules": [
+    "certifi",
+    "dateutil",
+    "elastic_transport",
+    "elasticmock",
+    "elasticsearch",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "urwid-readline",
+  "version": "0.13",
+  "modules": [
+    "urwid",
+    "urwid_readline"
+  ]
+}

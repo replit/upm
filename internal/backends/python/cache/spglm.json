@@ -1,0 +1,27 @@
+{
+  "name": "spglm",
+  "version": "1.0.8",
+  "modules": [
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jinja2",
+    "libpysal",
+    "markupsafe",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "scipy",
+    "six",
+    "soupsieve",
+    "spglm",
+    "spreg",
+    "urllib3"
+  ]
+}

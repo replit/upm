@@ -1,0 +1,7 @@
+{
+  "name": "pep257",
+  "version": "0.7.0",
+  "modules": [
+    "pep257"
+  ]
+}

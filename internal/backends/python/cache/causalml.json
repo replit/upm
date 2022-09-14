@@ -1,0 +1,31 @@
+{
+  "name": "causalml",
+  "version": "0.13.0",
+  "requires_dist": [
+    "setuptools",
+    "forestci",
+    "pathos",
+    "pip",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pandas",
+    "scikit-learn",
+    "statsmodels",
+    "seaborn",
+    "Cython",
+    "xgboost",
+    "pydotplus",
+    "tqdm",
+    "shap",
+    "dill",
+    "lightgbm",
+    "pygam",
+    "packaging",
+    "torch",
+    "pyro-ppl",
+    "graphviz",
+    "tensorflow"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/causalml/bin/python3', '-m', 'pip', 'install', 'causalml']' returned non-zero exit status 1.\"}"
+}

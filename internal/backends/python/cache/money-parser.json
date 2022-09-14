@@ -1,0 +1,7 @@
+{
+  "name": "money-parser",
+  "version": "0.0.1",
+  "modules": [
+    "money_parser"
+  ]
+}

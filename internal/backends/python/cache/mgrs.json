@@ -1,0 +1,13 @@
+{
+  "name": "mgrs",
+  "version": "1.4.5",
+  "requires_dist": [
+    "packaging"
+  ],
+  "modules": [
+    "libmgrs",
+    "mgrs",
+    "packaging",
+    "pyparsing"
+  ]
+}

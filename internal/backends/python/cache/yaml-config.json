@@ -1,0 +1,13 @@
+{
+  "name": "yaml-config",
+  "version": "0.1.5",
+  "requires_dist": [
+    "PyYAML",
+    "typing"
+  ],
+  "modules": [
+    "_yaml",
+    "yaml",
+    "yamlconf"
+  ]
+}

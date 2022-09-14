@@ -1,0 +1,17 @@
+{
+  "name": "opentelemetry-instrumentation-celery",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "opentelemetry-instrumentation",
+    "celery",
+    "pytest",
+    "opentelemetry-test-utils",
+    "celery"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

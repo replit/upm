@@ -1,0 +1,14 @@
+{
+  "name": "psutil",
+  "version": "5.9.2",
+  "requires_dist": [
+    "ipaddress",
+    "mock",
+    "enum34",
+    "pywin32",
+    "wmi"
+  ],
+  "modules": [
+    "psutil"
+  ]
+}

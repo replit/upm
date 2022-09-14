@@ -1,0 +1,7 @@
+{
+  "name": "CurrencyConverter",
+  "version": "0.17.1",
+  "modules": [
+    "currency_converter"
+  ]
+}

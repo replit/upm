@@ -1,0 +1,14 @@
+{
+  "name": "pyfunctional",
+  "version": "1.4.3",
+  "requires_dist": [
+    "dill",
+    "tabulate",
+    "pandas"
+  ],
+  "modules": [
+    "dill",
+    "functional",
+    "tabulate"
+  ]
+}

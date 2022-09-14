@@ -1,0 +1,20 @@
+{
+  "name": "spotify-token",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests",
+    "beautifulsoup4",
+    "lxml"
+  ],
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lxml",
+    "requests",
+    "soupsieve",
+    "spotify_token",
+    "urllib3"
+  ]
+}

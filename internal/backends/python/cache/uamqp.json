@@ -1,0 +1,13 @@
+{
+  "name": "uamqp",
+  "version": "1.6.0",
+  "requires_dist": [
+    "certifi",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "six",
+    "uamqp"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ecs-deploy",
+  "version": "1.13.1",
+  "modules": [
+    "boto3",
+    "botocore",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "click_log",
+    "dateutil",
+    "dictdiffer",
+    "ecs_deploy",
+    "future",
+    "idna",
+    "jmespath",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

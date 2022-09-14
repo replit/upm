@@ -1,0 +1,11 @@
+{
+  "name": "od",
+  "version": "2.0.2",
+  "requires_dist": [
+    "repeated-test"
+  ],
+  "modules": [
+    "od",
+    "test_od"
+  ]
+}

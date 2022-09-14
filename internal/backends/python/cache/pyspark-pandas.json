@@ -1,0 +1,12 @@
+{
+  "name": "pyspark-pandas",
+  "version": "0.0.7",
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pyspark_pandas",
+    "pytz",
+    "six"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "setuptools-git-version",
+  "version": "1.0.3",
+  "modules": [
+    "setuptools_git_version"
+  ]
+}

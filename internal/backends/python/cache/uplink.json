@@ -1,0 +1,31 @@
+{
+  "name": "uplink",
+  "version": "0.9.7",
+  "requires_dist": [
+    "requests",
+    "six",
+    "uritemplate",
+    "aiohttp",
+    "marshmallow",
+    "pydantic",
+    "pytest",
+    "pytest-mock",
+    "pytest-cov",
+    "pytest-twisted",
+    "pytest-asyncio",
+    "twisted",
+    "twisted",
+    "twisted",
+    "typing"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "uplink",
+    "uritemplate",
+    "urllib3"
+  ]
+}

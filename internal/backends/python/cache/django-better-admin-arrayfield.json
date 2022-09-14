@@ -1,0 +1,7 @@
+{
+  "name": "django-better-admin-arrayfield",
+  "version": "1.4.2",
+  "modules": [
+    "django_better_admin_arrayfield"
+  ]
+}

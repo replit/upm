@@ -1,0 +1,13 @@
+{
+  "name": "property-manager",
+  "version": "3.0",
+  "requires_dist": [
+    "humanfriendly",
+    "verboselogs"
+  ],
+  "modules": [
+    "humanfriendly",
+    "property_manager",
+    "verboselogs"
+  ]
+}

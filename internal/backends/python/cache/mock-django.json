@@ -1,0 +1,12 @@
+{
+  "name": "mock-django",
+  "version": "0.6.10",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "mock",
+    "mock_django",
+    "sqlparse"
+  ]
+}

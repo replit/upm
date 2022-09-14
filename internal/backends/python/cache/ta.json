@@ -1,0 +1,12 @@
+{
+  "name": "ta",
+  "version": "0.10.2",
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "ta"
+  ]
+}

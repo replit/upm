@@ -1,0 +1,11 @@
+{
+  "name": "createsend",
+  "version": "7.0.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "createsend",
+    "six"
+  ]
+}

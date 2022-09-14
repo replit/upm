@@ -1,0 +1,33 @@
+{
+  "name": "photutils",
+  "version": "1.5.0",
+  "requires_dist": [
+    "numpy",
+    "astropy",
+    "scipy",
+    "matplotlib",
+    "scikit-image",
+    "scikit-learn",
+    "gwcs",
+    "bottleneck",
+    "tqdm",
+    "scipy",
+    "sphinx",
+    "sphinx-astropy",
+    "matplotlib",
+    "scikit-image",
+    "scikit-learn",
+    "gwcs",
+    "pytest-astropy"
+  ],
+  "modules": [
+    "_yaml",
+    "astropy",
+    "erfa",
+    "numpy",
+    "packaging",
+    "photutils",
+    "pyparsing",
+    "yaml"
+  ]
+}

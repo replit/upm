@@ -1,0 +1,8 @@
+{
+  "name": "pycosat",
+  "version": "0.6.3",
+  "modules": [
+    "pycosat",
+    "test_pycosat"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "django-pudb",
+  "version": "0.1.0",
+  "modules": [
+    "django_pudb"
+  ]
+}

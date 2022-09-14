@@ -1,0 +1,29 @@
+{
+  "name": "auditwheel",
+  "version": "5.1.2",
+  "requires_dist": [
+    "pyelftools",
+    "importlib-metadata",
+    "pytest-cov",
+    "pytest",
+    "jsonschema",
+    "pypatchelf",
+    "pretend",
+    "docker",
+    "pytest",
+    "jsonschema",
+    "pypatchelf",
+    "pretend",
+    "docker",
+    "pytest-cov",
+    "pytest",
+    "jsonschema",
+    "pypatchelf",
+    "pretend",
+    "docker"
+  ],
+  "modules": [
+    "auditwheel",
+    "elftools"
+  ]
+}

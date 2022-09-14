@@ -1,0 +1,11 @@
+{
+  "name": "django-crontab",
+  "version": "0.7.1",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_crontab",
+    "sqlparse"
+  ]
+}

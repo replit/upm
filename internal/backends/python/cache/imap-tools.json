@@ -1,0 +1,7 @@
+{
+  "name": "imap-tools",
+  "version": "0.57.0",
+  "modules": [
+    "imap_tools"
+  ]
+}

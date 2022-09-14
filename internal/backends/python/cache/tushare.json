@@ -1,0 +1,30 @@
+{
+  "name": "tushare",
+  "version": "1.2.85",
+  "requires_dist": [
+    "pandas",
+    "requests",
+    "lxml",
+    "simplejson",
+    "bs4",
+    "websocket-client"
+  ],
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "lxml",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "simplejson",
+    "six",
+    "soupsieve",
+    "tushare",
+    "urllib3",
+    "websocket"
+  ]
+}

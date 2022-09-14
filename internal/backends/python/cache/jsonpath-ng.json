@@ -1,0 +1,15 @@
+{
+  "name": "jsonpath-ng",
+  "version": "1.5.3",
+  "requires_dist": [
+    "ply",
+    "decorator",
+    "six"
+  ],
+  "modules": [
+    "decorator",
+    "jsonpath_ng",
+    "ply",
+    "six"
+  ]
+}

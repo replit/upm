@@ -1,0 +1,28 @@
+{
+  "name": "glocaltokens",
+  "version": "0.6.8",
+  "requires_dist": [
+    "gpsoauth",
+    "protobuf",
+    "simplejson",
+    "grpcio",
+    "requests",
+    "zeroconf"
+  ],
+  "modules": [
+    "Cryptodome",
+    "async_timeout",
+    "certifi",
+    "charset_normalizer",
+    "glocaltokens",
+    "gpsoauth",
+    "grpc",
+    "idna",
+    "ifaddr",
+    "requests",
+    "simplejson",
+    "six",
+    "urllib3",
+    "zeroconf"
+  ]
+}

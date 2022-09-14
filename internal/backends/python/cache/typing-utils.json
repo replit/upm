@@ -1,0 +1,10 @@
+{
+  "name": "typing-utils",
+  "version": "0.1.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "typing_utils"
+  ]
+}

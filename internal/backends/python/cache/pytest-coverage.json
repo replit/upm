@@ -1,0 +1,18 @@
+{
+  "name": "pytest-coverage",
+  "version": "0.0.1",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "coverage",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "tomli"
+  ]
+}

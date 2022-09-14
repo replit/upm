@@ -1,0 +1,14 @@
+{
+  "name": "djongo",
+  "version": "1.3.6",
+  "modules": [
+    "asgiref",
+    "backports",
+    "bson",
+    "django",
+    "djongo",
+    "gridfs",
+    "pymongo",
+    "sqlparse"
+  ]
+}

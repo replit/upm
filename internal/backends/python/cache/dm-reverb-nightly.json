@@ -1,0 +1,16 @@
+{
+  "name": "dm-reverb-nightly",
+  "version": "0.9.0.dev20220913",
+  "requires_dist": [
+    "dm-tree",
+    "portpicker",
+    "dataclasses",
+    "tf-nightly"
+  ],
+  "modules": [
+    "portpicker",
+    "psutil",
+    "reverb",
+    "tree"
+  ]
+}

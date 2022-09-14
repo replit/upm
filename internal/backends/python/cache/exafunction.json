@@ -1,0 +1,26 @@
+{
+  "name": "exafunction",
+  "version": "0.14.4",
+  "requires_dist": [
+    "docker",
+    "grpcio",
+    "numpy",
+    "protobuf",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docker",
+    "exa",
+    "grpc",
+    "idna",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "np",
+  "version": "1.0.2",
+  "modules": [
+    "np"
+  ]
+}

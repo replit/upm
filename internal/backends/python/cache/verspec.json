@@ -1,0 +1,14 @@
+{
+  "name": "verspec",
+  "version": "0.1.0",
+  "requires_dist": [
+    "coverage",
+    "flake8",
+    "mypy",
+    "pretend",
+    "pytest"
+  ],
+  "modules": [
+    "verspec"
+  ]
+}

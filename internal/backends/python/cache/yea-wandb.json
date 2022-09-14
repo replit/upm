@@ -1,0 +1,39 @@
+{
+  "name": "yea-wandb",
+  "version": "0.8.13",
+  "requires_dist": [
+    "Flask",
+    "requests",
+    "yea"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "coverage",
+    "flask",
+    "idna",
+    "importlib_metadata",
+    "importlib_resources",
+    "itsdangerous",
+    "jinja2",
+    "jsonschema",
+    "markupsafe",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "requests",
+    "six",
+    "typing_extensions",
+    "urllib3",
+    "werkzeug",
+    "yaml",
+    "yea",
+    "yea_wandb",
+    "zipp"
+  ]
+}

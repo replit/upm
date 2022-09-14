@@ -1,0 +1,33 @@
+{
+  "name": "discord.py-message-components",
+  "version": "1.7.5.4",
+  "requires_dist": [
+    "aiohttp",
+    "chardet",
+    "yarl",
+    "async-timeout",
+    "typing-extensions",
+    "attrs",
+    "multidict",
+    "idna",
+    "sphinx",
+    "sphinxcontrib-trio",
+    "sphinxcontrib-websupport",
+    "PyNaCl"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "chardet",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "typing_extensions",
+    "yarl"
+  ]
+}

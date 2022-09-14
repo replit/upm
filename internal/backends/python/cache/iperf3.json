@@ -1,0 +1,7 @@
+{
+  "name": "iperf3",
+  "version": "0.1.11",
+  "modules": [
+    "iperf3"
+  ]
+}

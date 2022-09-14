@@ -1,0 +1,7 @@
+{
+  "name": "nr.pylang.utils",
+  "version": "0.1.3",
+  "modules": [
+    "nr"
+  ]
+}

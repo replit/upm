@@ -1,0 +1,43 @@
+{
+  "name": "ldaptor",
+  "version": "21.2.0",
+  "requires_dist": [
+    "passlib",
+    "Twisted",
+    "pyparsing",
+    "six",
+    "zope.interface",
+    "alabaster",
+    "commonmark",
+    "docutils",
+    "mock",
+    "pillow",
+    "readthedocs-sphinx-ext",
+    "recommonmark",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "automat",
+    "cffi",
+    "constantly",
+    "cryptography",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "ldaptor",
+    "passlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "pyparsing",
+    "service_identity",
+    "six",
+    "twisted",
+    "typing_extensions"
+  ]
+}

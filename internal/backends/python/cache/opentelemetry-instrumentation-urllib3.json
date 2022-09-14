@@ -1,0 +1,19 @@
+{
+  "name": "opentelemetry-instrumentation-urllib3",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "opentelemetry-instrumentation",
+    "opentelemetry-util-http",
+    "wrapt",
+    "urllib3",
+    "opentelemetry-test-utils",
+    "httpretty",
+    "urllib3"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "dbus-next",
+  "version": "0.2.3",
+  "modules": [
+    "dbus_next"
+  ]
+}

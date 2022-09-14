@@ -1,0 +1,19 @@
+{
+  "name": "pusher-push-notifications",
+  "version": "2.0.1",
+  "requires_dist": [
+    "six",
+    "requests",
+    "pyjwt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jwt",
+    "pusher_push_notifications",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

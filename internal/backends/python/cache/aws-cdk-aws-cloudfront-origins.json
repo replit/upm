@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk.aws-cloudfront-origins",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-apigateway",
+    "aws-cdk.aws-cloudfront",
+    "aws-cdk.aws-elasticloadbalancingv2",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-s3",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

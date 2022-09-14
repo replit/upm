@@ -1,0 +1,12 @@
+{
+  "name": "googlemaps",
+  "version": "4.6.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "googlemaps",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

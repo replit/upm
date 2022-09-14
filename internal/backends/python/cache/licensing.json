@@ -1,0 +1,7 @@
+{
+  "name": "licensing",
+  "version": "0.36",
+  "modules": [
+    "licensing"
+  ]
+}

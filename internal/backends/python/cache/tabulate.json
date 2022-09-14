@@ -1,0 +1,10 @@
+{
+  "name": "tabulate",
+  "version": "0.8.10",
+  "requires_dist": [
+    "wcwidth"
+  ],
+  "modules": [
+    "tabulate"
+  ]
+}

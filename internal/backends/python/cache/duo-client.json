@@ -1,0 +1,12 @@
+{
+  "name": "duo-client",
+  "version": "4.4.0",
+  "requires_dist": [
+    "six",
+    "setuptools"
+  ],
+  "modules": [
+    "duo_client",
+    "six"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "pylast",
+  "version": "5.0.0",
+  "requires_dist": [
+    "httpx",
+    "importlib-metadata",
+    "flaky",
+    "pytest",
+    "pytest-cov",
+    "pytest-random-order",
+    "pyyaml"
+  ],
+  "modules": [
+    "anyio",
+    "certifi",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "pylast",
+    "rfc3986",
+    "sniffio"
+  ]
+}

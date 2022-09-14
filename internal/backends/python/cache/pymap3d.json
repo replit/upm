@@ -1,0 +1,22 @@
+{
+  "name": "pymap3d",
+  "version": "2.9.1",
+  "requires_dist": [
+    "python-dateutil",
+    "numpy",
+    "astropy",
+    "xarray",
+    "flake8",
+    "flake8-bugbear",
+    "flake8-builtins",
+    "flake8-blind-except",
+    "mypy",
+    "types-python-dateutil",
+    "types-requests",
+    "pyproj",
+    "pytest"
+  ],
+  "modules": [
+    "pymap3d"
+  ]
+}

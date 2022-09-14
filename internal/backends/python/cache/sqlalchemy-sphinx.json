@@ -1,0 +1,13 @@
+{
+  "name": "sqlalchemy-sphinx",
+  "version": "0.9.0",
+  "requires_dist": [
+    "sqlalchemy",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_sphinx"
+  ]
+}

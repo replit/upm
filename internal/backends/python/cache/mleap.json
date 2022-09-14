@@ -1,0 +1,23 @@
+{
+  "name": "mleap",
+  "version": "0.20.0",
+  "requires_dist": [
+    "numpy",
+    "six",
+    "scipy",
+    "pandas",
+    "scikit-learn"
+  ],
+  "modules": [
+    "dateutil",
+    "joblib",
+    "mleap",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "tests"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "praw",
+  "version": "7.6.0",
+  "requires_dist": [
+    "prawcore",
+    "update-checker",
+    "websocket-client",
+    "coveralls",
+    "packaging",
+    "pre-commit",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "betamax",
+    "betamax-matchers",
+    "pytest",
+    "requests",
+    "pre-commit",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "betamax",
+    "betamax-matchers",
+    "pytest",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "praw",
+    "prawcore",
+    "requests",
+    "update_checker",
+    "update_checker_test",
+    "urllib3",
+    "websocket"
+  ]
+}

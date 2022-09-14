@@ -1,0 +1,21 @@
+{
+  "name": "google-cloud-core",
+  "version": "2.3.2",
+  "requires_dist": [
+    "google-api-core",
+    "google-auth",
+    "grpcio"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

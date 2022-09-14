@@ -1,0 +1,10 @@
+{
+  "name": "nodeenv",
+  "version": "1.7.0",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "nodeenv"
+  ]
+}

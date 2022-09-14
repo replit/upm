@@ -1,0 +1,9 @@
+{
+  "name": "couchbase",
+  "version": "4.0.4",
+  "modules": [
+    "acouchbase",
+    "couchbase",
+    "txcouchbase"
+  ]
+}

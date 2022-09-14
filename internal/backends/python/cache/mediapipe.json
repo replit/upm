@@ -1,0 +1,30 @@
+{
+  "name": "mediapipe",
+  "version": "0.8.11",
+  "requires_dist": [
+    "absl-py",
+    "attrs",
+    "matplotlib",
+    "numpy",
+    "opencv-contrib-python",
+    "protobuf"
+  ],
+  "modules": [
+    "PIL",
+    "absl",
+    "attr",
+    "attrs",
+    "cv2",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "mediapipe",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six"
+  ]
+}

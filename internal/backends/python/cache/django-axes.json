@@ -1,0 +1,17 @@
+{
+  "name": "django-axes",
+  "version": "5.39.0",
+  "requires_dist": [
+    "django",
+    "django-ipware",
+    "setuptools"
+  ],
+  "modules": [
+    "asgiref",
+    "axes",
+    "backports",
+    "django",
+    "ipware",
+    "sqlparse"
+  ]
+}

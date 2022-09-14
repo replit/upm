@@ -1,0 +1,8 @@
+{
+  "name": "instagram-private-api",
+  "version": "1.6.0.0",
+  "modules": [
+    "instagram_private_api",
+    "instagram_web_api"
+  ]
+}

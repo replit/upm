@@ -1,0 +1,7 @@
+{
+  "name": "djangocms-admin-style",
+  "version": "3.2.0",
+  "modules": [
+    "djangocms_admin_style"
+  ]
+}

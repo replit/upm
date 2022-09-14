@@ -1,0 +1,15 @@
+{
+  "name": "rebulk",
+  "version": "3.1.0",
+  "requires_dist": [
+    "pytest",
+    "pylint",
+    "tox",
+    "regex",
+    "pytest",
+    "pylint"
+  ],
+  "modules": [
+    "rebulk"
+  ]
+}

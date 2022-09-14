@@ -1,0 +1,21 @@
+{
+  "name": "aws",
+  "version": "0.2.5",
+  "modules": [
+    "_cffi_backend",
+    "aws",
+    "bcrypt",
+    "boto",
+    "cffi",
+    "cryptography",
+    "fabric",
+    "invoke",
+    "nacl",
+    "paramiko",
+    "pathlib2",
+    "prettytable",
+    "pycparser",
+    "six",
+    "wcwidth"
+  ]
+}

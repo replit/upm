@@ -1,0 +1,19 @@
+{
+  "name": "pipreqs",
+  "version": "0.4.11",
+  "requires_dist": [
+    "docopt",
+    "yarg"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "pipreqs",
+    "requests",
+    "tests",
+    "urllib3",
+    "yarg"
+  ]
+}

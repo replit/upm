@@ -1,0 +1,20 @@
+{
+  "name": "pytest-reraise",
+  "version": "2.1.1",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_reraise",
+    "tomli"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pyDeprecate",
+  "version": "0.3.2",
+  "modules": [
+    "deprecate"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-shield",
+  "version": "1.24.41",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_shield",
+    "typing_extensions"
+  ]
+}

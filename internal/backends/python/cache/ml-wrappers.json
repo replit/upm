@@ -1,0 +1,22 @@
+{
+  "name": "ml-wrappers",
+  "version": "0.2.2",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn"
+  ],
+  "modules": [
+    "dateutil",
+    "joblib",
+    "ml_wrappers",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

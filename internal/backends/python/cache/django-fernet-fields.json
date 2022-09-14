@@ -1,0 +1,15 @@
+{
+  "name": "django-fernet-fields",
+  "version": "0.6",
+  "modules": [
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "cffi",
+    "cryptography",
+    "django",
+    "fernet_fields",
+    "pycparser",
+    "sqlparse"
+  ]
+}

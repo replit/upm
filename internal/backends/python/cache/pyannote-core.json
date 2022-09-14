@@ -1,0 +1,28 @@
+{
+  "name": "pyannote.core",
+  "version": "4.5",
+  "requires_dist": [
+    "sortedcontainers",
+    "numpy",
+    "scipy",
+    "simplejson",
+    "typing-extensions",
+    "dataclasses",
+    "matplotlib",
+    "pandas",
+    "Sphinx",
+    "ipython",
+    "sphinx-rtd-theme",
+    "matplotlib",
+    "pytest",
+    "pandas",
+    "flake8"
+  ],
+  "modules": [
+    "numpy",
+    "scipy",
+    "simplejson",
+    "sortedcontainers",
+    "typing_extensions"
+  ]
+}

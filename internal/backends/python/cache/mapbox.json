@@ -1,0 +1,37 @@
+{
+  "name": "mapbox",
+  "version": "0.18.1",
+  "requires_dist": [
+    "boto3",
+    "cachecontrol",
+    "iso3166",
+    "python-dateutil",
+    "requests",
+    "polyline",
+    "uritemplate",
+    "coveralls",
+    "pytest",
+    "pytest-cov",
+    "responses",
+    "tox"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "cachecontrol",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "iso3166",
+    "jmespath",
+    "mapbox",
+    "msgpack",
+    "polyline",
+    "requests",
+    "s3transfer",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

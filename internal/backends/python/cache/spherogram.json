@@ -1,0 +1,17 @@
+{
+  "name": "spherogram",
+  "version": "2.1",
+  "requires_dist": [
+    "decorator",
+    "networkx",
+    "snappy-manifolds",
+    "knot-floer-homology"
+  ],
+  "modules": [
+    "decorator",
+    "knot_floer_homology",
+    "networkx",
+    "snappy_manifolds",
+    "spherogram"
+  ]
+}

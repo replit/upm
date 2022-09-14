@@ -1,0 +1,7 @@
+{
+  "name": "monotonic",
+  "version": "1.6",
+  "modules": [
+    "monotonic"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "pytest-runner",
+  "version": "6.0.0",
+  "requires_dist": [
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-virtualenv",
+    "types-setuptools",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "ptr"
+  ]
+}

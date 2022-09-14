@@ -1,0 +1,7 @@
+{
+  "name": "drf-dynamic-fields",
+  "version": "0.4.0",
+  "modules": [
+    "drf_dynamic_fields"
+  ]
+}

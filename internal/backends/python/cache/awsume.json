@@ -1,0 +1,30 @@
+{
+  "name": "awsume",
+  "version": "4.5.3",
+  "requires_dist": [
+    "colorama",
+    "boto3",
+    "psutil",
+    "pluggy",
+    "pyyaml",
+    "awsume-console-plugin",
+    "python-levenshtein",
+    "xmltodict"
+  ],
+  "modules": [
+    "_yaml",
+    "awsume",
+    "awsume_autocomplete",
+    "boto3",
+    "botocore",
+    "colorama",
+    "dateutil",
+    "jmespath",
+    "pluggy",
+    "psutil",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

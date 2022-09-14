@@ -1,0 +1,13 @@
+{
+  "name": "pefile",
+  "version": "2022.5.30",
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "ordlookup",
+    "past",
+    "pefile",
+    "peutils"
+  ]
+}

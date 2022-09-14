@@ -1,0 +1,15 @@
+{
+  "name": "mpmath",
+  "version": "1.2.1",
+  "requires_dist": [
+    "pytest",
+    "pycodestyle",
+    "pytest-cov",
+    "codecov",
+    "wheel",
+    "pytest"
+  ],
+  "modules": [
+    "mpmath"
+  ]
+}

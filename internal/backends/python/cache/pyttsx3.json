@@ -1,0 +1,13 @@
+{
+  "name": "pyttsx3",
+  "version": "2.90",
+  "requires_dist": [
+    "pyobjc",
+    "comtypes",
+    "pypiwin32",
+    "pywin32"
+  ],
+  "modules": [
+    "pyttsx3"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Lifetimes",
+  "version": "0.11.3",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "pandas",
+    "autograd",
+    "dill"
+  ],
+  "modules": [
+    "autograd",
+    "dateutil",
+    "dill",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "lifetimes",
+    "numpy",
+    "pandas",
+    "past",
+    "pytz",
+    "scipy",
+    "six"
+  ]
+}

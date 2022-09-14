@@ -1,0 +1,12 @@
+{
+  "name": "python-can",
+  "version": "4.0.0",
+  "modules": [
+    "can",
+    "msgpack",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "TenGiphPy",
+  "version": "2.5.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "TenGiphPy",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

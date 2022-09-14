@@ -1,0 +1,7 @@
+{
+  "name": "ciso8601",
+  "version": "2.2.0",
+  "modules": [
+    "ciso8601"
+  ]
+}

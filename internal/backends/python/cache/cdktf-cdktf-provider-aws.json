@@ -1,0 +1,27 @@
+{
+  "name": "cdktf-cdktf-provider-aws",
+  "version": "9.0.26",
+  "requires_dist": [
+    "cdktf",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "cdktf",
+    "cdktf_cdktf_provider_aws",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

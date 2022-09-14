@@ -1,0 +1,15 @@
+{
+  "name": "azure-functions",
+  "version": "1.11.2",
+  "requires_dist": [
+    "flake8",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "requests",
+    "coverage"
+  ],
+  "modules": [
+    "tests"
+  ]
+}

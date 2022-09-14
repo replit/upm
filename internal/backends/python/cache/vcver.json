@@ -1,0 +1,12 @@
+{
+  "name": "vcver",
+  "version": "0.2.12",
+  "requires_dist": [
+    "packaging"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "vcver"
+  ]
+}

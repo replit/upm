@@ -1,0 +1,16 @@
+{
+  "name": "sqlalchemy-clickhouse",
+  "version": "0.1.5.post0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "greenlet",
+    "idna",
+    "iso8601",
+    "pytz",
+    "requests",
+    "sqlalchemy",
+    "sqlalchemy_clickhouse",
+    "urllib3"
+  ]
+}

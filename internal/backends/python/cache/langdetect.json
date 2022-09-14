@@ -1,0 +1,11 @@
+{
+  "name": "langdetect",
+  "version": "1.0.9",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "langdetect",
+    "six"
+  ]
+}

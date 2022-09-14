@@ -1,0 +1,15 @@
+{
+  "name": "onelogin",
+  "version": "2.0.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "defusedxml",
+    "idna",
+    "onelogin",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

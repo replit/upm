@@ -1,0 +1,16 @@
+{
+  "name": "LunarCalendar",
+  "version": "0.0.9",
+  "requires_dist": [
+    "python-dateutil",
+    "ephem",
+    "pytz"
+  ],
+  "modules": [
+    "dateutil",
+    "ephem",
+    "lunarcalendar",
+    "pytz",
+    "six"
+  ]
+}

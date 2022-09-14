@@ -1,0 +1,22 @@
+{
+  "name": "vsts-cd-manager",
+  "version": "1.0.2",
+  "modules": [
+    "aex_accounts",
+    "certifi",
+    "charset_normalizer",
+    "continuous_delivery",
+    "idna",
+    "isodate",
+    "mock",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3",
+    "vsts_cd_manager",
+    "vsts_info_provider"
+  ]
+}

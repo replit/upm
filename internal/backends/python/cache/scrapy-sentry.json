@@ -1,0 +1,5 @@
+{
+  "name": "scrapy-sentry",
+  "version": "0.9.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/scrapy-sentry/bin/python3', '-m', 'pip', 'install', 'scrapy-sentry']' returned non-zero exit status 1.\"}"
+}

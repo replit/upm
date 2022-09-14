@@ -1,0 +1,15 @@
+{
+  "name": "braintree",
+  "version": "4.16.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "braintree",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

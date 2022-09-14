@@ -1,0 +1,20 @@
+{
+  "name": "geocoder",
+  "version": "1.38.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "decorator",
+    "future",
+    "geocoder",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "ratelim",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

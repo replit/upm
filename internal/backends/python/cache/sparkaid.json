@@ -1,0 +1,14 @@
+{
+  "name": "sparkaid",
+  "version": "1.0.0",
+  "requires_dist": [
+    "pyspark",
+    "pip-tools",
+    "pytest"
+  ],
+  "modules": [
+    "py4j",
+    "pyspark",
+    "sparkaid"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "mrcfile",
+  "version": "1.4.2",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "mrcfile",
+    "numpy"
+  ]
+}

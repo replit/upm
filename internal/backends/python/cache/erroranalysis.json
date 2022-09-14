@@ -1,0 +1,32 @@
+{
+  "name": "erroranalysis",
+  "version": "0.3.10",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "lightgbm",
+    "raiutils"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "erroranalysis",
+    "idna",
+    "joblib",
+    "lightgbm",
+    "numpy",
+    "pandas",
+    "pytz",
+    "raiutils",
+    "requests",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "urllib3",
+    "wheel"
+  ]
+}

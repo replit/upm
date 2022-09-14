@@ -1,0 +1,7 @@
+{
+  "name": "django-dotenv",
+  "version": "1.4.2",
+  "modules": [
+    "dotenv"
+  ]
+}

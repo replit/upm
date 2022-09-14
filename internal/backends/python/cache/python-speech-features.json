@@ -1,0 +1,7 @@
+{
+  "name": "python_speech_features",
+  "version": "0.6",
+  "modules": [
+    "python_speech_features"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "gevent-websocket",
+  "version": "0.10.1",
+  "requires_dist": [
+    "gevent"
+  ],
+  "modules": [
+    "gevent",
+    "geventwebsocket",
+    "greenlet"
+  ]
+}

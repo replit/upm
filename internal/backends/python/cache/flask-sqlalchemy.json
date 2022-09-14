@@ -1,0 +1,21 @@
+{
+  "name": "Flask-SQLAlchemy",
+  "version": "2.5.1",
+  "requires_dist": [
+    "Flask",
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_sqlalchemy",
+    "greenlet",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "sqlalchemy",
+    "werkzeug",
+    "zipp"
+  ]
+}

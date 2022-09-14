@@ -1,0 +1,7 @@
+{
+  "name": "django-object-actions",
+  "version": "4.0.0",
+  "modules": [
+    "django_object_actions"
+  ]
+}

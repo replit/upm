@@ -1,0 +1,20 @@
+{
+  "name": "sqlacodegen",
+  "version": "2.3.0",
+  "requires_dist": [
+    "SQLAlchemy",
+    "inflect",
+    "pytest",
+    "pytest-cov",
+    "psycopg2-binary",
+    "mysql-connector-python"
+  ],
+  "modules": [
+    "greenlet",
+    "inflect",
+    "pydantic",
+    "sqlacodegen",
+    "sqlalchemy",
+    "typing_extensions"
+  ]
+}

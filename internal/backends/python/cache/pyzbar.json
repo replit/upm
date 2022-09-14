@@ -1,0 +1,12 @@
+{
+  "name": "pyzbar",
+  "version": "0.1.9",
+  "requires_dist": [
+    "enum34",
+    "pathlib",
+    "Pillow"
+  ],
+  "modules": [
+    "pyzbar"
+  ]
+}

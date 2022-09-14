@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-wafv2",
+  "version": "1.24.45",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_wafv2",
+    "typing_extensions"
+  ]
+}

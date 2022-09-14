@@ -1,0 +1,13 @@
+{
+  "name": "asyncio-mqtt",
+  "version": "0.12.1",
+  "requires_dist": [
+    "paho-mqtt",
+    "async-generator",
+    "typing-extensions"
+  ],
+  "modules": [
+    "asyncio_mqtt",
+    "paho"
+  ]
+}

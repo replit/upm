@@ -1,0 +1,13 @@
+{
+  "name": "aliyun-python-sdk-ocs",
+  "version": "0.0.4",
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkocs",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

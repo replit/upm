@@ -1,0 +1,12 @@
+{
+  "name": "fasttext-langdetect",
+  "version": "1.0.3",
+  "modules": [
+    "fasttext",
+    "fasttext_pybind",
+    "ftlangdetect",
+    "numpy",
+    "pybind11",
+    "tests"
+  ]
+}

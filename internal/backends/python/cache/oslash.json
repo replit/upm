@@ -1,0 +1,11 @@
+{
+  "name": "OSlash",
+  "version": "0.6.3",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "oslash",
+    "typing_extensions"
+  ]
+}

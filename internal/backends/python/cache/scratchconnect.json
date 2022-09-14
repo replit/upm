@@ -1,0 +1,13 @@
+{
+  "name": "scratchconnect",
+  "version": "3.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "scratchconnect",
+    "urllib3",
+    "websocket"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "aws-cdk.aws-cloud9",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-codecommit",
+    "aws-cdk.aws-ec2",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "apispec-webframeworks",
+  "version": "0.5.2",
+  "requires_dist": [
+    "apispec",
+    "pytest",
+    "mock",
+    "Flask",
+    "tornado",
+    "bottle",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "tox",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "pytest",
+    "mock",
+    "Flask",
+    "tornado",
+    "bottle"
+  ],
+  "modules": [
+    "_yaml",
+    "apispec",
+    "apispec_webframeworks",
+    "yaml"
+  ]
+}

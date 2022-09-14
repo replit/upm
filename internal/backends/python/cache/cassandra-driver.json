@@ -1,0 +1,15 @@
+{
+  "name": "cassandra-driver",
+  "version": "3.25.0",
+  "requires_dist": [
+    "six",
+    "geomet",
+    "gremlinpython"
+  ],
+  "modules": [
+    "cassandra",
+    "click",
+    "geomet",
+    "six"
+  ]
+}

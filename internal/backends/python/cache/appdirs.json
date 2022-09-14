@@ -1,0 +1,7 @@
+{
+  "name": "appdirs",
+  "version": "1.4.4",
+  "modules": [
+    "appdirs"
+  ]
+}

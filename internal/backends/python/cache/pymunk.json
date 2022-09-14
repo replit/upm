@@ -1,0 +1,19 @@
+{
+  "name": "pymunk",
+  "version": "6.2.1",
+  "requires_dist": [
+    "cffi",
+    "pyglet",
+    "pygame",
+    "sphinx",
+    "aafigure",
+    "wheel",
+    "matplotlib"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "pymunk"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "fuzzysearch",
+  "version": "0.7.3",
+  "requires_dist": [
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "fuzzysearch"
+  ]
+}

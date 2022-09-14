@@ -1,0 +1,9 @@
+{
+  "name": "cql",
+  "version": "1.4.0",
+  "modules": [
+    "cql",
+    "six",
+    "thrift"
+  ]
+}

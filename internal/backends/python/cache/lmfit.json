@@ -1,0 +1,15 @@
+{
+  "name": "lmfit",
+  "version": "1.0.3",
+  "modules": [
+    "asteval",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "lmfit",
+    "numpy",
+    "past",
+    "scipy",
+    "uncertainties"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sparse-dot-topn",
+  "version": "0.3.3",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "scipy",
+    "sparse_dot_topn"
+  ]
+}

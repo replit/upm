@@ -1,0 +1,14 @@
+{
+  "name": "pproxy",
+  "version": "2.7.8",
+  "requires_dist": [
+    "pycryptodome",
+    "uvloop",
+    "python-daemon",
+    "aioquic",
+    "asyncssh"
+  ],
+  "modules": [
+    "pproxy"
+  ]
+}

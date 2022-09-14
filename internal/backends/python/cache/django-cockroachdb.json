@@ -1,0 +1,8 @@
+{
+  "name": "django-cockroachdb",
+  "version": "4.1",
+  "modules": [
+    "django_cockroachdb",
+    "django_cockroachdb_gis"
+  ]
+}

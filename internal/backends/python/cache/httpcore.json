@@ -1,0 +1,20 @@
+{
+  "name": "httpcore",
+  "version": "0.15.0",
+  "requires_dist": [
+    "h11",
+    "sniffio",
+    "anyio",
+    "certifi",
+    "h2",
+    "socksio"
+  ],
+  "modules": [
+    "anyio",
+    "certifi",
+    "h11",
+    "httpcore",
+    "idna",
+    "sniffio"
+  ]
+}

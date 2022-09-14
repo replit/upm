@@ -1,0 +1,13 @@
+{
+  "name": "drf-compound-fields",
+  "version": "2.0.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "drf_compound_fields",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

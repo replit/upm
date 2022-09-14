@@ -1,0 +1,14 @@
+{
+  "name": "labmaze",
+  "version": "1.0.5",
+  "requires_dist": [
+    "absl-py",
+    "numpy",
+    "setuptools"
+  ],
+  "modules": [
+    "absl",
+    "labmaze",
+    "numpy"
+  ]
+}

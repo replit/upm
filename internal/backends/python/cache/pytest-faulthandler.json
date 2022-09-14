@@ -1,0 +1,19 @@
+{
+  "name": "pytest-faulthandler",
+  "version": "2.0.1",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "tomli"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "django-pickling",
+  "version": "1.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_pickling",
+    "sqlparse"
+  ]
+}

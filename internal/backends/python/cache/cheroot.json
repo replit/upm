@@ -1,0 +1,23 @@
+{
+  "name": "cheroot",
+  "version": "8.6.0",
+  "requires_dist": [
+    "six",
+    "jaraco.functools",
+    "backports.functools-lru-cache",
+    "selectors2",
+    "more-itertools",
+    "more-itertools",
+    "sphinx",
+    "jaraco.packaging",
+    "sphinx-tabs",
+    "furo",
+    "python-dateutil",
+    "sphinxcontrib-apidoc"
+  ],
+  "modules": [
+    "cheroot",
+    "more_itertools",
+    "six"
+  ]
+}

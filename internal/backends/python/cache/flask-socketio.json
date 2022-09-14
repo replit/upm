@@ -1,0 +1,22 @@
+{
+  "name": "Flask-SocketIO",
+  "version": "5.3.1",
+  "requires_dist": [
+    "Flask",
+    "python-socketio"
+  ],
+  "modules": [
+    "bidict",
+    "click",
+    "engineio",
+    "flask",
+    "flask_socketio",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "socketio",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "lightrun",
+  "version": "1.7.1",
+  "requires_dist": [
+    "httplib2",
+    "cryptography",
+    "psutil",
+    "six",
+    "pyyaml"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "cffi",
+    "cryptography",
+    "httplib2",
+    "lightrun",
+    "psutil",
+    "pycparser",
+    "pyparsing",
+    "pytransform",
+    "six",
+    "yaml"
+  ]
+}

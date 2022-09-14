@@ -1,0 +1,7 @@
+{
+  "name": "pygdbmi",
+  "version": "0.10.0.2",
+  "modules": [
+    "pygdbmi"
+  ]
+}

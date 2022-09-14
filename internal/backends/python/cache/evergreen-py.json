@@ -1,0 +1,30 @@
+{
+  "name": "evergreen.py",
+  "version": "3.5.0",
+  "requires_dist": [
+    "Click",
+    "python-dateutil",
+    "PyYAML",
+    "requests",
+    "structlog",
+    "tenacity",
+    "pydantic"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "dateutil",
+    "evergreen",
+    "idna",
+    "pydantic",
+    "requests",
+    "six",
+    "structlog",
+    "tenacity",
+    "typing_extensions",
+    "urllib3",
+    "yaml"
+  ]
+}

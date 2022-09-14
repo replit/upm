@@ -1,0 +1,32 @@
+{
+  "name": "discord-interactions.py",
+  "version": "0.0.8",
+  "requires_dist": [
+    "flask",
+    "pynacl",
+    "requests"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "discord_command",
+    "discord_flask",
+    "discord_interaction",
+    "discord_interactions",
+    "flask",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "nacl",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

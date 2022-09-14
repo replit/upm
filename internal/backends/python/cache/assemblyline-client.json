@@ -1,0 +1,33 @@
+{
+  "name": "assemblyline-client",
+  "version": "4.4.1",
+  "requires_dist": [
+    "pycryptodome",
+    "requests",
+    "requests",
+    "python-baseconv",
+    "python-socketio",
+    "socketio-client",
+    "pytest",
+    "pytest-cov",
+    "cart",
+    "assemblyline",
+    "passlib"
+  ],
+  "modules": [
+    "Crypto",
+    "assemblyline_client",
+    "baseconv",
+    "bidict",
+    "certifi",
+    "charset_normalizer",
+    "engineio",
+    "idna",
+    "requests",
+    "six",
+    "socketIO_client",
+    "socketio",
+    "urllib3",
+    "websocket"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "fancycompleter",
+  "version": "0.9.1",
+  "requires_dist": [
+    "pyrepl",
+    "pyreadline"
+  ],
+  "modules": [
+    "fancycompleter",
+    "pyrepl"
+  ]
+}

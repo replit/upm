@@ -1,0 +1,28 @@
+{
+  "name": "dataclasses-json",
+  "version": "0.5.7",
+  "requires_dist": [
+    "marshmallow",
+    "marshmallow-enum",
+    "typing-inspect",
+    "dataclasses",
+    "pytest",
+    "ipython",
+    "mypy",
+    "hypothesis",
+    "portray",
+    "flake8",
+    "simplejson",
+    "types-dataclasses"
+  ],
+  "modules": [
+    "dataclasses_json",
+    "marshmallow",
+    "marshmallow_enum",
+    "mypy_extensions",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "typing_inspect"
+  ]
+}

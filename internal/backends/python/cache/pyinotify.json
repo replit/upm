@@ -1,0 +1,7 @@
+{
+  "name": "pyinotify",
+  "version": "0.9.6",
+  "modules": [
+    "pyinotify"
+  ]
+}

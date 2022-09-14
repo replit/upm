@@ -1,0 +1,40 @@
+{
+  "name": "mlpiper",
+  "version": "2.5.1",
+  "requires_dist": [
+    "termcolor",
+    "flask",
+    "flask-cors",
+    "psutil",
+    "future",
+    "py4j",
+    "pyspark",
+    "sagemaker",
+    "pytz",
+    "numpy",
+    "scipy",
+    "uwsgi",
+    "pypsi"
+  ],
+  "modules": [
+    "bin",
+    "click",
+    "flask",
+    "flask_cors",
+    "future",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "libfuturize",
+    "libpasteurize",
+    "markupsafe",
+    "mlpiper",
+    "past",
+    "psutil",
+    "py4j",
+    "six",
+    "termcolor",
+    "werkzeug",
+    "zipp"
+  ]
+}

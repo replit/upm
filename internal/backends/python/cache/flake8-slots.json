@@ -1,0 +1,16 @@
+{
+  "name": "flake8-slots",
+  "version": "0.1.5",
+  "requires_dist": [
+    "flake8",
+    "flake8-helper"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_helper",
+    "flake8_slots",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

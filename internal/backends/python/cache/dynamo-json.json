@@ -1,0 +1,8 @@
+{
+  "name": "dynamo-json",
+  "version": "1.2.0",
+  "modules": [
+    "cli",
+    "dynamo_json"
+  ]
+}

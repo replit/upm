@@ -1,0 +1,7 @@
+{
+  "name": "zabbix-api",
+  "version": "0.5.4",
+  "modules": [
+    "zabbix_api"
+  ]
+}

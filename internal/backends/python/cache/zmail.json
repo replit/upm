@@ -1,0 +1,8 @@
+{
+  "name": "zmail",
+  "version": "0.2.8",
+  "modules": [
+    "tests",
+    "zmail"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "miniKanren",
+  "version": "1.0.3",
+  "modules": [
+    "cons",
+    "etuples",
+    "kanren",
+    "multipledispatch",
+    "six",
+    "tlz",
+    "toolz",
+    "unification"
+  ]
+}

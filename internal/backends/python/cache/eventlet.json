@@ -1,0 +1,16 @@
+{
+  "name": "eventlet",
+  "version": "0.33.1",
+  "requires_dist": [
+    "dnspython",
+    "greenlet",
+    "six",
+    "monotonic"
+  ],
+  "modules": [
+    "dns",
+    "eventlet",
+    "greenlet",
+    "six"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "multivolumefile",
+  "version": "0.2.3",
+  "requires_dist": [
+    "check-manifest",
+    "flake8",
+    "flake8-black",
+    "readme-renderer",
+    "pygments",
+    "isort",
+    "twine",
+    "pytest",
+    "pytest-cov",
+    "pyannotate",
+    "coverage",
+    "coveralls",
+    "hypothesis",
+    "mypy",
+    "mypy-extensions"
+  ],
+  "modules": [
+    "multivolumefile"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "tomli",
+  "version": "2.0.1",
+  "modules": [
+    "tomli"
+  ]
+}

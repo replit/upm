@@ -1,0 +1,5 @@
+{
+  "name": "rediscluster",
+  "version": "0.5.3",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/rediscluster/bin/python3', '-m', 'pip', 'install', 'rediscluster']' returned non-zero exit status 1.\"}"
+}

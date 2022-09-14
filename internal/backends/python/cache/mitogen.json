@@ -1,0 +1,8 @@
+{
+  "name": "mitogen",
+  "version": "0.3.3",
+  "modules": [
+    "ansible_mitogen",
+    "mitogen"
+  ]
+}

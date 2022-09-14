@@ -1,0 +1,11 @@
+{
+  "name": "docstring-inheritance",
+  "version": "1.0.0",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "docstring_inheritance"
+  ]
+}

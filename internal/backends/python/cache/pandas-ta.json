@@ -1,0 +1,12 @@
+{
+  "name": "pandas-ta",
+  "version": "0.3.14b",
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pandas_ta",
+    "pytz",
+    "six"
+  ]
+}

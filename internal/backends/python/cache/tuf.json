@@ -1,0 +1,17 @@
+{
+  "name": "tuf",
+  "version": "2.0.0",
+  "requires_dist": [
+    "requests",
+    "securesystemslib"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "securesystemslib",
+    "tuf",
+    "urllib3"
+  ]
+}

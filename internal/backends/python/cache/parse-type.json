@@ -1,0 +1,23 @@
+{
+  "name": "parse-type",
+  "version": "0.6.0",
+  "requires_dist": [
+    "six",
+    "ordereddict",
+    "enum34",
+    "parse",
+    "parse",
+    "coverage",
+    "pytest-html",
+    "pytest-cov",
+    "tox",
+    "pytest",
+    "pytest",
+    "sphinx"
+  ],
+  "modules": [
+    "parse",
+    "parse_type",
+    "six"
+  ]
+}

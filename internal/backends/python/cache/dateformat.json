@@ -1,0 +1,8 @@
+{
+  "name": "dateformat",
+  "version": "0.9.7",
+  "modules": [
+    "dateformat",
+    "pytz"
+  ]
+}

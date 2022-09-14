@@ -1,0 +1,7 @@
+{
+  "name": "py-radix",
+  "version": "0.10.0",
+  "modules": [
+    "radix"
+  ]
+}

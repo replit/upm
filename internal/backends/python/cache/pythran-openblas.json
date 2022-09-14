@@ -1,0 +1,7 @@
+{
+  "name": "pythran-openblas",
+  "version": "0.3.6",
+  "modules": [
+    "pythran_openblas"
+  ]
+}

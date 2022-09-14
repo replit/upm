@@ -1,0 +1,11 @@
+{
+  "name": "proximitypyhash",
+  "version": "0.2.1",
+  "modules": [
+    "args",
+    "clint",
+    "georaptor",
+    "proximitypyhash",
+    "pygeohash"
+  ]
+}

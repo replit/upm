@@ -1,0 +1,11 @@
+{
+  "name": "giphy_client",
+  "version": "1.0.0",
+  "modules": [
+    "certifi",
+    "dateutil",
+    "giphy_client",
+    "six",
+    "urllib3"
+  ]
+}

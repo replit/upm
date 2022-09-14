@@ -1,0 +1,17 @@
+{
+  "name": "django-recurrence",
+  "version": "1.11.1",
+  "requires_dist": [
+    "django",
+    "python-dateutil"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "dateutil",
+    "django",
+    "recurrence",
+    "six",
+    "sqlparse"
+  ]
+}

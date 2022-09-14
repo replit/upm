@@ -1,0 +1,14 @@
+{
+  "name": "wikipedia",
+  "version": "1.4.0",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "soupsieve",
+    "urllib3",
+    "wikipedia"
+  ]
+}

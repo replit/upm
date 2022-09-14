@@ -1,0 +1,7 @@
+{
+  "name": "datedelta",
+  "version": "1.4",
+  "modules": [
+    "datedelta"
+  ]
+}

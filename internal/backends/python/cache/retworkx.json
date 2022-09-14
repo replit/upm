@@ -1,0 +1,15 @@
+{
+  "name": "retworkx",
+  "version": "0.11.0",
+  "requires_dist": [
+    "numpy",
+    "matplotlib",
+    "pillow",
+    "pillow",
+    "matplotlib"
+  ],
+  "modules": [
+    "numpy",
+    "retworkx"
+  ]
+}

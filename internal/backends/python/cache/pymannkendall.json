@@ -1,0 +1,13 @@
+{
+  "name": "pymannkendall",
+  "version": "1.4.2",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "pymannkendall",
+    "scipy"
+  ]
+}

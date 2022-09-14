@@ -1,0 +1,15 @@
+{
+  "name": "truecase",
+  "version": "0.0.14",
+  "requires_dist": [
+    "nltk"
+  ],
+  "modules": [
+    "click",
+    "joblib",
+    "nltk",
+    "regex",
+    "tqdm",
+    "truecase"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "datasketch",
+  "version": "1.5.8",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "SetSimilaritySearch",
+    "matplotlib",
+    "nltk",
+    "pandas",
+    "pyfarmhash",
+    "pyhash",
+    "scikit-learn",
+    "scipy",
+    "cassandra-driver",
+    "aiounittest",
+    "motor",
+    "redis",
+    "cassandra-driver",
+    "coverage",
+    "mock",
+    "mockredispy",
+    "nose-exclude",
+    "nose",
+    "pymongo",
+    "redis"
+  ],
+  "modules": [
+    "datasketch",
+    "numpy",
+    "scipy"
+  ]
+}

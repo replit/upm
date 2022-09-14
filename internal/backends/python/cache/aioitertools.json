@@ -1,0 +1,11 @@
+{
+  "name": "aioitertools",
+  "version": "0.10.0",
+  "requires_dist": [
+    "typing_extensions"
+  ],
+  "modules": [
+    "aioitertools",
+    "typing_extensions"
+  ]
+}

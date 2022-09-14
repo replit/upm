@@ -1,0 +1,11 @@
+{
+  "name": "geohashlite",
+  "version": "0.3.2",
+  "requires_dist": [
+    "shapely"
+  ],
+  "modules": [
+    "geohashlite",
+    "shapely"
+  ]
+}

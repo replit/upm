@@ -1,0 +1,8 @@
+{
+  "name": "s3io",
+  "version": "0.1.1",
+  "modules": [
+    "boto",
+    "s3io"
+  ]
+}

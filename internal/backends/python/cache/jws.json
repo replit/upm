@@ -1,0 +1,7 @@
+{
+  "name": "jws",
+  "version": "0.1.3",
+  "modules": [
+    "jws"
+  ]
+}

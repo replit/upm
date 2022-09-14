@@ -1,0 +1,22 @@
+{
+  "name": "sqlalchemy-migrate",
+  "version": "0.13.0",
+  "requires_dist": [
+    "pbr",
+    "SQLAlchemy",
+    "decorator",
+    "six",
+    "sqlparse",
+    "Tempita"
+  ],
+  "modules": [
+    "decorator",
+    "greenlet",
+    "migrate",
+    "pbr",
+    "six",
+    "sqlalchemy",
+    "sqlparse",
+    "tempita"
+  ]
+}

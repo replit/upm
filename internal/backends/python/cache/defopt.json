@@ -1,0 +1,12 @@
+{
+  "name": "defopt",
+  "version": "6.4.0",
+  "modules": [
+    "defopt",
+    "docutils",
+    "pkgutil_resolve_name",
+    "pockets",
+    "six",
+    "typing_extensions"
+  ]
+}

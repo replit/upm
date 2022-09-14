@@ -1,0 +1,33 @@
+{
+  "name": "nltk",
+  "version": "3.7",
+  "requires_dist": [
+    "click",
+    "joblib",
+    "regex",
+    "tqdm",
+    "numpy",
+    "pyparsing",
+    "scipy",
+    "matplotlib",
+    "twython",
+    "requests",
+    "scikit-learn",
+    "python-crfsuite",
+    "requests",
+    "numpy",
+    "python-crfsuite",
+    "scikit-learn",
+    "scipy",
+    "matplotlib",
+    "pyparsing",
+    "twython"
+  ],
+  "modules": [
+    "click",
+    "joblib",
+    "nltk",
+    "regex",
+    "tqdm"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "sphinx-reredirects",
+  "version": "0.1.1",
+  "requires_dist": [
+    "sphinx"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_reredirects",
+    "urllib3",
+    "zipp"
+  ]
+}

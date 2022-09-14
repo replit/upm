@@ -1,0 +1,23 @@
+{
+  "name": "PyJWT",
+  "version": "2.4.0",
+  "requires_dist": [
+    "cryptography",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "zope.interface",
+    "cryptography",
+    "pytest",
+    "coverage",
+    "mypy",
+    "pre-commit",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "zope.interface",
+    "pytest",
+    "coverage"
+  ],
+  "modules": [
+    "jwt"
+  ]
+}

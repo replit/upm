@@ -1,0 +1,19 @@
+{
+  "name": "django-sendgrid-v5",
+  "version": "1.2.1",
+  "requires_dist": [
+    "django",
+    "sendgrid",
+    "python-http-client"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "ellipticcurve",
+    "python_http_client",
+    "sendgrid",
+    "sendgrid_backend",
+    "sqlparse"
+  ]
+}

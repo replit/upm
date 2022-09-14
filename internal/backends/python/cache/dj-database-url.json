@@ -1,0 +1,11 @@
+{
+  "name": "dj-database-url",
+  "version": "1.0.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "dj_database_url",
+    "django",
+    "sqlparse"
+  ]
+}

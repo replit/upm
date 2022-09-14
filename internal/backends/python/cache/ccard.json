@@ -1,0 +1,7 @@
+{
+  "name": "ccard",
+  "version": "0.1.9",
+  "modules": [
+    "ccard"
+  ]
+}

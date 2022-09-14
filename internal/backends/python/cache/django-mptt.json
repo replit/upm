@@ -1,0 +1,17 @@
+{
+  "name": "django-mptt",
+  "version": "0.13.4",
+  "requires_dist": [
+    "django-js-asset",
+    "coverage",
+    "mock-django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "js_asset",
+    "mptt",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "s4cmd",
+  "version": "2.1.0",
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "pytz",
+    "s3transfer",
+    "s4cmd",
+    "six",
+    "urllib3"
+  ]
+}

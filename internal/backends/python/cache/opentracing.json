@@ -1,0 +1,7 @@
+{
+  "name": "opentracing",
+  "version": "2.4.0",
+  "modules": [
+    "opentracing"
+  ]
+}

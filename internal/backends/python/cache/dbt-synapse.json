@@ -1,0 +1,8 @@
+{
+  "name": "dbt-synapse",
+  "version": "1.1.0",
+  "requires_dist": [
+    "dbt-sqlserver"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dbt-synapse/bin/python3', '-m', 'pip', 'install', 'dbt-synapse']' returned non-zero exit status 1.\"}"
+}

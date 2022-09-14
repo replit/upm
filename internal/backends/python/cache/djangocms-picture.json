@@ -1,0 +1,33 @@
+{
+  "name": "djangocms-picture",
+  "version": "4.0.0",
+  "requires_dist": [
+    "django-cms",
+    "django-filer",
+    "djangocms-attributes-field",
+    "easy-thumbnails"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "classytags",
+    "cms",
+    "django",
+    "djangocms_admin_style",
+    "djangocms_attributes_field",
+    "djangocms_picture",
+    "easy_thumbnails",
+    "filer",
+    "formtools",
+    "js_asset",
+    "menus",
+    "mptt",
+    "polymorphic",
+    "sekizai",
+    "sqlparse",
+    "tests",
+    "treebeard",
+    "unidecode"
+  ]
+}

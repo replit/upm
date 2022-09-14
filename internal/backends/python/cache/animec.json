@@ -1,0 +1,14 @@
+{
+  "name": "animec",
+  "version": "0.4.2",
+  "requires_dist": [
+    "bs4",
+    "urllib3"
+  ],
+  "modules": [
+    "animec",
+    "bs4",
+    "soupsieve",
+    "urllib3"
+  ]
+}

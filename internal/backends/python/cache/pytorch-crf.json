@@ -1,0 +1,8 @@
+{
+  "name": "pytorch-crf",
+  "version": "0.7.2",
+  "modules": [
+    "crf",
+    "torchcrf"
+  ]
+}

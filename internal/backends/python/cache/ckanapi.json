@@ -1,0 +1,16 @@
+{
+  "name": "ckanapi",
+  "version": "4.7",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "ckanapi",
+    "docopt",
+    "idna",
+    "requests",
+    "six",
+    "slugify",
+    "text_unidecode",
+    "urllib3"
+  ]
+}

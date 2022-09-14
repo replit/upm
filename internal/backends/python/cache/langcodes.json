@@ -1,0 +1,10 @@
+{
+  "name": "langcodes",
+  "version": "3.3.0",
+  "requires_dist": [
+    "language-data"
+  ],
+  "modules": [
+    "langcodes"
+  ]
+}

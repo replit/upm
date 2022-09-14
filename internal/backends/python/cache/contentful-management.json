@@ -1,0 +1,14 @@
+{
+  "name": "contentful_management",
+  "version": "2.11.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "contentful_management",
+    "dateutil",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

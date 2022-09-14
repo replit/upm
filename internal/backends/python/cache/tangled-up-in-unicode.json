@@ -1,0 +1,7 @@
+{
+  "name": "tangled-up-in-unicode",
+  "version": "0.2.0",
+  "modules": [
+    "tangled_up_in_unicode"
+  ]
+}

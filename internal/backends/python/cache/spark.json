@@ -1,0 +1,7 @@
+{
+  "name": "spark",
+  "version": "0.2.1",
+  "modules": [
+    "spark"
+  ]
+}

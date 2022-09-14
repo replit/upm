@@ -1,0 +1,15 @@
+{
+  "name": "django-pgtrigger",
+  "version": "4.5.2",
+  "requires_dist": [
+    "django",
+    "importlib_metadata"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pgtrigger",
+    "sqlparse"
+  ]
+}

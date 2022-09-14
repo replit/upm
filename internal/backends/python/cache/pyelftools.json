@@ -1,0 +1,7 @@
+{
+  "name": "pyelftools",
+  "version": "0.29",
+  "modules": [
+    "elftools"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "rest-framework-generic-relations",
+  "version": "2.1.0",
+  "requires_dist": [
+    "djangorestframework"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "generic_relations",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

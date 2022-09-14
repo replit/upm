@@ -1,0 +1,20 @@
+{
+  "name": "config2",
+  "version": "0.3.2",
+  "requires_dist": [
+    "setupextras",
+    "rootpath",
+    "attributedict",
+    "inspecta",
+    "mybad",
+    "deepmerge",
+    "pyyaml",
+    "six",
+    "colour-runner",
+    "deepdiff",
+    "tox",
+    "coverage",
+    "codecov"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/config2/bin/python3', '-m', 'pip', 'install', 'config2']' returned non-zero exit status 1.\"}"
+}

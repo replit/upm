@@ -1,0 +1,13 @@
+{
+  "name": "anytree",
+  "version": "2.8.0",
+  "requires_dist": [
+    "six",
+    "check-manifest",
+    "coverage"
+  ],
+  "modules": [
+    "anytree",
+    "six"
+  ]
+}

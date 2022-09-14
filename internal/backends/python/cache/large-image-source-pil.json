@@ -1,0 +1,18 @@
+{
+  "name": "large-image-source-pil",
+  "version": "1.16.2",
+  "requires_dist": [
+    "large-image",
+    "importlib-metadata",
+    "girder-large-image"
+  ],
+  "modules": [
+    "PIL",
+    "cachetools",
+    "large_image",
+    "large_image_source_pil",
+    "numpy",
+    "palettable",
+    "psutil"
+  ]
+}

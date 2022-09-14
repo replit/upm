@@ -1,0 +1,32 @@
+{
+  "name": "large-image-tasks",
+  "version": "1.16.2",
+  "requires_dist": [
+    "girder-worker-utils",
+    "importlib-metadata",
+    "large-image-converter",
+    "girder-worker",
+    "large-image-converter",
+    "girder-worker"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "diskcache",
+    "girder_client",
+    "girder_worker_utils",
+    "idna",
+    "jsonpickle",
+    "large_image_tasks",
+    "packaging",
+    "pyparsing",
+    "requests",
+    "requests_toolbelt",
+    "setuptools_scm",
+    "six",
+    "tomli",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "tcolorpy",
+  "version": "0.1.2",
+  "requires_dist": [
+    "pytest",
+    "pytest-md-report"
+  ],
+  "modules": [
+    "tcolorpy"
+  ]
+}

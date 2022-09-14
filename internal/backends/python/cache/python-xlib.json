@@ -1,0 +1,11 @@
+{
+  "name": "python-xlib",
+  "version": "0.31",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "Xlib",
+    "six"
+  ]
+}

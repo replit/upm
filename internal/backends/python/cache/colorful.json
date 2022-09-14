@@ -1,0 +1,10 @@
+{
+  "name": "colorful",
+  "version": "0.5.4",
+  "requires_dist": [
+    "colorama"
+  ],
+  "modules": [
+    "colorful"
+  ]
+}

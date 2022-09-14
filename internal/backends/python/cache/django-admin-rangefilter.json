@@ -1,0 +1,7 @@
+{
+  "name": "django-admin-rangefilter",
+  "version": "0.8.8",
+  "modules": [
+    "rangefilter"
+  ]
+}

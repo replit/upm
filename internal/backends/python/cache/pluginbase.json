@@ -1,0 +1,7 @@
+{
+  "name": "pluginbase",
+  "version": "1.0.1",
+  "modules": [
+    "pluginbase"
+  ]
+}

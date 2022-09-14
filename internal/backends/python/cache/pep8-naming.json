@@ -1,0 +1,14 @@
+{
+  "name": "pep8-naming",
+  "version": "0.13.2",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "mccabe",
+    "pep8ext_naming",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

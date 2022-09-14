@@ -1,0 +1,21 @@
+{
+  "name": "opentelemetry-exporter-otlp",
+  "version": "1.12.0",
+  "requires_dist": [
+    "opentelemetry-exporter-otlp-proto-grpc",
+    "opentelemetry-exporter-otlp-proto-http"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "grpc",
+    "idna",
+    "requests",
+    "six",
+    "typing_extensions",
+    "urllib3",
+    "wrapt"
+  ]
+}

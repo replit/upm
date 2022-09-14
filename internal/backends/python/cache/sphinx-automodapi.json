@@ -1,0 +1,34 @@
+{
+  "name": "sphinx-automodapi",
+  "version": "0.14.1",
+  "requires_dist": [
+    "sphinx",
+    "pytest",
+    "pytest-cov",
+    "cython",
+    "codecov",
+    "coverage"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_automodapi",
+    "urllib3",
+    "zipp"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "django-post-office",
+  "version": "3.6.1",
+  "requires_dist": [
+    "django",
+    "jsonfield",
+    "bleach",
+    "bleach",
+    "pytz",
+    "bleach",
+    "tox"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bleach",
+    "django",
+    "jsonfield",
+    "post_office",
+    "pytz",
+    "six",
+    "sqlparse",
+    "webencodings"
+  ]
+}

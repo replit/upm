@@ -1,0 +1,7 @@
+{
+  "name": "eradicate",
+  "version": "2.1.0",
+  "modules": [
+    "eradicate"
+  ]
+}

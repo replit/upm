@@ -1,0 +1,7 @@
+{
+  "name": "priority",
+  "version": "2.0.0",
+  "modules": [
+    "priority"
+  ]
+}

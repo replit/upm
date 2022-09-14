@@ -1,0 +1,10 @@
+{
+  "name": "fuzzyset",
+  "version": "0.0.19",
+  "modules": [
+    "Levenshtein",
+    "cfuzzyset",
+    "fuzzyset",
+    "texttable"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "adafruit-circuitpython-typing",
+  "version": "1.8.1",
+  "requires_dist": [
+    "typing-extensions",
+    "adafruit-circuitpython-busdevice",
+    "adafruit-circuitpython-requests"
+  ],
+  "modules": [
+    "Adafruit_PureIO",
+    "adafruit_blinka",
+    "adafruit_bus_device",
+    "adafruit_platformdetect",
+    "adafruit_requests",
+    "analogio",
+    "bitbangio",
+    "board",
+    "busio",
+    "circuitpython_typing",
+    "digitalio",
+    "keypad",
+    "microcontroller",
+    "micropython",
+    "neopixel_write",
+    "onewireio",
+    "pulseio",
+    "pwmio",
+    "pyftdi",
+    "rainbowio",
+    "serial",
+    "typing_extensions",
+    "usb",
+    "usb_hid"
+  ]
+}

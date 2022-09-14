@@ -1,0 +1,10 @@
+{
+  "name": "libusb-package",
+  "version": "1.0.26.0",
+  "requires_dist": [
+    "importlib-resources"
+  ],
+  "modules": [
+    "libusb_package"
+  ]
+}

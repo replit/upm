@@ -1,0 +1,15 @@
+{
+  "name": "django-two-factor-auth",
+  "version": "1.14.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_otp",
+    "formtools",
+    "phonenumber_field",
+    "qrcode",
+    "sqlparse",
+    "two_factor"
+  ]
+}

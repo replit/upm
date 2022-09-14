@@ -1,0 +1,11 @@
+{
+  "name": "pkginfo",
+  "version": "1.8.3",
+  "requires_dist": [
+    "nose",
+    "coverage"
+  ],
+  "modules": [
+    "pkginfo"
+  ]
+}

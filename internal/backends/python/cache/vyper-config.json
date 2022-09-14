@@ -1,0 +1,12 @@
+{
+  "name": "vyper-config",
+  "version": "1.1.1",
+  "modules": [
+    "_yaml",
+    "distconfig",
+    "toml",
+    "vyper",
+    "watchdog",
+    "yaml"
+  ]
+}

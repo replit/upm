@@ -1,0 +1,24 @@
+{
+  "name": "snapshottest",
+  "version": "0.6.0",
+  "requires_dist": [
+    "six",
+    "termcolor",
+    "fastdiff",
+    "nose",
+    "pytest",
+    "six",
+    "pytest",
+    "pytest-cov",
+    "nose",
+    "django"
+  ],
+  "modules": [
+    "fastdiff",
+    "six",
+    "snapshottest",
+    "termcolor",
+    "wasmer",
+    "wasmer_compiler_cranelift"
+  ]
+}

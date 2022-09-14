@@ -1,0 +1,16 @@
+{
+  "name": "djrill",
+  "version": "2.1.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "django",
+    "djrill",
+    "idna",
+    "requests",
+    "sqlparse",
+    "urllib3"
+  ]
+}

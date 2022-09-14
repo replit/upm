@@ -1,0 +1,15 @@
+{
+  "name": "csv-diff",
+  "version": "1.1",
+  "requires_dist": [
+    "click",
+    "dictdiffer",
+    "pytest"
+  ],
+  "modules": [
+    "click",
+    "csv_diff",
+    "dictdiffer",
+    "tests"
+  ]
+}

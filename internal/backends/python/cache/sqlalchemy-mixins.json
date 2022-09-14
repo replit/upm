@@ -1,0 +1,15 @@
+{
+  "name": "sqlalchemy-mixins",
+  "version": "1.5.3",
+  "requires_dist": [
+    "SQLAlchemy",
+    "six",
+    "typing"
+  ],
+  "modules": [
+    "greenlet",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_mixins"
+  ]
+}

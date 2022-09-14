@@ -1,0 +1,18 @@
+{
+  "name": "pysnc",
+  "version": "1.0.6",
+  "requires_dist": [
+    "requests",
+    "six",
+    "requests-oauthlib"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pysnc",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

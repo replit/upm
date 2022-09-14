@@ -1,0 +1,35 @@
+{
+  "name": "keyring",
+  "version": "23.9.1",
+  "requires_dist": [
+    "jaraco.classes",
+    "importlib-metadata",
+    "SecretStorage",
+    "jeepney",
+    "pywin32-ctypes",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "importlib_metadata",
+    "jeepney",
+    "keyring",
+    "more_itertools",
+    "pycparser",
+    "secretstorage",
+    "zipp"
+  ]
+}

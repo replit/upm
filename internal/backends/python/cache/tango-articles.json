@@ -1,0 +1,39 @@
+{
+  "name": "tango-articles",
+  "version": "0.13.0",
+  "requires_dist": [
+    "twitter",
+    "tango-shared-core",
+    "tango-voting",
+    "tango-photos",
+    "typogrify",
+    "jinja2"
+  ],
+  "modules": [
+    "PIL",
+    "articles",
+    "asgiref",
+    "backports",
+    "bleach",
+    "defusedxml",
+    "django",
+    "django_filters",
+    "docutils",
+    "easy_thumbnails",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "photos",
+    "six",
+    "smartypants",
+    "sqlparse",
+    "tango_shared",
+    "twitter",
+    "typogrify",
+    "untangle",
+    "voting",
+    "webencodings",
+    "zipp"
+  ]
+}

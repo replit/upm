@@ -1,0 +1,7 @@
+{
+  "name": "discord-buttons-plugin",
+  "version": "0.1.2",
+  "modules": [
+    "discord_buttons_plugin"
+  ]
+}

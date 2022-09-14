@@ -1,0 +1,7 @@
+{
+  "name": "neologdn",
+  "version": "0.5.1",
+  "modules": [
+    "neologdn"
+  ]
+}

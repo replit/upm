@@ -1,0 +1,7 @@
+{
+  "name": "xvfbwrapper",
+  "version": "0.2.9",
+  "modules": [
+    "xvfbwrapper"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "slack-sdk",
+  "version": "3.18.3",
+  "requires_dist": [
+    "aiodns",
+    "aiohttp",
+    "boto3",
+    "SQLAlchemy",
+    "websockets",
+    "websocket-client",
+    "pytest",
+    "pytest-asyncio",
+    "Flask-Sockets",
+    "Flask",
+    "Werkzeug",
+    "itsdangerous",
+    "Jinja2",
+    "pytest-cov",
+    "codecov",
+    "flake8",
+    "black",
+    "click",
+    "psutil",
+    "databases",
+    "boto3",
+    "moto"
+  ],
+  "modules": [
+    "slack",
+    "slack_sdk"
+  ]
+}

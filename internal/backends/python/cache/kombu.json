@@ -1,0 +1,32 @@
+{
+  "name": "kombu",
+  "version": "5.2.4",
+  "requires_dist": [
+    "amqp",
+    "vine",
+    "importlib-metadata",
+    "cached-property",
+    "azure-servicebus",
+    "azure-storage-queue",
+    "python-consul",
+    "librabbitmq",
+    "pymongo",
+    "msgpack",
+    "pyro4",
+    "qpid-python",
+    "qpid-tools",
+    "redis",
+    "softlayer-messaging",
+    "sqlalchemy",
+    "boto3",
+    "pycurl",
+    "urllib3",
+    "PyYAML",
+    "kazoo"
+  ],
+  "modules": [
+    "amqp",
+    "kombu",
+    "vine"
+  ]
+}

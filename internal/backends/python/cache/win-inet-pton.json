@@ -1,0 +1,7 @@
+{
+  "name": "win-inet-pton",
+  "version": "1.1.0",
+  "modules": [
+    "win_inet_pton"
+  ]
+}

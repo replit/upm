@@ -1,0 +1,7 @@
+{
+  "name": "backports.weakref",
+  "version": "1.0.post1",
+  "modules": [
+    "backports"
+  ]
+}

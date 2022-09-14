@@ -1,0 +1,15 @@
+{
+  "name": "django-guid",
+  "version": "3.3.0",
+  "requires_dist": [
+    "django",
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_guid",
+    "sqlparse"
+  ]
+}

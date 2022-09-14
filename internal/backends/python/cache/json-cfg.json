@@ -1,0 +1,11 @@
+{
+  "name": "json-cfg",
+  "version": "0.4.2",
+  "requires_dist": [
+    "kwonly-args"
+  ],
+  "modules": [
+    "jsoncfg",
+    "kwonly_args"
+  ]
+}

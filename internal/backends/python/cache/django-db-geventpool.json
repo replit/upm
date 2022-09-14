@@ -1,0 +1,17 @@
+{
+  "name": "django-db-geventpool",
+  "version": "4.0.1",
+  "requires_dist": [
+    "django",
+    "psycogreen"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_db_geventpool",
+    "psycogreen",
+    "sqlparse",
+    "tests"
+  ]
+}

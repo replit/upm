@@ -1,0 +1,29 @@
+{
+  "name": "redfish",
+  "version": "3.1.7",
+  "requires_dist": [
+    "jsonpath-rw",
+    "jsonpointer",
+    "requests",
+    "requests-toolbelt",
+    "requests-unixsocket",
+    "jsonpatch",
+    "jsonpatch"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "decorator",
+    "idna",
+    "jsonpatch",
+    "jsonpath_rw",
+    "jsonpointer",
+    "ply",
+    "redfish",
+    "requests",
+    "requests_toolbelt",
+    "requests_unixsocket",
+    "six",
+    "urllib3"
+  ]
+}

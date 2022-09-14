@@ -1,0 +1,11 @@
+{
+  "name": "backports.zoneinfo",
+  "version": "0.2.1",
+  "requires_dist": [
+    "importlib-resources",
+    "tzdata"
+  ],
+  "modules": [
+    "backports"
+  ]
+}

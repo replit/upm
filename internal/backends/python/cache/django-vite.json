@@ -1,0 +1,16 @@
+{
+  "name": "django-vite",
+  "version": "2.0.2",
+  "requires_dist": [
+    "Django",
+    "black",
+    "flake8"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_vite",
+    "sqlparse"
+  ]
+}

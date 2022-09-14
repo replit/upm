@@ -1,0 +1,13 @@
+{
+  "name": "janrain-python-api",
+  "version": "0.4.0",
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "emcee",
+  "version": "3.1.2",
+  "requires_dist": [
+    "numpy",
+    "h5py",
+    "scipy",
+    "pytest",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "emcee",
+    "numpy"
+  ]
+}

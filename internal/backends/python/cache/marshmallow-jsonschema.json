@@ -1,0 +1,15 @@
+{
+  "name": "marshmallow-jsonschema",
+  "version": "0.13.0",
+  "requires_dist": [
+    "marshmallow",
+    "marshmallow-enum",
+    "marshmallow-union"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_jsonschema",
+    "packaging",
+    "pyparsing"
+  ]
+}

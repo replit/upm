@@ -1,0 +1,22 @@
+{
+  "name": "aiormq",
+  "version": "6.4.2",
+  "requires_dist": [
+    "pamqp",
+    "yarl",
+    "aiomisc",
+    "coverage",
+    "coveralls",
+    "pylava",
+    "pytest",
+    "pytest-cov",
+    "tox"
+  ],
+  "modules": [
+    "aiormq",
+    "idna",
+    "multidict",
+    "pamqp",
+    "yarl"
+  ]
+}

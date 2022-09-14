@@ -1,0 +1,16 @@
+{
+  "name": "pyexcel-xls",
+  "version": "0.7.0",
+  "requires_dist": [
+    "pyexcel-io",
+    "xlrd",
+    "xlwt"
+  ],
+  "modules": [
+    "lml",
+    "pyexcel_io",
+    "pyexcel_xls",
+    "xlrd",
+    "xlwt"
+  ]
+}

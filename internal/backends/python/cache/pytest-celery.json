@@ -1,0 +1,23 @@
+{
+  "name": "pytest-celery",
+  "version": "0.0.0",
+  "requires_dist": [
+    "celery"
+  ],
+  "modules": [
+    "amqp",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "kombu",
+    "prompt_toolkit",
+    "pytest_celery",
+    "pytz",
+    "six",
+    "vine",
+    "wcwidth"
+  ]
+}

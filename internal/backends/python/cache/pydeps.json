@@ -1,0 +1,12 @@
+{
+  "name": "pydeps",
+  "version": "1.10.22",
+  "requires_dist": [
+    "stdlib-list",
+    "enum34"
+  ],
+  "modules": [
+    "pydeps",
+    "stdlib_list"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "kwonly-args",
+  "version": "1.0.10",
+  "modules": [
+    "kwonly_args"
+  ]
+}

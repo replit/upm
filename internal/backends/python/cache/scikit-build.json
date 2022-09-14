@@ -1,0 +1,40 @@
+{
+  "name": "scikit-build",
+  "version": "0.15.0",
+  "requires_dist": [
+    "distro",
+    "packaging",
+    "wheel",
+    "setuptools",
+    "setuptools",
+    "pygments",
+    "sphinx",
+    "sphinx-issues",
+    "sphinx-rtd-theme",
+    "sphinxcontrib-moderncmakedomain",
+    "build",
+    "codecov",
+    "coverage",
+    "cython",
+    "flake8",
+    "path.py",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-runner",
+    "pytest-virtualenv",
+    "requests",
+    "six",
+    "ubelt",
+    "virtualenv",
+    "xdoctest",
+    "pathlib2"
+  ],
+  "modules": [
+    "distro",
+    "packaging",
+    "pyparsing",
+    "skbuild",
+    "wheel"
+  ]
+}

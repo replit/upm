@@ -1,0 +1,7 @@
+{
+  "name": "munkres",
+  "version": "1.1.4",
+  "modules": [
+    "munkres"
+  ]
+}

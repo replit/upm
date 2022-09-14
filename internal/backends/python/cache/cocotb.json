@@ -1,0 +1,11 @@
+{
+  "name": "cocotb",
+  "version": "1.7.0",
+  "requires_dist": [
+    "cocotb-bus"
+  ],
+  "modules": [
+    "cocotb",
+    "pygpi"
+  ]
+}

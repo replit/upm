@@ -1,0 +1,7 @@
+{
+  "name": "timeago",
+  "version": "1.0.16",
+  "modules": [
+    "timeago"
+  ]
+}

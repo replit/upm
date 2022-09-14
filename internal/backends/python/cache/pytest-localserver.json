@@ -1,0 +1,13 @@
+{
+  "name": "pytest-localserver",
+  "version": "0.7.0",
+  "requires_dist": [
+    "werkzeug",
+    "aiosmtpd"
+  ],
+  "modules": [
+    "markupsafe",
+    "pytest_localserver",
+    "werkzeug"
+  ]
+}

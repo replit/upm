@@ -1,0 +1,26 @@
+{
+  "name": "fabric2",
+  "version": "2.7.1",
+  "requires_dist": [
+    "invoke",
+    "paramiko",
+    "pathlib2",
+    "mock",
+    "pytest",
+    "mock"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "fabric",
+    "fabric2",
+    "invoke",
+    "nacl",
+    "paramiko",
+    "pathlib2",
+    "pycparser",
+    "six"
+  ]
+}

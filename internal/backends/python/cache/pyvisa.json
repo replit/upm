@@ -1,0 +1,13 @@
+{
+  "name": "PyVISA",
+  "version": "1.12.0",
+  "requires_dist": [
+    "typing-extensions",
+    "dataclasses",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "pyvisa",
+    "typing_extensions"
+  ]
+}

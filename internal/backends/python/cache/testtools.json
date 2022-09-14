@@ -1,0 +1,17 @@
+{
+  "name": "testtools",
+  "version": "2.5.0",
+  "requires_dist": [
+    "pbr",
+    "extras",
+    "fixtures",
+    "testscenarios",
+    "testresources"
+  ],
+  "modules": [
+    "extras",
+    "fixtures",
+    "pbr",
+    "testtools"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "async-timeout",
+  "version": "4.0.2",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "async_timeout"
+  ]
+}

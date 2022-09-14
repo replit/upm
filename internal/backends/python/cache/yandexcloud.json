@@ -1,0 +1,29 @@
+{
+  "name": "yandexcloud",
+  "version": "0.181.0",
+  "requires_dist": [
+    "cryptography",
+    "grpcio",
+    "protobuf",
+    "googleapis-common-protos",
+    "pyjwt",
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "grpc",
+    "idna",
+    "jwt",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3",
+    "yandex",
+    "yandexcloud"
+  ]
+}

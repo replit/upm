@@ -1,0 +1,19 @@
+{
+  "name": "aigpy",
+  "version": "2022.7.8.1",
+  "requires_dist": [
+    "requests",
+    "colorama",
+    "mutagen"
+  ],
+  "modules": [
+    "aigpy",
+    "certifi",
+    "charset_normalizer",
+    "colorama",
+    "idna",
+    "mutagen",
+    "requests",
+    "urllib3"
+  ]
+}

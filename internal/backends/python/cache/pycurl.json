@@ -1,0 +1,5 @@
+{
+  "name": "pycurl",
+  "version": "7.45.1",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pycurl/bin/python3', '-m', 'pip', 'install', 'pycurl']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "sharepy",
+  "version": "2.0.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "sharepy",
+    "urllib3"
+  ]
+}

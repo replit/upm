@@ -1,0 +1,25 @@
+{
+  "name": "bio",
+  "version": "1.4.0",
+  "requires_dist": [
+    "biopython",
+    "requests",
+    "tqdm",
+    "mygene"
+  ],
+  "modules": [
+    "Bio",
+    "BioSQL",
+    "biorun",
+    "biothings_client",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mygene",
+    "numpy",
+    "requests",
+    "tests",
+    "tqdm",
+    "urllib3"
+  ]
+}

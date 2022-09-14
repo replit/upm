@@ -1,0 +1,12 @@
+{
+  "name": "chargebee",
+  "version": "2.18.0",
+  "modules": [
+    "certifi",
+    "chargebee",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

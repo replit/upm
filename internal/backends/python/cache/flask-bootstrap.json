@@ -1,0 +1,17 @@
+{
+  "name": "Flask-Bootstrap",
+  "version": "3.3.7.1",
+  "modules": [
+    "click",
+    "dominate",
+    "flask",
+    "flask_bootstrap",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "visitor",
+    "werkzeug",
+    "zipp"
+  ]
+}

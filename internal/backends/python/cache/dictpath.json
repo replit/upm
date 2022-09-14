@@ -1,0 +1,7 @@
+{
+  "name": "dictpath",
+  "version": "0.1.3",
+  "modules": [
+    "dictpath"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pypika-tortoise",
+  "version": "0.1.6",
+  "modules": [
+    "pypika"
+  ]
+}

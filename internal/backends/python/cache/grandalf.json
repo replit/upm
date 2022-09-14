@@ -1,0 +1,13 @@
+{
+  "name": "grandalf",
+  "version": "0.7",
+  "requires_dist": [
+    "pyparsing",
+    "numpy",
+    "ply"
+  ],
+  "modules": [
+    "grandalf",
+    "pyparsing"
+  ]
+}

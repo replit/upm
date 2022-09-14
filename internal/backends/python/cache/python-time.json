@@ -1,0 +1,10 @@
+{
+  "name": "python-time",
+  "version": "0.3.0",
+  "modules": [
+    "arrow",
+    "dateutil",
+    "pytime",
+    "six"
+  ]
+}

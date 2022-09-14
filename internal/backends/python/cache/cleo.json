@@ -1,0 +1,14 @@
+{
+  "name": "cleo",
+  "version": "0.8.1",
+  "requires_dist": [
+    "clikit"
+  ],
+  "modules": [
+    "cleo",
+    "clikit",
+    "crashtest",
+    "pastel",
+    "pylev"
+  ]
+}

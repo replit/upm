@@ -1,0 +1,12 @@
+{
+  "name": "grpc-stubs",
+  "version": "1.24.11",
+  "requires_dist": [
+    "grpcio",
+    "typing-extensions"
+  ],
+  "modules": [
+    "grpc",
+    "six"
+  ]
+}

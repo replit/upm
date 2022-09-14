@@ -1,0 +1,15 @@
+{
+  "name": "pathvalidate",
+  "version": "2.5.2",
+  "requires_dist": [
+    "allpairspy",
+    "click",
+    "faker",
+    "pytest",
+    "pytest-discord",
+    "pytest-md-report"
+  ],
+  "modules": [
+    "pathvalidate"
+  ]
+}

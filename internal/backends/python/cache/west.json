@@ -1,0 +1,24 @@
+{
+  "name": "west",
+  "version": "0.14.0",
+  "requires_dist": [
+    "colorama",
+    "PyYAML",
+    "pykwalify",
+    "setuptools",
+    "packaging"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "_yaml",
+    "colorama",
+    "dateutil",
+    "docopt",
+    "packaging",
+    "pykwalify",
+    "pyparsing",
+    "six",
+    "west",
+    "yaml"
+  ]
+}

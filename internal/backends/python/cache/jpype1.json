@@ -1,0 +1,15 @@
+{
+  "name": "JPype1",
+  "version": "1.4.0",
+  "requires_dist": [
+    "typing-extensions",
+    "readthedocs-sphinx-ext",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest"
+  ],
+  "modules": [
+    "_jpype",
+    "jpype"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "five9",
+  "version": "0.0.3b192",
+  "requires_dist": [
+    "properties",
+    "requests",
+    "six",
+    "websocket-client",
+    "zeep"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cached_property",
+    "certifi",
+    "charset_normalizer",
+    "five9",
+    "idna",
+    "isodate",
+    "lxml",
+    "platformdirs",
+    "properties",
+    "pytz",
+    "requests",
+    "requests_file",
+    "requests_toolbelt",
+    "six",
+    "urllib3",
+    "websocket",
+    "zeep"
+  ]
+}

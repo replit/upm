@@ -1,0 +1,20 @@
+{
+  "name": "doc8",
+  "version": "1.0.0",
+  "requires_dist": [
+    "docutils",
+    "restructuredtext-lint",
+    "stevedore",
+    "Pygments",
+    "tomli"
+  ],
+  "modules": [
+    "doc8",
+    "docutils",
+    "pbr",
+    "pygments",
+    "restructuredtext_lint",
+    "stevedore",
+    "tomli"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "pdftotext",
+  "version": "2.2.2",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pdftotext/bin/python3', '-m', 'pip', 'install', 'pdftotext']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "connection_pool",
+  "version": "0.0.3",
+  "modules": [
+    "connection_pool"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "python-engineio",
+  "version": "4.3.4",
+  "requires_dist": [
+    "aiohttp",
+    "requests",
+    "websocket-client"
+  ],
+  "modules": [
+    "engineio"
+  ]
+}

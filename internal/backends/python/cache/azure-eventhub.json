@@ -1,0 +1,19 @@
+{
+  "name": "azure-eventhub",
+  "version": "5.10.1",
+  "requires_dist": [
+    "azure-core",
+    "uamqp",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "typing_extensions",
+    "uamqp",
+    "urllib3"
+  ]
+}

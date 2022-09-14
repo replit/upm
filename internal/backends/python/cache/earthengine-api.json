@@ -1,0 +1,29 @@
+{
+  "name": "earthengine-api",
+  "version": "0.1.323",
+  "modules": [
+    "apiclient",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "ee",
+    "future",
+    "google_auth_httplib2",
+    "google_crc32c",
+    "googleapiclient",
+    "httplib2",
+    "httplib2shim",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "requests",
+    "rsa",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "zope.lifecycleevent",
+  "version": "4.4",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.event",
+    "repoze.sphinx.autointerface",
+    "sphinx-rtd-theme",
+    "zope.component",
+    "zope.configuration",
+    "zope.testing",
+    "zope.testrunner"
+  ]
+}

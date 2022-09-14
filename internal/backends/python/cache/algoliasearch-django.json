@@ -1,0 +1,21 @@
+{
+  "name": "algoliasearch-django",
+  "version": "2.0.0",
+  "requires_dist": [
+    "django",
+    "algoliasearch"
+  ],
+  "modules": [
+    "algoliasearch",
+    "algoliasearch_django",
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "django",
+    "idna",
+    "requests",
+    "sqlparse",
+    "urllib3"
+  ]
+}

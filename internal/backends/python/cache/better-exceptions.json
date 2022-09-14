@@ -1,0 +1,10 @@
+{
+  "name": "better-exceptions",
+  "version": "0.3.3",
+  "requires_dist": [
+    "colorama"
+  ],
+  "modules": [
+    "better_exceptions"
+  ]
+}

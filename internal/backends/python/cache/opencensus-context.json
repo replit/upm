@@ -1,0 +1,10 @@
+{
+  "name": "opencensus-context",
+  "version": "0.1.3",
+  "requires_dist": [
+    "contextvars"
+  ],
+  "modules": [
+    "opencensus"
+  ]
+}

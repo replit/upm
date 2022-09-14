@@ -1,0 +1,21 @@
+{
+  "name": "uncertainties",
+  "version": "3.1.7",
+  "requires_dist": [
+    "future",
+    "sphinx",
+    "nose",
+    "numpy",
+    "sphinx",
+    "numpy",
+    "nose",
+    "numpy"
+  ],
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "uncertainties"
+  ]
+}

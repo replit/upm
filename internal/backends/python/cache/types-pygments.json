@@ -1,0 +1,8 @@
+{
+  "name": "types-Pygments",
+  "version": "2.13.0",
+  "requires_dist": [
+    "types-docutils",
+    "types-setuptools"
+  ]
+}

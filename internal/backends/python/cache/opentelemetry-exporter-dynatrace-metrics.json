@@ -1,0 +1,20 @@
+{
+  "name": "opentelemetry-exporter-dynatrace-metrics",
+  "version": "1.0.0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "requests",
+    "dynatrace-metric-utils"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "wrapt"
+  ]
+}

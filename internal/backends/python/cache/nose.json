@@ -1,0 +1,7 @@
+{
+  "name": "nose",
+  "version": "1.3.7",
+  "modules": [
+    "nose"
+  ]
+}

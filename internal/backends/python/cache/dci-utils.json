@@ -1,0 +1,7 @@
+{
+  "name": "dci-utils",
+  "version": "0.0.1148",
+  "modules": [
+    "dci_utils"
+  ]
+}

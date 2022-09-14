@@ -1,0 +1,22 @@
+{
+  "name": "pamqp",
+  "version": "3.2.1",
+  "requires_dist": [
+    "lxml",
+    "requests",
+    "yapf",
+    "coverage",
+    "flake8",
+    "flake8-comprehensions",
+    "flake8-deprecated",
+    "flake8-import-order",
+    "flake8-print",
+    "flake8-quotes",
+    "flake8-rst-docstrings",
+    "flake8-tuple",
+    "yapf"
+  ],
+  "modules": [
+    "pamqp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pywinpty",
+  "version": "2.0.7",
+  "modules": [
+    "winpty"
+  ]
+}

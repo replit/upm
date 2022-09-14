@@ -1,0 +1,15 @@
+{
+  "name": "robotframework-debuglibrary",
+  "version": "2.3.0",
+  "requires_dist": [
+    "prompt-toolkit",
+    "robotframework"
+  ],
+  "modules": [
+    "DebugLibrary",
+    "prompt_toolkit",
+    "robot",
+    "six",
+    "wcwidth"
+  ]
+}

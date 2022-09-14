@@ -1,0 +1,11 @@
+{
+  "name": "cmaes",
+  "version": "0.8.2",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "cmaes",
+    "numpy"
+  ]
+}

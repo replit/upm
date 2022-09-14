@@ -1,0 +1,26 @@
+{
+  "name": "azure-storage-file-share",
+  "version": "12.9.0",
+  "requires_dist": [
+    "azure-core",
+    "msrest",
+    "cryptography"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

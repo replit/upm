@@ -1,0 +1,29 @@
+{
+  "name": "Flask-Babel",
+  "version": "2.0.0",
+  "requires_dist": [
+    "pytz",
+    "Flask",
+    "Babel",
+    "Jinja2",
+    "pytest",
+    "pytest-mock",
+    "bumpversion",
+    "ghp-import",
+    "sphinx",
+    "Pallets-Sphinx-Themes"
+  ],
+  "modules": [
+    "babel",
+    "click",
+    "flask",
+    "flask_babel",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pytz",
+    "werkzeug",
+    "zipp"
+  ]
+}

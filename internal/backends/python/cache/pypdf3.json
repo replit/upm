@@ -1,0 +1,8 @@
+{
+  "name": "PyPDF3",
+  "version": "1.0.6",
+  "modules": [
+    "PyPDF3",
+    "tqdm"
+  ]
+}

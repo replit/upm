@@ -1,0 +1,34 @@
+{
+  "name": "discord-py-slash-command",
+  "version": "4.2.1",
+  "requires_dist": [
+    "aiohttp",
+    "black",
+    "flake8",
+    "isort",
+    "pre-commit",
+    "karma-sphinx-theme",
+    "Sphinx",
+    "sphinx-hoverxref",
+    "black",
+    "flake8",
+    "isort",
+    "pre-commit",
+    "karma-sphinx-theme",
+    "Sphinx",
+    "sphinx-hoverxref"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "interactions",
+    "multidict",
+    "yarl"
+  ]
+}

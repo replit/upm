@@ -1,0 +1,14 @@
+{
+  "name": "colour-runner",
+  "version": "0.1.1",
+  "requires_dist": [
+    "blessings",
+    "pygments"
+  ],
+  "modules": [
+    "blessings",
+    "colour_runner",
+    "pygments",
+    "six"
+  ]
+}

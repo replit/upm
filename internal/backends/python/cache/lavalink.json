@@ -1,0 +1,17 @@
+{
+  "name": "lavalink",
+  "version": "4.0.2",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "lavalink",
+    "multidict",
+    "yarl"
+  ]
+}

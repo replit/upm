@@ -1,0 +1,27 @@
+{
+  "name": "dataclasses-avroschema",
+  "version": "0.30.3",
+  "requires_dist": [
+    "dacite",
+    "faker",
+    "fastavro",
+    "inflect",
+    "pytz",
+    "stringcase",
+    "typing-extensions",
+    "pydantic"
+  ],
+  "modules": [
+    "dacite",
+    "dataclasses_avroschema",
+    "dateutil",
+    "faker",
+    "fastavro",
+    "inflect",
+    "pydantic",
+    "pytz",
+    "six",
+    "stringcase",
+    "typing_extensions"
+  ]
+}

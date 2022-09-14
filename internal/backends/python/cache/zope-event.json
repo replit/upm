@@ -1,0 +1,9 @@
+{
+  "name": "zope.event",
+  "version": "4.5.0",
+  "requires_dist": [
+    "setuptools",
+    "Sphinx",
+    "zope.testrunner"
+  ]
+}

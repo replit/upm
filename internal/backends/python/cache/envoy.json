@@ -1,0 +1,7 @@
+{
+  "name": "envoy",
+  "version": "0.0.3",
+  "modules": [
+    "envoy"
+  ]
+}

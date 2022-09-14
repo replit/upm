@@ -1,0 +1,7 @@
+{
+  "name": "repoze.sendmail",
+  "version": "4.4.1",
+  "modules": [
+    "transaction"
+  ]
+}

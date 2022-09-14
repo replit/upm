@@ -1,0 +1,29 @@
+{
+  "name": "pytest-vcr",
+  "version": "1.0.2",
+  "requires_dist": [
+    "pytest",
+    "vcrpy"
+  ],
+  "modules": [
+    "_pytest",
+    "_yaml",
+    "attr",
+    "attrs",
+    "idna",
+    "iniconfig",
+    "multidict",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_vcr",
+    "six",
+    "tomli",
+    "vcr",
+    "wrapt",
+    "yaml",
+    "yarl"
+  ]
+}

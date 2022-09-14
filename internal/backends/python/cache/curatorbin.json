@@ -1,0 +1,7 @@
+{
+  "name": "curatorbin",
+  "version": "1.2.4",
+  "modules": [
+    "curatorbin"
+  ]
+}

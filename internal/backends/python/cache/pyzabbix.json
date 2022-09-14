@@ -1,0 +1,27 @@
+{
+  "name": "pyzabbix",
+  "version": "1.2.1",
+  "requires_dist": [
+    "requests",
+    "packaging",
+    "black",
+    "isort",
+    "mypy",
+    "pylint",
+    "pytest-cov",
+    "pytest-xdist",
+    "pytest",
+    "requests-mock",
+    "types-requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "packaging",
+    "pyparsing",
+    "pyzabbix",
+    "requests",
+    "urllib3"
+  ]
+}

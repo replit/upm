@@ -1,0 +1,14 @@
+{
+  "name": "sarif-om",
+  "version": "1.0.4",
+  "requires_dist": [
+    "attrs",
+    "pbr"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "pbr",
+    "sarif_om"
+  ]
+}

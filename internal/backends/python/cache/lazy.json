@@ -1,0 +1,7 @@
+{
+  "name": "lazy",
+  "version": "1.4",
+  "modules": [
+    "lazy"
+  ]
+}

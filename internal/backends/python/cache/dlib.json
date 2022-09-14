@@ -1,0 +1,5 @@
+{
+  "name": "dlib",
+  "version": "19.24.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dlib/bin/python3', '-m', 'pip', 'install', 'dlib']' returned non-zero exit status 1.\"}"
+}

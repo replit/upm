@@ -1,0 +1,18 @@
+{
+  "name": "django-structlog",
+  "version": "3.0.1",
+  "requires_dist": [
+    "django",
+    "structlog",
+    "django-ipware"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_structlog",
+    "ipware",
+    "sqlparse",
+    "structlog"
+  ]
+}

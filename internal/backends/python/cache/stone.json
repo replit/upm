@@ -1,0 +1,13 @@
+{
+  "name": "stone",
+  "version": "3.3.1",
+  "requires_dist": [
+    "ply",
+    "six"
+  ],
+  "modules": [
+    "ply",
+    "six",
+    "stone"
+  ]
+}

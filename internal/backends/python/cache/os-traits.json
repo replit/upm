@@ -1,0 +1,11 @@
+{
+  "name": "os-traits",
+  "version": "2.9.0",
+  "requires_dist": [
+    "pbr"
+  ],
+  "modules": [
+    "os_traits",
+    "pbr"
+  ]
+}

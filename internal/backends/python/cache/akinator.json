@@ -1,0 +1,19 @@
+{
+  "name": "akinator",
+  "version": "1.0.2",
+  "requires_dist": [
+    "requests",
+    "aiohttp",
+    "aiohttp",
+    "cchardet",
+    "aiodns"
+  ],
+  "modules": [
+    "akinator",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

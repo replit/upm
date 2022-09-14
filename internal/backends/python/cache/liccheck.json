@@ -1,0 +1,16 @@
+{
+  "name": "liccheck",
+  "version": "0.7.2",
+  "requires_dist": [
+    "semantic-version",
+    "toml",
+    "ConfigParser",
+    "enum34",
+    "configparser"
+  ],
+  "modules": [
+    "liccheck",
+    "semantic_version",
+    "toml"
+  ]
+}

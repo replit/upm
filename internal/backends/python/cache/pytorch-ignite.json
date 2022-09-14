@@ -1,0 +1,17 @@
+{
+  "name": "pytorch-ignite",
+  "version": "0.4.10",
+  "requires_dist": [
+    "torch",
+    "packaging"
+  ],
+  "modules": [
+    "caffe2",
+    "ignite",
+    "packaging",
+    "pyparsing",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

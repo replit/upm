@@ -1,0 +1,8 @@
+{
+  "name": "base58check",
+  "version": "1.0.2",
+  "modules": [
+    "base58check",
+    "tests"
+  ]
+}

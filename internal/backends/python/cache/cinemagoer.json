@@ -1,0 +1,22 @@
+{
+  "name": "cinemagoer",
+  "version": "2022.2.11",
+  "requires_dist": [
+    "SQLAlchemy",
+    "lxml",
+    "flake8",
+    "flake8-isort",
+    "readme-renderer",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest",
+    "pytest-cov",
+    "pytest-profiling"
+  ],
+  "modules": [
+    "greenlet",
+    "imdb",
+    "lxml",
+    "sqlalchemy"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "pgcli",
+  "version": "3.4.1",
+  "requires_dist": [
+    "pgspecial",
+    "click",
+    "Pygments",
+    "prompt-toolkit",
+    "psycopg2",
+    "sqlparse",
+    "configobj",
+    "pendulum",
+    "cli-helpers",
+    "setproctitle",
+    "keyring",
+    "sshtunnel"
+  ],
+  "modules": [
+    "_version",
+    "cli_helpers",
+    "click",
+    "configobj",
+    "dateutil",
+    "pendulum",
+    "pgcli",
+    "pgspecial",
+    "prompt_toolkit",
+    "psycopg2",
+    "pygments",
+    "pytzdata",
+    "setproctitle",
+    "six",
+    "sqlparse",
+    "tabulate",
+    "validate",
+    "wcwidth"
+  ]
+}

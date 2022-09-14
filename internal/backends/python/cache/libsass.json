@@ -1,0 +1,13 @@
+{
+  "name": "libsass",
+  "version": "0.21.0",
+  "modules": [
+    "_sass",
+    "pysassc",
+    "sass",
+    "sassc",
+    "sasstests",
+    "sassutils",
+    "six"
+  ]
+}

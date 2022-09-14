@@ -1,0 +1,10 @@
+{
+  "name": "flake8-copyright",
+  "version": "0.2.3",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "flake8_copyright"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "migra",
+  "version": "3.0.1663074851",
+  "requires_dist": [
+    "sqlbag",
+    "six",
+    "schemainspect",
+    "psycopg2-binary"
+  ],
+  "modules": [
+    "greenlet",
+    "migra",
+    "packaging",
+    "pyparsing",
+    "schemainspect",
+    "six",
+    "sqlalchemy",
+    "sqlbag"
+  ]
+}

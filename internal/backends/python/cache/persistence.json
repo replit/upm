@@ -1,0 +1,15 @@
+{
+  "name": "Persistence",
+  "version": "3.3",
+  "modules": [
+    "ComputedAttribute",
+    "ExtensionClass",
+    "MethodObject",
+    "Persistence",
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser",
+    "six"
+  ]
+}

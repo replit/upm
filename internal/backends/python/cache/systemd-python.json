@@ -1,0 +1,5 @@
+{
+  "name": "systemd-python",
+  "version": "234",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/systemd-python/bin/python3', '-m', 'pip', 'install', 'systemd-python']' returned non-zero exit status 1.\"}"
+}

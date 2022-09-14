@@ -1,0 +1,28 @@
+{
+  "name": "flake8-encodings",
+  "version": "0.5.0.post1",
+  "requires_dist": [
+    "astatine",
+    "domdf-python-tools",
+    "flake8",
+    "flake8-helper",
+    "jedi",
+    "jedi"
+  ],
+  "modules": [
+    "astatine",
+    "asttokens",
+    "domdf_python_tools",
+    "flake8",
+    "flake8_encodings",
+    "flake8_helper",
+    "importlib_metadata",
+    "mccabe",
+    "natsort",
+    "pycodestyle",
+    "pyflakes",
+    "six",
+    "typing_extensions",
+    "zipp"
+  ]
+}

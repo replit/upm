@@ -1,0 +1,15 @@
+{
+  "name": "django-dynamic-preferences",
+  "version": "1.14.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "dynamic_preferences",
+    "example",
+    "persisting_theory",
+    "six",
+    "sqlparse",
+    "tests"
+  ]
+}

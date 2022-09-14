@@ -1,0 +1,12 @@
+{
+  "name": "iocextract",
+  "version": "1.13.1",
+  "requires_dist": [
+    "regex",
+    "ipaddress"
+  ],
+  "modules": [
+    "iocextract",
+    "regex"
+  ]
+}

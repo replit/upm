@@ -1,0 +1,14 @@
+{
+  "name": "django-jsonfield-backport",
+  "version": "1.0.5",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_jsonfield_backport",
+    "sqlparse"
+  ]
+}

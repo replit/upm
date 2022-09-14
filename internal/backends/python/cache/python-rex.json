@@ -1,0 +1,8 @@
+{
+  "name": "python-rex",
+  "version": "0.4",
+  "modules": [
+    "rex",
+    "six"
+  ]
+}

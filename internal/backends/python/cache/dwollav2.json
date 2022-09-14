@@ -1,0 +1,20 @@
+{
+  "name": "dwollav2",
+  "version": "2.2.1",
+  "requires_dist": [
+    "requests",
+    "future"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dwollav2",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "urllib3"
+  ]
+}

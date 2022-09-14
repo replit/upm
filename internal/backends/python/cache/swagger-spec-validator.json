@@ -1,0 +1,24 @@
+{
+  "name": "swagger-spec-validator",
+  "version": "2.7.6",
+  "requires_dist": [
+    "jsonschema",
+    "pyyaml",
+    "six"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "six",
+    "swagger_spec_validator",
+    "yaml",
+    "zipp"
+  ]
+}

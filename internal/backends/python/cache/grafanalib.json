@@ -1,0 +1,14 @@
+{
+  "name": "grafanalib",
+  "version": "0.6.3",
+  "requires_dist": [
+    "attrs",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "grafanalib"
+  ]
+}

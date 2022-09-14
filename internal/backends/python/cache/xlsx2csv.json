@@ -1,0 +1,7 @@
+{
+  "name": "xlsx2csv",
+  "version": "0.8.0",
+  "modules": [
+    "xlsx2csv"
+  ]
+}

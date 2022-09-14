@@ -1,0 +1,42 @@
+{
+  "name": "ZEO",
+  "version": "5.3.0",
+  "requires_dist": [
+    "ZODB",
+    "six",
+    "transaction",
+    "persistent",
+    "zc.lockfile",
+    "ZConfig",
+    "zdaemon",
+    "zope.interface",
+    "futures",
+    "trollius",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "sphinx-rtd-theme",
+    "msgpack-python",
+    "ZODB",
+    "zope.testing",
+    "manuel",
+    "random2",
+    "mock",
+    "msgpack",
+    "zope.testrunner",
+    "uvloop"
+  ],
+  "modules": [
+    "BTrees",
+    "ZConfig",
+    "ZEO",
+    "ZODB",
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser",
+    "six",
+    "transaction",
+    "zdaemon",
+    "zodbpickle"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "vine",
+  "version": "5.0.0",
+  "modules": [
+    "vine"
+  ]
+}

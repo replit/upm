@@ -1,0 +1,13 @@
+{
+  "name": "fastdiff",
+  "version": "0.3.0",
+  "requires_dist": [
+    "wasmer",
+    "wasmer-compiler-cranelift"
+  ],
+  "modules": [
+    "fastdiff",
+    "wasmer",
+    "wasmer_compiler_cranelift"
+  ]
+}

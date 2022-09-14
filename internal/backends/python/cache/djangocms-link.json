@@ -1,0 +1,39 @@
+{
+  "name": "djangocms-link",
+  "version": "3.1.0",
+  "requires_dist": [
+    "django-cms",
+    "django-filer",
+    "djangocms-attributes-field",
+    "django-treebeard"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "classytags",
+    "cms",
+    "cssselect2",
+    "django",
+    "djangocms_admin_style",
+    "djangocms_attributes_field",
+    "djangocms_link",
+    "easy_thumbnails",
+    "filer",
+    "formtools",
+    "js_asset",
+    "lxml",
+    "menus",
+    "mptt",
+    "polymorphic",
+    "reportlab",
+    "sekizai",
+    "sqlparse",
+    "svglib",
+    "tests",
+    "tinycss2",
+    "treebeard",
+    "unidecode",
+    "webencodings"
+  ]
+}

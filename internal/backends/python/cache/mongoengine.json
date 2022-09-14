@@ -1,0 +1,13 @@
+{
+  "name": "mongoengine",
+  "version": "0.24.2",
+  "requires_dist": [
+    "pymongo"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "mongoengine",
+    "pymongo"
+  ]
+}

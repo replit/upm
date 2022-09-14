@@ -1,0 +1,24 @@
+{
+  "name": "pytype",
+  "version": "2022.9.8",
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "dot_parser",
+    "importlab",
+    "libcst",
+    "mypy_extensions",
+    "networkx",
+    "ninja",
+    "pydot",
+    "pyparsing",
+    "pytype",
+    "pytype_extensions",
+    "tabulate",
+    "toml",
+    "typing_extensions",
+    "typing_inspect",
+    "yaml"
+  ]
+}

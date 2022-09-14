@@ -1,0 +1,11 @@
+{
+  "name": "isodate",
+  "version": "0.6.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "isodate",
+    "six"
+  ]
+}

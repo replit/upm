@@ -1,0 +1,7 @@
+{
+  "name": "go-proto-validators",
+  "version": "0.0.4",
+  "modules": [
+    "github"
+  ]
+}

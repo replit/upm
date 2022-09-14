@@ -1,0 +1,13 @@
+{
+  "name": "jsondatabase",
+  "version": "0.1.7",
+  "requires_dist": [
+    "pymongo"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "jsondb",
+    "pymongo"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "bleach-allowlist",
+  "version": "1.0.3",
+  "modules": [
+    "bleach_allowlist"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "nose2",
+  "version": "0.12.0",
+  "requires_dist": [
+    "coverage",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "mock",
+    "sphinx-issues"
+  ],
+  "modules": [
+    "nose2"
+  ]
+}

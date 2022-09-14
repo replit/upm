@@ -1,0 +1,24 @@
+{
+  "name": "nbstripout",
+  "version": "0.6.0",
+  "requires_dist": [
+    "nbformat"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "fastjsonschema",
+    "importlib_resources",
+    "jsonschema",
+    "jupyter",
+    "jupyter_core",
+    "nbformat",
+    "nbstripout",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "traitlets",
+    "zipp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "fastjsonschema",
+  "version": "2.16.1",
+  "modules": [
+    "fastjsonschema"
+  ]
+}

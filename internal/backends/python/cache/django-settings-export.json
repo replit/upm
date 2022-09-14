@@ -1,0 +1,11 @@
+{
+  "name": "django-settings-export",
+  "version": "1.2.1",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_settings_export",
+    "sqlparse"
+  ]
+}

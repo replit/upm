@@ -1,0 +1,38 @@
+{
+  "name": "aiosfstream",
+  "version": "0.5.0",
+  "requires_dist": [
+    "aiocometd",
+    "aiohttp",
+    "asynctest",
+    "coverage",
+    "flake8",
+    "pylint",
+    "mypy",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-autodoc-typehints",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-autodoc-typehints",
+    "asynctest",
+    "coverage",
+    "flake8",
+    "pylint",
+    "mypy"
+  ],
+  "modules": [
+    "aiocometd",
+    "aiohttp",
+    "aiosfstream",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

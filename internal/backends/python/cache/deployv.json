@@ -1,0 +1,33 @@
+{
+  "name": "deployv",
+  "version": "0.9.194",
+  "requires_dist": [
+    "psycopg2",
+    "pika",
+    "jsonschema",
+    "branchesv",
+    "extend-me",
+    "passlib",
+    "odoorpc",
+    "retry-decorator",
+    "transitions",
+    "deployv-static",
+    "requests-unixsocket",
+    "jinja2",
+    "pyyaml",
+    "PyGithub",
+    "deepdiff",
+    "cryptography",
+    "ipaddress",
+    "docker",
+    "docker",
+    "docker",
+    "jinja2",
+    "pyyaml",
+    "PyGithub",
+    "markupsafe",
+    "deepdiff",
+    "cryptography"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/deployv/bin/python3', '-m', 'pip', 'install', 'deployv']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,39 @@
+{
+  "name": "tango-happenings",
+  "version": "0.15.0",
+  "requires_dist": [
+    "jinja2",
+    "python-card-me",
+    "tango-shared-core",
+    "tango-comments"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "bleach",
+    "card_me",
+    "dateutil",
+    "defusedxml",
+    "django",
+    "django_filters",
+    "docutils",
+    "easy_thumbnails",
+    "happenings",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "six",
+    "smartypants",
+    "sqlparse",
+    "tango_comments",
+    "tango_shared",
+    "tests",
+    "typogrify",
+    "untangle",
+    "voting",
+    "webencodings",
+    "zipp"
+  ]
+}

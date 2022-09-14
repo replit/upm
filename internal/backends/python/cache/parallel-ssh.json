@@ -1,0 +1,16 @@
+{
+  "name": "parallel-ssh",
+  "version": "2.12.0",
+  "requires_dist": [
+    "gevent",
+    "ssh2-python",
+    "ssh-python"
+  ],
+  "modules": [
+    "gevent",
+    "greenlet",
+    "pssh",
+    "ssh",
+    "ssh2"
+  ]
+}

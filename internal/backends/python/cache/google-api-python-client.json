@@ -1,0 +1,29 @@
+{
+  "name": "google-api-python-client",
+  "version": "2.61.0",
+  "requires_dist": [
+    "httplib2",
+    "google-auth",
+    "google-auth-httplib2",
+    "google-api-core",
+    "uritemplate"
+  ],
+  "modules": [
+    "apiclient",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_httplib2",
+    "googleapiclient",
+    "httplib2",
+    "idna",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "requests",
+    "rsa",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

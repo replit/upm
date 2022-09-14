@@ -1,0 +1,7 @@
+{
+  "name": "zipfile-deflate64",
+  "version": "0.2.0",
+  "modules": [
+    "zipfile_deflate64"
+  ]
+}

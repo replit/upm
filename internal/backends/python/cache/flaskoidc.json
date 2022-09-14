@@ -1,0 +1,34 @@
+{
+  "name": "flaskoidc",
+  "version": "1.1.2",
+  "requires_dist": [
+    "Flask",
+    "Authlib",
+    "requests",
+    "Flask-SQLAlchemy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "authlib",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "cryptography",
+    "flask",
+    "flask_sqlalchemy",
+    "flaskoidc",
+    "greenlet",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pycparser",
+    "requests",
+    "sqlalchemy",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

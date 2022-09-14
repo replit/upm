@@ -1,0 +1,7 @@
+{
+  "name": "dacktool",
+  "version": "0.0.7",
+  "modules": [
+    "dacktool"
+  ]
+}

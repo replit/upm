@@ -1,0 +1,9 @@
+{
+  "name": "tensorflowonspark",
+  "version": "2.2.5",
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "tensorflowonspark"
+  ]
+}

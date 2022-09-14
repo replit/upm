@@ -1,0 +1,13 @@
+{
+  "name": "SQLAlchemy-JSONField",
+  "version": "1.0.0",
+  "requires_dist": [
+    "sqlalchemy",
+    "typing"
+  ],
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_jsonfield"
+  ]
+}

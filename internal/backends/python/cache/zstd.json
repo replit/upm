@@ -1,0 +1,7 @@
+{
+  "name": "zstd",
+  "version": "1.5.2.6",
+  "modules": [
+    "zstd"
+  ]
+}

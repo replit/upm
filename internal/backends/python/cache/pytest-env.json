@@ -1,0 +1,17 @@
+{
+  "name": "pytest-env",
+  "version": "0.6.2",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_env",
+    "tomli"
+  ]
+}

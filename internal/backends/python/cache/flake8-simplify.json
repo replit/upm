@@ -1,0 +1,17 @@
+{
+  "name": "flake8-simplify",
+  "version": "0.19.3",
+  "requires_dist": [
+    "flake8",
+    "astor",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "astor",
+    "flake8",
+    "flake8_simplify",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "standardjson",
+  "version": "0.3.1",
+  "modules": [
+    "standardjson"
+  ]
+}

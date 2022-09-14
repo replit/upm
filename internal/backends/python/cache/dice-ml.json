@@ -1,0 +1,38 @@
+{
+  "name": "dice-ml",
+  "version": "0.8",
+  "requires_dist": [
+    "jsonschema",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "h5py",
+    "tqdm",
+    "tensorflow",
+    "torch"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "dateutil",
+    "dice_ml",
+    "h5py",
+    "importlib_resources",
+    "joblib",
+    "jsonschema",
+    "numpy",
+    "pandas",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "tests",
+    "threadpoolctl",
+    "tqdm",
+    "zipp"
+  ]
+}

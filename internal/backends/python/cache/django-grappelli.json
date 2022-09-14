@@ -1,0 +1,7 @@
+{
+  "name": "django-grappelli",
+  "version": "3.0.3",
+  "modules": [
+    "grappelli"
+  ]
+}

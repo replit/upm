@@ -1,0 +1,14 @@
+{
+  "name": "numexpr",
+  "version": "2.8.3",
+  "requires_dist": [
+    "numpy",
+    "packaging"
+  ],
+  "modules": [
+    "numexpr",
+    "numpy",
+    "packaging",
+    "pyparsing"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "epc",
+  "version": "0.0.5",
+  "modules": [
+    "epc",
+    "sexpdata"
+  ]
+}

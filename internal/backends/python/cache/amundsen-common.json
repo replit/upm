@@ -1,0 +1,38 @@
+{
+  "name": "amundsen-common",
+  "version": "0.27.1",
+  "requires_dist": [
+    "Flask",
+    "attrs",
+    "marshmallow",
+    "marshmallow3-annotations",
+    "flake8",
+    "flake8-tidy-imports",
+    "isort",
+    "mock",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "pytest-env",
+    "pytest-mock",
+    "typed-ast",
+    "pyspark"
+  ],
+  "modules": [
+    "amundsen_common",
+    "attr",
+    "attrs",
+    "click",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "marshmallow",
+    "marshmallow3_annotations",
+    "packaging",
+    "pyparsing",
+    "werkzeug",
+    "zipp"
+  ]
+}

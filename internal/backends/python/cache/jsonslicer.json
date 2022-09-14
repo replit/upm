@@ -1,0 +1,5 @@
+{
+  "name": "jsonslicer",
+  "version": "0.1.7",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/jsonslicer/bin/python3', '-m', 'pip', 'install', 'jsonslicer']' returned non-zero exit status 1.\"}"
+}

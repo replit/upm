@@ -1,0 +1,7 @@
+{
+  "name": "crossplane",
+  "version": "0.5.7",
+  "modules": [
+    "crossplane"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "munch",
+  "version": "2.5.0",
+  "requires_dist": [
+    "six",
+    "pytest",
+    "coverage",
+    "astroid",
+    "pylint",
+    "astroid",
+    "pylint",
+    "PyYAML"
+  ],
+  "modules": [
+    "munch",
+    "six"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "hdrpy",
+  "version": "0.3.3",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "hdrpy",
+    "numpy"
+  ]
+}

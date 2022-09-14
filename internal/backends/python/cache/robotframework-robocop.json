@@ -1,0 +1,34 @@
+{
+  "name": "robotframework-robocop",
+  "version": "2.4.0",
+  "requires_dist": [
+    "jinja2",
+    "robotframework",
+    "packaging",
+    "pathspec",
+    "pytz",
+    "python-dateutil",
+    "tomli",
+    "tomli",
+    "black",
+    "coverage",
+    "pytest",
+    "pyyaml",
+    "furo",
+    "sphinx",
+    "sphinx-design"
+  ],
+  "modules": [
+    "dateutil",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pathspec",
+    "pyparsing",
+    "pytz",
+    "robocop",
+    "robot",
+    "six",
+    "tomli"
+  ]
+}

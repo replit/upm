@@ -1,0 +1,13 @@
+{
+  "name": "shyaml",
+  "version": "0.6.2",
+  "requires_dist": [
+    "pyyaml",
+    "docshtest"
+  ],
+  "modules": [
+    "_yaml",
+    "shyaml",
+    "yaml"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "zdaemon",
+  "version": "4.3",
+  "modules": [
+    "ZConfig",
+    "zdaemon"
+  ]
+}

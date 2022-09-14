@@ -1,0 +1,16 @@
+{
+  "name": "setuptools-odoo",
+  "version": "3.1.3",
+  "requires_dist": [
+    "setuptools",
+    "setuptools-scm"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "setuptools_odoo",
+    "setuptools_scm",
+    "tomli",
+    "typing_extensions"
+  ]
+}

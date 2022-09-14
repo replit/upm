@@ -1,0 +1,7 @@
+{
+  "name": "style",
+  "version": "1.1.6",
+  "modules": [
+    "style"
+  ]
+}

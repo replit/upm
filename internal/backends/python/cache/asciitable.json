@@ -1,0 +1,7 @@
+{
+  "name": "asciitable",
+  "version": "0.8.0",
+  "modules": [
+    "asciitable"
+  ]
+}

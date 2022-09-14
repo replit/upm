@@ -1,0 +1,42 @@
+{
+  "name": "openapi-core",
+  "version": "0.15.0",
+  "requires_dist": [
+    "pathable",
+    "django",
+    "falcon",
+    "flask",
+    "isodate",
+    "more-itertools",
+    "parse",
+    "openapi-schema-validator",
+    "openapi-spec-validator",
+    "requests",
+    "werkzeug",
+    "typing-extensions"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "isodate",
+    "jsonschema",
+    "markupsafe",
+    "more_itertools",
+    "openapi_core",
+    "openapi_schema_validator",
+    "openapi_spec_validator",
+    "parse",
+    "pathable",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "six",
+    "typing_extensions",
+    "werkzeug",
+    "yaml",
+    "zipp"
+  ]
+}

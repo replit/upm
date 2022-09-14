@@ -1,0 +1,17 @@
+{
+  "name": "Boruta",
+  "version": "0.3",
+  "requires_dist": [
+    "numpy",
+    "scikit-learn",
+    "scipy"
+  ],
+  "modules": [
+    "boruta",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

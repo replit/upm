@@ -1,0 +1,23 @@
+{
+  "name": "everett",
+  "version": "3.0.0",
+  "requires_dist": [
+    "black",
+    "check-manifest",
+    "cogapp",
+    "flake8",
+    "mypy",
+    "pytest",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "tox",
+    "tox-gh-actions",
+    "twine",
+    "types-PyYAML",
+    "configobj",
+    "PyYAML"
+  ],
+  "modules": [
+    "everett"
+  ]
+}

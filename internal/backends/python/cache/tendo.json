@@ -1,0 +1,15 @@
+{
+  "name": "tendo",
+  "version": "0.2.15",
+  "requires_dist": [
+    "pbr",
+    "pip",
+    "setuptools",
+    "six"
+  ],
+  "modules": [
+    "pbr",
+    "six",
+    "tendo"
+  ]
+}

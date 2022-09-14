@@ -1,0 +1,34 @@
+{
+  "name": "k-means-constrained",
+  "version": "0.7.2",
+  "requires_dist": [
+    "ortools",
+    "scipy",
+    "numpy",
+    "six",
+    "joblib",
+    "wheel",
+    "setuptools",
+    "pytest",
+    "cython",
+    "pandas",
+    "twine",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "numpydoc",
+    "bump2version",
+    "nose",
+    "scikit-learn",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "absl",
+    "joblib",
+    "k_means_constrained",
+    "numpy",
+    "ortools",
+    "scipy",
+    "six"
+  ]
+}

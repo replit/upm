@@ -1,0 +1,13 @@
+{
+  "name": "shared",
+  "version": "0.0.22",
+  "requires_dist": [
+    "jesth"
+  ],
+  "modules": [
+    "jesth",
+    "secret",
+    "shared",
+    "tests"
+  ]
+}

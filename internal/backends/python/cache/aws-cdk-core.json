@@ -1,0 +1,27 @@
+{
+  "name": "aws-cdk.core",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.cloud-assembly-schema",
+    "aws-cdk.cx-api",
+    "aws-cdk.region-info",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

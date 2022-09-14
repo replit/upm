@@ -1,0 +1,20 @@
+{
+  "name": "django-stdimage",
+  "version": "6.0.1",
+  "requires_dist": [
+    "Django",
+    "pillow",
+    "progressbar2",
+    "pytest",
+    "pytest-cov",
+    "pytest-django"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse",
+    "stdimage"
+  ]
+}

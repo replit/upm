@@ -1,0 +1,17 @@
+{
+  "name": "pulp-deb-client",
+  "version": "2.19.1",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "pulpcore",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "fancy-text",
+  "version": "2.1",
+  "modules": [
+    "fancy_text"
+  ]
+}

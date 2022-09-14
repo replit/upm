@@ -1,0 +1,16 @@
+{
+  "name": "django-localflavor",
+  "version": "3.1",
+  "requires_dist": [
+    "django",
+    "python-stdnum"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "localflavor",
+    "sqlparse",
+    "stdnum"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "python-ffmpeg",
+  "version": "1.0.14",
+  "requires_dist": [
+    "pyee"
+  ],
+  "modules": [
+    "ffmpeg",
+    "pyee",
+    "typing_extensions"
+  ]
+}

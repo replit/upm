@@ -1,0 +1,42 @@
+{
+  "name": "dvc-render",
+  "version": "0.0.10",
+  "requires_dist": [
+    "tabulate",
+    "matplotlib",
+    "funcy",
+    "pytest",
+    "pytest-sugar",
+    "pytest-cov",
+    "pytest-mock",
+    "pylint",
+    "mypy",
+    "pytest-test-utils",
+    "mkdocs",
+    "mkdocs-gen-files",
+    "mkdocs-material",
+    "mkdocs-section-index",
+    "mkdocstrings-python",
+    "mkdocs",
+    "mkdocs-gen-files",
+    "mkdocs-material",
+    "mkdocs-section-index",
+    "mkdocstrings-python",
+    "tabulate",
+    "matplotlib",
+    "tabulate",
+    "tabulate",
+    "matplotlib",
+    "funcy",
+    "pytest",
+    "pytest-sugar",
+    "pytest-cov",
+    "pytest-mock",
+    "pylint",
+    "mypy",
+    "pytest-test-utils"
+  ],
+  "modules": [
+    "dvc_render"
+  ]
+}

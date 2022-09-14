@@ -1,0 +1,20 @@
+{
+  "name": "redislite",
+  "version": "6.2.805324",
+  "requires_dist": [
+    "redis",
+    "psutil",
+    "setuptools"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "dummy",
+    "packaging",
+    "psutil",
+    "pyparsing",
+    "redis",
+    "redislite",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "oauth",
+  "version": "1.0.1",
+  "modules": [
+    "oauth"
+  ]
+}

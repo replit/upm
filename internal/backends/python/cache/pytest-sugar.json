@@ -1,0 +1,23 @@
+{
+  "name": "pytest-sugar",
+  "version": "0.9.5",
+  "requires_dist": [
+    "pytest",
+    "termcolor",
+    "packaging"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_sugar",
+    "termcolor",
+    "tomli"
+  ]
+}

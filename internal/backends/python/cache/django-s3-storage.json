@@ -1,0 +1,22 @@
+{
+  "name": "django-s3-storage",
+  "version": "0.13.9",
+  "requires_dist": [
+    "django",
+    "boto3"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "django",
+    "django_s3_storage",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "sqlparse",
+    "urllib3"
+  ]
+}

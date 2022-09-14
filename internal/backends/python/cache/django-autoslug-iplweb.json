@@ -1,0 +1,7 @@
+{
+  "name": "django-autoslug-iplweb",
+  "version": "1.9.5",
+  "modules": [
+    "autoslug"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "mysql",
+  "version": "0.0.3",
+  "requires_dist": [
+    "mysqlclient"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mysql/bin/python3', '-m', 'pip', 'install', 'mysql']' returned non-zero exit status 1.\"}"
+}

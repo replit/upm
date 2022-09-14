@@ -1,0 +1,33 @@
+{
+  "name": "behave",
+  "version": "1.2.6",
+  "requires_dist": [
+    "parse",
+    "parse-type",
+    "six",
+    "argparse",
+    "importlib",
+    "ordereddict",
+    "traceback2",
+    "enum34",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "tox",
+    "invoke",
+    "path.py",
+    "pycmd",
+    "pathlib",
+    "modernize",
+    "pylint",
+    "sphinx",
+    "sphinx-bootstrap-theme"
+  ],
+  "modules": [
+    "behave",
+    "parse",
+    "parse_type",
+    "setuptools_behave",
+    "six"
+  ]
+}

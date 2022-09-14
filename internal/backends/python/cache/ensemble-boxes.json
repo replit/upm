@@ -1,0 +1,21 @@
+{
+  "name": "ensemble-boxes",
+  "version": "1.0.9",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "numba"
+  ],
+  "modules": [
+    "dateutil",
+    "ensemble_boxes",
+    "importlib_metadata",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "zipp"
+  ]
+}

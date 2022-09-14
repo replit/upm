@@ -1,0 +1,12 @@
+{
+  "name": "selinux",
+  "version": "0.2.1",
+  "requires_dist": [
+    "distro",
+    "setuptools"
+  ],
+  "modules": [
+    "distro",
+    "selinux"
+  ]
+}

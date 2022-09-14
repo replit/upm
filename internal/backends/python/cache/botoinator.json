@@ -1,0 +1,10 @@
+{
+  "name": "botoinator",
+  "version": "0.0.6",
+  "requires_dist": [
+    "boto3"
+  ],
+  "modules": [
+    "botoinator"
+  ]
+}

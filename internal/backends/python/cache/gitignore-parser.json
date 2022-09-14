@@ -1,0 +1,7 @@
+{
+  "name": "gitignore-parser",
+  "version": "0.1.0",
+  "modules": [
+    "gitignore_parser"
+  ]
+}

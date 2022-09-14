@@ -1,0 +1,16 @@
+{
+  "name": "PyHessian",
+  "version": "0.1",
+  "requires_dist": [
+    "numpy",
+    "torch"
+  ],
+  "modules": [
+    "caffe2",
+    "numpy",
+    "pyhessian",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

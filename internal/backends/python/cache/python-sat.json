@@ -1,0 +1,15 @@
+{
+  "name": "python-sat",
+  "version": "0.1.7.dev19",
+  "requires_dist": [
+    "six",
+    "py-aiger-cnf",
+    "pypblib"
+  ],
+  "modules": [
+    "pycard",
+    "pysat",
+    "pysolvers",
+    "six"
+  ]
+}

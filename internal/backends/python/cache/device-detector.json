@@ -1,0 +1,10 @@
+{
+  "name": "device-detector",
+  "version": "5.0.1",
+  "modules": [
+    "_yaml",
+    "device_detector",
+    "regex",
+    "yaml"
+  ]
+}

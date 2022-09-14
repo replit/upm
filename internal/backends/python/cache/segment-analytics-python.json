@@ -1,0 +1,24 @@
+{
+  "name": "segment-analytics-python",
+  "version": "2.2.1",
+  "requires_dist": [
+    "requests",
+    "monotonic",
+    "backoff",
+    "python-dateutil",
+    "mock",
+    "pylint",
+    "flake8"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "monotonic",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

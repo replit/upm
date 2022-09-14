@@ -1,0 +1,16 @@
+{
+  "name": "redis-timeseries",
+  "version": "0.1.9",
+  "requires_dist": [
+    "redis"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "redis_timeseries",
+    "wrapt"
+  ]
+}

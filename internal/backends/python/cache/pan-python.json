@@ -1,0 +1,7 @@
+{
+  "name": "pan-python",
+  "version": "0.20.0",
+  "modules": [
+    "pan"
+  ]
+}

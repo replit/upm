@@ -1,0 +1,12 @@
+{
+  "name": "metayaml",
+  "version": "0.27",
+  "modules": [
+    "_yaml",
+    "jinja2",
+    "markupsafe",
+    "metayaml",
+    "six",
+    "yaml"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "pyswagger",
+  "version": "0.8.39",
+  "requires_dist": [
+    "six",
+    "pyaml",
+    "validate-email"
+  ],
+  "modules": [
+    "_yaml",
+    "pyaml",
+    "pyswagger",
+    "six",
+    "validate_email",
+    "yaml"
+  ]
+}

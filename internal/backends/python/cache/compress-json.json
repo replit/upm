@@ -1,0 +1,8 @@
+{
+  "name": "compress-json",
+  "version": "1.0.8",
+  "modules": [
+    "compress_json",
+    "support_developer"
+  ]
+}

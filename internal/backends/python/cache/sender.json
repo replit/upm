@@ -1,0 +1,7 @@
+{
+  "name": "sender",
+  "version": "0.3",
+  "modules": [
+    "sender"
+  ]
+}

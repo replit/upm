@@ -1,0 +1,7 @@
+{
+  "name": "types-Jinja2",
+  "version": "2.11.9",
+  "requires_dist": [
+    "types-MarkupSafe"
+  ]
+}

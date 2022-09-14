@@ -1,0 +1,13 @@
+{
+  "name": "modelaapi",
+  "version": "0.5.80",
+  "modules": [
+    "github",
+    "google",
+    "grpc",
+    "grpc_tools",
+    "k8s",
+    "modelaapi",
+    "six"
+  ]
+}

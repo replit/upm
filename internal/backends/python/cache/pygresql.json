@@ -1,0 +1,9 @@
+{
+  "name": "PyGreSQL",
+  "version": "5.2.4",
+  "modules": [
+    "_pg",
+    "pg",
+    "pgdb"
+  ]
+}

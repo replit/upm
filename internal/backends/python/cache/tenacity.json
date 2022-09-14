@@ -1,0 +1,12 @@
+{
+  "name": "tenacity",
+  "version": "8.0.1",
+  "requires_dist": [
+    "reno",
+    "sphinx",
+    "tornado"
+  ],
+  "modules": [
+    "tenacity"
+  ]
+}

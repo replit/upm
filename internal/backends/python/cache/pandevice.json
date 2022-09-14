@@ -1,0 +1,8 @@
+{
+  "name": "pandevice",
+  "version": "0.14.0",
+  "modules": [
+    "pan",
+    "pandevice"
+  ]
+}

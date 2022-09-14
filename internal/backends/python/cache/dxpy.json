@@ -1,0 +1,21 @@
+{
+  "name": "dxpy",
+  "version": "0.328.0",
+  "modules": [
+    "_cffi_backend",
+    "argcomplete",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "dxpy",
+    "idna",
+    "psutil",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket"
+  ]
+}

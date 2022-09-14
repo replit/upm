@@ -1,0 +1,14 @@
+{
+  "name": "aioredis",
+  "version": "2.0.1",
+  "requires_dist": [
+    "async-timeout",
+    "typing-extensions",
+    "hiredis"
+  ],
+  "modules": [
+    "aioredis",
+    "async_timeout",
+    "typing_extensions"
+  ]
+}

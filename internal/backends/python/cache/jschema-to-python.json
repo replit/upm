@@ -1,0 +1,16 @@
+{
+  "name": "jschema-to-python",
+  "version": "1.2.3",
+  "requires_dist": [
+    "attrs",
+    "jsonpickle",
+    "pbr"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "jschema_to_python",
+    "jsonpickle",
+    "pbr"
+  ]
+}

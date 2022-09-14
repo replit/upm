@@ -1,0 +1,7 @@
+{
+  "name": "u-msgpack-python",
+  "version": "2.7.1",
+  "modules": [
+    "umsgpack"
+  ]
+}

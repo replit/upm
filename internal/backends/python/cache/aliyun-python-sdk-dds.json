@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-dds",
+  "version": "3.7.0",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkdds",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "imgurpython",
+  "version": "1.1.7",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "imgurpython",
+    "requests",
+    "urllib3"
+  ]
+}

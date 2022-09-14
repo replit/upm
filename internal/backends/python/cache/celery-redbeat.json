@@ -1,0 +1,28 @@
+{
+  "name": "celery-redbeat",
+  "version": "2.0.0",
+  "modules": [
+    "amqp",
+    "async_timeout",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "dateutil",
+    "deprecated",
+    "kombu",
+    "packaging",
+    "prompt_toolkit",
+    "pyparsing",
+    "pytz",
+    "redbeat",
+    "redis",
+    "six",
+    "tenacity",
+    "vine",
+    "wcwidth",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "rospkg",
+  "version": "1.4.0",
+  "requires_dist": [
+    "catkin-pkg",
+    "PyYAML",
+    "distro"
+  ],
+  "modules": [
+    "_yaml",
+    "catkin_pkg",
+    "dateutil",
+    "distro",
+    "docutils",
+    "pyparsing",
+    "rospkg",
+    "six",
+    "yaml"
+  ]
+}

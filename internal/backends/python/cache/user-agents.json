@@ -1,0 +1,11 @@
+{
+  "name": "user-agents",
+  "version": "2.2.0",
+  "requires_dist": [
+    "ua-parser"
+  ],
+  "modules": [
+    "ua_parser",
+    "user_agents"
+  ]
+}

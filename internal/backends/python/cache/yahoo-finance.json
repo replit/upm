@@ -1,0 +1,9 @@
+{
+  "name": "yahoo-finance",
+  "version": "1.4.0",
+  "modules": [
+    "pytz",
+    "simplejson",
+    "yahoo_finance"
+  ]
+}

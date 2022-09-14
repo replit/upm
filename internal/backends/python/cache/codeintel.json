@@ -1,0 +1,27 @@
+{
+  "name": "CodeIntel",
+  "version": "2.0.0",
+  "requires_dist": [
+    "3to2",
+    "applib",
+    "chardet",
+    "cmdln",
+    "esprima",
+    "inflector",
+    "six",
+    "zope.cachedescriptors",
+    "clang"
+  ],
+  "modules": [
+    "appdirs",
+    "applib",
+    "chardet",
+    "clang",
+    "cmdln",
+    "codeintel",
+    "esprima",
+    "inflector",
+    "lib3to2",
+    "six"
+  ]
+}

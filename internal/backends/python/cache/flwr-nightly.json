@@ -1,0 +1,19 @@
+{
+  "name": "flwr-nightly",
+  "version": "1.1.0.dev20220910",
+  "requires_dist": [
+    "numpy",
+    "grpcio",
+    "protobuf",
+    "importlib-metadata",
+    "iterators",
+    "ray"
+  ],
+  "modules": [
+    "flwr",
+    "grpc",
+    "iterators",
+    "numpy",
+    "six"
+  ]
+}

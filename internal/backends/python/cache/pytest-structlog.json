@@ -1,0 +1,22 @@
+{
+  "name": "pytest-structlog",
+  "version": "0.5",
+  "requires_dist": [
+    "pytest",
+    "structlog"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_structlog",
+    "structlog",
+    "tomli"
+  ]
+}

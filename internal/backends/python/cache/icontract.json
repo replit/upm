@@ -1,0 +1,30 @@
+{
+  "name": "icontract",
+  "version": "2.6.2",
+  "requires_dist": [
+    "asttokens",
+    "typing-extensions",
+    "mypy",
+    "pylint",
+    "yapf",
+    "tox",
+    "pydocstyle",
+    "coverage",
+    "docutils",
+    "pygments",
+    "dpcontracts",
+    "tabulate",
+    "py-cpuinfo",
+    "typeguard",
+    "astor",
+    "numpy",
+    "deal",
+    "asyncstdlib"
+  ],
+  "modules": [
+    "asttokens",
+    "icontract",
+    "six",
+    "typing_extensions"
+  ]
+}

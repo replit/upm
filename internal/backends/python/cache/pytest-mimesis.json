@@ -1,0 +1,22 @@
+{
+  "name": "pytest-mimesis",
+  "version": "1.1.0",
+  "requires_dist": [
+    "pytest",
+    "mimesis"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "mimesis",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_mimesis",
+    "tomli"
+  ]
+}

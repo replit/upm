@@ -1,0 +1,23 @@
+{
+  "name": "sqlalchemy-filters",
+  "version": "0.12.0",
+  "requires_dist": [
+    "sqlalchemy",
+    "six",
+    "pytest",
+    "coverage",
+    "sqlalchemy-utils",
+    "flake8",
+    "restructuredtext-lint",
+    "Pygments",
+    "mysql-connector-python-rf",
+    "psycopg2",
+    "funcsigs"
+  ],
+  "modules": [
+    "greenlet",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_filters"
+  ]
+}

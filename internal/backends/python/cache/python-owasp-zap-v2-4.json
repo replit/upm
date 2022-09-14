@@ -1,0 +1,22 @@
+{
+  "name": "python-owasp-zap-v2.4",
+  "version": "0.0.20",
+  "requires_dist": [
+    "requests",
+    "six",
+    "mock",
+    "pyhamcrest",
+    "pylama",
+    "pytest",
+    "requests-mock"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "urllib3",
+    "zapv2"
+  ]
+}

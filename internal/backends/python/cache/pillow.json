@@ -1,0 +1,26 @@
+{
+  "name": "Pillow",
+  "version": "9.2.0",
+  "requires_dist": [
+    "furo",
+    "olefile",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-issues",
+    "sphinx-removed-in",
+    "sphinxext-opengraph",
+    "check-manifest",
+    "coverage",
+    "defusedxml",
+    "markdown2",
+    "olefile",
+    "packaging",
+    "pyroma",
+    "pytest",
+    "pytest-cov",
+    "pytest-timeout"
+  ],
+  "modules": [
+    "PIL"
+  ]
+}

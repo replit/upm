@@ -1,0 +1,16 @@
+{
+  "name": "sqlalchemy-redshift",
+  "version": "0.8.11",
+  "requires_dist": [
+    "SQLAlchemy",
+    "packaging"
+  ],
+  "modules": [
+    "greenlet",
+    "packaging",
+    "pyparsing",
+    "redshift_sqlalchemy",
+    "sqlalchemy",
+    "sqlalchemy_redshift"
+  ]
+}

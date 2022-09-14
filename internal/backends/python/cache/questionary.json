@@ -1,0 +1,17 @@
+{
+  "name": "questionary",
+  "version": "1.10.0",
+  "requires_dist": [
+    "prompt_toolkit",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autobuild",
+    "sphinx-copybutton",
+    "sphinx-autodoc-typehints"
+  ],
+  "modules": [
+    "prompt_toolkit",
+    "questionary",
+    "wcwidth"
+  ]
+}

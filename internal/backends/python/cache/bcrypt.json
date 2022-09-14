@@ -1,0 +1,11 @@
+{
+  "name": "bcrypt",
+  "version": "4.0.0",
+  "requires_dist": [
+    "pytest",
+    "mypy"
+  ],
+  "modules": [
+    "bcrypt"
+  ]
+}

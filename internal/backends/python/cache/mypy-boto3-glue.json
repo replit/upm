@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-glue",
+  "version": "1.24.50",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_glue",
+    "typing_extensions"
+  ]
+}

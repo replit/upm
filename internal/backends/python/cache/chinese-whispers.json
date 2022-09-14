@@ -1,0 +1,11 @@
+{
+  "name": "chinese-whispers",
+  "version": "0.8.0",
+  "requires_dist": [
+    "networkx"
+  ],
+  "modules": [
+    "chinese_whispers",
+    "networkx"
+  ]
+}

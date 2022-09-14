@@ -1,0 +1,33 @@
+{
+  "name": "Flask-Dance",
+  "version": "6.1.1",
+  "requires_dist": [
+    "requests",
+    "oauthlib",
+    "requests-oauthlib",
+    "Flask",
+    "Werkzeug",
+    "urlobject",
+    "blinker",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "flask_dance",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "urllib3",
+    "urlobject",
+    "werkzeug",
+    "zipp"
+  ]
+}

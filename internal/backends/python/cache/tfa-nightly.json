@@ -1,0 +1,18 @@
+{
+  "name": "tfa-nightly",
+  "version": "0.17.0.dev20220824210635",
+  "requires_dist": [
+    "packaging",
+    "typeguard",
+    "tensorflow",
+    "tensorflow-cpu",
+    "tensorflow-gpu"
+  ],
+  "modules": [
+    "_foo",
+    "packaging",
+    "pyparsing",
+    "tensorflow_addons",
+    "typeguard"
+  ]
+}

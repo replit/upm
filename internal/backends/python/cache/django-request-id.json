@@ -1,0 +1,11 @@
+{
+  "name": "django-request-id",
+  "version": "1.0.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "request_id",
+    "sqlparse"
+  ]
+}

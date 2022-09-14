@@ -1,0 +1,5 @@
+{
+  "name": "sqlalchemy-dremio",
+  "version": "1.2.1",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/sqlalchemy-dremio/bin/python3', '-m', 'pip', 'install', 'sqlalchemy-dremio']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ringcentral",
+  "version": "0.7.13",
+  "requires_dist": [
+    "observable",
+    "pubnub",
+    "pycryptodome",
+    "requests"
+  ],
+  "modules": [
+    "Crypto",
+    "Cryptodome",
+    "_cbor2",
+    "cbor2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "observable",
+    "pubnub",
+    "requests",
+    "ringcentral",
+    "six",
+    "urllib3"
+  ]
+}

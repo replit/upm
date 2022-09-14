@@ -1,0 +1,40 @@
+{
+  "name": "sphinx-panels",
+  "version": "0.6.0",
+  "requires_dist": [
+    "docutils",
+    "sphinx",
+    "importlib-resources",
+    "pre-commit",
+    "sphinx-autobuild",
+    "web-compile",
+    "pytest",
+    "pytest-regressions",
+    "sphinx-rtd-theme",
+    "pydata-sphinx-theme",
+    "sphinx-book-theme",
+    "myst-parser"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_panels",
+    "urllib3",
+    "zipp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "pynput-robocorp-fork",
+  "version": "4.0.0",
+  "requires_dist": [
+    "six",
+    "python-xlib",
+    "enum34",
+    "pyobjc-framework-Quartz",
+    "pyobjc-framework-Cocoa",
+    "pyobjc-core"
+  ],
+  "modules": [
+    "Xlib",
+    "pynput_robocorp",
+    "six"
+  ]
+}

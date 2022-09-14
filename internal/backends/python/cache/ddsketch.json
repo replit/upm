@@ -1,0 +1,14 @@
+{
+  "name": "ddsketch",
+  "version": "2.0.4",
+  "requires_dist": [
+    "six",
+    "typing",
+    "protobuf",
+    "protobuf"
+  ],
+  "modules": [
+    "ddsketch",
+    "six"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "opentelemetry-instrumentation-kafka-python",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-instrumentation",
+    "opentelemetry-semantic-conventions",
+    "kafka-python",
+    "wrapt",
+    "opentelemetry-test-utils",
+    "kafka-python"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

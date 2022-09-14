@@ -1,0 +1,13 @@
+{
+  "name": "GitPython",
+  "version": "3.1.27",
+  "requires_dist": [
+    "gitdb",
+    "typing-extensions"
+  ],
+  "modules": [
+    "git",
+    "gitdb",
+    "smmap"
+  ]
+}

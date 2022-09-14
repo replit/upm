@@ -1,0 +1,20 @@
+{
+  "name": "keyrings.cryptfile",
+  "version": "1.3.8",
+  "modules": [
+    "Crypto",
+    "_argon2_cffi_bindings",
+    "_cffi_backend",
+    "argon2",
+    "cffi",
+    "cryptography",
+    "importlib_metadata",
+    "jeepney",
+    "keyring",
+    "keyrings",
+    "more_itertools",
+    "pycparser",
+    "secretstorage",
+    "zipp"
+  ]
+}

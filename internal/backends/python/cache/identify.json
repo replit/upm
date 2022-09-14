@@ -1,0 +1,10 @@
+{
+  "name": "identify",
+  "version": "2.5.5",
+  "requires_dist": [
+    "ukkonen"
+  ],
+  "modules": [
+    "identify"
+  ]
+}

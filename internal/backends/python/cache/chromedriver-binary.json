@@ -1,0 +1,7 @@
+{
+  "name": "chromedriver-binary",
+  "version": "106.0.5249.21.0",
+  "modules": [
+    "chromedriver_binary"
+  ]
+}

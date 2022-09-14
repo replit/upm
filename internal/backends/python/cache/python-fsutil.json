@@ -1,0 +1,7 @@
+{
+  "name": "python-fsutil",
+  "version": "0.7.0",
+  "modules": [
+    "fsutil"
+  ]
+}

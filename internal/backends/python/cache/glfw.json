@@ -1,0 +1,10 @@
+{
+  "name": "glfw",
+  "version": "2.5.5",
+  "requires_dist": [
+    "glfw-preview"
+  ],
+  "modules": [
+    "glfw"
+  ]
+}

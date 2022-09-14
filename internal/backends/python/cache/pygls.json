@@ -1,0 +1,23 @@
+{
+  "name": "pygls",
+  "version": "0.12.1",
+  "requires_dist": [
+    "pydantic",
+    "typeguard",
+    "bandit",
+    "flake8",
+    "mypy",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "mock",
+    "pytest",
+    "pytest-asyncio",
+    "websockets"
+  ],
+  "modules": [
+    "pydantic",
+    "pygls",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

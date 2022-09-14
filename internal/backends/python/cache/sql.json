@@ -1,0 +1,7 @@
+{
+  "name": "sql",
+  "version": "2022.4.0",
+  "modules": [
+    "sql"
+  ]
+}

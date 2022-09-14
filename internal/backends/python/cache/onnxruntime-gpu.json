@@ -1,0 +1,24 @@
+{
+  "name": "onnxruntime-gpu",
+  "version": "1.12.1",
+  "requires_dist": [
+    "coloredlogs",
+    "flatbuffers",
+    "numpy",
+    "packaging",
+    "protobuf",
+    "sympy"
+  ],
+  "modules": [
+    "coloredlogs",
+    "flatbuffers",
+    "humanfriendly",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "onnxruntime",
+    "packaging",
+    "pyparsing",
+    "sympy"
+  ]
+}

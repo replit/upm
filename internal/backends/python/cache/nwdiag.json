@@ -1,0 +1,26 @@
+{
+  "name": "nwdiag",
+  "version": "3.0.0",
+  "requires_dist": [
+    "blockdiag",
+    "reportlab",
+    "docutils",
+    "nose",
+    "pep8",
+    "flake8",
+    "flake8-coding",
+    "flake8-copyright",
+    "flake8-isort",
+    "reportlab",
+    "docutils"
+  ],
+  "modules": [
+    "PIL",
+    "blockdiag",
+    "funcparserlib",
+    "nwdiag",
+    "packetdiag",
+    "rackdiag",
+    "webcolors"
+  ]
+}

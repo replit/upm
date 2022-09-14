@@ -1,0 +1,21 @@
+{
+  "name": "Tubes",
+  "version": "0.2.1",
+  "requires_dist": [
+    "six",
+    "Twisted"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "automat",
+    "constantly",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "six",
+    "tubes",
+    "twisted",
+    "typing_extensions"
+  ]
+}

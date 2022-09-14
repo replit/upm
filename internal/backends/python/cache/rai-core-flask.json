@@ -1,0 +1,43 @@
+{
+  "name": "rai-core-flask",
+  "version": "0.4.0",
+  "requires_dist": [
+    "Flask",
+    "Flask-Cors",
+    "itsdangerous",
+    "greenlet",
+    "gevent",
+    "markupsafe",
+    "Werkzeug",
+    "ipython",
+    "ipython"
+  ],
+  "modules": [
+    "IPython",
+    "backcall",
+    "click",
+    "decorator",
+    "flask",
+    "flask_cors",
+    "gevent",
+    "greenlet",
+    "importlib_metadata",
+    "itsdangerous",
+    "jedi",
+    "jinja2",
+    "markupsafe",
+    "matplotlib_inline",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pygments",
+    "rai_core_flask",
+    "six",
+    "traitlets",
+    "wcwidth",
+    "werkzeug",
+    "zipp"
+  ]
+}

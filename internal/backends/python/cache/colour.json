@@ -1,0 +1,10 @@
+{
+  "name": "colour",
+  "version": "0.1.5",
+  "requires_dist": [
+    "nose"
+  ],
+  "modules": [
+    "colour"
+  ]
+}

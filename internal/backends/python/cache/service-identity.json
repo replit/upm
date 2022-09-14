@@ -1,0 +1,35 @@
+{
+  "name": "service-identity",
+  "version": "21.1.0",
+  "requires_dist": [
+    "attrs",
+    "pyasn1-modules",
+    "pyasn1",
+    "cryptography",
+    "six",
+    "ipaddress",
+    "coverage",
+    "pytest",
+    "sphinx",
+    "furo",
+    "idna",
+    "pyOpenSSL",
+    "sphinx",
+    "furo",
+    "idna",
+    "coverage",
+    "pytest"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "cffi",
+    "cryptography",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "service_identity",
+    "six"
+  ]
+}

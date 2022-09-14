@@ -1,0 +1,12 @@
+{
+  "name": "trzsz",
+  "version": "1.1.0",
+  "requires_dist": [
+    "trzsz-libs",
+    "trzsz-svr",
+    "trzsz-iterm2"
+  ],
+  "modules": [
+    "trzsz"
+  ]
+}

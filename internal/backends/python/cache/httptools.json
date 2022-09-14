@@ -1,0 +1,10 @@
+{
+  "name": "httptools",
+  "version": "0.5.0",
+  "requires_dist": [
+    "Cython"
+  ],
+  "modules": [
+    "httptools"
+  ]
+}

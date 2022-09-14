@@ -1,0 +1,7 @@
+{
+  "name": "titlecase",
+  "version": "2.4",
+  "modules": [
+    "titlecase"
+  ]
+}

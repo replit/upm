@@ -1,0 +1,7 @@
+{
+  "name": "progressbar",
+  "version": "2.5",
+  "modules": [
+    "progressbar"
+  ]
+}

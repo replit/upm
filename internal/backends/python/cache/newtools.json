@@ -1,0 +1,9 @@
+{
+  "name": "newtools",
+  "version": "2.2.401",
+  "modules": [
+    "json_log_formatter",
+    "newtools",
+    "numpy"
+  ]
+}

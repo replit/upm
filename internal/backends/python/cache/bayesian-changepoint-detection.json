@@ -1,0 +1,7 @@
+{
+  "name": "bayesian-changepoint-detection",
+  "version": "0.2.dev1",
+  "modules": [
+    "bayesian_changepoint_detection"
+  ]
+}

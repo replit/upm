@@ -1,0 +1,16 @@
+{
+  "name": "cattrs",
+  "version": "22.1.0",
+  "requires_dist": [
+    "attrs",
+    "exceptiongroup",
+    "typing_extensions"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "exceptiongroup"
+  ]
+}

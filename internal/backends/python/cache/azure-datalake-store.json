@@ -1,0 +1,28 @@
+{
+  "name": "azure-datalake-store",
+  "version": "0.0.52",
+  "requires_dist": [
+    "cffi",
+    "adal",
+    "requests",
+    "azure-nspkg",
+    "pathlib2",
+    "futures"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "adal",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "jwt",
+    "pycparser",
+    "requests",
+    "samples",
+    "six",
+    "urllib3"
+  ]
+}

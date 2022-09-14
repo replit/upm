@@ -1,0 +1,7 @@
+{
+  "name": "junitxml",
+  "version": "0.7",
+  "modules": [
+    "junitxml"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ncompress",
+  "version": "1.0.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "ncompress"
+  ]
+}

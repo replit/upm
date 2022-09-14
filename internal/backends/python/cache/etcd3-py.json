@@ -1,0 +1,37 @@
+{
+  "name": "etcd3-py",
+  "version": "0.1.6",
+  "requires_dist": [
+    "six",
+    "requests",
+    "semantic-version",
+    "pyOpenSSL",
+    "cryptography",
+    "idna",
+    "enum34",
+    "aiohttp"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "etcd3",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "pycparser",
+    "requests",
+    "semantic_version",
+    "six",
+    "urllib3",
+    "yarl"
+  ]
+}

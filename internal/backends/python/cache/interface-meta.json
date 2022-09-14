@@ -1,0 +1,7 @@
+{
+  "name": "interface-meta",
+  "version": "1.3.0",
+  "modules": [
+    "interface_meta"
+  ]
+}

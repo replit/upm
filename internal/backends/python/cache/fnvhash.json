@@ -1,0 +1,7 @@
+{
+  "name": "fnvhash",
+  "version": "0.1.0",
+  "modules": [
+    "fnvhash"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "domdf-python-tools",
+  "version": "3.4.0",
+  "requires_dist": [
+    "natsort",
+    "typing-extensions",
+    "importlib-resources",
+    "importlib-metadata",
+    "pytz",
+    "pytz"
+  ],
+  "modules": [
+    "domdf_python_tools",
+    "importlib_metadata",
+    "natsort",
+    "typing_extensions",
+    "zipp"
+  ]
+}

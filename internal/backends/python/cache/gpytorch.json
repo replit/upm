@@ -1,0 +1,36 @@
+{
+  "name": "gpytorch",
+  "version": "1.9.0",
+  "requires_dist": [
+    "scikit-learn",
+    "linear-operator",
+    "black",
+    "twine",
+    "pre-commit",
+    "ipython",
+    "jupyter",
+    "matplotlib",
+    "scipy",
+    "torchvision",
+    "tqdm",
+    "pykeops",
+    "pyro-ppl",
+    "flake8",
+    "flake8-print",
+    "pytest",
+    "nbval"
+  ],
+  "modules": [
+    "caffe2",
+    "gpytorch",
+    "joblib",
+    "linear_operator",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

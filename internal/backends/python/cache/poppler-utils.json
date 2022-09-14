@@ -1,0 +1,13 @@
+{
+  "name": "poppler-utils",
+  "version": "0.1.0",
+  "requires_dist": [
+    "Click",
+    "Click",
+    "Sphinx"
+  ],
+  "modules": [
+    "click",
+    "poppler"
+  ]
+}

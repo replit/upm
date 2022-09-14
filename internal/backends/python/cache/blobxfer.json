@@ -1,0 +1,32 @@
+{
+  "name": "blobxfer",
+  "version": "1.11.0",
+  "requires_dist": [
+    "azure-storage-blob",
+    "azure-storage-file",
+    "bitstring",
+    "click",
+    "cryptography",
+    "python-dateutil",
+    "requests",
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_ruamel_yaml",
+    "bitstring",
+    "blobxfer",
+    "blobxfer_cli",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

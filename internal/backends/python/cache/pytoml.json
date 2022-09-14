@@ -1,0 +1,7 @@
+{
+  "name": "pytoml",
+  "version": "0.1.21",
+  "modules": [
+    "pytoml"
+  ]
+}

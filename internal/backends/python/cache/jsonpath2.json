@@ -1,0 +1,11 @@
+{
+  "name": "jsonpath2",
+  "version": "0.4.5",
+  "requires_dist": [
+    "antlr4-python3-runtime"
+  ],
+  "modules": [
+    "antlr4",
+    "jsonpath2"
+  ]
+}

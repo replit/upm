@@ -1,0 +1,7 @@
+{
+  "name": "roundrobin",
+  "version": "0.0.4",
+  "modules": [
+    "roundrobin"
+  ]
+}

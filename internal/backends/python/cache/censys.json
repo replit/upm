@@ -1,0 +1,22 @@
+{
+  "name": "censys",
+  "version": "2.1.8",
+  "requires_dist": [
+    "requests",
+    "backoff",
+    "rich",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "commonmark",
+    "idna",
+    "pygments",
+    "requests",
+    "rich",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

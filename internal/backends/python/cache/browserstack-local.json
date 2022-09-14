@@ -1,0 +1,11 @@
+{
+  "name": "browserstack-local",
+  "version": "1.2.3",
+  "requires_dist": [
+    "psutil"
+  ],
+  "modules": [
+    "browserstack",
+    "psutil"
+  ]
+}

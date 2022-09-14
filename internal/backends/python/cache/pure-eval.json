@@ -1,0 +1,10 @@
+{
+  "name": "pure-eval",
+  "version": "0.2.2",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "pure_eval"
+  ]
+}

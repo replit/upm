@@ -1,0 +1,16 @@
+{
+  "name": "Flask-Mail",
+  "version": "0.9.1",
+  "modules": [
+    "blinker",
+    "click",
+    "flask",
+    "flask_mail",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

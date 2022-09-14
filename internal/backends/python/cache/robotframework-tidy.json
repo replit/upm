@@ -1,0 +1,39 @@
+{
+  "name": "robotframework-tidy",
+  "version": "3.2",
+  "requires_dist": [
+    "robotframework",
+    "click",
+    "colorama",
+    "packaging",
+    "pathspec",
+    "tomli",
+    "rich-click",
+    "coverage",
+    "invoke",
+    "jinja2",
+    "pyflakes",
+    "pylama",
+    "pytest",
+    "pre-commit",
+    "sphinx",
+    "furo",
+    "sphinx-design",
+    "sphinx-copybutton"
+  ],
+  "modules": [
+    "click",
+    "colorama",
+    "commonmark",
+    "packaging",
+    "pathspec",
+    "pygments",
+    "pyparsing",
+    "rich",
+    "rich_click",
+    "robot",
+    "robotidy",
+    "tomli",
+    "typing_extensions"
+  ]
+}

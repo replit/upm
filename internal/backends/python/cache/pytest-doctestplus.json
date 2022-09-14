@@ -1,0 +1,25 @@
+{
+  "name": "pytest-doctestplus",
+  "version": "0.12.0",
+  "requires_dist": [
+    "pytest",
+    "setuptools",
+    "packaging",
+    "numpy",
+    "pytest-remotedata",
+    "sphinx"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_doctestplus",
+    "tomli"
+  ]
+}

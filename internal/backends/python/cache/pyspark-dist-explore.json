@@ -1,0 +1,27 @@
+{
+  "name": "pyspark-dist-explore",
+  "version": "0.1.8",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "scipy",
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pyspark_dist_explore",
+    "pytz",
+    "scipy",
+    "six"
+  ]
+}

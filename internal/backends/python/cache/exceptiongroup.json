@@ -1,0 +1,10 @@
+{
+  "name": "exceptiongroup",
+  "version": "1.0.0rc9",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "exceptiongroup"
+  ]
+}

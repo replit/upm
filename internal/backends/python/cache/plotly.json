@@ -1,0 +1,14 @@
+{
+  "name": "plotly",
+  "version": "5.10.0",
+  "requires_dist": [
+    "tenacity"
+  ],
+  "modules": [
+    "_plotly_future_",
+    "_plotly_utils",
+    "jupyterlab_plotly",
+    "plotly",
+    "tenacity"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "scs",
+  "version": "3.2.0",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "_scs_direct",
+    "_scs_indirect",
+    "numpy",
+    "scipy",
+    "scs"
+  ]
+}

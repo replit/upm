@@ -1,0 +1,14 @@
+{
+  "name": "alembic",
+  "version": "1.8.1",
+  "modules": [
+    "alembic",
+    "greenlet",
+    "importlib_metadata",
+    "importlib_resources",
+    "mako",
+    "markupsafe",
+    "sqlalchemy",
+    "zipp"
+  ]
+}

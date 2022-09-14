@@ -1,0 +1,7 @@
+{
+  "name": "zhdate",
+  "version": "0.1",
+  "modules": [
+    "zhdate"
+  ]
+}

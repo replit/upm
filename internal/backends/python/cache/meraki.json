@@ -1,0 +1,25 @@
+{
+  "name": "meraki",
+  "version": "1.24.0",
+  "requires_dist": [
+    "requests",
+    "aiohttp"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "meraki",
+    "meraki_v0",
+    "multidict",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

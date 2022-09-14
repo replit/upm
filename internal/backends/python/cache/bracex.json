@@ -1,0 +1,7 @@
+{
+  "name": "bracex",
+  "version": "2.3.post1",
+  "modules": [
+    "bracex"
+  ]
+}

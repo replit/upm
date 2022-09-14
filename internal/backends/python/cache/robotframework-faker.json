@@ -1,0 +1,17 @@
+{
+  "name": "robotframework-faker",
+  "version": "5.0.0",
+  "requires_dist": [
+    "faker",
+    "robotframework",
+    "wrapt"
+  ],
+  "modules": [
+    "FakerLibrary",
+    "dateutil",
+    "faker",
+    "robot",
+    "six",
+    "wrapt"
+  ]
+}

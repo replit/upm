@@ -1,0 +1,7 @@
+{
+  "name": "types-jwt",
+  "version": "0.1.3",
+  "requires_dist": [
+    "types-cryptography"
+  ]
+}

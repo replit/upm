@@ -1,0 +1,7 @@
+{
+  "name": "pyrepl",
+  "version": "0.9.0",
+  "modules": [
+    "pyrepl"
+  ]
+}

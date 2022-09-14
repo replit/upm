@@ -1,0 +1,7 @@
+{
+  "name": "docopt",
+  "version": "0.6.2",
+  "modules": [
+    "docopt"
+  ]
+}

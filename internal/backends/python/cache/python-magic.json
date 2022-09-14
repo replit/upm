@@ -1,0 +1,7 @@
+{
+  "name": "python-magic",
+  "version": "0.4.27",
+  "modules": [
+    "magic"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "s3-pit-restore",
+  "version": "0.9",
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

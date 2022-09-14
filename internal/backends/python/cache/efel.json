@@ -1,0 +1,14 @@
+{
+  "name": "efel",
+  "version": "4.1.1",
+  "requires_dist": [
+    "numpy",
+    "six",
+    "neo"
+  ],
+  "modules": [
+    "efel",
+    "numpy",
+    "six"
+  ]
+}

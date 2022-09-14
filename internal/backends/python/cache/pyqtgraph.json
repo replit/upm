@@ -1,0 +1,11 @@
+{
+  "name": "pyqtgraph",
+  "version": "0.12.4",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "pyqtgraph"
+  ]
+}

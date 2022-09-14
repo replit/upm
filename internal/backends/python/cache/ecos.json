@@ -1,0 +1,14 @@
+{
+  "name": "ecos",
+  "version": "2.0.10",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "_ecos",
+    "ecos",
+    "numpy",
+    "scipy"
+  ]
+}

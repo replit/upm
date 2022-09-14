@@ -1,0 +1,16 @@
+{
+  "name": "zope.tal",
+  "version": "4.5",
+  "requires_dist": [
+    "setuptools",
+    "zope.i18nmessageid",
+    "zope.interface",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "six"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "sadisplay",
+  "version": "0.4.9",
+  "modules": [
+    "greenlet",
+    "sadisplay",
+    "sqlalchemy"
+  ]
+}

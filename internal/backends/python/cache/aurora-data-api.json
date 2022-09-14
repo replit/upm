@@ -1,0 +1,17 @@
+{
+  "name": "aurora-data-api",
+  "version": "0.4.0",
+  "requires_dist": [
+    "boto3"
+  ],
+  "modules": [
+    "aurora_data_api",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

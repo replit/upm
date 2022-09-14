@@ -1,0 +1,14 @@
+{
+  "name": "flake8-executable",
+  "version": "2.1.1",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_executable",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

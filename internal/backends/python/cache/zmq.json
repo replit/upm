@@ -1,0 +1,7 @@
+{
+  "name": "zmq",
+  "version": "0.0.0",
+  "modules": [
+    "zmq"
+  ]
+}

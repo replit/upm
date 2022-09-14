@@ -1,0 +1,11 @@
+{
+  "name": "tflite-runtime",
+  "version": "2.10.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "tflite_runtime"
+  ]
+}

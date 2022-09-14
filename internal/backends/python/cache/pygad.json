@@ -1,0 +1,22 @@
+{
+  "name": "pygad",
+  "version": "2.18.0",
+  "requires_dist": [
+    "matplotlib",
+    "numpy"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pygad",
+    "pylab",
+    "pyparsing",
+    "six"
+  ]
+}

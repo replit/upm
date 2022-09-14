@@ -1,0 +1,24 @@
+{
+  "name": "aws-lambda-powertools",
+  "version": "1.29.1",
+  "requires_dist": [
+    "aws-xray-sdk",
+    "fastjsonschema",
+    "boto3",
+    "pydantic",
+    "email-validator"
+  ],
+  "modules": [
+    "aws_lambda_powertools",
+    "aws_xray_sdk",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "fastjsonschema",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

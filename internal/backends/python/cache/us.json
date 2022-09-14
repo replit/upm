@@ -1,0 +1,8 @@
+{
+  "name": "us",
+  "version": "2.0.2",
+  "modules": [
+    "jellyfish",
+    "us"
+  ]
+}

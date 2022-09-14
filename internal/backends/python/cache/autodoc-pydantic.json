@@ -1,0 +1,40 @@
+{
+  "name": "autodoc-pydantic",
+  "version": "1.7.2",
+  "requires_dist": [
+    "Sphinx",
+    "pydantic",
+    "sphinx-rtd-theme",
+    "sphinx-tabs",
+    "sphinx-copybutton",
+    "sphinxcontrib-mermaid",
+    "pytest",
+    "coverage",
+    "flake8",
+    "tox"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pydantic",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinxcontrib",
+    "typing_extensions",
+    "urllib3",
+    "zipp"
+  ]
+}

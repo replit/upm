@@ -1,0 +1,37 @@
+{
+  "name": "pytest-mpl",
+  "version": "0.16.1",
+  "requires_dist": [
+    "pytest",
+    "matplotlib",
+    "packaging",
+    "Jinja2",
+    "Pillow",
+    "importlib-resources",
+    "pytest-cov"
+  ],
+  "modules": [
+    "PIL",
+    "_pytest",
+    "attr",
+    "attrs",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "iniconfig",
+    "jinja2",
+    "kiwisolver",
+    "markupsafe",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pluggy",
+    "py",
+    "pylab",
+    "pyparsing",
+    "pytest",
+    "pytest_mpl",
+    "six",
+    "tomli"
+  ]
+}

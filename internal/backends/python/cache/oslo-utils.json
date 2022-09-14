@@ -1,0 +1,27 @@
+{
+  "name": "oslo.utils",
+  "version": "6.0.1",
+  "requires_dist": [
+    "debtcollector",
+    "iso8601",
+    "netaddr",
+    "netifaces",
+    "oslo.i18n",
+    "packaging",
+    "pyparsing",
+    "pytz"
+  ],
+  "modules": [
+    "debtcollector",
+    "iso8601",
+    "netaddr",
+    "netifaces",
+    "oslo_i18n",
+    "oslo_utils",
+    "packaging",
+    "pbr",
+    "pyparsing",
+    "pytz",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "formant",
+  "version": "1.91.74",
+  "requires_dist": [
+    "grpcio-status",
+    "grpcio",
+    "protobuf",
+    "requests",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "formant",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "requests",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

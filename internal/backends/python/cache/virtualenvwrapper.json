@@ -1,0 +1,13 @@
+{
+  "name": "virtualenvwrapper",
+  "version": "4.8.4",
+  "modules": [
+    "clonevirtualenv",
+    "distlib",
+    "filelock",
+    "pbr",
+    "platformdirs",
+    "stevedore",
+    "virtualenv"
+  ]
+}

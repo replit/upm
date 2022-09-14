@@ -1,0 +1,23 @@
+{
+  "name": "mixer",
+  "version": "7.2.2",
+  "requires_dist": [
+    "Faker",
+    "Django",
+    "Flask",
+    "Marshmallow",
+    "SQLAlchemy",
+    "flask-sqlalchemy",
+    "mongoengine",
+    "peewee",
+    "pony",
+    "psycopg2-binary",
+    "pytest"
+  ],
+  "modules": [
+    "dateutil",
+    "faker",
+    "mixer",
+    "six"
+  ]
+}

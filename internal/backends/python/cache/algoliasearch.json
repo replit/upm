@@ -1,0 +1,16 @@
+{
+  "name": "algoliasearch",
+  "version": "2.6.2",
+  "requires_dist": [
+    "requests",
+    "typing"
+  ],
+  "modules": [
+    "algoliasearch",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

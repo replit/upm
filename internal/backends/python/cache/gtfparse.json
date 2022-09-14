@@ -1,0 +1,12 @@
+{
+  "name": "gtfparse",
+  "version": "1.2.1",
+  "modules": [
+    "dateutil",
+    "gtfparse",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "interchange",
+  "version": "2021.0.4",
+  "requires_dist": [
+    "pytz",
+    "six"
+  ],
+  "modules": [
+    "interchange",
+    "pytz",
+    "six"
+  ]
+}

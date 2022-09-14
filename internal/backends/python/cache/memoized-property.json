@@ -1,0 +1,7 @@
+{
+  "name": "memoized-property",
+  "version": "1.0.3",
+  "modules": [
+    "memoized_property"
+  ]
+}

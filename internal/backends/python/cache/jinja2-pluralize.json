@@ -1,0 +1,12 @@
+{
+  "name": "jinja2_pluralize",
+  "version": "0.3.0",
+  "modules": [
+    "inflect",
+    "jinja2",
+    "jinja2_pluralize",
+    "markupsafe",
+    "pydantic",
+    "typing_extensions"
+  ]
+}

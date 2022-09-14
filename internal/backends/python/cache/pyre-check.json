@@ -1,0 +1,38 @@
+{
+  "name": "pyre-check",
+  "version": "0.9.16",
+  "requires_dist": [
+    "click",
+    "dataclasses-json",
+    "intervaltree",
+    "libcst",
+    "psutil",
+    "pyre-extensions",
+    "tabulate",
+    "testslide",
+    "typing-extensions"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dataclasses_json",
+    "intervaltree",
+    "libcst",
+    "marshmallow",
+    "marshmallow_enum",
+    "mypy_extensions",
+    "packaging",
+    "psutil",
+    "pygments",
+    "pyparsing",
+    "pyre_check",
+    "pyre_extensions",
+    "sortedcontainers",
+    "tabulate",
+    "testslide",
+    "typeguard",
+    "typing_extensions",
+    "typing_inspect",
+    "yaml"
+  ]
+}

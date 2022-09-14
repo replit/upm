@@ -1,0 +1,11 @@
+{
+  "name": "mittens",
+  "version": "0.2",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "mittens",
+    "numpy"
+  ]
+}

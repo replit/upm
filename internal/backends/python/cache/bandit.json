@@ -1,0 +1,31 @@
+{
+  "name": "bandit",
+  "version": "1.7.4",
+  "requires_dist": [
+    "GitPython",
+    "PyYAML",
+    "stevedore",
+    "colorama",
+    "coverage",
+    "fixtures",
+    "flake8",
+    "stestr",
+    "testscenarios",
+    "testtools",
+    "toml",
+    "beautifulsoup4",
+    "pylint",
+    "toml",
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "bandit",
+    "git",
+    "gitdb",
+    "pbr",
+    "smmap",
+    "stevedore",
+    "yaml"
+  ]
+}

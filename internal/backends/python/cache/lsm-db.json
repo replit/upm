@@ -1,0 +1,7 @@
+{
+  "name": "lsm-db",
+  "version": "0.6.4",
+  "modules": [
+    "lsm"
+  ]
+}

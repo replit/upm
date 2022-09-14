@@ -1,0 +1,12 @@
+{
+  "name": "PALs",
+  "version": "0.3.2",
+  "requires_dist": [
+    "sqlalchemy"
+  ],
+  "modules": [
+    "greenlet",
+    "pals",
+    "sqlalchemy"
+  ]
+}

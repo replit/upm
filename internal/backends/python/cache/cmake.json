@@ -1,0 +1,21 @@
+{
+  "name": "cmake",
+  "version": "3.24.1.1",
+  "requires_dist": [
+    "codecov",
+    "coverage",
+    "flake8",
+    "path.py",
+    "pytest",
+    "pytest-cov",
+    "pytest-runner",
+    "pytest-virtualenv",
+    "scikit-build",
+    "setuptools",
+    "virtualenv",
+    "wheel"
+  ],
+  "modules": [
+    "cmake"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "mutagen",
+  "version": "1.45.1",
+  "modules": [
+    "mutagen"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pytzdata",
+  "version": "2020.1",
+  "modules": [
+    "pytzdata"
+  ]
+}

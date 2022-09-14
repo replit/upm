@@ -1,0 +1,8 @@
+{
+  "name": "autowrapt",
+  "version": "1.0",
+  "modules": [
+    "autowrapt",
+    "wrapt"
+  ]
+}

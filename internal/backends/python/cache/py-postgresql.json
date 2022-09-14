@@ -1,0 +1,7 @@
+{
+  "name": "py-postgresql",
+  "version": "1.2.2",
+  "modules": [
+    "postgresql"
+  ]
+}

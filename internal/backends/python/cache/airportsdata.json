@@ -1,0 +1,14 @@
+{
+  "name": "airportsdata",
+  "version": "20220913",
+  "requires_dist": [
+    "typing-extensions",
+    "pytest",
+    "pytest-cov",
+    "tzdata",
+    "backports.zoneinfo"
+  ],
+  "modules": [
+    "airportsdata"
+  ]
+}

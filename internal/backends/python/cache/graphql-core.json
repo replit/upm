@@ -1,0 +1,7 @@
+{
+  "name": "graphql-core",
+  "version": "3.2.1",
+  "modules": [
+    "graphql"
+  ]
+}

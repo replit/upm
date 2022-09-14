@@ -1,0 +1,15 @@
+{
+  "name": "dataclass-wizard",
+  "version": "0.22.1",
+  "requires_dist": [
+    "typing-extensions",
+    "dataclasses",
+    "backports-datetime-fromisoformat",
+    "pytimeparse",
+    "PyYAML"
+  ],
+  "modules": [
+    "dataclass_wizard",
+    "typing_extensions"
+  ]
+}

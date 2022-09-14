@@ -1,0 +1,7 @@
+{
+  "name": "databricks-test",
+  "version": "0.0.4",
+  "modules": [
+    "databricks_test"
+  ]
+}

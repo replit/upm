@@ -1,0 +1,13 @@
+{
+  "name": "uproot3-methods",
+  "version": "0.10.1",
+  "requires_dist": [
+    "numpy",
+    "awkward0"
+  ],
+  "modules": [
+    "awkward0",
+    "numpy",
+    "uproot3_methods"
+  ]
+}

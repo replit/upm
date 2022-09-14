@@ -1,0 +1,17 @@
+{
+  "name": "vconnector",
+  "version": "0.6.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "pyVim",
+    "pyVmomi",
+    "requests",
+    "six",
+    "tabulate",
+    "urllib3",
+    "vconnector"
+  ]
+}

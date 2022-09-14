@@ -1,0 +1,11 @@
+{
+  "name": "natto-py",
+  "version": "1.0.1",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "natto",
+    "pycparser",
+    "tests"
+  ]
+}

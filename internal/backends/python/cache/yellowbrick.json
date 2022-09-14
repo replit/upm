@@ -1,0 +1,29 @@
+{
+  "name": "yellowbrick",
+  "version": "1.5",
+  "requires_dist": [
+    "matplotlib",
+    "scipy",
+    "scikit-learn",
+    "numpy",
+    "cycler"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "joblib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "yellowbrick"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "cx-Oracle",
+  "version": "8.3.0",
+  "modules": [
+    "cx_Oracle"
+  ]
+}

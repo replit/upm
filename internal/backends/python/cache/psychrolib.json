@@ -1,0 +1,7 @@
+{
+  "name": "PsychroLib",
+  "version": "2.5.0",
+  "modules": [
+    "psychrolib"
+  ]
+}

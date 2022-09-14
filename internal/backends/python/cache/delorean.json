@@ -1,0 +1,16 @@
+{
+  "name": "Delorean",
+  "version": "1.0.0",
+  "modules": [
+    "babel",
+    "backports",
+    "dateutil",
+    "delorean",
+    "humanize",
+    "pytz",
+    "pytz_deprecation_shim",
+    "six",
+    "tzdata",
+    "tzlocal"
+  ]
+}

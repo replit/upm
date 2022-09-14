@@ -1,0 +1,35 @@
+{
+  "name": "commondatamodel-objectmodel",
+  "version": "1.6.1",
+  "requires_dist": [
+    "nest-asyncio",
+    "msal",
+    "python-dateutil",
+    "msrest",
+    "regex"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cdm",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "isodate",
+    "jwt",
+    "msal",
+    "msrest",
+    "nest_asyncio",
+    "oauthlib",
+    "pycparser",
+    "regex",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "tests",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

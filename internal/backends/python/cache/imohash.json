@@ -1,0 +1,13 @@
+{
+  "name": "imohash",
+  "version": "1.0.4",
+  "requires_dist": [
+    "mmh3",
+    "varint"
+  ],
+  "modules": [
+    "imohash",
+    "mmh3",
+    "varint"
+  ]
+}

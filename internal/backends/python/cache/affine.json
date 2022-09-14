@@ -1,0 +1,14 @@
+{
+  "name": "affine",
+  "version": "2.3.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov",
+    "pydocstyle",
+    "flake8",
+    "coveralls"
+  ],
+  "modules": [
+    "affine"
+  ]
+}

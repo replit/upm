@@ -1,0 +1,11 @@
+{
+  "name": "tensorboard_logger",
+  "version": "0.1.0",
+  "modules": [
+    "PIL",
+    "numpy",
+    "scipy",
+    "six",
+    "tensorboard_logger"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ecs-logging",
+  "version": "2.0.0",
+  "requires_dist": [
+    "backports.functools-lru-cache",
+    "pytest",
+    "pytest-cov",
+    "mock",
+    "structlog",
+    "elastic-apm"
+  ],
+  "modules": [
+    "ecs_logging"
+  ]
+}

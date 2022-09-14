@@ -1,0 +1,16 @@
+{
+  "name": "opentelemetry-exporter-jaeger-thrift",
+  "version": "1.12.0",
+  "requires_dist": [
+    "thrift",
+    "opentelemetry-api",
+    "opentelemetry-sdk"
+  ],
+  "modules": [
+    "deprecated",
+    "six",
+    "thrift",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

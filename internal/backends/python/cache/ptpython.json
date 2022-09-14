@@ -1,0 +1,22 @@
+{
+  "name": "ptpython",
+  "version": "3.0.20",
+  "requires_dist": [
+    "appdirs",
+    "jedi",
+    "prompt-toolkit",
+    "pygments",
+    "importlib-metadata",
+    "black",
+    "ipython"
+  ],
+  "modules": [
+    "appdirs",
+    "jedi",
+    "parso",
+    "prompt_toolkit",
+    "ptpython",
+    "pygments",
+    "wcwidth"
+  ]
+}

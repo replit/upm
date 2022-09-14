@@ -1,0 +1,16 @@
+{
+  "name": "apache-airflow-providers-http",
+  "version": "4.0.0",
+  "requires_dist": [
+    "requests",
+    "requests-toolbelt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_toolbelt",
+    "urllib3"
+  ]
+}

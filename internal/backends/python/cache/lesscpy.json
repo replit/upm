@@ -1,0 +1,13 @@
+{
+  "name": "lesscpy",
+  "version": "0.15.0",
+  "requires_dist": [
+    "ply",
+    "six"
+  ],
+  "modules": [
+    "lesscpy",
+    "ply",
+    "six"
+  ]
+}

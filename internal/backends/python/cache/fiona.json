@@ -1,0 +1,38 @@
+{
+  "name": "Fiona",
+  "version": "1.8.21",
+  "requires_dist": [
+    "attrs",
+    "certifi",
+    "click",
+    "cligj",
+    "click-plugins",
+    "six",
+    "munch",
+    "setuptools",
+    "argparse",
+    "ordereddict",
+    "boto3",
+    "pytest-cov",
+    "shapely",
+    "pytest",
+    "mock",
+    "shapely",
+    "boto3",
+    "pytest",
+    "pytest-cov",
+    "boto3",
+    "mock"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "certifi",
+    "click",
+    "click_plugins",
+    "cligj",
+    "fiona",
+    "munch",
+    "six"
+  ]
+}

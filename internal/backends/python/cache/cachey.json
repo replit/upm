@@ -1,0 +1,11 @@
+{
+  "name": "cachey",
+  "version": "0.2.1",
+  "requires_dist": [
+    "heapdict"
+  ],
+  "modules": [
+    "cachey",
+    "heapdict"
+  ]
+}

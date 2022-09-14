@@ -1,0 +1,18 @@
+{
+  "name": "fastapi-versioning",
+  "version": "0.10.0",
+  "requires_dist": [
+    "fastapi",
+    "starlette"
+  ],
+  "modules": [
+    "anyio",
+    "fastapi",
+    "fastapi_versioning",
+    "idna",
+    "pydantic",
+    "sniffio",
+    "starlette",
+    "typing_extensions"
+  ]
+}

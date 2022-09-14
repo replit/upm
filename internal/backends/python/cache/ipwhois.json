@@ -1,0 +1,12 @@
+{
+  "name": "ipwhois",
+  "version": "1.2.0",
+  "requires_dist": [
+    "dnspython",
+    "ipaddr"
+  ],
+  "modules": [
+    "dns",
+    "ipwhois"
+  ]
+}

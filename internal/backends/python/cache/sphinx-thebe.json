@@ -1,0 +1,38 @@
+{
+  "name": "sphinx-thebe",
+  "version": "0.1.2",
+  "requires_dist": [
+    "sphinx",
+    "matplotlib",
+    "myst-nb",
+    "sphinx-book-theme",
+    "sphinx-copybutton",
+    "sphinx-panels",
+    "matplotlib",
+    "pytest",
+    "pytest-regressions",
+    "beautifulsoup4"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_thebe",
+    "urllib3",
+    "zipp"
+  ]
+}

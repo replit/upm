@@ -1,0 +1,7 @@
+{
+  "name": "itsdangerous",
+  "version": "2.1.2",
+  "modules": [
+    "itsdangerous"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "editables",
+  "version": "0.3",
+  "modules": [
+    "editables"
+  ]
+}

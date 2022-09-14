@@ -1,0 +1,28 @@
+{
+  "name": "pyramid-jinja2",
+  "version": "2.10",
+  "requires_dist": [
+    "jinja2",
+    "markupsafe",
+    "pyramid",
+    "zope.deprecation",
+    "pylons-sphinx-themes",
+    "sphinx",
+    "webtest",
+    "coverage",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "hupper",
+    "jinja2",
+    "markupsafe",
+    "plaster",
+    "plaster_pastedeploy",
+    "pyramid",
+    "pyramid_jinja2",
+    "translationstring",
+    "venusian",
+    "webob"
+  ]
+}

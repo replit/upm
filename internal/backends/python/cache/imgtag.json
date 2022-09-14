@@ -1,0 +1,10 @@
+{
+  "name": "imgtag",
+  "version": "1.1.6",
+  "modules": [
+    "imgtag",
+    "libxmp",
+    "psutil",
+    "pytz"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "click-repl",
+  "version": "0.2.0",
+  "modules": [
+    "click",
+    "click_repl",
+    "prompt_toolkit",
+    "six",
+    "wcwidth"
+  ]
+}

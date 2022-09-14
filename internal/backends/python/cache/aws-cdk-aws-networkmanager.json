@@ -1,0 +1,24 @@
+{
+  "name": "aws-cdk.aws-networkmanager",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.core",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "mplcursors",
+  "version": "0.5.1",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "mplcursors",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six"
+  ]
+}

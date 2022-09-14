@@ -1,0 +1,7 @@
+{
+  "name": "mo-future",
+  "version": "6.2.21303",
+  "modules": [
+    "mo_future"
+  ]
+}

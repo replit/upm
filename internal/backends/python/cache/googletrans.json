@@ -1,0 +1,19 @@
+{
+  "name": "googletrans",
+  "version": "3.0.0",
+  "modules": [
+    "certifi",
+    "chardet",
+    "googletrans",
+    "h11",
+    "h2",
+    "hpack",
+    "hstspreload",
+    "httpcore",
+    "httpx",
+    "hyperframe",
+    "idna",
+    "rfc3986",
+    "sniffio"
+  ]
+}

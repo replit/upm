@@ -1,0 +1,10 @@
+{
+  "name": "Python-EasyConfig",
+  "version": "0.1.7",
+  "modules": [
+    "_yaml",
+    "easyconfig",
+    "six",
+    "yaml"
+  ]
+}

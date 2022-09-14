@@ -1,0 +1,20 @@
+{
+  "name": "flake8-formatter-junit-xml",
+  "version": "0.0.6",
+  "requires_dist": [
+    "flake8",
+    "junit-xml"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_formatter_junit_xml",
+    "flake8_formatting_junit",
+    "flake8_formatting_junit_xml",
+    "junit_xml",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "six",
+    "tests"
+  ]
+}

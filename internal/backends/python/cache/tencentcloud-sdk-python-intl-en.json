@@ -1,0 +1,15 @@
+{
+  "name": "tencentcloud-sdk-python-intl-en",
+  "version": "3.0.543",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "tencentcloud",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "mock-alchemy",
+  "version": "0.2.5",
+  "requires_dist": [
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "greenlet",
+    "mock_alchemy",
+    "sqlalchemy"
+  ]
+}

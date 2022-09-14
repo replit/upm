@@ -1,0 +1,16 @@
+{
+  "name": "ghp-import",
+  "version": "2.1.0",
+  "requires_dist": [
+    "python-dateutil",
+    "twine",
+    "markdown",
+    "flake8",
+    "wheel"
+  ],
+  "modules": [
+    "dateutil",
+    "ghp_import",
+    "six"
+  ]
+}

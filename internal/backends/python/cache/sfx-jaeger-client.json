@@ -1,0 +1,15 @@
+{
+  "name": "sfx-jaeger-client",
+  "version": "3.13.1b0.dev6",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jaeger_client",
+    "opentracing",
+    "requests",
+    "six",
+    "thrift",
+    "urllib3"
+  ]
+}

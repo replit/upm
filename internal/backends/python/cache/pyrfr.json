@@ -1,0 +1,7 @@
+{
+  "name": "pyrfr",
+  "version": "0.8.3",
+  "modules": [
+    "pyrfr"
+  ]
+}

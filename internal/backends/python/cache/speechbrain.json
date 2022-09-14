@@ -1,0 +1,42 @@
+{
+  "name": "speechbrain",
+  "version": "0.5.13",
+  "requires_dist": [
+    "hyperpyyaml",
+    "joblib",
+    "numpy",
+    "packaging",
+    "scipy",
+    "sentencepiece",
+    "torch",
+    "torchaudio",
+    "tqdm",
+    "huggingface-hub"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "_yaml",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "filelock",
+    "huggingface_hub",
+    "hyperpyyaml",
+    "idna",
+    "joblib",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "requests",
+    "scipy",
+    "sentencepiece",
+    "speechbrain",
+    "torch",
+    "torchaudio",
+    "torchgen",
+    "tqdm",
+    "typing_extensions",
+    "urllib3",
+    "yaml"
+  ]
+}

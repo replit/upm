@@ -1,0 +1,11 @@
+{
+  "name": "dqrobotics",
+  "version": "20.4.0.79",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "dqrobotics",
+    "numpy"
+  ]
+}

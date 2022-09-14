@@ -1,0 +1,13 @@
+{
+  "name": "zake",
+  "version": "0.2.2",
+  "requires_dist": [
+    "kazoo",
+    "six"
+  ],
+  "modules": [
+    "kazoo",
+    "six",
+    "zake"
+  ]
+}

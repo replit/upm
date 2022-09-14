@@ -1,0 +1,9 @@
+{
+  "name": "pyformance",
+  "version": "0.4",
+  "modules": [
+    "pyformance",
+    "six",
+    "tests"
+  ]
+}

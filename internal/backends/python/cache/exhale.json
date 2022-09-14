@@ -1,0 +1,39 @@
+{
+  "name": "exhale",
+  "version": "0.3.5",
+  "requires_dist": [
+    "docutils",
+    "Sphinx",
+    "breathe",
+    "beautifulsoup4",
+    "lxml",
+    "six"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "breathe",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "exhale",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "lxml",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "six",
+    "snowballstemmer",
+    "soupsieve",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

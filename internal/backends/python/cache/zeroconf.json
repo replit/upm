@@ -1,0 +1,13 @@
+{
+  "name": "zeroconf",
+  "version": "0.39.1",
+  "requires_dist": [
+    "async-timeout",
+    "ifaddr"
+  ],
+  "modules": [
+    "async_timeout",
+    "ifaddr",
+    "zeroconf"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "zExceptions",
+  "version": "4.2",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.publisher",
+    "zope.security"
+  ],
+  "modules": [
+    "multipart",
+    "pythongettext",
+    "pytz",
+    "six",
+    "zExceptions"
+  ]
+}

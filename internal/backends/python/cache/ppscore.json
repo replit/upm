@@ -1,0 +1,16 @@
+{
+  "name": "ppscore",
+  "version": "1.2.0",
+  "modules": [
+    "dateutil",
+    "joblib",
+    "numpy",
+    "pandas",
+    "ppscore",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "truffleHog",
+  "version": "2.2.1",
+  "modules": [
+    "git",
+    "gitdb",
+    "smmap",
+    "truffleHog",
+    "truffleHogRegexes"
+  ]
+}

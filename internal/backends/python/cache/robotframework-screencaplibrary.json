@@ -1,0 +1,22 @@
+{
+  "name": "robotframework-screencaplibrary",
+  "version": "1.6.0",
+  "modules": [
+    "PIL",
+    "ScreenCapLibrary",
+    "Xlib",
+    "cv2",
+    "imageio",
+    "mouseinfo",
+    "mss",
+    "numpy",
+    "pyautogui",
+    "pygetwindow",
+    "pymsgbox",
+    "pyperclip",
+    "pyrect",
+    "pyscreeze",
+    "pytweening",
+    "robot"
+  ]
+}

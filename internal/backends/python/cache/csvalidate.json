@@ -1,0 +1,7 @@
+{
+  "name": "csvalidate",
+  "version": "1.1.1",
+  "modules": [
+    "csvalidate"
+  ]
+}

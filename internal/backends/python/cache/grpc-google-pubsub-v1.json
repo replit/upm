@@ -1,0 +1,14 @@
+{
+  "name": "grpc-google-pubsub-v1",
+  "version": "0.11.1",
+  "modules": [
+    "grpc",
+    "httplib2",
+    "oauth2client",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "rsa",
+    "six"
+  ]
+}

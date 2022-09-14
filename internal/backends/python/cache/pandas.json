@@ -1,0 +1,22 @@
+{
+  "name": "pandas",
+  "version": "1.4.4",
+  "requires_dist": [
+    "python-dateutil",
+    "pytz",
+    "numpy",
+    "numpy",
+    "numpy",
+    "numpy",
+    "hypothesis",
+    "pytest",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

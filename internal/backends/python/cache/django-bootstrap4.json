@@ -1,0 +1,18 @@
+{
+  "name": "django-bootstrap4",
+  "version": "22.2",
+  "requires_dist": [
+    "Django",
+    "beautifulsoup4",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bootstrap4",
+    "bs4",
+    "django",
+    "soupsieve",
+    "sqlparse"
+  ]
+}

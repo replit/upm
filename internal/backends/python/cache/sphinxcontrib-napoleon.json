@@ -1,0 +1,12 @@
+{
+  "name": "sphinxcontrib-napoleon",
+  "version": "0.7",
+  "requires_dist": [
+    "six",
+    "pockets"
+  ],
+  "modules": [
+    "pockets",
+    "six"
+  ]
+}

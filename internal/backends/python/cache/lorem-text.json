@@ -1,0 +1,11 @@
+{
+  "name": "lorem-text",
+  "version": "2.1",
+  "requires_dist": [
+    "Click"
+  ],
+  "modules": [
+    "click",
+    "lorem_text"
+  ]
+}

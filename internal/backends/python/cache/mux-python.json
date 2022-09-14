@@ -1,0 +1,15 @@
+{
+  "name": "mux-python",
+  "version": "3.7.1",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "python-dateutil"
+  ],
+  "modules": [
+    "dateutil",
+    "mux_python",
+    "six",
+    "urllib3"
+  ]
+}

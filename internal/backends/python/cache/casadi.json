@@ -1,0 +1,7 @@
+{
+  "name": "casadi",
+  "version": "3.5.5.post2",
+  "modules": [
+    "casadi"
+  ]
+}

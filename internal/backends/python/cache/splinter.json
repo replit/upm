@@ -1,0 +1,21 @@
+{
+  "name": "splinter",
+  "version": "0.18.1",
+  "requires_dist": [
+    "Django",
+    "lxml",
+    "cssselect",
+    "msedge-selenium-tools",
+    "Flask",
+    "lxml",
+    "cssselect",
+    "selenium",
+    "selenium",
+    "zope.testbrowser",
+    "lxml",
+    "cssselect"
+  ],
+  "modules": [
+    "splinter"
+  ]
+}

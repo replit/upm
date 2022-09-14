@@ -1,0 +1,14 @@
+{
+  "name": "flake8-implicit-str-concat",
+  "version": "0.3.0",
+  "requires_dist": [
+    "attrs",
+    "more-itertools"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "flake8_implicit_str_concat",
+    "more_itertools"
+  ]
+}

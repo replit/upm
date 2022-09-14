@@ -1,0 +1,18 @@
+{
+  "name": "pytest-pycodestyle",
+  "version": "2.3.0",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pycodestyle",
+    "pyparsing",
+    "pytest",
+    "pytest_pycodestyle",
+    "tomli"
+  ]
+}

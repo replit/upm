@@ -1,0 +1,13 @@
+{
+  "name": "cytoolz",
+  "version": "0.12.0",
+  "requires_dist": [
+    "toolz",
+    "cython"
+  ],
+  "modules": [
+    "cytoolz",
+    "tlz",
+    "toolz"
+  ]
+}

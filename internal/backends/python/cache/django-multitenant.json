@@ -1,0 +1,7 @@
+{
+  "name": "django-multitenant",
+  "version": "3.0.0",
+  "modules": [
+    "django_multitenant"
+  ]
+}

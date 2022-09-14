@@ -1,0 +1,7 @@
+{
+  "name": "2to3",
+  "version": "1.0",
+  "modules": [
+    "cmd_2to3"
+  ]
+}

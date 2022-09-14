@@ -1,0 +1,11 @@
+{
+  "name": "django-s3direct",
+  "version": "2.0.3",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "s3direct",
+    "sqlparse"
+  ]
+}

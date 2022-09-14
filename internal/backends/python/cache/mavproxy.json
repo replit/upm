@@ -1,0 +1,16 @@
+{
+  "name": "MAVProxy",
+  "version": "1.8.55",
+  "modules": [
+    "MAVProxy",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "lxml",
+    "mavnative",
+    "numpy",
+    "past",
+    "pymavlink",
+    "serial"
+  ]
+}

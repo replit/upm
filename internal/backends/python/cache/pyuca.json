@@ -1,0 +1,7 @@
+{
+  "name": "pyuca",
+  "version": "1.2",
+  "modules": [
+    "pyuca"
+  ]
+}

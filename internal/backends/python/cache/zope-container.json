@@ -1,0 +1,16 @@
+{
+  "name": "zope.container",
+  "version": "4.6",
+  "modules": [
+    "BTrees",
+    "_cffi_backend",
+    "cffi",
+    "multipart",
+    "persistent",
+    "pycparser",
+    "pythongettext",
+    "pytz",
+    "six",
+    "transaction"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "bech32",
+  "version": "1.2.0",
+  "modules": [
+    "bech32"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "pgcopy",
+  "version": "1.5.0",
+  "requires_dist": [
+    "psycopg2",
+    "pytz"
+  ],
+  "modules": [
+    "pgcopy",
+    "psycopg2",
+    "pytz"
+  ]
+}

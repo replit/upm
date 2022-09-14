@@ -1,0 +1,12 @@
+{
+  "name": "ipapi",
+  "version": "1.0.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "ipapi",
+    "requests",
+    "urllib3"
+  ]
+}

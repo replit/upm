@@ -1,0 +1,37 @@
+{
+  "name": "omlt",
+  "version": "1.0",
+  "requires_dist": [
+    "networkx",
+    "pyomo",
+    "numpy",
+    "importlib-metadata",
+    "setuptools",
+    "pytest",
+    "pytest-cov",
+    "nbmake",
+    "tox",
+    "flake8",
+    "tensorflow",
+    "ipywidgets",
+    "jupyter",
+    "lightgbm",
+    "matplotlib",
+    "pandas",
+    "keras",
+    "onnx",
+    "onnxruntime",
+    "onnxmltools",
+    "tf2onnx",
+    "torch",
+    "torchvision",
+    "tqdm"
+  ],
+  "modules": [
+    "networkx",
+    "numpy",
+    "omlt",
+    "ply",
+    "pyomo"
+  ]
+}

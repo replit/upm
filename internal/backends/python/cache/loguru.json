@@ -1,0 +1,23 @@
+{
+  "name": "loguru",
+  "version": "0.6.0",
+  "requires_dist": [
+    "aiocontextvars",
+    "colorama",
+    "win32-setctime",
+    "colorama",
+    "docutils",
+    "flake8",
+    "tox",
+    "pytest",
+    "pytest-cov",
+    "black",
+    "isort",
+    "Sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "loguru"
+  ]
+}

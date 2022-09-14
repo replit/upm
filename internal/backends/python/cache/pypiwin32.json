@@ -1,0 +1,8 @@
+{
+  "name": "pypiwin32",
+  "version": "223",
+  "requires_dist": [
+    "pywin32"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pypiwin32/bin/python3', '-m', 'pip', 'install', 'pypiwin32']' returned non-zero exit status 1.\"}"
+}

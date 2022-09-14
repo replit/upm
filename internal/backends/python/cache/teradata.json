@@ -1,0 +1,7 @@
+{
+  "name": "teradata",
+  "version": "15.10.0.21",
+  "modules": [
+    "teradata"
+  ]
+}

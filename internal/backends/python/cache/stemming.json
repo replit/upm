@@ -1,0 +1,7 @@
+{
+  "name": "stemming",
+  "version": "1.0.1",
+  "modules": [
+    "stemming"
+  ]
+}

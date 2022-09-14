@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-actiontrail",
+  "version": "2.2.0",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkactiontrail",
+    "aliyunsdkcore",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "cryptocode",
+  "version": "0.1",
+  "requires_dist": [
+    "pycryptodomex"
+  ],
+  "modules": [
+    "Cryptodome",
+    "cryptocode"
+  ]
+}

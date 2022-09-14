@@ -1,0 +1,18 @@
+{
+  "name": "flake8-annotations",
+  "version": "2.9.1",
+  "requires_dist": [
+    "attrs",
+    "flake8",
+    "typed-ast"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "flake8",
+    "flake8_annotations",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

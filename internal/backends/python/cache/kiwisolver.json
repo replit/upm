@@ -1,0 +1,10 @@
+{
+  "name": "kiwisolver",
+  "version": "1.4.4",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "kiwisolver"
+  ]
+}

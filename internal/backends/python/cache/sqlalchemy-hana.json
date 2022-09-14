@@ -1,0 +1,9 @@
+{
+  "name": "sqlalchemy-hana",
+  "version": "0.5.0",
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_hana"
+  ]
+}

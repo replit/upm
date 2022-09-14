@@ -1,0 +1,15 @@
+{
+  "name": "pysftp",
+  "version": "0.2.9",
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "nacl",
+    "paramiko",
+    "pycparser",
+    "pysftp",
+    "six"
+  ]
+}

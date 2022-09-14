@@ -1,0 +1,14 @@
+{
+  "name": "usps-api",
+  "version": "0.5",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lxml",
+    "requests",
+    "urllib3",
+    "usps",
+    "xmltodict"
+  ]
+}

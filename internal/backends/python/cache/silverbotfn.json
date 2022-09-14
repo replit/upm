@@ -1,0 +1,15 @@
+{
+  "name": "SilverBotFN",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "SilverBotFN",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

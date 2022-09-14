@@ -1,0 +1,9 @@
+{
+  "name": "django-auditlog",
+  "version": "2.1.1",
+  "modules": [
+    "auditlog",
+    "dateutil",
+    "six"
+  ]
+}

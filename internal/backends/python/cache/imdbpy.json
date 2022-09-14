@@ -1,0 +1,13 @@
+{
+  "name": "IMDbPY",
+  "version": "2022.7.9",
+  "requires_dist": [
+    "cinemagoer"
+  ],
+  "modules": [
+    "greenlet",
+    "imdb",
+    "lxml",
+    "sqlalchemy"
+  ]
+}

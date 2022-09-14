@@ -1,0 +1,12 @@
+{
+  "name": "grpcio-gcp",
+  "version": "0.2.2",
+  "requires_dist": [
+    "grpcio"
+  ],
+  "modules": [
+    "grpc",
+    "grpc_gcp",
+    "six"
+  ]
+}

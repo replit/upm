@@ -1,0 +1,24 @@
+{
+  "name": "pytest-django",
+  "version": "4.5.2",
+  "requires_dist": [
+    "pytest",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "Django",
+    "django-configurations"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_django",
+    "tomli"
+  ]
+}

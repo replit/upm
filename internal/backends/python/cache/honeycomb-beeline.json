@@ -1,0 +1,19 @@
+{
+  "name": "honeycomb-beeline",
+  "version": "3.5.0",
+  "requires_dist": [
+    "libhoney",
+    "wrapt"
+  ],
+  "modules": [
+    "beeline",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "libhoney",
+    "requests",
+    "statsd",
+    "urllib3",
+    "wrapt"
+  ]
+}

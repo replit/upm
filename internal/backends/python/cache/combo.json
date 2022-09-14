@@ -1,0 +1,31 @@
+{
+  "name": "combo",
+  "version": "0.1.3",
+  "modules": [
+    "PIL",
+    "combo",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "importlib_metadata",
+    "joblib",
+    "kiwisolver",
+    "llvmlite",
+    "matplotlib",
+    "numba",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pylab",
+    "pyod",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "statsmodels",
+    "threadpoolctl",
+    "zipp"
+  ]
+}

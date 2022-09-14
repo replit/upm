@@ -1,0 +1,11 @@
+{
+  "name": "multipart-reader",
+  "version": "0.2",
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "multipart_reader",
+    "past"
+  ]
+}

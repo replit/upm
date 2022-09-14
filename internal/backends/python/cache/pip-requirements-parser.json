@@ -1,0 +1,17 @@
+{
+  "name": "pip-requirements-parser",
+  "version": "31.2.0",
+  "requires_dist": [
+    "packaging",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "doc8",
+    "pytest",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "packaging",
+    "pip_requirements_parser",
+    "pyparsing"
+  ]
+}

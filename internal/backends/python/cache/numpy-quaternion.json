@@ -1,0 +1,20 @@
+{
+  "name": "numpy-quaternion",
+  "version": "2022.4.2",
+  "requires_dist": [
+    "numpy",
+    "mkdocs",
+    "mktheapidocs",
+    "pymdown-extensions",
+    "numba",
+    "llvmlite",
+    "numba",
+    "scipy",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "numpy",
+    "quaternion"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Adafruit-PlatformDetect",
+  "version": "3.29.0",
+  "modules": [
+    "adafruit_platformdetect"
+  ]
+}

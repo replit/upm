@@ -1,0 +1,7 @@
+{
+  "name": "fastobo",
+  "version": "0.12.1",
+  "modules": [
+    "fastobo"
+  ]
+}

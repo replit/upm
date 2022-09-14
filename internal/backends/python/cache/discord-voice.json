@@ -1,0 +1,7 @@
+{
+  "name": "discord-voice",
+  "version": "0.0.0",
+  "modules": [
+    "discord_voice"
+  ]
+}

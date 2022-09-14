@@ -1,0 +1,7 @@
+{
+  "name": "audioread",
+  "version": "3.0.0",
+  "modules": [
+    "audioread"
+  ]
+}

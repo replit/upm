@@ -1,0 +1,26 @@
+{
+  "name": "veracode-api-signing",
+  "version": "22.3.0",
+  "requires_dist": [
+    "requests",
+    "docopt",
+    "httpie"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "commonmark",
+    "defusedxml",
+    "docopt",
+    "httpie",
+    "idna",
+    "multidict",
+    "pygments",
+    "requests",
+    "requests_toolbelt",
+    "rich",
+    "typing_extensions",
+    "urllib3",
+    "veracode_api_signing"
+  ]
+}

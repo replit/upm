@@ -1,0 +1,27 @@
+{
+  "name": "adtk",
+  "version": "0.6.2",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn",
+    "statsmodels",
+    "packaging",
+    "tabulate",
+    "black",
+    "isort",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "nbsphinx",
+    "python-dateutil",
+    "jupyter",
+    "pytest",
+    "tox",
+    "coverage",
+    "pytest-cov",
+    "coveralls",
+    "mypy"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/adtk/bin/python3', '-m', 'pip', 'install', 'adtk']' returned non-zero exit status 1.\"}"
+}

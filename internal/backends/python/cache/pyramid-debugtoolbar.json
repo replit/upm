@@ -1,0 +1,32 @@
+{
+  "name": "pyramid-debugtoolbar",
+  "version": "4.9",
+  "requires_dist": [
+    "pyramid",
+    "pyramid-mako",
+    "repoze.lru",
+    "Pygments",
+    "ipaddress",
+    "Sphinx",
+    "pylons-sphinx-themes",
+    "WebTest",
+    "nose",
+    "coverage",
+    "sqlalchemy",
+    "webob"
+  ],
+  "modules": [
+    "hupper",
+    "mako",
+    "markupsafe",
+    "plaster",
+    "plaster_pastedeploy",
+    "pygments",
+    "pyramid",
+    "pyramid_debugtoolbar",
+    "pyramid_mako",
+    "translationstring",
+    "venusian",
+    "webob"
+  ]
+}

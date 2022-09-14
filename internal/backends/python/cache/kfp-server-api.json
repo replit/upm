@@ -1,0 +1,11 @@
+{
+  "name": "kfp-server-api",
+  "version": "1.8.5",
+  "modules": [
+    "certifi",
+    "dateutil",
+    "kfp_server_api",
+    "six",
+    "urllib3"
+  ]
+}

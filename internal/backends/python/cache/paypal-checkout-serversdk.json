@@ -1,0 +1,22 @@
+{
+  "name": "paypal-checkout-serversdk",
+  "version": "1.0.1",
+  "requires_dist": [
+    "paypalhttp"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "paypalcheckoutsdk",
+    "paypalhttp",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

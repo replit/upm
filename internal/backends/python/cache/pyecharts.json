@@ -1,0 +1,21 @@
+{
+  "name": "pyecharts",
+  "version": "1.9.1",
+  "requires_dist": [
+    "jinja2",
+    "prettytable",
+    "simplejson",
+    "PIL",
+    "snapshot-phantomjs",
+    "snapshot-pyppeteer",
+    "snapshot-selenium"
+  ],
+  "modules": [
+    "jinja2",
+    "markupsafe",
+    "prettytable",
+    "pyecharts",
+    "simplejson",
+    "wcwidth"
+  ]
+}

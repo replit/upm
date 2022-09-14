@@ -1,0 +1,21 @@
+{
+  "name": "python-dxf",
+  "version": "7.10.0",
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "deprecated",
+    "dxf",
+    "idna",
+    "jwcrypto",
+    "pycparser",
+    "requests",
+    "tqdm",
+    "urllib3",
+    "wrapt",
+    "www_authenticate"
+  ]
+}

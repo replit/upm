@@ -1,0 +1,40 @@
+{
+  "name": "ipytest",
+  "version": "0.12.0",
+  "requires_dist": [
+    "ipython",
+    "packaging",
+    "pytest"
+  ],
+  "modules": [
+    "IPython",
+    "_pytest",
+    "asttokens",
+    "attr",
+    "attrs",
+    "backcall",
+    "decorator",
+    "executing",
+    "iniconfig",
+    "ipytest",
+    "jedi",
+    "matplotlib_inline",
+    "packaging",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "pluggy",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "py",
+    "pygments",
+    "pyparsing",
+    "pytest",
+    "six",
+    "stack_data",
+    "tomli",
+    "traitlets",
+    "wcwidth"
+  ]
+}

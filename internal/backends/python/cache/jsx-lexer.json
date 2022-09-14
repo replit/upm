@@ -1,0 +1,11 @@
+{
+  "name": "jsx-lexer",
+  "version": "2.0.0",
+  "requires_dist": [
+    "Pygments"
+  ],
+  "modules": [
+    "jsx",
+    "pygments"
+  ]
+}

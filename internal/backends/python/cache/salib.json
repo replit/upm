@@ -1,0 +1,42 @@
+{
+  "name": "SALib",
+  "version": "1.4.5",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pandas",
+    "pathos",
+    "setuptools",
+    "wheel",
+    "importlib-metadata",
+    "gurobipy",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "PIL",
+    "SALib",
+    "_multiprocess",
+    "cycler",
+    "dateutil",
+    "dill",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "multiprocess",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pathos",
+    "pox",
+    "pp",
+    "ppft",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "wheel"
+  ]
+}

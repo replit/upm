@@ -1,0 +1,12 @@
+{
+  "name": "aws-cdk.aws-elasticache",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/aws-cdk.aws-elasticache/bin/python3', '-m', 'pip', 'install', 'aws-cdk.aws-elasticache']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "datacompy",
+  "version": "0.8.1",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "ordered-set",
+    "twine",
+    "wheel",
+    "pytest",
+    "pytest-cov",
+    "pytest-spark",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pre-commit",
+    "black",
+    "isort",
+    "twine",
+    "wheel",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "edgetest",
+    "edgetest-conda",
+    "pre-commit",
+    "black",
+    "isort",
+    "pyspark",
+    "pytest",
+    "pytest-cov",
+    "pytest-spark"
+  ],
+  "modules": [
+    "datacompy",
+    "dateutil",
+    "numpy",
+    "ordered_set",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Pint",
+  "version": "0.19.2",
+  "modules": [
+    "pint"
+  ]
+}

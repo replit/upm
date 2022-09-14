@@ -1,0 +1,12 @@
+{
+  "name": "google",
+  "version": "3.0.0",
+  "requires_dist": [
+    "beautifulsoup4"
+  ],
+  "modules": [
+    "bs4",
+    "googlesearch",
+    "soupsieve"
+  ]
+}

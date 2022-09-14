@@ -1,0 +1,11 @@
+{
+  "name": "python-nvd3",
+  "version": "0.15.0",
+  "modules": [
+    "jinja2",
+    "markupsafe",
+    "nvd3",
+    "slugify",
+    "text_unidecode"
+  ]
+}

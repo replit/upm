@@ -1,0 +1,7 @@
+{
+  "name": "asyncio-pool",
+  "version": "0.6.0",
+  "modules": [
+    "asyncio_pool"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "OpenGeode-IO",
+  "version": "5.20.2",
+  "requires_dist": [
+    "OpenGeode-core"
+  ],
+  "modules": [
+    "opengeode",
+    "opengeode_io"
+  ]
+}

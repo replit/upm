@@ -1,0 +1,17 @@
+{
+  "name": "opentelemetry-instrumentation-aiohttp-client",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "opentelemetry-instrumentation",
+    "opentelemetry-util-http",
+    "wrapt",
+    "aiohttp",
+    "aiohttp"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

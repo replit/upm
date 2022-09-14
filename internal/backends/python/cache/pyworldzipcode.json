@@ -1,0 +1,15 @@
+{
+  "name": "pyworldzipcode",
+  "version": "0.2.2",
+  "requires_dist": [
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "pyworldzipcode",
+    "six"
+  ]
+}

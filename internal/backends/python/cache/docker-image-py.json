@@ -1,0 +1,11 @@
+{
+  "name": "docker-image-py",
+  "version": "0.1.12",
+  "requires_dist": [
+    "regex"
+  ],
+  "modules": [
+    "docker_image",
+    "regex"
+  ]
+}

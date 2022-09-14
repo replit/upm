@@ -1,0 +1,13 @@
+{
+  "name": "fairscale",
+  "version": "0.4.9",
+  "modules": [
+    "benchmarks",
+    "caffe2",
+    "fairscale",
+    "numpy",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

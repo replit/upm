@@ -1,0 +1,13 @@
+{
+  "name": "pyjks",
+  "version": "20.0.0",
+  "modules": [
+    "Cryptodome",
+    "_twofish",
+    "javaobj",
+    "jks",
+    "pyasn1",
+    "pyasn1_modules",
+    "twofish"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "spark-nlp",
+  "version": "4.1.0",
+  "modules": [
+    "com",
+    "sparknlp"
+  ]
+}

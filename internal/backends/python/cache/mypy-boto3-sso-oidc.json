@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sso-oidc",
+  "version": "1.24.60",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sso_oidc",
+    "typing_extensions"
+  ]
+}

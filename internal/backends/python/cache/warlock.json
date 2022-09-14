@@ -1,0 +1,22 @@
+{
+  "name": "warlock",
+  "version": "2.0.1",
+  "requires_dist": [
+    "jsonpatch",
+    "jsonschema"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonpatch",
+    "jsonpointer",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "warlock",
+    "zipp"
+  ]
+}

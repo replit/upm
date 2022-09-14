@@ -1,0 +1,15 @@
+{
+  "name": "torrequest",
+  "version": "0.1.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "socks",
+    "sockshandler",
+    "stem",
+    "torrequest",
+    "urllib3"
+  ]
+}

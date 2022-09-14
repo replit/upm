@@ -1,0 +1,10 @@
+{
+  "name": "mozinfo",
+  "version": "1.2.2",
+  "modules": [
+    "distro",
+    "mozfile",
+    "mozinfo",
+    "six"
+  ]
+}

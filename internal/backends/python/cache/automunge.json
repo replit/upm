@@ -1,0 +1,22 @@
+{
+  "name": "Automunge",
+  "version": "8.30",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy"
+  ],
+  "modules": [
+    "Automunge",
+    "dateutil",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

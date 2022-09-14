@@ -1,0 +1,14 @@
+{
+  "name": "grpcio",
+  "version": "1.48.1",
+  "requires_dist": [
+    "six",
+    "futures",
+    "enum34",
+    "grpcio-tools"
+  ],
+  "modules": [
+    "grpc",
+    "six"
+  ]
+}

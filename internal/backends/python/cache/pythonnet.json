@@ -1,0 +1,5 @@
+{
+  "name": "pythonnet",
+  "version": "2.5.2",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pythonnet/bin/python3', '-m', 'pip', 'install', 'pythonnet']' returned non-zero exit status 1.\"}"
+}

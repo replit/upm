@@ -1,0 +1,23 @@
+{
+  "name": "finbourne-identity-sdk",
+  "version": "0.0.1869",
+  "requires_dist": [
+    "certifi",
+    "python-dateutil",
+    "requests",
+    "six",
+    "urllib3",
+    "finbourne-sdk-utilities"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "fbnsdkutilities",
+    "finbourne_identity",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

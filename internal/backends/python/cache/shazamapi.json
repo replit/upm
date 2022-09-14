@@ -1,0 +1,19 @@
+{
+  "name": "ShazamAPI",
+  "version": "0.0.2",
+  "requires_dist": [
+    "requests",
+    "pydub",
+    "numpy"
+  ],
+  "modules": [
+    "ShazamAPI",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "numpy",
+    "pydub",
+    "requests",
+    "urllib3"
+  ]
+}

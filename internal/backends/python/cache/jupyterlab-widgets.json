@@ -1,0 +1,7 @@
+{
+  "name": "jupyterlab-widgets",
+  "version": "3.0.3",
+  "modules": [
+    "jupyterlab_widgets"
+  ]
+}

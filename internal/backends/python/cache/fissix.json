@@ -1,0 +1,11 @@
+{
+  "name": "fissix",
+  "version": "21.11.13",
+  "requires_dist": [
+    "appdirs"
+  ],
+  "modules": [
+    "appdirs",
+    "fissix"
+  ]
+}

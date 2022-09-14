@@ -1,0 +1,20 @@
+{
+  "name": "avro-validator",
+  "version": "1.2.1",
+  "requires_dist": [
+    "pytest",
+    "coverage",
+    "tox",
+    "flake8",
+    "hypothesis",
+    "pytest-cov",
+    "python-coveralls",
+    "sphinx",
+    "pallets-sphinx-themes",
+    "sphinxcontrib-log-cabinet",
+    "sphinx-issues"
+  ],
+  "modules": [
+    "avro_validator"
+  ]
+}

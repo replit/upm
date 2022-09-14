@@ -1,0 +1,20 @@
+{
+  "name": "imgviz",
+  "version": "1.5.1",
+  "modules": [
+    "PIL",
+    "_yaml",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "imgviz",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six",
+    "yaml"
+  ]
+}

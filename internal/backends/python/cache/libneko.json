@@ -1,0 +1,25 @@
+{
+  "name": "libneko",
+  "version": "0.24.9",
+  "modules": [
+    "aiofiles",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "asynctest",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "coverage",
+    "docutils",
+    "frozenlist",
+    "idna",
+    "libneko",
+    "multidict",
+    "requests",
+    "urllib3",
+    "websockets",
+    "yarl"
+  ]
+}

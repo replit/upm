@@ -1,0 +1,11 @@
+{
+  "name": "nslookup",
+  "version": "1.6.1",
+  "requires_dist": [
+    "dnspython"
+  ],
+  "modules": [
+    "dns",
+    "nslookup"
+  ]
+}

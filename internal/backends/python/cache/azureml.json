@@ -1,0 +1,17 @@
+{
+  "name": "azureml",
+  "version": "0.2.7",
+  "modules": [
+    "azureml",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "pyramid-tm",
+  "version": "2.5",
+  "requires_dist": [
+    "pyramid",
+    "transaction",
+    "Sphinx",
+    "pylons-sphinx-themes",
+    "WebTest",
+    "pytest",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "hupper",
+    "plaster",
+    "plaster_pastedeploy",
+    "pyramid",
+    "pyramid_tm",
+    "transaction",
+    "translationstring",
+    "venusian",
+    "webob"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "srp",
+  "version": "1.0.19",
+  "modules": [
+    "six",
+    "srp"
+  ]
+}

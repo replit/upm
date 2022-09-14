@@ -1,0 +1,15 @@
+{
+  "name": "pyepsg",
+  "version": "0.4.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyepsg",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "unicodedata2",
+  "version": "14.0.0",
+  "requires_dist": [
+    "pytest",
+    "coverage",
+    "pytest-xdist",
+    "pytest-randomly"
+  ],
+  "modules": [
+    "unicodedata2"
+  ]
+}

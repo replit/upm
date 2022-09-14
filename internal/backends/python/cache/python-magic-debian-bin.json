@@ -1,0 +1,7 @@
+{
+  "name": "python-magic-debian-bin",
+  "version": "0.4.25",
+  "modules": [
+    "magic"
+  ]
+}

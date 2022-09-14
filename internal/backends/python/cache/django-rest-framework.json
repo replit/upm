@@ -1,0 +1,13 @@
+{
+  "name": "django-rest-framework",
+  "version": "0.1.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "empty",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

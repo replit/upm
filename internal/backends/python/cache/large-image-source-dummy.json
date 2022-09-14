@@ -1,0 +1,17 @@
+{
+  "name": "large-image-source-dummy",
+  "version": "1.16.2",
+  "requires_dist": [
+    "large-image",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "PIL",
+    "cachetools",
+    "large_image",
+    "large_image_source_dummy",
+    "numpy",
+    "palettable",
+    "psutil"
+  ]
+}

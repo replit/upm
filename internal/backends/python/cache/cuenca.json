@@ -1,0 +1,26 @@
+{
+  "name": "cuenca",
+  "version": "0.14.2",
+  "requires_dist": [
+    "requests",
+    "cuenca-validations",
+    "dataclasses"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "clabe",
+    "cuenca",
+    "cuenca_validations",
+    "dateutil",
+    "dns",
+    "email_validator",
+    "idna",
+    "pydantic",
+    "requests",
+    "six",
+    "tests",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-kms",
+  "version": "2.16.0",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkkms",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

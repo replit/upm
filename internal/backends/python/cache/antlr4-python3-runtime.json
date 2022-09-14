@@ -1,0 +1,10 @@
+{
+  "name": "antlr4-python3-runtime",
+  "version": "4.11.1",
+  "requires_dist": [
+    "typing"
+  ],
+  "modules": [
+    "antlr4"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "dpkt",
+  "version": "1.9.8",
+  "modules": [
+    "dpkt"
+  ]
+}

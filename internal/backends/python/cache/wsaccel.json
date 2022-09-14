@@ -1,0 +1,7 @@
+{
+  "name": "wsaccel",
+  "version": "0.6.3",
+  "modules": [
+    "wsaccel"
+  ]
+}

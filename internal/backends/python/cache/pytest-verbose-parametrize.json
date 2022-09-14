@@ -1,0 +1,25 @@
+{
+  "name": "pytest-verbose-parametrize",
+  "version": "1.7.0",
+  "requires_dist": [
+    "pytest",
+    "six",
+    "mock",
+    "pytest-virtualenv",
+    "coverage"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_verbose_parametrize",
+    "six",
+    "tomli"
+  ]
+}

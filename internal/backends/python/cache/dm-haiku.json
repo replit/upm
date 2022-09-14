@@ -1,0 +1,20 @@
+{
+  "name": "dm-haiku",
+  "version": "0.0.7",
+  "requires_dist": [
+    "absl-py",
+    "jmp",
+    "numpy",
+    "tabulate",
+    "typing-extensions",
+    "jax",
+    "jaxlib"
+  ],
+  "modules": [
+    "absl",
+    "haiku",
+    "jmp",
+    "numpy",
+    "tabulate"
+  ]
+}

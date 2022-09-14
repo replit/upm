@@ -1,0 +1,19 @@
+{
+  "name": "grafana-api",
+  "version": "1.0.3",
+  "requires_dist": [
+    "requests",
+    "codecov",
+    "coverage",
+    "unittest-xml-reporting",
+    "requests-mock"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "grafana_api",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "win_unicode_console",
+  "version": "0.5",
+  "modules": [
+    "run",
+    "win_unicode_console"
+  ]
+}

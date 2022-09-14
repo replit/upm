@@ -1,0 +1,20 @@
+{
+  "name": "pytest-picked",
+  "version": "0.4.6",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_picked",
+    "tomli"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "robocorp-dialog",
+  "version": "0.5.3",
+  "requires_dist": [
+    "pywebview",
+    "PyQt5",
+    "PyQtWebEngine"
+  ],
+  "modules": [
+    "PyQt5",
+    "proxy_tools",
+    "robocorp_dialog",
+    "webview"
+  ]
+}

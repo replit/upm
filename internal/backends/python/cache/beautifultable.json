@@ -1,0 +1,13 @@
+{
+  "name": "beautifultable",
+  "version": "1.1.0",
+  "requires_dist": [
+    "wcwidth",
+    "pandas",
+    "pandas"
+  ],
+  "modules": [
+    "beautifultable",
+    "wcwidth"
+  ]
+}

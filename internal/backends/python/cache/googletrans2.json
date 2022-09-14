@@ -1,0 +1,12 @@
+{
+  "name": "googletrans2",
+  "version": "2.3.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "googletrans",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

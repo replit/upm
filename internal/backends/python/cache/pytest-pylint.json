@@ -1,0 +1,33 @@
+{
+  "name": "pytest-pylint",
+  "version": "0.19.0",
+  "requires_dist": [
+    "pytest",
+    "pylint",
+    "toml"
+  ],
+  "modules": [
+    "_pytest",
+    "astroid",
+    "attr",
+    "attrs",
+    "dill",
+    "iniconfig",
+    "isort",
+    "lazy_object_proxy",
+    "mccabe",
+    "packaging",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pylint",
+    "pyparsing",
+    "pytest",
+    "pytest_pylint",
+    "toml",
+    "tomli",
+    "tomlkit",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

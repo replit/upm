@@ -1,0 +1,17 @@
+{
+  "name": "libhoney",
+  "version": "2.3.0",
+  "requires_dist": [
+    "requests",
+    "statsd"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "libhoney",
+    "requests",
+    "statsd",
+    "urllib3"
+  ]
+}

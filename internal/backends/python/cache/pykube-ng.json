@@ -1,0 +1,22 @@
+{
+  "name": "pykube-ng",
+  "version": "22.7.0",
+  "requires_dist": [
+    "google-auth",
+    "jsonpath-ng",
+    "pyyaml",
+    "requests",
+    "urllib3",
+    "requests-oauthlib"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pykube",
+    "requests",
+    "urllib3",
+    "yaml"
+  ]
+}

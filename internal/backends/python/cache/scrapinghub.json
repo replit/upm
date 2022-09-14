@@ -1,0 +1,20 @@
+{
+  "name": "scrapinghub",
+  "version": "2.4.0",
+  "requires_dist": [
+    "requests",
+    "retrying",
+    "six",
+    "msgpack"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "retrying",
+    "scrapinghub",
+    "six",
+    "urllib3"
+  ]
+}

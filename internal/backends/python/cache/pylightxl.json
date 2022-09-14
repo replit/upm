@@ -1,0 +1,7 @@
+{
+  "name": "pylightxl",
+  "version": "1.60",
+  "modules": [
+    "pylightxl"
+  ]
+}

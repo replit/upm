@@ -1,0 +1,15 @@
+{
+  "name": "pyShelly",
+  "version": "1.0.2",
+  "requires_dist": [
+    "zeroconf",
+    "websocket-client"
+  ],
+  "modules": [
+    "async_timeout",
+    "ifaddr",
+    "pyShelly",
+    "websocket",
+    "zeroconf"
+  ]
+}

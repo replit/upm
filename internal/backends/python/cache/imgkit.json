@@ -1,0 +1,11 @@
+{
+  "name": "imgkit",
+  "version": "1.2.2",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "imgkit",
+    "six"
+  ]
+}

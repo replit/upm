@@ -1,0 +1,26 @@
+{
+  "name": "azure-storage-file-datalake",
+  "version": "12.8.0",
+  "requires_dist": [
+    "azure-core",
+    "msrest",
+    "azure-storage-blob"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

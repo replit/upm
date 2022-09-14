@@ -1,0 +1,19 @@
+{
+  "name": "k-selenium-cookies",
+  "version": "0.0.4",
+  "requires_dist": [
+    "tldextract"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "filelock",
+    "idna",
+    "k_selenium_cookies",
+    "requests",
+    "requests_file",
+    "six",
+    "tldextract",
+    "urllib3"
+  ]
+}

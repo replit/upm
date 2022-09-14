@@ -1,0 +1,18 @@
+{
+  "name": "inquirer",
+  "version": "2.10.0",
+  "requires_dist": [
+    "blessed",
+    "python-editor",
+    "readchar"
+  ],
+  "modules": [
+    "blessed",
+    "editor",
+    "inquirer",
+    "readchar",
+    "six",
+    "wcwidth",
+    "wheel"
+  ]
+}

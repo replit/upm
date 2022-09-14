@@ -1,0 +1,13 @@
+{
+  "name": "betterproto",
+  "version": "1.2.5",
+  "modules": [
+    "betterproto",
+    "grpclib",
+    "h2",
+    "hpack",
+    "hyperframe",
+    "multidict",
+    "stringcase"
+  ]
+}

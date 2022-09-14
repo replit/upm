@@ -1,0 +1,13 @@
+{
+  "name": "intbitset",
+  "version": "3.0.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "intbitset",
+    "intbitset_helper",
+    "intbitset_version"
+  ]
+}

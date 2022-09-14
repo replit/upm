@@ -1,0 +1,10 @@
+{
+  "name": "spinners",
+  "version": "0.0.24",
+  "requires_dist": [
+    "enum34"
+  ],
+  "modules": [
+    "spinners"
+  ]
+}

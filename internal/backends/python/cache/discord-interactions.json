@@ -1,0 +1,14 @@
+{
+  "name": "discord-interactions",
+  "version": "0.4.0",
+  "requires_dist": [
+    "PyNaCl"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "discord_interactions",
+    "nacl",
+    "pycparser"
+  ]
+}

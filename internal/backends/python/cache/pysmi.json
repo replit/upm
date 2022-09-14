@@ -1,0 +1,11 @@
+{
+  "name": "pysmi",
+  "version": "0.3.4",
+  "requires_dist": [
+    "ply"
+  ],
+  "modules": [
+    "ply",
+    "pysmi"
+  ]
+}

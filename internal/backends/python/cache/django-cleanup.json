@@ -1,0 +1,7 @@
+{
+  "name": "django-cleanup",
+  "version": "6.0.0",
+  "modules": [
+    "django_cleanup"
+  ]
+}

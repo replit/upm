@@ -1,0 +1,11 @@
+{
+  "name": "plumber",
+  "version": "1.7",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface"
+  ],
+  "modules": [
+    "plumber"
+  ]
+}

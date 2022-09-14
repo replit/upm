@@ -1,0 +1,15 @@
+{
+  "name": "python-helpscout-v2",
+  "version": "2.0.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "helpscout",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

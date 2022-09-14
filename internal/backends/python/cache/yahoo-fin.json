@@ -1,0 +1,41 @@
+{
+  "name": "yahoo-fin",
+  "version": "0.8.9.1",
+  "requires_dist": [
+    "requests-html",
+    "feedparser",
+    "requests",
+    "pandas"
+  ],
+  "modules": [
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "cssselect",
+    "dateutil",
+    "fake_useragent",
+    "feedparser",
+    "idna",
+    "importlib_metadata",
+    "lxml",
+    "numpy",
+    "pandas",
+    "parse",
+    "pyee",
+    "pyppeteer",
+    "pyquery",
+    "pytz",
+    "requests",
+    "requests_html",
+    "sgmllib",
+    "six",
+    "soupsieve",
+    "tqdm",
+    "urllib3",
+    "w3lib",
+    "websockets",
+    "yahoo_fin",
+    "zipp"
+  ]
+}

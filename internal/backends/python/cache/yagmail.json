@@ -1,0 +1,24 @@
+{
+  "name": "yagmail",
+  "version": "0.15.293",
+  "requires_dist": [
+    "premailer",
+    "keyring",
+    "dkimpy",
+    "dkimpy"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "cssselect",
+    "cssutils",
+    "encutils",
+    "idna",
+    "lxml",
+    "premailer",
+    "requests",
+    "urllib3",
+    "yagmail"
+  ]
+}

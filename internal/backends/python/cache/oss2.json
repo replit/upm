@@ -1,0 +1,22 @@
+{
+  "name": "oss2",
+  "version": "2.16.0",
+  "modules": [
+    "Crypto",
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkkms",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "crcmod",
+    "cryptography",
+    "idna",
+    "jmespath",
+    "oss2",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

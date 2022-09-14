@@ -1,0 +1,16 @@
+{
+  "name": "transaction",
+  "version": "3.0.1",
+  "requires_dist": [
+    "zope.interface",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "mock",
+    "nose",
+    "coverage",
+    "mock"
+  ],
+  "modules": [
+    "transaction"
+  ]
+}

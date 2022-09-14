@@ -1,0 +1,37 @@
+{
+  "name": "dowhy",
+  "version": "0.8",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "statsmodels",
+    "pandas",
+    "networkx",
+    "sympy",
+    "scikit-learn",
+    "pydot",
+    "matplotlib"
+  ],
+  "modules": [
+    "dateutil",
+    "dot_parser",
+    "dowhy",
+    "isympy",
+    "joblib",
+    "mpmath",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pydot",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "statsmodels",
+    "sympy",
+    "threadpoolctl"
+  ]
+}

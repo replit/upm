@@ -1,0 +1,15 @@
+{
+  "name": "markdownify",
+  "version": "0.11.6",
+  "requires_dist": [
+    "beautifulsoup4",
+    "six"
+  ],
+  "modules": [
+    "bs4",
+    "markdownify",
+    "six",
+    "soupsieve",
+    "tests"
+  ]
+}

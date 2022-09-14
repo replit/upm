@@ -1,0 +1,31 @@
+{
+  "name": "pydantic-yaml",
+  "version": "0.8.0",
+  "requires_dist": [
+    "pydantic",
+    "semver",
+    "deprecated",
+    "types-Deprecated",
+    "black",
+    "flake8",
+    "bump2version",
+    "pytest",
+    "mypy",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings",
+    "pymdown-extensions",
+    "pygments",
+    "pyyaml",
+    "types-PyYAML",
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "deprecated",
+    "pydantic",
+    "pydantic_yaml",
+    "semver",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

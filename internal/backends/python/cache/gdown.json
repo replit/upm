@@ -1,0 +1,19 @@
+{
+  "name": "gdown",
+  "version": "4.5.1",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "filelock",
+    "gdown",
+    "idna",
+    "requests",
+    "six",
+    "socks",
+    "sockshandler",
+    "soupsieve",
+    "tqdm",
+    "urllib3"
+  ]
+}

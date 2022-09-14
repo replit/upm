@@ -1,0 +1,11 @@
+{
+  "name": "zope.deferredimport",
+  "version": "4.4",
+  "requires_dist": [
+    "setuptools",
+    "zope.proxy",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.testrunner"
+  ]
+}

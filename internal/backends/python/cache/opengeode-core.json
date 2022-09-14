@@ -1,0 +1,7 @@
+{
+  "name": "OpenGeode-core",
+  "version": "11.2.6",
+  "modules": [
+    "opengeode"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "cchardet",
+  "version": "2.1.7",
+  "modules": [
+    "cchardet"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "advent-of-code",
+  "version": "2019.12.454",
+  "modules": [
+    "advent_of_code"
+  ]
+}

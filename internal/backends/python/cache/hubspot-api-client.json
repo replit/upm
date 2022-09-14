@@ -1,0 +1,19 @@
+{
+  "name": "hubspot-api-client",
+  "version": "6.0.0",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil",
+    "pytest",
+    "black"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "hubspot",
+    "six",
+    "urllib3"
+  ]
+}

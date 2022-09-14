@@ -1,0 +1,14 @@
+{
+  "name": "django-classy-tags",
+  "version": "3.0.1",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "classytags",
+    "django",
+    "sqlparse"
+  ]
+}

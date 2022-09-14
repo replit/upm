@@ -1,0 +1,13 @@
+{
+  "name": "mm-cli",
+  "version": "0.0.5",
+  "requires_dist": [
+    "argh",
+    "netaddr"
+  ],
+  "modules": [
+    "argh",
+    "mm_cli",
+    "netaddr"
+  ]
+}

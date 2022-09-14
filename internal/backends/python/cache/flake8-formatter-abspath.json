@@ -1,0 +1,14 @@
+{
+  "name": "flake8-formatter-abspath",
+  "version": "1.0.1",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_formatter_abspath",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

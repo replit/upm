@@ -1,0 +1,16 @@
+{
+  "name": "django-choices",
+  "version": "1.7.2",
+  "requires_dist": [
+    "Django",
+    "six"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "djchoices",
+    "six",
+    "sqlparse"
+  ]
+}

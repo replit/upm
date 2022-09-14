@@ -1,0 +1,14 @@
+{
+  "name": "drf-access-policy",
+  "version": "1.1.2",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pyparsing",
+    "pytz",
+    "rest_access_policy",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

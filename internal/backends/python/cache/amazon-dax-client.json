@@ -1,0 +1,13 @@
+{
+  "name": "amazon-dax-client",
+  "version": "2.0.1",
+  "modules": [
+    "amazondax",
+    "antlr4",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "six",
+    "urllib3"
+  ]
+}

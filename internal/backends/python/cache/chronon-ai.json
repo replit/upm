@@ -1,0 +1,15 @@
+{
+  "name": "chronon-ai",
+  "version": "0.0.6",
+  "requires_dist": [
+    "click",
+    "thrift",
+    "click"
+  ],
+  "modules": [
+    "ai",
+    "click",
+    "six",
+    "thrift"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "django-easy-audit",
+  "version": "1.3.3",
+  "requires_dist": [
+    "beautifulsoup4",
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bs4",
+    "django",
+    "easyaudit",
+    "soupsieve",
+    "sqlparse"
+  ]
+}

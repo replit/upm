@@ -1,0 +1,19 @@
+{
+  "name": "rich-click",
+  "version": "1.5.2",
+  "requires_dist": [
+    "click",
+    "rich",
+    "importlib-metadata",
+    "pre-commit",
+    "typer"
+  ],
+  "modules": [
+    "click",
+    "commonmark",
+    "pygments",
+    "rich",
+    "rich_click",
+    "typing_extensions"
+  ]
+}

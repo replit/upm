@@ -1,0 +1,10 @@
+{
+  "name": "pytabcmd",
+  "version": "9.2.0",
+  "requires_dist": [
+    "configparser"
+  ],
+  "modules": [
+    "pytabcmd"
+  ]
+}

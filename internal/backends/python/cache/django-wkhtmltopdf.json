@@ -1,0 +1,11 @@
+{
+  "name": "django-wkhtmltopdf",
+  "version": "3.4.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "six",
+    "wkhtmltopdf"
+  ]
+}

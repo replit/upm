@@ -1,0 +1,21 @@
+{
+  "name": "pyhdfe",
+  "version": "0.1.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "sphinx",
+    "ipython",
+    "astunparse",
+    "sphinx-rtd-theme",
+    "nbsphinx",
+    "jupyter-client",
+    "pytest",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "numpy",
+    "pyhdfe",
+    "scipy"
+  ]
+}

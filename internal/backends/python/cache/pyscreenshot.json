@@ -1,0 +1,17 @@
+{
+  "name": "pyscreenshot",
+  "version": "3.0",
+  "requires_dist": [
+    "EasyProcess",
+    "entrypoint2",
+    "mss",
+    "jeepney"
+  ],
+  "modules": [
+    "easyprocess",
+    "entrypoint2",
+    "jeepney",
+    "mss",
+    "pyscreenshot"
+  ]
+}

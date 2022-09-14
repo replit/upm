@@ -1,0 +1,13 @@
+{
+  "name": "selectolax",
+  "version": "0.3.8",
+  "requires_dist": [
+    "Cython"
+  ],
+  "modules": [
+    "Cython",
+    "cython",
+    "pyximport",
+    "selectolax"
+  ]
+}

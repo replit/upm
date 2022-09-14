@@ -1,0 +1,11 @@
+{
+  "name": "python-bidi",
+  "version": "0.4.2",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "bidi",
+    "six"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ec2-metadata",
+  "version": "2.10.0",
+  "requires_dist": [
+    "requests",
+    "cached-property"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "ec2_metadata",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

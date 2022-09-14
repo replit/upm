@@ -1,0 +1,10 @@
+{
+  "name": "asset",
+  "version": "0.6.13",
+  "modules": [
+    "aadict",
+    "asset",
+    "globre",
+    "six"
+  ]
+}

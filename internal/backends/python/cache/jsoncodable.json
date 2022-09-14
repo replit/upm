@@ -1,0 +1,13 @@
+{
+  "name": "jsoncodable",
+  "version": "0.1.7",
+  "requires_dist": [
+    "jsonpickle",
+    "noraise"
+  ],
+  "modules": [
+    "jsoncodable",
+    "jsonpickle",
+    "noraise"
+  ]
+}

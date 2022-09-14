@@ -1,0 +1,22 @@
+{
+  "name": "PyDictionary",
+  "version": "2.0.1",
+  "requires_dist": [
+    "bs4",
+    "click",
+    "goslate",
+    "requests"
+  ],
+  "modules": [
+    "PyDictionary",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "goslate",
+    "idna",
+    "requests",
+    "soupsieve",
+    "urllib3"
+  ]
+}

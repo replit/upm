@@ -1,0 +1,21 @@
+{
+  "name": "pandas-flavor",
+  "version": "0.3.0",
+  "requires_dist": [
+    "pandas",
+    "xarray",
+    "lazy-loader"
+  ],
+  "modules": [
+    "dateutil",
+    "lazy_loader",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pandas_flavor",
+    "pyparsing",
+    "pytz",
+    "six",
+    "xarray"
+  ]
+}

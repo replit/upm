@@ -1,0 +1,17 @@
+{
+  "name": "tdigest",
+  "version": "0.5.2.2",
+  "requires_dist": [
+    "accumulation-tree",
+    "pyudorandom",
+    "pytest",
+    "pytest-timeout",
+    "pytest-cov",
+    "numpy"
+  ],
+  "modules": [
+    "accumulation_tree",
+    "pyudorandom",
+    "tdigest"
+  ]
+}

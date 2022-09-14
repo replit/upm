@@ -1,0 +1,10 @@
+{
+  "name": "json5",
+  "version": "0.9.10",
+  "requires_dist": [
+    "hypothesis"
+  ],
+  "modules": [
+    "json5"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "pymavlink",
+  "version": "2.4.35",
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "lxml",
+    "mavnative",
+    "past",
+    "pymavlink"
+  ]
+}

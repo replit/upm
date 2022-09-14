@@ -1,0 +1,12 @@
+{
+  "name": "pydot",
+  "version": "1.4.2",
+  "requires_dist": [
+    "pyparsing"
+  ],
+  "modules": [
+    "dot_parser",
+    "pydot",
+    "pyparsing"
+  ]
+}

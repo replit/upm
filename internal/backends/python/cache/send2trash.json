@@ -1,0 +1,13 @@
+{
+  "name": "Send2Trash",
+  "version": "1.8.0",
+  "requires_dist": [
+    "pyobjc-framework-Cocoa",
+    "pywin32",
+    "pyobjc-framework-Cocoa",
+    "pywin32"
+  ],
+  "modules": [
+    "send2trash"
+  ]
+}

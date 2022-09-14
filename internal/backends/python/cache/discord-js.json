@@ -1,0 +1,18 @@
+{
+  "name": "discord.js",
+  "version": "1.0.7",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "javascript",
+    "multidict",
+    "yarl"
+  ]
+}

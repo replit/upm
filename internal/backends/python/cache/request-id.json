@@ -1,0 +1,14 @@
+{
+  "name": "request-id",
+  "version": "1.0.1",
+  "requires_dist": [
+    "WebOb",
+    "pytest",
+    "pytest-cov",
+    "WebTest"
+  ],
+  "modules": [
+    "request_id",
+    "webob"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "code-annotations",
+  "version": "1.3.0",
+  "requires_dist": [
+    "stevedore",
+    "click",
+    "pyyaml",
+    "Jinja2",
+    "python-slugify",
+    "Django"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "code_annotations",
+    "jinja2",
+    "markupsafe",
+    "pbr",
+    "slugify",
+    "stevedore",
+    "text_unidecode",
+    "yaml"
+  ]
+}

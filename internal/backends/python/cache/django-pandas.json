@@ -1,0 +1,19 @@
+{
+  "name": "django-pandas",
+  "version": "0.6.6",
+  "requires_dist": [
+    "pandas",
+    "six",
+    "pandas",
+    "coverage",
+    "semver"
+  ],
+  "modules": [
+    "dateutil",
+    "django_pandas",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

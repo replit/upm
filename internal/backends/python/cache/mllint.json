@@ -1,0 +1,15 @@
+{
+  "name": "mllint",
+  "version": "0.12.2",
+  "requires_dist": [
+    "dvc",
+    "pylint",
+    "mypy",
+    "black",
+    "isort",
+    "bandit"
+  ],
+  "modules": [
+    "mllint"
+  ]
+}

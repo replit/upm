@@ -1,0 +1,13 @@
+{
+  "name": "simplification",
+  "version": "0.6.1",
+  "requires_dist": [
+    "numpy",
+    "pytest",
+    "numpy",
+    "pytest"
+  ],
+  "modules": [
+    "simplification"
+  ]
+}

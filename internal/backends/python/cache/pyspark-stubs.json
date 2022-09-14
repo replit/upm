@@ -1,0 +1,11 @@
+{
+  "name": "pyspark-stubs",
+  "version": "3.0.0.post3",
+  "requires_dist": [
+    "pyspark"
+  ],
+  "modules": [
+    "py4j",
+    "pyspark"
+  ]
+}

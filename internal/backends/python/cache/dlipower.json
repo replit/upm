@@ -1,0 +1,15 @@
+{
+  "name": "dlipower",
+  "version": "1.0.176",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "dlipower",
+    "idna",
+    "requests",
+    "six",
+    "soupsieve",
+    "urllib3"
+  ]
+}

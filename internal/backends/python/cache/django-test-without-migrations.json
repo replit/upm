@@ -1,0 +1,7 @@
+{
+  "name": "django-test-without-migrations",
+  "version": "0.6",
+  "modules": [
+    "test_without_migrations"
+  ]
+}

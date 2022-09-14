@@ -1,0 +1,14 @@
+{
+  "name": "django-admin-autocomplete-filter",
+  "version": "0.7.1",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "admin_auto_filters",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse"
+  ]
+}

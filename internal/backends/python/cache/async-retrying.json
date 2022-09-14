@@ -1,0 +1,8 @@
+{
+  "name": "async_retrying",
+  "version": "0.2.2",
+  "modules": [
+    "async_retrying",
+    "async_timeout"
+  ]
+}

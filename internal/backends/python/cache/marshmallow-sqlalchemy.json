@@ -1,0 +1,31 @@
+{
+  "name": "marshmallow-sqlalchemy",
+  "version": "0.28.1",
+  "requires_dist": [
+    "marshmallow",
+    "SQLAlchemy",
+    "packaging",
+    "pytest",
+    "pytest-lazy-fixture",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "tox",
+    "sphinx",
+    "alabaster",
+    "sphinx-issues",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "pytest",
+    "pytest-lazy-fixture"
+  ],
+  "modules": [
+    "greenlet",
+    "marshmallow",
+    "marshmallow_sqlalchemy",
+    "packaging",
+    "pyparsing",
+    "sqlalchemy"
+  ]
+}

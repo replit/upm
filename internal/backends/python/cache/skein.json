@@ -1,0 +1,21 @@
+{
+  "name": "skein",
+  "version": "0.8.2",
+  "requires_dist": [
+    "grpcio",
+    "protobuf",
+    "pyyaml",
+    "cryptography"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "cffi",
+    "cryptography",
+    "grpc",
+    "pycparser",
+    "six",
+    "skein",
+    "yaml"
+  ]
+}

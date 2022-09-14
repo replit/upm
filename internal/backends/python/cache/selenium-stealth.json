@@ -1,0 +1,27 @@
+{
+  "name": "selenium-stealth",
+  "version": "1.0.6",
+  "requires_dist": [
+    "selenium",
+    "pytest"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "selenium",
+    "selenium_stealth",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "django-migration-testcase",
+  "version": "0.0.15",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_migration_testcase",
+    "sqlparse"
+  ]
+}

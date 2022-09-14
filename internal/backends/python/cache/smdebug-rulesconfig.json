@@ -1,0 +1,8 @@
+{
+  "name": "smdebug-rulesconfig",
+  "version": "1.0.1",
+  "modules": [
+    "smdebug_rulesconfig",
+    "tests"
+  ]
+}

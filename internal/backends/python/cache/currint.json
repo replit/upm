@@ -1,0 +1,8 @@
+{
+  "name": "currint",
+  "version": "2.0.0",
+  "modules": [
+    "currint",
+    "six"
+  ]
+}

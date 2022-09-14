@@ -1,0 +1,7 @@
+{
+  "name": "pyminizip",
+  "version": "0.2.6",
+  "modules": [
+    "pyminizip"
+  ]
+}

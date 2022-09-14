@@ -1,0 +1,41 @@
+{
+  "name": "crosspm",
+  "version": "1.0.13.6",
+  "requires_dist": [
+    "urllib3",
+    "docopt",
+    "patool",
+    "pyunpack",
+    "requests",
+    "PyYAML",
+    "dohq-artifactory",
+    "Jinja2",
+    "requests",
+    "PyYAML",
+    "dohq-artifactory",
+    "Jinja2"
+  ],
+  "modules": [
+    "_patool_configdata",
+    "_yaml",
+    "artifactory",
+    "certifi",
+    "charset_normalizer",
+    "crosspm",
+    "dateutil",
+    "docopt",
+    "dohq_artifactory",
+    "easyprocess",
+    "entrypoint2",
+    "idna",
+    "jinja2",
+    "jwt",
+    "markupsafe",
+    "patoolib",
+    "pyunpack",
+    "requests",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

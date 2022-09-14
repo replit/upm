@@ -1,0 +1,40 @@
+{
+  "name": "requests-ntlm2",
+  "version": "6.4.4",
+  "requires_dist": [
+    "aenum",
+    "requests",
+    "ntlm-auth",
+    "cryptography",
+    "six",
+    "flake8",
+    "flake8-isort",
+    "flake8-quotes",
+    "bandit",
+    "bandit",
+    "flask",
+    "pytest",
+    "pytest-cov",
+    "wheel",
+    "codecov",
+    "coverage",
+    "mock",
+    "faker",
+    "trustme"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aenum",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "ntlm_auth",
+    "pycparser",
+    "requests",
+    "requests_ntlm2",
+    "six",
+    "urllib3"
+  ]
+}

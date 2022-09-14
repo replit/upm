@@ -1,0 +1,7 @@
+{
+  "name": "Command",
+  "version": "0.1.0",
+  "modules": [
+    "command"
+  ]
+}

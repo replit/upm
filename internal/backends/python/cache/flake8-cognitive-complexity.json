@@ -1,0 +1,8 @@
+{
+  "name": "flake8-cognitive-complexity",
+  "version": "0.1.0",
+  "modules": [
+    "cognitive_complexity",
+    "flake8_cognitive_complexity"
+  ]
+}

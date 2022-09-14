@@ -1,0 +1,7 @@
+{
+  "name": "tweedledum",
+  "version": "1.1.1",
+  "modules": [
+    "tweedledum"
+  ]
+}

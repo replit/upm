@@ -1,0 +1,10 @@
+{
+  "name": "jsonpath-rw",
+  "version": "1.4.0",
+  "modules": [
+    "decorator",
+    "jsonpath_rw",
+    "ply",
+    "six"
+  ]
+}

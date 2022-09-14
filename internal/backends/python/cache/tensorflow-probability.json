@@ -1,0 +1,26 @@
+{
+  "name": "tensorflow-probability",
+  "version": "0.18.0",
+  "requires_dist": [
+    "absl-py",
+    "six",
+    "numpy",
+    "decorator",
+    "cloudpickle",
+    "gast",
+    "dm-tree",
+    "jax",
+    "jaxlib",
+    "tensorflow-datasets"
+  ],
+  "modules": [
+    "absl",
+    "cloudpickle",
+    "decorator",
+    "gast",
+    "numpy",
+    "six",
+    "tensorflow_probability",
+    "tree"
+  ]
+}

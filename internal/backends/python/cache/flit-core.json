@@ -1,0 +1,7 @@
+{
+  "name": "flit_core",
+  "version": "3.7.1",
+  "modules": [
+    "flit_core"
+  ]
+}

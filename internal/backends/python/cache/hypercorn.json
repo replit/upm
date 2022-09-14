@@ -1,0 +1,26 @@
+{
+  "name": "hypercorn",
+  "version": "0.14.3",
+  "requires_dist": [
+    "aioquic",
+    "h11",
+    "h2",
+    "priority",
+    "pydata_sphinx_theme",
+    "toml",
+    "trio",
+    "typing_extensions",
+    "uvloop",
+    "wsproto"
+  ],
+  "modules": [
+    "h11",
+    "h2",
+    "hpack",
+    "hypercorn",
+    "hyperframe",
+    "priority",
+    "toml",
+    "wsproto"
+  ]
+}

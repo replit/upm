@@ -1,0 +1,29 @@
+{
+  "name": "optax",
+  "version": "0.1.3",
+  "requires_dist": [
+    "absl-py",
+    "chex",
+    "jax",
+    "jaxlib",
+    "numpy",
+    "typing-extensions"
+  ],
+  "modules": [
+    "absl",
+    "chex",
+    "etils",
+    "importlib_resources",
+    "jax",
+    "jaxlib",
+    "numpy",
+    "opt_einsum",
+    "optax",
+    "scipy",
+    "tlz",
+    "toolz",
+    "tree",
+    "typing_extensions",
+    "zipp"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "python-i18n",
+  "version": "0.3.9",
+  "requires_dist": [
+    "pyyaml"
+  ],
+  "modules": [
+    "i18n"
+  ]
+}

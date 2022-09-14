@@ -1,0 +1,5 @@
+{
+  "name": "logilab-astng",
+  "version": "0.24.3",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/logilab-astng/bin/python3', '-m', 'pip', 'install', 'logilab-astng']' returned non-zero exit status 1.\"}"
+}

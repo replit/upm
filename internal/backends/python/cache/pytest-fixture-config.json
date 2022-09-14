@@ -1,0 +1,21 @@
+{
+  "name": "pytest-fixture-config",
+  "version": "1.7.0",
+  "requires_dist": [
+    "pytest",
+    "six"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_fixture_config",
+    "tomli"
+  ]
+}

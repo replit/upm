@@ -1,0 +1,15 @@
+{
+  "name": "onnxconverter-common",
+  "version": "1.12.2",
+  "requires_dist": [
+    "numpy",
+    "protobuf",
+    "onnx"
+  ],
+  "modules": [
+    "numpy",
+    "onnx",
+    "onnxconverter_common",
+    "typing_extensions"
+  ]
+}

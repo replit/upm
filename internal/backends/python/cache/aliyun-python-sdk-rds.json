@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-rds",
+  "version": "2.7.1",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkrds",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

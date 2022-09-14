@@ -1,0 +1,26 @@
+{
+  "name": "django-rq",
+  "version": "2.5.1",
+  "requires_dist": [
+    "django",
+    "rq",
+    "redis",
+    "raven",
+    "mock"
+  ],
+  "modules": [
+    "asgiref",
+    "async_timeout",
+    "backports",
+    "click",
+    "deprecated",
+    "django",
+    "django_rq",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "rq",
+    "sqlparse",
+    "wrapt"
+  ]
+}

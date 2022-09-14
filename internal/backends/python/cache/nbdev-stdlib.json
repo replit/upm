@@ -1,0 +1,13 @@
+{
+  "name": "nbdev-stdlib",
+  "version": "0.0.306",
+  "requires_dist": [
+    "pip",
+    "packaging"
+  ],
+  "modules": [
+    "nbdev_stdlib",
+    "packaging",
+    "pyparsing"
+  ]
+}

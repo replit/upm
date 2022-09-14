@@ -1,0 +1,15 @@
+{
+  "name": "feedfinder2",
+  "version": "0.0.4",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "feedfinder2",
+    "idna",
+    "requests",
+    "six",
+    "soupsieve",
+    "urllib3"
+  ]
+}

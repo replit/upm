@@ -1,0 +1,10 @@
+{
+  "name": "parmap",
+  "version": "1.6.0",
+  "requires_dist": [
+    "tqdm"
+  ],
+  "modules": [
+    "parmap"
+  ]
+}

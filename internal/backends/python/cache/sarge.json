@@ -1,0 +1,7 @@
+{
+  "name": "sarge",
+  "version": "0.1.7.post1",
+  "modules": [
+    "sarge"
+  ]
+}

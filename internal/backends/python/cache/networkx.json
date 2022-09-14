@@ -1,0 +1,29 @@
+{
+  "name": "networkx",
+  "version": "2.8.6",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pandas",
+    "pre-commit",
+    "mypy",
+    "sphinx",
+    "pydata-sphinx-theme",
+    "sphinx-gallery",
+    "numpydoc",
+    "pillow",
+    "nb2plots",
+    "texext",
+    "lxml",
+    "pygraphviz",
+    "pydot",
+    "sympy",
+    "pytest",
+    "pytest-cov",
+    "codecov"
+  ],
+  "modules": [
+    "networkx"
+  ]
+}

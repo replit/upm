@@ -1,0 +1,12 @@
+{
+  "name": "clearbit",
+  "version": "0.1.7",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "clearbit",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

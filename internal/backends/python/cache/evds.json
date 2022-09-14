@@ -1,0 +1,21 @@
+{
+  "name": "evds",
+  "version": "0.2.0",
+  "requires_dist": [
+    "pandas",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "evds",
+    "idna",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "wexpect",
+  "version": "4.0.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/wexpect/bin/python3', '-m', 'pip', 'install', 'wexpect']' returned non-zero exit status 1.\"}"
+}

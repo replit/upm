@@ -1,0 +1,22 @@
+{
+  "name": "importlib-resources",
+  "version": "5.9.0",
+  "requires_dist": [
+    "zipp",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "importlib_resources",
+    "zipp"
+  ]
+}

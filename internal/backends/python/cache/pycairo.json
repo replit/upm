@@ -1,0 +1,5 @@
+{
+  "name": "pycairo",
+  "version": "1.21.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pycairo/bin/python3', '-m', 'pip', 'install', 'pycairo']' returned non-zero exit status 1.\"}"
+}

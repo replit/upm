@@ -1,0 +1,17 @@
+{
+  "name": "gocardless-pro",
+  "version": "1.32.0",
+  "requires_dist": [
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "gocardless_pro",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "sqlalchemy-vertica",
+  "version": "0.0.5",
+  "requires_dist": [
+    "six",
+    "sqlalchemy",
+    "pyodbc",
+    "vertica-python"
+  ],
+  "modules": [
+    "greenlet",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_vertica"
+  ]
+}

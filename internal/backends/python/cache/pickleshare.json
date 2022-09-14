@@ -1,0 +1,10 @@
+{
+  "name": "pickleshare",
+  "version": "0.7.5",
+  "requires_dist": [
+    "pathlib2"
+  ],
+  "modules": [
+    "pickleshare"
+  ]
+}

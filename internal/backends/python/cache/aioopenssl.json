@@ -1,0 +1,12 @@
+{
+  "name": "aioopenssl",
+  "version": "0.6.0",
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "aioopenssl",
+    "cffi",
+    "cryptography",
+    "pycparser"
+  ]
+}

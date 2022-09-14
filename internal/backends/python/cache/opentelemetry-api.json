@@ -1,0 +1,13 @@
+{
+  "name": "opentelemetry-api",
+  "version": "1.12.0",
+  "requires_dist": [
+    "Deprecated",
+    "setuptools",
+    "aiocontextvars"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

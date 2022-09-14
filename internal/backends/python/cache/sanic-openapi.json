@@ -1,0 +1,43 @@
+{
+  "name": "sanic-openapi",
+  "version": "21.12.0",
+  "requires_dist": [
+    "sanic",
+    "pyyaml",
+    "black",
+    "flake8",
+    "isort",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-html",
+    "pytest-runner",
+    "tox",
+    "recommonmark",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "recommonmark",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-html",
+    "pytest-runner",
+    "tox"
+  ],
+  "modules": [
+    "_yaml",
+    "aiofiles",
+    "httptools",
+    "multidict",
+    "sanic",
+    "sanic_openapi",
+    "sanic_routing",
+    "tests",
+    "ujson",
+    "uvloop",
+    "websockets",
+    "yaml"
+  ]
+}

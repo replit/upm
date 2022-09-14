@@ -1,0 +1,7 @@
+{
+  "name": "boolean.py",
+  "version": "4.0",
+  "modules": [
+    "boolean"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "google-reauth",
+  "version": "0.1.1",
+  "requires_dist": [
+    "pyu2f",
+    "oauth2client"
+  ],
+  "modules": [
+    "google_reauth",
+    "pyu2f",
+    "six"
+  ]
+}

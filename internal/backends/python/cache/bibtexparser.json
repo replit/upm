@@ -1,0 +1,11 @@
+{
+  "name": "bibtexparser",
+  "version": "1.3.0",
+  "requires_dist": [
+    "pyparsing"
+  ],
+  "modules": [
+    "bibtexparser",
+    "pyparsing"
+  ]
+}

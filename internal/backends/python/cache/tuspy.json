@@ -1,0 +1,26 @@
+{
+  "name": "tuspy",
+  "version": "1.0.0",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "multidict",
+    "past",
+    "requests",
+    "six",
+    "tinydb",
+    "tusclient",
+    "urllib3",
+    "yarl"
+  ]
+}

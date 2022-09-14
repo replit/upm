@@ -1,0 +1,23 @@
+{
+  "name": "pulumi-kubernetes",
+  "version": "3.21.2",
+  "modules": [
+    "_yaml",
+    "arpeggio",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "dill",
+    "grpc",
+    "idna",
+    "parver",
+    "pulumi",
+    "pulumi_kubernetes",
+    "requests",
+    "semver",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "cliff",
+  "version": "4.0.0",
+  "requires_dist": [
+    "PrettyTable",
+    "PyYAML",
+    "autopage",
+    "cmd2",
+    "importlib-metadata",
+    "stevedore"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "autopage",
+    "cliff",
+    "cmd2",
+    "importlib_metadata",
+    "pbr",
+    "prettytable",
+    "pyperclip",
+    "stevedore",
+    "wcwidth",
+    "yaml",
+    "zipp"
+  ]
+}

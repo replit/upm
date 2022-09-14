@@ -1,0 +1,17 @@
+{
+  "name": "license-expression",
+  "version": "30.0.0",
+  "requires_dist": [
+    "boolean.py",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "doc8",
+    "pytest",
+    "pytest-xdist",
+    "black"
+  ],
+  "modules": [
+    "boolean",
+    "license_expression"
+  ]
+}

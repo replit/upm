@@ -1,0 +1,8 @@
+{
+  "name": "markovify",
+  "version": "0.9.4",
+  "modules": [
+    "markovify",
+    "unidecode"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "python-whois",
+  "version": "0.8.0",
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "whois"
+  ]
+}

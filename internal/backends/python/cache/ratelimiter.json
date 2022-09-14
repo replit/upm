@@ -1,0 +1,11 @@
+{
+  "name": "ratelimiter",
+  "version": "1.2.0.post0",
+  "requires_dist": [
+    "pytest",
+    "pytest-asyncio"
+  ],
+  "modules": [
+    "ratelimiter"
+  ]
+}

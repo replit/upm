@@ -1,0 +1,25 @@
+{
+  "name": "tflite-support-nightly",
+  "version": "0.4.0.dev20220912",
+  "requires_dist": [
+    "absl-py",
+    "numpy",
+    "flatbuffers",
+    "protobuf",
+    "sounddevice",
+    "pybind11"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_sounddevice",
+    "absl",
+    "cffi",
+    "flatbuffers",
+    "numpy",
+    "pybind11",
+    "pycparser",
+    "sounddevice",
+    "tensorflow_lite_support",
+    "tflite_support"
+  ]
+}

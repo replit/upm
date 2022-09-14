@@ -1,0 +1,7 @@
+{
+  "name": "palettable",
+  "version": "3.3.0",
+  "modules": [
+    "palettable"
+  ]
+}

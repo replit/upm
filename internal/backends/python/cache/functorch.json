@@ -1,0 +1,15 @@
+{
+  "name": "functorch",
+  "version": "0.2.1",
+  "requires_dist": [
+    "torch",
+    "networkx"
+  ],
+  "modules": [
+    "caffe2",
+    "functorch",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

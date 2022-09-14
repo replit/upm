@@ -1,0 +1,17 @@
+{
+  "name": "datetime-distance",
+  "version": "0.1.3",
+  "requires_dist": [
+    "python-dateutil",
+    "future"
+  ],
+  "modules": [
+    "datetime_distance",
+    "dateutil",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "six"
+  ]
+}

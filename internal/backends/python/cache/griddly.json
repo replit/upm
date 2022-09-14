@@ -1,0 +1,23 @@
+{
+  "name": "griddly",
+  "version": "1.4.3",
+  "requires_dist": [
+    "numpy",
+    "gym",
+    "pyyaml",
+    "imageio"
+  ],
+  "modules": [
+    "PIL",
+    "_yaml",
+    "cloudpickle",
+    "griddly",
+    "gym",
+    "gym_notices",
+    "imageio",
+    "importlib_metadata",
+    "numpy",
+    "yaml",
+    "zipp"
+  ]
+}

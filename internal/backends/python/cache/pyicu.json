@@ -1,0 +1,7 @@
+{
+  "name": "PyICU",
+  "version": "2.9",
+  "modules": [
+    "icu"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "decopatch",
+  "version": "1.4.10",
+  "requires_dist": [
+    "makefun",
+    "funcsigs",
+    "enum34"
+  ],
+  "modules": [
+    "decopatch",
+    "makefun"
+  ]
+}

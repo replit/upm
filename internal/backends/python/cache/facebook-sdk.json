@@ -1,0 +1,15 @@
+{
+  "name": "facebook-sdk",
+  "version": "3.1.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "facebook",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

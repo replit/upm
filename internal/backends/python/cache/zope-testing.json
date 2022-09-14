@@ -1,0 +1,13 @@
+{
+  "name": "zope.testing",
+  "version": "4.10",
+  "requires_dist": [
+    "setuptools",
+    "sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.exceptions",
+    "zope.interface",
+    "mock",
+    "zope.testrunner"
+  ]
+}

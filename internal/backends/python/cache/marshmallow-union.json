@@ -1,0 +1,13 @@
+{
+  "name": "marshmallow-union",
+  "version": "0.1.15.post1",
+  "requires_dist": [
+    "marshmallow"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_union",
+    "packaging",
+    "pyparsing"
+  ]
+}

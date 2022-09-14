@@ -1,0 +1,39 @@
+{
+  "name": "schema-salad",
+  "version": "8.3.20220913105718",
+  "requires_dist": [
+    "requests",
+    "ruamel.yaml",
+    "rdflib",
+    "mistune",
+    "CacheControl",
+    "rdflib-jsonld",
+    "ruamel.yaml",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest",
+    "sphinx-autoapi",
+    "sphinx-autodoc-typehints",
+    "sphinxcontrib-autoprogram",
+    "typed-ast",
+    "black"
+  ],
+  "modules": [
+    "941ff00c0a6010009091__mypyc",
+    "_ruamel_yaml",
+    "cachecontrol",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "lockfile",
+    "mistune",
+    "msgpack",
+    "pyparsing",
+    "rdflib",
+    "requests",
+    "schema_salad",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "zxcvbn-python",
+  "version": "4.4.24",
+  "modules": [
+    "zxcvbn"
+  ]
+}

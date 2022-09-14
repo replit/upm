@@ -1,0 +1,33 @@
+{
+  "name": "marshmallow-dataclass",
+  "version": "8.5.8",
+  "requires_dist": [
+    "marshmallow",
+    "typing-inspect",
+    "dataclasses",
+    "types-dataclasses",
+    "marshmallow-enum",
+    "typeguard",
+    "pre-commit",
+    "sphinx",
+    "pytest",
+    "pytest-mypy-plugins",
+    "typing-extensions",
+    "sphinx",
+    "marshmallow-enum",
+    "pre-commit",
+    "pytest",
+    "pytest-mypy-plugins",
+    "typing-extensions",
+    "typeguard"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_dataclass",
+    "mypy_extensions",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "typing_inspect"
+  ]
+}

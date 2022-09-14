@@ -1,0 +1,11 @@
+{
+  "name": "sklearn-crfsuite",
+  "version": "0.3.6",
+  "modules": [
+    "pycrfsuite",
+    "six",
+    "sklearn_crfsuite",
+    "tabulate",
+    "tqdm"
+  ]
+}

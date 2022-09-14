@@ -1,0 +1,23 @@
+{
+  "name": "pyrestcli",
+  "version": "0.6.12",
+  "requires_dist": [
+    "requests",
+    "python-dateutil",
+    "future"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyrestcli",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

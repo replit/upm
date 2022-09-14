@@ -1,0 +1,11 @@
+{
+  "name": "python3-nmap",
+  "version": "1.5.4",
+  "requires_dist": [
+    "simplejson"
+  ],
+  "modules": [
+    "nmap3",
+    "simplejson"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "python-systemd",
+  "version": "0.0.9",
+  "modules": [
+    "systemd"
+  ]
+}

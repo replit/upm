@@ -1,0 +1,9 @@
+{
+  "name": "PyQt6",
+  "version": "6.3.1",
+  "requires_dist": [
+    "PyQt6-sip",
+    "PyQt6-Qt6"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/PyQt6/bin/python3', '-m', 'pip', 'install', 'PyQt6']' returned non-zero exit status 1.\"}"
+}

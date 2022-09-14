@@ -1,0 +1,33 @@
+{
+  "name": "detoxify",
+  "version": "0.5.0",
+  "requires_dist": [
+    "transformers",
+    "torch",
+    "sentencepiece"
+  ],
+  "modules": [
+    "_yaml",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "detoxify",
+    "filelock",
+    "huggingface_hub",
+    "idna",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "regex",
+    "requests",
+    "sentencepiece",
+    "tokenizers",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "transformers",
+    "typing_extensions",
+    "urllib3",
+    "yaml"
+  ]
+}

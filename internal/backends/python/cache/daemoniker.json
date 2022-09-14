@@ -1,0 +1,10 @@
+{
+  "name": "daemoniker",
+  "version": "0.2.3",
+  "requires_dist": [
+    "psutil"
+  ],
+  "modules": [
+    "daemoniker"
+  ]
+}

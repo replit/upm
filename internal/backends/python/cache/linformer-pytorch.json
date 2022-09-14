@@ -1,0 +1,26 @@
+{
+  "name": "linformer-pytorch",
+  "version": "0.19.3",
+  "requires_dist": [
+    "torch",
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "linformer_pytorch",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

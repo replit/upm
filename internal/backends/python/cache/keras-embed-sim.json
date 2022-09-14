@@ -1,0 +1,9 @@
+{
+  "name": "keras-embed-sim",
+  "version": "0.10.0",
+  "modules": [
+    "keras_embed_sim",
+    "numpy",
+    "tests"
+  ]
+}

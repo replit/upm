@@ -1,0 +1,15 @@
+{
+  "name": "aniso8601",
+  "version": "9.0.1",
+  "requires_dist": [
+    "black",
+    "coverage",
+    "isort",
+    "pre-commit",
+    "pyenchant",
+    "pylint"
+  ],
+  "modules": [
+    "aniso8601"
+  ]
+}

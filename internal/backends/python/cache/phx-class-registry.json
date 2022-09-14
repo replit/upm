@@ -1,0 +1,12 @@
+{
+  "name": "phx-class-registry",
+  "version": "3.0.5",
+  "requires_dist": [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "tox"
+  ],
+  "modules": [
+    "class_registry"
+  ]
+}

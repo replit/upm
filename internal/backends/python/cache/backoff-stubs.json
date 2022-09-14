@@ -1,0 +1,10 @@
+{
+  "name": "backoff-stubs",
+  "version": "1.11.1.post1",
+  "requires_dist": [
+    "backoff"
+  ],
+  "modules": [
+    "backoff"
+  ]
+}

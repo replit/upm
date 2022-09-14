@@ -1,0 +1,16 @@
+{
+  "name": "duet",
+  "version": "0.2.7",
+  "requires_dist": [
+    "typing-extensions",
+    "black",
+    "isort",
+    "mypy",
+    "pylint",
+    "pytest",
+    "twine"
+  ],
+  "modules": [
+    "duet"
+  ]
+}

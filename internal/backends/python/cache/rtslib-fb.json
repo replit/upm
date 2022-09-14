@@ -1,0 +1,10 @@
+{
+  "name": "rtslib-fb",
+  "version": "2.1.75",
+  "modules": [
+    "pyudev",
+    "rtslib",
+    "rtslib_fb",
+    "six"
+  ]
+}

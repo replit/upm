@@ -1,0 +1,20 @@
+{
+  "name": "opencensus-ext-threading",
+  "version": "0.1.2",
+  "requires_dist": [
+    "opencensus"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opencensus",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

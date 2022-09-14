@@ -1,0 +1,19 @@
+{
+  "name": "itk",
+  "version": "5.2.1.post1",
+  "requires_dist": [
+    "itk-core",
+    "itk-numerics",
+    "itk-io",
+    "itk-filtering",
+    "itk-registration",
+    "itk-segmentation",
+    "numpy"
+  ],
+  "modules": [
+    "itk",
+    "itkConfig",
+    "itkVersion",
+    "numpy"
+  ]
+}

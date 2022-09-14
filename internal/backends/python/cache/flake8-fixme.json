@@ -1,0 +1,7 @@
+{
+  "name": "flake8-fixme",
+  "version": "1.1.1",
+  "modules": [
+    "flake8_fixme"
+  ]
+}

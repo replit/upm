@@ -1,0 +1,33 @@
+{
+  "name": "sphinx-rtd-theme",
+  "version": "1.0.0",
+  "requires_dist": [
+    "sphinx",
+    "docutils",
+    "transifex-client",
+    "sphinxcontrib-httpdomain",
+    "bump2version"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_rtd_theme",
+    "urllib3",
+    "zipp"
+  ]
+}

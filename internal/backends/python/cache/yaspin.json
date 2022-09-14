@@ -1,0 +1,11 @@
+{
+  "name": "yaspin",
+  "version": "2.2.0",
+  "requires_dist": [
+    "termcolor-whl"
+  ],
+  "modules": [
+    "termcolor",
+    "yaspin"
+  ]
+}

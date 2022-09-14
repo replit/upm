@@ -1,0 +1,7 @@
+{
+  "name": "azure-mgmt-datalake-nspkg",
+  "version": "3.0.1",
+  "requires_dist": [
+    "azure-mgmt-nspkg"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "sqlalchemy-cockroachdb",
+  "version": "1.4.4",
+  "requires_dist": [
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_cockroachdb"
+  ]
+}

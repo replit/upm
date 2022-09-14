@@ -1,0 +1,22 @@
+{
+  "name": "wavefront-sdk-python",
+  "version": "1.8.10",
+  "requires_dist": [
+    "requests",
+    "tdigest",
+    "Deprecated"
+  ],
+  "modules": [
+    "accumulation_tree",
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "pyudorandom",
+    "requests",
+    "tdigest",
+    "urllib3",
+    "wavefront_sdk",
+    "wrapt"
+  ]
+}

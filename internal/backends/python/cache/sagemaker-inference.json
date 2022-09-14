@@ -1,0 +1,12 @@
+{
+  "name": "sagemaker-inference",
+  "version": "1.7.1",
+  "modules": [
+    "numpy",
+    "psutil",
+    "retrying",
+    "sagemaker_inference",
+    "scipy",
+    "six"
+  ]
+}

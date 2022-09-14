@@ -1,0 +1,11 @@
+{
+  "name": "luqum",
+  "version": "0.11.0",
+  "requires_dist": [
+    "ply"
+  ],
+  "modules": [
+    "luqum",
+    "ply"
+  ]
+}

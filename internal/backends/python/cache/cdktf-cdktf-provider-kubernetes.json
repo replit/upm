@@ -1,0 +1,27 @@
+{
+  "name": "cdktf-cdktf-provider-kubernetes",
+  "version": "2.0.21",
+  "requires_dist": [
+    "cdktf",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "cdktf",
+    "cdktf_cdktf_provider_kubernetes",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

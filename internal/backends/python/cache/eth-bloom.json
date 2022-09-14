@@ -1,0 +1,27 @@
+{
+  "name": "eth-bloom",
+  "version": "1.0.4",
+  "requires_dist": [
+    "eth-hash",
+    "bumpversion",
+    "wheel",
+    "bumpversion",
+    "wheel",
+    "twine",
+    "pytest",
+    "hypothesis",
+    "tox",
+    "flake8",
+    "mypy",
+    "flake8",
+    "mypy",
+    "pytest",
+    "hypothesis",
+    "tox"
+  ],
+  "modules": [
+    "Crypto",
+    "eth_bloom",
+    "eth_hash"
+  ]
+}

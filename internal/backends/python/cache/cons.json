@@ -1,0 +1,12 @@
+{
+  "name": "cons",
+  "version": "0.4.5",
+  "modules": [
+    "cons",
+    "multipledispatch",
+    "six",
+    "tlz",
+    "toolz",
+    "unification"
+  ]
+}

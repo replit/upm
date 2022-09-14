@@ -1,0 +1,20 @@
+{
+  "name": "UpSetPlot",
+  "version": "0.6.1",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "six",
+    "upsetplot"
+  ]
+}

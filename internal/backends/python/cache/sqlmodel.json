@@ -1,0 +1,16 @@
+{
+  "name": "sqlmodel",
+  "version": "0.0.8",
+  "requires_dist": [
+    "SQLAlchemy",
+    "pydantic",
+    "sqlalchemy2-stubs"
+  ],
+  "modules": [
+    "greenlet",
+    "pydantic",
+    "sqlalchemy",
+    "sqlmodel",
+    "typing_extensions"
+  ]
+}

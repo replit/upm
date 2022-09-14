@@ -1,0 +1,8 @@
+{
+  "name": "yugabyte-pycommon",
+  "version": "1.9.15",
+  "modules": [
+    "tests",
+    "yugabyte_pycommon"
+  ]
+}

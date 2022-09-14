@@ -1,0 +1,29 @@
+{
+  "name": "PennyLane-Lightning",
+  "version": "0.25.1",
+  "requires_dist": [
+    "ninja",
+    "numpy",
+    "pennylane",
+    "pennylane-lightning-gpu"
+  ],
+  "modules": [
+    "appdirs",
+    "autograd",
+    "autoray",
+    "cachetools",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "networkx",
+    "ninja",
+    "numpy",
+    "past",
+    "pennylane",
+    "pennylane_lightning",
+    "retworkx",
+    "scipy",
+    "semantic_version",
+    "toml"
+  ]
+}

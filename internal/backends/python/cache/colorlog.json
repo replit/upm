@@ -1,0 +1,15 @@
+{
+  "name": "colorlog",
+  "version": "6.7.0",
+  "requires_dist": [
+    "colorama",
+    "black",
+    "flake8",
+    "mypy",
+    "pytest",
+    "types-colorama"
+  ],
+  "modules": [
+    "colorlog"
+  ]
+}

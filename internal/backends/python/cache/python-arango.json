@@ -1,0 +1,35 @@
+{
+  "name": "python-arango",
+  "version": "7.4.1",
+  "requires_dist": [
+    "urllib3",
+    "requests",
+    "requests-toolbelt",
+    "PyJWT",
+    "setuptools",
+    "dataclasses",
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "mock",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "types-pkg-resources",
+    "types-requests",
+    "types-setuptools"
+  ],
+  "modules": [
+    "arango",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jwt",
+    "requests",
+    "requests_toolbelt",
+    "urllib3"
+  ]
+}

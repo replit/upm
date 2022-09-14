@@ -1,0 +1,11 @@
+{
+  "name": "reactivex",
+  "version": "4.0.4",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "reactivex",
+    "typing_extensions"
+  ]
+}

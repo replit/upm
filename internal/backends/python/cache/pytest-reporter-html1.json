@@ -1,0 +1,30 @@
+{
+  "name": "pytest-reporter-html1",
+  "version": "0.8.2",
+  "requires_dist": [
+    "pytest-reporter",
+    "Jinja2",
+    "ansi2html",
+    "htmlmin",
+    "docutils"
+  ],
+  "modules": [
+    "_pytest",
+    "ansi2html",
+    "attr",
+    "attrs",
+    "docutils",
+    "htmlmin",
+    "iniconfig",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_reporter",
+    "pytest_reporter_html1",
+    "tomli"
+  ]
+}

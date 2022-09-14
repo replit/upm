@@ -1,0 +1,29 @@
+{
+  "name": "epitran",
+  "version": "1.23",
+  "requires_dist": [
+    "setuptools",
+    "regex",
+    "panphon",
+    "marisa-trie",
+    "requests",
+    "subprocess32"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "editdistance",
+    "epitran",
+    "idna",
+    "marisa_trie",
+    "munkres",
+    "numpy",
+    "panphon",
+    "regex",
+    "requests",
+    "unicodecsv",
+    "urllib3",
+    "yaml"
+  ]
+}

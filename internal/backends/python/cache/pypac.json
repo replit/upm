@@ -1,0 +1,28 @@
+{
+  "name": "PyPAC",
+  "version": "0.16.0",
+  "requires_dist": [
+    "requests",
+    "tldextract",
+    "dukpy",
+    "pyobjc-framework-SystemConfiguration",
+    "pytest",
+    "pytest-cov",
+    "mock",
+    "wheel",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dukpy",
+    "filelock",
+    "idna",
+    "pypac",
+    "requests",
+    "requests_file",
+    "six",
+    "tldextract",
+    "urllib3"
+  ]
+}

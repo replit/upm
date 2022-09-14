@@ -1,0 +1,12 @@
+{
+  "name": "xml-python",
+  "version": "0.4.3",
+  "requires_dist": [
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "xml_python"
+  ]
+}

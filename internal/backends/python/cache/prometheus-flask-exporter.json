@@ -1,0 +1,20 @@
+{
+  "name": "prometheus-flask-exporter",
+  "version": "0.20.3",
+  "requires_dist": [
+    "prometheus-client",
+    "flask"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "prometheus_client",
+    "prometheus_flask_exporter",
+    "werkzeug",
+    "zipp"
+  ]
+}

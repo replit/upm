@@ -1,0 +1,22 @@
+{
+  "name": "pytest-astropy-header",
+  "version": "0.2.2",
+  "requires_dist": [
+    "pytest",
+    "numpy",
+    "astropy"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_astropy_header",
+    "tomli"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "boto3-type-annotations",
+  "version": "0.3.1",
+  "modules": [
+    "boto3_type_annotations"
+  ]
+}

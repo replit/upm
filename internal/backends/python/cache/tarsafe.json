@@ -1,0 +1,8 @@
+{
+  "name": "tarsafe",
+  "version": "0.0.3",
+  "modules": [
+    "src",
+    "tarsafe"
+  ]
+}

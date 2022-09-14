@@ -1,0 +1,7 @@
+{
+  "name": "pygeoip",
+  "version": "0.3.2",
+  "modules": [
+    "pygeoip"
+  ]
+}

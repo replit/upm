@@ -1,0 +1,28 @@
+{
+  "name": "autogluon.features",
+  "version": "0.5.2",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "psutil",
+    "autogluon.common"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "joblib",
+    "numpy",
+    "pandas",
+    "psutil",
+    "pytz",
+    "s3transfer",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "urllib3"
+  ]
+}

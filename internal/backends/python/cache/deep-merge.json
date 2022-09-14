@@ -1,0 +1,7 @@
+{
+  "name": "deep_merge",
+  "version": "0.0.4",
+  "modules": [
+    "deep_merge"
+  ]
+}

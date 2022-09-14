@@ -1,0 +1,7 @@
+{
+  "name": "property-cached",
+  "version": "1.6.4",
+  "modules": [
+    "property_cached"
+  ]
+}

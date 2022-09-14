@@ -1,0 +1,23 @@
+{
+  "name": "dm-sonnet",
+  "version": "2.0.0",
+  "requires_dist": [
+    "absl-py",
+    "numpy",
+    "six",
+    "dm-tree",
+    "wrapt",
+    "tabulate",
+    "tensorflow",
+    "tensorflow-gpu"
+  ],
+  "modules": [
+    "absl",
+    "numpy",
+    "six",
+    "sonnet",
+    "tabulate",
+    "tree",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "finlab",
+  "version": "0.3.7.dev1",
+  "requires_dist": [
+    "requests",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "lz4",
+    "Cython"
+  ],
+  "modules": [
+    "Cython",
+    "certifi",
+    "charset_normalizer",
+    "cython",
+    "dateutil",
+    "finlab",
+    "idna",
+    "lz4",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pytz",
+    "pyximport",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

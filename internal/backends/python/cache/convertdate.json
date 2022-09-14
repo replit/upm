@@ -1,0 +1,19 @@
+{
+  "name": "convertdate",
+  "version": "2.4.0",
+  "requires_dist": [
+    "pymeeus",
+    "build",
+    "black",
+    "isort",
+    "pylint",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-parser",
+    "coverage"
+  ],
+  "modules": [
+    "convertdate",
+    "pymeeus"
+  ]
+}

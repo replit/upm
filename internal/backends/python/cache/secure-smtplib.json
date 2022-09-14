@@ -1,0 +1,7 @@
+{
+  "name": "secure-smtplib",
+  "version": "0.1.1",
+  "modules": [
+    "secure_smtplib"
+  ]
+}

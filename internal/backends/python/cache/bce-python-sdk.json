@@ -1,0 +1,18 @@
+{
+  "name": "bce-python-sdk",
+  "version": "0.8.74",
+  "requires_dist": [
+    "pycryptodome",
+    "future",
+    "six"
+  ],
+  "modules": [
+    "Crypto",
+    "baidubce",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "six"
+  ]
+}

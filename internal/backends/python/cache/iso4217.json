@@ -1,0 +1,15 @@
+{
+  "name": "iso4217",
+  "version": "1.11.20220401",
+  "requires_dist": [
+    "enum34",
+    "importlib-resources",
+    "importlib-resources",
+    "importlib-resources"
+  ],
+  "modules": [
+    "importlib_resources",
+    "iso4217",
+    "zipp"
+  ]
+}

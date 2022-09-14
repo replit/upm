@@ -1,0 +1,31 @@
+{
+  "name": "eliot",
+  "version": "1.14.0",
+  "requires_dist": [
+    "six",
+    "zope.interface",
+    "pyrsistent",
+    "boltons",
+    "aiocontextvars",
+    "setuptools",
+    "twine",
+    "coverage",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "flake8",
+    "black",
+    "cffi",
+    "hypothesis",
+    "testtools",
+    "pytest",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "boltons",
+    "eliot",
+    "pvectorc",
+    "pyrsistent",
+    "six"
+  ]
+}

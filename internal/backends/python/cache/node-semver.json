@@ -1,0 +1,7 @@
+{
+  "name": "node-semver",
+  "version": "0.8.1",
+  "modules": [
+    "semver"
+  ]
+}

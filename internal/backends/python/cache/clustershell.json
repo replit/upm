@@ -1,0 +1,9 @@
+{
+  "name": "ClusterShell",
+  "version": "1.8.4",
+  "modules": [
+    "ClusterShell",
+    "_yaml",
+    "yaml"
+  ]
+}

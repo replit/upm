@@ -1,0 +1,11 @@
+{
+  "name": "PyQt5",
+  "version": "5.15.7",
+  "requires_dist": [
+    "PyQt5-sip",
+    "PyQt5-Qt5"
+  ],
+  "modules": [
+    "PyQt5"
+  ]
+}

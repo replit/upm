@@ -1,0 +1,19 @@
+{
+  "name": "twilio",
+  "version": "7.14.0",
+  "requires_dist": [
+    "pytz",
+    "requests",
+    "PyJWT"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jwt",
+    "pytz",
+    "requests",
+    "twilio",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "chainer",
+  "version": "7.8.1",
+  "modules": [
+    "chainer",
+    "chainermn",
+    "chainerx",
+    "filelock",
+    "numpy",
+    "onnx_chainer",
+    "six",
+    "typing_extensions"
+  ]
+}

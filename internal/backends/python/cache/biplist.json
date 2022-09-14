@@ -1,0 +1,7 @@
+{
+  "name": "biplist",
+  "version": "1.0.3",
+  "modules": [
+    "biplist"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "json-flatten",
+  "version": "0.2",
+  "requires_dist": [
+    "pytest",
+    "black"
+  ],
+  "modules": [
+    "json_flatten"
+  ]
+}

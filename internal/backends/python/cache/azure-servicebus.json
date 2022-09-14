@@ -1,0 +1,27 @@
+{
+  "name": "azure-servicebus",
+  "version": "7.8.0",
+  "requires_dist": [
+    "uamqp",
+    "azure-common",
+    "msrest",
+    "azure-core",
+    "isodate",
+    "six",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "uamqp",
+    "urllib3"
+  ]
+}

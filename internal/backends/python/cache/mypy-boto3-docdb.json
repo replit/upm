@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-docdb",
+  "version": "1.24.57",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_docdb",
+    "typing_extensions"
+  ]
+}

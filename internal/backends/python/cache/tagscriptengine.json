@@ -1,0 +1,7 @@
+{
+  "name": "TagScriptEngine",
+  "version": "2.3.0",
+  "modules": [
+    "TagScriptEngine"
+  ]
+}

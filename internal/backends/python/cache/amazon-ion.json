@@ -1,0 +1,7 @@
+{
+  "name": "amazon.ion",
+  "version": "0.9.3",
+  "modules": [
+    "six"
+  ]
+}

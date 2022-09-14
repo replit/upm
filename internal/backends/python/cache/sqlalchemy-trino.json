@@ -1,0 +1,18 @@
+{
+  "name": "sqlalchemy-trino",
+  "version": "0.5.0",
+  "requires_dist": [
+    "trino"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "greenlet",
+    "idna",
+    "pytz",
+    "requests",
+    "sqlalchemy",
+    "trino",
+    "urllib3"
+  ]
+}

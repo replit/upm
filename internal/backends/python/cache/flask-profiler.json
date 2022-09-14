@@ -1,0 +1,17 @@
+{
+  "name": "flask_profiler",
+  "version": "1.8.1",
+  "modules": [
+    "click",
+    "flask",
+    "flask_httpauth",
+    "flask_profiler",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "simplejson",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "idna",
+  "version": "3.3",
+  "modules": [
+    "idna"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Requests-OpenTracing",
+  "version": "0.3.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opentracing",
+    "requests",
+    "requests_opentracing",
+    "urllib3"
+  ]
+}

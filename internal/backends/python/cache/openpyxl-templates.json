@@ -1,0 +1,14 @@
+{
+  "name": "openpyxl-templates",
+  "version": "0.2.5",
+  "requires_dist": [
+    "openpyxl",
+    "fortnum"
+  ],
+  "modules": [
+    "et_xmlfile",
+    "fortnum",
+    "openpyxl",
+    "openpyxl_templates"
+  ]
+}

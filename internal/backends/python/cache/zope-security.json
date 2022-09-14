@@ -1,0 +1,7 @@
+{
+  "name": "zope.security",
+  "version": "5.3",
+  "modules": [
+    "six"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pyreadline",
+  "version": "2.1",
+  "modules": [
+    "pyreadline"
+  ]
+}

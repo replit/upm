@@ -1,0 +1,7 @@
+{
+  "name": "PyByteBuffer",
+  "version": "1.0.5",
+  "modules": [
+    "PyByteBuffer"
+  ]
+}

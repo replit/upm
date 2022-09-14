@@ -1,0 +1,13 @@
+{
+  "name": "logilab-common",
+  "version": "1.9.7",
+  "requires_dist": [
+    "setuptools",
+    "mypy-extensions",
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_extensions",
+    "typing_extensions"
+  ]
+}

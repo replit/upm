@@ -1,0 +1,11 @@
+{
+  "name": "SudachiPy",
+  "version": "0.6.6",
+  "requires_dist": [
+    "tokenizers",
+    "sudachidict-core"
+  ],
+  "modules": [
+    "sudachipy"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "vos",
+  "version": "3.3.7",
+  "requires_dist": [
+    "html2text",
+    "cadcutils",
+    "future",
+    "aenum",
+    "pytest",
+    "pytest-cov",
+    "flake8",
+    "future",
+    "mock"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "aenum",
+    "cadcutils",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "distro",
+    "future",
+    "html2text",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "lxml",
+    "past",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3",
+    "vos"
+  ]
+}

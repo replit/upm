@@ -1,0 +1,7 @@
+{
+  "name": "no-manylinux",
+  "version": "3.0.0",
+  "modules": [
+    "_manylinux"
+  ]
+}

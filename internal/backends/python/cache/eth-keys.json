@@ -1,0 +1,43 @@
+{
+  "name": "eth-keys",
+  "version": "0.4.0",
+  "requires_dist": [
+    "eth-utils",
+    "eth-typing",
+    "coincurve",
+    "tox",
+    "bumpversion",
+    "twine",
+    "eth-utils",
+    "eth-typing",
+    "flake8",
+    "mypy",
+    "asn1tools",
+    "factory-boy",
+    "pyasn1",
+    "pytest",
+    "hypothesis",
+    "eth-hash",
+    "eth-hash",
+    "eth-utils",
+    "eth-typing",
+    "flake8",
+    "mypy",
+    "asn1tools",
+    "factory-boy",
+    "pyasn1",
+    "pytest",
+    "hypothesis",
+    "eth-hash",
+    "eth-hash"
+  ],
+  "modules": [
+    "cytoolz",
+    "eth_hash",
+    "eth_keys",
+    "eth_typing",
+    "eth_utils",
+    "tlz",
+    "toolz"
+  ]
+}

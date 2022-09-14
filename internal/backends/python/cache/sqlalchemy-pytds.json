@@ -1,0 +1,15 @@
+{
+  "name": "sqlalchemy-pytds",
+  "version": "0.3.4",
+  "requires_dist": [
+    "python-tds",
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "greenlet",
+    "pytds",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_pytds"
+  ]
+}

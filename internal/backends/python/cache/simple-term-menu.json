@@ -1,0 +1,7 @@
+{
+  "name": "simple-term-menu",
+  "version": "1.5.0",
+  "modules": [
+    "simple_term_menu"
+  ]
+}

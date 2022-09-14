@@ -1,0 +1,8 @@
+{
+  "name": "ssort",
+  "version": "0.11.6",
+  "modules": [
+    "pathspec",
+    "ssort"
+  ]
+}

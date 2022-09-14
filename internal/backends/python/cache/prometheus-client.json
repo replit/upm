@@ -1,0 +1,10 @@
+{
+  "name": "prometheus-client",
+  "version": "0.14.1",
+  "requires_dist": [
+    "twisted"
+  ],
+  "modules": [
+    "prometheus_client"
+  ]
+}

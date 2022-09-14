@@ -1,0 +1,19 @@
+{
+  "name": "pycls",
+  "version": "0.1.1",
+  "requires_dist": [
+    "numpy",
+    "opencv-python",
+    "simplejson",
+    "yacs"
+  ],
+  "modules": [
+    "_yaml",
+    "cv2",
+    "numpy",
+    "pycls",
+    "simplejson",
+    "yacs",
+    "yaml"
+  ]
+}

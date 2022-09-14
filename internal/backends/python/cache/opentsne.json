@@ -1,0 +1,19 @@
+{
+  "name": "openTSNE",
+  "version": "0.6.2",
+  "requires_dist": [
+    "numpy",
+    "scikit-learn",
+    "scipy",
+    "hnswlib",
+    "pynndescent"
+  ],
+  "modules": [
+    "joblib",
+    "numpy",
+    "openTSNE",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

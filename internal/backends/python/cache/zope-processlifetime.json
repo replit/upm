@@ -1,0 +1,11 @@
+{
+  "name": "zope.processlifetime",
+  "version": "2.4",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.testrunner"
+  ]
+}

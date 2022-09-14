@@ -1,0 +1,41 @@
+{
+  "name": "gcloud-aio-storage",
+  "version": "7.0.1",
+  "requires_dist": [
+    "aiofiles",
+    "gcloud-aio-auth",
+    "pyasn1-modules",
+    "rsa",
+    "rsa",
+    "rsa"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aiofiles",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "backoff",
+    "cffi",
+    "chardet",
+    "charset_normalizer",
+    "cryptography",
+    "frozenlist",
+    "future",
+    "gcloud",
+    "idna",
+    "jwt",
+    "libfuturize",
+    "libpasteurize",
+    "multidict",
+    "past",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "rsa",
+    "six",
+    "yarl"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "anytemplate",
+  "version": "0.1.6",
+  "requires_dist": [
+    "anyconfig",
+    "jinja2"
+  ],
+  "modules": [
+    "anyconfig",
+    "anytemplate",
+    "jinja2",
+    "markupsafe"
+  ]
+}

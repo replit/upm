@@ -1,0 +1,16 @@
+{
+  "name": "django-registration",
+  "version": "3.3",
+  "requires_dist": [
+    "Django",
+    "confusable-homoglyphs"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "confusable_homoglyphs",
+    "django",
+    "django_registration",
+    "sqlparse"
+  ]
+}

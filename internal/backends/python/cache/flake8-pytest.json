@@ -1,0 +1,14 @@
+{
+  "name": "flake8-pytest",
+  "version": "1.4",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_pytest",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

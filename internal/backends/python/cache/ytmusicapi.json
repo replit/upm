@@ -1,0 +1,21 @@
+{
+  "name": "ytmusicapi",
+  "version": "0.22.0",
+  "requires_dist": [
+    "requests",
+    "pre-commit",
+    "flake8",
+    "yapf",
+    "coverage",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3",
+    "ytmusicapi"
+  ]
+}

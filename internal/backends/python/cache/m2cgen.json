@@ -1,0 +1,11 @@
+{
+  "name": "m2cgen",
+  "version": "0.10.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "m2cgen",
+    "numpy"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "django-taggit-serializer",
+  "version": "0.1.7",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "six",
+    "sqlparse",
+    "taggit",
+    "taggit_serializer"
+  ]
+}

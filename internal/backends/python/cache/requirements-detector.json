@@ -1,0 +1,21 @@
+{
+  "name": "requirements-detector",
+  "version": "1.0.3",
+  "requires_dist": [
+    "astroid",
+    "packaging",
+    "poetry-semver",
+    "toml"
+  ],
+  "modules": [
+    "astroid",
+    "lazy_object_proxy",
+    "packaging",
+    "pyparsing",
+    "requirements_detector",
+    "semver",
+    "toml",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

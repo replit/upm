@@ -1,0 +1,19 @@
+{
+  "name": "mock-ssh-server",
+  "version": "0.9.1",
+  "requires_dist": [
+    "paramiko",
+    "selectors2"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "mockssh",
+    "nacl",
+    "paramiko",
+    "pycparser",
+    "six"
+  ]
+}

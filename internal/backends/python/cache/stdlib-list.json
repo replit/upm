@@ -1,0 +1,11 @@
+{
+  "name": "stdlib-list",
+  "version": "0.8.0",
+  "requires_dist": [
+    "functools32",
+    "sphinx"
+  ],
+  "modules": [
+    "stdlib_list"
+  ]
+}

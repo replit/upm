@@ -1,0 +1,11 @@
+{
+  "name": "freeza-offset",
+  "version": "1.0.10",
+  "requires_dist": [
+    "kafka-python"
+  ],
+  "modules": [
+    "freeza",
+    "kafka"
+  ]
+}

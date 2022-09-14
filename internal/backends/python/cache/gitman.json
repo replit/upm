@@ -1,0 +1,20 @@
+{
+  "name": "gitman",
+  "version": "3.3",
+  "requires_dist": [
+    "datafiles",
+    "minilog",
+    "universal-startfile"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "cached_property",
+    "classproperties",
+    "datafiles",
+    "gitman",
+    "log",
+    "parse",
+    "startfile",
+    "tomlkit"
+  ]
+}

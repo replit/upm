@@ -1,0 +1,20 @@
+{
+  "name": "utilmy",
+  "version": "0.1.16630574",
+  "requires_dist": [
+    "pyyaml",
+    "stdlib-list",
+    "python-box",
+    "fire"
+  ],
+  "modules": [
+    "_yaml",
+    "box",
+    "fire",
+    "six",
+    "stdlib_list",
+    "termcolor",
+    "utilmy",
+    "yaml"
+  ]
+}

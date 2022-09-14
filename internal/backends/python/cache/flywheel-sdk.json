@@ -1,0 +1,23 @@
+{
+  "name": "flywheel-sdk",
+  "version": "16.10.12",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil",
+    "requests",
+    "requests-toolbelt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "flywheel",
+    "idna",
+    "requests",
+    "requests_toolbelt",
+    "six",
+    "urllib3"
+  ]
+}

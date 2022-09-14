@@ -1,0 +1,18 @@
+{
+  "name": "slither-analyzer",
+  "version": "0.8.3",
+  "requires_dist": [
+    "prettytable",
+    "pysha3",
+    "crytic-compile"
+  ],
+  "modules": [
+    "_pysha3",
+    "crytic_compile",
+    "prettytable",
+    "sha3",
+    "slither",
+    "tests",
+    "wcwidth"
+  ]
+}

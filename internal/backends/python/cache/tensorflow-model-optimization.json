@@ -1,0 +1,16 @@
+{
+  "name": "tensorflow-model-optimization",
+  "version": "0.7.3",
+  "requires_dist": [
+    "dm-tree",
+    "numpy",
+    "six",
+    "enum34"
+  ],
+  "modules": [
+    "numpy",
+    "six",
+    "tensorflow_model_optimization",
+    "tree"
+  ]
+}

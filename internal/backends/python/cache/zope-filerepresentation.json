@@ -1,0 +1,13 @@
+{
+  "name": "zope.filerepresentation",
+  "version": "5.0.0",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.schema",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "sphinx-rtd-theme",
+    "zope.testrunner"
+  ]
+}

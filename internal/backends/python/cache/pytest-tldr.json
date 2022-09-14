@@ -1,0 +1,20 @@
+{
+  "name": "pytest-tldr",
+  "version": "0.2.4",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_tldr",
+    "tomli"
+  ]
+}

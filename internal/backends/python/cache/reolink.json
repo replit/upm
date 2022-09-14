@@ -1,0 +1,21 @@
+{
+  "name": "reolink",
+  "version": "0.0.63",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "ffmpeg",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "reolink",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

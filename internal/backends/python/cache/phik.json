@@ -1,0 +1,33 @@
+{
+  "name": "phik",
+  "version": "0.12.2",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "pandas",
+    "matplotlib",
+    "joblib",
+    "pytest",
+    "pytest-pylint",
+    "nbconvert",
+    "jupyter-client"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "joblib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "phik",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six"
+  ]
+}

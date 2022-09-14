@@ -1,0 +1,7 @@
+{
+  "name": "airflow-notify-sns",
+  "version": "0.0.2",
+  "modules": [
+    "airflow_notify_sns"
+  ]
+}

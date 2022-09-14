@@ -1,0 +1,10 @@
+{
+  "name": "sewar",
+  "version": "0.4.5",
+  "modules": [
+    "PIL",
+    "numpy",
+    "scipy",
+    "sewar"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "terrasnek",
+  "version": "0.1.10",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "terrasnek",
+    "urllib3"
+  ]
+}

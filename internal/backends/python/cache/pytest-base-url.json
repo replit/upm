@@ -1,0 +1,26 @@
+{
+  "name": "pytest-base-url",
+  "version": "2.0.0",
+  "requires_dist": [
+    "pytest",
+    "requests"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_base_url",
+    "requests",
+    "tomli",
+    "urllib3"
+  ]
+}

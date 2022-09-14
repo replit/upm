@@ -1,0 +1,15 @@
+{
+  "name": "sklearn-json",
+  "version": "0.1.0",
+  "requires_dist": [
+    "scikit-learn"
+  ],
+  "modules": [
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "sklearn_json",
+    "threadpoolctl"
+  ]
+}

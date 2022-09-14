@@ -1,0 +1,11 @@
+{
+  "name": "kml2geojson",
+  "version": "5.1.0",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "click",
+    "kml2geojson"
+  ]
+}

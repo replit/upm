@@ -1,0 +1,27 @@
+{
+  "name": "awscli",
+  "version": "1.25.73",
+  "requires_dist": [
+    "botocore",
+    "docutils",
+    "s3transfer",
+    "PyYAML",
+    "colorama",
+    "rsa"
+  ],
+  "modules": [
+    "_yaml",
+    "awscli",
+    "botocore",
+    "colorama",
+    "dateutil",
+    "docutils",
+    "jmespath",
+    "pyasn1",
+    "rsa",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

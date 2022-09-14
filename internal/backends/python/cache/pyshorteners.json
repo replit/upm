@@ -1,0 +1,12 @@
+{
+  "name": "pyshorteners",
+  "version": "1.0.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyshorteners",
+    "requests",
+    "urllib3"
+  ]
+}

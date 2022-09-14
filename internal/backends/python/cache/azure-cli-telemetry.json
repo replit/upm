@@ -1,0 +1,8 @@
+{
+  "name": "azure-cli-telemetry",
+  "version": "1.0.8",
+  "modules": [
+    "applicationinsights",
+    "portalocker"
+  ]
+}

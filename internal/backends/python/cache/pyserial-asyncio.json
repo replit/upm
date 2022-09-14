@@ -1,0 +1,11 @@
+{
+  "name": "pyserial-asyncio",
+  "version": "0.6",
+  "requires_dist": [
+    "pyserial"
+  ],
+  "modules": [
+    "serial",
+    "serial_asyncio"
+  ]
+}

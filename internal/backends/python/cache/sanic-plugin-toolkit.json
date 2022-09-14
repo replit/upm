@@ -1,0 +1,19 @@
+{
+  "name": "sanic-plugin-toolkit",
+  "version": "1.2.1",
+  "requires_dist": [
+    "sanic",
+    "setuptools"
+  ],
+  "modules": [
+    "aiofiles",
+    "httptools",
+    "multidict",
+    "sanic",
+    "sanic_plugin_toolkit",
+    "sanic_routing",
+    "ujson",
+    "uvloop",
+    "websockets"
+  ]
+}

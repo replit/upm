@@ -1,0 +1,7 @@
+{
+  "name": "kwargs-only",
+  "version": "1.1.1",
+  "modules": [
+    "kwargs_only"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pytest-pydocstyle",
+  "version": "2.3.0",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pydocstyle",
+    "pyparsing",
+    "pytest",
+    "pytest_pydocstyle",
+    "snowballstemmer",
+    "tomli"
+  ]
+}

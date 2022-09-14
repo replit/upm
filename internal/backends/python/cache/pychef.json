@@ -1,0 +1,13 @@
+{
+  "name": "PyChef",
+  "version": "0.3.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "chef",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

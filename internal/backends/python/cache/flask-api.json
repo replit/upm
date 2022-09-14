@@ -1,0 +1,18 @@
+{
+  "name": "Flask-API",
+  "version": "3.0.post1",
+  "requires_dist": [
+    "Flask"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_api",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

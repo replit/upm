@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-alidns",
+  "version": "3.0.0",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkalidns",
+    "aliyunsdkcore",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

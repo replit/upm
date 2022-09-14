@@ -1,0 +1,11 @@
+{
+  "name": "zict",
+  "version": "2.2.0",
+  "requires_dist": [
+    "heapdict"
+  ],
+  "modules": [
+    "heapdict",
+    "zict"
+  ]
+}

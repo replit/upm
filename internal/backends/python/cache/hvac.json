@@ -1,0 +1,18 @@
+{
+  "name": "hvac",
+  "version": "0.11.2",
+  "requires_dist": [
+    "requests",
+    "six",
+    "pyhcl"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "hvac",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

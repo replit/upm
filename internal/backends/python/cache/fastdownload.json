@@ -1,0 +1,15 @@
+{
+  "name": "fastdownload",
+  "version": "0.0.7",
+  "requires_dist": [
+    "fastprogress",
+    "fastcore"
+  ],
+  "modules": [
+    "fastcore",
+    "fastdownload",
+    "fastprogress",
+    "packaging",
+    "pyparsing"
+  ]
+}

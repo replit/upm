@@ -1,0 +1,11 @@
+{
+  "name": "newrelic",
+  "version": "8.1.0.180",
+  "requires_dist": [
+    "grpcio",
+    "protobuf"
+  ],
+  "modules": [
+    "newrelic"
+  ]
+}

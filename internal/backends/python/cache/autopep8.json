@@ -1,0 +1,13 @@
+{
+  "name": "autopep8",
+  "version": "1.7.0",
+  "requires_dist": [
+    "pycodestyle",
+    "toml"
+  ],
+  "modules": [
+    "autopep8",
+    "pycodestyle",
+    "toml"
+  ]
+}

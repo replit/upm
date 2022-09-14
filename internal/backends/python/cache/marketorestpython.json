@@ -1,0 +1,14 @@
+{
+  "name": "marketorestpython",
+  "version": "0.5.19",
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "marketorestpython",
+    "pytz",
+    "requests",
+    "urllib3"
+  ]
+}

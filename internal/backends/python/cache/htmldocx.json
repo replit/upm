@@ -1,0 +1,15 @@
+{
+  "name": "htmldocx",
+  "version": "0.0.6",
+  "requires_dist": [
+    "python-docx",
+    "beautifulsoup4"
+  ],
+  "modules": [
+    "bs4",
+    "docx",
+    "htmldocx",
+    "lxml",
+    "soupsieve"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "django-click",
+  "version": "2.3.0",
+  "requires_dist": [
+    "click",
+    "Fabric",
+    "livereload",
+    "wheel",
+    "check-manifest",
+    "flake8",
+    "mccabe",
+    "pep8",
+    "pep8-naming",
+    "pyflakes",
+    "Sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme",
+    "pytest",
+    "coverage",
+    "pytest-django",
+    "pytest-cov",
+    "pytest-flake8"
+  ],
+  "modules": [
+    "click",
+    "djclick"
+  ]
+}

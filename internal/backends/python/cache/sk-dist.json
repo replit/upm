@@ -1,0 +1,16 @@
+{
+  "name": "sk-dist",
+  "version": "0.1.9",
+  "modules": [
+    "dateutil",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "skdist",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

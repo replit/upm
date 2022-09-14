@@ -1,0 +1,13 @@
+{
+  "name": "python-binary-memcached",
+  "version": "0.31.1",
+  "requires_dist": [
+    "six",
+    "uhashring"
+  ],
+  "modules": [
+    "bmemcached",
+    "six",
+    "uhashring"
+  ]
+}

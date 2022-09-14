@@ -1,0 +1,12 @@
+{
+  "name": "imblearn",
+  "version": "0.0",
+  "modules": [
+    "imblearn",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

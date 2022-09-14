@@ -1,0 +1,26 @@
+{
+  "name": "smdebug",
+  "version": "1.0.12",
+  "requires_dist": [
+    "protobuf",
+    "numpy",
+    "packaging",
+    "boto3",
+    "pyinstrument"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "numpy",
+    "packaging",
+    "pyinstrument",
+    "pyinstrument_cext",
+    "pyparsing",
+    "s3transfer",
+    "six",
+    "smdebug",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "nose-html-reporting",
+  "version": "0.2.3",
+  "modules": [
+    "jinja2",
+    "markupsafe",
+    "nose",
+    "nose_html_reporting"
+  ]
+}

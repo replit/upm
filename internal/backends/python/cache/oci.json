@@ -1,0 +1,26 @@
+{
+  "name": "oci",
+  "version": "2.82.0",
+  "requires_dist": [
+    "certifi",
+    "cryptography",
+    "pyOpenSSL",
+    "python-dateutil",
+    "pytz",
+    "circuitbreaker",
+    "configparser"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "circuitbreaker",
+    "cryptography",
+    "dateutil",
+    "oci",
+    "pycparser",
+    "pytz",
+    "six"
+  ]
+}

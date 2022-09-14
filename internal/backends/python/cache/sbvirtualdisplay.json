@@ -1,0 +1,24 @@
+{
+  "name": "sbvirtualdisplay",
+  "version": "1.1.0",
+  "requires_dist": [
+    "coverage",
+    "pytest-cov",
+    "pytest-cov",
+    "coverage",
+    "coverage",
+    "mccabe",
+    "flake8",
+    "pyflakes",
+    "pycodestyle",
+    "flake8",
+    "pyflakes",
+    "pycodestyle",
+    "flake8",
+    "pyflakes",
+    "pycodestyle"
+  ],
+  "modules": [
+    "sbvirtualdisplay"
+  ]
+}

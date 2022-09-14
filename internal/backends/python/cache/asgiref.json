@@ -1,0 +1,13 @@
+{
+  "name": "asgiref",
+  "version": "3.5.2",
+  "requires_dist": [
+    "typing-extensions",
+    "pytest",
+    "pytest-asyncio",
+    "mypy"
+  ],
+  "modules": [
+    "asgiref"
+  ]
+}

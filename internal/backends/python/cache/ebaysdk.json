@@ -1,0 +1,19 @@
+{
+  "name": "ebaysdk",
+  "version": "2.2.0",
+  "requires_dist": [
+    "lxml",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "ebaysdk",
+    "idna",
+    "lxml",
+    "requests",
+    "samples",
+    "tests",
+    "urllib3"
+  ]
+}

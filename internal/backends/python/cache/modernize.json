@@ -1,0 +1,17 @@
+{
+  "name": "modernize",
+  "version": "0.8.0",
+  "requires_dist": [
+    "fissix",
+    "sphinx",
+    "pytest",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "appdirs",
+    "fissix",
+    "libmodernize",
+    "modernize"
+  ]
+}

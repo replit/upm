@@ -1,0 +1,16 @@
+{
+  "name": "prophecy-libs",
+  "version": "1.3.5",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "prophecy",
+    "py4j",
+    "pyhocon",
+    "pyparsing",
+    "pyspark",
+    "requests",
+    "urllib3"
+  ]
+}

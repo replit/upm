@@ -1,0 +1,13 @@
+{
+  "name": "cli-exit-tools",
+  "version": "1.2.3.2",
+  "requires_dist": [
+    "click",
+    "lib-detect-testenv"
+  ],
+  "modules": [
+    "cli_exit_tools",
+    "click",
+    "lib_detect_testenv"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "recurly",
+  "version": "4.20.1",
+  "modules": [
+    "recurly",
+    "tests"
+  ]
+}

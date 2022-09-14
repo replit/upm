@@ -1,0 +1,18 @@
+{
+  "name": "pybtex-docutils",
+  "version": "1.0.2",
+  "requires_dist": [
+    "docutils",
+    "pybtex"
+  ],
+  "modules": [
+    "_yaml",
+    "docutils",
+    "latexcodec",
+    "pybtex",
+    "pybtex_docutils",
+    "six",
+    "tests",
+    "yaml"
+  ]
+}

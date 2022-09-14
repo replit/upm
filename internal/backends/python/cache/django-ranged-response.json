@@ -1,0 +1,11 @@
+{
+  "name": "django-ranged-response",
+  "version": "0.2.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "ranged_response",
+    "sqlparse"
+  ]
+}

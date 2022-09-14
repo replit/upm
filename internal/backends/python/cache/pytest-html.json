@@ -1,0 +1,22 @@
+{
+  "name": "pytest-html",
+  "version": "3.1.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-metadata"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_html",
+    "pytest_metadata",
+    "tomli"
+  ]
+}

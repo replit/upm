@@ -1,0 +1,7 @@
+{
+  "name": "gym-notices",
+  "version": "0.0.8",
+  "modules": [
+    "gym_notices"
+  ]
+}

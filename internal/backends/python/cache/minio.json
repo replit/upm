@@ -1,0 +1,13 @@
+{
+  "name": "minio",
+  "version": "7.1.11",
+  "requires_dist": [
+    "certifi",
+    "urllib3"
+  ],
+  "modules": [
+    "certifi",
+    "minio",
+    "urllib3"
+  ]
+}

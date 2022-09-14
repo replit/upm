@@ -1,0 +1,7 @@
+{
+  "name": "pyxirr",
+  "version": "0.7.2",
+  "modules": [
+    "pyxirr"
+  ]
+}

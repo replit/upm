@@ -1,0 +1,22 @@
+{
+  "name": "dynetx",
+  "version": "0.3.1",
+  "requires_dist": [
+    "numpy",
+    "future",
+    "tqdm",
+    "networkx",
+    "decorator"
+  ],
+  "modules": [
+    "decorator",
+    "dynetx",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "networkx",
+    "numpy",
+    "past",
+    "tqdm"
+  ]
+}

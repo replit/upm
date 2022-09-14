@@ -1,0 +1,19 @@
+{
+  "name": "ansimarkup",
+  "version": "1.5.0",
+  "requires_dist": [
+    "colorama",
+    "bumpversion",
+    "check-manifest",
+    "readme-renderer",
+    "flake8",
+    "pep8-naming",
+    "tox",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "ansimarkup",
+    "colorama"
+  ]
+}

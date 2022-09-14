@@ -1,0 +1,7 @@
+{
+  "name": "mlogging",
+  "version": "0.1",
+  "modules": [
+    "mlogging"
+  ]
+}

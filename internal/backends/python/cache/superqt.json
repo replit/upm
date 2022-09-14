@@ -1,0 +1,40 @@
+{
+  "name": "superqt",
+  "version": "0.3.5",
+  "requires_dist": [
+    "packaging",
+    "pygments",
+    "qtpy",
+    "typing-extensions",
+    "ipython",
+    "isort",
+    "jedi",
+    "mypy",
+    "pre-commit",
+    "pyside2",
+    "pytest",
+    "pytest-cov",
+    "pytest-qt",
+    "tox",
+    "tox-conda",
+    "fonticon-fontawesome5",
+    "fonticon-materialdesignicons5",
+    "pyqt5",
+    "pyqt6",
+    "pyside2",
+    "pyside6",
+    "pytest",
+    "pytest-cov",
+    "pytest-qt",
+    "tox",
+    "tox-conda"
+  ],
+  "modules": [
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "qtpy",
+    "superqt",
+    "typing_extensions"
+  ]
+}

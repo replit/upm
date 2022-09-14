@@ -1,0 +1,23 @@
+{
+  "name": "splunk-cloud-sdk",
+  "version": "11.0.0",
+  "requires_dist": [
+    "requests",
+    "urllib3",
+    "pep8",
+    "sphinx",
+    "sphinxcontrib-apidoc",
+    "cryptography",
+    "coverage",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "certifi",
+    "chardet",
+    "idna",
+    "requests",
+    "splunk_sdk",
+    "urllib3"
+  ]
+}

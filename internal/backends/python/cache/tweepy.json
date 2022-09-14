@@ -1,0 +1,26 @@
+{
+  "name": "tweepy",
+  "version": "4.10.1",
+  "requires_dist": [
+    "oauthlib",
+    "requests",
+    "requests-oauthlib",
+    "aiohttp",
+    "async-lru",
+    "coverage",
+    "coveralls",
+    "tox",
+    "requests",
+    "vcrpy"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "tweepy",
+    "urllib3"
+  ]
+}

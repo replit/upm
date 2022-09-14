@@ -1,0 +1,33 @@
+{
+  "name": "flake8-no-implicit-concat",
+  "version": "0.3.3",
+  "requires_dist": [
+    "flake8",
+    "more-itertools",
+    "typing",
+    "black",
+    "isort",
+    "flake8",
+    "hacking",
+    "flake8-black",
+    "flake8-isort",
+    "pep8-naming",
+    "flake8-broken-line",
+    "flake8-builtins",
+    "flake8-2020",
+    "flake8-docstrings",
+    "flake8-rst-docstrings",
+    "darglint",
+    "mypy",
+    "coverage",
+    "codecov"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_no_implicit_concat",
+    "mccabe",
+    "more_itertools",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

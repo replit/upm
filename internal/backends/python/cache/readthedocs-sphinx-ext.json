@@ -1,0 +1,21 @@
+{
+  "name": "readthedocs-sphinx-ext",
+  "version": "2.1.8",
+  "requires_dist": [
+    "requests",
+    "Jinja2",
+    "packaging"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pyparsing",
+    "readthedocs_ext",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "flake8-coding",
+  "version": "1.3.2",
+  "modules": [
+    "flake8",
+    "flake8_coding",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

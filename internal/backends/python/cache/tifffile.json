@@ -1,0 +1,14 @@
+{
+  "name": "tifffile",
+  "version": "2022.8.12",
+  "requires_dist": [
+    "numpy",
+    "imagecodecs",
+    "matplotlib",
+    "lxml"
+  ],
+  "modules": [
+    "numpy",
+    "tifffile"
+  ]
+}

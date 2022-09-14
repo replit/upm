@@ -1,0 +1,13 @@
+{
+  "name": "access-parser",
+  "version": "0.0.4",
+  "requires_dist": [
+    "construct",
+    "tabulate"
+  ],
+  "modules": [
+    "access_parser",
+    "construct",
+    "tabulate"
+  ]
+}

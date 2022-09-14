@@ -1,0 +1,17 @@
+{
+  "name": "cloudwatch",
+  "version": "1.0.5",
+  "requires_dist": [
+    "boto3"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "cloudwatch",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

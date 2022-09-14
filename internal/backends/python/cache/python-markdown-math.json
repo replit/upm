@@ -1,0 +1,13 @@
+{
+  "name": "python-markdown-math",
+  "version": "0.8",
+  "requires_dist": [
+    "Markdown"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "markdown",
+    "mdx_math",
+    "zipp"
+  ]
+}

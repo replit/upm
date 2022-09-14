@@ -1,0 +1,19 @@
+{
+  "name": "pandas-schema",
+  "version": "0.3.6",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "packaging"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pandas_schema",
+    "pyparsing",
+    "pytz",
+    "six"
+  ]
+}

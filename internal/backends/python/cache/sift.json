@@ -1,0 +1,13 @@
+{
+  "name": "Sift",
+  "version": "5.1.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "sift",
+    "six",
+    "urllib3"
+  ]
+}

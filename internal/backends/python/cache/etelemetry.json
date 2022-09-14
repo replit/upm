@@ -1,0 +1,26 @@
+{
+  "name": "etelemetry",
+  "version": "0.3.0",
+  "requires_dist": [
+    "requests",
+    "ci-info",
+    "pytest",
+    "pytest-cov",
+    "codecov",
+    "pytest",
+    "pytest-cov",
+    "codecov",
+    "pytest",
+    "pytest-cov",
+    "codecov"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "ci_info",
+    "etelemetry",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

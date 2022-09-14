@@ -1,0 +1,7 @@
+{
+  "name": "PyPDF4",
+  "version": "1.27.0",
+  "modules": [
+    "PyPDF4"
+  ]
+}

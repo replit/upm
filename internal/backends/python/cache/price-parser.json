@@ -1,0 +1,12 @@
+{
+  "name": "price-parser",
+  "version": "0.3.4",
+  "requires_dist": [
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "price_parser"
+  ]
+}

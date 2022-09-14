@@ -1,0 +1,13 @@
+{
+  "name": "ppft",
+  "version": "1.7.6.5",
+  "requires_dist": [
+    "six",
+    "dill"
+  ],
+  "modules": [
+    "pp",
+    "ppft",
+    "six"
+  ]
+}

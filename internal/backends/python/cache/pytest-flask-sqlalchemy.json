@@ -1,0 +1,39 @@
+{
+  "name": "pytest-flask-sqlalchemy",
+  "version": "1.1.0",
+  "requires_dist": [
+    "pytest",
+    "pytest-mock",
+    "SQLAlchemy",
+    "Flask-SQLAlchemy",
+    "packaging",
+    "pytest-postgresql",
+    "psycopg2-binary",
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "click",
+    "flask",
+    "flask_sqlalchemy",
+    "greenlet",
+    "importlib_metadata",
+    "iniconfig",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_flask_sqlalchemy",
+    "pytest_mock",
+    "sqlalchemy",
+    "tomli",
+    "werkzeug",
+    "zipp"
+  ]
+}

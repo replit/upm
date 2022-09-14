@@ -1,0 +1,7 @@
+{
+  "name": "pymmh3",
+  "version": "0.0.5",
+  "modules": [
+    "pymmh3"
+  ]
+}

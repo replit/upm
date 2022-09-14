@@ -1,0 +1,9 @@
+{
+  "name": "neo4j",
+  "version": "5.0.0",
+  "modules": [
+    "neo4j",
+    "pytz",
+    "testkitbackend"
+  ]
+}

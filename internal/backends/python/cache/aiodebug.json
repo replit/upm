@@ -1,0 +1,12 @@
+{
+  "name": "aiodebug",
+  "version": "2.3.0",
+  "requires_dist": [
+    "typing-extensions",
+    "logwood"
+  ],
+  "modules": [
+    "aiodebug",
+    "typing_extensions"
+  ]
+}

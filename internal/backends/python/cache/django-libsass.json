@@ -1,0 +1,29 @@
+{
+  "name": "django-libsass",
+  "version": "0.9",
+  "requires_dist": [
+    "django-compressor",
+    "libsass",
+    "django-appconf"
+  ],
+  "modules": [
+    "_rcssmin",
+    "_rjsmin",
+    "_sass",
+    "appconf",
+    "asgiref",
+    "backports",
+    "compressor",
+    "django",
+    "django_libsass",
+    "pysassc",
+    "rcssmin",
+    "rjsmin",
+    "sass",
+    "sassc",
+    "sasstests",
+    "sassutils",
+    "six",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "forbiddenfruit",
+  "version": "0.1.4",
+  "modules": [
+    "forbiddenfruit"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "pydata-google-auth",
+  "version": "1.4.0",
+  "requires_dist": [
+    "setuptools",
+    "google-auth",
+    "google-auth-oauthlib",
+    "google-auth",
+    "google-auth-oauthlib"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_oauthlib",
+    "idna",
+    "oauthlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "pydata_google_auth",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

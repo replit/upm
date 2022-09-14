@@ -1,0 +1,17 @@
+{
+  "name": "django-hijack",
+  "version": "3.2.1",
+  "requires_dist": [
+    "django",
+    "pytest",
+    "pytest-cov",
+    "pytest-django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "hijack",
+    "sqlparse"
+  ]
+}

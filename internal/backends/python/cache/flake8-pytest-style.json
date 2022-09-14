@@ -1,0 +1,11 @@
+{
+  "name": "flake8-pytest-style",
+  "version": "1.6.0",
+  "requires_dist": [
+    "flake8-plugin-utils"
+  ],
+  "modules": [
+    "flake8_plugin_utils",
+    "flake8_pytest_style"
+  ]
+}

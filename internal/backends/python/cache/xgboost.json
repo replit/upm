@@ -1,0 +1,21 @@
+{
+  "name": "xgboost",
+  "version": "1.6.2",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "dask",
+    "pandas",
+    "distributed",
+    "datatable",
+    "pandas",
+    "graphviz",
+    "matplotlib",
+    "scikit-learn"
+  ],
+  "modules": [
+    "numpy",
+    "scipy",
+    "xgboost"
+  ]
+}

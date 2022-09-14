@@ -1,0 +1,37 @@
+{
+  "name": "correctionlib",
+  "version": "2.2.1",
+  "requires_dist": [
+    "numpy",
+    "pydantic",
+    "rich",
+    "typing",
+    "dataclasses",
+    "typing-extensions",
+    "pandas",
+    "uproot",
+    "requests",
+    "scipy",
+    "pytest",
+    "pre-commit",
+    "mypy",
+    "uhi",
+    "recommonmark",
+    "Sphinx",
+    "sphinx-copybutton",
+    "sphinx-rtd-theme",
+    "sphinx-jsonschema",
+    "myst-parser",
+    "pytest",
+    "scipy"
+  ],
+  "modules": [
+    "commonmark",
+    "correctionlib",
+    "numpy",
+    "pydantic",
+    "pygments",
+    "rich",
+    "typing_extensions"
+  ]
+}

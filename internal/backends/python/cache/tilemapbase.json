@@ -1,0 +1,13 @@
+{
+  "name": "tilemapbase",
+  "version": "0.4.7",
+  "modules": [
+    "PIL",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "tilemapbase",
+    "urllib3"
+  ]
+}

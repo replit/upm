@@ -1,0 +1,29 @@
+{
+  "name": "cognite-sdk",
+  "version": "4.5.2",
+  "requires_dist": [
+    "geopandas",
+    "msal",
+    "pandas",
+    "pip",
+    "requests",
+    "requests_oauthlib",
+    "shapely",
+    "sympy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "jwt",
+    "msal",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "urllib3"
+  ]
+}

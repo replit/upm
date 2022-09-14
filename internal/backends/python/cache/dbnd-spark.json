@@ -1,0 +1,35 @@
+{
+  "name": "dbnd-spark",
+  "version": "1.0.2.1",
+  "requires_dist": [
+    "dbnd",
+    "pyspark",
+    "pytest-spark"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "databand",
+    "dateutil",
+    "dbnd",
+    "dbnd_spark",
+    "idna",
+    "more_itertools",
+    "pygments",
+    "pytz",
+    "pytz_deprecation_shim",
+    "pytzdata",
+    "requests",
+    "six",
+    "sqlparse",
+    "targets",
+    "tzdata",
+    "tzlocal",
+    "urllib3",
+    "yaml"
+  ]
+}

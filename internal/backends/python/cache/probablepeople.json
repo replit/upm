@@ -1,0 +1,20 @@
+{
+  "name": "probablepeople",
+  "version": "0.5.4",
+  "requires_dist": [
+    "python-crfsuite",
+    "probableparsing",
+    "future",
+    "doublemetaphone"
+  ],
+  "modules": [
+    "doublemetaphone",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "probableparsing",
+    "probablepeople",
+    "pycrfsuite"
+  ]
+}

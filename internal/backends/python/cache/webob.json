@@ -1,0 +1,15 @@
+{
+  "name": "WebOb",
+  "version": "1.8.7",
+  "requires_dist": [
+    "Sphinx",
+    "pylons-sphinx-themes",
+    "pytest",
+    "coverage",
+    "pytest-cov",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "webob"
+  ]
+}

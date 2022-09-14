@@ -1,0 +1,15 @@
+{
+  "name": "spamwatch",
+  "version": "0.3.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "spamwatch",
+    "urllib3"
+  ]
+}

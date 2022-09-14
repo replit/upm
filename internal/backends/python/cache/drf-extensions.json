@@ -1,0 +1,16 @@
+{
+  "name": "drf-extensions",
+  "version": "0.7.1",
+  "requires_dist": [
+    "djangorestframework"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "rest_framework_extensions",
+    "sqlparse"
+  ]
+}

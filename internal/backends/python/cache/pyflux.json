@@ -1,0 +1,5 @@
+{
+  "name": "pyflux",
+  "version": "0.4.15",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyflux/bin/python3', '-m', 'pip', 'install', 'pyflux']' returned non-zero exit status 1.\"}"
+}

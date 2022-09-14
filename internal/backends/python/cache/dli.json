@@ -1,0 +1,5 @@
+{
+  "name": "dli",
+  "version": "1.18.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dli/bin/python3', '-m', 'pip', 'install', 'dli']' returned non-zero exit status 1.\"}"
+}

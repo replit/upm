@@ -1,0 +1,9 @@
+{
+  "name": "awesome-slugify",
+  "version": "1.6.5",
+  "modules": [
+    "regex",
+    "slugify",
+    "unidecode"
+  ]
+}

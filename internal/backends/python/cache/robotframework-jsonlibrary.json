@@ -1,0 +1,21 @@
+{
+  "name": "robotframework-jsonlibrary",
+  "version": "0.5",
+  "modules": [
+    "JSONLibrary",
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "decorator",
+    "importlib_resources",
+    "jsonpath_ng",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "ply",
+    "pvectorc",
+    "pyrsistent",
+    "robot",
+    "six",
+    "zipp"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "apischema",
+  "version": "0.17.5",
+  "requires_dist": [
+    "dataclasses",
+    "graphql-core",
+    "attrs",
+    "docstring-parser",
+    "bson",
+    "orjson",
+    "pydantic",
+    "pytest",
+    "sqlalchemy",
+    "graphql-core"
+  ],
+  "modules": [
+    "apischema"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "connected-components-3d",
+  "version": "3.10.2",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "cc3d",
+    "numpy"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "tf2onnx",
+  "version": "1.12.0",
+  "requires_dist": [
+    "numpy",
+    "onnx",
+    "requests",
+    "six",
+    "flatbuffers"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "flatbuffers",
+    "idna",
+    "numpy",
+    "onnx",
+    "requests",
+    "six",
+    "tf2onnx",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

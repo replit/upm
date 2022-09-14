@@ -1,0 +1,16 @@
+{
+  "name": "metadata-parser",
+  "version": "0.10.5",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "metadata_parser",
+    "requests",
+    "requests_toolbelt",
+    "six",
+    "soupsieve",
+    "urllib3"
+  ]
+}

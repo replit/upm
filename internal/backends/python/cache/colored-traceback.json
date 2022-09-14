@@ -1,0 +1,11 @@
+{
+  "name": "colored-traceback",
+  "version": "0.3.0",
+  "requires_dist": [
+    "pygments"
+  ],
+  "modules": [
+    "colored_traceback",
+    "pygments"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "html-testRunner",
+  "version": "1.2.1",
+  "requires_dist": [
+    "Jinja2"
+  ],
+  "modules": [
+    "HtmlTestRunner",
+    "jinja2",
+    "markupsafe"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "cyberdrop-dl",
+  "version": "3.3.19",
+  "requires_dist": [
+    "aiofiles",
+    "aiohttp",
+    "beautifulsoup4",
+    "certifi",
+    "colorama",
+    "gofile-client",
+    "tqdm",
+    "yarl"
+  ],
+  "modules": [
+    "aiofiles",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "colorama",
+    "cyberdrop_dl",
+    "frozenlist",
+    "gofile",
+    "idna",
+    "multidict",
+    "requests",
+    "soupsieve",
+    "tqdm",
+    "urllib3",
+    "yarl"
+  ]
+}

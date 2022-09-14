@@ -1,0 +1,5 @@
+{
+  "name": "mup",
+  "version": "1.0.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mup/bin/python3', '-m', 'pip', 'install', 'mup']' returned non-zero exit status 2.\"}"
+}

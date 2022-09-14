@@ -1,0 +1,7 @@
+{
+  "name": "aioconsole",
+  "version": "0.5.1",
+  "modules": [
+    "aioconsole"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "robotframework-browser",
+  "version": "13.6.0",
+  "requires_dist": [
+    "backports.cached-property",
+    "grpcio",
+    "grpcio-tools",
+    "protobuf",
+    "robotframework",
+    "robotframework-pythonlibcore",
+    "robotframework-assertion-engine",
+    "typing-extensions",
+    "wrapt",
+    "overrides"
+  ],
+  "modules": [
+    "Browser",
+    "assertionengine",
+    "backports",
+    "grpc",
+    "grpc_tools",
+    "overrides",
+    "robot",
+    "robotlibcore",
+    "six",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

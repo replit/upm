@@ -1,0 +1,24 @@
+{
+  "name": "cpi",
+  "version": "1.0.10",
+  "requires_dist": [
+    "requests",
+    "click",
+    "python-dateutil",
+    "pandas"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "cpi",
+    "dateutil",
+    "idna",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

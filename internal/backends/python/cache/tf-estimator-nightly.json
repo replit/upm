@@ -1,0 +1,7 @@
+{
+  "name": "tf-estimator-nightly",
+  "version": "2.11.0.dev2022091308",
+  "modules": [
+    "tensorflow_estimator"
+  ]
+}

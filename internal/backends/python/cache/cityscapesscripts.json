@@ -1,0 +1,34 @@
+{
+  "name": "cityscapesScripts",
+  "version": "2.2.0",
+  "requires_dist": [
+    "numpy",
+    "matplotlib",
+    "pillow",
+    "appdirs",
+    "pyquaternion",
+    "coloredlogs",
+    "tqdm",
+    "typing",
+    "PyQt5"
+  ],
+  "modules": [
+    "PIL",
+    "appdirs",
+    "cityscapesscripts",
+    "coloredlogs",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "humanfriendly",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "pyquaternion",
+    "six",
+    "tqdm"
+  ]
+}

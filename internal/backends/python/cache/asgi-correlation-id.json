@@ -1,0 +1,15 @@
+{
+  "name": "asgi-correlation-id",
+  "version": "3.0.1",
+  "requires_dist": [
+    "starlette"
+  ],
+  "modules": [
+    "anyio",
+    "asgi_correlation_id",
+    "idna",
+    "sniffio",
+    "starlette",
+    "typing_extensions"
+  ]
+}

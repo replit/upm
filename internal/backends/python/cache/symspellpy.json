@@ -1,0 +1,10 @@
+{
+  "name": "symspellpy",
+  "version": "6.7.6",
+  "requires_dist": [
+    "editdistpy"
+  ],
+  "modules": [
+    "symspellpy"
+  ]
+}

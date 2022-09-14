@@ -1,0 +1,21 @@
+{
+  "name": "awscliv2",
+  "version": "2.2.0",
+  "requires_dist": [
+    "executor",
+    "importlib-resources",
+    "pip"
+  ],
+  "modules": [
+    "awscliv2",
+    "coloredlogs",
+    "executor",
+    "fasteners",
+    "humanfriendly",
+    "importlib_resources",
+    "property_manager",
+    "six",
+    "verboselogs",
+    "zipp"
+  ]
+}

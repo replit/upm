@@ -1,0 +1,26 @@
+{
+  "name": "requests-mock",
+  "version": "1.10.0",
+  "requires_dist": [
+    "requests",
+    "six",
+    "fixtures",
+    "fixtures",
+    "mock",
+    "purl",
+    "pytest",
+    "sphinx",
+    "testrepository",
+    "testtools",
+    "requests-futures"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_mock",
+    "six",
+    "urllib3"
+  ]
+}

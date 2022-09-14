@@ -1,0 +1,13 @@
+{
+  "name": "lbt-ladybug",
+  "version": "0.25.167",
+  "requires_dist": [
+    "ladybug-comfort"
+  ],
+  "modules": [
+    "click",
+    "ladybug",
+    "ladybug_comfort",
+    "ladybug_geometry"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "opencensus-ext-stackdriver",
+  "version": "0.8.0",
+  "requires_dist": [
+    "google-cloud-monitoring",
+    "google-cloud-trace",
+    "opencensus",
+    "rsa"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opencensus",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-multiselectfield",
+  "version": "0.1.12",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "multiselectfield",
+    "sqlparse"
+  ]
+}

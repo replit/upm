@@ -1,0 +1,12 @@
+{
+  "name": "awsiotsdk",
+  "version": "1.11.8",
+  "requires_dist": [
+    "awscrt"
+  ],
+  "modules": [
+    "_awscrt",
+    "awscrt",
+    "awsiot"
+  ]
+}

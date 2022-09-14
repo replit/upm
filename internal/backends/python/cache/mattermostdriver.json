@@ -1,0 +1,17 @@
+{
+  "name": "mattermostdriver",
+  "version": "7.3.2",
+  "requires_dist": [
+    "websockets",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mattermostdriver",
+    "requests",
+    "urllib3",
+    "websockets"
+  ]
+}

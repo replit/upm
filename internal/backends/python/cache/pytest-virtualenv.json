@@ -1,0 +1,36 @@
+{
+  "name": "pytest-virtualenv",
+  "version": "1.7.0",
+  "requires_dist": [
+    "pytest-fixture-config",
+    "pytest-shutil",
+    "pytest",
+    "virtualenv",
+    "mock"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "contextlib2",
+    "distlib",
+    "execnet",
+    "filelock",
+    "iniconfig",
+    "mock",
+    "packaging",
+    "path",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_fixture_config",
+    "pytest_shutil",
+    "pytest_virtualenv",
+    "six",
+    "termcolor",
+    "tomli",
+    "virtualenv"
+  ]
+}

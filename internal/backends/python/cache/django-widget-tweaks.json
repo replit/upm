@@ -1,0 +1,7 @@
+{
+  "name": "django-widget-tweaks",
+  "version": "1.4.12",
+  "modules": [
+    "widget_tweaks"
+  ]
+}

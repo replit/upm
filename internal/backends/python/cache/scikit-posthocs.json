@@ -1,0 +1,33 @@
+{
+  "name": "scikit-posthocs",
+  "version": "0.7.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "statsmodels",
+    "pandas",
+    "seaborn",
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scikit_posthocs",
+    "scipy",
+    "seaborn",
+    "six",
+    "statsmodels",
+    "tests"
+  ]
+}

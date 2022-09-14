@@ -1,0 +1,22 @@
+{
+  "name": "PyMongo-OpenTracing",
+  "version": "0.0.3",
+  "requires_dist": [
+    "opentracing",
+    "pymongo",
+    "six",
+    "mock",
+    "pytest",
+    "docker",
+    "mock",
+    "pytest"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "opentracing",
+    "pymongo",
+    "pymongo_opentracing",
+    "six"
+  ]
+}

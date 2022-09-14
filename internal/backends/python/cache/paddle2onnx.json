@@ -1,0 +1,10 @@
+{
+  "name": "paddle2onnx",
+  "version": "1.0.0",
+  "requires_dist": [
+    "mypy"
+  ],
+  "modules": [
+    "paddle2onnx"
+  ]
+}

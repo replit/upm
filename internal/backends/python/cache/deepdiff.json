@@ -1,0 +1,15 @@
+{
+  "name": "deepdiff",
+  "version": "5.8.1",
+  "requires_dist": [
+    "ordered-set",
+    "click",
+    "pyyaml",
+    "toml",
+    "clevercsv"
+  ],
+  "modules": [
+    "deepdiff",
+    "ordered_set"
+  ]
+}

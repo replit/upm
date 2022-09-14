@@ -1,0 +1,13 @@
+{
+  "name": "pybullet",
+  "version": "3.2.5",
+  "modules": [
+    "eglRenderer",
+    "pybullet",
+    "pybullet_data",
+    "pybullet_envs",
+    "pybullet_examples",
+    "pybullet_robots",
+    "pybullet_utils"
+  ]
+}

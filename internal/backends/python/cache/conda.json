@@ -1,0 +1,16 @@
+{
+  "name": "conda",
+  "version": "4.3.16",
+  "modules": [
+    "_ruamel_yaml",
+    "certifi",
+    "charset_normalizer",
+    "conda",
+    "conda_env",
+    "idna",
+    "pycosat",
+    "requests",
+    "test_pycosat",
+    "urllib3"
+  ]
+}

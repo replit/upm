@@ -1,0 +1,7 @@
+{
+  "name": "PyVirtualDisplay",
+  "version": "3.0",
+  "modules": [
+    "pyvirtualdisplay"
+  ]
+}

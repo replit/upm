@@ -1,0 +1,11 @@
+{
+  "name": "codeowners",
+  "version": "0.6.0",
+  "requires_dist": [
+    "typing_extensions"
+  ],
+  "modules": [
+    "codeowners",
+    "typing_extensions"
+  ]
+}

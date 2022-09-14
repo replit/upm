@@ -1,0 +1,28 @@
+{
+  "name": "azure-cosmosdb-table",
+  "version": "1.0.6",
+  "requires_dist": [
+    "azure-common",
+    "cryptography",
+    "python-dateutil",
+    "requests",
+    "azure-cosmosdb-nspkg",
+    "futures"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "doc",
+    "idna",
+    "pycparser",
+    "requests",
+    "samples",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

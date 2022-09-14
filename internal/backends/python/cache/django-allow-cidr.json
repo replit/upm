@@ -1,0 +1,17 @@
+{
+  "name": "django-allow-cidr",
+  "version": "0.5.0",
+  "requires_dist": [
+    "Django",
+    "packaging"
+  ],
+  "modules": [
+    "allow_cidr",
+    "asgiref",
+    "backports",
+    "django",
+    "packaging",
+    "pyparsing",
+    "sqlparse"
+  ]
+}

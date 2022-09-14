@@ -1,0 +1,17 @@
+{
+  "name": "lightfm",
+  "version": "1.16",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "joblib",
+    "lightfm",
+    "numpy",
+    "requests",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "google-cloud-pubsub",
+  "version": "2.13.6",
+  "requires_dist": [
+    "grpcio",
+    "google-api-core",
+    "proto-plus",
+    "protobuf",
+    "grpc-google-iam-v1",
+    "grpcio-status",
+    "libcst"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

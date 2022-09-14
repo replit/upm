@@ -1,0 +1,14 @@
+{
+  "name": "ngt",
+  "version": "2.0.2",
+  "requires_dist": [
+    "numpy",
+    "pybind11"
+  ],
+  "modules": [
+    "ngt",
+    "ngtpy",
+    "numpy",
+    "pybind11"
+  ]
+}

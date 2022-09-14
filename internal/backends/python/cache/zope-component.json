@@ -1,0 +1,31 @@
+{
+  "name": "zope.component",
+  "version": "5.0.1",
+  "requires_dist": [
+    "setuptools",
+    "zope.event",
+    "zope.hookable",
+    "zope.interface",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "ZODB",
+    "zope.configuration",
+    "zope.i18nmessageid",
+    "zope.testing",
+    "zope.testrunner",
+    "persistent",
+    "zope.location",
+    "zope.proxy",
+    "zope.security",
+    "zope.configuration",
+    "zope.i18nmessageid",
+    "zope.testing",
+    "zope.testrunner",
+    "persistent",
+    "zope.location",
+    "zope.proxy",
+    "zope.security",
+    "zope.configuration",
+    "zope.i18nmessageid"
+  ]
+}

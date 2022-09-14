@@ -1,0 +1,19 @@
+{
+  "name": "batou",
+  "version": "2.2.4",
+  "modules": [
+    "_yaml",
+    "batou",
+    "certifi",
+    "charset_normalizer",
+    "configupdater",
+    "execnet",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "py",
+    "requests",
+    "urllib3",
+    "yaml"
+  ]
+}

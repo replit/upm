@@ -1,0 +1,7 @@
+{
+  "name": "pyretrace",
+  "version": "0.3",
+  "modules": [
+    "pyretrace"
+  ]
+}

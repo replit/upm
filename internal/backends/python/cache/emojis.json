@@ -1,0 +1,7 @@
+{
+  "name": "emojis",
+  "version": "0.6.0",
+  "modules": [
+    "emojis"
+  ]
+}

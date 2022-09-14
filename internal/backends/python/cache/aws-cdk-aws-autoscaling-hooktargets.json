@@ -1,0 +1,32 @@
+{
+  "name": "aws-cdk.aws-autoscaling-hooktargets",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-autoscaling",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-kms",
+    "aws-cdk.aws-lambda",
+    "aws-cdk.aws-sns-subscriptions",
+    "aws-cdk.aws-sns",
+    "aws-cdk.aws-sqs",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

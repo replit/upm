@@ -1,0 +1,24 @@
+{
+  "name": "marionette-driver",
+  "version": "3.1.0",
+  "requires_dist": [
+    "mozrunner",
+    "mozversion",
+    "six"
+  ],
+  "modules": [
+    "blessings",
+    "distro",
+    "marionette_driver",
+    "mozdevice",
+    "mozfile",
+    "mozinfo",
+    "mozlog",
+    "mozprocess",
+    "mozprofile",
+    "mozrunner",
+    "mozterm",
+    "mozversion",
+    "six"
+  ]
+}

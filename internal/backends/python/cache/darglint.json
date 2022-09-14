@@ -1,0 +1,7 @@
+{
+  "name": "darglint",
+  "version": "1.8.1",
+  "modules": [
+    "darglint"
+  ]
+}

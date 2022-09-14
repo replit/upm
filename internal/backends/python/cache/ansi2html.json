@@ -1,0 +1,15 @@
+{
+  "name": "ansi2html",
+  "version": "1.8.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "Sphinx",
+    "setuptools-scm",
+    "sphinx-rtd-theme",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "ansi2html"
+  ]
+}

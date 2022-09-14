@@ -1,0 +1,11 @@
+{
+  "name": "solders",
+  "version": "0.4.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "solders",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "multipart",
+  "version": "0.2.4",
+  "modules": [
+    "multipart"
+  ]
+}

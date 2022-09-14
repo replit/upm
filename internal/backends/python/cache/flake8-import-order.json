@@ -1,0 +1,13 @@
+{
+  "name": "flake8-import-order",
+  "version": "0.18.1",
+  "requires_dist": [
+    "pycodestyle",
+    "setuptools",
+    "enum34"
+  ],
+  "modules": [
+    "flake8_import_order",
+    "pycodestyle"
+  ]
+}

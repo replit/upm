@@ -1,0 +1,12 @@
+{
+  "name": "ordered-set",
+  "version": "4.1.0",
+  "requires_dist": [
+    "pytest",
+    "black",
+    "mypy"
+  ],
+  "modules": [
+    "ordered_set"
+  ]
+}

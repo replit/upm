@@ -1,0 +1,15 @@
+{
+  "name": "django-permissionedforms",
+  "version": "0.1",
+  "requires_dist": [
+    "Django",
+    "django-modelcluster"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "permissionedforms",
+    "sqlparse"
+  ]
+}

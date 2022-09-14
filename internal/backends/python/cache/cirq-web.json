@@ -1,0 +1,34 @@
+{
+  "name": "cirq-web",
+  "version": "1.0.0",
+  "requires_dist": [
+    "cirq-core"
+  ],
+  "modules": [
+    "PIL",
+    "cirq",
+    "cirq_ts",
+    "cirq_web",
+    "cycler",
+    "dateutil",
+    "duet",
+    "fontTools",
+    "isympy",
+    "kiwisolver",
+    "matplotlib",
+    "mpmath",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "sortedcontainers",
+    "sympy",
+    "tqdm",
+    "typing_extensions"
+  ]
+}

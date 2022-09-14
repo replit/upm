@@ -1,0 +1,13 @@
+{
+  "name": "tableauhyperapi",
+  "version": "0.0.15530",
+  "requires_dist": [
+    "cffi"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "tableauhyperapi"
+  ]
+}

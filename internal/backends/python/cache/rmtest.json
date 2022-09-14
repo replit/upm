@@ -1,0 +1,13 @@
+{
+  "name": "rmtest",
+  "version": "0.7.0",
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "rmtest",
+    "wrapt"
+  ]
+}

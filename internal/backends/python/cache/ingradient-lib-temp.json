@@ -1,0 +1,19 @@
+{
+  "name": "ingradient-lib-temp",
+  "version": "0.8.1",
+  "requires_dist": [
+    "SimpleITK",
+    "revlib"
+  ],
+  "modules": [
+    "SimpleITK",
+    "cc3d",
+    "ingradient_library",
+    "nibabel",
+    "nisext",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "revlib"
+  ]
+}

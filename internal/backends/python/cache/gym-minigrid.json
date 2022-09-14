@@ -1,0 +1,29 @@
+{
+  "name": "gym-minigrid",
+  "version": "1.2.1",
+  "requires_dist": [
+    "gym",
+    "numpy",
+    "matplotlib",
+    "pytest"
+  ],
+  "modules": [
+    "PIL",
+    "cloudpickle",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "gym",
+    "gym_minigrid",
+    "gym_notices",
+    "importlib_metadata",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six",
+    "zipp"
+  ]
+}

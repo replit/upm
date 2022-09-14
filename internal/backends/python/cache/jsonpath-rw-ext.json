@@ -1,0 +1,16 @@
+{
+  "name": "jsonpath-rw-ext",
+  "version": "1.2.2",
+  "requires_dist": [
+    "jsonpath-rw",
+    "pbr"
+  ],
+  "modules": [
+    "decorator",
+    "jsonpath_rw",
+    "jsonpath_rw_ext",
+    "pbr",
+    "ply",
+    "six"
+  ]
+}

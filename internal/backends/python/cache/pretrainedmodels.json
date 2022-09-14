@@ -1,0 +1,22 @@
+{
+  "name": "pretrainedmodels",
+  "version": "0.7.4",
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "munch",
+    "numpy",
+    "pretrainedmodels",
+    "requests",
+    "six",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

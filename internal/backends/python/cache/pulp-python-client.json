@@ -1,0 +1,17 @@
+{
+  "name": "pulp-python-client",
+  "version": "3.7.2",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "pulpcore",
+    "six",
+    "urllib3"
+  ]
+}

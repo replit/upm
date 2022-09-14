@@ -1,0 +1,39 @@
+{
+  "name": "sphinx-togglebutton",
+  "version": "0.3.2",
+  "requires_dist": [
+    "setuptools",
+    "wheel",
+    "sphinx",
+    "docutils",
+    "matplotlib",
+    "numpy",
+    "myst-nb",
+    "sphinx-book-theme",
+    "sphinx-design",
+    "sphinx-examples"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_togglebutton",
+    "urllib3",
+    "wheel",
+    "zipp"
+  ]
+}

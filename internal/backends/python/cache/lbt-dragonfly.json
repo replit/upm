@@ -1,0 +1,35 @@
+{
+  "name": "lbt-dragonfly",
+  "version": "0.9.230",
+  "requires_dist": [
+    "dragonfly-energy",
+    "dragonfly-uwg",
+    "dragonfly-doe2",
+    "lbt-honeybee"
+  ],
+  "modules": [
+    "click",
+    "dragonfly",
+    "dragonfly_doe2",
+    "dragonfly_energy",
+    "dragonfly_schema",
+    "dragonfly_uwg",
+    "honeybee",
+    "honeybee_energy",
+    "honeybee_radiance",
+    "honeybee_radiance_command",
+    "honeybee_radiance_folder",
+    "honeybee_radiance_postprocess",
+    "honeybee_schema",
+    "honeybee_standards",
+    "ladybug",
+    "ladybug_comfort",
+    "ladybug_geometry",
+    "ladybug_geometry_polyskel",
+    "numpy",
+    "pydantic",
+    "pydantic_openapi_helper",
+    "typing_extensions",
+    "uwg"
+  ]
+}

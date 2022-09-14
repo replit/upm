@@ -1,0 +1,19 @@
+{
+  "name": "mode",
+  "version": "4.4.0",
+  "requires_dist": [
+    "colorlog",
+    "mypy-extensions",
+    "aiocontextvars",
+    "typing-extensions",
+    "aioeventlet",
+    "dnspython",
+    "aiogevent",
+    "uvloop"
+  ],
+  "modules": [
+    "colorlog",
+    "mode",
+    "mypy_extensions"
+  ]
+}

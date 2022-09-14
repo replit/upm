@@ -1,0 +1,7 @@
+{
+  "name": "flatbuffers",
+  "version": "2.0.7",
+  "modules": [
+    "flatbuffers"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "cfgv",
+  "version": "3.3.1",
+  "modules": [
+    "cfgv"
+  ]
+}

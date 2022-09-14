@@ -1,0 +1,32 @@
+{
+  "name": "seldon-core",
+  "version": "1.14.1",
+  "requires_dist": [
+    "Flask",
+    "jsonschema",
+    "Flask-cors",
+    "requests",
+    "numpy",
+    "flatbuffers",
+    "protobuf",
+    "grpcio",
+    "Flask-OpenTracing",
+    "opentracing",
+    "jaeger-client",
+    "grpcio-opentracing",
+    "grpcio-reflection",
+    "gunicorn",
+    "setuptools",
+    "prometheus-client",
+    "werkzeug",
+    "cryptography",
+    "PyYAML",
+    "click",
+    "urllib3",
+    "itsdangerous",
+    "markupsafe",
+    "tensorflow",
+    "tensorflow"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/seldon-core/bin/python3', '-m', 'pip', 'install', 'seldon-core']' returned non-zero exit status 1.\"}"
+}

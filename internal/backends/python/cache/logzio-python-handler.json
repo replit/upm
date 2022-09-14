@@ -1,0 +1,20 @@
+{
+  "name": "logzio-python-handler",
+  "version": "4.0.0",
+  "requires_dist": [
+    "requests",
+    "protobuf",
+    "opentelemetry-instrumentation-logging"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "logzio",
+    "requests",
+    "tests",
+    "urllib3",
+    "wrapt"
+  ]
+}

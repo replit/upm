@@ -1,0 +1,32 @@
+{
+  "name": "black",
+  "version": "22.8.0",
+  "requires_dist": [
+    "click",
+    "platformdirs",
+    "pathspec",
+    "mypy-extensions",
+    "tomli",
+    "typing-extensions",
+    "dataclasses",
+    "typed-ast",
+    "colorama",
+    "aiohttp",
+    "ipython",
+    "tokenize-rt",
+    "uvloop"
+  ],
+  "modules": [
+    "2e032532bd2e64ed7a60__mypyc",
+    "_black_version",
+    "black",
+    "blackd",
+    "blib2to3",
+    "click",
+    "mypy_extensions",
+    "pathspec",
+    "platformdirs",
+    "tomli",
+    "typing_extensions"
+  ]
+}

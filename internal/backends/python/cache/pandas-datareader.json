@@ -1,0 +1,23 @@
+{
+  "name": "pandas-datareader",
+  "version": "0.10.0",
+  "requires_dist": [
+    "lxml",
+    "pandas",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "lxml",
+    "numpy",
+    "pandas",
+    "pandas_datareader",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

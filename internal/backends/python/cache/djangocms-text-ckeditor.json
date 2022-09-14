@@ -1,0 +1,27 @@
+{
+  "name": "djangocms-text-ckeditor",
+  "version": "5.1.1",
+  "requires_dist": [
+    "django-cms",
+    "html5lib",
+    "Pillow"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "classytags",
+    "cms",
+    "django",
+    "djangocms_admin_style",
+    "djangocms_text_ckeditor",
+    "formtools",
+    "html5lib",
+    "menus",
+    "sekizai",
+    "six",
+    "sqlparse",
+    "treebeard",
+    "webencodings"
+  ]
+}

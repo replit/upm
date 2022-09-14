@@ -1,0 +1,13 @@
+{
+  "name": "PyInquirer",
+  "version": "1.0.3",
+  "modules": [
+    "PyInquirer",
+    "examples",
+    "prompt_toolkit",
+    "pygments",
+    "regex",
+    "six",
+    "wcwidth"
+  ]
+}

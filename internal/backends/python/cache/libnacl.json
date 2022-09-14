@@ -1,0 +1,7 @@
+{
+  "name": "libnacl",
+  "version": "1.8.0",
+  "modules": [
+    "libnacl"
+  ]
+}

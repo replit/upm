@@ -1,0 +1,16 @@
+{
+  "name": "canopen",
+  "version": "2.0.0",
+  "requires_dist": [
+    "python-can"
+  ],
+  "modules": [
+    "can",
+    "canopen",
+    "msgpack",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

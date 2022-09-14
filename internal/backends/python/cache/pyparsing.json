@@ -1,0 +1,11 @@
+{
+  "name": "pyparsing",
+  "version": "3.0.9",
+  "requires_dist": [
+    "railroad-diagrams",
+    "jinja2"
+  ],
+  "modules": [
+    "pyparsing"
+  ]
+}

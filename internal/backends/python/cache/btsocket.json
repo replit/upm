@@ -1,0 +1,23 @@
+{
+  "name": "btsocket",
+  "version": "0.2.0",
+  "requires_dist": [
+    "bumpversion",
+    "twine",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pygments",
+    "coverage",
+    "pycodestyle",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pygments",
+    "bumpversion",
+    "twine",
+    "coverage",
+    "pycodestyle"
+  ],
+  "modules": [
+    "btsocket"
+  ]
+}

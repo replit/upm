@@ -1,0 +1,7 @@
+{
+  "name": "pytinyexr",
+  "version": "0.9.1",
+  "modules": [
+    "pytinyexr"
+  ]
+}

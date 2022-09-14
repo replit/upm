@@ -1,0 +1,33 @@
+{
+  "name": "mkdocs-minify-plugin",
+  "version": "0.5.0",
+  "requires_dist": [
+    "mkdocs",
+    "htmlmin",
+    "jsmin",
+    "csscompressor"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "csscompressor",
+    "dateutil",
+    "ghp_import",
+    "htmlmin",
+    "importlib_metadata",
+    "jinja2",
+    "jsmin",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_minify_plugin",
+    "packaging",
+    "pyparsing",
+    "six",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

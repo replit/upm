@@ -1,0 +1,13 @@
+{
+  "name": "clr-loader",
+  "version": "0.1.7",
+  "requires_dist": [
+    "cffi"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "clr_loader",
+    "pycparser"
+  ]
+}

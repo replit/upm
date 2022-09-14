@@ -1,0 +1,7 @@
+{
+  "name": "foundationdb",
+  "version": "7.1.21",
+  "modules": [
+    "fdb"
+  ]
+}

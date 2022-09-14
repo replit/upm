@@ -1,0 +1,14 @@
+{
+  "name": "watchdog-gevent",
+  "version": "0.1.1",
+  "requires_dist": [
+    "gevent",
+    "watchdog"
+  ],
+  "modules": [
+    "gevent",
+    "greenlet",
+    "watchdog",
+    "watchdog_gevent"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "argcomplete",
+  "version": "2.0.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "importlib-metadata",
+    "coverage",
+    "flake8",
+    "pexpect",
+    "wheel"
+  ],
+  "modules": [
+    "argcomplete"
+  ]
+}

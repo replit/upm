@@ -1,0 +1,23 @@
+{
+  "name": "opencensus-ext-requests",
+  "version": "0.8.0",
+  "requires_dist": [
+    "opencensus",
+    "requests",
+    "wrapt"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opencensus",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

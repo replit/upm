@@ -1,0 +1,11 @@
+{
+  "name": "python-hll",
+  "version": "0.1.3",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "python_hll"
+  ]
+}

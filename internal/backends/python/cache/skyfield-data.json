@@ -1,0 +1,17 @@
+{
+  "name": "skyfield-data",
+  "version": "4.0.0",
+  "requires_dist": [
+    "jplephem",
+    "numpy",
+    "tox",
+    "colorama",
+    "termcolor",
+    "pytest",
+    "skyfield",
+    "mock"
+  ],
+  "modules": [
+    "skyfield_data"
+  ]
+}

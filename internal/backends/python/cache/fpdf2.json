@@ -1,0 +1,18 @@
+{
+  "name": "fpdf2",
+  "version": "2.5.7",
+  "requires_dist": [
+    "defusedxml",
+    "svg.path",
+    "Pillow",
+    "fonttools"
+  ],
+  "modules": [
+    "PIL",
+    "defusedxml",
+    "fontTools",
+    "fpdf",
+    "scripts",
+    "svg"
+  ]
+}

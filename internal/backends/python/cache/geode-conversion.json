@@ -1,0 +1,13 @@
+{
+  "name": "Geode-Conversion",
+  "version": "3.0.0",
+  "requires_dist": [
+    "OpenGeode-core",
+    "Geode-Common"
+  ],
+  "modules": [
+    "geode_common",
+    "geode_conversion",
+    "opengeode"
+  ]
+}

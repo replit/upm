@@ -1,0 +1,30 @@
+{
+  "name": "snoop",
+  "version": "0.4.1",
+  "requires_dist": [
+    "six",
+    "cheap-repr",
+    "executing",
+    "asttokens",
+    "pygments",
+    "backports.functools-lru-cache",
+    "pytest",
+    "littleutils",
+    "prettyprinter",
+    "pprintpp",
+    "pandas",
+    "numpy",
+    "birdseye",
+    "pytest-order",
+    "Django",
+    "pytest-order"
+  ],
+  "modules": [
+    "asttokens",
+    "cheap_repr",
+    "executing",
+    "pygments",
+    "six",
+    "snoop"
+  ]
+}

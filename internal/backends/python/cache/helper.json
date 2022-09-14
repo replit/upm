@@ -1,0 +1,9 @@
+{
+  "name": "helper",
+  "version": "2.5.0",
+  "modules": [
+    "_yaml",
+    "helper",
+    "yaml"
+  ]
+}

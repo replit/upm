@@ -1,0 +1,7 @@
+{
+  "name": "robotframework",
+  "version": "5.0.1",
+  "modules": [
+    "robot"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "spotinst-agent",
+  "version": "1.1.259",
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "spotinst_agent",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "tinyaes",
+  "version": "1.0.3",
+  "modules": [
+    "tinyaes"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "m3u8",
+  "version": "3.3.0",
+  "requires_dist": [
+    "iso8601"
+  ],
+  "modules": [
+    "iso8601",
+    "m3u8"
+  ]
+}

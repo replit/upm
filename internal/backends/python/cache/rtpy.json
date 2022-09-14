@@ -1,0 +1,15 @@
+{
+  "name": "rtpy",
+  "version": "1.4.9",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "rtpy",
+    "urllib3"
+  ]
+}

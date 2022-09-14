@@ -1,0 +1,11 @@
+{
+  "name": "xero-python",
+  "version": "1.18.0",
+  "modules": [
+    "certifi",
+    "dateutil",
+    "six",
+    "urllib3",
+    "xero_python"
+  ]
+}

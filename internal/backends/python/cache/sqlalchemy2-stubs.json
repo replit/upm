@@ -1,0 +1,10 @@
+{
+  "name": "sqlalchemy2-stubs",
+  "version": "0.0.2a27",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "typing_extensions"
+  ]
+}

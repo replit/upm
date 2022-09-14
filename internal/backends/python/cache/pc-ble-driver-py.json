@@ -1,0 +1,16 @@
+{
+  "name": "pc-ble-driver-py",
+  "version": "0.17.0",
+  "requires_dist": [
+    "wrapt",
+    "cryptography"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pc_ble_driver_py",
+    "pycparser",
+    "wrapt"
+  ]
+}

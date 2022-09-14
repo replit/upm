@@ -1,0 +1,5 @@
+{
+  "name": "M2Crypto",
+  "version": "0.38.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/M2Crypto/bin/python3', '-m', 'pip', 'install', 'M2Crypto']' returned non-zero exit status 1.\"}"
+}

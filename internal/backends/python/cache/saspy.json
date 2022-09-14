@@ -1,0 +1,7 @@
+{
+  "name": "saspy",
+  "version": "4.3.2",
+  "modules": [
+    "saspy"
+  ]
+}

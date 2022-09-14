@@ -1,0 +1,14 @@
+{
+  "name": "mozdebug",
+  "version": "0.3.0",
+  "requires_dist": [
+    "mozinfo"
+  ],
+  "modules": [
+    "distro",
+    "mozdebug",
+    "mozfile",
+    "mozinfo",
+    "six"
+  ]
+}

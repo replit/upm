@@ -1,0 +1,15 @@
+{
+  "name": "torchlayers-nightly",
+  "version": "1663031194",
+  "requires_dist": [
+    "torch"
+  ],
+  "modules": [
+    "caffe2",
+    "tests",
+    "torch",
+    "torchgen",
+    "torchlayers",
+    "typing_extensions"
+  ]
+}

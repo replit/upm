@@ -1,0 +1,5 @@
+{
+  "name": "mpi4py",
+  "version": "3.1.3",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mpi4py/bin/python3', '-m', 'pip', 'install', 'mpi4py']' returned non-zero exit status 1.\"}"
+}

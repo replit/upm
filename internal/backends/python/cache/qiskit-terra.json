@@ -1,0 +1,22 @@
+{
+  "name": "qiskit-terra",
+  "version": "0.21.2",
+  "modules": [
+    "dateutil",
+    "dill",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "pbr",
+    "ply",
+    "psutil",
+    "qiskit",
+    "retworkx",
+    "scipy",
+    "six",
+    "stevedore",
+    "symengine",
+    "sympy",
+    "tweedledum"
+  ]
+}

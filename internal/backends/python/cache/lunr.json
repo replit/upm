@@ -1,0 +1,10 @@
+{
+  "name": "lunr",
+  "version": "0.6.2",
+  "requires_dist": [
+    "nltk"
+  ],
+  "modules": [
+    "lunr"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pyrasite",
+  "version": "2.0",
+  "modules": [
+    "pyrasite"
+  ]
+}

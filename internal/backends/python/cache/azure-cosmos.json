@@ -1,0 +1,16 @@
+{
+  "name": "azure-cosmos",
+  "version": "4.3.0",
+  "requires_dist": [
+    "azure-core"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

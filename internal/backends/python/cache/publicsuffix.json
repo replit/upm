@@ -1,0 +1,7 @@
+{
+  "name": "publicsuffix",
+  "version": "1.1.1",
+  "modules": [
+    "publicsuffix"
+  ]
+}

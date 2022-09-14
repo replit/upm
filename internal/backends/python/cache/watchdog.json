@@ -1,0 +1,10 @@
+{
+  "name": "watchdog",
+  "version": "2.1.9",
+  "requires_dist": [
+    "PyYAML"
+  ],
+  "modules": [
+    "watchdog"
+  ]
+}

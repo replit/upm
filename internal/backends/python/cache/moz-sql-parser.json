@@ -1,0 +1,13 @@
+{
+  "name": "moz-sql-parser",
+  "version": "4.40.21126",
+  "modules": [
+    "mo_dots",
+    "mo_future",
+    "mo_imports",
+    "mo_kwargs",
+    "mo_logs",
+    "mo_parsing",
+    "moz_sql_parser"
+  ]
+}

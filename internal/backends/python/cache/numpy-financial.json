@@ -1,0 +1,11 @@
+{
+  "name": "numpy-financial",
+  "version": "1.0.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "numpy_financial"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "usort",
+  "version": "1.0.4",
+  "requires_dist": [
+    "attrs",
+    "click",
+    "LibCST",
+    "moreorless",
+    "stdlibs",
+    "toml",
+    "trailrunner"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "click",
+    "libcst",
+    "moreorless",
+    "mypy_extensions",
+    "pathspec",
+    "stdlibs",
+    "toml",
+    "trailrunner",
+    "typing_extensions",
+    "typing_inspect",
+    "usort",
+    "yaml"
+  ]
+}

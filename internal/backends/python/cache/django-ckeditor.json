@@ -1,0 +1,18 @@
+{
+  "name": "django-ckeditor",
+  "version": "6.5.1",
+  "requires_dist": [
+    "Django",
+    "django-js-asset"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "ckeditor",
+    "ckeditor_demo",
+    "ckeditor_uploader",
+    "django",
+    "js_asset",
+    "sqlparse"
+  ]
+}

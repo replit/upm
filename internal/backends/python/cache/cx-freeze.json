@@ -1,0 +1,32 @@
+{
+  "name": "cx-Freeze",
+  "version": "6.11.1",
+  "requires_dist": [
+    "packaging",
+    "setuptools",
+    "importlib-metadata",
+    "patchelf",
+    "cx-logging",
+    "lief",
+    "bump2version",
+    "pre-commit",
+    "pylint",
+    "cibuildwheel",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "nose",
+    "pygments",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-timeout"
+  ],
+  "modules": [
+    "_distutils_hack",
+    "cx_Freeze",
+    "importlib_metadata",
+    "packaging",
+    "pyparsing",
+    "zipp"
+  ]
+}

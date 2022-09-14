@@ -1,0 +1,34 @@
+{
+  "name": "htmldate",
+  "version": "1.3.1",
+  "requires_dist": [
+    "charset-normalizer",
+    "dateparser",
+    "lxml",
+    "python-dateutil",
+    "urllib3",
+    "backports-datetime-fromisoformat",
+    "cchardet",
+    "urllib3",
+    "cchardet",
+    "urllib3"
+  ],
+  "modules": [
+    "backports",
+    "charset_normalizer",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "htmldate",
+    "lxml",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "six",
+    "tzdata",
+    "tzlocal",
+    "urllib3"
+  ]
+}

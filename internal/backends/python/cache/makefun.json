@@ -1,0 +1,10 @@
+{
+  "name": "makefun",
+  "version": "1.15.0",
+  "requires_dist": [
+    "funcsigs"
+  ],
+  "modules": [
+    "makefun"
+  ]
+}

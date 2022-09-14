@@ -1,0 +1,20 @@
+{
+  "name": "cognite-sdk-core",
+  "version": "2.56.1",
+  "requires_dist": [
+    "requests",
+    "requests-oauthlib",
+    "geopandas",
+    "shapely",
+    "pandas"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "urllib3"
+  ]
+}

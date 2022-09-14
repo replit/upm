@@ -1,0 +1,14 @@
+{
+  "name": "aiodns",
+  "version": "3.0.0",
+  "requires_dist": [
+    "pycares"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aiodns",
+    "cffi",
+    "pycares",
+    "pycparser"
+  ]
+}

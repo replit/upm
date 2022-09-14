@@ -1,0 +1,11 @@
+{
+  "name": "jsonpatch",
+  "version": "1.32",
+  "requires_dist": [
+    "jsonpointer"
+  ],
+  "modules": [
+    "jsonpatch",
+    "jsonpointer"
+  ]
+}

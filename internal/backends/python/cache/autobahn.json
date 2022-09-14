@@ -1,0 +1,15 @@
+{
+  "name": "autobahn",
+  "version": "22.7.1",
+  "modules": [
+    "_cffi_backend",
+    "_nvx_utf8validator",
+    "autobahn",
+    "cffi",
+    "cryptography",
+    "hyperlink",
+    "idna",
+    "pycparser",
+    "txaio"
+  ]
+}

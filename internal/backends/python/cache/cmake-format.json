@@ -1,0 +1,12 @@
+{
+  "name": "cmake-format",
+  "version": "0.6.13",
+  "requires_dist": [
+    "cmakelang",
+    "pyyaml"
+  ],
+  "modules": [
+    "cmakelang",
+    "six"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pyknp",
+  "version": "0.6.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pyknp",
+    "six"
+  ]
+}

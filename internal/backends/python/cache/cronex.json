@@ -1,0 +1,7 @@
+{
+  "name": "cronex",
+  "version": "0.1.3.1",
+  "modules": [
+    "cronex"
+  ]
+}

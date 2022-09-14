@@ -1,0 +1,15 @@
+{
+  "name": "requests-auth-aws-sigv4",
+  "version": "0.7",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_auth_aws_sigv4",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "jinjasql",
+  "version": "0.1.8",
+  "requires_dist": [
+    "Jinja2"
+  ],
+  "modules": [
+    "jinja2",
+    "jinjasql",
+    "markupsafe"
+  ]
+}

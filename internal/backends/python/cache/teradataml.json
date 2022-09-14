@@ -1,0 +1,34 @@
+{
+  "name": "teradataml",
+  "version": "17.10.0.1",
+  "requires_dist": [
+    "teradatasql",
+    "teradatasqlalchemy",
+    "pandas",
+    "psutil",
+    "docker"
+  ],
+  "modules": [
+    "Crypto",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "docker",
+    "greenlet",
+    "idna",
+    "numpy",
+    "packaging",
+    "pandas",
+    "psutil",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "six",
+    "sqlalchemy",
+    "teradataml",
+    "teradatasql",
+    "teradatasqlalchemy",
+    "urllib3",
+    "websocket"
+  ]
+}

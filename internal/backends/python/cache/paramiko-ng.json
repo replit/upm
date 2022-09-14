@@ -1,0 +1,19 @@
+{
+  "name": "paramiko-ng",
+  "version": "2.8.10",
+  "requires_dist": [
+    "bcrypt",
+    "cryptography",
+    "PyNaCl",
+    "gssapi",
+    "pyasn1"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "paramiko",
+    "pycparser"
+  ]
+}

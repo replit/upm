@@ -1,0 +1,21 @@
+{
+  "name": "topggpy",
+  "version": "1.4.0",
+  "requires_dist": [
+    "discord.py"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "topgg",
+    "yarl"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "lizard",
+  "version": "1.17.10",
+  "modules": [
+    "lizard",
+    "lizard_ext",
+    "lizard_languages"
+  ]
+}

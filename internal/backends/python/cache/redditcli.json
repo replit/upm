@@ -1,0 +1,28 @@
+{
+  "name": "redditcli",
+  "version": "2.1.0",
+  "requires_dist": [
+    "click",
+    "praw",
+    "prompt-toolkit",
+    "pygments"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "idna",
+    "praw",
+    "prawcore",
+    "prompt_toolkit",
+    "pygments",
+    "reddit",
+    "requests",
+    "six",
+    "update_checker",
+    "update_checker_test",
+    "urllib3",
+    "wcwidth",
+    "websocket"
+  ]
+}

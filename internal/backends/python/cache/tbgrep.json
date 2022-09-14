@@ -1,0 +1,7 @@
+{
+  "name": "tbgrep",
+  "version": "0.3.0",
+  "modules": [
+    "tbgrep"
+  ]
+}

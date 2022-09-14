@@ -1,0 +1,17 @@
+{
+  "name": "codeguru-profiler-agent",
+  "version": "1.2.4",
+  "requires_dist": [
+    "boto3"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "codeguru_profiler_agent",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

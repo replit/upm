@@ -1,0 +1,22 @@
+{
+  "name": "lasio",
+  "version": "0.30",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "cchardet",
+    "openpyxl",
+    "pandas",
+    "cchardet",
+    "openpyxl",
+    "pytest",
+    "pytest-cov",
+    "coverage",
+    "codecov",
+    "pytest-benchmark"
+  ],
+  "modules": [
+    "lasio",
+    "numpy"
+  ]
+}

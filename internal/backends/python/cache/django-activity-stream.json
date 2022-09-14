@@ -1,0 +1,7 @@
+{
+  "name": "django-activity-stream",
+  "version": "1.4.1",
+  "modules": [
+    "actstream"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "lyrics-extractor",
+  "version": "3.0.1",
+  "requires_dist": [
+    "beautifulsoup4",
+    "lxml",
+    "requests",
+    "python-dotenv"
+  ],
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lxml",
+    "lyrics_extractor",
+    "requests",
+    "soupsieve",
+    "urllib3"
+  ]
+}

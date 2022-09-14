@@ -1,0 +1,15 @@
+{
+  "name": "robotframework-excellib",
+  "version": "2.0.1",
+  "requires_dist": [
+    "openpyxl",
+    "robotframework",
+    "future"
+  ],
+  "modules": [
+    "ExcelLibrary",
+    "et_xmlfile",
+    "openpyxl",
+    "robot"
+  ]
+}

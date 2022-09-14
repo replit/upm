@@ -1,0 +1,7 @@
+{
+  "name": "python-vxi11",
+  "version": "0.9",
+  "modules": [
+    "vxi11"
+  ]
+}

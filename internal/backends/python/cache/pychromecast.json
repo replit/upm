@@ -1,0 +1,21 @@
+{
+  "name": "PyChromecast",
+  "version": "12.1.4",
+  "requires_dist": [
+    "protobuf",
+    "zeroconf",
+    "casttube"
+  ],
+  "modules": [
+    "async_timeout",
+    "casttube",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "ifaddr",
+    "pychromecast",
+    "requests",
+    "urllib3",
+    "zeroconf"
+  ]
+}

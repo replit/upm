@@ -1,0 +1,11 @@
+{
+  "name": "flake8-quotes",
+  "version": "3.3.1",
+  "modules": [
+    "flake8",
+    "flake8_quotes",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

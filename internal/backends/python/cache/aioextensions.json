@@ -1,0 +1,10 @@
+{
+  "name": "aioextensions",
+  "version": "21.7.2261349",
+  "requires_dist": [
+    "uvloop"
+  ],
+  "modules": [
+    "aioextensions"
+  ]
+}

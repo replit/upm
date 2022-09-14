@@ -1,0 +1,10 @@
+{
+  "name": "you-get",
+  "version": "0.4.1620",
+  "requires_dist": [
+    "PySocks"
+  ],
+  "modules": [
+    "you_get"
+  ]
+}

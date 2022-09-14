@@ -1,0 +1,12 @@
+{
+  "name": "ml-collections",
+  "version": "0.1.1",
+  "modules": [
+    "_yaml",
+    "absl",
+    "contextlib2",
+    "ml_collections",
+    "six",
+    "yaml"
+  ]
+}

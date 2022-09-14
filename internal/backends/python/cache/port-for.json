@@ -1,0 +1,11 @@
+{
+  "name": "port-for",
+  "version": "0.6.2",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "port_for"
+  ]
+}

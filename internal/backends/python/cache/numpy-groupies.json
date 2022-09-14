@@ -1,0 +1,17 @@
+{
+  "name": "numpy-groupies",
+  "version": "0.9.19",
+  "requires_dist": [
+    "numpy",
+    "numba",
+    "pytest"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "numpy_groupies",
+    "zipp"
+  ]
+}

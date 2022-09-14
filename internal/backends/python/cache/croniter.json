@@ -1,0 +1,12 @@
+{
+  "name": "croniter",
+  "version": "1.3.7",
+  "requires_dist": [
+    "python-dateutil"
+  ],
+  "modules": [
+    "croniter",
+    "dateutil",
+    "six"
+  ]
+}

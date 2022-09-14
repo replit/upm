@@ -1,0 +1,30 @@
+{
+  "name": "celery-singleton",
+  "version": "0.3.1",
+  "requires_dist": [
+    "celery",
+    "redis"
+  ],
+  "modules": [
+    "amqp",
+    "async_timeout",
+    "billiard",
+    "celery",
+    "celery_singleton",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "deprecated",
+    "kombu",
+    "packaging",
+    "prompt_toolkit",
+    "pyparsing",
+    "pytz",
+    "redis",
+    "six",
+    "vine",
+    "wcwidth",
+    "wrapt"
+  ]
+}

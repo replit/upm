@@ -1,0 +1,11 @@
+{
+  "name": "orderedmultidict",
+  "version": "1.0.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "orderedmultidict",
+    "six"
+  ]
+}

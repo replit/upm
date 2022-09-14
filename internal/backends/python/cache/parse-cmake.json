@@ -1,0 +1,9 @@
+{
+  "name": "parse_cmake",
+  "version": "0.4.1",
+  "modules": [
+    "parse_cmake",
+    "pypeg2",
+    "tests"
+  ]
+}

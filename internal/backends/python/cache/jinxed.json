@@ -1,0 +1,10 @@
+{
+  "name": "jinxed",
+  "version": "1.2.0",
+  "requires_dist": [
+    "ansicon"
+  ],
+  "modules": [
+    "jinxed"
+  ]
+}

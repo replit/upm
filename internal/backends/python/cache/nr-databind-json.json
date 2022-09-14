@@ -1,0 +1,15 @@
+{
+  "name": "nr.databind.json",
+  "version": "0.0.14",
+  "requires_dist": [
+    "nr.collections",
+    "nr.databind.core",
+    "nr.interface",
+    "nr.parsing.date",
+    "nr.pylang.utils"
+  ],
+  "modules": [
+    "nr",
+    "six"
+  ]
+}

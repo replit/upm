@@ -1,0 +1,16 @@
+{
+  "name": "python-socketio",
+  "version": "5.7.1",
+  "requires_dist": [
+    "bidict",
+    "python-engineio",
+    "aiohttp",
+    "requests",
+    "websocket-client"
+  ],
+  "modules": [
+    "bidict",
+    "engineio",
+    "socketio"
+  ]
+}

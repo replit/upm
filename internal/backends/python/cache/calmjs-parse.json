@@ -1,0 +1,11 @@
+{
+  "name": "calmjs.parse",
+  "version": "1.3.0",
+  "requires_dist": [
+    "setuptools",
+    "ply"
+  ],
+  "modules": [
+    "ply"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "py3nvml",
+  "version": "0.2.7",
+  "requires_dist": [
+    "xmltodict"
+  ],
+  "modules": [
+    "py3nvml",
+    "xmltodict"
+  ]
+}

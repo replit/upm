@@ -1,0 +1,18 @@
+{
+  "name": "vcrpy-unittest",
+  "version": "0.1.7",
+  "requires_dist": [
+    "vcrpy"
+  ],
+  "modules": [
+    "_yaml",
+    "idna",
+    "multidict",
+    "six",
+    "vcr",
+    "vcr_unittest",
+    "wrapt",
+    "yaml",
+    "yarl"
+  ]
+}

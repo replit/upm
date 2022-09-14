@@ -1,0 +1,13 @@
+{
+  "name": "honeybadger",
+  "version": "0.10.0",
+  "requires_dist": [
+    "psutil",
+    "six"
+  ],
+  "modules": [
+    "honeybadger",
+    "psutil",
+    "six"
+  ]
+}

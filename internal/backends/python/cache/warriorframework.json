@@ -1,0 +1,22 @@
+{
+  "name": "warriorframework",
+  "version": "4.6.0",
+  "requires_dist": [
+    "kafka-python",
+    "configobj",
+    "requests"
+  ],
+  "modules": [
+    "_version",
+    "certifi",
+    "chardet",
+    "configobj",
+    "idna",
+    "kafka",
+    "requests",
+    "six",
+    "urllib3",
+    "validate",
+    "warrior"
+  ]
+}

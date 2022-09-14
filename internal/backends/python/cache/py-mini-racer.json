@@ -1,0 +1,7 @@
+{
+  "name": "py-mini-racer",
+  "version": "0.6.0",
+  "modules": [
+    "py_mini_racer"
+  ]
+}

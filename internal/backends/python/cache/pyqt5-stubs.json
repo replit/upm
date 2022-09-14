@@ -1,0 +1,9 @@
+{
+  "name": "PyQt5-stubs",
+  "version": "5.15.6.0",
+  "requires_dist": [
+    "mypy",
+    "pytest",
+    "pytest-xvfb"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pydruid",
+  "version": "0.6.3",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pydruid",
+    "requests",
+    "urllib3"
+  ]
+}

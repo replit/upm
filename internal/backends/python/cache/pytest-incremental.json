@@ -1,0 +1,23 @@
+{
+  "name": "pytest-incremental",
+  "version": "0.6.0",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "cloudpickle",
+    "doit",
+    "import_deps",
+    "importlib_metadata",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_incremental",
+    "tests",
+    "tomli",
+    "zipp"
+  ]
+}

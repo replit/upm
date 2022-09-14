@@ -1,0 +1,7 @@
+{
+  "name": "aiorwlock",
+  "version": "1.3.0",
+  "modules": [
+    "aiorwlock"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "jsbeautifier",
+  "version": "1.14.6",
+  "modules": [
+    "editorconfig",
+    "jsbeautifier",
+    "six"
+  ]
+}

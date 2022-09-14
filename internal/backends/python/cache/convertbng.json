@@ -1,0 +1,17 @@
+{
+  "name": "convertbng",
+  "version": "0.6.39",
+  "requires_dist": [
+    "numpy",
+    "cython",
+    "pytest",
+    "pytest"
+  ],
+  "modules": [
+    "Cython",
+    "convertbng",
+    "cython",
+    "numpy",
+    "pyximport"
+  ]
+}

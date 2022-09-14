@@ -1,0 +1,11 @@
+{
+  "name": "rsa",
+  "version": "4.9",
+  "requires_dist": [
+    "pyasn1"
+  ],
+  "modules": [
+    "pyasn1",
+    "rsa"
+  ]
+}

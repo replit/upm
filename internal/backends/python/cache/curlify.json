@@ -1,0 +1,12 @@
+{
+  "name": "curlify",
+  "version": "2.2.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "curlify",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

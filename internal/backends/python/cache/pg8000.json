@@ -1,0 +1,13 @@
+{
+  "name": "pg8000",
+  "version": "1.29.1",
+  "requires_dist": [
+    "scramp",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "asn1crypto",
+    "pg8000",
+    "scramp"
+  ]
+}

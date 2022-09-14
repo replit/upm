@@ -1,0 +1,8 @@
+{
+  "name": "ElasticQuery",
+  "version": "3.2",
+  "modules": [
+    "elasticquery",
+    "six"
+  ]
+}

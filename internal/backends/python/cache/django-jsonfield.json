@@ -1,0 +1,16 @@
+{
+  "name": "django-jsonfield",
+  "version": "1.4.1",
+  "requires_dist": [
+    "Django",
+    "six"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "jsonfield",
+    "six",
+    "sqlparse"
+  ]
+}

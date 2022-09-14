@@ -1,0 +1,13 @@
+{
+  "name": "flynt",
+  "version": "0.76",
+  "requires_dist": [
+    "astor",
+    "tomli"
+  ],
+  "modules": [
+    "astor",
+    "flynt",
+    "tomli"
+  ]
+}

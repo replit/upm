@@ -1,0 +1,13 @@
+{
+  "name": "aiokafka",
+  "version": "0.7.2",
+  "requires_dist": [
+    "kafka-python",
+    "dataclasses",
+    "python-snappy"
+  ],
+  "modules": [
+    "aiokafka",
+    "kafka"
+  ]
+}

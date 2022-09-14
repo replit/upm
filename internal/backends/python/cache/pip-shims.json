@@ -1,0 +1,26 @@
+{
+  "name": "pip-shims",
+  "version": "0.7.3",
+  "requires_dist": [
+    "pip",
+    "packaging",
+    "setuptools",
+    "wheel",
+    "pre-commit",
+    "nox",
+    "parver",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest-timeout",
+    "pytest",
+    "pytest-xdist",
+    "pytest-cov",
+    "readme-renderer"
+  ],
+  "modules": [
+    "packaging",
+    "pip_shims",
+    "pyparsing",
+    "wheel"
+  ]
+}

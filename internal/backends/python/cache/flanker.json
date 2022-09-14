@@ -1,0 +1,20 @@
+{
+  "name": "flanker",
+  "version": "0.9.11",
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "cffi",
+    "chardet",
+    "cryptography",
+    "flanker",
+    "idna",
+    "ply",
+    "pycparser",
+    "regex",
+    "six",
+    "tld",
+    "webob"
+  ]
+}

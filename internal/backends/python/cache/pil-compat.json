@@ -1,0 +1,22 @@
+{
+  "name": "pil-compat",
+  "version": "1.0.0",
+  "modules": [
+    "Image",
+    "ImageChops",
+    "ImageColor",
+    "ImageDraw",
+    "ImageEnhance",
+    "ImageFile",
+    "ImageFilter",
+    "ImageFont",
+    "ImageMath",
+    "ImageMorph",
+    "ImageOps",
+    "ImagePalette",
+    "ImagePath",
+    "ImageSequence",
+    "ImageStat",
+    "PIL"
+  ]
+}

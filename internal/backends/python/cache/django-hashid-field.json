@@ -1,0 +1,16 @@
+{
+  "name": "django-hashid-field",
+  "version": "3.3.5",
+  "requires_dist": [
+    "Django",
+    "hashids"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "hashid_field",
+    "hashids",
+    "sqlparse"
+  ]
+}

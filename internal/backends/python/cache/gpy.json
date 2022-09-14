@@ -1,0 +1,15 @@
+{
+  "name": "GPy",
+  "version": "1.10.0",
+  "modules": [
+    "Cython",
+    "GPy",
+    "cython",
+    "decorator",
+    "numpy",
+    "paramz",
+    "pyximport",
+    "scipy",
+    "six"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "jinja2-time",
+  "version": "0.2.0",
+  "modules": [
+    "arrow",
+    "dateutil",
+    "jinja2",
+    "jinja2_time",
+    "markupsafe",
+    "six"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "plaster",
+  "version": "1.0",
+  "requires_dist": [
+    "setuptools",
+    "Sphinx",
+    "pylons-sphinx-themes",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "plaster"
+  ]
+}

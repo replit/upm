@@ -1,0 +1,25 @@
+{
+  "name": "beanie",
+  "version": "1.11.9",
+  "requires_dist": [
+    "pydantic",
+    "motor",
+    "click",
+    "toml",
+    "yarl"
+  ],
+  "modules": [
+    "beanie",
+    "bson",
+    "click",
+    "gridfs",
+    "idna",
+    "motor",
+    "multidict",
+    "pydantic",
+    "pymongo",
+    "toml",
+    "typing_extensions",
+    "yarl"
+  ]
+}

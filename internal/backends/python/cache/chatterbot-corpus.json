@@ -1,0 +1,11 @@
+{
+  "name": "chatterbot-corpus",
+  "version": "1.2.0",
+  "requires_dist": [
+    "PyYAML"
+  ],
+  "modules": [
+    "chatterbot_corpus",
+    "yaml"
+  ]
+}

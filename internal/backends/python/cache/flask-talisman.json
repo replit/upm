@@ -1,0 +1,7 @@
+{
+  "name": "flask-talisman",
+  "version": "1.0.0",
+  "modules": [
+    "flask_talisman"
+  ]
+}

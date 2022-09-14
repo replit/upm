@@ -1,0 +1,14 @@
+{
+  "name": "luigi",
+  "version": "3.1.1",
+  "modules": [
+    "daemon",
+    "dateutil",
+    "docutils",
+    "lockfile",
+    "luigi",
+    "six",
+    "tenacity",
+    "tornado"
+  ]
+}

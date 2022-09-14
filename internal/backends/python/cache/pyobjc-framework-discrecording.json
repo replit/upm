@@ -1,0 +1,9 @@
+{
+  "name": "pyobjc-framework-DiscRecording",
+  "version": "8.5",
+  "requires_dist": [
+    "pyobjc-core",
+    "pyobjc-framework-Cocoa"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-DiscRecording/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-DiscRecording']' returned non-zero exit status 1.\"}"
+}

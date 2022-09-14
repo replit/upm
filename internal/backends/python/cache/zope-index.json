@@ -1,0 +1,12 @@
+{
+  "name": "zope.index",
+  "version": "5.2.0",
+  "modules": [
+    "BTrees",
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser",
+    "six"
+  ]
+}

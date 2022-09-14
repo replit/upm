@@ -1,0 +1,20 @@
+{
+  "name": "buttons",
+  "version": "0.1.9",
+  "requires_dist": [
+    "discord.py"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

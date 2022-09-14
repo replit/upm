@@ -1,0 +1,15 @@
+{
+  "name": "django-markdownx",
+  "version": "3.0.1",
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "django",
+    "importlib_metadata",
+    "markdown",
+    "markdownx",
+    "sqlparse",
+    "zipp"
+  ]
+}

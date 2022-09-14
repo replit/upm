@@ -1,0 +1,12 @@
+{
+  "name": "Levenshtein",
+  "version": "0.20.3",
+  "requires_dist": [
+    "rapidfuzz"
+  ],
+  "modules": [
+    "Levenshtein",
+    "jarowinkler",
+    "rapidfuzz"
+  ]
+}

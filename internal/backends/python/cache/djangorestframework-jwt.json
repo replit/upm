@@ -1,0 +1,8 @@
+{
+  "name": "djangorestframework-jwt",
+  "version": "1.11.0",
+  "modules": [
+    "jwt",
+    "rest_framework_jwt"
+  ]
+}

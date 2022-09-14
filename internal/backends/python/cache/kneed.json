@@ -1,0 +1,17 @@
+{
+  "name": "kneed",
+  "version": "0.8.1",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pytest",
+    "pytest-cov",
+    "matplotlib"
+  ],
+  "modules": [
+    "kneed",
+    "numpy",
+    "scipy"
+  ]
+}

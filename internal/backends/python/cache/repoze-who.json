@@ -1,0 +1,20 @@
+{
+  "name": "repoze.who",
+  "version": "2.4.1",
+  "requires_dist": [
+    "WebOb",
+    "setuptools",
+    "zope.interface",
+    "Sphinx",
+    "WebOb",
+    "repoze.sphinx.autointerface",
+    "zope.interface",
+    "WebOb",
+    "coverage",
+    "nose",
+    "zope.interface"
+  ],
+  "modules": [
+    "webob"
+  ]
+}

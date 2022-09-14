@@ -1,0 +1,15 @@
+{
+  "name": "qiniu",
+  "version": "7.9.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "qiniu",
+    "requests",
+    "urllib3"
+  ]
+}

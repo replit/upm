@@ -1,0 +1,40 @@
+{
+  "name": "caom2repo",
+  "version": "1.5.4",
+  "requires_dist": [
+    "cadcutils",
+    "caom2",
+    "pytest",
+    "pytest-cov",
+    "flake8",
+    "funcsigs",
+    "mock",
+    "xml-compare"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "aenum",
+    "cadcutils",
+    "caom2",
+    "caom2repo",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "deprecated",
+    "distro",
+    "future",
+    "html2text",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "lxml",
+    "past",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

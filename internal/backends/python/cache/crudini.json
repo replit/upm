@@ -1,0 +1,11 @@
+{
+  "name": "crudini",
+  "version": "0.9.3",
+  "requires_dist": [
+    "iniparse"
+  ],
+  "modules": [
+    "iniparse",
+    "six"
+  ]
+}

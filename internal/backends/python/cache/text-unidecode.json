@@ -1,0 +1,7 @@
+{
+  "name": "text-unidecode",
+  "version": "1.3",
+  "modules": [
+    "text_unidecode"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "asttokens",
+  "version": "2.0.8",
+  "requires_dist": [
+    "six",
+    "typing",
+    "astroid",
+    "pytest"
+  ],
+  "modules": [
+    "asttokens",
+    "six"
+  ]
+}

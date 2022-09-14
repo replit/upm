@@ -1,0 +1,10 @@
+{
+  "name": "bumpversion",
+  "version": "0.6.0",
+  "requires_dist": [
+    "bump2version"
+  ],
+  "modules": [
+    "bumpversion"
+  ]
+}

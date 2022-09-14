@@ -1,0 +1,26 @@
+{
+  "name": "tortoise-orm",
+  "version": "0.19.2",
+  "requires_dist": [
+    "aiomysql",
+    "aiosqlite",
+    "asyncmy",
+    "asyncodbc",
+    "asyncpg",
+    "ciso8601",
+    "iso8601",
+    "orjson",
+    "psycopg",
+    "pypika-tortoise",
+    "pytz",
+    "uvloop"
+  ],
+  "modules": [
+    "aiosqlite",
+    "iso8601",
+    "pypika",
+    "pytz",
+    "tortoise",
+    "typing_extensions"
+  ]
+}

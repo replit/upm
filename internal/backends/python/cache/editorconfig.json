@@ -1,0 +1,7 @@
+{
+  "name": "EditorConfig",
+  "version": "0.12.3",
+  "modules": [
+    "editorconfig"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "asyncpg",
+  "version": "0.26.0",
+  "requires_dist": [
+    "typing-extensions",
+    "Cython",
+    "pytest",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-rtd-theme",
+    "pycodestyle",
+    "flake8",
+    "uvloop",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "sphinx-rtd-theme",
+    "pycodestyle",
+    "flake8",
+    "uvloop"
+  ],
+  "modules": [
+    "asyncpg"
+  ]
+}

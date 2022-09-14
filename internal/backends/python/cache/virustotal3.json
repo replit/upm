@@ -1,0 +1,12 @@
+{
+  "name": "virustotal3",
+  "version": "1.0.8",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3",
+    "virustotal3"
+  ]
+}

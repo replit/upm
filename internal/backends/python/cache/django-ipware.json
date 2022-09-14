@@ -1,0 +1,7 @@
+{
+  "name": "django-ipware",
+  "version": "4.0.2",
+  "modules": [
+    "ipware"
+  ]
+}

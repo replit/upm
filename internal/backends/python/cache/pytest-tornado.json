@@ -1,0 +1,23 @@
+{
+  "name": "pytest-tornado",
+  "version": "0.8.1",
+  "requires_dist": [
+    "pytest",
+    "tornado",
+    "setuptools"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_tornado",
+    "tomli",
+    "tornado"
+  ]
+}

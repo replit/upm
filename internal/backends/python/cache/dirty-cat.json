@@ -1,0 +1,30 @@
+{
+  "name": "dirty-cat",
+  "version": "0.3.0",
+  "requires_dist": [
+    "scikit-learn",
+    "numpy",
+    "scipy",
+    "pandas",
+    "requests",
+    "joblib"
+  ],
+  "modules": [
+    "benchmarks",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "dirty_cat",
+    "idna",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "requests",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "urllib3"
+  ]
+}

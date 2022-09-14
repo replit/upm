@@ -1,0 +1,7 @@
+{
+  "name": "django-crispy-forms",
+  "version": "1.14.0",
+  "modules": [
+    "crispy_forms"
+  ]
+}

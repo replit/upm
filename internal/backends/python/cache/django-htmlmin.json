@@ -1,0 +1,12 @@
+{
+  "name": "django-htmlmin",
+  "version": "0.11.0",
+  "modules": [
+    "bs4",
+    "html5lib",
+    "htmlmin",
+    "six",
+    "soupsieve",
+    "webencodings"
+  ]
+}

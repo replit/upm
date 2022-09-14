@@ -1,0 +1,14 @@
+{
+  "name": "pyromod",
+  "version": "1.5",
+  "requires_dist": [
+    "pyrogram"
+  ],
+  "modules": [
+    "pyaes",
+    "pyrogram",
+    "pyromod",
+    "socks",
+    "sockshandler"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "mkdocs-material-extensions",
+  "version": "1.0.3",
+  "modules": [
+    "materialx"
+  ]
+}

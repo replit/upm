@@ -1,0 +1,17 @@
+{
+  "name": "pytest-nunit",
+  "version": "1.0.1",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_nunit",
+    "tomli"
+  ]
+}

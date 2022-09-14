@@ -1,0 +1,22 @@
+{
+  "name": "wrapt-timeout-decorator",
+  "version": "1.3.12.2",
+  "requires_dist": [
+    "cli-exit-tools",
+    "lib-detect-testenv",
+    "multiprocess",
+    "wrapt",
+    "dill",
+    "dill"
+  ],
+  "modules": [
+    "_multiprocess",
+    "cli_exit_tools",
+    "click",
+    "dill",
+    "lib_detect_testenv",
+    "multiprocess",
+    "wrapt",
+    "wrapt_timeout_decorator"
+  ]
+}

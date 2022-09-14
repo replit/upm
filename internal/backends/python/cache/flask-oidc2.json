@@ -1,0 +1,28 @@
+{
+  "name": "flask-oidc2",
+  "version": "1.5.0",
+  "requires_dist": [
+    "flask",
+    "itsdangerous",
+    "oauth2client",
+    "six"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_oidc",
+    "httplib2",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "oauth2client",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "rsa",
+    "six",
+    "werkzeug",
+    "zipp"
+  ]
+}

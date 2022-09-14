@@ -1,0 +1,26 @@
+{
+  "name": "python-schema-registry-client",
+  "version": "2.4.1",
+  "modules": [
+    "_pyrsistent_version",
+    "aiofiles",
+    "anyio",
+    "attr",
+    "attrs",
+    "certifi",
+    "fastavro",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "rfc3986",
+    "schema_registry",
+    "sniffio",
+    "zipp"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "h11",
+  "version": "0.13.0",
+  "requires_dist": [
+    "dataclasses",
+    "typing-extensions"
+  ],
+  "modules": [
+    "h11"
+  ]
+}

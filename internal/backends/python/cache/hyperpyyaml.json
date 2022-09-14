@@ -1,0 +1,10 @@
+{
+  "name": "HyperPyYAML",
+  "version": "1.0.1",
+  "modules": [
+    "_ruamel_yaml",
+    "_yaml",
+    "hyperpyyaml",
+    "yaml"
+  ]
+}

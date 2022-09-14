@@ -1,0 +1,7 @@
+{
+  "name": "pyinstrument-cext",
+  "version": "0.2.4",
+  "modules": [
+    "pyinstrument_cext"
+  ]
+}

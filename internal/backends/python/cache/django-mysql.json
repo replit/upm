@@ -1,0 +1,14 @@
+{
+  "name": "django-mysql",
+  "version": "4.7.1",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_mysql",
+    "sqlparse"
+  ]
+}

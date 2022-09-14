@@ -1,0 +1,7 @@
+{
+  "name": "postcode-validator-uk",
+  "version": "1.0.0",
+  "modules": [
+    "postcode_validator_uk"
+  ]
+}

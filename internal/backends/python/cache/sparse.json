@@ -1,0 +1,36 @@
+{
+  "name": "sparse",
+  "version": "0.13.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "numba",
+    "dask",
+    "pytest",
+    "pytest-black",
+    "pytest-cov",
+    "tox",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "dask",
+    "pytest",
+    "pytest-black",
+    "pytest-cov",
+    "dask",
+    "pytest",
+    "pytest-black",
+    "pytest-cov",
+    "tox"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "scipy",
+    "sparse",
+    "zipp"
+  ]
+}

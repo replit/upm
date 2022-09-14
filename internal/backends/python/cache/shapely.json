@@ -1,0 +1,15 @@
+{
+  "name": "Shapely",
+  "version": "1.8.4",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov",
+    "numpy",
+    "pytest",
+    "pytest-cov",
+    "numpy"
+  ],
+  "modules": [
+    "shapely"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pysnmp-mibs",
+  "version": "0.1.6",
+  "modules": [
+    "Cryptodome",
+    "ply",
+    "pyasn1",
+    "pysmi",
+    "pysnmp",
+    "pysnmp_mibs"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "click-didyoumean",
+  "version": "0.3.0",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "click",
+    "click_didyoumean"
+  ]
+}

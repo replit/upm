@@ -1,0 +1,18 @@
+{
+  "name": "pyjwkest",
+  "version": "1.4.2",
+  "modules": [
+    "Cryptodome",
+    "certifi",
+    "charset_normalizer",
+    "future",
+    "idna",
+    "jwkest",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "flake8-no-unnecessary-fstrings",
+  "version": "1.0.1",
+  "requires_dist": [
+    "flake8",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_no_unnecessary_fstrings",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

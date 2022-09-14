@@ -1,0 +1,11 @@
+{
+  "name": "tensorstore",
+  "version": "0.1.23",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "tensorstore"
+  ]
+}

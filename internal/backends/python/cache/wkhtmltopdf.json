@@ -1,0 +1,7 @@
+{
+  "name": "wkhtmltopdf",
+  "version": "0.2",
+  "modules": [
+    "wkhtmltopdf"
+  ]
+}

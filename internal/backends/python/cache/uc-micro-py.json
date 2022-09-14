@@ -1,0 +1,12 @@
+{
+  "name": "uc-micro-py",
+  "version": "1.0.1",
+  "requires_dist": [
+    "coverage",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "uc_micro"
+  ]
+}

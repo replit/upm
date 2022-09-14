@@ -1,0 +1,15 @@
+{
+  "name": "behave-html-formatter",
+  "version": "0.9.10",
+  "requires_dist": [
+    "behave"
+  ],
+  "modules": [
+    "behave",
+    "behave_html_formatter",
+    "parse",
+    "parse_type",
+    "setuptools_behave",
+    "six"
+  ]
+}

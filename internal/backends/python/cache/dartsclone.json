@@ -1,0 +1,10 @@
+{
+  "name": "dartsclone",
+  "version": "0.10.2",
+  "modules": [
+    "Cython",
+    "cython",
+    "dartsclone",
+    "pyximport"
+  ]
+}

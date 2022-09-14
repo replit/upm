@@ -1,0 +1,28 @@
+{
+  "name": "selenium",
+  "version": "4.4.3",
+  "requires_dist": [
+    "urllib3",
+    "trio",
+    "trio-websocket",
+    "certifi"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "selenium",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

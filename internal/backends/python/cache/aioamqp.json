@@ -1,0 +1,11 @@
+{
+  "name": "aioamqp",
+  "version": "0.15.0",
+  "requires_dist": [
+    "pamqp"
+  ],
+  "modules": [
+    "aioamqp",
+    "pamqp"
+  ]
+}

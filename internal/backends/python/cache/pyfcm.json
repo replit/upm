@@ -1,0 +1,17 @@
+{
+  "name": "pyfcm",
+  "version": "1.5.4",
+  "requires_dist": [
+    "requests",
+    "urllib3",
+    "pytest"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyfcm",
+    "requests",
+    "urllib3"
+  ]
+}

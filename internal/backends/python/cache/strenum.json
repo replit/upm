@@ -1,0 +1,18 @@
+{
+  "name": "StrEnum",
+  "version": "0.4.8",
+  "requires_dist": [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-parser",
+    "twine",
+    "pytest",
+    "pytest-black",
+    "pytest-cov",
+    "pytest-pylint",
+    "pylint"
+  ],
+  "modules": [
+    "strenum"
+  ]
+}

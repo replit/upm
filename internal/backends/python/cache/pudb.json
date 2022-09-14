@@ -1,0 +1,14 @@
+{
+  "name": "pudb",
+  "version": "2022.1.2",
+  "modules": [
+    "jedi",
+    "packaging",
+    "parso",
+    "pudb",
+    "pygments",
+    "pyparsing",
+    "urwid",
+    "urwid_readline"
+  ]
+}

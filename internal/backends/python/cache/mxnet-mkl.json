@@ -1,0 +1,20 @@
+{
+  "name": "mxnet-mkl",
+  "version": "1.6.0",
+  "requires_dist": [
+    "numpy",
+    "requests",
+    "graphviz"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dmlc_tracker",
+    "graphviz",
+    "idna",
+    "mxnet",
+    "numpy",
+    "requests",
+    "urllib3"
+  ]
+}

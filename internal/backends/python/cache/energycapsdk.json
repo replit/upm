@@ -1,0 +1,21 @@
+{
+  "name": "EnergyCapSdk",
+  "version": "8.2208.4132",
+  "requires_dist": [
+    "msrest"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "energycap",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

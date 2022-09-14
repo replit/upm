@@ -1,0 +1,13 @@
+{
+  "name": "jismesh",
+  "version": "2.1.0",
+  "requires_dist": [
+    "numpy",
+    "functools32",
+    "nose"
+  ],
+  "modules": [
+    "jismesh",
+    "numpy"
+  ]
+}

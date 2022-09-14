@@ -1,0 +1,7 @@
+{
+  "name": "nested_dict",
+  "version": "1.61",
+  "modules": [
+    "nested_dict"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "lupa",
+  "version": "1.13",
+  "modules": [
+    "lupa"
+  ]
+}

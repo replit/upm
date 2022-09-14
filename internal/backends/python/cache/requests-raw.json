@@ -1,0 +1,19 @@
+{
+  "name": "requests-raw",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests",
+    "pyOpenSSL",
+    "cryptography",
+    "PySocks",
+    "win-inet-pton"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_raw",
+    "urllib3"
+  ]
+}

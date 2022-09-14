@@ -1,0 +1,7 @@
+{
+  "name": "mailchecker",
+  "version": "5.0.1",
+  "modules": [
+    "MailChecker"
+  ]
+}

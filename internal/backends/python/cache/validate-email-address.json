@@ -1,0 +1,7 @@
+{
+  "name": "validate-email-address",
+  "version": "1",
+  "modules": [
+    "validate_email_address"
+  ]
+}

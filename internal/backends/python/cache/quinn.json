@@ -1,0 +1,7 @@
+{
+  "name": "quinn",
+  "version": "0.9.0",
+  "modules": [
+    "quinn"
+  ]
+}

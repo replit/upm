@@ -1,0 +1,15 @@
+{
+  "name": "edn-format",
+  "version": "0.7.5",
+  "requires_dist": [
+    "ply",
+    "pyRFC3339",
+    "pytz"
+  ],
+  "modules": [
+    "edn_format",
+    "ply",
+    "pyrfc3339",
+    "pytz"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "columnar",
+  "version": "1.4.1",
+  "requires_dist": [
+    "toolz",
+    "wcwidth"
+  ],
+  "modules": [
+    "columnar",
+    "tlz",
+    "toolz",
+    "wcwidth"
+  ]
+}

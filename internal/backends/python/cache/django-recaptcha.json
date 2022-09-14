@@ -1,0 +1,14 @@
+{
+  "name": "django-recaptcha",
+  "version": "3.0.0",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "captcha",
+    "django",
+    "sqlparse"
+  ]
+}

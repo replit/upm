@@ -1,0 +1,10 @@
+{
+  "name": "rule-engine",
+  "version": "3.5.0",
+  "modules": [
+    "dateutil",
+    "ply",
+    "rule_engine",
+    "six"
+  ]
+}

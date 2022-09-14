@@ -1,0 +1,32 @@
+{
+  "name": "flask-redis",
+  "version": "0.4.0",
+  "requires_dist": [
+    "Flask",
+    "redis",
+    "coverage",
+    "pytest",
+    "pytest-mock",
+    "pre-commit",
+    "coverage",
+    "pytest",
+    "pytest-mock"
+  ],
+  "modules": [
+    "async_timeout",
+    "click",
+    "deprecated",
+    "flask",
+    "flask_redis",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "werkzeug",
+    "wrapt",
+    "zipp"
+  ]
+}

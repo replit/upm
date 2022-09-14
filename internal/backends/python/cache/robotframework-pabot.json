@@ -1,0 +1,9 @@
+{
+  "name": "robotframework-pabot",
+  "version": "2.6.0",
+  "modules": [
+    "RobotStackTracer",
+    "pabot",
+    "robot"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "pykakasi",
+  "version": "2.2.1",
+  "requires_dist": [
+    "jaconv",
+    "deprecated",
+    "importlib-metadata",
+    "mypy",
+    "mypy-extensions",
+    "docutils",
+    "check-manifest",
+    "flake8",
+    "flake8-black",
+    "flake8-deprecated",
+    "readme-renderer",
+    "pygments",
+    "isort",
+    "twine",
+    "sphinx",
+    "sphinx-intl",
+    "sphinx-py3doc-enhanced-theme",
+    "sphinx-rtd-theme",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-pep8",
+    "pytest-cov",
+    "pytest-profiling",
+    "coverage",
+    "py-cpuinfo"
+  ],
+  "modules": [
+    "deprecated",
+    "jaconv",
+    "pykakasi",
+    "wrapt"
+  ]
+}

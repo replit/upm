@@ -1,0 +1,20 @@
+{
+  "name": "databases",
+  "version": "0.6.1",
+  "requires_dist": [
+    "sqlalchemy",
+    "aiomysql",
+    "aiopg",
+    "aiosqlite",
+    "asyncmy",
+    "asyncpg",
+    "aiomysql",
+    "asyncpg",
+    "aiosqlite"
+  ],
+  "modules": [
+    "databases",
+    "greenlet",
+    "sqlalchemy"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "nextcord",
+  "version": "2.2.0",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "discord",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "nextcord",
+    "typing_extensions",
+    "yarl"
+  ]
+}

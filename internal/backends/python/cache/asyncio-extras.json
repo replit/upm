@@ -1,0 +1,15 @@
+{
+  "name": "asyncio_extras",
+  "version": "1.3.2",
+  "requires_dist": [
+    "async-generator",
+    "sphinx-autodoc-typehints",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov"
+  ],
+  "modules": [
+    "async_generator",
+    "asyncio_extras"
+  ]
+}

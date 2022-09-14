@@ -1,0 +1,13 @@
+{
+  "name": "marshmallow-polyfield",
+  "version": "5.10",
+  "requires_dist": [
+    "marshmallow"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_polyfield",
+    "packaging",
+    "pyparsing"
+  ]
+}

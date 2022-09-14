@@ -1,0 +1,42 @@
+{
+  "name": "AeroSandbox",
+  "version": "3.5.9",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "casadi",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "tqdm",
+    "sortedcontainers",
+    "plotly",
+    "pyvista",
+    "ipyvtklink",
+    "trimesh",
+    "sympy",
+    "pytest",
+    "nbval"
+  ],
+  "modules": [
+    "PIL",
+    "aerosandbox",
+    "casadi",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "seaborn",
+    "six",
+    "sortedcontainers",
+    "tqdm"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "related",
+  "version": "0.7.3",
+  "requires_dist": [
+    "attrs",
+    "PyYAML",
+    "future",
+    "python-dateutil",
+    "singledispatch"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "dateutil",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "related",
+    "six",
+    "yaml"
+  ]
+}

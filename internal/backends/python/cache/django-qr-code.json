@@ -1,0 +1,21 @@
+{
+  "name": "django-qr-code",
+  "version": "3.1.1",
+  "requires_dist": [
+    "segno",
+    "django",
+    "pytz",
+    "pydantic"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pydantic",
+    "pytz",
+    "qr_code",
+    "segno",
+    "sqlparse",
+    "typing_extensions"
+  ]
+}

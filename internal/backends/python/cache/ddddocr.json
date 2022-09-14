@@ -1,0 +1,25 @@
+{
+  "name": "ddddocr",
+  "version": "1.4.7",
+  "requires_dist": [
+    "numpy",
+    "onnxruntime",
+    "Pillow",
+    "opencv-python-headless"
+  ],
+  "modules": [
+    "PIL",
+    "coloredlogs",
+    "cv2",
+    "ddddocr",
+    "flatbuffers",
+    "humanfriendly",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "onnxruntime",
+    "packaging",
+    "pyparsing",
+    "sympy"
+  ]
+}

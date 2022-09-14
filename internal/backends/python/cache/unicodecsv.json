@@ -1,0 +1,7 @@
+{
+  "name": "unicodecsv",
+  "version": "0.14.1",
+  "modules": [
+    "unicodecsv"
+  ]
+}

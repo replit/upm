@@ -1,0 +1,8 @@
+{
+  "name": "suds-jurko",
+  "version": "0.6",
+  "modules": [
+    "suds",
+    "tests"
+  ]
+}

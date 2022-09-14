@@ -1,0 +1,24 @@
+{
+  "name": "lusid-sdk",
+  "version": "0.11.4785",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil",
+    "urllib3",
+    "requests",
+    "finbourne-sdk-utilities"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "fbnsdkutilities",
+    "idna",
+    "lusid",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

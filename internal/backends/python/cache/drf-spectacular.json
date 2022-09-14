@@ -1,0 +1,37 @@
+{
+  "name": "drf-spectacular",
+  "version": "0.23.1",
+  "requires_dist": [
+    "Django",
+    "djangorestframework",
+    "uritemplate",
+    "PyYAML",
+    "jsonschema",
+    "inflection",
+    "typing-extensions",
+    "drf-spectacular-sidecar",
+    "drf-spectacular-sidecar"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "asgiref",
+    "attr",
+    "attrs",
+    "backports",
+    "django",
+    "drf_spectacular",
+    "importlib_resources",
+    "inflection",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "pytz",
+    "rest_framework",
+    "sqlparse",
+    "uritemplate",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "docassemble",
+  "version": "1.4.9",
+  "modules": [
+    "docassemble"
+  ]
+}

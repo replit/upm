@@ -1,0 +1,7 @@
+{
+  "name": "rpm-vercmp",
+  "version": "0.1.2",
+  "modules": [
+    "rpm_vercmp"
+  ]
+}

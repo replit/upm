@@ -1,0 +1,7 @@
+{
+  "name": "cpe",
+  "version": "1.2.1",
+  "modules": [
+    "cpe"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "rdkit",
+  "version": "2022.3.5",
+  "requires_dist": [
+    "numpy",
+    "Pillow"
+  ],
+  "modules": [
+    "PIL",
+    "numpy",
+    "rdkit"
+  ]
+}

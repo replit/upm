@@ -1,0 +1,43 @@
+{
+  "name": "channels",
+  "version": "3.0.5",
+  "requires_dist": [
+    "Django",
+    "asgiref",
+    "daphne",
+    "pytest",
+    "pytest-django",
+    "pytest-asyncio",
+    "async-timeout",
+    "coverage"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "_nvx_utf8validator",
+    "asgiref",
+    "attr",
+    "attrs",
+    "autobahn",
+    "automat",
+    "backports",
+    "cffi",
+    "channels",
+    "constantly",
+    "cryptography",
+    "daphne",
+    "django",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "service_identity",
+    "six",
+    "sqlparse",
+    "twisted",
+    "txaio",
+    "typing_extensions"
+  ]
+}

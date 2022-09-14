@@ -1,0 +1,20 @@
+{
+  "name": "clickhouse-sqlalchemy",
+  "version": "0.2.2",
+  "modules": [
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "clickhouse_driver",
+    "clickhouse_sqlalchemy",
+    "greenlet",
+    "idna",
+    "pytz",
+    "pytz_deprecation_shim",
+    "requests",
+    "sqlalchemy",
+    "tzdata",
+    "tzlocal",
+    "urllib3"
+  ]
+}

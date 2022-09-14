@@ -1,0 +1,7 @@
+{
+  "name": "torchsummary",
+  "version": "1.5.1",
+  "modules": [
+    "torchsummary"
+  ]
+}

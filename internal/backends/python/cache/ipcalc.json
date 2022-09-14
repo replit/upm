@@ -1,0 +1,7 @@
+{
+  "name": "ipcalc",
+  "version": "1.99.0",
+  "modules": [
+    "ipcalc"
+  ]
+}

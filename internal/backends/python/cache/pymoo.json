@@ -1,0 +1,42 @@
+{
+  "name": "pymoo",
+  "version": "0.6.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "autograd",
+    "cma",
+    "alive-progress",
+    "dill",
+    "Deprecated"
+  ],
+  "modules": [
+    "PIL",
+    "about_time",
+    "alive_progress",
+    "autograd",
+    "cma",
+    "cycler",
+    "dateutil",
+    "deprecated",
+    "dill",
+    "fontTools",
+    "future",
+    "grapheme",
+    "kiwisolver",
+    "libfuturize",
+    "libpasteurize",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "past",
+    "pylab",
+    "pymoo",
+    "pyparsing",
+    "scipy",
+    "six",
+    "tests",
+    "wrapt"
+  ]
+}

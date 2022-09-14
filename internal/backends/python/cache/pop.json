@@ -1,0 +1,26 @@
+{
+  "name": "pop",
+  "version": "22.0.0",
+  "requires_dist": [
+    "dict-toolbox",
+    "lazy-object-proxy",
+    "pop-config",
+    "pop-loop",
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "aiofiles",
+    "colored",
+    "dict_tools",
+    "jinja2",
+    "lazy_object_proxy",
+    "markupsafe",
+    "msgpack",
+    "nest_asyncio",
+    "pop",
+    "sniffio",
+    "toml",
+    "yaml"
+  ]
+}

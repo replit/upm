@@ -1,0 +1,22 @@
+{
+  "name": "ansible",
+  "version": "6.3.0",
+  "requires_dist": [
+    "ansible-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "ansible",
+    "ansible_test",
+    "cffi",
+    "cryptography",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pycparser",
+    "pyparsing",
+    "resolvelib",
+    "yaml"
+  ]
+}

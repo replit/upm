@@ -1,0 +1,24 @@
+{
+  "name": "autogluon.timeseries",
+  "version": "0.5.2",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "pandas",
+    "psutil",
+    "gluonts",
+    "autogluon.core",
+    "autogluon.common",
+    "sktime",
+    "pmdarima",
+    "tbats",
+    "sktime",
+    "pmdarima",
+    "tbats",
+    "pytest",
+    "flake8",
+    "flaky",
+    "pytest-timeout"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/autogluon.timeseries/bin/python3', '-m', 'pip', 'install', 'autogluon.timeseries']' returned non-zero exit status 1.\"}"
+}

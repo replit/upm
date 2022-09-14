@@ -1,0 +1,7 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "modules": [
+    "cv"
+  ]
+}

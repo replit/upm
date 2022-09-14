@@ -1,0 +1,15 @@
+{
+  "name": "aiolimiter",
+  "version": "1.0.0",
+  "requires_dist": [
+    "aiohttp-theme",
+    "importlib_metadata",
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "sphinxcontrib-spelling",
+    "toml"
+  ],
+  "modules": [
+    "aiolimiter"
+  ]
+}

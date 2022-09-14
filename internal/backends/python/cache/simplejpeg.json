@@ -1,0 +1,11 @@
+{
+  "name": "simplejpeg",
+  "version": "1.6.5",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "simplejpeg"
+  ]
+}

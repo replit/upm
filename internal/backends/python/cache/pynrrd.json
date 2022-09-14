@@ -1,0 +1,11 @@
+{
+  "name": "pynrrd",
+  "version": "0.4.3",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "nrrd",
+    "numpy"
+  ]
+}

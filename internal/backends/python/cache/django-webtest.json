@@ -1,0 +1,15 @@
+{
+  "name": "django-webtest",
+  "version": "1.9.10",
+  "requires_dist": [
+    "webtest"
+  ],
+  "modules": [
+    "bs4",
+    "django_webtest",
+    "soupsieve",
+    "waitress",
+    "webob",
+    "webtest"
+  ]
+}

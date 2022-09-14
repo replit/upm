@@ -1,0 +1,7 @@
+{
+  "name": "qt5-applications",
+  "version": "5.15.2.2.2",
+  "modules": [
+    "qt5_applications"
+  ]
+}

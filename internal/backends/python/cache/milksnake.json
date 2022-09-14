@@ -1,0 +1,13 @@
+{
+  "name": "milksnake",
+  "version": "0.1.5",
+  "requires_dist": [
+    "cffi"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "milksnake",
+    "pycparser"
+  ]
+}

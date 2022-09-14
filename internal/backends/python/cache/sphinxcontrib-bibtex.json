@@ -1,0 +1,40 @@
+{
+  "name": "sphinxcontrib-bibtex",
+  "version": "2.5.0",
+  "requires_dist": [
+    "Sphinx",
+    "docutils",
+    "pybtex",
+    "pybtex-docutils",
+    "importlib-metadata",
+    "dataclasses"
+  ],
+  "modules": [
+    "_yaml",
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "latexcodec",
+    "markupsafe",
+    "packaging",
+    "pybtex",
+    "pybtex_docutils",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "six",
+    "snowballstemmer",
+    "sphinx",
+    "tests",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

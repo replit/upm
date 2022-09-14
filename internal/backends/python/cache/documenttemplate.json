@@ -1,0 +1,39 @@
+{
+  "name": "DocumentTemplate",
+  "version": "4.0",
+  "requires_dist": [
+    "AccessControl",
+    "Acquisition",
+    "ExtensionClass",
+    "RestrictedPython",
+    "roman",
+    "zExceptions",
+    "zope.sequencesort",
+    "zope.structuredtext"
+  ],
+  "modules": [
+    "AccessControl",
+    "Acquisition",
+    "AuthEncoding",
+    "BTrees",
+    "ComputedAttribute",
+    "DateTime",
+    "DocumentTemplate",
+    "ExtensionClass",
+    "MethodObject",
+    "Persistence",
+    "RestrictedPython",
+    "TreeDisplay",
+    "_cffi_backend",
+    "cffi",
+    "multipart",
+    "persistent",
+    "pycparser",
+    "pythongettext",
+    "pytz",
+    "roman",
+    "six",
+    "transaction",
+    "zExceptions"
+  ]
+}

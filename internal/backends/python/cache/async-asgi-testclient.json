@@ -1,0 +1,13 @@
+{
+  "name": "async-asgi-testclient",
+  "version": "1.4.11",
+  "modules": [
+    "async_asgi_testclient",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "multidict",
+    "requests",
+    "urllib3"
+  ]
+}

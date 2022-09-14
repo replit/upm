@@ -1,0 +1,7 @@
+{
+  "name": "django-enumfields",
+  "version": "2.1.1",
+  "modules": [
+    "enumfields"
+  ]
+}

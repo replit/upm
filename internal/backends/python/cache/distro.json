@@ -1,0 +1,7 @@
+{
+  "name": "distro",
+  "version": "1.7.0",
+  "modules": [
+    "distro"
+  ]
+}

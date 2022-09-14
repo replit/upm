@@ -1,0 +1,8 @@
+{
+  "name": "nested-lookup",
+  "version": "0.2.25",
+  "modules": [
+    "nested_lookup",
+    "six"
+  ]
+}

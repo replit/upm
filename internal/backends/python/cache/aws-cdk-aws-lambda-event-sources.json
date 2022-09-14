@@ -1,0 +1,38 @@
+{
+  "name": "aws-cdk.aws-lambda-event-sources",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-apigateway",
+    "aws-cdk.aws-dynamodb",
+    "aws-cdk.aws-ec2",
+    "aws-cdk.aws-events",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-kinesis",
+    "aws-cdk.aws-lambda",
+    "aws-cdk.aws-s3-notifications",
+    "aws-cdk.aws-s3",
+    "aws-cdk.aws-secretsmanager",
+    "aws-cdk.aws-sns-subscriptions",
+    "aws-cdk.aws-sns",
+    "aws-cdk.aws-sqs",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

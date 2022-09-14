@@ -1,0 +1,14 @@
+{
+  "name": "json-encoder",
+  "version": "0.4.4",
+  "requires_dist": [
+    "six",
+    "singledispatch",
+    "simplejson"
+  ],
+  "modules": [
+    "json_encoder",
+    "singledispatch",
+    "six"
+  ]
+}

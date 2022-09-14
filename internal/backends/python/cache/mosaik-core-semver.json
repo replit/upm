@@ -1,0 +1,20 @@
+{
+  "name": "mosaik.Core-SemVer",
+  "version": "2.5.3rc20220913000441",
+  "requires_dist": [
+    "networkx",
+    "mosaik.API-SemVer",
+    "mosaik.Core-SemVer",
+    "simpy",
+    "simpy.io"
+  ],
+  "modules": [
+    "docopt",
+    "example_mas",
+    "example_sim",
+    "mosaik",
+    "mosaik_api",
+    "networkx",
+    "simpy"
+  ]
+}

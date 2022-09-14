@@ -1,0 +1,15 @@
+{
+  "name": "hdbscan",
+  "version": "0.8.28",
+  "modules": [
+    "Cython",
+    "cython",
+    "hdbscan",
+    "joblib",
+    "numpy",
+    "pyximport",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "termtables",
+  "version": "0.2.4",
+  "requires_dist": [
+    "importlib-metadata"
+  ],
+  "modules": [
+    "termtables"
+  ]
+}

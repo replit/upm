@@ -1,0 +1,11 @@
+{
+  "name": "aiodogstatsd",
+  "version": "0.16.0.post0",
+  "requires_dist": [
+    "aiohttp",
+    "starlette"
+  ],
+  "modules": [
+    "aiodogstatsd"
+  ]
+}

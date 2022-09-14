@@ -1,0 +1,10 @@
+{
+  "name": "git-python",
+  "version": "1.1.1",
+  "modules": [
+    "git",
+    "gitdb",
+    "main",
+    "smmap"
+  ]
+}

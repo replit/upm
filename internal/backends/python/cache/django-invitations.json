@@ -1,0 +1,8 @@
+{
+  "name": "django-invitations",
+  "version": "1.9.3",
+  "modules": [
+    "invitations",
+    "tests"
+  ]
+}

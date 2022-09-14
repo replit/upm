@@ -1,0 +1,12 @@
+{
+  "name": "crytic-compile",
+  "version": "0.2.3",
+  "requires_dist": [
+    "pysha3"
+  ],
+  "modules": [
+    "_pysha3",
+    "crytic_compile",
+    "sha3"
+  ]
+}

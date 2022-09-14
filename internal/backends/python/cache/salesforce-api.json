@@ -1,0 +1,15 @@
+{
+  "name": "salesforce-api",
+  "version": "0.1.45",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "salesforce_api",
+    "six",
+    "url_normalize",
+    "urllib3",
+    "xmltodict"
+  ]
+}

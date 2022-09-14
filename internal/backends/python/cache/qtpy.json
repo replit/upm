@@ -1,0 +1,15 @@
+{
+  "name": "QtPy",
+  "version": "2.2.0",
+  "requires_dist": [
+    "packaging",
+    "pytest",
+    "pytest-cov",
+    "pytest-qt"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "qtpy"
+  ]
+}

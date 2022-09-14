@@ -1,0 +1,10 @@
+{
+  "name": "pybreaker",
+  "version": "1.0.1",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "pybreaker"
+  ]
+}

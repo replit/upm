@@ -1,0 +1,17 @@
+{
+  "name": "amazoncaptcha",
+  "version": "0.5.8",
+  "requires_dist": [
+    "pillow",
+    "requests"
+  ],
+  "modules": [
+    "PIL",
+    "amazoncaptcha",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

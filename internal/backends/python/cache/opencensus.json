@@ -1,0 +1,22 @@
+{
+  "name": "opencensus",
+  "version": "0.11.0",
+  "requires_dist": [
+    "opencensus-context",
+    "google-api-core",
+    "google-api-core"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opencensus",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

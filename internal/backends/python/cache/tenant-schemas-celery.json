@@ -1,0 +1,20 @@
+{
+  "name": "tenant-schemas-celery",
+  "version": "2.0.0",
+  "modules": [
+    "amqp",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "kombu",
+    "prompt_toolkit",
+    "pytz",
+    "six",
+    "tenant_schemas_celery",
+    "vine",
+    "wcwidth"
+  ]
+}

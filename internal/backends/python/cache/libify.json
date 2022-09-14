@@ -1,0 +1,7 @@
+{
+  "name": "libify",
+  "version": "0.78",
+  "modules": [
+    "libify"
+  ]
+}

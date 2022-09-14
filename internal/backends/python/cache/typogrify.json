@@ -1,0 +1,8 @@
+{
+  "name": "typogrify",
+  "version": "2.0.7",
+  "modules": [
+    "smartypants",
+    "typogrify"
+  ]
+}

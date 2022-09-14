@@ -1,0 +1,10 @@
+{
+  "name": "doit",
+  "version": "0.36.0",
+  "modules": [
+    "cloudpickle",
+    "doit",
+    "importlib_metadata",
+    "zipp"
+  ]
+}

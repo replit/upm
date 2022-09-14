@@ -1,0 +1,22 @@
+{
+  "name": "azure-mgmt-cognitiveservices",
+  "version": "13.2.0",
+  "requires_dist": [
+    "msrest",
+    "azure-common",
+    "azure-mgmt-core"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

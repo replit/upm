@@ -1,0 +1,9 @@
+{
+  "name": "definitions",
+  "version": "0.2.0",
+  "modules": [
+    "_yaml",
+    "definitions",
+    "yaml"
+  ]
+}

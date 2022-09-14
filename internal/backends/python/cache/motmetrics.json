@@ -1,0 +1,21 @@
+{
+  "name": "motmetrics",
+  "version": "1.2.5",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scipy",
+    "xmltodict",
+    "enum34"
+  ],
+  "modules": [
+    "dateutil",
+    "motmetrics",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "xmltodict"
+  ]
+}

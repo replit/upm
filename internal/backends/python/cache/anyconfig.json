@@ -1,0 +1,15 @@
+{
+  "name": "anyconfig",
+  "version": "0.13.0",
+  "requires_dist": [
+    "setuptools",
+    "jmespath",
+    "jsonschema",
+    "Jinja2",
+    "toml",
+    "pyyaml"
+  ],
+  "modules": [
+    "anyconfig"
+  ]
+}

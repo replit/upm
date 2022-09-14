@@ -1,0 +1,14 @@
+{
+  "name": "data-science-types",
+  "version": "0.2.23",
+  "requires_dist": [
+    "black",
+    "flake8",
+    "flake8-pyi",
+    "matplotlib",
+    "mypy",
+    "numpy",
+    "pandas",
+    "pytest"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "branca",
+  "version": "0.5.0",
+  "requires_dist": [
+    "jinja2"
+  ],
+  "modules": [
+    "branca",
+    "jinja2",
+    "markupsafe"
+  ]
+}

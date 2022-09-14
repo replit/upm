@@ -1,0 +1,13 @@
+{
+  "name": "python-mbedtls",
+  "version": "2.5.1",
+  "requires_dist": [
+    "certifi",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "mbedtls",
+    "typing_extensions"
+  ]
+}

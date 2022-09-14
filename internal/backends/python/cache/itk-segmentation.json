@@ -1,0 +1,13 @@
+{
+  "name": "itk-segmentation",
+  "version": "5.2.1.post1",
+  "requires_dist": [
+    "itk-filtering"
+  ],
+  "modules": [
+    "itk",
+    "itkConfig",
+    "itkVersion",
+    "numpy"
+  ]
+}

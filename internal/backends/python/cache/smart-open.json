@@ -1,0 +1,7 @@
+{
+  "name": "smart-open",
+  "version": "6.1.0",
+  "modules": [
+    "smart_open"
+  ]
+}

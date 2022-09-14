@@ -1,0 +1,26 @@
+{
+  "name": "simplesat",
+  "version": "0.8.2",
+  "requires_dist": [
+    "attrs",
+    "okonomiyaki",
+    "six",
+    "enum34"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "distro",
+    "importlib_resources",
+    "jsonschema",
+    "okonomiyaki",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "simplesat",
+    "six",
+    "zipfile2",
+    "zipp"
+  ]
+}

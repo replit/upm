@@ -1,0 +1,16 @@
+{
+  "name": "numcodecs",
+  "version": "0.10.2",
+  "requires_dist": [
+    "entrypoints",
+    "numpy",
+    "typing-extensions",
+    "msgpack"
+  ],
+  "modules": [
+    "entrypoints",
+    "numcodecs",
+    "numpy",
+    "typing_extensions"
+  ]
+}

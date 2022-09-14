@@ -1,0 +1,29 @@
+{
+  "name": "caom2",
+  "version": "2.5",
+  "requires_dist": [
+    "future",
+    "aenum",
+    "six",
+    "deprecated",
+    "lxml",
+    "lxml",
+    "pytest",
+    "pytest-cov",
+    "flake8",
+    "funcsigs",
+    "mock"
+  ],
+  "modules": [
+    "aenum",
+    "caom2",
+    "deprecated",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "lxml",
+    "past",
+    "six",
+    "wrapt"
+  ]
+}

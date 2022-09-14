@@ -1,0 +1,29 @@
+{
+  "name": "dataset",
+  "version": "1.5.2",
+  "requires_dist": [
+    "cryptography",
+    "sqlalchemy",
+    "alembic",
+    "banal",
+    "pip",
+    "pytest",
+    "wheel",
+    "flake8",
+    "coverage",
+    "psycopg2-binary",
+    "PyMySQL"
+  ],
+  "modules": [
+    "alembic",
+    "banal",
+    "dataset",
+    "greenlet",
+    "importlib_metadata",
+    "importlib_resources",
+    "mako",
+    "markupsafe",
+    "sqlalchemy",
+    "zipp"
+  ]
+}

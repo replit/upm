@@ -1,0 +1,7 @@
+{
+  "name": "Owlready2",
+  "version": "0.38",
+  "modules": [
+    "owlready2"
+  ]
+}

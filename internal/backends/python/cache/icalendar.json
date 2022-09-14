@@ -1,0 +1,14 @@
+{
+  "name": "icalendar",
+  "version": "4.1.0",
+  "requires_dist": [
+    "python-dateutil",
+    "pytz"
+  ],
+  "modules": [
+    "dateutil",
+    "icalendar",
+    "pytz",
+    "six"
+  ]
+}

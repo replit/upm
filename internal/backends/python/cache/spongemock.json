@@ -1,0 +1,8 @@
+{
+  "name": "spongemock",
+  "version": "0.3.4",
+  "modules": [
+    "pyperclip",
+    "spongemock"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "tox-pip-version",
+  "version": "0.0.7",
+  "modules": [
+    "distlib",
+    "filelock",
+    "packaging",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "six",
+    "toml",
+    "tox",
+    "tox_pip_version",
+    "virtualenv"
+  ]
+}

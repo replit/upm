@@ -1,0 +1,8 @@
+{
+  "name": "clint",
+  "version": "0.5.1",
+  "modules": [
+    "args",
+    "clint"
+  ]
+}

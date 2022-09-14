@@ -1,0 +1,28 @@
+{
+  "name": "wheel-inspect",
+  "version": "1.7.1",
+  "requires_dist": [
+    "attrs",
+    "entry-points-txt",
+    "headerparser",
+    "packaging",
+    "readme-renderer",
+    "wheel-filename"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "bleach",
+    "docutils",
+    "entry_points_txt",
+    "headerparser",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "readme_renderer",
+    "six",
+    "webencodings",
+    "wheel_filename",
+    "wheel_inspect"
+  ]
+}

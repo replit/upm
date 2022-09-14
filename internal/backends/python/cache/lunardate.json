@@ -1,0 +1,7 @@
+{
+  "name": "lunardate",
+  "version": "0.2.0",
+  "modules": [
+    "lunardate"
+  ]
+}

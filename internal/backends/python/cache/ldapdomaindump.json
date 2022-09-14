@@ -1,0 +1,19 @@
+{
+  "name": "ldapdomaindump",
+  "version": "0.9.3",
+  "requires_dist": [
+    "dnspython",
+    "future",
+    "ldap3"
+  ],
+  "modules": [
+    "dns",
+    "future",
+    "ldap3",
+    "ldapdomaindump",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyasn1"
+  ]
+}

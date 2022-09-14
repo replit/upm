@@ -1,0 +1,10 @@
+{
+  "name": "breadability",
+  "version": "0.1.20",
+  "modules": [
+    "breadability",
+    "chardet",
+    "docopt",
+    "lxml"
+  ]
+}

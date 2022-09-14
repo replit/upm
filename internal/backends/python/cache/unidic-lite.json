@@ -1,0 +1,7 @@
+{
+  "name": "unidic-lite",
+  "version": "1.0.8",
+  "modules": [
+    "unidic_lite"
+  ]
+}

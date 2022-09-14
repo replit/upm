@@ -1,0 +1,33 @@
+{
+  "name": "plugp100",
+  "version": "2.1.18",
+  "requires_dist": [
+    "certifi",
+    "idna",
+    "jsons",
+    "requests",
+    "typish",
+    "urllib3",
+    "aiohttp"
+  ],
+  "modules": [
+    "Crypto",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "chardet",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "jsons",
+    "multidict",
+    "plugp100",
+    "requests",
+    "typish",
+    "urllib3",
+    "yarl"
+  ]
+}

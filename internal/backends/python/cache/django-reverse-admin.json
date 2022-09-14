@@ -1,0 +1,7 @@
+{
+  "name": "django-reverse-admin",
+  "version": "2.9.6",
+  "modules": [
+    "django_reverse_admin"
+  ]
+}

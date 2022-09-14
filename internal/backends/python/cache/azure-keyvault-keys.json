@@ -1,0 +1,28 @@
+{
+  "name": "azure-keyvault-keys",
+  "version": "4.6.1",
+  "requires_dist": [
+    "azure-core",
+    "cryptography",
+    "msrest",
+    "azure-common",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

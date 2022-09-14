@@ -1,0 +1,16 @@
+{
+  "name": "facexlib",
+  "version": "0.2.5",
+  "requires_dist": [
+    "filterpy",
+    "numba",
+    "numpy",
+    "opencv-python",
+    "Pillow",
+    "scipy",
+    "torch",
+    "torchvision",
+    "tqdm"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/facexlib/bin/python3', '-m', 'pip', 'install', 'facexlib']' returned non-zero exit status 2.\"}"
+}

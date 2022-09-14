@@ -1,0 +1,10 @@
+{
+  "name": "dtw",
+  "version": "1.4.0",
+  "modules": [
+    "dtw",
+    "numpy",
+    "scipy",
+    "tests"
+  ]
+}

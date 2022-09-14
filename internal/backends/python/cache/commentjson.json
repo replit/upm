@@ -1,0 +1,8 @@
+{
+  "name": "commentjson",
+  "version": "0.9.0",
+  "modules": [
+    "commentjson",
+    "lark"
+  ]
+}

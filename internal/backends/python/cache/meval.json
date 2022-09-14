@@ -1,0 +1,7 @@
+{
+  "name": "meval",
+  "version": "2.5",
+  "modules": [
+    "meval"
+  ]
+}

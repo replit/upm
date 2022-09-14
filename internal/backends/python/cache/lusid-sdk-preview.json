@@ -1,0 +1,23 @@
+{
+  "name": "lusid-sdk-preview",
+  "version": "0.11.4785",
+  "requires_dist": [
+    "certifi",
+    "six",
+    "python-dateutil",
+    "urllib3",
+    "requests",
+    "pytz"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "lusid",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

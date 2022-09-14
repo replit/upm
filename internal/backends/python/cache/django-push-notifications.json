@@ -1,0 +1,19 @@
+{
+  "name": "django-push-notifications",
+  "version": "3.0.0",
+  "requires_dist": [
+    "Django",
+    "apns2",
+    "pywebpush",
+    "Django",
+    "importlib-metadata",
+    "pywebpush"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "push_notifications",
+    "sqlparse"
+  ]
+}

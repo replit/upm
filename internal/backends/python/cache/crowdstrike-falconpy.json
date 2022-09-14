@@ -1,0 +1,23 @@
+{
+  "name": "crowdstrike-falconpy",
+  "version": "1.2.1",
+  "requires_dist": [
+    "requests",
+    "urllib3",
+    "flake8",
+    "coverage",
+    "pydocstyle",
+    "pylint",
+    "pytest-cov",
+    "pytest",
+    "bandit"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "falconpy",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

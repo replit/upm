@@ -1,0 +1,7 @@
+{
+  "name": "pglast",
+  "version": "3.14",
+  "modules": [
+    "pglast"
+  ]
+}

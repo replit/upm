@@ -1,0 +1,7 @@
+{
+  "name": "clvm-rs",
+  "version": "0.1.23",
+  "modules": [
+    "clvm_rs"
+  ]
+}

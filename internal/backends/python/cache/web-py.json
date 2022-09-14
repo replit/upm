@@ -1,0 +1,10 @@
+{
+  "name": "web.py",
+  "version": "0.62",
+  "modules": [
+    "cheroot",
+    "more_itertools",
+    "six",
+    "web"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "fanstatic",
+  "version": "1.2",
+  "requires_dist": [
+    "WebOb",
+    "setuptools",
+    "shutilwhich",
+    "closure",
+    "cssmin",
+    "jsmin",
+    "closure",
+    "cssmin",
+    "jsmin",
+    "pytest"
+  ],
+  "modules": [
+    "fanstatic",
+    "shutilwhich",
+    "webob"
+  ]
+}

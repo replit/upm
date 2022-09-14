@@ -1,0 +1,8 @@
+{
+  "name": "django-url-shortening",
+  "version": "1.0.0",
+  "modules": [
+    "six",
+    "urlshortening"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "py-gfm",
+  "version": "1.0.2",
+  "requires_dist": [
+    "markdown"
+  ],
+  "modules": [
+    "gfm",
+    "importlib_metadata",
+    "markdown",
+    "mdx_gfm",
+    "mdx_partial_gfm",
+    "zipp"
+  ]
+}

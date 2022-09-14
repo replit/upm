@@ -1,0 +1,22 @@
+{
+  "name": "salt",
+  "version": "3005",
+  "modules": [
+    "Cryptodome",
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "distro",
+    "idna",
+    "immutables",
+    "jinja2",
+    "markupsafe",
+    "msgpack",
+    "psutil",
+    "requests",
+    "salt",
+    "urllib3",
+    "yaml",
+    "zmq"
+  ]
+}

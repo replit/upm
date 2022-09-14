@@ -1,0 +1,11 @@
+{
+  "name": "coverage-badge",
+  "version": "1.1.0",
+  "requires_dist": [
+    "coverage"
+  ],
+  "modules": [
+    "coverage",
+    "coverage_badge"
+  ]
+}

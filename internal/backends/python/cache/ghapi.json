@@ -1,0 +1,17 @@
+{
+  "name": "ghapi",
+  "version": "1.0.3",
+  "requires_dist": [
+    "pip",
+    "packaging",
+    "fastcore",
+    "jsonref",
+    "matplotlib"
+  ],
+  "modules": [
+    "fastcore",
+    "ghapi",
+    "packaging",
+    "pyparsing"
+  ]
+}

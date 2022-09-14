@@ -1,0 +1,25 @@
+{
+  "name": "triad",
+  "version": "0.6.7",
+  "requires_dist": [
+    "pandas",
+    "six",
+    "pyarrow",
+    "fs",
+    "importlib-metadata",
+    "ciso8601"
+  ],
+  "modules": [
+    "appdirs",
+    "dateutil",
+    "fs",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pytz",
+    "six",
+    "tests",
+    "triad",
+    "triad_version"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "nassl",
+  "version": "4.0.2",
+  "modules": [
+    "nassl"
+  ]
+}

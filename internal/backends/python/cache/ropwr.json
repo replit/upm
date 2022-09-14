@@ -1,0 +1,27 @@
+{
+  "name": "ropwr",
+  "version": "0.2.0",
+  "requires_dist": [
+    "cvxpy",
+    "numpy",
+    "scikit-learn"
+  ],
+  "modules": [
+    "_cvxcore",
+    "_ecos",
+    "_scs_direct",
+    "_scs_indirect",
+    "cvxpy",
+    "ecos",
+    "joblib",
+    "numpy",
+    "osqp",
+    "osqppurepy",
+    "qdldl",
+    "ropwr",
+    "scipy",
+    "scs",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

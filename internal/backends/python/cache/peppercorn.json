@@ -1,0 +1,11 @@
+{
+  "name": "peppercorn",
+  "version": "0.6",
+  "requires_dist": [
+    "Sphinx",
+    "pylons-sphinx-themes"
+  ],
+  "modules": [
+    "peppercorn"
+  ]
+}

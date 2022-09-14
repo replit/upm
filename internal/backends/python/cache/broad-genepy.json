@@ -1,0 +1,28 @@
+{
+  "name": "Broad-genepy",
+  "version": "1.2.6",
+  "requires_dist": [
+    "bokeh",
+    "colorcet",
+    "firecloud-dalmatian",
+    "gseapy",
+    "gsheets",
+    "gspread",
+    "matplotlib",
+    "oauth2client",
+    "pandas",
+    "pybedtools",
+    "pyBigWig",
+    "pysam",
+    "pytest",
+    "requests",
+    "scikit-learn",
+    "scipy",
+    "seaborn",
+    "statsmodels",
+    "taigapy",
+    "venn",
+    "biomart"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/Broad-genepy/bin/python3', '-m', 'pip', 'install', 'Broad-genepy']' returned non-zero exit status 1.\"}"
+}

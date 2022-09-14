@@ -1,0 +1,19 @@
+{
+  "name": "dnspython",
+  "version": "2.2.1",
+  "requires_dist": [
+    "cryptography",
+    "curio",
+    "h2",
+    "httpx",
+    "idna",
+    "requests",
+    "requests-toolbelt",
+    "sniffio",
+    "trio",
+    "wmi"
+  ],
+  "modules": [
+    "dns"
+  ]
+}

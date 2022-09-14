@@ -1,0 +1,14 @@
+{
+  "name": "snowplow_analytics_sdk",
+  "version": "0.2.3",
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "snowplow_analytics_sdk",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "db-dtypes",
+  "version": "1.0.3",
+  "requires_dist": [
+    "packaging",
+    "pandas",
+    "pyarrow",
+    "numpy"
+  ],
+  "modules": [
+    "dateutil",
+    "db_dtypes",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pyarrow",
+    "pyparsing",
+    "pytz",
+    "six"
+  ]
+}

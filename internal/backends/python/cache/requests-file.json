@@ -1,0 +1,17 @@
+{
+  "name": "requests-file",
+  "version": "1.5.1",
+  "requires_dist": [
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_file",
+    "six",
+    "urllib3"
+  ]
+}

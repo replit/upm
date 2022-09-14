@@ -1,0 +1,7 @@
+{
+  "name": "prodict",
+  "version": "0.8.18",
+  "modules": [
+    "prodict"
+  ]
+}

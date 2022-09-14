@@ -1,0 +1,18 @@
+{
+  "name": "pyrate-limiter",
+  "version": "2.8.1",
+  "requires_dist": [
+    "filelock",
+    "redis",
+    "redis-py-cluster",
+    "furo",
+    "myst-parser",
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "sphinx-copybutton",
+    "sphinxcontrib-apidoc"
+  ],
+  "modules": [
+    "pyrate_limiter"
+  ]
+}

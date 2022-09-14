@@ -1,0 +1,29 @@
+{
+  "name": "lime",
+  "version": "0.2.0.1",
+  "modules": [
+    "PIL",
+    "benchmark",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "imageio",
+    "joblib",
+    "kiwisolver",
+    "lime",
+    "matplotlib",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "pywt",
+    "scipy",
+    "six",
+    "skimage",
+    "sklearn",
+    "threadpoolctl",
+    "tifffile",
+    "tqdm"
+  ]
+}

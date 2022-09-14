@@ -1,0 +1,11 @@
+{
+  "name": "pyIsEmail",
+  "version": "1.4.0",
+  "requires_dist": [
+    "dnspython"
+  ],
+  "modules": [
+    "dns",
+    "pyisemail"
+  ]
+}

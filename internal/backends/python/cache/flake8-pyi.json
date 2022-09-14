@@ -1,0 +1,17 @@
+{
+  "name": "flake8-pyi",
+  "version": "22.8.2",
+  "requires_dist": [
+    "flake8",
+    "pyflakes",
+    "ast-decompiler"
+  ],
+  "modules": [
+    "ast_decompiler",
+    "flake8",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "pyi"
+  ]
+}

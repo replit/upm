@@ -1,0 +1,22 @@
+{
+  "name": "Flask-Bootstrap4",
+  "version": "4.0.2",
+  "requires_dist": [
+    "Flask",
+    "dominate",
+    "visitor"
+  ],
+  "modules": [
+    "click",
+    "dominate",
+    "flask",
+    "flask_bootstrap",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "visitor",
+    "werkzeug",
+    "zipp"
+  ]
+}

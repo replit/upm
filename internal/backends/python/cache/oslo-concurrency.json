@@ -1,0 +1,36 @@
+{
+  "name": "oslo.concurrency",
+  "version": "5.0.1",
+  "requires_dist": [
+    "fasteners",
+    "oslo.config",
+    "oslo.i18n",
+    "oslo.utils",
+    "pbr"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "debtcollector",
+    "fasteners",
+    "idna",
+    "iso8601",
+    "netaddr",
+    "netifaces",
+    "oslo_concurrency",
+    "oslo_config",
+    "oslo_i18n",
+    "oslo_utils",
+    "packaging",
+    "pbr",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "rfc3986",
+    "stevedore",
+    "urllib3",
+    "wrapt",
+    "yaml"
+  ]
+}

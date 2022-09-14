@@ -1,0 +1,7 @@
+{
+  "name": "pandocfilters",
+  "version": "1.5.0",
+  "modules": [
+    "pandocfilters"
+  ]
+}

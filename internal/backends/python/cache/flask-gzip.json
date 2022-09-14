@@ -1,0 +1,15 @@
+{
+  "name": "Flask-gzip",
+  "version": "0.2",
+  "modules": [
+    "click",
+    "flask",
+    "flask_gzip",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

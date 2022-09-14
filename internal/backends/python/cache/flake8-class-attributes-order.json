@@ -1,0 +1,16 @@
+{
+  "name": "flake8-class-attributes-order",
+  "version": "0.1.3",
+  "requires_dist": [
+    "flake8",
+    "typing-extensions"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_class_attributes_order",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "dimod",
+  "version": "0.11.5",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "dimod",
+    "numpy"
+  ]
+}

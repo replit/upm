@@ -1,0 +1,43 @@
+{
+  "name": "python-documentcloud",
+  "version": "3.1.2",
+  "requires_dist": [
+    "future",
+    "listcrunch",
+    "python-dateutil",
+    "ratelimit",
+    "requests",
+    "urllib3",
+    "pyyaml",
+    "fastjsonschema",
+    "black",
+    "coverage",
+    "isort",
+    "pylint",
+    "sphinx",
+    "twine",
+    "pytest",
+    "pytest-mock",
+    "pytest-recording",
+    "vcrpy"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "documentcloud",
+    "fastjsonschema",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "listcrunch",
+    "past",
+    "ratelimit",
+    "requests",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

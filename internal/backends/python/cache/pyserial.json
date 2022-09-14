@@ -1,0 +1,10 @@
+{
+  "name": "pyserial",
+  "version": "3.5",
+  "requires_dist": [
+    "hidapi"
+  ],
+  "modules": [
+    "serial"
+  ]
+}

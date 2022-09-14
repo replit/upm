@@ -1,0 +1,24 @@
+{
+  "name": "pythena",
+  "version": "1.6.0",
+  "requires_dist": [
+    "pandas",
+    "boto3",
+    "botocore",
+    "retrying"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "numpy",
+    "pandas",
+    "pythena",
+    "pytz",
+    "retrying",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

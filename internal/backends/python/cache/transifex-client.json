@@ -1,0 +1,18 @@
+{
+  "name": "transifex-client",
+  "version": "0.14.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "git",
+    "gitdb",
+    "idna",
+    "requests",
+    "six",
+    "slugify",
+    "smmap",
+    "text_unidecode",
+    "txclib",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "cppimport",
+  "version": "22.8.2",
+  "modules": [
+    "cppimport",
+    "filelock",
+    "mako",
+    "markupsafe",
+    "pybind11"
+  ]
+}

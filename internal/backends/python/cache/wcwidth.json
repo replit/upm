@@ -1,0 +1,10 @@
+{
+  "name": "wcwidth",
+  "version": "0.2.5",
+  "requires_dist": [
+    "backports.functools-lru-cache"
+  ],
+  "modules": [
+    "wcwidth"
+  ]
+}

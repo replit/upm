@@ -1,0 +1,7 @@
+{
+  "name": "tzdata",
+  "version": "2022.2",
+  "modules": [
+    "tzdata"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "tasks",
+  "version": "2.8.0",
+  "requires_dist": [
+    "datadispatch"
+  ],
+  "modules": [
+    "datadispatch",
+    "tasks"
+  ]
+}

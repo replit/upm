@@ -1,0 +1,15 @@
+{
+  "name": "starlette-context",
+  "version": "0.3.4",
+  "requires_dist": [
+    "starlette"
+  ],
+  "modules": [
+    "anyio",
+    "idna",
+    "sniffio",
+    "starlette",
+    "starlette_context",
+    "typing_extensions"
+  ]
+}

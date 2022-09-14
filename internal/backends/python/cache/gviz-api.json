@@ -1,0 +1,11 @@
+{
+  "name": "gviz-api",
+  "version": "1.10.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "gviz_api",
+    "six"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "gcloud-rest-auth",
+  "version": "4.0.1",
+  "requires_dist": [
+    "backoff",
+    "cffi",
+    "chardet",
+    "chardet",
+    "cryptography",
+    "future",
+    "pyjwt",
+    "requests",
+    "six",
+    "typing"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "backoff",
+    "certifi",
+    "cffi",
+    "chardet",
+    "charset_normalizer",
+    "cryptography",
+    "future",
+    "gcloud",
+    "idna",
+    "jwt",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

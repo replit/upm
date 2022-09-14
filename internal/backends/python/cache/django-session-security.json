@@ -1,0 +1,14 @@
+{
+  "name": "django-session-security",
+  "version": "2.6.7",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "session_security",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pyclustering",
+  "version": "0.10.1.2",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pyclustering",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six"
+  ]
+}

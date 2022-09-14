@@ -1,0 +1,7 @@
+{
+  "name": "python-editor",
+  "version": "1.0.4",
+  "modules": [
+    "editor"
+  ]
+}

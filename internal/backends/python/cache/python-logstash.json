@@ -1,0 +1,7 @@
+{
+  "name": "python-logstash",
+  "version": "0.4.8",
+  "modules": [
+    "logstash"
+  ]
+}

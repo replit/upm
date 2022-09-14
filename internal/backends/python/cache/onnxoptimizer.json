@@ -1,0 +1,14 @@
+{
+  "name": "onnxoptimizer",
+  "version": "0.3.1",
+  "requires_dist": [
+    "onnx",
+    "mypy"
+  ],
+  "modules": [
+    "numpy",
+    "onnx",
+    "onnxoptimizer",
+    "typing_extensions"
+  ]
+}

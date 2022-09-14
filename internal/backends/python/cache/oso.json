@@ -1,0 +1,19 @@
+{
+  "name": "oso",
+  "version": "0.26.2",
+  "requires_dist": [
+    "cffi",
+    "dataclasses",
+    "flask",
+    "authlib",
+    "authlib"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_polar_lib",
+    "cffi",
+    "oso",
+    "polar",
+    "pycparser"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "MapProxy",
+  "version": "1.15.1",
+  "modules": [
+    "PIL",
+    "_yaml",
+    "mapproxy",
+    "yaml"
+  ]
+}

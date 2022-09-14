@@ -1,0 +1,33 @@
+{
+  "name": "zope.intid",
+  "version": "4.4.0",
+  "requires_dist": [
+    "persistent",
+    "BTrees",
+    "setuptools",
+    "zope.lifecycleevent",
+    "zope.component",
+    "zope.event",
+    "zope.interface",
+    "zope.keyreference",
+    "zope.location",
+    "zope.security",
+    "ZODB",
+    "zope.testing",
+    "zope.site",
+    "zope.traversing",
+    "zope.container"
+  ],
+  "modules": [
+    "BTrees",
+    "ZConfig",
+    "ZODB",
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser",
+    "six",
+    "transaction",
+    "zodbpickle"
+  ]
+}

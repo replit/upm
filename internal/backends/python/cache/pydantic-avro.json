@@ -1,0 +1,12 @@
+{
+  "name": "pydantic-avro",
+  "version": "0.4.2",
+  "requires_dist": [
+    "pydantic"
+  ],
+  "modules": [
+    "pydantic",
+    "pydantic_avro",
+    "typing_extensions"
+  ]
+}

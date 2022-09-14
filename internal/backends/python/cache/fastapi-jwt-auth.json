@@ -1,0 +1,28 @@
+{
+  "name": "fastapi-jwt-auth",
+  "version": "0.5.0",
+  "requires_dist": [
+    "fastapi",
+    "PyJWT",
+    "cryptography",
+    "cryptography",
+    "uvicorn",
+    "mkdocs",
+    "mkdocs-material",
+    "markdown-include",
+    "pytest",
+    "pytest-cov",
+    "coveralls"
+  ],
+  "modules": [
+    "anyio",
+    "fastapi",
+    "fastapi_jwt_auth",
+    "idna",
+    "jwt",
+    "pydantic",
+    "sniffio",
+    "starlette",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-admin-easy",
+  "version": "0.6.1",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "easy",
+    "sqlparse"
+  ]
+}

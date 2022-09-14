@@ -1,0 +1,7 @@
+{
+  "name": "shortid",
+  "version": "0.1.2",
+  "modules": [
+    "shortid"
+  ]
+}

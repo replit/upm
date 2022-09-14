@@ -1,0 +1,14 @@
+{
+  "name": "trading-calendars",
+  "version": "2.1.1",
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "tlz",
+    "toolz",
+    "trading_calendars"
+  ]
+}

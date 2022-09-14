@@ -1,0 +1,9 @@
+{
+  "name": "PyNomaly",
+  "version": "0.3.3",
+  "modules": [
+    "PyNomaly",
+    "numpy",
+    "python_utils"
+  ]
+}

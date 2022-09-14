@@ -1,0 +1,13 @@
+{
+  "name": "facebookads",
+  "version": "2.11.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "facebookads",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

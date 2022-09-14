@@ -1,0 +1,38 @@
+{
+  "name": "flask-shell-ipython",
+  "version": "0.4.1",
+  "requires_dist": [
+    "flask",
+    "click",
+    "IPython"
+  ],
+  "modules": [
+    "IPython",
+    "asttokens",
+    "backcall",
+    "click",
+    "decorator",
+    "executing",
+    "flask",
+    "flask_shell_ipython",
+    "importlib_metadata",
+    "itsdangerous",
+    "jedi",
+    "jinja2",
+    "markupsafe",
+    "matplotlib_inline",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pygments",
+    "six",
+    "stack_data",
+    "traitlets",
+    "wcwidth",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "missingno",
+  "version": "0.5.1",
+  "requires_dist": [
+    "numpy",
+    "matplotlib",
+    "scipy",
+    "seaborn",
+    "pytest",
+    "pytest-mpl"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "missingno",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "seaborn",
+    "six"
+  ]
+}

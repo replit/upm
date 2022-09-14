@@ -1,0 +1,11 @@
+{
+  "name": "warcio",
+  "version": "1.7.4",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "six",
+    "warcio"
+  ]
+}

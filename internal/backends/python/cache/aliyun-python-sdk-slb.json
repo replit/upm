@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-slb",
+  "version": "3.3.17",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkslb",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

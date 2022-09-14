@@ -1,0 +1,14 @@
+{
+  "name": "hivejdbc",
+  "version": "0.2.3",
+  "requires_dist": [
+    "pyjdbc"
+  ],
+  "modules": [
+    "_jpype",
+    "hivejdbc",
+    "jpype",
+    "pyjdbc",
+    "sqlparams"
+  ]
+}

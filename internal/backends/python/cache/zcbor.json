@@ -1,0 +1,17 @@
+{
+  "name": "zcbor",
+  "version": "0.5.1",
+  "requires_dist": [
+    "cbor2",
+    "pyyaml",
+    "regex"
+  ],
+  "modules": [
+    "_cbor2",
+    "_yaml",
+    "cbor2",
+    "regex",
+    "yaml",
+    "zcbor"
+  ]
+}

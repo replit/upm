@@ -1,0 +1,13 @@
+{
+  "name": "click-shell",
+  "version": "2.1",
+  "requires_dist": [
+    "click",
+    "gnureadline",
+    "pyreadline"
+  ],
+  "modules": [
+    "click",
+    "click_shell"
+  ]
+}

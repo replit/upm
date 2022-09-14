@@ -1,0 +1,17 @@
+{
+  "name": "amplpy",
+  "version": "0.8.5",
+  "requires_dist": [
+    "future",
+    "ampltools"
+  ],
+  "modules": [
+    "_amplpython",
+    "amplpy",
+    "ampltools",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

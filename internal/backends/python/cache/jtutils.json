@@ -1,0 +1,25 @@
+{
+  "name": "jtutils",
+  "version": "0.0.8",
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "h11",
+    "idna",
+    "jtutils",
+    "outcome",
+    "requests",
+    "selenium",
+    "sniffio",
+    "sortedcontainers",
+    "soupsieve",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

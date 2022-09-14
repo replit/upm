@@ -1,0 +1,20 @@
+{
+  "name": "active-semi-supervised-clustering",
+  "version": "0.0.1",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "metric-learn"
+  ],
+  "modules": [
+    "active_semi_clustering",
+    "active_semi_supervised_clustering",
+    "joblib",
+    "metric_learn",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

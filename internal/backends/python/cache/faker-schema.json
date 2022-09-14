@@ -1,0 +1,10 @@
+{
+  "name": "faker-schema",
+  "version": "0.1.4",
+  "modules": [
+    "dateutil",
+    "faker",
+    "faker_schema",
+    "six"
+  ]
+}

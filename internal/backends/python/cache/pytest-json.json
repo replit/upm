@@ -1,0 +1,17 @@
+{
+  "name": "pytest-json",
+  "version": "0.4.0",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_json",
+    "tomli"
+  ]
+}

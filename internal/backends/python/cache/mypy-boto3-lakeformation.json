@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-lakeformation",
+  "version": "1.24.54",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_lakeformation",
+    "typing_extensions"
+  ]
+}

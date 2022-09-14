@@ -1,0 +1,12 @@
+{
+  "name": "JustWatch",
+  "version": "0.5.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "justwatch",
+    "requests",
+    "urllib3"
+  ]
+}

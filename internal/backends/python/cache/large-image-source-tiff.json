@@ -1,0 +1,12 @@
+{
+  "name": "large-image-source-tiff",
+  "version": "1.16.2",
+  "requires_dist": [
+    "large-image",
+    "pylibtiff",
+    "tifftools",
+    "importlib-metadata",
+    "girder-large-image"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/large-image-source-tiff/bin/python3', '-m', 'pip', 'install', 'large-image-source-tiff']' returned non-zero exit status 1.\"}"
+}

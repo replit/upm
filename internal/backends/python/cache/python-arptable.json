@@ -1,0 +1,7 @@
+{
+  "name": "python_arptable",
+  "version": "0.0.2",
+  "modules": [
+    "python_arptable"
+  ]
+}

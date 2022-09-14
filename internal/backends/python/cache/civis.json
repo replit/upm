@@ -1,0 +1,39 @@
+{
+  "name": "civis",
+  "version": "1.16.0",
+  "requires_dist": [
+    "pyyaml",
+    "click",
+    "jsonref",
+    "requests",
+    "jsonschema",
+    "joblib",
+    "cloudpickle",
+    "tenacity"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "civis",
+    "click",
+    "cloudpickle",
+    "idna",
+    "importlib_resources",
+    "joblib",
+    "jsonref",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "proxytypes",
+    "pvectorc",
+    "pyrsistent",
+    "requests",
+    "tenacity",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "multiprocess",
+  "version": "0.70.13",
+  "requires_dist": [
+    "dill"
+  ],
+  "modules": [
+    "_multiprocess",
+    "dill",
+    "multiprocess"
+  ]
+}

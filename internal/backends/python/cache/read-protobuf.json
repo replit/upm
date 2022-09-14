@@ -1,0 +1,16 @@
+{
+  "name": "read-protobuf",
+  "version": "0.1.1",
+  "requires_dist": [
+    "pandas",
+    "protobuf"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "read_protobuf",
+    "six"
+  ]
+}

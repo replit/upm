@@ -1,0 +1,22 @@
+{
+  "name": "azure-applicationinsights",
+  "version": "0.1.1",
+  "requires_dist": [
+    "msrest",
+    "azure-common",
+    "azure-nspkg"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

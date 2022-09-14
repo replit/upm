@@ -1,0 +1,7 @@
+{
+  "name": "xmljson",
+  "version": "0.2.1",
+  "modules": [
+    "xmljson"
+  ]
+}

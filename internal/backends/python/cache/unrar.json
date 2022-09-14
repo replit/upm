@@ -1,0 +1,7 @@
+{
+  "name": "unrar",
+  "version": "0.4",
+  "modules": [
+    "unrar"
+  ]
+}

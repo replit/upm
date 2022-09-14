@@ -1,0 +1,32 @@
+{
+  "name": "cherrypy-cors",
+  "version": "1.6",
+  "requires_dist": [
+    "cherrypy",
+    "httpagentparser",
+    "jaraco.packaging",
+    "rst.linker",
+    "sphinx",
+    "collective.checkdocs",
+    "pygments",
+    "pytest",
+    "pytest-sugar"
+  ],
+  "modules": [
+    "autocommand",
+    "cheroot",
+    "cherrypy",
+    "cherrypy_cors",
+    "httpagentparser",
+    "importlib_resources",
+    "inflect",
+    "more_itertools",
+    "portend",
+    "pydantic",
+    "pytz",
+    "six",
+    "tempora",
+    "typing_extensions",
+    "zipp"
+  ]
+}

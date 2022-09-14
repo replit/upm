@@ -1,0 +1,27 @@
+{
+  "name": "spotipy",
+  "version": "2.20.0",
+  "requires_dist": [
+    "redis",
+    "requests",
+    "six",
+    "urllib3",
+    "Sphinx",
+    "mock"
+  ],
+  "modules": [
+    "async_timeout",
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "requests",
+    "six",
+    "spotipy",
+    "urllib3",
+    "wrapt"
+  ]
+}

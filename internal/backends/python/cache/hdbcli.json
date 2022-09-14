@@ -1,0 +1,8 @@
+{
+  "name": "hdbcli",
+  "version": "2.13.22",
+  "modules": [
+    "hdbcli",
+    "pyhdbcli"
+  ]
+}

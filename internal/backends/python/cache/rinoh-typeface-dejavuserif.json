@@ -1,0 +1,36 @@
+{
+  "name": "rinoh-typeface-dejavuserif",
+  "version": "0.1.3",
+  "requires_dist": [
+    "rinohtype"
+  ],
+  "modules": [
+    "alabaster",
+    "appdirs",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "commonmark",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "recommonmark",
+    "requests",
+    "rinoh",
+    "rinoh_typeface_dejavuserif",
+    "rinoh_typeface_texgyrecursor",
+    "rinoh_typeface_texgyreheros",
+    "rinoh_typeface_texgyrepagella",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

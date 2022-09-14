@@ -1,0 +1,5 @@
+{
+  "name": "thriftpy",
+  "version": "0.3.9",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/thriftpy/bin/python3', '-m', 'pip', 'install', 'thriftpy']' returned non-zero exit status 1.\"}"
+}

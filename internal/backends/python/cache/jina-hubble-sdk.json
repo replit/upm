@@ -1,0 +1,43 @@
+{
+  "name": "jina-hubble-sdk",
+  "version": "0.16.1",
+  "requires_dist": [
+    "requests",
+    "aiohttp",
+    "rich",
+    "importlib-metadata",
+    "black",
+    "flake8",
+    "isort",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "mock",
+    "requests",
+    "aiohttp",
+    "rich",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "commonmark",
+    "frozenlist",
+    "hubble",
+    "idna",
+    "importlib_metadata",
+    "multidict",
+    "pygments",
+    "requests",
+    "rich",
+    "typing_extensions",
+    "urllib3",
+    "yarl",
+    "zipp"
+  ]
+}

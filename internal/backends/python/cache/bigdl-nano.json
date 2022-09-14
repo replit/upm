@@ -1,0 +1,21 @@
+{
+  "name": "bigdl-nano",
+  "version": "2.0.0",
+  "requires_dist": [
+    "intel-openmp",
+    "torch",
+    "torchvision",
+    "pytorch-lightning",
+    "opencv-python-headless",
+    "PyTurboJPEG",
+    "opencv-transforms",
+    "onnx",
+    "onnxruntime",
+    "intel-tensorflow",
+    "keras",
+    "tensorflow-estimator"
+  ],
+  "modules": [
+    "bigdl"
+  ]
+}

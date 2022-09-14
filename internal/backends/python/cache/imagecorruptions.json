@@ -1,0 +1,25 @@
+{
+  "name": "imagecorruptions",
+  "version": "1.1.2",
+  "requires_dist": [
+    "Pillow",
+    "numpy",
+    "opencv-python",
+    "scikit-image",
+    "scipy"
+  ],
+  "modules": [
+    "PIL",
+    "cv2",
+    "imagecorruptions",
+    "imageio",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "pywt",
+    "scipy",
+    "skimage",
+    "tifffile"
+  ]
+}

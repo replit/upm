@@ -1,0 +1,29 @@
+{
+  "name": "glow.py",
+  "version": "1.2.1",
+  "requires_dist": [
+    "nptyping",
+    "numpy",
+    "opt-einsum",
+    "pandas",
+    "statsmodels",
+    "typeguard"
+  ],
+  "modules": [
+    "dateutil",
+    "glow",
+    "nptyping",
+    "numpy",
+    "opt_einsum",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels",
+    "typeguard",
+    "typish"
+  ]
+}

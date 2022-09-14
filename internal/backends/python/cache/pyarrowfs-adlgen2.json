@@ -1,0 +1,30 @@
+{
+  "name": "pyarrowfs-adlgen2",
+  "version": "0.2.3",
+  "requires_dist": [
+    "pyarrow",
+    "azure-storage-file-datalake",
+    "pandas",
+    "pytest"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "isodate",
+    "msrest",
+    "numpy",
+    "oauthlib",
+    "pyarrow",
+    "pyarrowfs_adlgen2",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

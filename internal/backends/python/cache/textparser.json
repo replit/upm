@@ -1,0 +1,7 @@
+{
+  "name": "textparser",
+  "version": "0.24.0",
+  "modules": [
+    "textparser"
+  ]
+}

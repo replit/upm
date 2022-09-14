@@ -1,0 +1,39 @@
+{
+  "name": "pylint-flask-sqlalchemy",
+  "version": "0.2.0",
+  "requires_dist": [
+    "pylint",
+    "Flask-SQLAlchemy",
+    "black",
+    "bump2version",
+    "gitchangelog",
+    "pystache",
+    "mypy"
+  ],
+  "modules": [
+    "astroid",
+    "click",
+    "dill",
+    "flask",
+    "flask_sqlalchemy",
+    "greenlet",
+    "importlib_metadata",
+    "isort",
+    "itsdangerous",
+    "jinja2",
+    "lazy_object_proxy",
+    "markupsafe",
+    "mccabe",
+    "platformdirs",
+    "pylint",
+    "pylint_flask_sqlalchemy",
+    "sqlalchemy",
+    "tests",
+    "tomli",
+    "tomlkit",
+    "typing_extensions",
+    "werkzeug",
+    "wrapt",
+    "zipp"
+  ]
+}

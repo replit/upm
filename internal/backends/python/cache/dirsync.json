@@ -1,0 +1,8 @@
+{
+  "name": "dirsync",
+  "version": "2.2.5",
+  "modules": [
+    "dirsync",
+    "six"
+  ]
+}

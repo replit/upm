@@ -1,0 +1,19 @@
+{
+  "name": "pyOpenSSL",
+  "version": "22.0.0",
+  "requires_dist": [
+    "cryptography",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "flaky",
+    "pretend",
+    "pytest"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pycparser"
+  ]
+}

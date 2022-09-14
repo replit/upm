@@ -1,0 +1,22 @@
+{
+  "name": "remarshal",
+  "version": "0.14.0",
+  "requires_dist": [
+    "cbor2",
+    "python-dateutil",
+    "PyYAML",
+    "tomlkit",
+    "u-msgpack-python"
+  ],
+  "modules": [
+    "_cbor2",
+    "_yaml",
+    "cbor2",
+    "dateutil",
+    "remarshal",
+    "six",
+    "tomlkit",
+    "umsgpack",
+    "yaml"
+  ]
+}

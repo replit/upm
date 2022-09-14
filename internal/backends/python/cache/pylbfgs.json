@@ -1,0 +1,11 @@
+{
+  "name": "PyLBFGS",
+  "version": "0.2.0.14",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "lbfgs",
+    "numpy"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "youtokentome",
+  "version": "1.0.6",
+  "requires_dist": [
+    "Click"
+  ],
+  "modules": [
+    "_youtokentome_cython",
+    "click",
+    "youtokentome"
+  ]
+}

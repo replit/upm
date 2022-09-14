@@ -1,0 +1,36 @@
+{
+  "name": "uproot",
+  "version": "4.3.5",
+  "requires_dist": [
+    "numpy",
+    "setuptools",
+    "awkward",
+    "pandas",
+    "boost-histogram",
+    "hist",
+    "pytest",
+    "flake8",
+    "flake8-print",
+    "scikit-hep-testdata",
+    "lz4",
+    "xxhash",
+    "requests",
+    "dask",
+    "awkward",
+    "pandas",
+    "boost-histogram",
+    "hist",
+    "pytest",
+    "flake8",
+    "flake8-print",
+    "scikit-hep-testdata",
+    "lz4",
+    "xxhash",
+    "requests",
+    "dask"
+  ],
+  "modules": [
+    "numpy",
+    "uproot"
+  ]
+}

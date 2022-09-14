@@ -1,0 +1,30 @@
+{
+  "name": "abeja-sdk",
+  "version": "2.1.2",
+  "requires_dist": [
+    "requests",
+    "retrying",
+    "tensorboardx",
+    "tomlkit",
+    "typing-extensions",
+    "protobuf",
+    "Sphinx",
+    "guzzle_sphinx_theme",
+    "importlib-metadata",
+    "virtualenv"
+  ],
+  "modules": [
+    "abeja",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "numpy",
+    "requests",
+    "retrying",
+    "six",
+    "tensorboardX",
+    "tomlkit",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "atomacos",
+  "version": "3.3.0",
+  "requires_dist": [
+    "pyobjc-core",
+    "pyobjc-framework-Cocoa",
+    "pyobjc-framework-Quartz",
+    "pyobjc-framework-ApplicationServices",
+    "pyobjc-framework-CoreText",
+    "pygetwindow",
+    "pyscreeze",
+    "pyautogui",
+    "future",
+    "black",
+    "pre-commit",
+    "tox",
+    "sphinx",
+    "m2r2",
+    "pytest",
+    "pytest-cov"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/atomacos/bin/python3', '-m', 'pip', 'install', 'atomacos']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "torch-scatter",
+  "version": "2.0.9",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/torch-scatter/bin/python3', '-m', 'pip', 'install', 'torch-scatter']' returned non-zero exit status 1.\"}"
+}

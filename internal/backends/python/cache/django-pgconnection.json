@@ -1,0 +1,15 @@
+{
+  "name": "django-pgconnection",
+  "version": "1.0.3",
+  "requires_dist": [
+    "django",
+    "importlib_metadata"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pgconnection",
+    "sqlparse"
+  ]
+}

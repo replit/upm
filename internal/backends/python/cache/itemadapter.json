@@ -1,0 +1,7 @@
+{
+  "name": "itemadapter",
+  "version": "0.7.0",
+  "modules": [
+    "itemadapter"
+  ]
+}

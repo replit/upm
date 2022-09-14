@@ -1,0 +1,10 @@
+{
+  "name": "py3Dmol",
+  "version": "1.8.1",
+  "requires_dist": [
+    "IPython"
+  ],
+  "modules": [
+    "py3Dmol"
+  ]
+}

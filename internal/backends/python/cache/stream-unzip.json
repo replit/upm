@@ -1,0 +1,13 @@
+{
+  "name": "stream-unzip",
+  "version": "0.0.69",
+  "requires_dist": [
+    "pycryptodome",
+    "stream-inflate"
+  ],
+  "modules": [
+    "Crypto",
+    "stream_inflate",
+    "stream_unzip"
+  ]
+}

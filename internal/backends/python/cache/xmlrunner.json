@@ -1,0 +1,7 @@
+{
+  "name": "xmlrunner",
+  "version": "1.7.7",
+  "modules": [
+    "xmlrunner"
+  ]
+}

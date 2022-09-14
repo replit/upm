@@ -1,0 +1,25 @@
+{
+  "name": "nfoursid",
+  "version": "1.0.1",
+  "requires_dist": [
+    "matplotlib",
+    "numpy",
+    "pandas"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "nfoursid",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "six"
+  ]
+}

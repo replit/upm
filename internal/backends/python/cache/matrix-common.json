@@ -1,0 +1,25 @@
+{
+  "name": "matrix-common",
+  "version": "1.3.0",
+  "requires_dist": [
+    "attrs",
+    "importlib-metadata",
+    "tox",
+    "twisted",
+    "aiounittest",
+    "mypy",
+    "black",
+    "flake8",
+    "isort",
+    "build",
+    "twine",
+    "tox",
+    "twisted",
+    "aiounittest"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "matrix_common"
+  ]
+}

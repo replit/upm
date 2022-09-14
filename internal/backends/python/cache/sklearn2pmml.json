@@ -1,0 +1,17 @@
+{
+  "name": "sklearn2pmml",
+  "version": "0.86.2",
+  "modules": [
+    "dateutil",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "sklearn2pmml",
+    "sklearn_pandas",
+    "threadpoolctl"
+  ]
+}

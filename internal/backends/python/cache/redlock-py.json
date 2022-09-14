@@ -1,0 +1,13 @@
+{
+  "name": "redlock-py",
+  "version": "1.0.8",
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "redlock",
+    "wrapt"
+  ]
+}

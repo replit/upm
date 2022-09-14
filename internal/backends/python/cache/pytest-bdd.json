@@ -1,0 +1,33 @@
+{
+  "name": "pytest-bdd",
+  "version": "6.0.1",
+  "requires_dist": [
+    "py",
+    "glob2",
+    "Mako",
+    "parse",
+    "parse-type",
+    "pytest",
+    "tox",
+    "mypy"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "glob2",
+    "iniconfig",
+    "mako",
+    "markupsafe",
+    "packaging",
+    "parse",
+    "parse_type",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_bdd",
+    "six",
+    "tomli"
+  ]
+}

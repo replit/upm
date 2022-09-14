@@ -1,0 +1,22 @@
+{
+  "name": "spark-testing-base",
+  "version": "0.10.0",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "findspark",
+    "iniconfig",
+    "linecache2",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "six",
+    "sparktestingbase",
+    "tomli",
+    "traceback2",
+    "unittest2"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "oil-reservoir-synthesizer",
+  "version": "0.1.0",
+  "requires_dist": [
+    "numpy",
+    "pytest",
+    "tox",
+    "pre-commit"
+  ],
+  "modules": [
+    "numpy",
+    "oil_reservoir_synthesizer"
+  ]
+}

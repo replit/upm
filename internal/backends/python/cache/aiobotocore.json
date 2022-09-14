@@ -1,0 +1,33 @@
+{
+  "name": "aiobotocore",
+  "version": "2.4.0",
+  "requires_dist": [
+    "botocore",
+    "aiohttp",
+    "wrapt",
+    "aioitertools",
+    "awscli",
+    "boto3"
+  ],
+  "modules": [
+    "aiobotocore",
+    "aiohttp",
+    "aioitertools",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "botocore",
+    "charset_normalizer",
+    "dateutil",
+    "frozenlist",
+    "idna",
+    "jmespath",
+    "multidict",
+    "six",
+    "typing_extensions",
+    "urllib3",
+    "wrapt",
+    "yarl"
+  ]
+}

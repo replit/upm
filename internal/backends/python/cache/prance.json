@@ -1,0 +1,34 @@
+{
+  "name": "prance",
+  "version": "0.21.8.0",
+  "requires_dist": [
+    "chardet",
+    "ruamel.yaml",
+    "requests",
+    "six",
+    "semver",
+    "click",
+    "tox",
+    "bumpversion",
+    "pytest",
+    "pytest-cov",
+    "sphinx",
+    "towncrier",
+    "flex",
+    "PyICU",
+    "openapi-spec-validator",
+    "swagger-spec-validator"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "certifi",
+    "chardet",
+    "charset_normalizer",
+    "idna",
+    "prance",
+    "requests",
+    "semver",
+    "six",
+    "urllib3"
+  ]
+}

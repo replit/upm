@@ -1,0 +1,12 @@
+{
+  "name": "swagger-ui-bundle",
+  "version": "0.0.9",
+  "requires_dist": [
+    "Jinja2"
+  ],
+  "modules": [
+    "jinja2",
+    "markupsafe",
+    "swagger_ui_bundle"
+  ]
+}

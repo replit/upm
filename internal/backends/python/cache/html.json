@@ -1,0 +1,5 @@
+{
+  "name": "html",
+  "version": "1.16",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/html/bin/python3', '-m', 'pip', 'install', 'html']' returned non-zero exit status 1.\"}"
+}

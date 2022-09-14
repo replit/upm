@@ -1,0 +1,14 @@
+{
+  "name": "jupyterhub-idle-culler",
+  "version": "1.2.1",
+  "requires_dist": [
+    "tornado",
+    "python-dateutil"
+  ],
+  "modules": [
+    "dateutil",
+    "jupyterhub_idle_culler",
+    "six",
+    "tornado"
+  ]
+}

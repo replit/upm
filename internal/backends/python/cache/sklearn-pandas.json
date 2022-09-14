@@ -1,0 +1,22 @@
+{
+  "name": "sklearn-pandas",
+  "version": "2.2.0",
+  "requires_dist": [
+    "scikit-learn",
+    "scipy",
+    "pandas",
+    "numpy"
+  ],
+  "modules": [
+    "dateutil",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "sklearn_pandas",
+    "threadpoolctl"
+  ]
+}

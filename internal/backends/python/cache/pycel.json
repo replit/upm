@@ -1,0 +1,21 @@
+{
+  "name": "pycel",
+  "version": "1.0b30",
+  "requires_dist": [
+    "networkx",
+    "numpy",
+    "openpyxl",
+    "python-dateutil",
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "dateutil",
+    "et_xmlfile",
+    "networkx",
+    "numpy",
+    "openpyxl",
+    "pycel",
+    "six"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "interrogate",
+  "version": "1.5.0",
+  "requires_dist": [
+    "attrs",
+    "click",
+    "colorama",
+    "py",
+    "tabulate",
+    "toml",
+    "cairosvg",
+    "sphinx",
+    "sphinx-autobuild",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "wheel",
+    "pre-commit",
+    "sphinx",
+    "sphinx-autobuild",
+    "cairosvg",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "click",
+    "colorama",
+    "interrogate",
+    "py",
+    "tabulate",
+    "toml"
+  ]
+}

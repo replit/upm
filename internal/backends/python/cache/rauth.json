@@ -1,0 +1,12 @@
+{
+  "name": "rauth",
+  "version": "0.7.3",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "rauth",
+    "requests",
+    "urllib3"
+  ]
+}

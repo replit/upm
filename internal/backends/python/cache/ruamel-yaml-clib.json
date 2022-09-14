@@ -1,0 +1,7 @@
+{
+  "name": "ruamel.yaml.clib",
+  "version": "0.2.6",
+  "modules": [
+    "_ruamel_yaml"
+  ]
+}

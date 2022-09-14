@@ -1,0 +1,14 @@
+{
+  "name": "isort",
+  "version": "5.10.1",
+  "requires_dist": [
+    "pipreqs",
+    "requirementslib",
+    "pip-api",
+    "colorama",
+    "setuptools"
+  ],
+  "modules": [
+    "isort"
+  ]
+}

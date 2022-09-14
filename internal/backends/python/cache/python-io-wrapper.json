@@ -1,0 +1,7 @@
+{
+  "name": "python-io-wrapper",
+  "version": "0.2",
+  "modules": [
+    "io_wrapper"
+  ]
+}

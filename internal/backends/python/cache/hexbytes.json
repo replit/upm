@@ -1,0 +1,40 @@
+{
+  "name": "hexbytes",
+  "version": "0.3.0",
+  "requires_dist": [
+    "bumpversion",
+    "pytest-watch",
+    "wheel",
+    "twine",
+    "ipython",
+    "pytest",
+    "pytest-xdist",
+    "tox",
+    "hypothesis",
+    "eth-utils",
+    "flake8",
+    "isort",
+    "mypy",
+    "pydocstyle",
+    "black",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "towncrier",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "towncrier",
+    "flake8",
+    "isort",
+    "mypy",
+    "pydocstyle",
+    "black",
+    "pytest",
+    "pytest-xdist",
+    "tox",
+    "hypothesis",
+    "eth-utils"
+  ],
+  "modules": [
+    "hexbytes"
+  ]
+}

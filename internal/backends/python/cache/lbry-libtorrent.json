@@ -1,0 +1,7 @@
+{
+  "name": "lbry-libtorrent",
+  "version": "1.2.4",
+  "modules": [
+    "libtorrent"
+  ]
+}

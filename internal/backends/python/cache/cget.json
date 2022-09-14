@@ -1,0 +1,9 @@
+{
+  "name": "cget",
+  "version": "0.2.0",
+  "modules": [
+    "cget",
+    "click",
+    "six"
+  ]
+}

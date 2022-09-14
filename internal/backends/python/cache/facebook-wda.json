@@ -1,0 +1,28 @@
+{
+  "name": "facebook-wda",
+  "version": "1.4.6",
+  "requires_dist": [
+    "requests",
+    "six",
+    "retry",
+    "Pillow",
+    "cached-property",
+    "Deprecated"
+  ],
+  "modules": [
+    "PIL",
+    "cached_property",
+    "certifi",
+    "charset_normalizer",
+    "decorator",
+    "deprecated",
+    "idna",
+    "py",
+    "requests",
+    "retry",
+    "six",
+    "urllib3",
+    "wda",
+    "wrapt"
+  ]
+}

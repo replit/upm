@@ -1,0 +1,7 @@
+{
+  "name": "cucumber-tag-expressions",
+  "version": "4.1.0",
+  "modules": [
+    "cucumber_tag_expressions"
+  ]
+}

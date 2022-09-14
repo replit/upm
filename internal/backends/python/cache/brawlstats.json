@@ -1,0 +1,22 @@
+{
+  "name": "brawlstats",
+  "version": "4.1.1",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "box",
+    "brawlstats",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

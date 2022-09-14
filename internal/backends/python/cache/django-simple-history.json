@@ -1,0 +1,7 @@
+{
+  "name": "django-simple-history",
+  "version": "3.1.1",
+  "modules": [
+    "simple_history"
+  ]
+}

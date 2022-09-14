@@ -1,0 +1,10 @@
+{
+  "name": "fontawesome-markdown",
+  "version": "0.2.6",
+  "modules": [
+    "fontawesome_markdown",
+    "importlib_metadata",
+    "markdown",
+    "zipp"
+  ]
+}

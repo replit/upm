@@ -1,0 +1,14 @@
+{
+  "name": "clvm",
+  "version": "0.9.7",
+  "requires_dist": [
+    "blspy",
+    "clvm-tools",
+    "pytest"
+  ],
+  "modules": [
+    "blspy",
+    "clvm",
+    "wheel"
+  ]
+}

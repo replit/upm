@@ -1,0 +1,38 @@
+{
+  "name": "APScheduler",
+  "version": "3.9.1",
+  "requires_dist": [
+    "setuptools",
+    "six",
+    "pytz",
+    "tzlocal",
+    "funcsigs",
+    "futures",
+    "trollius",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "gevent",
+    "pymongo",
+    "redis",
+    "rethinkdb",
+    "sqlalchemy",
+    "pytest",
+    "pytest-cov",
+    "pytest-tornado5",
+    "mock",
+    "pytest-asyncio",
+    "pytest-asyncio",
+    "tornado",
+    "twisted",
+    "kazoo"
+  ],
+  "modules": [
+    "apscheduler",
+    "backports",
+    "pytz",
+    "pytz_deprecation_shim",
+    "six",
+    "tzdata",
+    "tzlocal"
+  ]
+}

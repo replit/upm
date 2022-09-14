@@ -1,0 +1,7 @@
+{
+  "name": "pandas_access",
+  "version": "0.0.1",
+  "modules": [
+    "pandas_access"
+  ]
+}

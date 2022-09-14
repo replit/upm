@@ -1,0 +1,21 @@
+{
+  "name": "opentelemetry-exporter-zipkin-proto-http",
+  "version": "1.12.0",
+  "requires_dist": [
+    "protobuf",
+    "requests",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-exporter-zipkin-json"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "idna",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "wrapt"
+  ]
+}

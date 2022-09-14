@@ -1,0 +1,15 @@
+{
+  "name": "mozdevice",
+  "version": "4.0.3",
+  "requires_dist": [
+    "mozlog"
+  ],
+  "modules": [
+    "blessings",
+    "mozdevice",
+    "mozfile",
+    "mozlog",
+    "mozterm",
+    "six"
+  ]
+}

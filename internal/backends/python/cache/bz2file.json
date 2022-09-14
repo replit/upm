@@ -1,0 +1,7 @@
+{
+  "name": "bz2file",
+  "version": "0.98",
+  "modules": [
+    "bz2file"
+  ]
+}

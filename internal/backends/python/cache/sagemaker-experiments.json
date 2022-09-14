@@ -1,0 +1,27 @@
+{
+  "name": "sagemaker-experiments",
+  "version": "0.1.35",
+  "requires_dist": [
+    "boto3",
+    "tox",
+    "flake8",
+    "pytest",
+    "pytest-cov",
+    "pytest-coverage",
+    "pytest-rerunfailures",
+    "pytest-xdist",
+    "docker",
+    "pandas",
+    "sklearn"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "smexperiments",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "awspricing",
+  "version": "2.0.3",
+  "modules": [
+    "awspricing",
+    "boto3",
+    "botocore",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jmespath",
+    "requests",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

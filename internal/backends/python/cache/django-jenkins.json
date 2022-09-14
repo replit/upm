@@ -1,0 +1,11 @@
+{
+  "name": "django-jenkins",
+  "version": "0.110.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_jenkins",
+    "sqlparse"
+  ]
+}

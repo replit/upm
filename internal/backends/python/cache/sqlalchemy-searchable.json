@@ -1,0 +1,17 @@
+{
+  "name": "SQLAlchemy-Searchable",
+  "version": "1.4.1",
+  "requires_dist": [
+    "SQLAlchemy",
+    "SQLAlchemy-Utils",
+    "validators"
+  ],
+  "modules": [
+    "decorator",
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_searchable",
+    "sqlalchemy_utils",
+    "validators"
+  ]
+}

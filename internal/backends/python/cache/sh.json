@@ -1,0 +1,7 @@
+{
+  "name": "sh",
+  "version": "1.14.3",
+  "modules": [
+    "sh"
+  ]
+}

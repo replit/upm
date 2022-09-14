@@ -1,0 +1,11 @@
+{
+  "name": "gekko",
+  "version": "1.0.5",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "gekko",
+    "numpy"
+  ]
+}

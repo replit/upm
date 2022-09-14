@@ -1,0 +1,11 @@
+{
+  "name": "assemblyline-service-client",
+  "version": "4.3.0.8",
+  "requires_dist": [
+    "assemblyline",
+    "assemblyline-core",
+    "python-socketio",
+    "pytest"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/assemblyline-service-client/bin/python3', '-m', 'pip', 'install', 'assemblyline-service-client']' returned non-zero exit status 1.\"}"
+}

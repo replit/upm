@@ -1,0 +1,8 @@
+{
+  "name": "self",
+  "version": "2020.12.3",
+  "modules": [
+    "decorator",
+    "self"
+  ]
+}

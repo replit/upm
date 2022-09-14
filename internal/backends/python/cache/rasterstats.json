@@ -1,0 +1,32 @@
+{
+  "name": "rasterstats",
+  "version": "0.17.0",
+  "requires_dist": [
+    "affine",
+    "shapely",
+    "numpy",
+    "rasterio",
+    "cligj",
+    "fiona",
+    "simplejson"
+  ],
+  "modules": [
+    "affine",
+    "attr",
+    "attrs",
+    "certifi",
+    "click",
+    "click_plugins",
+    "cligj",
+    "fiona",
+    "munch",
+    "numpy",
+    "pyparsing",
+    "rasterio",
+    "rasterstats",
+    "shapely",
+    "simplejson",
+    "six",
+    "snuggs"
+  ]
+}

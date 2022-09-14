@@ -1,0 +1,31 @@
+{
+  "name": "django-weasyprint",
+  "version": "2.2.0",
+  "requires_dist": [
+    "Django",
+    "WeasyPrint"
+  ],
+  "modules": [
+    "PIL",
+    "_brotli",
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "brotli",
+    "cffi",
+    "cssselect2",
+    "django",
+    "django_weasyprint",
+    "fontTools",
+    "html5lib",
+    "pycparser",
+    "pydyf",
+    "pyphen",
+    "six",
+    "sqlparse",
+    "tinycss2",
+    "weasyprint",
+    "webencodings",
+    "zopfli"
+  ]
+}

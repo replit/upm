@@ -1,0 +1,7 @@
+{
+  "name": "rarfile",
+  "version": "4.0",
+  "modules": [
+    "rarfile"
+  ]
+}

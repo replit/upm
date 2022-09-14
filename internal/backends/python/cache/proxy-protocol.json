@@ -1,0 +1,12 @@
+{
+  "name": "proxy-protocol",
+  "version": "0.8.1",
+  "requires_dist": [
+    "typing-extensions",
+    "crc32c"
+  ],
+  "modules": [
+    "proxyprotocol",
+    "typing_extensions"
+  ]
+}

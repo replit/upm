@@ -1,0 +1,18 @@
+{
+  "name": "flask-swagger-ui",
+  "version": "4.11.1",
+  "requires_dist": [
+    "flask"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_swagger_ui",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

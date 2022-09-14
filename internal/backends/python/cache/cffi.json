@@ -1,0 +1,12 @@
+{
+  "name": "cffi",
+  "version": "1.15.1",
+  "requires_dist": [
+    "pycparser"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser"
+  ]
+}

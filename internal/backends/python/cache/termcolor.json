@@ -1,0 +1,11 @@
+{
+  "name": "termcolor",
+  "version": "2.0.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "termcolor"
+  ]
+}

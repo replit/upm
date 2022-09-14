@@ -1,0 +1,17 @@
+{
+  "name": "redisearch",
+  "version": "2.1.1",
+  "requires_dist": [
+    "hiredis",
+    "redis",
+    "rejson",
+    "six"
+  ],
+  "modules": [
+    "hiredis",
+    "redis",
+    "redisearch",
+    "rejson",
+    "six"
+  ]
+}

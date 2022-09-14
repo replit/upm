@@ -1,0 +1,13 @@
+{
+  "name": "etuples",
+  "version": "0.3.8",
+  "modules": [
+    "cons",
+    "etuples",
+    "multipledispatch",
+    "six",
+    "tlz",
+    "toolz",
+    "unification"
+  ]
+}

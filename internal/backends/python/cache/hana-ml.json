@@ -1,0 +1,42 @@
+{
+  "name": "hana-ml",
+  "version": "2.13.22072200",
+  "requires_dist": [
+    "hdbcli",
+    "pydot",
+    "Deprecated",
+    "htmlmin",
+    "tqdm",
+    "schedule",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "numpy",
+    "pandas"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "deprecated",
+    "dot_parser",
+    "fontTools",
+    "hana_ml",
+    "hdbcli",
+    "htmlmin",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pydot",
+    "pyhdbcli",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "schedule",
+    "six",
+    "tqdm",
+    "wrapt"
+  ]
+}

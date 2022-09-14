@@ -1,0 +1,14 @@
+{
+  "name": "pyerfa",
+  "version": "2.0.0.1",
+  "requires_dist": [
+    "numpy",
+    "sphinx-astropy",
+    "pytest",
+    "pytest-doctestplus"
+  ],
+  "modules": [
+    "erfa",
+    "numpy"
+  ]
+}

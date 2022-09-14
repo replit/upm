@@ -1,0 +1,13 @@
+{
+  "name": "jsonlines",
+  "version": "3.1.0",
+  "requires_dist": [
+    "attrs",
+    "typing-extensions"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "jsonlines"
+  ]
+}

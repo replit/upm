@@ -1,0 +1,7 @@
+{
+  "name": "XlsxWriter",
+  "version": "3.0.3",
+  "modules": [
+    "xlsxwriter"
+  ]
+}

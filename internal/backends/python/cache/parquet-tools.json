@@ -1,0 +1,35 @@
+{
+  "name": "parquet-tools",
+  "version": "0.2.11",
+  "requires_dist": [
+    "boto3",
+    "colorama",
+    "halo",
+    "pandas",
+    "pyarrow",
+    "tabulate",
+    "thrift"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "colorama",
+    "cursor",
+    "dateutil",
+    "halo",
+    "jmespath",
+    "log_symbols",
+    "numpy",
+    "pandas",
+    "parquet_tools",
+    "pyarrow",
+    "pytz",
+    "s3transfer",
+    "six",
+    "spinners",
+    "tabulate",
+    "termcolor",
+    "thrift",
+    "urllib3"
+  ]
+}

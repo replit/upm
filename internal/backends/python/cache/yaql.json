@@ -1,0 +1,16 @@
+{
+  "name": "yaql",
+  "version": "2.0.0",
+  "requires_dist": [
+    "pbr",
+    "ply",
+    "python-dateutil"
+  ],
+  "modules": [
+    "dateutil",
+    "pbr",
+    "ply",
+    "six",
+    "yaql"
+  ]
+}

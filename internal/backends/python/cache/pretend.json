@@ -1,0 +1,7 @@
+{
+  "name": "pretend",
+  "version": "1.0.9",
+  "modules": [
+    "pretend"
+  ]
+}

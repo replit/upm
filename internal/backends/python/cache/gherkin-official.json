@@ -1,0 +1,7 @@
+{
+  "name": "gherkin-official",
+  "version": "24.0.0",
+  "modules": [
+    "gherkin"
+  ]
+}

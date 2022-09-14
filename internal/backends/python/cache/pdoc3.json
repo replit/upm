@@ -1,0 +1,12 @@
+{
+  "name": "pdoc3",
+  "version": "0.10.0",
+  "modules": [
+    "importlib_metadata",
+    "mako",
+    "markdown",
+    "markupsafe",
+    "pdoc",
+    "zipp"
+  ]
+}

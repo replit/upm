@@ -1,0 +1,41 @@
+{
+  "name": "handyspark",
+  "version": "0.2.2a1",
+  "requires_dist": [
+    "pyspark",
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "seaborn",
+    "pandas",
+    "scikit-learn",
+    "findspark",
+    "pyarrow"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "examples",
+    "findspark",
+    "fontTools",
+    "handyspark",
+    "joblib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "py4j",
+    "pyarrow",
+    "pylab",
+    "pyparsing",
+    "pyspark",
+    "pytz",
+    "scipy",
+    "seaborn",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

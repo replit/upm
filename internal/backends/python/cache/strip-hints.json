@@ -1,0 +1,8 @@
+{
+  "name": "strip-hints",
+  "version": "0.1.10",
+  "modules": [
+    "strip_hints",
+    "wheel"
+  ]
+}

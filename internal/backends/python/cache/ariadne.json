@@ -1,0 +1,19 @@
+{
+  "name": "ariadne",
+  "version": "0.16.0",
+  "requires_dist": [
+    "graphql-core",
+    "starlette",
+    "typing-extensions",
+    "python-multipart"
+  ],
+  "modules": [
+    "anyio",
+    "ariadne",
+    "graphql",
+    "idna",
+    "sniffio",
+    "starlette",
+    "typing_extensions"
+  ]
+}

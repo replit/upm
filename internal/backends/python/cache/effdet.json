@@ -1,0 +1,42 @@
+{
+  "name": "effdet",
+  "version": "0.3.0",
+  "requires_dist": [
+    "torch",
+    "torchvision",
+    "timm",
+    "pycocotools",
+    "omegaconf"
+  ],
+  "modules": [
+    "PIL",
+    "_yaml",
+    "antlr4",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "cycler",
+    "dateutil",
+    "effdet",
+    "fontTools",
+    "idna",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "omegaconf",
+    "packaging",
+    "pycocotools",
+    "pydevd_plugins",
+    "pylab",
+    "pyparsing",
+    "requests",
+    "six",
+    "timm",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "typing_extensions",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "rosdistro",
+  "version": "0.9.0",
+  "requires_dist": [
+    "PyYAML",
+    "setuptools",
+    "catkin-pkg",
+    "rospkg",
+    "pytest",
+    "mock"
+  ],
+  "modules": [
+    "_yaml",
+    "catkin_pkg",
+    "dateutil",
+    "distro",
+    "docutils",
+    "pyparsing",
+    "rosdistro",
+    "rospkg",
+    "six",
+    "yaml"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "asn1",
+  "version": "2.6.0",
+  "requires_dist": [
+    "enum-compat"
+  ],
+  "modules": [
+    "asn1"
+  ]
+}

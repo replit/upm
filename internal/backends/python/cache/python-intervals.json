@@ -1,0 +1,7 @@
+{
+  "name": "python-intervals",
+  "version": "1.10.0.post1",
+  "modules": [
+    "intervals"
+  ]
+}

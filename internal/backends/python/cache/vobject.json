@@ -1,0 +1,9 @@
+{
+  "name": "vobject",
+  "version": "0.9.6.1",
+  "modules": [
+    "dateutil",
+    "six",
+    "vobject"
+  ]
+}

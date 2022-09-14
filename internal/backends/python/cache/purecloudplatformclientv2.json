@@ -1,0 +1,12 @@
+{
+  "name": "PureCloudPlatformClientV2",
+  "version": "152.0.0",
+  "modules": [
+    "PureCloudPlatformClientV2",
+    "certifi",
+    "dateutil",
+    "six",
+    "urllib3",
+    "watchdog"
+  ]
+}

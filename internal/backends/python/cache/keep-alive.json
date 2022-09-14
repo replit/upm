@@ -1,0 +1,7 @@
+{
+  "name": "keep-alive",
+  "version": "0.0.1",
+  "modules": [
+    "keepalive_pkg"
+  ]
+}

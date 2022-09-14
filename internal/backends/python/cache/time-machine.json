@@ -1,0 +1,10 @@
+{
+  "name": "time-machine",
+  "version": "2.8.1",
+  "modules": [
+    "_time_machine",
+    "dateutil",
+    "six",
+    "time_machine"
+  ]
+}

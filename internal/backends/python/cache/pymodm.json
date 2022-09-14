@@ -1,0 +1,15 @@
+{
+  "name": "pymodm",
+  "version": "0.4.3",
+  "requires_dist": [
+    "pymongo",
+    "ipaddress",
+    "Pillow"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "pymodm",
+    "pymongo"
+  ]
+}

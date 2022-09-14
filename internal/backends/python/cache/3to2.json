@@ -1,0 +1,7 @@
+{
+  "name": "3to2",
+  "version": "1.1.1",
+  "modules": [
+    "lib3to2"
+  ]
+}

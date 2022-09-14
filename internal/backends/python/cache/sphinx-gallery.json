@@ -1,0 +1,29 @@
+{
+  "name": "sphinx-gallery",
+  "version": "0.11.1",
+  "requires_dist": [
+    "sphinx"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_gallery",
+    "urllib3",
+    "zipp"
+  ]
+}

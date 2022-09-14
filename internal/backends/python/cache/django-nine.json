@@ -1,0 +1,12 @@
+{
+  "name": "django-nine",
+  "version": "0.2.5",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_nine",
+    "nine",
+    "sqlparse"
+  ]
+}

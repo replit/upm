@@ -1,0 +1,15 @@
+{
+  "name": "airtable-python-wrapper",
+  "version": "0.15.3",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "airtable",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

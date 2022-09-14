@@ -1,0 +1,13 @@
+{
+  "name": "jwcrypto",
+  "version": "1.4",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "deprecated",
+    "jwcrypto",
+    "pycparser",
+    "wrapt"
+  ]
+}

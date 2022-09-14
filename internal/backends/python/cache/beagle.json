@@ -1,0 +1,37 @@
+{
+  "name": "beagle",
+  "version": "0.3.0",
+  "requires_dist": [
+    "pbr",
+    "cliff",
+    "requests",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "testtools",
+    "fixtures",
+    "flake8"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "autopage",
+    "beagle",
+    "certifi",
+    "charset_normalizer",
+    "cliff",
+    "cmd2",
+    "idna",
+    "importlib_metadata",
+    "pbr",
+    "prettytable",
+    "pyperclip",
+    "requests",
+    "stevedore",
+    "urllib3",
+    "wcwidth",
+    "yaml",
+    "zipp"
+  ]
+}

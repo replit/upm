@@ -1,0 +1,11 @@
+{
+  "name": "django-tenants",
+  "version": "3.4.5",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_tenants",
+    "sqlparse"
+  ]
+}

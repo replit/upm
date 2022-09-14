@@ -1,0 +1,15 @@
+{
+  "name": "webdavclient3",
+  "version": "3.14.6",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "lxml",
+    "requests",
+    "six",
+    "urllib3",
+    "webdav3"
+  ]
+}

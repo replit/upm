@@ -1,0 +1,7 @@
+{
+  "name": "filehash",
+  "version": "0.2.dev1",
+  "modules": [
+    "filehash"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "pyobjc-framework-CoreData",
+  "version": "8.5",
+  "requires_dist": [
+    "pyobjc-core",
+    "pyobjc-framework-Cocoa"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-CoreData/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-CoreData']' returned non-zero exit status 1.\"}"
+}

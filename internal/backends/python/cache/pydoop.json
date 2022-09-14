@@ -1,0 +1,5 @@
+{
+  "name": "pydoop",
+  "version": "2.0.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pydoop/bin/python3', '-m', 'pip', 'install', 'pydoop']' returned non-zero exit status 1.\"}"
+}

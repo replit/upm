@@ -1,0 +1,7 @@
+{
+  "name": "choice",
+  "version": "0.1",
+  "modules": [
+    "choice"
+  ]
+}

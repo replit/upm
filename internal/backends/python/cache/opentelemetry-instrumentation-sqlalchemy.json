@@ -1,0 +1,21 @@
+{
+  "name": "opentelemetry-instrumentation-sqlalchemy",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "opentelemetry-instrumentation",
+    "packaging",
+    "wrapt",
+    "sqlalchemy",
+    "opentelemetry-sdk",
+    "pytest",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "wrapt"
+  ]
+}

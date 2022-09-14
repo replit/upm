@@ -1,0 +1,8 @@
+{
+  "name": "tzwhere",
+  "version": "3.0.3",
+  "modules": [
+    "shapely",
+    "tzwhere"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "vulture",
+  "version": "2.5",
+  "requires_dist": [
+    "toml"
+  ],
+  "modules": [
+    "toml",
+    "vulture"
+  ]
+}

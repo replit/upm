@@ -1,0 +1,7 @@
+{
+  "name": "pypyodbc",
+  "version": "1.3.6",
+  "modules": [
+    "pypyodbc"
+  ]
+}

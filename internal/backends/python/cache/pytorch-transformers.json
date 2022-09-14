@@ -1,0 +1,39 @@
+{
+  "name": "pytorch-transformers",
+  "version": "1.2.0",
+  "requires_dist": [
+    "torch",
+    "numpy",
+    "boto3",
+    "requests",
+    "tqdm",
+    "regex",
+    "sentencepiece",
+    "sacremoses"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "dateutil",
+    "idna",
+    "jmespath",
+    "joblib",
+    "numpy",
+    "pytorch_transformers",
+    "regex",
+    "requests",
+    "s3transfer",
+    "sacremoses",
+    "sentencepiece",
+    "six",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

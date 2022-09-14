@@ -1,0 +1,19 @@
+{
+  "name": "django-encrypted-model-fields",
+  "version": "0.6.5",
+  "requires_dist": [
+    "cryptography",
+    "Django"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "cffi",
+    "cryptography",
+    "django",
+    "encrypted_model_fields",
+    "pycparser",
+    "sqlparse"
+  ]
+}

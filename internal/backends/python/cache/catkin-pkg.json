@@ -1,0 +1,28 @@
+{
+  "name": "catkin-pkg",
+  "version": "0.5.2",
+  "requires_dist": [
+    "docutils",
+    "python-dateutil",
+    "pyparsing",
+    "setuptools",
+    "flake8",
+    "flake8-blind-except",
+    "flake8-builtins",
+    "flake8-class-newline",
+    "flake8-comprehensions",
+    "flake8-deprecated",
+    "flake8-docstrings",
+    "flake8-import-order",
+    "flake8-quotes",
+    "pytest",
+    "mock"
+  ],
+  "modules": [
+    "catkin_pkg",
+    "dateutil",
+    "docutils",
+    "pyparsing",
+    "six"
+  ]
+}

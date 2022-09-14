@@ -1,0 +1,11 @@
+{
+  "name": "django-nose",
+  "version": "1.4.7",
+  "requires_dist": [
+    "nose"
+  ],
+  "modules": [
+    "django_nose",
+    "nose"
+  ]
+}

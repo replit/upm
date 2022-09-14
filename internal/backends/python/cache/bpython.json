@@ -1,0 +1,35 @@
+{
+  "name": "bpython",
+  "version": "0.23",
+  "requires_dist": [
+    "curtsies",
+    "cwcwidth",
+    "greenlet",
+    "pygments",
+    "pyxdg",
+    "requests",
+    "backports.cached-property",
+    "typing-extensions",
+    "pyperclip",
+    "jedi",
+    "urwid",
+    "watchdog"
+  ],
+  "modules": [
+    "blessed",
+    "bpdb",
+    "bpython",
+    "certifi",
+    "charset_normalizer",
+    "curtsies",
+    "cwcwidth",
+    "greenlet",
+    "idna",
+    "pygments",
+    "requests",
+    "six",
+    "urllib3",
+    "wcwidth",
+    "xdg"
+  ]
+}

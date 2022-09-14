@@ -1,0 +1,7 @@
+{
+  "name": "hacs-frontend",
+  "version": "20220906112053",
+  "modules": [
+    "hacs_frontend"
+  ]
+}

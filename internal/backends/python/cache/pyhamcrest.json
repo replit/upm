@@ -1,0 +1,30 @@
+{
+  "name": "PyHamcrest",
+  "version": "2.0.4",
+  "requires_dist": [
+    "black",
+    "flake8",
+    "pyhamcrest",
+    "pytest-mypy",
+    "towncrier",
+    "tox",
+    "tox-asdf",
+    "twine",
+    "alabaster",
+    "sphinx",
+    "coverage",
+    "dataclasses",
+    "mypy",
+    "pytest-mypy-plugins",
+    "pytest-sugar",
+    "pytest-xdist",
+    "pytest",
+    "types-dataclasses",
+    "types-mock",
+    "numpy",
+    "pyhamcrest"
+  ],
+  "modules": [
+    "hamcrest"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "chromedriver-autoinstaller",
+  "version": "0.4.0",
+  "modules": [
+    "chromedriver_autoinstaller"
+  ]
+}

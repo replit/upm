@@ -1,0 +1,14 @@
+{
+  "name": "websocket-client",
+  "version": "1.4.1",
+  "requires_dist": [
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "python-socks",
+    "wsaccel",
+    "websockets"
+  ],
+  "modules": [
+    "websocket"
+  ]
+}

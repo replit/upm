@@ -1,0 +1,14 @@
+{
+  "name": "xmldiff",
+  "version": "2.4",
+  "requires_dist": [
+    "setuptools",
+    "lxml",
+    "six"
+  ],
+  "modules": [
+    "lxml",
+    "six",
+    "xmldiff"
+  ]
+}

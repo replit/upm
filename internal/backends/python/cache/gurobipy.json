@@ -1,0 +1,11 @@
+{
+  "name": "gurobipy",
+  "version": "9.5.2",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "gurobipy"
+  ]
+}

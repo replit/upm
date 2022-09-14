@@ -1,0 +1,11 @@
+{
+  "name": "rabbitpy",
+  "version": "2.0.1",
+  "requires_dist": [
+    "pamqp"
+  ],
+  "modules": [
+    "pamqp",
+    "rabbitpy"
+  ]
+}

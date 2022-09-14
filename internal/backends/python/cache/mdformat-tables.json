@@ -1,0 +1,19 @@
+{
+  "name": "mdformat_tables",
+  "version": "0.4.1",
+  "requires_dist": [
+    "mdformat",
+    "pytest",
+    "coverage",
+    "pytest-cov"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "markdown_it",
+    "mdformat",
+    "mdformat_tables",
+    "mdurl",
+    "tomli",
+    "zipp"
+  ]
+}

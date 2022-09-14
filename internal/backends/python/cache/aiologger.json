@@ -1,0 +1,7 @@
+{
+  "name": "aiologger",
+  "version": "0.6.1",
+  "modules": [
+    "aiologger"
+  ]
+}

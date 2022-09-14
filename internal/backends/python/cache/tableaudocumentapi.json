@@ -1,0 +1,8 @@
+{
+  "name": "tableaudocumentapi",
+  "version": "0.10",
+  "modules": [
+    "lxml",
+    "tableaudocumentapi"
+  ]
+}

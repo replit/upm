@@ -1,0 +1,12 @@
+{
+  "name": "yacs",
+  "version": "0.1.8",
+  "requires_dist": [
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "yacs",
+    "yaml"
+  ]
+}

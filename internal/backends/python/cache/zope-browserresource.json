@@ -1,0 +1,31 @@
+{
+  "name": "zope.browserresource",
+  "version": "4.4",
+  "requires_dist": [
+    "zope.component",
+    "zope.configuration",
+    "zope.contenttype",
+    "zope.i18n",
+    "zope.interface",
+    "zope.location",
+    "zope.publisher",
+    "zope.schema",
+    "zope.traversing",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component",
+    "setuptools",
+    "zope.security",
+    "zope.testing",
+    "zope.testrunner",
+    "zope.component",
+    "zope.security"
+  ],
+  "modules": [
+    "multipart",
+    "pythongettext",
+    "pytz",
+    "six",
+    "transaction"
+  ]
+}

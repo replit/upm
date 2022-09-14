@@ -1,0 +1,15 @@
+{
+  "name": "keras-transformer",
+  "version": "0.40.0",
+  "modules": [
+    "keras_embed_sim",
+    "keras_layer_normalization",
+    "keras_multi_head",
+    "keras_pos_embd",
+    "keras_position_wise_feed_forward",
+    "keras_self_attention",
+    "keras_transformer",
+    "numpy",
+    "tests"
+  ]
+}

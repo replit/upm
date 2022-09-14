@@ -1,0 +1,23 @@
+{
+  "name": "pytrends",
+  "version": "4.8.0",
+  "requires_dist": [
+    "requests",
+    "pandas",
+    "lxml"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "lxml",
+    "numpy",
+    "pandas",
+    "pytrends",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

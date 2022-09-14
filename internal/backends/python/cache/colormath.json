@@ -1,0 +1,9 @@
+{
+  "name": "colormath",
+  "version": "3.0.0",
+  "modules": [
+    "colormath",
+    "networkx",
+    "numpy"
+  ]
+}

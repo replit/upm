@@ -1,0 +1,19 @@
+{
+  "name": "Flask-MySQL",
+  "version": "1.5.2",
+  "requires_dist": [
+    "Flask",
+    "PyMySQL"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pymysql",
+    "werkzeug",
+    "zipp"
+  ]
+}

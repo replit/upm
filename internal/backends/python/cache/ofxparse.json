@@ -1,0 +1,11 @@
+{
+  "name": "ofxparse",
+  "version": "0.21",
+  "modules": [
+    "bs4",
+    "lxml",
+    "ofxparse",
+    "six",
+    "soupsieve"
+  ]
+}

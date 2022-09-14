@@ -1,0 +1,13 @@
+{
+  "name": "pandavro",
+  "version": "1.7.1",
+  "modules": [
+    "dateutil",
+    "fastavro",
+    "numpy",
+    "pandas",
+    "pandavro",
+    "pytz",
+    "six"
+  ]
+}

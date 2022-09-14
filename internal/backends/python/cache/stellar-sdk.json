@@ -1,0 +1,41 @@
+{
+  "name": "stellar-sdk",
+  "version": "8.1.0",
+  "requires_dist": [
+    "PyNaCl",
+    "aiohttp",
+    "aiohttp-sse-client",
+    "mnemonic",
+    "requests",
+    "stellar-base-sseclient",
+    "toml",
+    "typeguard",
+    "urllib3"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aiohttp",
+    "aiohttp_sse_client",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "mnemonic",
+    "multidict",
+    "nacl",
+    "pycparser",
+    "requests",
+    "six",
+    "sseclient",
+    "stellar_sdk",
+    "toml",
+    "typeguard",
+    "urllib3",
+    "yarl"
+  ]
+}

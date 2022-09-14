@@ -1,0 +1,15 @@
+{
+  "name": "requests-random-user-agent",
+  "version": "2022.9.7",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_random_user_agent",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "aiomysql",
+  "version": "0.1.1",
+  "requires_dist": [
+    "PyMySQL",
+    "PyMySQL",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "aiomysql",
+    "pymysql"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "OctoPrint-FirmwareCheck",
+  "version": "2021.10.11",
+  "requires_dist": [
+    "pre-commit"
+  ],
+  "modules": [
+    "octoprint_firmware_check"
+  ]
+}

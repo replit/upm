@@ -1,0 +1,7 @@
+{
+  "name": "robloxpy",
+  "version": "0.2.21",
+  "modules": [
+    "robloxpy"
+  ]
+}

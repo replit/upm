@@ -1,0 +1,15 @@
+{
+  "name": "redis-lua",
+  "version": "2.0.8",
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "integration_tests",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "redis_lua",
+    "six",
+    "wrapt"
+  ]
+}

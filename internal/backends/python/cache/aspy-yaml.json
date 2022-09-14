@@ -1,0 +1,12 @@
+{
+  "name": "aspy.yaml",
+  "version": "1.3.0",
+  "requires_dist": [
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "aspy",
+    "yaml"
+  ]
+}

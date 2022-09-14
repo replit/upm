@@ -1,0 +1,31 @@
+{
+  "name": "pybetter",
+  "version": "0.4.1",
+  "requires_dist": [
+    "libcst",
+    "click",
+    "pyemojify",
+    "pygments",
+    "hypothesmith"
+  ],
+  "modules": [
+    "_hypothesis_pytestplugin",
+    "_yaml",
+    "attr",
+    "attrs",
+    "click",
+    "exceptiongroup",
+    "hypothesis",
+    "hypothesmith",
+    "lark",
+    "libcst",
+    "mypy_extensions",
+    "pybetter",
+    "pyemojify",
+    "pygments",
+    "sortedcontainers",
+    "typing_extensions",
+    "typing_inspect",
+    "yaml"
+  ]
+}

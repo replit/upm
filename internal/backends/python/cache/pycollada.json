@@ -1,0 +1,10 @@
+{
+  "name": "pycollada",
+  "version": "0.7.2",
+  "modules": [
+    "collada",
+    "dateutil",
+    "numpy",
+    "six"
+  ]
+}

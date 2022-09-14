@@ -1,0 +1,7 @@
+{
+  "name": "ruamel.yaml",
+  "version": "0.17.21",
+  "modules": [
+    "_ruamel_yaml"
+  ]
+}

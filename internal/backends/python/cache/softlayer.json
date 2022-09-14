@@ -1,0 +1,29 @@
+{
+  "name": "SoftLayer",
+  "version": "6.1.1",
+  "requires_dist": [
+    "prettytable",
+    "click",
+    "requests",
+    "prompt-toolkit",
+    "pygments",
+    "urllib3",
+    "rich"
+  ],
+  "modules": [
+    "SoftLayer",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "commonmark",
+    "idna",
+    "prettytable",
+    "prompt_toolkit",
+    "pygments",
+    "requests",
+    "rich",
+    "typing_extensions",
+    "urllib3",
+    "wcwidth"
+  ]
+}

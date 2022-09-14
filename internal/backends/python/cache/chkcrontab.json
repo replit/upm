@@ -1,0 +1,7 @@
+{
+  "name": "chkcrontab",
+  "version": "1.7",
+  "modules": [
+    "chkcrontab_lib"
+  ]
+}

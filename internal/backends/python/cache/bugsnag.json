@@ -1,0 +1,13 @@
+{
+  "name": "bugsnag",
+  "version": "4.2.1",
+  "requires_dist": [
+    "webob",
+    "flask",
+    "blinker"
+  ],
+  "modules": [
+    "bugsnag",
+    "webob"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "cognite-sdk-experimental",
+  "version": "0.99.0",
+  "requires_dist": [
+    "cognite-sdk-core",
+    "geopandas",
+    "pandas",
+    "regex",
+    "responses",
+    "shapely",
+    "sympy",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "oauthlib",
+    "pandas",
+    "pytz",
+    "regex",
+    "requests",
+    "requests_oauthlib",
+    "responses",
+    "six",
+    "sympy",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

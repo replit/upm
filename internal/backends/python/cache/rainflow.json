@@ -1,0 +1,10 @@
+{
+  "name": "rainflow",
+  "version": "3.1.1",
+  "requires_dist": [
+    "importlib_metadata"
+  ],
+  "modules": [
+    "rainflow"
+  ]
+}

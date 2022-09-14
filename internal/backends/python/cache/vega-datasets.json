@@ -1,0 +1,15 @@
+{
+  "name": "vega-datasets",
+  "version": "0.9.0",
+  "requires_dist": [
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "vega_datasets"
+  ]
+}

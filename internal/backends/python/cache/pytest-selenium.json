@@ -1,0 +1,39 @@
+{
+  "name": "pytest-selenium",
+  "version": "3.0.0",
+  "requires_dist": [
+    "pytest",
+    "pytest-base-url",
+    "pytest-html",
+    "pytest-variables",
+    "requests",
+    "selenium",
+    "tenacity",
+    "appium-python-client"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_base_url",
+    "pytest_html",
+    "pytest_metadata",
+    "pytest_selenium",
+    "pytest_variables",
+    "requests",
+    "selenium",
+    "six",
+    "tenacity",
+    "toml",
+    "urllib3"
+  ]
+}

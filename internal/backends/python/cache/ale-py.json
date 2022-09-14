@@ -1,0 +1,20 @@
+{
+  "name": "ale-py",
+  "version": "0.8.0",
+  "requires_dist": [
+    "numpy",
+    "importlib-resources",
+    "importlib-metadata",
+    "typing-extensions",
+    "pytest",
+    "gym"
+  ],
+  "modules": [
+    "ale_py",
+    "importlib_metadata",
+    "importlib_resources",
+    "numpy",
+    "typing_extensions",
+    "zipp"
+  ]
+}

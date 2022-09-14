@@ -1,0 +1,25 @@
+{
+  "name": "looker-sdk",
+  "version": "22.10.0",
+  "requires_dist": [
+    "requests",
+    "typing-extensions",
+    "attrs",
+    "cattrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "certifi",
+    "charset_normalizer",
+    "exceptiongroup",
+    "idna",
+    "looker_sdk",
+    "requests",
+    "tests",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

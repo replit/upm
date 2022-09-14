@@ -1,0 +1,7 @@
+{
+  "name": "pyrealsense2",
+  "version": "2.51.1.4348",
+  "modules": [
+    "pyrealsense2"
+  ]
+}

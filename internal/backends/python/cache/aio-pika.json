@@ -1,0 +1,12 @@
+{
+  "name": "aio-pika",
+  "version": "8.2.1",
+  "modules": [
+    "aio_pika",
+    "aiormq",
+    "idna",
+    "multidict",
+    "pamqp",
+    "yarl"
+  ]
+}

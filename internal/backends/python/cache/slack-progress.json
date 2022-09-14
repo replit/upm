@@ -1,0 +1,16 @@
+{
+  "name": "slack-progress",
+  "version": "0.5",
+  "requires_dist": [
+    "slacker"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "slack_progress",
+    "slacker",
+    "urllib3"
+  ]
+}

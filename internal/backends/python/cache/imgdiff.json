@@ -1,0 +1,11 @@
+{
+  "name": "imgdiff",
+  "version": "1.7.1",
+  "requires_dist": [
+    "Pillow"
+  ],
+  "modules": [
+    "PIL",
+    "imgdiff"
+  ]
+}

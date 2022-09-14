@@ -1,0 +1,17 @@
+{
+  "name": "Flask-OpenTracing",
+  "version": "1.1.0",
+  "modules": [
+    "click",
+    "flask",
+    "flask_opentracing",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "opentracing",
+    "tests",
+    "werkzeug",
+    "zipp"
+  ]
+}

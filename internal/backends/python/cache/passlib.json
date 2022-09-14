@@ -1,0 +1,15 @@
+{
+  "name": "passlib",
+  "version": "1.7.4",
+  "requires_dist": [
+    "argon2-cffi",
+    "bcrypt",
+    "sphinx",
+    "sphinxcontrib-fulltoc",
+    "cloud-sptheme",
+    "cryptography"
+  ],
+  "modules": [
+    "passlib"
+  ]
+}

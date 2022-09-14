@@ -1,0 +1,8 @@
+{
+  "name": "odfpy",
+  "version": "1.4.1",
+  "modules": [
+    "defusedxml",
+    "odf"
+  ]
+}

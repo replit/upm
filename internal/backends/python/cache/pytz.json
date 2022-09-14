@@ -1,0 +1,7 @@
+{
+  "name": "pytz",
+  "version": "2022.2.1",
+  "modules": [
+    "pytz"
+  ]
+}

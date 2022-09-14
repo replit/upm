@@ -1,0 +1,21 @@
+{
+  "name": "mailchimp-transactional",
+  "version": "1.0.47",
+  "requires_dist": [
+    "certifi",
+    "python-dateutil",
+    "requests",
+    "six",
+    "urllib3"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "mailchimp_transactional",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

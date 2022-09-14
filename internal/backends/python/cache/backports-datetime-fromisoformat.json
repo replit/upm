@@ -1,0 +1,7 @@
+{
+  "name": "backports-datetime-fromisoformat",
+  "version": "1.0.0",
+  "modules": [
+    "backports"
+  ]
+}

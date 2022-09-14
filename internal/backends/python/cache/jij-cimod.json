@@ -1,0 +1,15 @@
+{
+  "name": "jij-cimod",
+  "version": "1.4.36",
+  "requires_dist": [
+    "numpy",
+    "dimod",
+    "scipy"
+  ],
+  "modules": [
+    "cimod",
+    "dimod",
+    "numpy",
+    "scipy"
+  ]
+}

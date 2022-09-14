@@ -1,0 +1,20 @@
+{
+  "name": "pytest-pycharm",
+  "version": "0.7.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_pycharm",
+    "tomli"
+  ]
+}

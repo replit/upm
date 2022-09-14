@@ -1,0 +1,7 @@
+{
+  "name": "gprof2dot",
+  "version": "2022.7.29",
+  "modules": [
+    "gprof2dot"
+  ]
+}

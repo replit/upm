@@ -1,0 +1,27 @@
+{
+  "name": "rudder-sdk-python",
+  "version": "1.0.5",
+  "requires_dist": [
+    "requests",
+    "six",
+    "monotonic",
+    "backoff",
+    "python-dateutil",
+    "mock",
+    "pylint",
+    "flake8",
+    "coverage"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "monotonic",
+    "requests",
+    "rudder_analytics",
+    "six",
+    "urllib3"
+  ]
+}

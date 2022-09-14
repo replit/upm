@@ -1,0 +1,7 @@
+{
+  "name": "pystyle",
+  "version": "2.0",
+  "modules": [
+    "pystyle"
+  ]
+}

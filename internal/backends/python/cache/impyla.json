@@ -1,0 +1,19 @@
+{
+  "name": "impyla",
+  "version": "0.17.0",
+  "requires_dist": [
+    "six",
+    "bitarray",
+    "thrift",
+    "thrift-sasl",
+    "kerberos"
+  ],
+  "modules": [
+    "bitarray",
+    "impala",
+    "puresasl",
+    "six",
+    "thrift",
+    "thrift_sasl"
+  ]
+}

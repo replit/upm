@@ -1,0 +1,11 @@
+{
+  "name": "scipy",
+  "version": "1.9.1",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "scipy"
+  ]
+}

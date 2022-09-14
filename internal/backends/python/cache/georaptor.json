@@ -1,0 +1,9 @@
+{
+  "name": "georaptor",
+  "version": "2.0.3",
+  "modules": [
+    "args",
+    "clint",
+    "georaptor"
+  ]
+}

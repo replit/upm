@@ -1,0 +1,11 @@
+{
+  "name": "url-normalize",
+  "version": "1.4.3",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "six",
+    "url_normalize"
+  ]
+}

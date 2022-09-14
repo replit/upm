@@ -1,0 +1,11 @@
+{
+  "name": "janus",
+  "version": "1.0.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "janus",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "xtcocotools",
+  "version": "1.12",
+  "requires_dist": [
+    "setuptools",
+    "cython",
+    "matplotlib",
+    "numpy",
+    "numpy"
+  ],
+  "modules": [
+    "Cython",
+    "PIL",
+    "cycler",
+    "cython",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "pyximport",
+    "six",
+    "xtcocotools"
+  ]
+}

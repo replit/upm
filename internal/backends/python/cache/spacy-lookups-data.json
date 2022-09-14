@@ -1,0 +1,10 @@
+{
+  "name": "spacy-lookups-data",
+  "version": "1.0.3",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "spacy_lookups_data"
+  ]
+}

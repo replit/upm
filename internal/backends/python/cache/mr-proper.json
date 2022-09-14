@@ -1,0 +1,15 @@
+{
+  "name": "mr-proper",
+  "version": "0.0.7",
+  "requires_dist": [
+    "click",
+    "setuptools",
+    "stdlib-list",
+    "typing-extensions"
+  ],
+  "modules": [
+    "click",
+    "mr_proper",
+    "stdlib_list"
+  ]
+}

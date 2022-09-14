@@ -1,0 +1,22 @@
+{
+  "name": "deb-pkg-tools",
+  "version": "8.4",
+  "requires_dist": [
+    "coloredlogs",
+    "executor",
+    "humanfriendly",
+    "property-manager",
+    "six",
+    "python-memcached"
+  ],
+  "modules": [
+    "coloredlogs",
+    "deb_pkg_tools",
+    "executor",
+    "fasteners",
+    "humanfriendly",
+    "property_manager",
+    "six",
+    "verboselogs"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "httpsig",
+  "version": "1.3.0",
+  "requires_dist": [
+    "pycryptodome",
+    "six"
+  ],
+  "modules": [
+    "Crypto",
+    "httpsig",
+    "six"
+  ]
+}

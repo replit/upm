@@ -1,0 +1,15 @@
+{
+  "name": "slack-notifications",
+  "version": "0.2.2",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "slack_notifications",
+    "urllib3"
+  ]
+}

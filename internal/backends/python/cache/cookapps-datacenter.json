@@ -1,0 +1,21 @@
+{
+  "name": "cookapps-datacenter",
+  "version": "0.0.15",
+  "requires_dist": [
+    "pandas",
+    "boto3"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "cookapps_datacenter",
+    "dateutil",
+    "jmespath",
+    "numpy",
+    "pandas",
+    "pytz",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "barcodenumber",
+  "version": "0.5.0",
+  "requires_dist": [
+    "python-stdnum"
+  ],
+  "modules": [
+    "barcodenumber",
+    "stdnum"
+  ]
+}

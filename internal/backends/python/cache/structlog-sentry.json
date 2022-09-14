@@ -1,0 +1,15 @@
+{
+  "name": "structlog-sentry",
+  "version": "2.0.0",
+  "requires_dist": [
+    "sentry-sdk",
+    "structlog"
+  ],
+  "modules": [
+    "certifi",
+    "sentry_sdk",
+    "structlog",
+    "structlog_sentry",
+    "urllib3"
+  ]
+}

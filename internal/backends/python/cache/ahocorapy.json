@@ -1,0 +1,15 @@
+{
+  "name": "ahocorapy",
+  "version": "1.6.1",
+  "requires_dist": [
+    "future"
+  ],
+  "modules": [
+    "ahocorapy",
+    "ahocorapy_visualizer",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

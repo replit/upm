@@ -1,0 +1,11 @@
+{
+  "name": "stim",
+  "version": "1.9.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "stim"
+  ]
+}

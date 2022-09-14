@@ -1,0 +1,15 @@
+{
+  "name": "lz4",
+  "version": "4.0.2",
+  "requires_dist": [
+    "sphinx",
+    "sphinx-bootstrap-theme",
+    "flake8",
+    "pytest",
+    "psutil",
+    "pytest-cov"
+  ],
+  "modules": [
+    "lz4"
+  ]
+}

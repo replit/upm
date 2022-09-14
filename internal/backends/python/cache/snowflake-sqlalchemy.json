@@ -1,0 +1,38 @@
+{
+  "name": "snowflake-sqlalchemy",
+  "version": "1.4.1",
+  "requires_dist": [
+    "sqlalchemy",
+    "snowflake-connector-python",
+    "importlib-metadata",
+    "pytest",
+    "pytest-cov",
+    "pytest-rerunfailures",
+    "pytest-timeout",
+    "mock",
+    "pytz",
+    "numpy",
+    "snowflake-connector-python"
+  ],
+  "modules": [
+    "Cryptodome",
+    "OpenSSL",
+    "_cffi_backend",
+    "asn1crypto",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "filelock",
+    "greenlet",
+    "idna",
+    "jwt",
+    "oscrypto",
+    "pycparser",
+    "pytz",
+    "requests",
+    "sqlalchemy",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

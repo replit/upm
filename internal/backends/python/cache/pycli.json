@@ -1,0 +1,7 @@
+{
+  "name": "pyCLI",
+  "version": "2.0.3",
+  "modules": [
+    "cli"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "lomond",
+  "version": "0.3.3",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "lomond",
+    "six"
+  ]
+}

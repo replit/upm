@@ -1,0 +1,21 @@
+{
+  "name": "cheap-repr",
+  "version": "0.5.1",
+  "requires_dist": [
+    "qualname",
+    "pytest",
+    "Django",
+    "pandas",
+    "numpy",
+    "chainmap",
+    "Django",
+    "pandas",
+    "numpy",
+    "Django",
+    "pandas",
+    "numpy"
+  ],
+  "modules": [
+    "cheap_repr"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "cryptocompare",
+  "version": "0.7.6",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "cryptocompare",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

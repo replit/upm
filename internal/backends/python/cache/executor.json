@@ -1,0 +1,20 @@
+{
+  "name": "executor",
+  "version": "23.2",
+  "requires_dist": [
+    "coloredlogs",
+    "fasteners",
+    "humanfriendly",
+    "property-manager",
+    "six"
+  ],
+  "modules": [
+    "coloredlogs",
+    "executor",
+    "fasteners",
+    "humanfriendly",
+    "property_manager",
+    "six",
+    "verboselogs"
+  ]
+}

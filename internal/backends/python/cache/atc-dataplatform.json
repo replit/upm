@@ -1,0 +1,14 @@
+{
+  "name": "atc-dataplatform",
+  "version": "1.0.41",
+  "requires_dist": [
+    "pyyaml",
+    "sqlparse",
+    "deprecation",
+    "pyodbc",
+    "databricks-api",
+    "importlib-metadata",
+    "azure-cosmos"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/atc-dataplatform/bin/python3', '-m', 'pip', 'install', 'atc-dataplatform']' returned non-zero exit status 1.\"}"
+}

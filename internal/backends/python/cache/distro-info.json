@@ -1,0 +1,7 @@
+{
+  "name": "distro-info",
+  "version": "1.0",
+  "modules": [
+    "distro_info"
+  ]
+}

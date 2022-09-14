@@ -1,0 +1,29 @@
+{
+  "name": "insights-core",
+  "version": "3.0.293",
+  "modules": [
+    "_yaml",
+    "async_timeout",
+    "cachecontrol",
+    "certifi",
+    "charset_normalizer",
+    "defusedxml",
+    "deprecated",
+    "examples",
+    "idna",
+    "insights",
+    "jinja2",
+    "lockfile",
+    "markupsafe",
+    "msgpack",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "requests",
+    "six",
+    "tests",
+    "urllib3",
+    "wrapt",
+    "yaml"
+  ]
+}

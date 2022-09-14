@@ -1,0 +1,13 @@
+{
+  "name": "surveymonty",
+  "version": "0.2.5",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "surveymonty",
+    "tests",
+    "urllib3"
+  ]
+}

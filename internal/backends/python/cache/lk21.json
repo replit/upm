@@ -1,0 +1,34 @@
+{
+  "name": "lk21",
+  "version": "1.6.0",
+  "requires_dist": [
+    "questionary",
+    "bs4",
+    "requests",
+    "requests-cache",
+    "colorama"
+  ],
+  "modules": [
+    "appdirs",
+    "attr",
+    "attrs",
+    "bs4",
+    "cattr",
+    "cattrs",
+    "certifi",
+    "charset_normalizer",
+    "colorama",
+    "exceptiongroup",
+    "idna",
+    "lk21",
+    "prompt_toolkit",
+    "questionary",
+    "requests",
+    "requests_cache",
+    "six",
+    "soupsieve",
+    "url_normalize",
+    "urllib3",
+    "wcwidth"
+  ]
+}

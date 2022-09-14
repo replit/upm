@@ -1,0 +1,11 @@
+{
+  "name": "PyLD",
+  "version": "2.0.3",
+  "modules": [
+    "c14n",
+    "cachetools",
+    "frozendict",
+    "lxml",
+    "pyld"
+  ]
+}

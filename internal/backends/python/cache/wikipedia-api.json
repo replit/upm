@@ -1,0 +1,12 @@
+{
+  "name": "Wikipedia-API",
+  "version": "0.5.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3",
+    "wikipediaapi"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-bootstrap-datepicker-plus",
+  "version": "4.0.0",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bootstrap_datepicker_plus",
+    "django",
+    "sqlparse"
+  ]
+}

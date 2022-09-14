@@ -1,0 +1,7 @@
+{
+  "name": "python-string-utils",
+  "version": "1.0.0",
+  "modules": [
+    "string_utils"
+  ]
+}

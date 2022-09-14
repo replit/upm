@@ -1,0 +1,18 @@
+{
+  "name": "allure-python-commons",
+  "version": "2.10.0",
+  "requires_dist": [
+    "attrs",
+    "six",
+    "pluggy",
+    "enum34"
+  ],
+  "modules": [
+    "allure",
+    "allure_commons",
+    "attr",
+    "attrs",
+    "pluggy",
+    "six"
+  ]
+}

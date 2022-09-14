@@ -1,0 +1,19 @@
+{
+  "name": "onesignal-sdk",
+  "version": "2.0.0",
+  "requires_dist": [
+    "httpx"
+  ],
+  "modules": [
+    "anyio",
+    "certifi",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "onesignal_sdk",
+    "rfc3986",
+    "sniffio",
+    "tests"
+  ]
+}

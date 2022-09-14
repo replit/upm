@@ -1,0 +1,14 @@
+{
+  "name": "tink",
+  "version": "1.6.1",
+  "requires_dist": [
+    "absl-py",
+    "protobuf",
+    "six"
+  ],
+  "modules": [
+    "absl",
+    "six",
+    "tink"
+  ]
+}

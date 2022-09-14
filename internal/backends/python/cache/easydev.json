@@ -1,0 +1,11 @@
+{
+  "name": "easydev",
+  "version": "0.12.0",
+  "modules": [
+    "colorama",
+    "colorlog",
+    "easydev",
+    "pexpect",
+    "ptyprocess"
+  ]
+}

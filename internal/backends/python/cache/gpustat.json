@@ -1,0 +1,13 @@
+{
+  "name": "gpustat",
+  "version": "1.0.0",
+  "modules": [
+    "blessed",
+    "example",
+    "gpustat",
+    "psutil",
+    "pynvml",
+    "six",
+    "wcwidth"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "PyBoolector",
+  "version": "3.2.2.20220802.4",
+  "modules": [
+    "pyboolector"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "pip-tools",
+  "version": "6.8.0",
+  "modules": [
+    "build",
+    "click",
+    "packaging",
+    "pep517",
+    "piptools",
+    "pyparsing",
+    "tomli",
+    "wheel"
+  ]
+}

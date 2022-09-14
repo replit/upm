@@ -1,0 +1,33 @@
+{
+  "name": "cryptography",
+  "version": "38.0.1",
+  "requires_dist": [
+    "cffi",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pyenchant",
+    "twine",
+    "sphinxcontrib-spelling",
+    "black",
+    "flake8",
+    "flake8-import-order",
+    "pep8-naming",
+    "setuptools-rust",
+    "bcrypt",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "pytest-subtests",
+    "pytest-xdist",
+    "pretend",
+    "iso8601",
+    "pytz",
+    "hypothesis"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pycparser"
+  ]
+}

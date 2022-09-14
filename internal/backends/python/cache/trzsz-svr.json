@@ -1,0 +1,7 @@
+{
+  "name": "trzsz-svr",
+  "version": "1.1.0",
+  "requires_dist": [
+    "trzsz-libs"
+  ]
+}

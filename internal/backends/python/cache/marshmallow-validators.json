@@ -1,0 +1,13 @@
+{
+  "name": "marshmallow-validators",
+  "version": "3.0.0",
+  "requires_dist": [
+    "marshmallow"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_validators",
+    "packaging",
+    "pyparsing"
+  ]
+}

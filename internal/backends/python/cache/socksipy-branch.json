@@ -1,0 +1,7 @@
+{
+  "name": "SocksiPy-branch",
+  "version": "1.01",
+  "modules": [
+    "socks"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "contextlib2",
+  "version": "21.6.0",
+  "modules": [
+    "contextlib2"
+  ]
+}

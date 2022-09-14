@@ -1,0 +1,26 @@
+{
+  "name": "coinmetrics-api-client",
+  "version": "2022.8.29.6",
+  "requires_dist": [
+    "requests",
+    "orjson",
+    "pandas",
+    "websocket-client",
+    "python-dateutil",
+    "typer"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "coinmetrics",
+    "dateutil",
+    "idna",
+    "orjson",
+    "requests",
+    "six",
+    "typer",
+    "urllib3",
+    "websocket"
+  ]
+}

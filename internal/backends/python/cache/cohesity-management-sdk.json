@@ -1,0 +1,17 @@
+{
+  "name": "cohesity-management-sdk",
+  "version": "1.8.1",
+  "modules": [
+    "cachecontrol",
+    "certifi",
+    "charset_normalizer",
+    "cohesity_management_sdk",
+    "dateutil",
+    "idna",
+    "msgpack",
+    "requests",
+    "samples",
+    "six",
+    "urllib3"
+  ]
+}

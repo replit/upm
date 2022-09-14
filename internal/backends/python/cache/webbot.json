@@ -1,0 +1,26 @@
+{
+  "name": "webbot",
+  "version": "0.34",
+  "requires_dist": [
+    "selenium"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "selenium",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "webbot",
+    "wsproto"
+  ]
+}

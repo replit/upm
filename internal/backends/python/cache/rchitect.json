@@ -1,0 +1,11 @@
+{
+  "name": "rchitect",
+  "version": "0.3.37",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "rchitect",
+    "six"
+  ]
+}

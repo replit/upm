@@ -1,0 +1,14 @@
+{
+  "name": "django-admin-cursor-paginator",
+  "version": "0.1.2",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "admin_cursor_paginator",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse"
+  ]
+}

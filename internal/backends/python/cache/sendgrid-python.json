@@ -1,0 +1,9 @@
+{
+  "name": "sendgrid-python",
+  "version": "0.1.1",
+  "modules": [
+    "ellipticcurve",
+    "python_http_client",
+    "sendgrid"
+  ]
+}

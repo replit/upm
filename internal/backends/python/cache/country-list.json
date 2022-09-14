@@ -1,0 +1,7 @@
+{
+  "name": "country-list",
+  "version": "1.0.0",
+  "modules": [
+    "country_list"
+  ]
+}

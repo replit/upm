@@ -1,0 +1,7 @@
+{
+  "name": "python-lzf",
+  "version": "0.2.4",
+  "modules": [
+    "lzf"
+  ]
+}

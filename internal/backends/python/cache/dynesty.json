@@ -1,0 +1,7 @@
+{
+  "name": "dynesty",
+  "version": "1.2.3",
+  "modules": [
+    "dynesty"
+  ]
+}

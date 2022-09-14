@@ -1,0 +1,27 @@
+{
+  "name": "warrant",
+  "version": "0.6.1",
+  "modules": [
+    "Crypto",
+    "boto3",
+    "botocore",
+    "cdu",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "ecdsa",
+    "envs",
+    "future",
+    "idna",
+    "jmespath",
+    "jose",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "warrant"
+  ]
+}

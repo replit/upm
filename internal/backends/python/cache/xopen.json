@@ -1,0 +1,12 @@
+{
+  "name": "xopen",
+  "version": "1.6.0",
+  "requires_dist": [
+    "isal",
+    "pytest"
+  ],
+  "modules": [
+    "isal",
+    "xopen"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "chiapos",
+  "version": "1.0.10",
+  "modules": [
+    "chiapos"
+  ]
+}

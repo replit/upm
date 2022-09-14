@@ -1,0 +1,16 @@
+{
+  "name": "patsy",
+  "version": "0.5.2",
+  "requires_dist": [
+    "six",
+    "numpy",
+    "pytest",
+    "pytest-cov",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "patsy",
+    "six"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "snakeviz",
+  "version": "2.1.1",
+  "requires_dist": [
+    "tornado"
+  ],
+  "modules": [
+    "snakeviz",
+    "tornado"
+  ]
+}

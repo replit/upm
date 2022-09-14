@@ -1,0 +1,9 @@
+{
+  "name": "feather-format",
+  "version": "0.4.1",
+  "modules": [
+    "feather",
+    "numpy",
+    "pyarrow"
+  ]
+}

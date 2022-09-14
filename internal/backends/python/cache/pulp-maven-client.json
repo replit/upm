@@ -1,0 +1,17 @@
+{
+  "name": "pulp-maven-client",
+  "version": "0.3.3",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "pulpcore",
+    "six",
+    "urllib3"
+  ]
+}

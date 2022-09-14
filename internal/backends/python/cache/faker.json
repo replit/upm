@@ -1,0 +1,13 @@
+{
+  "name": "Faker",
+  "version": "14.2.0",
+  "requires_dist": [
+    "python-dateutil",
+    "typing-extensions"
+  ],
+  "modules": [
+    "dateutil",
+    "faker",
+    "six"
+  ]
+}

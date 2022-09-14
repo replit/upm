@@ -1,0 +1,11 @@
+{
+  "name": "blis",
+  "version": "0.9.1",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "blis",
+    "numpy"
+  ]
+}

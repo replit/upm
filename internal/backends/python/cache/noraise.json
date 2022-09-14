@@ -1,0 +1,7 @@
+{
+  "name": "noraise",
+  "version": "0.0.16",
+  "modules": [
+    "noraise"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "azure-storage-file",
+  "version": "2.1.0",
+  "requires_dist": [
+    "azure-common",
+    "azure-storage-common",
+    "futures"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

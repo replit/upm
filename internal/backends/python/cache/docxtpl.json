@@ -1,0 +1,22 @@
+{
+  "name": "docxtpl",
+  "version": "0.16.4",
+  "requires_dist": [
+    "six",
+    "python-docx",
+    "docxcompose",
+    "jinja2",
+    "lxml",
+    "Sphinx",
+    "sphinxcontrib-napoleon"
+  ],
+  "modules": [
+    "docx",
+    "docxcompose",
+    "docxtpl",
+    "jinja2",
+    "lxml",
+    "markupsafe",
+    "six"
+  ]
+}

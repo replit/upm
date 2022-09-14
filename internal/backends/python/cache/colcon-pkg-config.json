@@ -1,0 +1,28 @@
+{
+  "name": "colcon-pkg-config",
+  "version": "0.1.0",
+  "requires_dist": [
+    "colcon-core"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "colcon",
+    "colcon_core",
+    "colcon_pkg_config",
+    "coverage",
+    "distlib",
+    "em",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "pytest_repeat",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sphinx-markdown-tables",
+  "version": "0.0.17",
+  "requires_dist": [
+    "markdown"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "markdown",
+    "sphinx_markdown_tables",
+    "zipp"
+  ]
+}

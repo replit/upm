@@ -1,0 +1,14 @@
+{
+  "name": "dwave-greedy",
+  "version": "0.2.5",
+  "requires_dist": [
+    "numpy",
+    "dimod",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "dimod",
+    "greedy",
+    "numpy"
+  ]
+}

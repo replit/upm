@@ -1,0 +1,12 @@
+{
+  "name": "pyorc",
+  "version": "0.7.0",
+  "requires_dist": [
+    "backports.zoneinfo",
+    "tzdata"
+  ],
+  "modules": [
+    "backports",
+    "pyorc"
+  ]
+}

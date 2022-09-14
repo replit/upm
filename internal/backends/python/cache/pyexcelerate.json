@@ -1,0 +1,14 @@
+{
+  "name": "PyExcelerate",
+  "version": "0.10.0",
+  "requires_dist": [
+    "Jinja2",
+    "six"
+  ],
+  "modules": [
+    "jinja2",
+    "markupsafe",
+    "pyexcelerate",
+    "six"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "publish-event-sns",
+  "version": "0.0.3",
+  "modules": [
+    "publish_event_sns"
+  ]
+}

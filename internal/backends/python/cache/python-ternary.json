@@ -1,0 +1,21 @@
+{
+  "name": "python-ternary",
+  "version": "1.0.8",
+  "requires_dist": [
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six",
+    "ternary"
+  ]
+}

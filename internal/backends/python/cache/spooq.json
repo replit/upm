@@ -1,0 +1,26 @@
+{
+  "name": "Spooq",
+  "version": "3.3.9",
+  "requires_dist": [
+    "pandas",
+    "future",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "pandas",
+    "past",
+    "pytz",
+    "requests",
+    "six",
+    "spooq",
+    "urllib3"
+  ]
+}

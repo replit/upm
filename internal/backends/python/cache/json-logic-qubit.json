@@ -1,0 +1,8 @@
+{
+  "name": "json_logic_qubit",
+  "version": "0.9.1",
+  "modules": [
+    "json_logic",
+    "six"
+  ]
+}

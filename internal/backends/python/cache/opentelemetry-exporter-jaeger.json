@@ -1,0 +1,16 @@
+{
+  "name": "opentelemetry-exporter-jaeger",
+  "version": "1.12.0",
+  "requires_dist": [
+    "opentelemetry-exporter-jaeger-proto-grpc",
+    "opentelemetry-exporter-jaeger-thrift"
+  ],
+  "modules": [
+    "deprecated",
+    "grpc",
+    "six",
+    "thrift",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

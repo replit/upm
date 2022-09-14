@@ -1,0 +1,21 @@
+{
+  "name": "node2vec",
+  "version": "0.4.6",
+  "requires_dist": [
+    "networkx",
+    "gensim",
+    "numpy",
+    "tqdm",
+    "joblib"
+  ],
+  "modules": [
+    "gensim",
+    "joblib",
+    "networkx",
+    "node2vec",
+    "numpy",
+    "scipy",
+    "smart_open",
+    "tqdm"
+  ]
+}

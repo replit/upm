@@ -1,0 +1,16 @@
+{
+  "name": "python-coveralls",
+  "version": "2.9.3",
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "coverage",
+    "coveralls",
+    "idna",
+    "requests",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "mgwr",
+  "version": "2.1.2",
+  "modules": [
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jinja2",
+    "libpysal",
+    "markupsafe",
+    "mgwr",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "scipy",
+    "six",
+    "soupsieve",
+    "spglm",
+    "spreg",
+    "urllib3"
+  ]
+}

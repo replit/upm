@@ -1,0 +1,7 @@
+{
+  "name": "Wand",
+  "version": "0.6.10",
+  "modules": [
+    "wand"
+  ]
+}

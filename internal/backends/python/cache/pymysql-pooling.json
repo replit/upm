@@ -1,0 +1,11 @@
+{
+  "name": "pymysql-pooling",
+  "version": "1.0.6",
+  "requires_dist": [
+    "PyMySQL"
+  ],
+  "modules": [
+    "pymysql",
+    "pymysqlpool"
+  ]
+}

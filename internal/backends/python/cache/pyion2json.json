@@ -1,0 +1,8 @@
+{
+  "name": "pyion2json",
+  "version": "0.0.2",
+  "modules": [
+    "pyion2json",
+    "six"
+  ]
+}

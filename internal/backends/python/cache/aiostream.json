@@ -1,0 +1,10 @@
+{
+  "name": "aiostream",
+  "version": "0.4.5",
+  "requires_dist": [
+    "async-exit-stack"
+  ],
+  "modules": [
+    "aiostream"
+  ]
+}

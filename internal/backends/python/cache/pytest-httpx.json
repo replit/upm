@@ -1,0 +1,31 @@
+{
+  "name": "pytest-httpx",
+  "version": "0.21.0",
+  "requires_dist": [
+    "httpx",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov"
+  ],
+  "modules": [
+    "_pytest",
+    "anyio",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_httpx",
+    "rfc3986",
+    "sniffio",
+    "tomli"
+  ]
+}

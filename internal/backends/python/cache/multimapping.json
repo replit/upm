@@ -1,0 +1,13 @@
+{
+  "name": "MultiMapping",
+  "version": "4.1",
+  "requires_dist": [
+    "ExtensionClass"
+  ],
+  "modules": [
+    "ComputedAttribute",
+    "ExtensionClass",
+    "MethodObject",
+    "MultiMapping"
+  ]
+}

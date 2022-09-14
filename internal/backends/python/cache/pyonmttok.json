@@ -1,0 +1,7 @@
+{
+  "name": "pyonmttok",
+  "version": "1.34.0",
+  "modules": [
+    "pyonmttok"
+  ]
+}

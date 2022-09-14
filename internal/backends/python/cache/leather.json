@@ -1,0 +1,11 @@
+{
+  "name": "leather",
+  "version": "0.3.4",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "leather",
+    "six"
+  ]
+}

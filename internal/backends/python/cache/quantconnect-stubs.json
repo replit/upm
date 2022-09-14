@@ -1,0 +1,28 @@
+{
+  "name": "quantconnect-stubs",
+  "version": "14607",
+  "requires_dist": [
+    "pandas",
+    "matplotlib"
+  ],
+  "modules": [
+    "Internal",
+    "MS",
+    "Microsoft",
+    "PIL",
+    "QuantConnect",
+    "System",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "six"
+  ]
+}

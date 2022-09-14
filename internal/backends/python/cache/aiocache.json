@@ -1,0 +1,27 @@
+{
+  "name": "aiocache",
+  "version": "0.11.1",
+  "requires_dist": [
+    "asynctest",
+    "codecov",
+    "coverage",
+    "flake8",
+    "ipdb",
+    "marshmallow",
+    "pystache",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-mock",
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme",
+    "black",
+    "aiomcache",
+    "msgpack",
+    "aioredis",
+    "aioredis"
+  ],
+  "modules": [
+    "aiocache"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "suds-py3",
+  "version": "1.4.5.0",
+  "modules": [
+    "suds"
+  ]
+}

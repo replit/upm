@@ -1,0 +1,19 @@
+{
+  "name": "PasteScript",
+  "version": "3.2.1",
+  "requires_dist": [
+    "Paste",
+    "PasteDeploy",
+    "six",
+    "setuptools",
+    "Cheetah",
+    "PasteDeploy",
+    "Flup",
+    "PasteDeploy",
+    "Cheetah",
+    "WSGIserver"
+  ],
+  "modules": [
+    "six"
+  ]
+}

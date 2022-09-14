@@ -1,0 +1,7 @@
+{
+  "name": "julian",
+  "version": "0.14",
+  "modules": [
+    "julian"
+  ]
+}

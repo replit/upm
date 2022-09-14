@@ -1,0 +1,22 @@
+{
+  "name": "ros-cdk-ram",
+  "version": "1.0.8",
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "ros_cdk_assembly_schema",
+    "ros_cdk_core",
+    "ros_cdk_cxapi",
+    "ros_cdk_ram",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

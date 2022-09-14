@@ -1,0 +1,15 @@
+{
+  "name": "dipy",
+  "version": "1.5.0",
+  "modules": [
+    "dipy",
+    "h5py",
+    "nibabel",
+    "nisext",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "scipy",
+    "tqdm"
+  ]
+}

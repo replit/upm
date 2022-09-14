@@ -1,0 +1,23 @@
+{
+  "name": "django-configurations",
+  "version": "2.4",
+  "requires_dist": [
+    "django",
+    "importlib-metadata",
+    "django-cache-url",
+    "dj-database-url",
+    "dj-email-url",
+    "dj-search-url",
+    "django-cache-url",
+    "dj-database-url",
+    "dj-email-url",
+    "dj-search-url"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "configurations",
+    "django",
+    "sqlparse"
+  ]
+}

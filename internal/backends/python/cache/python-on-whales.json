@@ -1,0 +1,24 @@
+{
+  "name": "python-on-whales",
+  "version": "0.52.0",
+  "requires_dist": [
+    "pydantic",
+    "requests",
+    "tqdm",
+    "typer",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "idna",
+    "pydantic",
+    "python_on_whales",
+    "requests",
+    "tqdm",
+    "typer",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

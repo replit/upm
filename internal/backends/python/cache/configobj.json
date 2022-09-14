@@ -1,0 +1,10 @@
+{
+  "name": "configobj",
+  "version": "5.0.6",
+  "modules": [
+    "_version",
+    "configobj",
+    "six",
+    "validate"
+  ]
+}

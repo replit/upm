@@ -1,0 +1,12 @@
+{
+  "name": "class-registry",
+  "version": "2.1.2",
+  "requires_dist": [
+    "six",
+    "typing"
+  ],
+  "modules": [
+    "class_registry",
+    "six"
+  ]
+}

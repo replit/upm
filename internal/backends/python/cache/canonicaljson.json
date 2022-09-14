@@ -1,0 +1,13 @@
+{
+  "name": "canonicaljson",
+  "version": "1.6.2",
+  "requires_dist": [
+    "simplejson",
+    "typing-extensions",
+    "frozendict"
+  ],
+  "modules": [
+    "canonicaljson",
+    "simplejson"
+  ]
+}

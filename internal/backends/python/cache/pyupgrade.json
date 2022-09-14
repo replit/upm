@@ -1,0 +1,11 @@
+{
+  "name": "pyupgrade",
+  "version": "2.37.3",
+  "requires_dist": [
+    "tokenize-rt"
+  ],
+  "modules": [
+    "pyupgrade",
+    "tokenize_rt"
+  ]
+}

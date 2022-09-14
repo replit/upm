@@ -1,0 +1,7 @@
+{
+  "name": "pynsca",
+  "version": "1.6",
+  "modules": [
+    "pynsca"
+  ]
+}

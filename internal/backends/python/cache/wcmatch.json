@@ -1,0 +1,11 @@
+{
+  "name": "wcmatch",
+  "version": "8.4",
+  "requires_dist": [
+    "bracex"
+  ],
+  "modules": [
+    "bracex",
+    "wcmatch"
+  ]
+}

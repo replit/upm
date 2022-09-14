@@ -1,0 +1,5 @@
+{
+  "name": "pyobjc-framework-CalendarStore",
+  "version": "8.5",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-CalendarStore/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-CalendarStore']' returned non-zero exit status 1.\"}"
+}

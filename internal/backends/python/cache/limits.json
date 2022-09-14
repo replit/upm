@@ -1,0 +1,32 @@
+{
+  "name": "limits",
+  "version": "2.7.0",
+  "requires_dist": [
+    "deprecated",
+    "setuptools",
+    "packaging",
+    "typing-extensions",
+    "redis",
+    "redis",
+    "pymemcache",
+    "pymongo",
+    "motor",
+    "emcache",
+    "coredis",
+    "emcache",
+    "motor",
+    "coredis",
+    "pymemcache",
+    "pymongo",
+    "redis",
+    "redis"
+  ],
+  "modules": [
+    "deprecated",
+    "limits",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

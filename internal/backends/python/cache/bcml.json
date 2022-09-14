@@ -1,0 +1,27 @@
+{
+  "name": "bcml",
+  "version": "3.9.26",
+  "requires_dist": [
+    "numpy",
+    "numpy",
+    "aamp",
+    "byml",
+    "botw-utils",
+    "botw-havok",
+    "oead",
+    "packaging",
+    "pythonnet",
+    "pythonnet",
+    "PyQt5",
+    "pyqtwebengine",
+    "QtPy",
+    "pyqtwebengine",
+    "cefpython3",
+    "pywebview",
+    "PyYAML",
+    "requests",
+    "rstb",
+    "xxhash"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/bcml/bin/python3', '-m', 'pip', 'install', 'bcml']' returned non-zero exit status 2.\"}"
+}

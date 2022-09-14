@@ -1,0 +1,16 @@
+{
+  "name": "mozversion",
+  "version": "2.3.0",
+  "requires_dist": [
+    "mozlog",
+    "six"
+  ],
+  "modules": [
+    "blessings",
+    "mozfile",
+    "mozlog",
+    "mozterm",
+    "mozversion",
+    "six"
+  ]
+}

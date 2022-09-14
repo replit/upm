@@ -1,0 +1,7 @@
+{
+  "name": "pyflakes",
+  "version": "2.5.0",
+  "modules": [
+    "pyflakes"
+  ]
+}

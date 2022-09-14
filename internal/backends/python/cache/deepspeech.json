@@ -1,0 +1,11 @@
+{
+  "name": "deepspeech",
+  "version": "0.9.3",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "deepspeech",
+    "numpy"
+  ]
+}

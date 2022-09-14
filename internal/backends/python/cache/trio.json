@@ -1,0 +1,23 @@
+{
+  "name": "trio",
+  "version": "0.21.0",
+  "requires_dist": [
+    "attrs",
+    "sortedcontainers",
+    "async-generator",
+    "idna",
+    "outcome",
+    "sniffio",
+    "cffi"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "idna",
+    "outcome",
+    "sniffio",
+    "sortedcontainers",
+    "trio"
+  ]
+}

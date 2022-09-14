@@ -1,0 +1,15 @@
+{
+  "name": "sgqlc",
+  "version": "16.0",
+  "requires_dist": [
+    "graphql-core",
+    "requests",
+    "sphinx",
+    "sphinx-argparse",
+    "websocket-client"
+  ],
+  "modules": [
+    "graphql",
+    "sgqlc"
+  ]
+}

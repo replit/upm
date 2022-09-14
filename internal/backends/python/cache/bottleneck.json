@@ -1,0 +1,14 @@
+{
+  "name": "Bottleneck",
+  "version": "1.3.5",
+  "requires_dist": [
+    "numpy",
+    "numpydoc",
+    "sphinx",
+    "gitpython"
+  ],
+  "modules": [
+    "bottleneck",
+    "numpy"
+  ]
+}

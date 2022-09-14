@@ -1,0 +1,11 @@
+{
+  "name": "swimbundle-email",
+  "version": "0.2.1",
+  "requires_dist": [
+    "python-magic"
+  ],
+  "modules": [
+    "magic",
+    "swimbundle_email"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "serpy",
+  "version": "0.3.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "serpy",
+    "six"
+  ]
+}

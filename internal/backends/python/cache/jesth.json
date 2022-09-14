@@ -1,0 +1,8 @@
+{
+  "name": "jesth",
+  "version": "0.0.4",
+  "modules": [
+    "jesth",
+    "tests"
+  ]
+}

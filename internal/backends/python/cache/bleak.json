@@ -1,0 +1,18 @@
+{
+  "name": "bleak",
+  "version": "0.17.0",
+  "requires_dist": [
+    "async-timeout",
+    "bleak-winrt",
+    "dbus-fast",
+    "pyobjc-core",
+    "pyobjc-framework-CoreBluetooth",
+    "pyobjc-framework-libdispatch",
+    "typing-extensions"
+  ],
+  "modules": [
+    "async_timeout",
+    "bleak",
+    "dbus_fast"
+  ]
+}

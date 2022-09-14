@@ -1,0 +1,15 @@
+{
+  "name": "expiringdict",
+  "version": "1.2.2",
+  "requires_dist": [
+    "typing",
+    "dill",
+    "coverage",
+    "coveralls",
+    "mock",
+    "nose"
+  ],
+  "modules": [
+    "expiringdict"
+  ]
+}

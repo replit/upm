@@ -1,0 +1,13 @@
+{
+  "name": "tensorflow-metadata",
+  "version": "1.10.0",
+  "requires_dist": [
+    "absl-py",
+    "googleapis-common-protos",
+    "protobuf"
+  ],
+  "modules": [
+    "absl",
+    "tensorflow_metadata"
+  ]
+}

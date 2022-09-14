@@ -1,0 +1,13 @@
+{
+  "name": "geventhttpclient",
+  "version": "2.0.2",
+  "modules": [
+    "_brotli",
+    "brotli",
+    "certifi",
+    "gevent",
+    "geventhttpclient",
+    "greenlet",
+    "six"
+  ]
+}

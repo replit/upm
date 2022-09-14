@@ -1,0 +1,10 @@
+{
+  "name": "tnefparse",
+  "version": "1.4.0",
+  "requires_dist": [
+    "compressed-rtf"
+  ],
+  "modules": [
+    "tnefparse"
+  ]
+}

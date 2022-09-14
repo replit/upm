@@ -1,0 +1,24 @@
+{
+  "name": "ansible-runner",
+  "version": "2.2.1",
+  "requires_dist": [
+    "pexpect",
+    "packaging",
+    "python-daemon",
+    "pyyaml",
+    "six"
+  ],
+  "modules": [
+    "_yaml",
+    "ansible_runner",
+    "daemon",
+    "docutils",
+    "lockfile",
+    "packaging",
+    "pexpect",
+    "ptyprocess",
+    "pyparsing",
+    "six",
+    "yaml"
+  ]
+}

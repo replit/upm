@@ -1,0 +1,35 @@
+{
+  "name": "altair-viewer",
+  "version": "0.4.0",
+  "requires_dist": [
+    "altair",
+    "altair-data-server"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "altair",
+    "altair_data_server",
+    "altair_viewer",
+    "attr",
+    "attrs",
+    "dateutil",
+    "entrypoints",
+    "importlib_resources",
+    "jinja2",
+    "jsonschema",
+    "markupsafe",
+    "numpy",
+    "pandas",
+    "pkgutil_resolve_name",
+    "portpicker",
+    "psutil",
+    "pvectorc",
+    "pyrsistent",
+    "pytz",
+    "six",
+    "tlz",
+    "toolz",
+    "tornado",
+    "zipp"
+  ]
+}

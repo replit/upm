@@ -1,0 +1,16 @@
+{
+  "name": "customized-KoNLPy",
+  "version": "0.0.64",
+  "requires_dist": [
+    "Jpype1",
+    "konlpy"
+  ],
+  "modules": [
+    "_jpype",
+    "ckonlpy",
+    "jpype",
+    "konlpy",
+    "lxml",
+    "numpy"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "dclab",
+  "version": "0.45.0",
+  "requires_dist": [
+    "h5py",
+    "hdf5plugin",
+    "numpy",
+    "scipy",
+    "rpy2",
+    "requests",
+    "fcswrite",
+    "nptdms",
+    "imageio",
+    "tensorflow",
+    "requests",
+    "fcswrite",
+    "imageio",
+    "rpy2",
+    "tensorflow",
+    "imageio",
+    "nptdms"
+  ],
+  "modules": [
+    "dclab",
+    "h5py",
+    "hdf5plugin",
+    "numpy",
+    "scipy"
+  ]
+}

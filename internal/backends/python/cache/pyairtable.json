@@ -1,0 +1,15 @@
+{
+  "name": "pyairtable",
+  "version": "1.3.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyairtable",
+    "requests",
+    "urllib3"
+  ]
+}

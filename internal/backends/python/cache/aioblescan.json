@@ -1,0 +1,10 @@
+{
+  "name": "aioblescan",
+  "version": "0.2.13",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "aioblescan"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "python-geohash",
+  "version": "0.8.5",
+  "modules": [
+    "_geohash",
+    "geohash",
+    "jpgrid",
+    "jpiarea",
+    "quadtree"
+  ]
+}

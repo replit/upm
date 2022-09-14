@@ -1,0 +1,7 @@
+{
+  "name": "delayed-assert",
+  "version": "0.3.6",
+  "modules": [
+    "delayed_assert"
+  ]
+}

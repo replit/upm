@@ -1,0 +1,12 @@
+{
+  "name": "outcome",
+  "version": "1.2.0",
+  "requires_dist": [
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "outcome"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "xmlsec",
+  "version": "1.3.13",
+  "requires_dist": [
+    "lxml"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/xmlsec/bin/python3', '-m', 'pip', 'install', 'xmlsec']' returned non-zero exit status 1.\"}"
+}

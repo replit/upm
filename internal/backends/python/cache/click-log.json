@@ -1,0 +1,8 @@
+{
+  "name": "click-log",
+  "version": "0.4.0",
+  "modules": [
+    "click",
+    "click_log"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "similar",
+  "version": "0.2",
+  "modules": [
+    "Levenshtein",
+    "similar"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pytest-testmon",
+  "version": "1.3.6",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "coverage",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "testmon",
+    "tomli"
+  ]
+}

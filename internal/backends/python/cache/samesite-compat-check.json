@@ -1,0 +1,7 @@
+{
+  "name": "samesite-compat-check",
+  "version": "0.2.0",
+  "modules": [
+    "samesite_compat_check"
+  ]
+}

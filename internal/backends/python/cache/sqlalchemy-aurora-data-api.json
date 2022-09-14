@@ -1,0 +1,21 @@
+{
+  "name": "sqlalchemy-aurora-data-api",
+  "version": "0.4.1",
+  "requires_dist": [
+    "sqlalchemy",
+    "aurora-data-api"
+  ],
+  "modules": [
+    "aurora_data_api",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "greenlet",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_aurora_data_api",
+    "urllib3"
+  ]
+}

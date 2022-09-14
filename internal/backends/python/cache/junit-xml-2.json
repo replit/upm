@@ -1,0 +1,12 @@
+{
+  "name": "junit-xml-2",
+  "version": "1.9",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "junit_xml",
+    "junit_xml_2",
+    "six"
+  ]
+}

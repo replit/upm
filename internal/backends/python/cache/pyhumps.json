@@ -1,0 +1,7 @@
+{
+  "name": "pyhumps",
+  "version": "3.7.3",
+  "modules": [
+    "humps"
+  ]
+}

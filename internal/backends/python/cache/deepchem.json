@@ -1,0 +1,37 @@
+{
+  "name": "deepchem",
+  "version": "2.6.1",
+  "requires_dist": [
+    "joblib",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "rdkit-pypi",
+    "jax",
+    "jaxlib",
+    "dm-haiku",
+    "optax",
+    "tensorflow",
+    "tensorflow-probability",
+    "tensorflow-addons",
+    "torch",
+    "torchvision",
+    "dgl",
+    "dgllife"
+  ],
+  "modules": [
+    "PIL",
+    "dateutil",
+    "deepchem",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "rdkit",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

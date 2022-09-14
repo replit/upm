@@ -1,0 +1,7 @@
+{
+  "name": "parsy",
+  "version": "2.0",
+  "modules": [
+    "parsy"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ExifRead",
+  "version": "3.0.0",
+  "modules": [
+    "exifread"
+  ]
+}

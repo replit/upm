@@ -1,0 +1,11 @@
+{
+  "name": "rpmfile",
+  "version": "1.0.8",
+  "requires_dist": [
+    "zstandard"
+  ],
+  "modules": [
+    "rpmfile",
+    "tests"
+  ]
+}

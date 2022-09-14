@@ -1,0 +1,14 @@
+{
+  "name": "pyjdbc",
+  "version": "0.2.2",
+  "requires_dist": [
+    "JPype1",
+    "sqlparams"
+  ],
+  "modules": [
+    "_jpype",
+    "jpype",
+    "pyjdbc",
+    "sqlparams"
+  ]
+}

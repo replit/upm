@@ -1,0 +1,13 @@
+{
+  "name": "appoptics-apm",
+  "version": "5.2.0",
+  "requires_dist": [
+    "decorator",
+    "six"
+  ],
+  "modules": [
+    "appoptics_apm",
+    "decorator",
+    "six"
+  ]
+}

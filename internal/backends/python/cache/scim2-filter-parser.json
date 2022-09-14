@@ -1,0 +1,12 @@
+{
+  "name": "scim2-filter-parser",
+  "version": "0.4.0",
+  "requires_dist": [
+    "sly",
+    "django"
+  ],
+  "modules": [
+    "scim2_filter_parser",
+    "sly"
+  ]
+}

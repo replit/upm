@@ -1,0 +1,31 @@
+{
+  "name": "soda-core",
+  "version": "3.0.7",
+  "requires_dist": [
+    "markupsafe",
+    "Jinja2",
+    "click",
+    "ruamel.yaml",
+    "requests",
+    "antlr4-python3-runtime",
+    "opentelemetry-api",
+    "opentelemetry-exporter-otlp-proto-http",
+    "protobuf"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "antlr4",
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "deprecated",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "wrapt"
+  ]
+}

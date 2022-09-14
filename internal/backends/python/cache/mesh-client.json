@@ -1,0 +1,17 @@
+{
+  "name": "Mesh-Client",
+  "version": "1.4.0",
+  "requires_dist": [
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mesh_client",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

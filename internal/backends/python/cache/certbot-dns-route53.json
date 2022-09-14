@@ -1,0 +1,43 @@
+{
+  "name": "certbot-dns-route53",
+  "version": "1.30.0",
+  "requires_dist": [
+    "boto3",
+    "setuptools",
+    "acme",
+    "certbot",
+    "Sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "_version",
+    "acme",
+    "boto3",
+    "botocore",
+    "certbot",
+    "certbot_dns_route53",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "configargparse",
+    "configobj",
+    "cryptography",
+    "dateutil",
+    "distro",
+    "idna",
+    "jmespath",
+    "josepy",
+    "parsedatetime",
+    "pycparser",
+    "pyrfc3339",
+    "pytz",
+    "requests",
+    "requests_toolbelt",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "validate"
+  ]
+}

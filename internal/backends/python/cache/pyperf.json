@@ -1,0 +1,10 @@
+{
+  "name": "pyperf",
+  "version": "2.4.1",
+  "requires_dist": [
+    "statistics"
+  ],
+  "modules": [
+    "pyperf"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "rq-dashboard",
+  "version": "0.6.1",
+  "modules": [
+    "arrow",
+    "async_timeout",
+    "click",
+    "dateutil",
+    "deprecated",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "rq",
+    "rq_dashboard",
+    "six",
+    "werkzeug",
+    "wrapt",
+    "zipp"
+  ]
+}

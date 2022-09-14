@@ -1,0 +1,12 @@
+{
+  "name": "rapidfuzz",
+  "version": "2.8.0",
+  "requires_dist": [
+    "jarowinkler",
+    "numpy"
+  ],
+  "modules": [
+    "jarowinkler",
+    "rapidfuzz"
+  ]
+}

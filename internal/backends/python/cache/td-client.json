@@ -1,0 +1,21 @@
+{
+  "name": "td-client",
+  "version": "1.2.1",
+  "requires_dist": [
+    "msgpack",
+    "python-dateutil",
+    "urllib3",
+    "black",
+    "isort",
+    "flake8",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "dateutil",
+    "msgpack",
+    "six",
+    "tdclient",
+    "urllib3"
+  ]
+}

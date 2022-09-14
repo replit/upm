@@ -1,0 +1,30 @@
+{
+  "name": "iLCDirac",
+  "version": "33.0.0a2",
+  "requires_dist": [
+    "DIRAC",
+    "requests",
+    "six",
+    "DIRAC",
+    "psutil",
+    "suds-jurko",
+    "caniusepython3",
+    "flake8",
+    "flake8-commas",
+    "flake8-docstrings",
+    "future",
+    "licenseheaders",
+    "mock",
+    "parameterized",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-randomly",
+    "pytest-timeout",
+    "pytest-xdist",
+    "sphinx-tabs",
+    "suds-jurko"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/iLCDirac/bin/python3', '-m', 'pip', 'install', 'iLCDirac']' returned non-zero exit status 1.\"}"
+}

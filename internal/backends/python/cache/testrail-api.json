@@ -1,0 +1,15 @@
+{
+  "name": "testrail-api",
+  "version": "1.10.6",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "testrail_api",
+    "urllib3"
+  ]
+}

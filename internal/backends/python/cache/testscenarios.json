@@ -1,0 +1,11 @@
+{
+  "name": "testscenarios",
+  "version": "0.5.0",
+  "modules": [
+    "extras",
+    "fixtures",
+    "pbr",
+    "testscenarios",
+    "testtools"
+  ]
+}

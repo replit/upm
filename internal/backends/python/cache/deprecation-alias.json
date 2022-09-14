@@ -1,0 +1,14 @@
+{
+  "name": "deprecation-alias",
+  "version": "0.3.1",
+  "requires_dist": [
+    "deprecation",
+    "packaging"
+  ],
+  "modules": [
+    "deprecation",
+    "deprecation_alias",
+    "packaging",
+    "pyparsing"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "assemblyline-v4-service",
+  "version": "4.3.0.8",
+  "requires_dist": [
+    "assemblyline",
+    "assemblyline-core",
+    "cart",
+    "fuzzywuzzy",
+    "pefile",
+    "pillow",
+    "python-Levenshtein",
+    "regex"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/assemblyline-v4-service/bin/python3', '-m', 'pip', 'install', 'assemblyline-v4-service']' returned non-zero exit status 1.\"}"
+}

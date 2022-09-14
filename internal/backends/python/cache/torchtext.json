@@ -1,0 +1,24 @@
+{
+  "name": "torchtext",
+  "version": "0.13.1",
+  "requires_dist": [
+    "tqdm",
+    "requests",
+    "torch",
+    "numpy"
+  ],
+  "modules": [
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "numpy",
+    "requests",
+    "torch",
+    "torchgen",
+    "torchtext",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

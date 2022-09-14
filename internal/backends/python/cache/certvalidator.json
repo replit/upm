@@ -1,0 +1,13 @@
+{
+  "name": "certvalidator",
+  "version": "0.11.1",
+  "requires_dist": [
+    "asn1crypto",
+    "oscrypto"
+  ],
+  "modules": [
+    "asn1crypto",
+    "certvalidator",
+    "oscrypto"
+  ]
+}

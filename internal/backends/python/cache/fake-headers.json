@@ -1,0 +1,16 @@
+{
+  "name": "fake-headers",
+  "version": "1.0.2",
+  "requires_dist": [
+    "bs4",
+    "html5lib"
+  ],
+  "modules": [
+    "bs4",
+    "fake_headers",
+    "html5lib",
+    "six",
+    "soupsieve",
+    "webencodings"
+  ]
+}

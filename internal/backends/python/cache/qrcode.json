@@ -1,0 +1,7 @@
+{
+  "name": "qrcode",
+  "version": "7.3.1",
+  "modules": [
+    "qrcode"
+  ]
+}

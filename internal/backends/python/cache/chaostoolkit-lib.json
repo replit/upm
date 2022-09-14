@@ -1,0 +1,27 @@
+{
+  "name": "chaostoolkit-lib",
+  "version": "1.28.0",
+  "requires_dist": [
+    "logzero",
+    "requests",
+    "pyyaml",
+    "contextvars",
+    "importlib-metadata",
+    "importlib-metadata",
+    "cchardet",
+    "chardet",
+    "jsonpath2",
+    "hvac"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "chaoslib",
+    "charset_normalizer",
+    "idna",
+    "logzero",
+    "requests",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "stripe",
+  "version": "4.1.0",
+  "requires_dist": [
+    "requests",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "stripe",
+    "urllib3"
+  ]
+}

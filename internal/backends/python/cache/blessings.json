@@ -1,0 +1,11 @@
+{
+  "name": "blessings",
+  "version": "1.7",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "blessings",
+    "six"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sphinx-bootstrap-theme",
+  "version": "0.8.1",
+  "modules": [
+    "sphinx_bootstrap_theme"
+  ]
+}

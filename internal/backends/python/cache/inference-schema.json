@@ -1,0 +1,19 @@
+{
+  "name": "inference-schema",
+  "version": "1.4.2.1",
+  "requires_dist": [
+    "python-dateutil",
+    "pytz",
+    "wrapt",
+    "numpy",
+    "pandas",
+    "pyspark"
+  ],
+  "modules": [
+    "dateutil",
+    "inference_schema",
+    "pytz",
+    "six",
+    "wrapt"
+  ]
+}

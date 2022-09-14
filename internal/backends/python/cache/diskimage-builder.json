@@ -1,0 +1,23 @@
+{
+  "name": "diskimage-builder",
+  "version": "3.24.0",
+  "requires_dist": [
+    "PyYAML",
+    "flake8",
+    "networkx",
+    "pbr",
+    "stevedore"
+  ],
+  "modules": [
+    "_yaml",
+    "diskimage_builder",
+    "flake8",
+    "mccabe",
+    "networkx",
+    "pbr",
+    "pycodestyle",
+    "pyflakes",
+    "stevedore",
+    "yaml"
+  ]
+}

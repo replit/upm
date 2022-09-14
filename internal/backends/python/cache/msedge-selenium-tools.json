@@ -1,0 +1,12 @@
+{
+  "name": "msedge-selenium-tools",
+  "version": "3.141.4",
+  "requires_dist": [
+    "selenium"
+  ],
+  "modules": [
+    "msedge",
+    "selenium",
+    "urllib3"
+  ]
+}

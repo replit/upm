@@ -1,0 +1,19 @@
+{
+  "name": "filterpy",
+  "version": "1.4.5",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "filterpy",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six"
+  ]
+}

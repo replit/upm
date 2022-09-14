@@ -1,0 +1,15 @@
+{
+  "name": "2captcha-python",
+  "version": "1.1.2",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "twocaptcha",
+    "urllib3"
+  ]
+}

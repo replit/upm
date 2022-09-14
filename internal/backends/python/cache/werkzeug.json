@@ -1,0 +1,12 @@
+{
+  "name": "Werkzeug",
+  "version": "2.2.2",
+  "requires_dist": [
+    "MarkupSafe",
+    "watchdog"
+  ],
+  "modules": [
+    "markupsafe",
+    "werkzeug"
+  ]
+}

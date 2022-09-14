@@ -1,0 +1,36 @@
+{
+  "name": "pyramid",
+  "version": "2.0",
+  "requires_dist": [
+    "hupper",
+    "plaster",
+    "plaster-pastedeploy",
+    "setuptools",
+    "translationstring",
+    "venusian",
+    "webob",
+    "zope.deprecation",
+    "zope.interface",
+    "Sphinx",
+    "docutils",
+    "pylons-sphinx-themes",
+    "pylons-sphinx-latesturl",
+    "repoze.sphinx.autointerface",
+    "sphinx-copybutton",
+    "sphinxcontrib-autoprogram",
+    "webtest",
+    "zope.component",
+    "coverage",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "hupper",
+    "plaster",
+    "plaster_pastedeploy",
+    "pyramid",
+    "translationstring",
+    "venusian",
+    "webob"
+  ]
+}

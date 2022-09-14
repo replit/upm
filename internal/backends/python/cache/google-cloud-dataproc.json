@@ -1,0 +1,25 @@
+{
+  "name": "google-cloud-dataproc",
+  "version": "5.0.1",
+  "requires_dist": [
+    "google-api-core",
+    "proto-plus",
+    "protobuf",
+    "libcst"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

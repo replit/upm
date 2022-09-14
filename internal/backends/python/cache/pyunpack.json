@@ -1,0 +1,13 @@
+{
+  "name": "pyunpack",
+  "version": "0.3",
+  "requires_dist": [
+    "easyprocess",
+    "entrypoint2"
+  ],
+  "modules": [
+    "easyprocess",
+    "entrypoint2",
+    "pyunpack"
+  ]
+}

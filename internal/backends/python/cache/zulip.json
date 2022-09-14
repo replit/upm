@@ -1,0 +1,24 @@
+{
+  "name": "zulip",
+  "version": "0.8.2",
+  "requires_dist": [
+    "requests",
+    "matrix-client",
+    "distro",
+    "click",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "distro",
+    "idna",
+    "integrations",
+    "matrix_client",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "zulip"
+  ]
+}

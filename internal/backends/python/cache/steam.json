@@ -1,0 +1,16 @@
+{
+  "name": "steam",
+  "version": "1.3.0",
+  "modules": [
+    "Cryptodome",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "steam",
+    "urllib3",
+    "vdf"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "mizani",
+  "version": "0.7.4",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "pandas",
+    "matplotlib",
+    "palettable",
+    "sphinx",
+    "numpydoc",
+    "flake8",
+    "pytest-cov"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "mizani",
+    "numpy",
+    "packaging",
+    "palettable",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six"
+  ]
+}

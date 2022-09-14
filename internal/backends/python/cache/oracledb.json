@@ -1,0 +1,11 @@
+{
+  "name": "oracledb",
+  "version": "1.0.3",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "oracledb",
+    "pycparser"
+  ]
+}

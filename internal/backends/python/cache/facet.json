@@ -1,0 +1,13 @@
+{
+  "name": "facet",
+  "version": "0.9.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "flake8"
+  ],
+  "modules": [
+    "facet"
+  ]
+}

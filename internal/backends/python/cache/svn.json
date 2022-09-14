@@ -1,0 +1,10 @@
+{
+  "name": "svn",
+  "version": "1.0.1",
+  "modules": [
+    "dateutil",
+    "nose",
+    "six",
+    "svn"
+  ]
+}

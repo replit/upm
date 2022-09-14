@@ -1,0 +1,22 @@
+{
+  "name": "seqio",
+  "version": "0.0.10",
+  "requires_dist": [
+    "absl-py",
+    "jax",
+    "jaxlib",
+    "numpy",
+    "packaging",
+    "sentencepiece",
+    "tensorflow-text",
+    "tfds-nightly",
+    "apache-beam",
+    "gevent",
+    "google-api-python-client",
+    "google-compute-engine",
+    "google-cloud-storage",
+    "oauth2client",
+    "pytest"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/seqio/bin/python3', '-m', 'pip', 'install', 'seqio']' returned non-zero exit status 1.\"}"
+}

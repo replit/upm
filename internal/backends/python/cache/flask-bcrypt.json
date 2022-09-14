@@ -1,0 +1,20 @@
+{
+  "name": "Flask-Bcrypt",
+  "version": "1.0.1",
+  "requires_dist": [
+    "Flask",
+    "bcrypt"
+  ],
+  "modules": [
+    "bcrypt",
+    "click",
+    "flask",
+    "flask_bcrypt",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

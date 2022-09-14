@@ -1,0 +1,18 @@
+{
+  "name": "scylla-driver",
+  "version": "3.25.5",
+  "requires_dist": [
+    "pyyaml",
+    "six",
+    "geomet",
+    "gremlinpython"
+  ],
+  "modules": [
+    "_yaml",
+    "cassandra",
+    "click",
+    "geomet",
+    "six",
+    "yaml"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "pyhacrf-datamade",
+  "version": "0.2.6",
+  "requires_dist": [
+    "PyLBFGS",
+    "numpy",
+    "numpy",
+    "numpy",
+    "numpy"
+  ],
+  "modules": [
+    "lbfgs",
+    "numpy",
+    "pyhacrf"
+  ]
+}

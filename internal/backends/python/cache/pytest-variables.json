@@ -1,0 +1,24 @@
+{
+  "name": "pytest-variables",
+  "version": "2.0.0",
+  "requires_dist": [
+    "pytest",
+    "hjson",
+    "PyYAML",
+    "toml"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_variables",
+    "test_variables",
+    "tomli"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "versioneer",
+  "version": "0.26",
+  "requires_dist": [
+    "tomli"
+  ],
+  "modules": [
+    "versioneer"
+  ]
+}

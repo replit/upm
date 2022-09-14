@@ -1,0 +1,16 @@
+{
+  "name": "splitio-client",
+  "version": "9.1.3",
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "requests",
+    "splitio",
+    "tests",
+    "urllib3",
+    "yaml"
+  ]
+}

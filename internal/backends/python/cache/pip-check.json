@@ -1,0 +1,12 @@
+{
+  "name": "pip-check",
+  "version": "2.7",
+  "requires_dist": [
+    "terminaltables",
+    "pip"
+  ],
+  "modules": [
+    "pip_check",
+    "terminaltables"
+  ]
+}

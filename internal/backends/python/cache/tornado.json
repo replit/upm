@@ -1,0 +1,7 @@
+{
+  "name": "tornado",
+  "version": "6.2",
+  "modules": [
+    "tornado"
+  ]
+}

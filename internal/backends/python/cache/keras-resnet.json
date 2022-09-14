@@ -1,0 +1,8 @@
+{
+  "name": "keras-resnet",
+  "version": "0.2.0",
+  "modules": [
+    "keras",
+    "keras_resnet"
+  ]
+}

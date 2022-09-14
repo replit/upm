@@ -1,0 +1,7 @@
+{
+  "name": "xyzservices",
+  "version": "2022.6.0",
+  "modules": [
+    "xyzservices"
+  ]
+}

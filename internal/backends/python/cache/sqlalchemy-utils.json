@@ -1,0 +1,9 @@
+{
+  "name": "SQLAlchemy-Utils",
+  "version": "0.38.3",
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_utils"
+  ]
+}

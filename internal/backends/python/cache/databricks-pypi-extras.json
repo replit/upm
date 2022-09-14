@@ -1,0 +1,11 @@
+{
+  "name": "databricks-pypi-extras",
+  "version": "0.1",
+  "requires_dist": [
+    "databricks-pypi1",
+    "databricks-pypi2"
+  ],
+  "modules": [
+    "databricks_pypi_extras"
+  ]
+}

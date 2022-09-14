@@ -1,0 +1,29 @@
+{
+  "name": "statannotations",
+  "version": "0.4.4",
+  "requires_dist": [
+    "numpy",
+    "seaborn",
+    "matplotlib",
+    "pandas",
+    "scipy"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "seaborn",
+    "six",
+    "statannotations"
+  ]
+}

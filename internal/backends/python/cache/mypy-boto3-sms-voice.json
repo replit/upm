@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sms-voice",
+  "version": "1.24.36.post1",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sms_voice",
+    "typing_extensions"
+  ]
+}

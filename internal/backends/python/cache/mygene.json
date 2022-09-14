@@ -1,0 +1,17 @@
+{
+  "name": "mygene",
+  "version": "3.2.2",
+  "requires_dist": [
+    "biothings-client"
+  ],
+  "modules": [
+    "biothings_client",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mygene",
+    "requests",
+    "tests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "fluent-logger",
+  "version": "0.10.0",
+  "requires_dist": [
+    "msgpack"
+  ],
+  "modules": [
+    "fluent",
+    "msgpack"
+  ]
+}

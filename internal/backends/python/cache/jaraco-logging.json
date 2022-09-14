@@ -1,0 +1,22 @@
+{
+  "name": "jaraco.logging",
+  "version": "3.1.2",
+  "requires_dist": [
+    "tempora",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black"
+  ],
+  "modules": [
+    "more_itertools",
+    "pytz",
+    "tempora"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "scikit-survival",
+  "version": "0.18.0",
+  "requires_dist": [
+    "ecos",
+    "joblib",
+    "numexpr",
+    "numpy",
+    "osqp",
+    "pandas",
+    "scipy",
+    "scikit-learn"
+  ],
+  "modules": [
+    "_ecos",
+    "dateutil",
+    "ecos",
+    "joblib",
+    "numexpr",
+    "numpy",
+    "osqp",
+    "osqppurepy",
+    "packaging",
+    "pandas",
+    "pyparsing",
+    "pytz",
+    "qdldl",
+    "scipy",
+    "six",
+    "sklearn",
+    "sksurv",
+    "threadpoolctl"
+  ]
+}

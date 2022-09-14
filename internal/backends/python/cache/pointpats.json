@@ -1,0 +1,33 @@
+{
+  "name": "pointpats",
+  "version": "2.2.0",
+  "modules": [
+    "PIL",
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "cv2",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "idna",
+    "jinja2",
+    "kiwisolver",
+    "libpysal",
+    "markupsafe",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pointpats",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "scipy",
+    "six",
+    "soupsieve",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "cymruwhois",
+  "version": "1.6",
+  "requires_dist": [
+    "python-memcached",
+    "sphinx",
+    "nose"
+  ],
+  "modules": [
+    "cymruwhois"
+  ]
+}

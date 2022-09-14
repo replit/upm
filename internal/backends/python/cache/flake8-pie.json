@@ -1,0 +1,11 @@
+{
+  "name": "flake8-pie",
+  "version": "0.16.0",
+  "requires_dist": [
+    "typing_extensions"
+  ],
+  "modules": [
+    "flake8_pie",
+    "typing_extensions"
+  ]
+}

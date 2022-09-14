@@ -1,0 +1,33 @@
+{
+  "name": "hdmf",
+  "version": "3.4.2",
+  "requires_dist": [
+    "h5py",
+    "jsonschema",
+    "numpy",
+    "pandas",
+    "ruamel.yaml",
+    "scipy",
+    "setuptools"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_ruamel_yaml",
+    "attr",
+    "attrs",
+    "dateutil",
+    "h5py",
+    "hdmf",
+    "importlib_resources",
+    "jsonschema",
+    "numpy",
+    "pandas",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "pytz",
+    "scipy",
+    "six",
+    "zipp"
+  ]
+}

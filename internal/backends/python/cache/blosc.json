@@ -1,0 +1,7 @@
+{
+  "name": "blosc",
+  "version": "1.10.6",
+  "modules": [
+    "blosc"
+  ]
+}

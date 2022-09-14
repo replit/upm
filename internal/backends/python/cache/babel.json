@@ -1,0 +1,11 @@
+{
+  "name": "Babel",
+  "version": "2.10.3",
+  "requires_dist": [
+    "pytz"
+  ],
+  "modules": [
+    "babel",
+    "pytz"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Flask-Login",
+  "version": "0.6.2",
+  "requires_dist": [
+    "Flask",
+    "Werkzeug"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_login",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

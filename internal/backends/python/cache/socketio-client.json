@@ -1,0 +1,14 @@
+{
+  "name": "socketIO-client",
+  "version": "0.7.2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "socketIO_client",
+    "urllib3",
+    "websocket"
+  ]
+}

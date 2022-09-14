@@ -1,0 +1,22 @@
+{
+  "name": "awslogs",
+  "version": "0.14.0",
+  "requires_dist": [
+    "boto3",
+    "jmespath",
+    "termcolor",
+    "python-dateutil"
+  ],
+  "modules": [
+    "awslogs",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "termcolor",
+    "tests",
+    "urllib3"
+  ]
+}

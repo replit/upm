@@ -1,0 +1,8 @@
+{
+  "name": "mo-imports",
+  "version": "7.187.22201",
+  "modules": [
+    "mo_future",
+    "mo_imports"
+  ]
+}

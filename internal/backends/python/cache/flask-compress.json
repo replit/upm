@@ -1,0 +1,21 @@
+{
+  "name": "Flask-Compress",
+  "version": "1.12",
+  "requires_dist": [
+    "flask",
+    "brotli"
+  ],
+  "modules": [
+    "_brotli",
+    "brotli",
+    "click",
+    "flask",
+    "flask_compress",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

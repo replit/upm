@@ -1,0 +1,26 @@
+{
+  "name": "alibabacloud-openapi-util",
+  "version": "0.1.6",
+  "modules": [
+    "Tea",
+    "_cffi_backend",
+    "aiohttp",
+    "aiosignal",
+    "alibabacloud_openapi_util",
+    "alibabacloud_tea_util",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gdspy",
+  "version": "1.6.12",
+  "modules": [
+    "gdspy",
+    "numpy"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "pusher",
+  "version": "3.2.0",
+  "requires_dist": [
+    "six",
+    "requests",
+    "urllib3",
+    "pyopenssl",
+    "ndg-httpsclient",
+    "pyasn1",
+    "pynacl",
+    "aiohttp",
+    "tornado"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "nacl",
+    "ndg",
+    "pusher",
+    "pyasn1",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

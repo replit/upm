@@ -1,0 +1,7 @@
+{
+  "name": "threadpoolctl",
+  "version": "3.1.0",
+  "modules": [
+    "threadpoolctl"
+  ]
+}

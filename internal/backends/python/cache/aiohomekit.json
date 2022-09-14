@@ -1,0 +1,27 @@
+{
+  "name": "aiohomekit",
+  "version": "1.5.7",
+  "requires_dist": [
+    "cryptography",
+    "zeroconf",
+    "commentjson",
+    "aiocoap",
+    "bleak",
+    "chacha20poly1305-reuseable",
+    "bleak-retry-connector",
+    "orjson",
+    "async-timeout"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aiohomekit",
+    "async_timeout",
+    "cffi",
+    "commentjson",
+    "cryptography",
+    "ifaddr",
+    "lark",
+    "pycparser",
+    "zeroconf"
+  ]
+}

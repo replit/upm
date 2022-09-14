@@ -1,0 +1,7 @@
+{
+  "name": "twitter",
+  "version": "1.19.4",
+  "modules": [
+    "twitter"
+  ]
+}

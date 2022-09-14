@@ -1,0 +1,10 @@
+{
+  "name": "importnb",
+  "version": "0.7.0",
+  "requires_dist": [
+    "importlib-resources"
+  ],
+  "modules": [
+    "importnb"
+  ]
+}

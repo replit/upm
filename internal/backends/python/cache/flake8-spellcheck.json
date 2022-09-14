@@ -1,0 +1,14 @@
+{
+  "name": "flake8-spellcheck",
+  "version": "0.28.0",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_spellcheck",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

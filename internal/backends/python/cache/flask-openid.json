@@ -1,0 +1,17 @@
+{
+  "name": "Flask-OpenID",
+  "version": "1.3.0",
+  "modules": [
+    "click",
+    "defusedxml",
+    "flask",
+    "flask_openid",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "openid",
+    "werkzeug",
+    "zipp"
+  ]
+}

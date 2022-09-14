@@ -1,0 +1,16 @@
+{
+  "name": "dfply",
+  "version": "0.3.3",
+  "requires_dist": [
+    "numpy",
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "dfply",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

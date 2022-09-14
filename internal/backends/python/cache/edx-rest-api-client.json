@@ -1,0 +1,36 @@
+{
+  "name": "edx-rest-api-client",
+  "version": "5.5.0",
+  "requires_dist": [
+    "PyJWT",
+    "edx-django-utils",
+    "requests",
+    "slumber"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "crum",
+    "django",
+    "edx_django_utils",
+    "edx_rest_api_client",
+    "idna",
+    "jwt",
+    "nacl",
+    "newrelic",
+    "pbr",
+    "psutil",
+    "pycparser",
+    "requests",
+    "slumber",
+    "sqlparse",
+    "stevedore",
+    "urllib3",
+    "waffle"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "telegram-send",
+  "version": "0.34",
+  "requires_dist": [
+    "python-telegram-bot",
+    "colorama",
+    "appdirs"
+  ],
+  "modules": [
+    "appdirs",
+    "apscheduler",
+    "backports",
+    "cachetools",
+    "certifi",
+    "colorama",
+    "pytz",
+    "pytz_deprecation_shim",
+    "six",
+    "telegram",
+    "telegram_send",
+    "tornado",
+    "tzdata",
+    "tzlocal"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "sphinxcontrib-programoutput",
+  "version": "0.17",
+  "requires_dist": [
+    "Sphinx"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "redo",
+  "version": "2.0.4",
+  "modules": [
+    "redo"
+  ]
+}

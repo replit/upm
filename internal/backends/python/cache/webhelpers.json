@@ -1,0 +1,8 @@
+{
+  "name": "WebHelpers",
+  "version": "1.3",
+  "modules": [
+    "markupsafe",
+    "webhelpers"
+  ]
+}

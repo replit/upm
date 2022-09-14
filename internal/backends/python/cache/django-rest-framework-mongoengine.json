@@ -1,0 +1,7 @@
+{
+  "name": "django-rest-framework-mongoengine",
+  "version": "3.4.1",
+  "modules": [
+    "rest_framework_mongoengine"
+  ]
+}

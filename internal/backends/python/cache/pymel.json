@@ -1,0 +1,14 @@
+{
+  "name": "pymel",
+  "version": "1.2.0",
+  "requires_dist": [
+    "future"
+  ],
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pymel"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "django-modeladmin-reorder",
+  "version": "0.3.1",
+  "modules": [
+    "admin_reorder",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse"
+  ]
+}

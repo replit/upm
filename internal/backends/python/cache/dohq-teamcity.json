@@ -1,0 +1,17 @@
+{
+  "name": "dohq-teamcity",
+  "version": "1.0.8",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "dohq_teamcity",
+    "six",
+    "urllib3"
+  ]
+}

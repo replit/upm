@@ -1,0 +1,23 @@
+{
+  "name": "stups-cli-support",
+  "version": "1.1.22",
+  "requires_dist": [
+    "clickclick",
+    "PyYAML",
+    "dnspython",
+    "requests"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "clickclick",
+    "dns",
+    "idna",
+    "requests",
+    "stups_cli",
+    "urllib3",
+    "yaml"
+  ]
+}

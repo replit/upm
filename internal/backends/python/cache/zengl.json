@@ -1,0 +1,9 @@
+{
+  "name": "zengl",
+  "version": "1.9.2",
+  "modules": [
+    "_zengl",
+    "glcontext",
+    "zengl"
+  ]
+}

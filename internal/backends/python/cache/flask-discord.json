@@ -1,0 +1,34 @@
+{
+  "name": "Flask-Discord",
+  "version": "0.1.69",
+  "requires_dist": [
+    "Flask",
+    "pyjwt",
+    "requests",
+    "oauthlib",
+    "cachetools",
+    "requests-oauthlib",
+    "sphinx"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "flask_discord",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "jwt",
+    "markupsafe",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "tests",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

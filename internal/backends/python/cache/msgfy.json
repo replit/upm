@@ -1,0 +1,10 @@
+{
+  "name": "msgfy",
+  "version": "0.2.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "msgfy"
+  ]
+}

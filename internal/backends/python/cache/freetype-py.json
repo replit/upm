@@ -1,0 +1,7 @@
+{
+  "name": "freetype-py",
+  "version": "2.3.0",
+  "modules": [
+    "freetype"
+  ]
+}

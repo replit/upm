@@ -1,0 +1,7 @@
+{
+  "name": "expects",
+  "version": "0.9.0",
+  "modules": [
+    "expects"
+  ]
+}

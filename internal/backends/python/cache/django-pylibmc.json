@@ -1,0 +1,9 @@
+{
+  "name": "django-pylibmc",
+  "version": "0.6.1",
+  "modules": [
+    "_pylibmc",
+    "django_pylibmc",
+    "pylibmc"
+  ]
+}

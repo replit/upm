@@ -1,0 +1,23 @@
+{
+  "name": "projen",
+  "version": "0.62.5",
+  "requires_dist": [
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "projen",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "awscli-local",
+  "version": "0.20",
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "localstack_client",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

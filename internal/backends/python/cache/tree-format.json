@@ -1,0 +1,11 @@
+{
+  "name": "tree-format",
+  "version": "0.1.2",
+  "requires_dist": [
+    "pytest",
+    "testtools"
+  ],
+  "modules": [
+    "tree_format"
+  ]
+}

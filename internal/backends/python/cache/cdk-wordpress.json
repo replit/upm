@@ -1,0 +1,31 @@
+{
+  "name": "cdk-wordpress",
+  "version": "0.0.362",
+  "requires_dist": [
+    "aws-cdk.aws-ec2",
+    "aws-cdk.aws-ecs-patterns",
+    "aws-cdk.aws-ecs",
+    "aws-cdk.aws-efs",
+    "aws-cdk.aws-rds",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "cdk_wordpress",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "opentelemetry-instrumentation-flask",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-util-http",
+    "opentelemetry-instrumentation",
+    "opentelemetry-instrumentation-wsgi",
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "flask",
+    "opentelemetry-test-utils",
+    "markupsafe",
+    "flask"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

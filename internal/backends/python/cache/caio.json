@@ -1,0 +1,7 @@
+{
+  "name": "caio",
+  "version": "0.9.8",
+  "modules": [
+    "caio"
+  ]
+}

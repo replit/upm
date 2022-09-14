@@ -1,0 +1,10 @@
+{
+  "name": "hazelcast-python-client",
+  "version": "5.1",
+  "requires_dist": [
+    "psutil"
+  ],
+  "modules": [
+    "hazelcast"
+  ]
+}

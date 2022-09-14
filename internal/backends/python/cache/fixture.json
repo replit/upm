@@ -1,0 +1,8 @@
+{
+  "name": "fixture",
+  "version": "1.5.11",
+  "modules": [
+    "fixture",
+    "six"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "debtcollector",
+  "version": "2.5.0",
+  "requires_dist": [
+    "wrapt",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "debtcollector",
+    "wrapt"
+  ]
+}

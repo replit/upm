@@ -1,0 +1,20 @@
+{
+  "name": "itemloaders",
+  "version": "1.0.6",
+  "requires_dist": [
+    "w3lib",
+    "parsel",
+    "jmespath",
+    "itemadapter"
+  ],
+  "modules": [
+    "cssselect",
+    "itemadapter",
+    "itemloaders",
+    "jmespath",
+    "lxml",
+    "parsel",
+    "six",
+    "w3lib"
+  ]
+}

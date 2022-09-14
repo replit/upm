@@ -1,0 +1,14 @@
+{
+  "name": "naval",
+  "version": "1.0.0",
+  "modules": [
+    "decorator",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "naval",
+    "past",
+    "postpone",
+    "validators"
+  ]
+}

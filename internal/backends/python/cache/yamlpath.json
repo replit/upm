@@ -1,0 +1,12 @@
+{
+  "name": "yamlpath",
+  "version": "3.6.4",
+  "requires_dist": [
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "tests",
+    "yamlpath"
+  ]
+}

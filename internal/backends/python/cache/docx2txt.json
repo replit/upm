@@ -1,0 +1,7 @@
+{
+  "name": "docx2txt",
+  "version": "0.8",
+  "modules": [
+    "docx2txt"
+  ]
+}

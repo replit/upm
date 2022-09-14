@@ -1,0 +1,18 @@
+{
+  "name": "opt-einsum",
+  "version": "3.3.0",
+  "requires_dist": [
+    "numpy",
+    "sphinx",
+    "sphinxcontrib-napoleon",
+    "sphinx-rtd-theme",
+    "numpydoc",
+    "pytest",
+    "pytest-cov",
+    "pytest-pep8"
+  ],
+  "modules": [
+    "numpy",
+    "opt_einsum"
+  ]
+}

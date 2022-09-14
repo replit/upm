@@ -1,0 +1,13 @@
+{
+  "name": "nbdev-sphinx",
+  "version": "0.0.303",
+  "requires_dist": [
+    "pip",
+    "packaging"
+  ],
+  "modules": [
+    "nbdev_sphinx",
+    "packaging",
+    "pyparsing"
+  ]
+}

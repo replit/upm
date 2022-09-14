@@ -1,0 +1,11 @@
+{
+  "name": "oslo.i18n",
+  "version": "5.1.0",
+  "requires_dist": [
+    "pbr"
+  ],
+  "modules": [
+    "oslo_i18n",
+    "pbr"
+  ]
+}

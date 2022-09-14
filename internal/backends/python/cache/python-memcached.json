@@ -1,0 +1,11 @@
+{
+  "name": "python-memcached",
+  "version": "1.59",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "memcache",
+    "six"
+  ]
+}

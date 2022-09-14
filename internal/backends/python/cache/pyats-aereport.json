@@ -1,0 +1,38 @@
+{
+  "name": "pyats.aereport",
+  "version": "22.8",
+  "requires_dist": [
+    "psutil",
+    "jinja2",
+    "junit-xml",
+    "pyats.log",
+    "pyats.results",
+    "Sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "_yaml",
+    "aiofiles",
+    "aiohttp",
+    "aiohttp_swagger",
+    "aiosignal",
+    "async_lru",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "chardet",
+    "charset_normalizer",
+    "engineio",
+    "frozenlist",
+    "idna",
+    "jinja2",
+    "junit_xml",
+    "markupsafe",
+    "multidict",
+    "psutil",
+    "six",
+    "socketio",
+    "yaml",
+    "yarl"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "facepy",
+  "version": "1.0.12",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "facepy",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

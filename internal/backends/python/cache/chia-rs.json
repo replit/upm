@@ -1,0 +1,7 @@
+{
+  "name": "chia-rs",
+  "version": "0.1.10",
+  "modules": [
+    "chia_rs"
+  ]
+}

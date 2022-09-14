@@ -1,0 +1,24 @@
+{
+  "name": "tableschema-to-template",
+  "version": "0.0.12",
+  "requires_dist": [
+    "jsonschema",
+    "pyyaml",
+    "xlsxwriter"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "tableschema_to_template",
+    "xlsxwriter",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pyapacheatlas",
+  "version": "0.14.0",
+  "requires_dist": [
+    "openpyxl",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "et_xmlfile",
+    "idna",
+    "openpyxl",
+    "pyapacheatlas",
+    "requests",
+    "urllib3"
+  ]
+}

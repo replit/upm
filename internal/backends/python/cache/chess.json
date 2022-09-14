@@ -1,0 +1,7 @@
+{
+  "name": "chess",
+  "version": "1.9.2",
+  "modules": [
+    "chess"
+  ]
+}

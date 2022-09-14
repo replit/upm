@@ -1,0 +1,34 @@
+{
+  "name": "consolekit",
+  "version": "1.4.1",
+  "requires_dist": [
+    "click",
+    "colorama",
+    "deprecation-alias",
+    "domdf-python-tools",
+    "mistletoe",
+    "typing-extensions",
+    "coincidence",
+    "psutil",
+    "pytest",
+    "pytest-regressions",
+    "psutil",
+    "coincidence",
+    "pytest",
+    "pytest-regressions"
+  ],
+  "modules": [
+    "click",
+    "consolekit",
+    "deprecation",
+    "deprecation_alias",
+    "domdf_python_tools",
+    "importlib_metadata",
+    "mistletoe",
+    "natsort",
+    "packaging",
+    "pyparsing",
+    "typing_extensions",
+    "zipp"
+  ]
+}

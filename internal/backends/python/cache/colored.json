@@ -1,0 +1,7 @@
+{
+  "name": "colored",
+  "version": "1.4.3",
+  "modules": [
+    "colored"
+  ]
+}

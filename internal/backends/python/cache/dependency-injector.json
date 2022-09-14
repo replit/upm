@@ -1,0 +1,15 @@
+{
+  "name": "dependency-injector",
+  "version": "4.40.0",
+  "requires_dist": [
+    "six",
+    "aiohttp",
+    "flask",
+    "pydantic",
+    "pyyaml"
+  ],
+  "modules": [
+    "dependency_injector",
+    "six"
+  ]
+}

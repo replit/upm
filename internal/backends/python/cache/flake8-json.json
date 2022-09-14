@@ -1,0 +1,7 @@
+{
+  "name": "flake8-json",
+  "version": "21.7.0",
+  "modules": [
+    "flake8_json_reporter"
+  ]
+}

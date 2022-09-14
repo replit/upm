@@ -1,0 +1,26 @@
+{
+  "name": "jikanpy",
+  "version": "4.3.2",
+  "requires_dist": [
+    "requests",
+    "aiohttp",
+    "simplejson"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "jikanpy",
+    "multidict",
+    "requests",
+    "simplejson",
+    "urllib3",
+    "yarl"
+  ]
+}

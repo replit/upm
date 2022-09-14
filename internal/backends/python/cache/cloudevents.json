@@ -1,0 +1,15 @@
+{
+  "name": "cloudevents",
+  "version": "1.6.1",
+  "requires_dist": [
+    "deprecation",
+    "pydantic",
+    "pydantic"
+  ],
+  "modules": [
+    "cloudevents",
+    "deprecation",
+    "packaging",
+    "pyparsing"
+  ]
+}

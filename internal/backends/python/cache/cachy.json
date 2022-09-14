@@ -1,0 +1,12 @@
+{
+  "name": "cachy",
+  "version": "0.3.0",
+  "requires_dist": [
+    "redis",
+    "python-memcached",
+    "msgpack-python"
+  ],
+  "modules": [
+    "cachy"
+  ]
+}

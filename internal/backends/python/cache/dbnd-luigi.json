@@ -1,0 +1,40 @@
+{
+  "name": "dbnd-luigi",
+  "version": "1.0.2.1",
+  "requires_dist": [
+    "dbnd",
+    "luigi",
+    "docutils"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "daemon",
+    "databand",
+    "dateutil",
+    "dbnd",
+    "dbnd_luigi",
+    "docutils",
+    "idna",
+    "lockfile",
+    "luigi",
+    "more_itertools",
+    "pygments",
+    "pytz",
+    "pytz_deprecation_shim",
+    "pytzdata",
+    "requests",
+    "six",
+    "sqlparse",
+    "targets",
+    "tornado",
+    "tzdata",
+    "tzlocal",
+    "urllib3",
+    "yaml"
+  ]
+}

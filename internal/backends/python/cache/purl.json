@@ -1,0 +1,8 @@
+{
+  "name": "purl",
+  "version": "1.6",
+  "modules": [
+    "purl",
+    "six"
+  ]
+}

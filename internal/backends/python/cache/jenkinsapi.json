@@ -1,0 +1,21 @@
+{
+  "name": "jenkinsapi",
+  "version": "0.3.11",
+  "requires_dist": [
+    "pytz",
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jenkinsapi",
+    "jenkinsapi_tests",
+    "jenkinsapi_utils",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

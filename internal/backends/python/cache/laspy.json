@@ -1,0 +1,8 @@
+{
+  "name": "laspy",
+  "version": "2.2.0",
+  "modules": [
+    "laspy",
+    "numpy"
+  ]
+}

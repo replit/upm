@@ -1,0 +1,14 @@
+{
+  "name": "django-log-request-id",
+  "version": "2.0.0",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "log_request_id",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "django-mailbox",
+  "version": "4.8.2",
+  "requires_dist": [
+    "six",
+    "python-social-auth"
+  ],
+  "modules": [
+    "django_mailbox",
+    "six"
+  ]
+}

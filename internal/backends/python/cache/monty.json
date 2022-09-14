@@ -1,0 +1,11 @@
+{
+  "name": "monty",
+  "version": "2022.9.9",
+  "requires_dist": [
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "monty",
+    "tests"
+  ]
+}

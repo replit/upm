@@ -1,0 +1,7 @@
+{
+  "name": "chromedriver-py",
+  "version": "106.0.5249.21",
+  "modules": [
+    "chromedriver_py"
+  ]
+}

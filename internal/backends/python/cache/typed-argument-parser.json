@@ -1,0 +1,10 @@
+{
+  "name": "typed-argument-parser",
+  "version": "1.7.2",
+  "modules": [
+    "mypy_extensions",
+    "tap",
+    "typing_extensions",
+    "typing_inspect"
+  ]
+}

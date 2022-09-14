@@ -1,0 +1,12 @@
+{
+  "name": "mkl-service",
+  "version": "2.4.0",
+  "requires_dist": [
+    "mkl",
+    "six"
+  ],
+  "modules": [
+    "mkl",
+    "six"
+  ]
+}

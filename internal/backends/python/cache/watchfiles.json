@@ -1,0 +1,13 @@
+{
+  "name": "watchfiles",
+  "version": "0.17.0",
+  "requires_dist": [
+    "anyio"
+  ],
+  "modules": [
+    "anyio",
+    "idna",
+    "sniffio",
+    "watchfiles"
+  ]
+}

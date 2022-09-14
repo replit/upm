@@ -1,0 +1,14 @@
+{
+  "name": "django-currentuser",
+  "version": "0.5.3",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "django",
+    "django_currentuser",
+    "pytz",
+    "sqlparse"
+  ]
+}

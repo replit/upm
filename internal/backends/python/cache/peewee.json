@@ -1,0 +1,9 @@
+{
+  "name": "peewee",
+  "version": "3.15.2",
+  "modules": [
+    "peewee",
+    "playhouse",
+    "pwiz"
+  ]
+}

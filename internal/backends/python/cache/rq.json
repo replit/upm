@@ -1,0 +1,18 @@
+{
+  "name": "rq",
+  "version": "1.11.0",
+  "requires_dist": [
+    "redis",
+    "click"
+  ],
+  "modules": [
+    "async_timeout",
+    "click",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "rq",
+    "wrapt"
+  ]
+}

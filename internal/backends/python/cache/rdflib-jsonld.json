@@ -1,0 +1,14 @@
+{
+  "name": "rdflib-jsonld",
+  "version": "0.6.2",
+  "requires_dist": [
+    "rdflib"
+  ],
+  "modules": [
+    "isodate",
+    "pyparsing",
+    "rdflib",
+    "rdflib_jsonld",
+    "six"
+  ]
+}

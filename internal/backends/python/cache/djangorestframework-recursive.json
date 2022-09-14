@@ -1,0 +1,13 @@
+{
+  "name": "djangorestframework-recursive",
+  "version": "0.1.2",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "rest_framework_recursive",
+    "sqlparse"
+  ]
+}

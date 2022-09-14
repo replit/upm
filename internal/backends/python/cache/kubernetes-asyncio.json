@@ -1,0 +1,32 @@
+{
+  "name": "kubernetes-asyncio",
+  "version": "24.2.2",
+  "requires_dist": [
+    "certifi",
+    "six",
+    "python-dateutil",
+    "setuptools",
+    "urllib3",
+    "pyyaml",
+    "aiohttp"
+  ],
+  "modules": [
+    "_yaml",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "frozenlist",
+    "idna",
+    "kubernetes_asyncio",
+    "multidict",
+    "six",
+    "urllib3",
+    "yaml",
+    "yarl"
+  ]
+}

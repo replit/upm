@@ -1,0 +1,7 @@
+{
+  "name": "pyahocorasick",
+  "version": "1.4.4",
+  "modules": [
+    "ahocorasick"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "tzlocal",
+  "version": "4.2",
+  "requires_dist": [
+    "pytz-deprecation-shim",
+    "tzdata",
+    "backports.zoneinfo",
+    "black",
+    "pyroma",
+    "pytest-cov",
+    "zest.releaser",
+    "pytest-mock",
+    "pytest"
+  ],
+  "modules": [
+    "backports",
+    "pytz_deprecation_shim",
+    "tzdata",
+    "tzlocal"
+  ]
+}

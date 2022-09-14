@@ -1,0 +1,11 @@
+{
+  "name": "WebError",
+  "version": "0.13.1",
+  "modules": [
+    "pygments",
+    "six",
+    "tempita",
+    "weberror",
+    "webob"
+  ]
+}

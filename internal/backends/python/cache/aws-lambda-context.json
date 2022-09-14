@@ -1,0 +1,17 @@
+{
+  "name": "aws-lambda-context",
+  "version": "1.1.0",
+  "requires_dist": [
+    "flake8",
+    "isort",
+    "mypy",
+    "black",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+    "bump2version"
+  ],
+  "modules": [
+    "aws_lambda_context"
+  ]
+}

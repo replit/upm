@@ -1,0 +1,12 @@
+{
+  "name": "python-slugify",
+  "version": "6.1.2",
+  "requires_dist": [
+    "text-unidecode",
+    "Unidecode"
+  ],
+  "modules": [
+    "slugify",
+    "text_unidecode"
+  ]
+}

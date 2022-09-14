@@ -1,0 +1,32 @@
+{
+  "name": "allure-pytest-bdd",
+  "version": "2.10.0",
+  "requires_dist": [
+    "pytest",
+    "pytest-bdd",
+    "six",
+    "allure-python-commons"
+  ],
+  "modules": [
+    "_pytest",
+    "allure",
+    "allure_commons",
+    "allure_pytest_bdd",
+    "attr",
+    "attrs",
+    "glob2",
+    "iniconfig",
+    "mako",
+    "markupsafe",
+    "packaging",
+    "parse",
+    "parse_type",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_bdd",
+    "six",
+    "tomli"
+  ]
+}

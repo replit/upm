@@ -1,0 +1,10 @@
+{
+  "name": "coverage",
+  "version": "6.4.4",
+  "requires_dist": [
+    "tomli"
+  ],
+  "modules": [
+    "coverage"
+  ]
+}

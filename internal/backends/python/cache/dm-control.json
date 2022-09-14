@@ -1,0 +1,42 @@
+{
+  "name": "dm-control",
+  "version": "1.0.7",
+  "requires_dist": [
+    "absl-py",
+    "dm-env",
+    "dm-tree",
+    "glfw",
+    "labmaze",
+    "lxml",
+    "mujoco",
+    "numpy",
+    "protobuf",
+    "pyopengl",
+    "pyparsing",
+    "requests",
+    "setuptools",
+    "scipy",
+    "tqdm",
+    "h5py"
+  ],
+  "modules": [
+    "OpenGL",
+    "absl",
+    "certifi",
+    "charset_normalizer",
+    "dm_control",
+    "dm_env",
+    "glfw",
+    "idna",
+    "labmaze",
+    "lxml",
+    "mujoco",
+    "numpy",
+    "pyparsing",
+    "requests",
+    "scipy",
+    "tqdm",
+    "tree",
+    "urllib3"
+  ]
+}

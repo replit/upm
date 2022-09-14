@@ -1,0 +1,15 @@
+{
+  "name": "dlint",
+  "version": "0.13.0",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "dlint",
+    "flake8",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "tests"
+  ]
+}

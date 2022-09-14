@@ -1,0 +1,11 @@
+{
+  "name": "inotify",
+  "version": "0.2.10",
+  "requires_dist": [
+    "nose"
+  ],
+  "modules": [
+    "inotify",
+    "nose"
+  ]
+}

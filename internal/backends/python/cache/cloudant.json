@@ -1,0 +1,15 @@
+{
+  "name": "cloudant",
+  "version": "2.15.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "cloudant",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

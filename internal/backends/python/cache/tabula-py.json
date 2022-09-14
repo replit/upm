@@ -1,0 +1,26 @@
+{
+  "name": "tabula-py",
+  "version": "2.5.1",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "distro",
+    "pytest",
+    "flake8",
+    "black",
+    "isort",
+    "mypy",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest"
+  ],
+  "modules": [
+    "dateutil",
+    "distro",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "tabula"
+  ]
+}

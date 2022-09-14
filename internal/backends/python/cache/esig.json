@@ -1,0 +1,12 @@
+{
+  "name": "esig",
+  "version": "0.9.8.3",
+  "requires_dist": [
+    "numpy",
+    "iisignature"
+  ],
+  "modules": [
+    "esig",
+    "numpy"
+  ]
+}

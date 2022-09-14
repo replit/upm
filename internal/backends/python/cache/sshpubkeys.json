@@ -1,0 +1,20 @@
+{
+  "name": "sshpubkeys",
+  "version": "3.3.1",
+  "requires_dist": [
+    "cryptography",
+    "ecdsa",
+    "twine",
+    "wheel",
+    "yapf"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "ecdsa",
+    "pycparser",
+    "six",
+    "sshpubkeys"
+  ]
+}

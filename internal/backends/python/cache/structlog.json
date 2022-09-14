@@ -1,0 +1,38 @@
+{
+  "name": "structlog",
+  "version": "22.1.0",
+  "requires_dist": [
+    "typing-extensions",
+    "pre-commit",
+    "rich",
+    "cogapp",
+    "tomli",
+    "coverage",
+    "freezegun",
+    "pretend",
+    "pytest-asyncio",
+    "pytest",
+    "simplejson",
+    "furo",
+    "myst-parser",
+    "sphinx",
+    "sphinx-notfound-page",
+    "sphinxcontrib-mermaid",
+    "twisted",
+    "furo",
+    "myst-parser",
+    "sphinx",
+    "sphinx-notfound-page",
+    "sphinxcontrib-mermaid",
+    "twisted",
+    "coverage",
+    "freezegun",
+    "pretend",
+    "pytest-asyncio",
+    "pytest",
+    "simplejson"
+  ],
+  "modules": [
+    "structlog"
+  ]
+}

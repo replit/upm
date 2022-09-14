@@ -1,0 +1,12 @@
+{
+  "name": "securesystemslib",
+  "version": "0.23.0",
+  "requires_dist": [
+    "colorama",
+    "cryptography",
+    "pynacl"
+  ],
+  "modules": [
+    "securesystemslib"
+  ]
+}

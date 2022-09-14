@@ -1,0 +1,12 @@
+{
+  "name": "click-help-colors",
+  "version": "0.9.1",
+  "requires_dist": [
+    "click",
+    "pytest"
+  ],
+  "modules": [
+    "click",
+    "click_help_colors"
+  ]
+}

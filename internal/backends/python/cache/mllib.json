@@ -1,0 +1,12 @@
+{
+  "name": "mllib",
+  "version": "1.0.0a2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mllib",
+    "requests",
+    "urllib3"
+  ]
+}

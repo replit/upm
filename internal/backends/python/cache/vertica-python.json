@@ -1,0 +1,13 @@
+{
+  "name": "vertica-python",
+  "version": "1.1.1",
+  "requires_dist": [
+    "python-dateutil",
+    "six"
+  ],
+  "modules": [
+    "dateutil",
+    "six",
+    "vertica_python"
+  ]
+}

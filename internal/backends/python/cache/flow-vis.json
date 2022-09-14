@@ -1,0 +1,11 @@
+{
+  "name": "flow-vis",
+  "version": "0.1",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "flow_vis",
+    "numpy"
+  ]
+}

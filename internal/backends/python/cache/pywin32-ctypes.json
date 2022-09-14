@@ -1,0 +1,7 @@
+{
+  "name": "pywin32-ctypes",
+  "version": "0.2.0",
+  "modules": [
+    "win32ctypes"
+  ]
+}

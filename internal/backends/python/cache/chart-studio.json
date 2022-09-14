@@ -1,0 +1,25 @@
+{
+  "name": "chart-studio",
+  "version": "1.1.0",
+  "requires_dist": [
+    "plotly",
+    "requests",
+    "retrying",
+    "six"
+  ],
+  "modules": [
+    "_plotly_future_",
+    "_plotly_utils",
+    "certifi",
+    "charset_normalizer",
+    "chart_studio",
+    "idna",
+    "jupyterlab_plotly",
+    "plotly",
+    "requests",
+    "retrying",
+    "six",
+    "tenacity",
+    "urllib3"
+  ]
+}

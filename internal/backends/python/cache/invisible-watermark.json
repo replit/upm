@@ -1,0 +1,34 @@
+{
+  "name": "invisible-watermark",
+  "version": "0.1.5",
+  "requires_dist": [
+    "opencv-python",
+    "torch",
+    "onnx",
+    "onnxruntime",
+    "Pillow",
+    "PyWavelets",
+    "numpy"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "coloredlogs",
+    "cv2",
+    "flatbuffers",
+    "humanfriendly",
+    "imwatermark",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "onnx",
+    "onnxruntime",
+    "packaging",
+    "pyparsing",
+    "pywt",
+    "sympy",
+    "torch",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

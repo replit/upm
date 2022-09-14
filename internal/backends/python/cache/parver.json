@@ -1,0 +1,24 @@
+{
+  "name": "parver",
+  "version": "0.3.1",
+  "requires_dist": [
+    "arpeggio",
+    "attrs",
+    "six",
+    "doc8",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "flake8",
+    "pep8-naming",
+    "pytest",
+    "hypothesis",
+    "pretend"
+  ],
+  "modules": [
+    "arpeggio",
+    "attr",
+    "attrs",
+    "parver",
+    "six"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "cement",
+  "version": "3.0.8",
+  "requires_dist": [
+    "colorlog",
+    "pyYaml",
+    "jinja2",
+    "pylibmc",
+    "pystache",
+    "redis",
+    "tabulate",
+    "watchdog",
+    "pyYaml"
+  ],
+  "modules": [
+    "cement"
+  ]
+}

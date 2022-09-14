@@ -1,0 +1,26 @@
+{
+  "name": "wechatpy",
+  "version": "1.8.18",
+  "requires_dist": [
+    "six",
+    "requests",
+    "xmltodict",
+    "optionaldict",
+    "python-dateutil",
+    "enum34",
+    "cryptography",
+    "pycryptodome"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "optionaldict",
+    "requests",
+    "six",
+    "urllib3",
+    "wechatpy",
+    "xmltodict"
+  ]
+}

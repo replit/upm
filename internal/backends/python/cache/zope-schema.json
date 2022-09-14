@@ -1,0 +1,14 @@
+{
+  "name": "zope.schema",
+  "version": "6.2.0",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.event",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.i18nmessageid",
+    "zope.testing",
+    "zope.testrunner"
+  ]
+}

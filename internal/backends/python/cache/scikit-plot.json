@@ -1,0 +1,29 @@
+{
+  "name": "scikit-plot",
+  "version": "0.3.7",
+  "requires_dist": [
+    "matplotlib",
+    "scikit-learn",
+    "scipy",
+    "joblib",
+    "pytest"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "joblib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "scikitplot",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

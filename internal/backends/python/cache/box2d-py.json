@@ -1,0 +1,5 @@
+{
+  "name": "box2d-py",
+  "version": "2.3.8",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/box2d-py/bin/python3', '-m', 'pip', 'install', 'box2d-py']' returned non-zero exit status 1.\"}"
+}

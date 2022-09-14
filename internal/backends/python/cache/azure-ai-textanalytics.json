@@ -1,0 +1,23 @@
+{
+  "name": "azure-ai-textanalytics",
+  "version": "5.2.0",
+  "requires_dist": [
+    "azure-core",
+    "msrest",
+    "azure-common",
+    "typing-extensions"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

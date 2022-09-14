@@ -1,0 +1,10 @@
+{
+  "name": "testpath",
+  "version": "0.6.0",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "testpath"
+  ]
+}

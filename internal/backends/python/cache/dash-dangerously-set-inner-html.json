@@ -1,0 +1,7 @@
+{
+  "name": "dash-dangerously-set-inner-html",
+  "version": "0.0.2",
+  "modules": [
+    "dash_dangerously_set_inner_html"
+  ]
+}

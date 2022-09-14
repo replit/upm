@@ -1,0 +1,38 @@
+{
+  "name": "ioc-finder",
+  "version": "7.2.4",
+  "requires_dist": [
+    "click",
+    "ioc-fanger",
+    "pyparsing",
+    "d8s-strings"
+  ],
+  "modules": [
+    "_hypothesis_pytestplugin",
+    "attr",
+    "attrs",
+    "click",
+    "d8s_dicts",
+    "d8s_hypothesis",
+    "d8s_lists",
+    "d8s_math",
+    "d8s_strings",
+    "d8s_uuids",
+    "dictdiffer",
+    "exceptiongroup",
+    "hypothesis",
+    "inflect",
+    "ioc_fanger",
+    "ioc_finder",
+    "isympy",
+    "more_itertools",
+    "mpmath",
+    "number_tools",
+    "pydantic",
+    "pyparsing",
+    "sortedcontainers",
+    "sympy",
+    "tests",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "spark-nlp-display",
+  "version": "4.1",
+  "requires_dist": [
+    "spark-nlp",
+    "ipython",
+    "svgwrite",
+    "pandas",
+    "numpy"
+  ],
+  "modules": [
+    "IPython",
+    "asttokens",
+    "backcall",
+    "com",
+    "dateutil",
+    "decorator",
+    "executing",
+    "jedi",
+    "matplotlib_inline",
+    "numpy",
+    "pandas",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pygments",
+    "pytz",
+    "six",
+    "sparknlp",
+    "sparknlp_display",
+    "stack_data",
+    "svgwrite",
+    "traitlets",
+    "wcwidth"
+  ]
+}

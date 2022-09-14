@@ -1,0 +1,5 @@
+{
+  "name": "dotenv",
+  "version": "0.0.5",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dotenv/bin/python3', '-m', 'pip', 'install', 'dotenv']' returned non-zero exit status 1.\"}"
+}

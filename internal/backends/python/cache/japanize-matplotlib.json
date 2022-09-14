@@ -1,0 +1,18 @@
+{
+  "name": "japanize-matplotlib",
+  "version": "1.1.3",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "japanize_matplotlib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six"
+  ]
+}

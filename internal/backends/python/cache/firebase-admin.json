@@ -1,0 +1,36 @@
+{
+  "name": "firebase-admin",
+  "version": "5.3.0",
+  "requires_dist": [
+    "cachecontrol",
+    "google-api-python-client",
+    "google-cloud-storage",
+    "google-api-core",
+    "google-cloud-firestore"
+  ],
+  "modules": [
+    "apiclient",
+    "cachecontrol",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "firebase_admin",
+    "google_auth_httplib2",
+    "google_crc32c",
+    "googleapiclient",
+    "grpc",
+    "grpc_status",
+    "httplib2",
+    "idna",
+    "msgpack",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "requests",
+    "rsa",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

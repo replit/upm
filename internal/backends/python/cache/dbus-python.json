@@ -1,0 +1,10 @@
+{
+  "name": "dbus-python",
+  "version": "1.3.2",
+  "requires_dist": [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "tap.py"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dbus-python/bin/python3', '-m', 'pip', 'install', 'dbus-python']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ping3",
+  "version": "4.0.3",
+  "requires_dist": [
+    "build",
+    "twine",
+    "pycodestyle"
+  ],
+  "modules": [
+    "ping3"
+  ]
+}

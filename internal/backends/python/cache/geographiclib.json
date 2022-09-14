@@ -1,0 +1,7 @@
+{
+  "name": "geographiclib",
+  "version": "2.0",
+  "modules": [
+    "geographiclib"
+  ]
+}

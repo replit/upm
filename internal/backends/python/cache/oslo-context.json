@@ -1,0 +1,14 @@
+{
+  "name": "oslo.context",
+  "version": "5.0.0",
+  "requires_dist": [
+    "debtcollector",
+    "pbr"
+  ],
+  "modules": [
+    "debtcollector",
+    "oslo_context",
+    "pbr",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "venv-pack",
+  "version": "0.2.0",
+  "modules": [
+    "venv_pack"
+  ]
+}

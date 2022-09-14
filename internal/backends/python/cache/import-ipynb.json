@@ -1,0 +1,42 @@
+{
+  "name": "import-ipynb",
+  "version": "0.1.4",
+  "requires_dist": [
+    "IPython",
+    "nbformat"
+  ],
+  "modules": [
+    "IPython",
+    "_pyrsistent_version",
+    "asttokens",
+    "attr",
+    "attrs",
+    "backcall",
+    "decorator",
+    "executing",
+    "fastjsonschema",
+    "import_ipynb",
+    "importlib_resources",
+    "jedi",
+    "jsonschema",
+    "jupyter",
+    "jupyter_core",
+    "matplotlib_inline",
+    "nbformat",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "pkgutil_resolve_name",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pvectorc",
+    "pygments",
+    "pyrsistent",
+    "six",
+    "stack_data",
+    "traitlets",
+    "wcwidth",
+    "zipp"
+  ]
+}

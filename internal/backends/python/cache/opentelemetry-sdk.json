@@ -1,0 +1,16 @@
+{
+  "name": "opentelemetry-sdk",
+  "version": "1.12.0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-semantic-conventions",
+    "setuptools",
+    "typing-extensions",
+    "dataclasses"
+  ],
+  "modules": [
+    "deprecated",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

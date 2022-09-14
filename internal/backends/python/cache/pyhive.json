@@ -1,0 +1,14 @@
+{
+  "name": "PyHive",
+  "version": "0.6.5",
+  "modules": [
+    "TCLIService",
+    "dateutil",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyhive",
+    "six"
+  ]
+}

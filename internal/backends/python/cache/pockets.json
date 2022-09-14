@@ -1,0 +1,11 @@
+{
+  "name": "pockets",
+  "version": "0.9.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pockets",
+    "six"
+  ]
+}

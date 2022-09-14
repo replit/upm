@@ -1,0 +1,20 @@
+{
+  "name": "ffmpeg-python",
+  "version": "0.2.0",
+  "requires_dist": [
+    "future",
+    "future",
+    "numpy",
+    "pytest-mock",
+    "pytest",
+    "Sphinx",
+    "tox"
+  ],
+  "modules": [
+    "ffmpeg",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "wordcloud",
+  "version": "1.8.2.2",
+  "requires_dist": [
+    "numpy",
+    "pillow",
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "six",
+    "wordcloud"
+  ]
+}

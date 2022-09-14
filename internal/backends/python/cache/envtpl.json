@@ -1,0 +1,12 @@
+{
+  "name": "envtpl",
+  "version": "0.7.2",
+  "requires_dist": [
+    "Jinja2"
+  ],
+  "modules": [
+    "envtpl",
+    "jinja2",
+    "markupsafe"
+  ]
+}

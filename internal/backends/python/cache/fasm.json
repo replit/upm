@@ -1,0 +1,16 @@
+{
+  "name": "fasm",
+  "version": "0.0.2.post100",
+  "requires_dist": [
+    "textx"
+  ],
+  "modules": [
+    "arpeggio",
+    "fasm",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "textx"
+  ]
+}

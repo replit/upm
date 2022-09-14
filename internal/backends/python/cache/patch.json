@@ -1,0 +1,7 @@
+{
+  "name": "patch",
+  "version": "1.16",
+  "modules": [
+    "patch"
+  ]
+}

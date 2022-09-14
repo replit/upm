@@ -1,0 +1,20 @@
+{
+  "name": "mechanize",
+  "version": "0.4.8",
+  "requires_dist": [
+    "html5lib",
+    "lxml",
+    "html5-parser",
+    "html5-parser",
+    "twisted",
+    "service-identity",
+    "six",
+    "html5lib"
+  ],
+  "modules": [
+    "html5lib",
+    "mechanize",
+    "six",
+    "webencodings"
+  ]
+}

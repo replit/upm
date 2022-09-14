@@ -1,0 +1,14 @@
+{
+  "name": "owlrl",
+  "version": "6.0.2",
+  "requires_dist": [
+    "rdflib"
+  ],
+  "modules": [
+    "isodate",
+    "owlrl",
+    "pyparsing",
+    "rdflib",
+    "six"
+  ]
+}

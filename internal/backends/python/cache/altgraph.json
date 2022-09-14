@@ -1,0 +1,7 @@
+{
+  "name": "altgraph",
+  "version": "0.17.2",
+  "modules": [
+    "altgraph"
+  ]
+}

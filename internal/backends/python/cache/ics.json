@@ -1,0 +1,20 @@
+{
+  "name": "ics",
+  "version": "0.7.2",
+  "requires_dist": [
+    "python-dateutil",
+    "arrow",
+    "six",
+    "tatsu",
+    "attrs"
+  ],
+  "modules": [
+    "arrow",
+    "attr",
+    "attrs",
+    "dateutil",
+    "ics",
+    "six",
+    "tatsu"
+  ]
+}

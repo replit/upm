@@ -1,0 +1,22 @@
+{
+  "name": "koalas",
+  "version": "1.8.2",
+  "requires_dist": [
+    "pandas",
+    "pyarrow",
+    "numpy",
+    "matplotlib",
+    "mlflow",
+    "plotly",
+    "pyspark"
+  ],
+  "modules": [
+    "databricks",
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pytz",
+    "six"
+  ]
+}

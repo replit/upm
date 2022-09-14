@@ -1,0 +1,14 @@
+{
+  "name": "authy",
+  "version": "2.2.6",
+  "modules": [
+    "authy",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

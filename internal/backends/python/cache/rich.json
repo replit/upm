@@ -1,0 +1,17 @@
+{
+  "name": "rich",
+  "version": "12.5.1",
+  "requires_dist": [
+    "typing-extensions",
+    "dataclasses",
+    "pygments",
+    "commonmark",
+    "ipywidgets"
+  ],
+  "modules": [
+    "commonmark",
+    "pygments",
+    "rich",
+    "typing_extensions"
+  ]
+}

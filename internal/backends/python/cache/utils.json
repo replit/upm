@@ -1,0 +1,8 @@
+{
+  "name": "utils",
+  "version": "1.0.1",
+  "modules": [
+    "tests",
+    "utils"
+  ]
+}

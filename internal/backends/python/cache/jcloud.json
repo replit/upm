@@ -1,0 +1,32 @@
+{
+  "name": "jcloud",
+  "version": "0.0.35",
+  "modules": [
+    "_yaml",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "commonmark",
+    "dotenv",
+    "frozenlist",
+    "hubble",
+    "idna",
+    "importlib_metadata",
+    "jcloud",
+    "multidict",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "requests",
+    "rich",
+    "typing_extensions",
+    "urllib3",
+    "yaml",
+    "yarl",
+    "zipp"
+  ]
+}

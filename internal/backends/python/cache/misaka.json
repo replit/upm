@@ -1,0 +1,10 @@
+{
+  "name": "misaka",
+  "version": "2.1.1",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "misaka",
+    "pycparser"
+  ]
+}

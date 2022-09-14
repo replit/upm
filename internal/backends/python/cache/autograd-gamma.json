@@ -1,0 +1,14 @@
+{
+  "name": "autograd-gamma",
+  "version": "0.5.0",
+  "modules": [
+    "autograd",
+    "autograd_gamma",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "past",
+    "scipy"
+  ]
+}

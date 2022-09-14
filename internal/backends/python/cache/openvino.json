@@ -1,0 +1,13 @@
+{
+  "name": "openvino",
+  "version": "2022.1.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "_pyngraph",
+    "ngraph",
+    "numpy",
+    "openvino"
+  ]
+}

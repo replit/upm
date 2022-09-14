@@ -1,0 +1,5 @@
+{
+  "name": "Pillow-SIMD",
+  "version": "9.0.0.post1",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/Pillow-SIMD/bin/python3', '-m', 'pip', 'install', 'Pillow-SIMD']' returned non-zero exit status 1.\"}"
+}

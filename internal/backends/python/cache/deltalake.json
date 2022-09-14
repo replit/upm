@@ -1,0 +1,27 @@
+{
+  "name": "deltalake",
+  "version": "0.6.1",
+  "requires_dist": [
+    "pyarrow",
+    "typing-extensions",
+    "mypy",
+    "black",
+    "isort",
+    "packaging",
+    "pytest",
+    "pytest-mock",
+    "pytest-cov",
+    "pytest-timeout",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "toml",
+    "pyspark",
+    "delta-spark",
+    "pandas"
+  ],
+  "modules": [
+    "deltalake",
+    "numpy",
+    "pyarrow"
+  ]
+}

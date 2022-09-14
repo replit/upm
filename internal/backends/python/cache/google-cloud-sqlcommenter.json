@@ -1,0 +1,15 @@
+{
+  "name": "google-cloud-sqlcommenter",
+  "version": "2.0.0",
+  "requires_dist": [
+    "django",
+    "flask",
+    "opencensus",
+    "opentelemetry-api",
+    "psycopg2",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "google"
+  ]
+}

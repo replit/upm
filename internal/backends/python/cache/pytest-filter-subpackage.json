@@ -1,0 +1,23 @@
+{
+  "name": "pytest-filter-subpackage",
+  "version": "0.1.1",
+  "requires_dist": [
+    "pytest",
+    "pytest",
+    "pytest-doctestplus",
+    "pytest-cov"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_filter_subpackage",
+    "tomli"
+  ]
+}

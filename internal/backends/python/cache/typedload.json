@@ -1,0 +1,7 @@
+{
+  "name": "typedload",
+  "version": "2.18",
+  "modules": [
+    "typedload"
+  ]
+}

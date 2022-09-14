@@ -1,0 +1,34 @@
+{
+  "name": "distfit",
+  "version": "1.4.5",
+  "requires_dist": [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "tqdm",
+    "statsmodels",
+    "scipy",
+    "pypickle"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "distfit",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pylab",
+    "pyparsing",
+    "pypickle",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels",
+    "tqdm"
+  ]
+}

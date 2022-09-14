@@ -1,0 +1,22 @@
+{
+  "name": "onnxmltools",
+  "version": "1.11.1",
+  "requires_dist": [
+    "numpy",
+    "onnx",
+    "skl2onnx"
+  ],
+  "modules": [
+    "joblib",
+    "numpy",
+    "onnx",
+    "onnxconverter_common",
+    "onnxmltools",
+    "scipy",
+    "skl2onnx",
+    "sklearn",
+    "tests",
+    "threadpoolctl",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "recordlinkage",
+  "version": "0.15",
+  "requires_dist": [
+    "jellyfish",
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "joblib",
+    "networkx",
+    "bottleneck",
+    "numexpr",
+    "pytest",
+    "networkx",
+    "bottleneck",
+    "numexpr"
+  ],
+  "modules": [
+    "dateutil",
+    "jellyfish",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "recordlinkage",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "otel-extensions",
+  "version": "0.1.2",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "pydantic"
+  ],
+  "modules": [
+    "deprecated",
+    "otel_extensions",
+    "pydantic",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

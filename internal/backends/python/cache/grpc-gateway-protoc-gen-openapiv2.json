@@ -1,0 +1,10 @@
+{
+  "name": "grpc-gateway-protoc-gen-openapiv2",
+  "version": "0.1.0",
+  "requires_dist": [
+    "googleapis-common-protos"
+  ],
+  "modules": [
+    "protoc_gen_openapiv2"
+  ]
+}

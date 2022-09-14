@@ -1,0 +1,7 @@
+{
+  "name": "json-merge-patch",
+  "version": "0.2",
+  "modules": [
+    "json_merge_patch"
+  ]
+}

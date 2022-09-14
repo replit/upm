@@ -1,0 +1,12 @@
+{
+  "name": "jaeger-client",
+  "version": "4.8.0",
+  "modules": [
+    "jaeger_client",
+    "opentracing",
+    "six",
+    "threadloop",
+    "thrift",
+    "tornado"
+  ]
+}

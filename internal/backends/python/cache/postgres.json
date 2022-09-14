@@ -1,0 +1,13 @@
+{
+  "name": "postgres",
+  "version": "4.0",
+  "requires_dist": [
+    "psycopg2-binary",
+    "psycopg2-pool"
+  ],
+  "modules": [
+    "postgres",
+    "psycopg2",
+    "psycopg2_pool"
+  ]
+}

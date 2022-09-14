@@ -1,0 +1,19 @@
+{
+  "name": "coreapi-cli",
+  "version": "1.0.9",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "coreapi",
+    "coreapi_cli",
+    "coreschema",
+    "idna",
+    "itypes",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "uritemplate",
+    "urllib3"
+  ]
+}

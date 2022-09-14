@@ -1,0 +1,8 @@
+{
+  "name": "SQLAlchemy",
+  "version": "1.4.41",
+  "modules": [
+    "greenlet",
+    "sqlalchemy"
+  ]
+}

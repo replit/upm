@@ -1,0 +1,11 @@
+{
+  "name": "schema",
+  "version": "0.7.5",
+  "requires_dist": [
+    "contextlib2"
+  ],
+  "modules": [
+    "contextlib2",
+    "schema"
+  ]
+}

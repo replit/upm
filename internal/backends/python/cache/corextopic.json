@@ -1,0 +1,7 @@
+{
+  "name": "corextopic",
+  "version": "1.1",
+  "modules": [
+    "corextopic"
+  ]
+}

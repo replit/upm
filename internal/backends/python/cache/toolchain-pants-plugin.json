@@ -1,0 +1,17 @@
+{
+  "name": "toolchain.pants.plugin",
+  "version": "0.22.0",
+  "requires_dist": [
+    "chardet",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "chardet",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "toolchain",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "portend",
+  "version": "3.1.0",
+  "requires_dist": [
+    "tempora",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "more_itertools",
+    "portend",
+    "pytz",
+    "tempora"
+  ]
+}

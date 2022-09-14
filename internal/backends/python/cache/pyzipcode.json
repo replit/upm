@@ -1,0 +1,7 @@
+{
+  "name": "pyzipcode",
+  "version": "3.0.1",
+  "modules": [
+    "pyzipcode"
+  ]
+}

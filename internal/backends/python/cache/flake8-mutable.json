@@ -1,0 +1,11 @@
+{
+  "name": "flake8-mutable",
+  "version": "1.2.0",
+  "modules": [
+    "flake8",
+    "mccabe",
+    "mutable_defaults",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

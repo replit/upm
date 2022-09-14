@@ -1,0 +1,35 @@
+{
+  "name": "dagster-cloud-cli",
+  "version": "1.0.8",
+  "requires_dist": [
+    "packaging",
+    "questionary",
+    "requests",
+    "typer",
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "colorama",
+    "commonmark",
+    "dagster_cloud_cli",
+    "dagster_cloud_cli_tests",
+    "idna",
+    "packaging",
+    "prompt_toolkit",
+    "pygments",
+    "pyparsing",
+    "questionary",
+    "requests",
+    "rich",
+    "shellingham",
+    "typer",
+    "typing_extensions",
+    "urllib3",
+    "wcwidth",
+    "yaml"
+  ]
+}

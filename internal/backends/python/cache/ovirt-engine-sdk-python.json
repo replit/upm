@@ -1,0 +1,5 @@
+{
+  "name": "ovirt-engine-sdk-python",
+  "version": "4.5.2",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/ovirt-engine-sdk-python/bin/python3', '-m', 'pip', 'install', 'ovirt-engine-sdk-python']' returned non-zero exit status 1.\"}"
+}

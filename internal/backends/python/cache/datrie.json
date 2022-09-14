@@ -1,0 +1,7 @@
+{
+  "name": "datrie",
+  "version": "0.8.2",
+  "modules": [
+    "datrie"
+  ]
+}

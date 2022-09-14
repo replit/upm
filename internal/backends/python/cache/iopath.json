@@ -1,0 +1,10 @@
+{
+  "name": "iopath",
+  "version": "0.1.10",
+  "modules": [
+    "iopath",
+    "portalocker",
+    "tqdm",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-rds",
+  "version": "1.24.61",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_rds",
+    "typing_extensions"
+  ]
+}

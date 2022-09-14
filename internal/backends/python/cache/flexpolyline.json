@@ -1,0 +1,7 @@
+{
+  "name": "flexpolyline",
+  "version": "0.1.0",
+  "modules": [
+    "flexpolyline"
+  ]
+}

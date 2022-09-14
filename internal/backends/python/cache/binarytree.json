@@ -1,0 +1,30 @@
+{
+  "name": "binarytree",
+  "version": "6.5.1",
+  "requires_dist": [
+    "graphviz",
+    "setuptools",
+    "setuptools-scm",
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "types-setuptools",
+    "types-dataclasses"
+  ],
+  "modules": [
+    "_distutils_hack",
+    "binarytree",
+    "graphviz",
+    "packaging",
+    "pyparsing",
+    "setuptools_scm",
+    "tomli",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "moon-tools",
+  "version": "1.0.0.1",
+  "modules": [
+    "Tools"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ws4py",
+  "version": "0.5.1",
+  "modules": [
+    "ws4py"
+  ]
+}

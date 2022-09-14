@@ -1,0 +1,7 @@
+{
+  "name": "edit-distance",
+  "version": "1.0.4",
+  "modules": [
+    "edit_distance"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pykml",
+  "version": "0.2.0",
+  "requires_dist": [
+    "lxml"
+  ],
+  "modules": [
+    "lxml",
+    "pykml"
+  ]
+}

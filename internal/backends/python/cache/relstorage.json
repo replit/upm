@@ -1,0 +1,18 @@
+{
+  "name": "RelStorage",
+  "version": "3.4.5",
+  "modules": [
+    "BTrees",
+    "ZConfig",
+    "ZODB",
+    "_cffi_backend",
+    "cffi",
+    "perfmetrics",
+    "persistent",
+    "pycparser",
+    "relstorage",
+    "six",
+    "transaction",
+    "zodbpickle"
+  ]
+}

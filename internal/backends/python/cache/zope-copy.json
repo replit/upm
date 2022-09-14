@@ -1,0 +1,14 @@
+{
+  "name": "zope.copy",
+  "version": "4.2",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component",
+    "zope.location",
+    "zope.testing",
+    "zope.testrunner"
+  ]
+}

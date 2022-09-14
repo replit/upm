@@ -1,0 +1,21 @@
+{
+  "name": "blacken-docs",
+  "version": "1.12.1",
+  "requires_dist": [
+    "black"
+  ],
+  "modules": [
+    "2e032532bd2e64ed7a60__mypyc",
+    "_black_version",
+    "black",
+    "blackd",
+    "blacken_docs",
+    "blib2to3",
+    "click",
+    "mypy_extensions",
+    "pathspec",
+    "platformdirs",
+    "tomli",
+    "typing_extensions"
+  ]
+}

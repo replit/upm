@@ -1,0 +1,24 @@
+{
+  "name": "Flask-BabelEx",
+  "version": "0.9.4",
+  "requires_dist": [
+    "Flask",
+    "Babel",
+    "speaklater",
+    "Jinja2"
+  ],
+  "modules": [
+    "babel",
+    "click",
+    "flask",
+    "flask_babelex",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pytz",
+    "speaklater",
+    "werkzeug",
+    "zipp"
+  ]
+}

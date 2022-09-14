@@ -1,0 +1,7 @@
+{
+  "name": "Adyen",
+  "version": "7.1.0",
+  "modules": [
+    "Adyen"
+  ]
+}

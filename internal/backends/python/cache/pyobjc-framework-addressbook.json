@@ -1,0 +1,9 @@
+{
+  "name": "pyobjc-framework-AddressBook",
+  "version": "8.5",
+  "requires_dist": [
+    "pyobjc-core",
+    "pyobjc-framework-Cocoa"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-AddressBook/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-AddressBook']' returned non-zero exit status 1.\"}"
+}

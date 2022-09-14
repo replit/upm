@@ -1,0 +1,10 @@
+{
+  "name": "chumpy",
+  "version": "0.70",
+  "modules": [
+    "chumpy",
+    "numpy",
+    "scipy",
+    "six"
+  ]
+}

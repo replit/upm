@@ -1,0 +1,9 @@
+{
+  "name": "strictyaml",
+  "version": "1.6.1",
+  "modules": [
+    "dateutil",
+    "six",
+    "strictyaml"
+  ]
+}

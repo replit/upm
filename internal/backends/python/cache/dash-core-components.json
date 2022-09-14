@@ -1,0 +1,7 @@
+{
+  "name": "dash-core-components",
+  "version": "2.0.0",
+  "modules": [
+    "dash_core_components"
+  ]
+}

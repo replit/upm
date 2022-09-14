@@ -1,0 +1,21 @@
+{
+  "name": "python-swiftclient",
+  "version": "4.1.0",
+  "requires_dist": [
+    "requests",
+    "python-keystoneclient",
+    "coverage",
+    "hacking",
+    "keystoneauth1",
+    "openstacksdk",
+    "stestr"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "swiftclient",
+    "urllib3"
+  ]
+}

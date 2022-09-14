@@ -1,0 +1,13 @@
+{
+  "name": "grpc-interceptor",
+  "version": "0.15.0",
+  "requires_dist": [
+    "grpcio",
+    "protobuf"
+  ],
+  "modules": [
+    "grpc",
+    "grpc_interceptor",
+    "six"
+  ]
+}

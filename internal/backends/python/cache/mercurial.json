@@ -1,0 +1,10 @@
+{
+  "name": "mercurial",
+  "version": "6.2.2",
+  "modules": [
+    "hgdemandimport",
+    "hgext",
+    "hgext3rd",
+    "mercurial"
+  ]
+}

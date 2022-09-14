@@ -1,0 +1,12 @@
+{
+  "name": "glmnet-py",
+  "version": "0.1.0b2",
+  "requires_dist": [
+    "joblib"
+  ],
+  "modules": [
+    "glmnet_py",
+    "glmnet_python",
+    "joblib"
+  ]
+}

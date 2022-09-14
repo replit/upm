@@ -1,0 +1,17 @@
+{
+  "name": "ciscoconfparse",
+  "version": "1.6.40",
+  "requires_dist": [
+    "passlib",
+    "dnspython",
+    "loguru",
+    "toml"
+  ],
+  "modules": [
+    "ciscoconfparse",
+    "dns",
+    "loguru",
+    "passlib",
+    "toml"
+  ]
+}

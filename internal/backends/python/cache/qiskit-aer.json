@@ -1,0 +1,22 @@
+{
+  "name": "qiskit-aer",
+  "version": "0.10.4",
+  "modules": [
+    "dateutil",
+    "dill",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "pbr",
+    "ply",
+    "psutil",
+    "qiskit",
+    "retworkx",
+    "scipy",
+    "six",
+    "stevedore",
+    "symengine",
+    "sympy",
+    "tweedledum"
+  ]
+}

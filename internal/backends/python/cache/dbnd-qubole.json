@@ -1,0 +1,39 @@
+{
+  "name": "dbnd-qubole",
+  "version": "1.0.2.1",
+  "requires_dist": [
+    "dbnd",
+    "dbnd-spark",
+    "qds-sdk"
+  ],
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "backports",
+    "boto",
+    "certifi",
+    "charset_normalizer",
+    "databand",
+    "dateutil",
+    "dbnd",
+    "dbnd_qubole",
+    "dbnd_spark",
+    "idna",
+    "inflection",
+    "more_itertools",
+    "pygments",
+    "pytz",
+    "pytz_deprecation_shim",
+    "pytzdata",
+    "qds_sdk",
+    "requests",
+    "six",
+    "sqlparse",
+    "targets",
+    "tzdata",
+    "tzlocal",
+    "urllib3",
+    "yaml"
+  ]
+}

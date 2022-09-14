@@ -1,0 +1,10 @@
+{
+  "name": "execnet",
+  "version": "1.9.0",
+  "requires_dist": [
+    "pre-commit"
+  ],
+  "modules": [
+    "execnet"
+  ]
+}

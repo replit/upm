@@ -1,0 +1,13 @@
+{
+  "name": "parso",
+  "version": "0.8.3",
+  "requires_dist": [
+    "flake8",
+    "mypy",
+    "docopt",
+    "pytest"
+  ],
+  "modules": [
+    "parso"
+  ]
+}

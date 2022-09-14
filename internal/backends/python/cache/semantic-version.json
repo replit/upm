@@ -1,0 +1,21 @@
+{
+  "name": "semantic-version",
+  "version": "2.10.0",
+  "requires_dist": [
+    "Django",
+    "nose2",
+    "tox",
+    "check-manifest",
+    "coverage",
+    "flake8",
+    "wheel",
+    "zest.releaser",
+    "readme-renderer",
+    "colorama",
+    "Sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "semantic_version"
+  ]
+}

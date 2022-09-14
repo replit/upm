@@ -1,0 +1,10 @@
+{
+  "name": "smmap2",
+  "version": "3.0.1",
+  "requires_dist": [
+    "smmap"
+  ],
+  "modules": [
+    "smmap"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Rtree",
+  "version": "1.0.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "rtree"
+  ]
+}

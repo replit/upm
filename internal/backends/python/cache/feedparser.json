@@ -1,0 +1,11 @@
+{
+  "name": "feedparser",
+  "version": "6.0.10",
+  "requires_dist": [
+    "sgmllib3k"
+  ],
+  "modules": [
+    "feedparser",
+    "sgmllib"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "google-cloud-ndb",
+  "version": "1.11.1",
+  "requires_dist": [
+    "google-cloud-datastore",
+    "pymemcache",
+    "redis",
+    "pytz",
+    "googleapis-common-protos",
+    "grpcio",
+    "protobuf"
+  ],
+  "modules": [
+    "async_timeout",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "deprecated",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "packaging",
+    "pyasn1",
+    "pyasn1_modules",
+    "pymemcache",
+    "pyparsing",
+    "pytz",
+    "redis",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

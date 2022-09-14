@@ -1,0 +1,26 @@
+{
+  "name": "twitchio",
+  "version": "2.4.0",
+  "requires_dist": [
+    "aiohttp",
+    "iso8601",
+    "typing-extensions",
+    "yt-dlp",
+    "pyaudio"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "iso8601",
+    "multidict",
+    "twitchio",
+    "typing_extensions",
+    "yarl"
+  ]
+}

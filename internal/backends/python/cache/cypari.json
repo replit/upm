@@ -1,0 +1,16 @@
+{
+  "name": "cypari",
+  "version": "2.4.1",
+  "requires_dist": [
+    "six",
+    "future"
+  ],
+  "modules": [
+    "cypari",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "six"
+  ]
+}

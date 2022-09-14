@@ -1,0 +1,7 @@
+{
+  "name": "typing-extensions",
+  "version": "4.3.0",
+  "modules": [
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "pytest-assume",
+  "version": "2.4.3",
+  "requires_dist": [
+    "pytest",
+    "six"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_assume",
+    "six",
+    "tomli"
+  ]
+}

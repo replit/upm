@@ -1,0 +1,11 @@
+{
+  "name": "superlance",
+  "version": "2.0.0",
+  "requires_dist": [
+    "supervisor"
+  ],
+  "modules": [
+    "superlance",
+    "supervisor"
+  ]
+}

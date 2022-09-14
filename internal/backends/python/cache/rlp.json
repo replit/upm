@@ -1,0 +1,36 @@
+{
+  "name": "rlp",
+  "version": "3.0.0",
+  "requires_dist": [
+    "eth-utils",
+    "bumpversion",
+    "setuptools",
+    "pytest-xdist",
+    "pytest-watch",
+    "wheel",
+    "ipython",
+    "twine",
+    "pytest",
+    "tox",
+    "hypothesis",
+    "flake8",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "flake8",
+    "rusty-rlp",
+    "pytest",
+    "tox",
+    "hypothesis"
+  ],
+  "modules": [
+    "cytoolz",
+    "eth_hash",
+    "eth_typing",
+    "eth_utils",
+    "rlp",
+    "tlz",
+    "toolz"
+  ]
+}

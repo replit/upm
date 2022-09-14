@@ -1,0 +1,26 @@
+{
+  "name": "tfp-nightly",
+  "version": "0.19.0.dev20220913",
+  "requires_dist": [
+    "absl-py",
+    "six",
+    "numpy",
+    "decorator",
+    "cloudpickle",
+    "gast",
+    "dm-tree",
+    "jax",
+    "jaxlib",
+    "tfds-nightly"
+  ],
+  "modules": [
+    "absl",
+    "cloudpickle",
+    "decorator",
+    "gast",
+    "numpy",
+    "six",
+    "tensorflow_probability",
+    "tree"
+  ]
+}

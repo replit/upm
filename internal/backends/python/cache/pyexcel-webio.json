@@ -1,0 +1,12 @@
+{
+  "name": "pyexcel-webio",
+  "version": "0.1.4",
+  "modules": [
+    "chardet",
+    "lml",
+    "pyexcel",
+    "pyexcel_io",
+    "pyexcel_webio",
+    "texttable"
+  ]
+}

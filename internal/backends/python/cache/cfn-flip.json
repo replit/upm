@@ -1,0 +1,18 @@
+{
+  "name": "cfn-flip",
+  "version": "1.3.0",
+  "requires_dist": [
+    "Click",
+    "PyYAML",
+    "six"
+  ],
+  "modules": [
+    "_yaml",
+    "cfn_clean",
+    "cfn_flip",
+    "cfn_tools",
+    "click",
+    "six",
+    "yaml"
+  ]
+}

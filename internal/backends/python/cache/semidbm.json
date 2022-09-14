@@ -1,0 +1,7 @@
+{
+  "name": "semidbm",
+  "version": "0.5.1",
+  "modules": [
+    "semidbm"
+  ]
+}

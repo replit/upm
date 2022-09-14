@@ -1,0 +1,27 @@
+{
+  "name": "tardis-dev",
+  "version": "2.0.0a12",
+  "requires_dist": [
+    "python-dateutil",
+    "aiohttp",
+    "aiofiles",
+    "sortedcontainers"
+  ],
+  "modules": [
+    "aiofiles",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "dateutil",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "six",
+    "sortedcontainers",
+    "tardis_dev",
+    "yarl"
+  ]
+}

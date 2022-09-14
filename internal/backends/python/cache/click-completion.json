@@ -1,0 +1,12 @@
+{
+  "name": "click-completion",
+  "version": "0.5.2",
+  "modules": [
+    "click",
+    "click_completion",
+    "jinja2",
+    "markupsafe",
+    "shellingham",
+    "six"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "backports.lzma",
+  "version": "0.0.14",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/backports.lzma/bin/python3', '-m', 'pip', 'install', 'backports.lzma']' returned non-zero exit status 1.\"}"
+}

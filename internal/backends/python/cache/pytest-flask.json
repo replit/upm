@@ -1,0 +1,32 @@
+{
+  "name": "pytest-flask",
+  "version": "1.2.0",
+  "requires_dist": [
+    "pytest",
+    "Flask",
+    "Werkzeug",
+    "Sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "click",
+    "flask",
+    "importlib_metadata",
+    "iniconfig",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_flask",
+    "tomli",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "smpplib",
+  "version": "2.2.1",
+  "requires_dist": [
+    "six",
+    "pytest",
+    "mock",
+    "typing"
+  ],
+  "modules": [
+    "six",
+    "smpplib"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "spark-parser",
+  "version": "1.8.9",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "click",
+    "spark_parser"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "gast",
+  "version": "0.5.3",
+  "modules": [
+    "gast"
+  ]
+}

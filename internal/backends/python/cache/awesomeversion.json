@@ -1,0 +1,7 @@
+{
+  "name": "awesomeversion",
+  "version": "22.8.0",
+  "modules": [
+    "awesomeversion"
+  ]
+}

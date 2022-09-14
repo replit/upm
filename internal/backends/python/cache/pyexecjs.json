@@ -1,0 +1,8 @@
+{
+  "name": "PyExecJS",
+  "version": "1.5.1",
+  "modules": [
+    "execjs",
+    "six"
+  ]
+}

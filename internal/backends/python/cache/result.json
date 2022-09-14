@@ -1,0 +1,11 @@
+{
+  "name": "result",
+  "version": "0.8.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "result",
+    "typing_extensions"
+  ]
+}

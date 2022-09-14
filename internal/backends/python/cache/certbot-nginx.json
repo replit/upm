@@ -1,0 +1,38 @@
+{
+  "name": "certbot-nginx",
+  "version": "1.30.0",
+  "requires_dist": [
+    "acme",
+    "certbot",
+    "PyOpenSSL",
+    "pyparsing",
+    "setuptools"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "_version",
+    "acme",
+    "certbot",
+    "certbot_nginx",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "configargparse",
+    "configobj",
+    "cryptography",
+    "distro",
+    "idna",
+    "josepy",
+    "parsedatetime",
+    "pycparser",
+    "pyparsing",
+    "pyrfc3339",
+    "pytz",
+    "requests",
+    "requests_toolbelt",
+    "six",
+    "urllib3",
+    "validate"
+  ]
+}

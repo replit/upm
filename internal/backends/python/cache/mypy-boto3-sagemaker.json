@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sagemaker",
+  "version": "1.24.69",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sagemaker",
+    "typing_extensions"
+  ]
+}

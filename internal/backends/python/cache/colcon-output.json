@@ -1,0 +1,28 @@
+{
+  "name": "colcon-output",
+  "version": "0.2.12",
+  "requires_dist": [
+    "colcon-core"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "colcon",
+    "colcon_core",
+    "colcon_output",
+    "coverage",
+    "distlib",
+    "em",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "pytest_repeat",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

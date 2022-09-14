@@ -1,0 +1,8 @@
+{
+  "name": "promise",
+  "version": "2.3",
+  "modules": [
+    "promise",
+    "six"
+  ]
+}

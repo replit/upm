@@ -1,0 +1,17 @@
+{
+  "name": "pylibjpeg",
+  "version": "1.4.0",
+  "requires_dist": [
+    "numpy",
+    "pylibjpeg-libjpeg",
+    "pylibjpeg-openjpeg",
+    "pylibjpeg-rle",
+    "pylibjpeg-libjpeg",
+    "pylibjpeg-openjpeg",
+    "pylibjpeg-rle"
+  ],
+  "modules": [
+    "numpy",
+    "pylibjpeg"
+  ]
+}

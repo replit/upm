@@ -1,0 +1,20 @@
+{
+  "name": "opentelemetry-instrumentation-pika",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "wrapt",
+    "packaging",
+    "pika",
+    "pytest",
+    "wrapt",
+    "opentelemetry-test-utils",
+    "pika"
+  ],
+  "modules": [
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "nose-cov",
+  "version": "1.6",
+  "modules": [
+    "cov_core",
+    "cov_core_init",
+    "coverage",
+    "nose",
+    "nose_cov"
+  ]
+}

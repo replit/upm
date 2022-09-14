@@ -1,0 +1,14 @@
+{
+  "name": "django-crum",
+  "version": "0.7.9",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "crum",
+    "django",
+    "sqlparse"
+  ]
+}

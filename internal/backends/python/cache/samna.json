@@ -1,0 +1,7 @@
+{
+  "name": "samna",
+  "version": "0.18.0.0",
+  "modules": [
+    "samna"
+  ]
+}

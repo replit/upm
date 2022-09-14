@@ -1,0 +1,17 @@
+{
+  "name": "outdated",
+  "version": "0.2.1",
+  "requires_dist": [
+    "littleutils",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "littleutils",
+    "outdated",
+    "requests",
+    "urllib3"
+  ]
+}

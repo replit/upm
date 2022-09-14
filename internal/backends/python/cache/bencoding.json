@@ -1,0 +1,7 @@
+{
+  "name": "bencoding",
+  "version": "0.2.6",
+  "modules": [
+    "bencoding"
+  ]
+}

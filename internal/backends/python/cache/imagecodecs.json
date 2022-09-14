@@ -1,0 +1,14 @@
+{
+  "name": "imagecodecs",
+  "version": "2022.8.8",
+  "requires_dist": [
+    "numpy",
+    "matplotlib",
+    "tifffile",
+    "numcodecs"
+  ],
+  "modules": [
+    "imagecodecs",
+    "numpy"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "openpyxl-stubs",
+  "version": "0.1.22",
+  "requires_dist": [
+    "mypy",
+    "typing-extensions",
+    "openpyxl"
+  ],
+  "modules": [
+    "et_xmlfile",
+    "f4771e8a540c98c8e0df__mypyc",
+    "mypy",
+    "mypy_extensions",
+    "mypyc",
+    "openpyxl",
+    "tomli",
+    "typing_extensions"
+  ]
+}

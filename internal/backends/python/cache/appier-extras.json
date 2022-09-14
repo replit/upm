@@ -1,0 +1,11 @@
+{
+  "name": "appier-extras",
+  "version": "0.24.8",
+  "requires_dist": [
+    "appier"
+  ],
+  "modules": [
+    "appier",
+    "appier_extras"
+  ]
+}

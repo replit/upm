@@ -1,0 +1,34 @@
+{
+  "name": "jaraco.text",
+  "version": "3.9.1",
+  "requires_dist": [
+    "jaraco.functools",
+    "jaraco.context",
+    "autocommand",
+    "inflect",
+    "more-itertools",
+    "importlib-resources",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black",
+    "pytest-mypy",
+    "pathlib2"
+  ],
+  "modules": [
+    "autocommand",
+    "importlib_resources",
+    "inflect",
+    "more_itertools",
+    "pydantic",
+    "typing_extensions",
+    "zipp"
+  ]
+}

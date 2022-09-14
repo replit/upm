@@ -1,0 +1,13 @@
+{
+  "name": "infi.clickhouse-orm",
+  "version": "2.1.2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iso8601",
+    "pytz",
+    "requests",
+    "urllib3"
+  ]
+}

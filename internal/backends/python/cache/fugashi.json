@@ -1,0 +1,11 @@
+{
+  "name": "fugashi",
+  "version": "1.2.0",
+  "requires_dist": [
+    "unidic",
+    "unidic-lite"
+  ],
+  "modules": [
+    "fugashi"
+  ]
+}

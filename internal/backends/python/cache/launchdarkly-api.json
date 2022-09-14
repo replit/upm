@@ -1,0 +1,14 @@
+{
+  "name": "launchdarkly-api",
+  "version": "10.0.0",
+  "requires_dist": [
+    "python-dateutil",
+    "urllib3"
+  ],
+  "modules": [
+    "dateutil",
+    "launchdarkly_api",
+    "six",
+    "urllib3"
+  ]
+}

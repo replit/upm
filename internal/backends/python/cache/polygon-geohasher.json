@@ -1,0 +1,18 @@
+{
+  "name": "polygon-geohasher",
+  "version": "0.0.1",
+  "requires_dist": [
+    "python-geohash",
+    "shapely"
+  ],
+  "modules": [
+    "_geohash",
+    "geohash",
+    "jpgrid",
+    "jpiarea",
+    "polygon_geohasher",
+    "quadtree",
+    "shapely",
+    "tests"
+  ]
+}

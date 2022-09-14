@@ -1,0 +1,32 @@
+{
+  "name": "eml-parser",
+  "version": "1.17.0",
+  "requires_dist": [
+    "python-dateutil",
+    "cchardet",
+    "publicsuffixlist",
+    "pylint",
+    "mypy",
+    "flake8",
+    "flake8-bandit",
+    "flake8-comprehensions",
+    "flake8-docstrings",
+    "pep8-naming",
+    "types-python-dateutil",
+    "types-chardet",
+    "mkdocs-material",
+    "mkdocstrings",
+    "file-magic",
+    "pyre2",
+    "regex",
+    "pytest",
+    "coverage"
+  ],
+  "modules": [
+    "cchardet",
+    "dateutil",
+    "eml_parser",
+    "publicsuffixlist",
+    "six"
+  ]
+}

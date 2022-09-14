@@ -1,0 +1,37 @@
+{
+  "name": "pyrender",
+  "version": "0.1.45",
+  "requires_dist": [
+    "freetype-py",
+    "imageio",
+    "networkx",
+    "numpy",
+    "Pillow",
+    "pyglet",
+    "PyOpenGL",
+    "scipy",
+    "six",
+    "trimesh",
+    "flake8",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "tox",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-automodapi"
+  ],
+  "modules": [
+    "OpenGL",
+    "PIL",
+    "freetype",
+    "imageio",
+    "networkx",
+    "numpy",
+    "pyglet",
+    "pyrender",
+    "scipy",
+    "six",
+    "trimesh"
+  ]
+}

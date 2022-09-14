@@ -1,0 +1,13 @@
+{
+  "name": "autoflake",
+  "version": "1.5.3",
+  "requires_dist": [
+    "pyflakes",
+    "toml"
+  ],
+  "modules": [
+    "autoflake",
+    "pyflakes",
+    "toml"
+  ]
+}

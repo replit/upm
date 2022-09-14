@@ -1,0 +1,18 @@
+{
+  "name": "autodynatrace",
+  "version": "1.0.86",
+  "requires_dist": [
+    "wrapt",
+    "oneagent-sdk",
+    "six",
+    "autowrapt"
+  ],
+  "modules": [
+    "autodynatrace",
+    "autowrapt",
+    "oneagent",
+    "six",
+    "tests",
+    "wrapt"
+  ]
+}

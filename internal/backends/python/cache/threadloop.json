@@ -1,0 +1,11 @@
+{
+  "name": "threadloop",
+  "version": "1.0.2",
+  "requires_dist": [
+    "tornado"
+  ],
+  "modules": [
+    "threadloop",
+    "tornado"
+  ]
+}

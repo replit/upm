@@ -1,0 +1,22 @@
+{
+  "name": "ocflib",
+  "version": "2022.7.26.22.21",
+  "requires_dist": [
+    "attrs",
+    "cached-property",
+    "cracklib",
+    "dnspython",
+    "jinja2",
+    "ldap3",
+    "pexpect",
+    "pycryptodome",
+    "pygithub",
+    "pymysql",
+    "pysnmp",
+    "pyyaml",
+    "redis",
+    "requests",
+    "sqlalchemy"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/ocflib/bin/python3', '-m', 'pip', 'install', 'ocflib']' returned non-zero exit status 1.\"}"
+}

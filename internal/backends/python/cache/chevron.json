@@ -1,0 +1,7 @@
+{
+  "name": "chevron",
+  "version": "0.14.0",
+  "modules": [
+    "chevron"
+  ]
+}

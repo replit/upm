@@ -1,0 +1,15 @@
+{
+  "name": "waitress",
+  "version": "2.1.2",
+  "requires_dist": [
+    "Sphinx",
+    "docutils",
+    "pylons-sphinx-themes",
+    "pytest",
+    "pytest-cover",
+    "coverage"
+  ],
+  "modules": [
+    "waitress"
+  ]
+}

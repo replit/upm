@@ -1,0 +1,11 @@
+{
+  "name": "pyworld",
+  "version": "0.3.0",
+  "modules": [
+    "Cython",
+    "cython",
+    "numpy",
+    "pyworld",
+    "pyximport"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pyjsparser",
+  "version": "2.7.1",
+  "modules": [
+    "pyjsparser"
+  ]
+}

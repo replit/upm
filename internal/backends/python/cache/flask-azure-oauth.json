@@ -1,0 +1,30 @@
+{
+  "name": "flask-azure-oauth",
+  "version": "0.7.0",
+  "requires_dist": [
+    "authlib",
+    "Flask",
+    "requests"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "authlib",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "cryptography",
+    "flask",
+    "flask_azure_oauth",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

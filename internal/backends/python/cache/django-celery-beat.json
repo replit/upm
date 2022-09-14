@@ -1,0 +1,38 @@
+{
+  "name": "django-celery-beat",
+  "version": "2.3.0",
+  "requires_dist": [
+    "celery",
+    "django-timezone-field",
+    "tzdata",
+    "python-crontab",
+    "Django",
+    "backports.zoneinfo"
+  ],
+  "modules": [
+    "amqp",
+    "asgiref",
+    "backports",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "cronlog",
+    "crontab",
+    "crontabs",
+    "dateutil",
+    "django",
+    "django_celery_beat",
+    "kombu",
+    "prompt_toolkit",
+    "pytz",
+    "six",
+    "sqlparse",
+    "timezone_field",
+    "tzdata",
+    "vine",
+    "wcwidth"
+  ]
+}

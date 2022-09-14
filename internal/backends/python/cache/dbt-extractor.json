@@ -1,0 +1,7 @@
+{
+  "name": "dbt-extractor",
+  "version": "0.4.1",
+  "modules": [
+    "dbt_extractor"
+  ]
+}

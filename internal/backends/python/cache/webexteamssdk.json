@@ -1,0 +1,24 @@
+{
+  "name": "webexteamssdk",
+  "version": "1.6.1",
+  "requires_dist": [
+    "future",
+    "requests",
+    "requests-toolbelt",
+    "PyJWT"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "future",
+    "idna",
+    "jwt",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "requests_toolbelt",
+    "urllib3",
+    "webexteamssdk"
+  ]
+}

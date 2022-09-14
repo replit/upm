@@ -1,0 +1,15 @@
+{
+  "name": "LucoPy",
+  "version": "1.2.4",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "LucoPy",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "spglib",
+  "version": "2.0.1",
+  "requires_dist": [
+    "numpy",
+    "Sphinx",
+    "sphinx-autobuild",
+    "sphinxcontrib-bibtex",
+    "sphinx-book-theme",
+    "myst-parser"
+  ],
+  "modules": [
+    "numpy",
+    "spglib"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "google-compute-engine",
+  "version": "2.8.13",
+  "modules": [
+    "boto",
+    "distro",
+    "google_compute_engine"
+  ]
+}

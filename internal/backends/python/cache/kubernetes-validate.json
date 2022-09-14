@@ -1,0 +1,18 @@
+{
+  "name": "kubernetes-validate",
+  "version": "1.24.0",
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "kubernetes_validate",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "yaml",
+    "zipp"
+  ]
+}

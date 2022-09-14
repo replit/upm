@@ -1,0 +1,17 @@
+{
+  "name": "databricks-cli",
+  "version": "0.17.3",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "databricks_cli",
+    "idna",
+    "jwt",
+    "oauthlib",
+    "requests",
+    "six",
+    "tabulate",
+    "urllib3"
+  ]
+}

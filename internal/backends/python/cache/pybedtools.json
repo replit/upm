@@ -1,0 +1,5 @@
+{
+  "name": "pybedtools",
+  "version": "0.9.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pybedtools/bin/python3', '-m', 'pip', 'install', 'pybedtools']' returned non-zero exit status 1.\"}"
+}

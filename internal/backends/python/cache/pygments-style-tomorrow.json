@@ -1,0 +1,11 @@
+{
+  "name": "pygments-style-tomorrow",
+  "version": "1.0.0.1",
+  "requires_dist": [
+    "pygments"
+  ],
+  "modules": [
+    "pygments",
+    "pygments_style_tomorrow"
+  ]
+}

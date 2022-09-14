@@ -1,0 +1,22 @@
+{
+  "name": "azure-cognitiveservices-vision-computervision",
+  "version": "0.9.0",
+  "requires_dist": [
+    "msrest",
+    "azure-common",
+    "azure-cognitiveservices-vision-nspkg"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

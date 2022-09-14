@@ -1,0 +1,21 @@
+{
+  "name": "stack-data",
+  "version": "0.5.0",
+  "requires_dist": [
+    "executing",
+    "asttokens",
+    "pure-eval",
+    "pytest",
+    "typeguard",
+    "pygments",
+    "littleutils",
+    "cython"
+  ],
+  "modules": [
+    "asttokens",
+    "executing",
+    "pure_eval",
+    "six",
+    "stack_data"
+  ]
+}

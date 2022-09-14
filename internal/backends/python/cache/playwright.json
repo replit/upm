@@ -1,0 +1,17 @@
+{
+  "name": "playwright",
+  "version": "1.25.2",
+  "requires_dist": [
+    "websockets",
+    "greenlet",
+    "pyee",
+    "typing-extensions"
+  ],
+  "modules": [
+    "greenlet",
+    "playwright",
+    "pyee",
+    "typing_extensions",
+    "websockets"
+  ]
+}

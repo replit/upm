@@ -1,0 +1,10 @@
+{
+  "name": "databricks-connect",
+  "version": "10.4.12",
+  "modules": [
+    "delta",
+    "py4j",
+    "pyspark",
+    "six"
+  ]
+}

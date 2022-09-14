@@ -1,0 +1,13 @@
+{
+  "name": "textsearch",
+  "version": "0.0.24",
+  "requires_dist": [
+    "anyascii",
+    "pyahocorasick"
+  ],
+  "modules": [
+    "ahocorasick",
+    "anyascii",
+    "textsearch"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "gridmeter",
+  "version": "1.1.0",
+  "requires_dist": [
+    "pandas",
+    "plotnine"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "gridmeter",
+    "kiwisolver",
+    "matplotlib",
+    "mizani",
+    "numpy",
+    "packaging",
+    "palettable",
+    "pandas",
+    "patsy",
+    "plotnine",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels"
+  ]
+}

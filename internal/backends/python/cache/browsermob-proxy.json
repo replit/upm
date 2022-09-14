@@ -1,0 +1,12 @@
+{
+  "name": "browsermob-proxy",
+  "version": "0.8.0",
+  "modules": [
+    "browsermobproxy",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

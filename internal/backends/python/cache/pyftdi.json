@@ -1,0 +1,13 @@
+{
+  "name": "pyftdi",
+  "version": "0.54.0",
+  "requires_dist": [
+    "pyusb",
+    "pyserial"
+  ],
+  "modules": [
+    "pyftdi",
+    "serial",
+    "usb"
+  ]
+}

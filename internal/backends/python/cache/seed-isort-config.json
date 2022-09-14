@@ -1,0 +1,11 @@
+{
+  "name": "seed-isort-config",
+  "version": "2.2.0",
+  "requires_dist": [
+    "aspy.refactor-imports"
+  ],
+  "modules": [
+    "aspy",
+    "seed_isort_config"
+  ]
+}

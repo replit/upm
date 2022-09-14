@@ -1,0 +1,8 @@
+{
+  "name": "hyperlink",
+  "version": "21.0.0",
+  "modules": [
+    "hyperlink",
+    "idna"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "portion",
+  "version": "2.3.0",
+  "requires_dist": [
+    "sortedcontainers",
+    "pytest",
+    "coverage",
+    "black"
+  ],
+  "modules": [
+    "portion",
+    "sortedcontainers"
+  ]
+}

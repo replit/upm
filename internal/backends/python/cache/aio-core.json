@@ -1,0 +1,15 @@
+{
+  "name": "aio.core",
+  "version": "0.9.1",
+  "requires_dist": [
+    "abstracts",
+    "orjson",
+    "trycast",
+    "types-orjson"
+  ],
+  "modules": [
+    "abstracts",
+    "orjson",
+    "trycast"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "ZODB",
+  "version": "5.7.0",
+  "requires_dist": [
+    "persistent",
+    "BTrees",
+    "ZConfig",
+    "transaction",
+    "six",
+    "zc.lockfile",
+    "zope.interface",
+    "zodbpickle",
+    "Sphinx",
+    "ZODB",
+    "j1m.sphinxautozconfig",
+    "sphinx-rtd-theme",
+    "sphinxcontrib-zopeext",
+    "manuel",
+    "zope.testing",
+    "zope.testrunner",
+    "mock"
+  ],
+  "modules": [
+    "BTrees",
+    "ZConfig",
+    "ZODB",
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser",
+    "six",
+    "transaction",
+    "zodbpickle"
+  ]
+}

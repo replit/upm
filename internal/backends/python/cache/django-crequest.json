@@ -1,0 +1,11 @@
+{
+  "name": "django-crequest",
+  "version": "2018.5.11",
+  "modules": [
+    "asgiref",
+    "backports",
+    "crequest",
+    "django",
+    "sqlparse"
+  ]
+}

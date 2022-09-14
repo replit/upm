@@ -1,0 +1,13 @@
+{
+  "name": "lazy_loader",
+  "version": "0.1rc3",
+  "requires_dist": [
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "codecov"
+  ],
+  "modules": [
+    "lazy_loader"
+  ]
+}

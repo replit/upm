@@ -1,0 +1,11 @@
+{
+  "name": "lithium-reducer",
+  "version": "0.6.2",
+  "requires_dist": [
+    "pre-commit",
+    "tox"
+  ],
+  "modules": [
+    "lithium"
+  ]
+}

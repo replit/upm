@@ -1,0 +1,10 @@
+{
+  "name": "antiorm",
+  "version": "1.2.1",
+  "modules": [
+    "antiorm",
+    "antipool",
+    "dbapiext",
+    "dbrelmgr"
+  ]
+}

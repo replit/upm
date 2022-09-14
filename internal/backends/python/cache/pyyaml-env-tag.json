@@ -1,0 +1,12 @@
+{
+  "name": "pyyaml_env_tag",
+  "version": "0.1",
+  "requires_dist": [
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "yaml",
+    "yaml_env_tag"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chaostoolkit",
+  "version": "1.12.0",
+  "requires_dist": [
+    "click",
+    "click-plugins",
+    "logzero",
+    "chaostoolkit-lib",
+    "requests",
+    "python-json-logger",
+    "pyyaml",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "chaoslib",
+    "chaostoolkit",
+    "charset_normalizer",
+    "click",
+    "click_plugins",
+    "idna",
+    "logzero",
+    "pythonjsonlogger",
+    "requests",
+    "urllib3",
+    "yaml"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "openapi-typed",
+  "version": "0.1.0",
+  "requires_dist": [
+    "typing-extensions",
+    "mypy",
+    "pytest",
+    "setuptools",
+    "twine",
+    "wheel",
+    "typeguard"
+  ],
+  "modules": [
+    "openapi_typed",
+    "typing_extensions"
+  ]
+}

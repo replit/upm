@@ -1,0 +1,7 @@
+{
+  "name": "clang-format",
+  "version": "14.0.6",
+  "modules": [
+    "clang_format"
+  ]
+}

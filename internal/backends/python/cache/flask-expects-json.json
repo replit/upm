@@ -1,0 +1,23 @@
+{
+  "name": "flask-expects-json",
+  "version": "1.7.0",
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "click",
+    "flask",
+    "flask_expects_json",
+    "importlib_metadata",
+    "importlib_resources",
+    "itsdangerous",
+    "jinja2",
+    "jsonschema",
+    "markupsafe",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "werkzeug",
+    "zipp"
+  ]
+}

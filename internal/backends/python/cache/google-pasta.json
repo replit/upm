@@ -1,0 +1,11 @@
+{
+  "name": "google-pasta",
+  "version": "0.2.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pasta",
+    "six"
+  ]
+}

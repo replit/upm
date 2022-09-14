@@ -1,0 +1,15 @@
+{
+  "name": "mailjet-rest",
+  "version": "1.3.4",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mailjet_rest",
+    "requests",
+    "urllib3"
+  ]
+}

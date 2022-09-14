@@ -1,0 +1,19 @@
+{
+  "name": "edx-django-release-util",
+  "version": "1.2.0",
+  "requires_dist": [
+    "six",
+    "PyYAML",
+    "Django"
+  ],
+  "modules": [
+    "_yaml",
+    "asgiref",
+    "backports",
+    "django",
+    "release_util",
+    "six",
+    "sqlparse",
+    "yaml"
+  ]
+}

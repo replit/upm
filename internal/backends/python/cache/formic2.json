@@ -1,0 +1,7 @@
+{
+  "name": "formic2",
+  "version": "1.0.3",
+  "modules": [
+    "formic"
+  ]
+}

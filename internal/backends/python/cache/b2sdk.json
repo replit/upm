@@ -1,0 +1,17 @@
+{
+  "name": "b2sdk",
+  "version": "1.17.3",
+  "modules": [
+    "arrow",
+    "b2sdk",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "logfury",
+    "requests",
+    "six",
+    "tqdm",
+    "urllib3"
+  ]
+}

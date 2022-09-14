@@ -1,0 +1,32 @@
+{
+  "name": "django-datadog-logger",
+  "version": "0.5.1",
+  "requires_dist": [
+    "Django",
+    "JSON-log-formatter",
+    "celery",
+    "djangorestframework"
+  ],
+  "modules": [
+    "amqp",
+    "asgiref",
+    "backports",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "django",
+    "django_datadog_logger",
+    "json_log_formatter",
+    "kombu",
+    "prompt_toolkit",
+    "pytz",
+    "rest_framework",
+    "six",
+    "sqlparse",
+    "vine",
+    "wcwidth"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PyGetWindow",
+  "version": "0.0.9",
+  "modules": [
+    "pygetwindow",
+    "pyrect"
+  ]
+}

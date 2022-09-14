@@ -1,0 +1,7 @@
+{
+  "name": "getmac",
+  "version": "0.8.3",
+  "modules": [
+    "getmac"
+  ]
+}

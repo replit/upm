@@ -1,0 +1,13 @@
+{
+  "name": "mosaik.HouseholdSim-SemVer",
+  "version": "2.0.4rc20220913000410",
+  "requires_dist": [
+    "arrow"
+  ],
+  "modules": [
+    "arrow",
+    "dateutil",
+    "householdsim",
+    "six"
+  ]
+}

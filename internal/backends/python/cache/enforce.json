@@ -1,0 +1,11 @@
+{
+  "name": "enforce",
+  "version": "0.3.4",
+  "requires_dist": [
+    "wrapt"
+  ],
+  "modules": [
+    "enforce",
+    "wrapt"
+  ]
+}

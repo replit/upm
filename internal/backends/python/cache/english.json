@@ -1,0 +1,11 @@
+{
+  "name": "english",
+  "version": "2020.7.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "english",
+    "six"
+  ]
+}

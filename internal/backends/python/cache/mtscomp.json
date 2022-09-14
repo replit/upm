@@ -1,0 +1,7 @@
+{
+  "name": "mtscomp",
+  "version": "1.0.2",
+  "modules": [
+    "mtscomp"
+  ]
+}

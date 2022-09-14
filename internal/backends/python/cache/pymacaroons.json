@@ -1,0 +1,16 @@
+{
+  "name": "pymacaroons",
+  "version": "0.13.0",
+  "requires_dist": [
+    "PyNaCl",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "nacl",
+    "pycparser",
+    "pymacaroons",
+    "six"
+  ]
+}

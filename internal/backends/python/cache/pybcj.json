@@ -1,0 +1,25 @@
+{
+  "name": "pybcj",
+  "version": "1.0.1",
+  "requires_dist": [
+    "importlib-metadata",
+    "mypy",
+    "mypy-extensions",
+    "check-manifest",
+    "flake8",
+    "flake8-black",
+    "flake8-colors",
+    "flake8-isort",
+    "flake8-pyi",
+    "flake8-typing-imports",
+    "readme-renderer",
+    "pygments",
+    "pytest",
+    "pytest-cov",
+    "hypothesis",
+    "coverage"
+  ],
+  "modules": [
+    "bcj"
+  ]
+}

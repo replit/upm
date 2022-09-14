@@ -1,0 +1,5 @@
+{
+  "name": "shared-memory38",
+  "version": "0.1.2",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/shared-memory38/bin/python3', '-m', 'pip', 'install', 'shared-memory38']' returned non-zero exit status 1.\"}"
+}

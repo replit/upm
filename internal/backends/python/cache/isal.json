@@ -1,0 +1,7 @@
+{
+  "name": "isal",
+  "version": "1.0.1",
+  "modules": [
+    "isal"
+  ]
+}

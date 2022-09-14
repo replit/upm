@@ -1,0 +1,16 @@
+{
+  "name": "pysnmp",
+  "version": "4.4.12",
+  "requires_dist": [
+    "pysmi",
+    "pycryptodomex",
+    "pyasn1"
+  ],
+  "modules": [
+    "Cryptodome",
+    "ply",
+    "pyasn1",
+    "pysmi",
+    "pysnmp"
+  ]
+}

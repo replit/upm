@@ -1,0 +1,10 @@
+{
+  "name": "fuzzywuzzy",
+  "version": "0.18.0",
+  "requires_dist": [
+    "python-levenshtein"
+  ],
+  "modules": [
+    "fuzzywuzzy"
+  ]
+}

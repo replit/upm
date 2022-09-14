@@ -1,0 +1,14 @@
+{
+  "name": "cybrid-api-id-python",
+  "version": "0.37.46",
+  "requires_dist": [
+    "urllib3",
+    "python-dateutil"
+  ],
+  "modules": [
+    "cybrid_api_id",
+    "dateutil",
+    "six",
+    "urllib3"
+  ]
+}

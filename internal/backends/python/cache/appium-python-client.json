@@ -1,0 +1,23 @@
+{
+  "name": "Appium-Python-Client",
+  "version": "2.6.1",
+  "modules": [
+    "appium",
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "selenium",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

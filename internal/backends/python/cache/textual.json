@@ -1,0 +1,15 @@
+{
+  "name": "textual",
+  "version": "0.1.18",
+  "requires_dist": [
+    "rich",
+    "typing-extensions"
+  ],
+  "modules": [
+    "commonmark",
+    "pygments",
+    "rich",
+    "textual",
+    "typing_extensions"
+  ]
+}

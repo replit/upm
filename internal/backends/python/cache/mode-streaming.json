@@ -1,0 +1,23 @@
+{
+  "name": "mode-streaming",
+  "version": "0.2.0",
+  "requires_dist": [
+    "colorlog",
+    "mypy-extensions",
+    "croniter",
+    "aiocontextvars",
+    "typing-extensions",
+    "aioeventlet",
+    "dnspython",
+    "aiogevent",
+    "uvloop"
+  ],
+  "modules": [
+    "colorlog",
+    "croniter",
+    "dateutil",
+    "mode",
+    "mypy_extensions",
+    "six"
+  ]
+}

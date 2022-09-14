@@ -1,0 +1,11 @@
+{
+  "name": "docker-pycreds",
+  "version": "0.4.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "dockerpycreds",
+    "six"
+  ]
+}

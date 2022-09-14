@@ -1,0 +1,13 @@
+{
+  "name": "zdesk",
+  "version": "2.8.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "urllib3",
+    "zdesk"
+  ]
+}

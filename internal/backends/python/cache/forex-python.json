@@ -1,0 +1,18 @@
+{
+  "name": "forex-python",
+  "version": "1.8",
+  "requires_dist": [
+    "requests",
+    "simplejson"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docs",
+    "forex_python",
+    "idna",
+    "requests",
+    "simplejson",
+    "urllib3"
+  ]
+}

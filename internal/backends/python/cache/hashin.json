@@ -1,0 +1,17 @@
+{
+  "name": "hashin",
+  "version": "0.17.0",
+  "requires_dist": [
+    "packaging",
+    "pip-api",
+    "futures",
+    "tox",
+    "twine"
+  ],
+  "modules": [
+    "hashin",
+    "packaging",
+    "pip_api",
+    "pyparsing"
+  ]
+}

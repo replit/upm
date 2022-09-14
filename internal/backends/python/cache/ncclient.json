@@ -1,0 +1,16 @@
+{
+  "name": "ncclient",
+  "version": "0.6.13",
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "lxml",
+    "nacl",
+    "ncclient",
+    "paramiko",
+    "pycparser",
+    "six"
+  ]
+}

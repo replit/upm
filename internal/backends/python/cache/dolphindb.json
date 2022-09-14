@@ -1,0 +1,21 @@
+{
+  "name": "dolphindb",
+  "version": "1.30.19.1",
+  "requires_dist": [
+    "future",
+    "numpy",
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "dolphindb",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "pandas",
+    "past",
+    "pytz",
+    "six"
+  ]
+}

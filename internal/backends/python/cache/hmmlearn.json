@@ -1,0 +1,22 @@
+{
+  "name": "hmmlearn",
+  "version": "0.2.7",
+  "requires_dist": [
+    "numpy",
+    "scikit-learn",
+    "scipy",
+    "Sphinx",
+    "sphinx-gallery",
+    "Pillow",
+    "matplotlib",
+    "pytest"
+  ],
+  "modules": [
+    "hmmlearn",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

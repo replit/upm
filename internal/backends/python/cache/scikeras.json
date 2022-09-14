@@ -1,0 +1,21 @@
+{
+  "name": "scikeras",
+  "version": "0.9.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "scikit-learn",
+    "packaging",
+    "tensorflow",
+    "tensorflow-cpu"
+  ],
+  "modules": [
+    "joblib",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "scikeras",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

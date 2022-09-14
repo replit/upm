@@ -1,0 +1,43 @@
+{
+  "name": "dask-cuda",
+  "version": "22.8.0",
+  "requires_dist": [
+    "dask",
+    "distributed",
+    "pynvml",
+    "numpy",
+    "numba"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "cloudpickle",
+    "dask",
+    "dask_cuda",
+    "distributed",
+    "fsspec",
+    "heapdict",
+    "importlib_metadata",
+    "jinja2",
+    "llvmlite",
+    "locket",
+    "markupsafe",
+    "msgpack",
+    "numba",
+    "numpy",
+    "packaging",
+    "partd",
+    "psutil",
+    "pynvml",
+    "pyparsing",
+    "sortedcontainers",
+    "tblib",
+    "tlz",
+    "toolz",
+    "tornado",
+    "urllib3",
+    "yaml",
+    "zict",
+    "zipp"
+  ]
+}

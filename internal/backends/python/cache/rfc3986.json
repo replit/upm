@@ -1,0 +1,10 @@
+{
+  "name": "rfc3986",
+  "version": "2.0.0",
+  "requires_dist": [
+    "idna"
+  ],
+  "modules": [
+    "rfc3986"
+  ]
+}

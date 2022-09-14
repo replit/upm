@@ -1,0 +1,20 @@
+{
+  "name": "ocs-sample-library-preview",
+  "version": "0.7.1rc0",
+  "requires_dist": [
+    "adh-sample-library-preview"
+  ],
+  "modules": [
+    "adh_sample_library_preview",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jsonpatch",
+    "jsonpointer",
+    "ocs_sample_library_preview",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

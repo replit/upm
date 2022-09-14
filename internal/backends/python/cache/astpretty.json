@@ -1,0 +1,7 @@
+{
+  "name": "astpretty",
+  "version": "3.0.0",
+  "modules": [
+    "astpretty"
+  ]
+}

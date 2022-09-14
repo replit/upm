@@ -1,0 +1,15 @@
+{
+  "name": "diagrams",
+  "version": "0.22.0",
+  "requires_dist": [
+    "contextvars",
+    "graphviz",
+    "jinja2"
+  ],
+  "modules": [
+    "diagrams",
+    "graphviz",
+    "jinja2",
+    "markupsafe"
+  ]
+}

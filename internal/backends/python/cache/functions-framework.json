@@ -1,0 +1,28 @@
+{
+  "name": "functions-framework",
+  "version": "3.2.0",
+  "requires_dist": [
+    "flask",
+    "click",
+    "watchdog",
+    "cloudevents",
+    "gunicorn"
+  ],
+  "modules": [
+    "click",
+    "cloudevents",
+    "deprecation",
+    "flask",
+    "functions_framework",
+    "gunicorn",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pyparsing",
+    "watchdog",
+    "werkzeug",
+    "zipp"
+  ]
+}

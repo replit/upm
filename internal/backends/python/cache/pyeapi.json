@@ -1,0 +1,8 @@
+{
+  "name": "pyeapi",
+  "version": "0.8.4",
+  "modules": [
+    "netaddr",
+    "pyeapi"
+  ]
+}

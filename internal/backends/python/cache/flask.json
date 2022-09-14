@@ -1,0 +1,23 @@
+{
+  "name": "Flask",
+  "version": "2.2.2",
+  "requires_dist": [
+    "Werkzeug",
+    "Jinja2",
+    "itsdangerous",
+    "click",
+    "importlib-metadata",
+    "asgiref",
+    "python-dotenv"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

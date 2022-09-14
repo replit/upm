@@ -1,0 +1,11 @@
+{
+  "name": "aiosqlite",
+  "version": "0.17.0",
+  "requires_dist": [
+    "typing_extensions"
+  ],
+  "modules": [
+    "aiosqlite",
+    "typing_extensions"
+  ]
+}

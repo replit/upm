@@ -1,0 +1,7 @@
+{
+  "name": "keepalive",
+  "version": "0.5",
+  "modules": [
+    "keepalive"
+  ]
+}

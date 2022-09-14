@@ -1,0 +1,7 @@
+{
+  "name": "Levenshtein-search",
+  "version": "1.4.5",
+  "modules": [
+    "Levenshtein_search"
+  ]
+}

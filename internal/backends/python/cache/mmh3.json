@@ -1,0 +1,7 @@
+{
+  "name": "mmh3",
+  "version": "3.0.0",
+  "modules": [
+    "mmh3"
+  ]
+}

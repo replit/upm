@@ -1,0 +1,17 @@
+{
+  "name": "coralogix-logger",
+  "version": "2.0.5",
+  "requires_dist": [
+    "requests",
+    "wheel",
+    "twine"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "coralogix",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

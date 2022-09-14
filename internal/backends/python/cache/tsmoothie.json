@@ -1,0 +1,15 @@
+{
+  "name": "tsmoothie",
+  "version": "1.0.4",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "simdkalman"
+  ],
+  "modules": [
+    "numpy",
+    "scipy",
+    "simdkalman",
+    "tsmoothie"
+  ]
+}

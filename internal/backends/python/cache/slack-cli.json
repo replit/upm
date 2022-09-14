@@ -1,0 +1,17 @@
+{
+  "name": "slack-cli",
+  "version": "2.2.10",
+  "modules": [
+    "appdirs",
+    "argcomplete",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "slackcli",
+    "slacker",
+    "urllib3",
+    "websocket"
+  ]
+}

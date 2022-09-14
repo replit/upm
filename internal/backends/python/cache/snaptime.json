@@ -1,0 +1,10 @@
+{
+  "name": "snaptime",
+  "version": "0.2.4",
+  "modules": [
+    "dateutil",
+    "pytz",
+    "six",
+    "snaptime"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "pottery",
+  "version": "3.0.0",
+  "requires_dist": [
+    "redis",
+    "mmh3",
+    "typing-extensions"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "mmh3",
+    "packaging",
+    "pottery",
+    "pyparsing",
+    "redis",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

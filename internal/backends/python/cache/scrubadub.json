@@ -1,0 +1,43 @@
+{
+  "name": "scrubadub",
+  "version": "2.0.0",
+  "requires_dist": [
+    "textblob",
+    "phonenumbers",
+    "python-stdnum",
+    "dateparser",
+    "catalogue",
+    "sklearn",
+    "typing-extensions",
+    "faker"
+  ],
+  "modules": [
+    "backports",
+    "catalogue",
+    "click",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "faker",
+    "joblib",
+    "nltk",
+    "numpy",
+    "phonenumbers",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "scipy",
+    "scrubadub",
+    "six",
+    "sklearn",
+    "stdnum",
+    "textblob",
+    "threadpoolctl",
+    "tqdm",
+    "typing_extensions",
+    "tzdata",
+    "tzlocal"
+  ]
+}

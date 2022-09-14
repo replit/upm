@@ -1,0 +1,12 @@
+{
+  "name": "django-bitfield",
+  "version": "2.2.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "bitfield",
+    "django",
+    "six",
+    "sqlparse"
+  ]
+}

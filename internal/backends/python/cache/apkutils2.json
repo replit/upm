@@ -1,0 +1,10 @@
+{
+  "name": "apkutils2",
+  "version": "1.0.0",
+  "modules": [
+    "apkutils2",
+    "cigam",
+    "elftools",
+    "xmltodict"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "launchpadlib",
+  "version": "1.10.16",
+  "requires_dist": [
+    "httplib2",
+    "keyring",
+    "lazr.restfulclient",
+    "lazr.uri",
+    "six",
+    "importlib-metadata",
+    "Sphinx",
+    "mock",
+    "testresources",
+    "wadllib"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "distro",
+    "httplib2",
+    "importlib_metadata",
+    "jeepney",
+    "keyring",
+    "launchpadlib",
+    "more_itertools",
+    "oauthlib",
+    "pycparser",
+    "pyparsing",
+    "secretstorage",
+    "six",
+    "wadllib",
+    "zipp"
+  ]
+}

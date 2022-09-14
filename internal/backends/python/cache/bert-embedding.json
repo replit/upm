@@ -1,0 +1,24 @@
+{
+  "name": "bert-embedding",
+  "version": "1.0.1",
+  "requires_dist": [
+    "typing",
+    "numpy",
+    "mxnet",
+    "gluonnlp",
+    "mxnet-cu92"
+  ],
+  "modules": [
+    "bert_embedding",
+    "certifi",
+    "charset_normalizer",
+    "dmlc_tracker",
+    "gluonnlp",
+    "graphviz",
+    "idna",
+    "mxnet",
+    "numpy",
+    "requests",
+    "urllib3"
+  ]
+}

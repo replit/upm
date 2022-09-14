@@ -1,0 +1,10 @@
+{
+  "name": "pybase64",
+  "version": "1.2.3",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "pybase64"
+  ]
+}

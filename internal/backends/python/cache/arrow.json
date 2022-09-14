@@ -1,0 +1,13 @@
+{
+  "name": "arrow",
+  "version": "1.2.3",
+  "requires_dist": [
+    "python-dateutil",
+    "typing-extensions"
+  ],
+  "modules": [
+    "arrow",
+    "dateutil",
+    "six"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "google-cloud-tasks",
+  "version": "2.10.2",
+  "requires_dist": [
+    "google-api-core",
+    "grpc-google-iam-v1",
+    "proto-plus",
+    "protobuf"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

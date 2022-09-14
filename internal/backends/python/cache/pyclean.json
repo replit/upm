@@ -1,0 +1,7 @@
+{
+  "name": "pyclean",
+  "version": "2.2.0",
+  "modules": [
+    "pyclean"
+  ]
+}

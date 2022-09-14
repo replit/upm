@@ -1,0 +1,22 @@
+{
+  "name": "trio-websocket",
+  "version": "0.9.2",
+  "requires_dist": [
+    "async-generator",
+    "trio",
+    "wsproto"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "h11",
+    "idna",
+    "outcome",
+    "sniffio",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "wsproto"
+  ]
+}

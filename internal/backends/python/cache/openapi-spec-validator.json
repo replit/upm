@@ -1,0 +1,32 @@
+{
+  "name": "openapi-spec-validator",
+  "version": "0.5.1",
+  "requires_dist": [
+    "jsonschema",
+    "openapi-schema-validator",
+    "PyYAML",
+    "requests",
+    "importlib-resources",
+    "jsonschema-spec",
+    "lazy-object-proxy"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "jsonschema_spec",
+    "lazy_object_proxy",
+    "openapi_schema_validator",
+    "openapi_spec_validator",
+    "pathable",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "typing_extensions",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "py-bcrypt",
+  "version": "0.4",
+  "modules": [
+    "bcrypt"
+  ]
+}

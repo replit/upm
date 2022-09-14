@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sso",
+  "version": "1.24.63",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sso",
+    "typing_extensions"
+  ]
+}

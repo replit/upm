@@ -1,0 +1,7 @@
+{
+  "name": "teamcity-messages",
+  "version": "1.31",
+  "modules": [
+    "teamcity"
+  ]
+}

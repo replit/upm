@@ -1,0 +1,7 @@
+{
+  "name": "simpledbf",
+  "version": "0.2.6",
+  "modules": [
+    "simpledbf"
+  ]
+}

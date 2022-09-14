@@ -1,0 +1,7 @@
+{
+  "name": "pytube",
+  "version": "12.1.0",
+  "modules": [
+    "pytube"
+  ]
+}

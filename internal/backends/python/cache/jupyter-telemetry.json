@@ -1,0 +1,25 @@
+{
+  "name": "jupyter-telemetry",
+  "version": "0.1.0",
+  "requires_dist": [
+    "jsonschema",
+    "python-json-logger",
+    "traitlets",
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_ruamel_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "jupyter_telemetry",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "pythonjsonlogger",
+    "traitlets",
+    "zipp"
+  ]
+}

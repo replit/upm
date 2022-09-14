@@ -1,0 +1,13 @@
+{
+  "name": "pre-commit-hooks",
+  "version": "4.3.0",
+  "requires_dist": [
+    "ruamel.yaml",
+    "tomli"
+  ],
+  "modules": [
+    "_ruamel_yaml",
+    "pre_commit_hooks",
+    "tomli"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "klaviyo",
+  "version": "3.1.5",
+  "requires_dist": [
+    "requests",
+    "simplejson"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "klaviyo",
+    "requests",
+    "simplejson",
+    "tests",
+    "urllib3"
+  ]
+}

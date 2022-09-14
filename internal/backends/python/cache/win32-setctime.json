@@ -1,0 +1,11 @@
+{
+  "name": "win32-setctime",
+  "version": "1.1.0",
+  "requires_dist": [
+    "pytest",
+    "black"
+  ],
+  "modules": [
+    "win32_setctime"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "conan-package-tools",
+  "version": "0.38.1",
+  "requires_dist": [
+    "six",
+    "conan",
+    "tabulate"
+  ],
+  "modules": [
+    "_yaml",
+    "bottle",
+    "certifi",
+    "charset_normalizer",
+    "colorama",
+    "conan",
+    "conanio",
+    "conans",
+    "cpt",
+    "dateutil",
+    "distro",
+    "fasteners",
+    "idna",
+    "jinja2",
+    "jwt",
+    "markupsafe",
+    "patch_ng",
+    "pluginbase",
+    "pygments",
+    "requests",
+    "semver",
+    "six",
+    "tabulate",
+    "tqdm",
+    "urllib3",
+    "yaml"
+  ]
+}

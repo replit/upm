@@ -1,0 +1,27 @@
+{
+  "name": "cdk8s-redis",
+  "version": "0.1.377",
+  "requires_dist": [
+    "cdk8s",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "cdk8s",
+    "cdk8s_redis",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

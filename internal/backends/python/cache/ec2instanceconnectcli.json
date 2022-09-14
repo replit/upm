@@ -1,0 +1,20 @@
+{
+  "name": "ec2instanceconnectcli",
+  "version": "1.0.2",
+  "requires_dist": [
+    "cryptography",
+    "botocore"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "botocore",
+    "cffi",
+    "cryptography",
+    "dateutil",
+    "ec2instanceconnectcli",
+    "jmespath",
+    "pycparser",
+    "six",
+    "urllib3"
+  ]
+}

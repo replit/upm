@@ -1,0 +1,43 @@
+{
+  "name": "arviz",
+  "version": "0.12.1",
+  "requires_dist": [
+    "setuptools",
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "packaging",
+    "pandas",
+    "xarray",
+    "netcdf4",
+    "typing-extensions",
+    "xarray-einstats",
+    "numba",
+    "bokeh",
+    "ujson",
+    "dask",
+    "zarr"
+  ],
+  "modules": [
+    "PIL",
+    "arviz",
+    "cftime",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "netCDF4",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "typing_extensions",
+    "xarray",
+    "xarray_einstats"
+  ]
+}

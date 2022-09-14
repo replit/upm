@@ -1,0 +1,27 @@
+{
+  "name": "rend",
+  "version": "6.4.4",
+  "requires_dist": [
+    "colored",
+    "dict-toolbox",
+    "jinja2",
+    "pop",
+    "pyyaml",
+    "toml"
+  ],
+  "modules": [
+    "_yaml",
+    "aiofiles",
+    "colored",
+    "dict_tools",
+    "jinja2",
+    "lazy_object_proxy",
+    "markupsafe",
+    "msgpack",
+    "nest_asyncio",
+    "pop",
+    "sniffio",
+    "toml",
+    "yaml"
+  ]
+}

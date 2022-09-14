@@ -1,0 +1,25 @@
+{
+  "name": "zope.contentprovider",
+  "version": "4.2.1",
+  "requires_dist": [
+    "setuptools",
+    "zope.component",
+    "zope.event",
+    "zope.interface",
+    "zope.location",
+    "zope.publisher",
+    "zope.schema",
+    "zope.tales",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.browserpage",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "multipart",
+    "pythongettext",
+    "pytz",
+    "six"
+  ]
+}

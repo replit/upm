@@ -1,0 +1,8 @@
+{
+  "name": "simplified-scrapy",
+  "version": "1.5.164",
+  "modules": [
+    "simplified_html",
+    "simplified_scrapy"
+  ]
+}

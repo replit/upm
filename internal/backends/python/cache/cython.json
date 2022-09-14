@@ -1,0 +1,9 @@
+{
+  "name": "Cython",
+  "version": "0.29.32",
+  "modules": [
+    "Cython",
+    "cython",
+    "pyximport"
+  ]
+}

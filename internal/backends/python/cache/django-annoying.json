@@ -1,0 +1,16 @@
+{
+  "name": "django-annoying",
+  "version": "0.10.6",
+  "requires_dist": [
+    "Django",
+    "six"
+  ],
+  "modules": [
+    "annoying",
+    "asgiref",
+    "backports",
+    "django",
+    "six",
+    "sqlparse"
+  ]
+}

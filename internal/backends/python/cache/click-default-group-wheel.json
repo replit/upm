@@ -1,0 +1,11 @@
+{
+  "name": "click-default-group-wheel",
+  "version": "1.2.2",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "click",
+    "click_default_group"
+  ]
+}

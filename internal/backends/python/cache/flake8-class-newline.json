@@ -1,0 +1,14 @@
+{
+  "name": "flake8-class-newline",
+  "version": "1.6.0",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_class_newline",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

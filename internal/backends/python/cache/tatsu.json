@@ -1,0 +1,10 @@
+{
+  "name": "TatSu",
+  "version": "5.8.3",
+  "requires_dist": [
+    "regex"
+  ],
+  "modules": [
+    "tatsu"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "spur",
+  "version": "0.3.22",
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "nacl",
+    "paramiko",
+    "pycparser",
+    "six",
+    "spur"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "compress-pickle",
+  "version": "2.1.0",
+  "requires_dist": [
+    "cloudpickle",
+    "dill",
+    "lz4",
+    "dill",
+    "cloudpickle",
+    "lz4"
+  ],
+  "modules": [
+    "compress_pickle"
+  ]
+}

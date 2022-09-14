@@ -1,0 +1,38 @@
+{
+  "name": "pycadf",
+  "version": "3.1.1",
+  "requires_dist": [
+    "debtcollector",
+    "oslo.config",
+    "oslo.serialization",
+    "pytz",
+    "six"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "debtcollector",
+    "idna",
+    "iso8601",
+    "msgpack",
+    "netaddr",
+    "netifaces",
+    "oslo_config",
+    "oslo_i18n",
+    "oslo_serialization",
+    "oslo_utils",
+    "packaging",
+    "pbr",
+    "pycadf",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "rfc3986",
+    "six",
+    "stevedore",
+    "urllib3",
+    "wrapt",
+    "yaml"
+  ]
+}

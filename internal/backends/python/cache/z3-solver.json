@@ -1,0 +1,7 @@
+{
+  "name": "z3-solver",
+  "version": "4.11.2.0",
+  "modules": [
+    "z3"
+  ]
+}

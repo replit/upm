@@ -1,0 +1,11 @@
+{
+  "name": "bottle-websocket",
+  "version": "0.2.9",
+  "modules": [
+    "bottle",
+    "bottle_websocket",
+    "gevent",
+    "geventwebsocket",
+    "greenlet"
+  ]
+}

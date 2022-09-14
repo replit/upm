@@ -1,0 +1,32 @@
+{
+  "name": "line-profiler",
+  "version": "3.5.1",
+  "requires_dist": [
+    "Cython",
+    "scikit-build",
+    "cmake",
+    "ninja",
+    "pytest",
+    "pytest-cov",
+    "coverage",
+    "ubelt",
+    "IPython",
+    "IPython",
+    "Cython",
+    "scikit-build",
+    "cmake",
+    "ninja",
+    "IPython",
+    "IPython",
+    "pytest",
+    "pytest-cov",
+    "coverage",
+    "ubelt",
+    "IPython",
+    "IPython"
+  ],
+  "modules": [
+    "kernprof",
+    "line_profiler"
+  ]
+}

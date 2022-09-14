@@ -1,0 +1,7 @@
+{
+  "name": "Janome",
+  "version": "0.4.2",
+  "modules": [
+    "janome"
+  ]
+}

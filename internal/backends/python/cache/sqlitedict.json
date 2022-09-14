@@ -1,0 +1,7 @@
+{
+  "name": "sqlitedict",
+  "version": "2.0.0",
+  "modules": [
+    "sqlitedict"
+  ]
+}

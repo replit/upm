@@ -1,0 +1,20 @@
+{
+  "name": "better-boto",
+  "version": "0.43.0",
+  "requires_dist": [
+    "boto3",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "betterboto",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

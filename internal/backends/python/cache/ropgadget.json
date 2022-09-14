@@ -1,0 +1,11 @@
+{
+  "name": "ROPGadget",
+  "version": "7.1",
+  "requires_dist": [
+    "capstone"
+  ],
+  "modules": [
+    "capstone",
+    "ropgadget"
+  ]
+}

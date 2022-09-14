@@ -1,0 +1,8 @@
+{
+  "name": "elasticsearch2",
+  "version": "2.5.1",
+  "modules": [
+    "elasticsearch2",
+    "urllib3"
+  ]
+}

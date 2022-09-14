@@ -1,0 +1,14 @@
+{
+  "name": "plyer",
+  "version": "2.0.0",
+  "requires_dist": [
+    "pyjnius",
+    "mock",
+    "flake8",
+    "pyobjus",
+    "pyobjus"
+  ],
+  "modules": [
+    "plyer"
+  ]
+}

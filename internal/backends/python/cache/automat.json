@@ -1,0 +1,16 @@
+{
+  "name": "Automat",
+  "version": "20.2.0",
+  "requires_dist": [
+    "attrs",
+    "six",
+    "graphviz",
+    "Twisted"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "automat",
+    "six"
+  ]
+}

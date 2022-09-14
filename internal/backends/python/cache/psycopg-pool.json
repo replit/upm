@@ -1,0 +1,11 @@
+{
+  "name": "psycopg-pool",
+  "version": "3.1.2",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "psycopg_pool",
+    "typing_extensions"
+  ]
+}

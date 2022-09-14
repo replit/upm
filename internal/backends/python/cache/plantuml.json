@@ -1,0 +1,12 @@
+{
+  "name": "plantuml",
+  "version": "0.3.0",
+  "requires_dist": [
+    "httplib2"
+  ],
+  "modules": [
+    "httplib2",
+    "plantuml",
+    "pyparsing"
+  ]
+}

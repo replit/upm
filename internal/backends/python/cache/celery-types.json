@@ -1,0 +1,10 @@
+{
+  "name": "celery-types",
+  "version": "0.14.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "typing_extensions"
+  ]
+}

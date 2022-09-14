@@ -1,0 +1,12 @@
+{
+  "name": "mdc",
+  "version": "1.2.1",
+  "modules": [
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "mdc",
+    "past",
+    "pythonjsonlogger"
+  ]
+}

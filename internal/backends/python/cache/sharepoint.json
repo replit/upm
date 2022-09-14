@@ -1,0 +1,8 @@
+{
+  "name": "sharepoint",
+  "version": "0.4.2",
+  "modules": [
+    "lxml",
+    "sharepoint"
+  ]
+}

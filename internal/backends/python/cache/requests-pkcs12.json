@@ -1,0 +1,24 @@
+{
+  "name": "requests-pkcs12",
+  "version": "1.14",
+  "requires_dist": [
+    "cryptography",
+    "pyOpenSSL",
+    "requests",
+    "twine",
+    "wheel"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "pycparser",
+    "requests",
+    "requests_pkcs12",
+    "urllib3"
+  ]
+}

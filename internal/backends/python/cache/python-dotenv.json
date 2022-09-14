@@ -1,0 +1,10 @@
+{
+  "name": "python-dotenv",
+  "version": "0.21.0",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "dotenv"
+  ]
+}

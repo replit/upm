@@ -1,0 +1,12 @@
+{
+  "name": "proxy-requests",
+  "version": "0.5.2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "proxy_requests",
+    "requests",
+    "urllib3"
+  ]
+}

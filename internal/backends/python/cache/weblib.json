@@ -1,0 +1,10 @@
+{
+  "name": "weblib",
+  "version": "0.1.30",
+  "modules": [
+    "pytils",
+    "six",
+    "user_agent",
+    "weblib"
+  ]
+}

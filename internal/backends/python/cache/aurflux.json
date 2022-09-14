@@ -1,0 +1,13 @@
+{
+  "name": "aurflux",
+  "version": "4.0.6",
+  "requires_dist": [
+    "py-cord",
+    "aurcore",
+    "pyyaml",
+    "loguru",
+    "tabulate",
+    "dateparser"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/aurflux/bin/python3', '-m', 'pip', 'install', 'aurflux']' returned non-zero exit status 1.\"}"
+}

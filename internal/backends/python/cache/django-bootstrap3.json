@@ -1,0 +1,15 @@
+{
+  "name": "django-bootstrap3",
+  "version": "22.1",
+  "requires_dist": [
+    "Django",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bootstrap3",
+    "django",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "pygsheets",
+  "version": "2.0.5",
+  "requires_dist": [
+    "google-api-python-client",
+    "google-auth-oauthlib",
+    "enum34",
+    "pandas"
+  ],
+  "modules": [
+    "apiclient",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_httplib2",
+    "google_auth_oauthlib",
+    "googleapiclient",
+    "httplib2",
+    "idna",
+    "oauthlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "pygsheets",
+    "pyparsing",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

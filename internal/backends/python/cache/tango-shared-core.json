@@ -1,0 +1,43 @@
+{
+  "name": "tango-shared-core",
+  "version": "1.5.0",
+  "requires_dist": [
+    "Django",
+    "bleach",
+    "django-filter",
+    "docutils",
+    "easy-thumbnails",
+    "Markdown",
+    "Pillow",
+    "six",
+    "smartypants",
+    "typogrify",
+    "jinja2",
+    "tango-voting",
+    "untangle"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "bleach",
+    "defusedxml",
+    "django",
+    "django_filters",
+    "docutils",
+    "easy_thumbnails",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "six",
+    "smartypants",
+    "sqlparse",
+    "tango_shared",
+    "typogrify",
+    "untangle",
+    "voting",
+    "webencodings",
+    "zipp"
+  ]
+}

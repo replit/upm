@@ -1,0 +1,7 @@
+{
+  "name": "pacc",
+  "version": "0.0.532",
+  "modules": [
+    "pacc"
+  ]
+}

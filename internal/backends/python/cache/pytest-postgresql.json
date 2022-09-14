@@ -1,0 +1,28 @@
+{
+  "name": "pytest-postgresql",
+  "version": "4.1.1",
+  "requires_dist": [
+    "pytest",
+    "port-for",
+    "mirakuru",
+    "setuptools",
+    "pytest-cov",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "mirakuru",
+    "packaging",
+    "pluggy",
+    "port_for",
+    "psutil",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_postgresql",
+    "tomli"
+  ]
+}

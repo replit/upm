@@ -1,0 +1,42 @@
+{
+  "name": "selenium-browser",
+  "version": "0.0.15",
+  "requires_dist": [
+    "k-selenium-cookies",
+    "kproxy",
+    "noraise",
+    "selenium",
+    "xpath-utils"
+  ],
+  "modules": [
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "filelock",
+    "h11",
+    "idna",
+    "jsoncodable",
+    "jsonpickle",
+    "k_selenium_cookies",
+    "kproxy",
+    "noraise",
+    "outcome",
+    "requests",
+    "requests_file",
+    "selenium",
+    "selenium_browser",
+    "six",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "tldextract",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto",
+    "xpath_utils"
+  ]
+}

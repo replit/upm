@@ -1,0 +1,7 @@
+{
+  "name": "petl",
+  "version": "1.7.11",
+  "modules": [
+    "petl"
+  ]
+}

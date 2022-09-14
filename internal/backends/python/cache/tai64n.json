@@ -1,0 +1,7 @@
+{
+  "name": "tai64n",
+  "version": "0.3.3",
+  "modules": [
+    "tai64n"
+  ]
+}

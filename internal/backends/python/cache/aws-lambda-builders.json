@@ -1,0 +1,24 @@
+{
+  "name": "aws-lambda-builders",
+  "version": "1.19.0",
+  "requires_dist": [
+    "setuptools",
+    "wheel",
+    "coverage",
+    "pytest-cov",
+    "pylint",
+    "pytest",
+    "mock",
+    "parameterized",
+    "pyelftools",
+    "black",
+    "backports.tempfile",
+    "flake8",
+    "isort",
+    "flake8"
+  ],
+  "modules": [
+    "aws_lambda_builders",
+    "wheel"
+  ]
+}

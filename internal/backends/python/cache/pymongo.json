@@ -1,0 +1,21 @@
+{
+  "name": "pymongo",
+  "version": "4.2.0",
+  "requires_dist": [
+    "pymongo-auth-aws",
+    "pymongocrypt",
+    "pykerberos",
+    "pyopenssl",
+    "requests",
+    "service-identity",
+    "certifi",
+    "python-snappy",
+    "dnspython",
+    "zstandard"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "pymongo"
+  ]
+}

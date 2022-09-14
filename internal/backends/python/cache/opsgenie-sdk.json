@@ -1,0 +1,20 @@
+{
+  "name": "opsgenie-sdk",
+  "version": "2.1.5",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil",
+    "setuptools",
+    "tenacity"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "opsgenie_sdk",
+    "six",
+    "tenacity",
+    "urllib3"
+  ]
+}

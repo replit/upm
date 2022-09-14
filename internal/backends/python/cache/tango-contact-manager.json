@@ -1,0 +1,32 @@
+{
+  "name": "tango-contact-manager",
+  "version": "0.10.0",
+  "requires_dist": [
+    "tango-shared-core"
+  ],
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "bleach",
+    "contact_manager",
+    "defusedxml",
+    "django",
+    "django_filters",
+    "docutils",
+    "easy_thumbnails",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "six",
+    "smartypants",
+    "sqlparse",
+    "tango_shared",
+    "typogrify",
+    "untangle",
+    "voting",
+    "webencodings",
+    "zipp"
+  ]
+}

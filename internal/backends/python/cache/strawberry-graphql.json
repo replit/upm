@@ -1,0 +1,36 @@
+{
+  "name": "strawberry-graphql",
+  "version": "0.130.3",
+  "requires_dist": [
+    "starlette",
+    "click",
+    "pygments",
+    "uvicorn",
+    "Django",
+    "graphql-core",
+    "asgiref",
+    "flask",
+    "typing_extensions",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "chalice",
+    "python-dateutil",
+    "pydantic",
+    "python-multipart",
+    "sanic",
+    "aiohttp",
+    "fastapi",
+    "channels",
+    "backports.cached-property"
+  ],
+  "modules": [
+    "click",
+    "dateutil",
+    "graphql",
+    "multipart",
+    "pygments",
+    "six",
+    "strawberry",
+    "typing_extensions"
+  ]
+}

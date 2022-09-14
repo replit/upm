@@ -1,0 +1,11 @@
+{
+  "name": "Cheetah3",
+  "version": "3.2.6.post1",
+  "requires_dist": [
+    "markdown",
+    "markdown"
+  ],
+  "modules": [
+    "Cheetah"
+  ]
+}

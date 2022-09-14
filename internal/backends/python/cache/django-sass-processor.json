@@ -1,0 +1,10 @@
+{
+  "name": "django-sass-processor",
+  "version": "1.2.1",
+  "requires_dist": [
+    "django-compressor"
+  ],
+  "modules": [
+    "sass_processor"
+  ]
+}

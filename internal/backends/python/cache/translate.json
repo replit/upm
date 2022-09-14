@@ -1,0 +1,21 @@
+{
+  "name": "translate",
+  "version": "3.6.1",
+  "requires_dist": [
+    "click",
+    "lxml",
+    "requests",
+    "libretranslatepy"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "idna",
+    "libretranslatepy",
+    "lxml",
+    "requests",
+    "translate",
+    "urllib3"
+  ]
+}

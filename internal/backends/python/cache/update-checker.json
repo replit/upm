@@ -1,0 +1,22 @@
+{
+  "name": "update-checker",
+  "version": "0.18.0",
+  "requires_dist": [
+    "requests",
+    "black",
+    "flake8",
+    "pytest",
+    "black",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "update_checker",
+    "update_checker_test",
+    "urllib3"
+  ]
+}

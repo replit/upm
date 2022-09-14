@@ -1,0 +1,20 @@
+{
+  "name": "python-certifi-win32",
+  "version": "1.6.1",
+  "requires_dist": [
+    "wrapt",
+    "certifi",
+    "setuptools-scm",
+    "wincertstore"
+  ],
+  "modules": [
+    "certifi",
+    "certifi_win32",
+    "packaging",
+    "pyparsing",
+    "setuptools_scm",
+    "tomli",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

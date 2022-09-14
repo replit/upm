@@ -1,0 +1,10 @@
+{
+  "name": "apig-wsgi",
+  "version": "2.15.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "apig_wsgi"
+  ]
+}

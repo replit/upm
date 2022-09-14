@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sns",
+  "version": "1.24.68",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sns",
+    "typing_extensions"
+  ]
+}

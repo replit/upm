@@ -1,0 +1,17 @@
+{
+  "name": "django-jinja",
+  "version": "2.10.2",
+  "requires_dist": [
+    "jinja2",
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_jinja",
+    "jinja2",
+    "markupsafe",
+    "sqlparse"
+  ]
+}

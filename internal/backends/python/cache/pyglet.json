@@ -1,0 +1,7 @@
+{
+  "name": "pyglet",
+  "version": "1.5.26",
+  "modules": [
+    "pyglet"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "zope.ptresource",
+  "version": "4.3.0",
+  "requires_dist": [
+    "setuptools",
+    "zope.browserresource",
+    "zope.interface",
+    "zope.pagetemplate",
+    "zope.publisher",
+    "zope.security",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "multipart",
+    "pythongettext",
+    "pytz",
+    "six",
+    "transaction"
+  ]
+}

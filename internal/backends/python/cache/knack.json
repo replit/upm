@@ -1,0 +1,20 @@
+{
+  "name": "knack",
+  "version": "0.10.0",
+  "requires_dist": [
+    "argcomplete",
+    "jmespath",
+    "pygments",
+    "pyyaml",
+    "tabulate"
+  ],
+  "modules": [
+    "_yaml",
+    "argcomplete",
+    "jmespath",
+    "knack",
+    "pygments",
+    "tabulate",
+    "yaml"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "python-redis-lock",
+  "version": "3.7.0",
+  "requires_dist": [
+    "redis",
+    "django-redis"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "redis_lock",
+    "wrapt"
+  ]
+}

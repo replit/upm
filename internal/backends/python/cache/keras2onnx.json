@@ -1,0 +1,27 @@
+{
+  "name": "keras2onnx",
+  "version": "1.7.0",
+  "requires_dist": [
+    "numpy",
+    "protobuf",
+    "requests",
+    "onnx",
+    "onnxconverter-common",
+    "fire"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "fire",
+    "idna",
+    "keras2onnx",
+    "numpy",
+    "onnx",
+    "onnxconverter_common",
+    "requests",
+    "six",
+    "termcolor",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

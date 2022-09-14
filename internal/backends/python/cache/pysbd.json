@@ -1,0 +1,9 @@
+{
+  "name": "pysbd",
+  "version": "0.3.4",
+  "modules": [
+    "benchmarks",
+    "examples",
+    "pysbd"
+  ]
+}

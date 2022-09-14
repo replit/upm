@@ -1,0 +1,10 @@
+{
+  "name": "sphinxcontrib-applehelp",
+  "version": "1.0.2",
+  "requires_dist": [
+    "flake8",
+    "mypy",
+    "docutils-stubs",
+    "pytest"
+  ]
+}

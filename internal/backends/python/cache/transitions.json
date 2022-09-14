@@ -1,0 +1,13 @@
+{
+  "name": "transitions",
+  "version": "0.9.0",
+  "requires_dist": [
+    "six",
+    "pygraphviz",
+    "pytest"
+  ],
+  "modules": [
+    "six",
+    "transitions"
+  ]
+}

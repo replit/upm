@@ -1,0 +1,7 @@
+{
+  "name": "Mosek",
+  "version": "10.0.21",
+  "modules": [
+    "mosek"
+  ]
+}

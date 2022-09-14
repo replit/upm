@@ -1,0 +1,28 @@
+{
+  "name": "pytest-responses",
+  "version": "0.5.0",
+  "requires_dist": [
+    "responses",
+    "pytest",
+    "flake8"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_responses",
+    "requests",
+    "responses",
+    "tomli",
+    "urllib3"
+  ]
+}

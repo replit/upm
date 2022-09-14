@@ -1,0 +1,36 @@
+{
+  "name": "lookml",
+  "version": "3.0.3",
+  "requires_dist": [
+    "PyGithub",
+    "PyYAML",
+    "click",
+    "looker-sdk"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "deprecated",
+    "exceptiongroup",
+    "github",
+    "idna",
+    "jwt",
+    "looker_sdk",
+    "lookml",
+    "nacl",
+    "pycparser",
+    "requests",
+    "tests",
+    "urllib3",
+    "wrapt",
+    "yaml"
+  ]
+}

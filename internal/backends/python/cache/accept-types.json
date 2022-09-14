@@ -1,0 +1,7 @@
+{
+  "name": "accept-types",
+  "version": "0.4.1",
+  "modules": [
+    "accept_types"
+  ]
+}

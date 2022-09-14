@@ -1,0 +1,11 @@
+{
+  "name": "macholib",
+  "version": "1.16",
+  "requires_dist": [
+    "altgraph"
+  ],
+  "modules": [
+    "altgraph",
+    "macholib"
+  ]
+}

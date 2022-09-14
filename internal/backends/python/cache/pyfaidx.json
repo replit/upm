@@ -1,0 +1,8 @@
+{
+  "name": "pyfaidx",
+  "version": "0.7.1",
+  "modules": [
+    "pyfaidx",
+    "six"
+  ]
+}

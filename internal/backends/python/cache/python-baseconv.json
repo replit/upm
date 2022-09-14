@@ -1,0 +1,7 @@
+{
+  "name": "python-baseconv",
+  "version": "1.2.2",
+  "modules": [
+    "baseconv"
+  ]
+}

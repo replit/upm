@@ -1,0 +1,21 @@
+{
+  "name": "bowler",
+  "version": "0.9.0",
+  "requires_dist": [
+    "attrs",
+    "click",
+    "fissix",
+    "moreorless",
+    "volatile"
+  ],
+  "modules": [
+    "appdirs",
+    "attr",
+    "attrs",
+    "bowler",
+    "click",
+    "fissix",
+    "moreorless",
+    "volatile"
+  ]
+}

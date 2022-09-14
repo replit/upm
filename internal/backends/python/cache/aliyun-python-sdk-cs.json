@@ -1,0 +1,13 @@
+{
+  "name": "aliyun-python-sdk-cs",
+  "version": "4.8.1",
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkcs",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

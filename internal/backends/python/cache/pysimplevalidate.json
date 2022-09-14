@@ -1,0 +1,7 @@
+{
+  "name": "PySimpleValidate",
+  "version": "0.2.12",
+  "modules": [
+    "pysimplevalidate"
+  ]
+}

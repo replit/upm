@@ -1,0 +1,28 @@
+{
+  "name": "trino",
+  "version": "0.315.0",
+  "requires_dist": [
+    "pytz",
+    "requests",
+    "requests-kerberos",
+    "sqlalchemy",
+    "keyring",
+    "requests-kerberos",
+    "sqlalchemy",
+    "requests-kerberos",
+    "sqlalchemy",
+    "httpretty",
+    "pytest",
+    "pytest-runner",
+    "click"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pytz",
+    "requests",
+    "trino",
+    "urllib3"
+  ]
+}

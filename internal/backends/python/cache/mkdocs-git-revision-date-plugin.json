@@ -1,0 +1,32 @@
+{
+  "name": "mkdocs-git-revision-date-plugin",
+  "version": "0.3.2",
+  "requires_dist": [
+    "mkdocs",
+    "GitPython",
+    "jinja2"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "git",
+    "gitdb",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_git_revision_date_plugin",
+    "packaging",
+    "pyparsing",
+    "six",
+    "smmap",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

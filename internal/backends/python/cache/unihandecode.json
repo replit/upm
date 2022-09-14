@@ -1,0 +1,12 @@
+{
+  "name": "unihandecode",
+  "version": "0.81",
+  "modules": [
+    "deprecated",
+    "jaconv",
+    "pykakasi",
+    "six",
+    "unihandecode",
+    "wrapt"
+  ]
+}

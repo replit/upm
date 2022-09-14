@@ -1,0 +1,11 @@
+{
+  "name": "WSGIProxy2",
+  "version": "0.5.1",
+  "requires_dist": [
+    "webob"
+  ],
+  "modules": [
+    "webob",
+    "wsgiproxy"
+  ]
+}

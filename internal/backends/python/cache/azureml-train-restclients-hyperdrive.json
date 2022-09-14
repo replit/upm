@@ -1,0 +1,31 @@
+{
+  "name": "azureml-train-restclients-hyperdrive",
+  "version": "1.45.0",
+  "requires_dist": [
+    "requests",
+    "msrest",
+    "msrestazure"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "adal",
+    "azureml",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "isodate",
+    "jwt",
+    "msrest",
+    "msrestazure",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

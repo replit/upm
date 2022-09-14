@@ -1,0 +1,32 @@
+{
+  "name": "clevercsv",
+  "version": "0.7.4",
+  "requires_dist": [
+    "chardet",
+    "regex",
+    "sphinx",
+    "m2r2",
+    "pandas",
+    "tabview",
+    "cchardet",
+    "wilderness",
+    "green",
+    "termcolor",
+    "sphinx-rtd-theme",
+    "sphinx",
+    "m2r2",
+    "pandas",
+    "tabview",
+    "cchardet",
+    "wilderness",
+    "pandas",
+    "tabview",
+    "cchardet",
+    "wilderness"
+  ],
+  "modules": [
+    "chardet",
+    "clevercsv",
+    "regex"
+  ]
+}

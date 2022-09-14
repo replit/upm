@@ -1,0 +1,32 @@
+{
+  "name": "aiohttp",
+  "version": "3.8.1",
+  "requires_dist": [
+    "attrs",
+    "charset-normalizer",
+    "multidict",
+    "async-timeout",
+    "yarl",
+    "frozenlist",
+    "aiosignal",
+    "idna-ssl",
+    "asynctest",
+    "typing-extensions",
+    "aiodns",
+    "Brotli",
+    "cchardet"
+  ],
+  "modules": [
+    "collect_top_modules",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

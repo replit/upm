@@ -1,0 +1,11 @@
+{
+  "name": "rethinkdb",
+  "version": "2.4.9",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "rethinkdb",
+    "six"
+  ]
+}

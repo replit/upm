@@ -1,0 +1,41 @@
+{
+  "name": "tentaclio-s3",
+  "version": "0.0.2",
+  "requires_dist": [
+    "tentaclio",
+    "boto3"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "bcrypt",
+    "boto3",
+    "botocore",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "click",
+    "cryptography",
+    "dateutil",
+    "greenlet",
+    "idna",
+    "importlib_metadata",
+    "jmespath",
+    "nacl",
+    "numpy",
+    "pandas",
+    "paramiko",
+    "pycparser",
+    "pysftp",
+    "pytz",
+    "requests",
+    "s3transfer",
+    "six",
+    "sqlalchemy",
+    "tentaclio",
+    "tentaclio_s3",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

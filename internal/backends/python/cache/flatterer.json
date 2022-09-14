@@ -1,0 +1,21 @@
+{
+  "name": "flatterer",
+  "version": "0.16.0",
+  "requires_dist": [
+    "orjson",
+    "ijson",
+    "click",
+    "pandas"
+  ],
+  "modules": [
+    "click",
+    "dateutil",
+    "flatterer",
+    "ijson",
+    "numpy",
+    "orjson",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

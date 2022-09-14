@@ -1,0 +1,10 @@
+{
+  "name": "dill",
+  "version": "0.3.5.1",
+  "requires_dist": [
+    "objgraph"
+  ],
+  "modules": [
+    "dill"
+  ]
+}

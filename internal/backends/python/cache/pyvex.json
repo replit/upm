@@ -1,0 +1,17 @@
+{
+  "name": "pyvex",
+  "version": "9.2.18",
+  "requires_dist": [
+    "archinfo",
+    "bitstring",
+    "cffi"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "archinfo",
+    "bitstring",
+    "cffi",
+    "pycparser",
+    "pyvex"
+  ]
+}

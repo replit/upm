@@ -1,0 +1,7 @@
+{
+  "name": "stua",
+  "version": "0.2",
+  "modules": [
+    "stua"
+  ]
+}

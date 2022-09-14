@@ -1,0 +1,38 @@
+{
+  "name": "torchlibrosa",
+  "version": "0.0.9",
+  "requires_dist": [
+    "numpy",
+    "librosa"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_soundfile",
+    "appdirs",
+    "audioread",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "decorator",
+    "idna",
+    "importlib_metadata",
+    "joblib",
+    "librosa",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "packaging",
+    "pooch",
+    "pycparser",
+    "pyparsing",
+    "requests",
+    "resampy",
+    "scipy",
+    "sklearn",
+    "soundfile",
+    "threadpoolctl",
+    "torchlibrosa",
+    "urllib3",
+    "zipp"
+  ]
+}

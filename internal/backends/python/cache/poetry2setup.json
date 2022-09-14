@@ -1,0 +1,10 @@
+{
+  "name": "poetry2setup",
+  "version": "1.0.0",
+  "requires_dist": [
+    "poetry-core"
+  ],
+  "modules": [
+    "poetry2setup"
+  ]
+}

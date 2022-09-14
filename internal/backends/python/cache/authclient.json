@@ -1,0 +1,20 @@
+{
+  "name": "authclient",
+  "version": "1.0",
+  "requires_dist": [
+    "aiohttp"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "authclient",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "pycognito",
+  "version": "2022.8.0",
+  "requires_dist": [
+    "boto3",
+    "envs",
+    "python-jose",
+    "requests"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "boto3",
+    "botocore",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "ecdsa",
+    "envs",
+    "idna",
+    "jmespath",
+    "jose",
+    "pyasn1",
+    "pycognito",
+    "pycparser",
+    "requests",
+    "rsa",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

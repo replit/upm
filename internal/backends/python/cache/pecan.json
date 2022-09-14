@@ -1,0 +1,12 @@
+{
+  "name": "pecan",
+  "version": "1.4.2",
+  "modules": [
+    "logutils",
+    "mako",
+    "markupsafe",
+    "pecan",
+    "six",
+    "webob"
+  ]
+}

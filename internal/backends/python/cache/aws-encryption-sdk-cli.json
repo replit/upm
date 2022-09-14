@@ -1,0 +1,29 @@
+{
+  "name": "aws-encryption-sdk-cli",
+  "version": "4.1.0",
+  "requires_dist": [
+    "base64io",
+    "aws-encryption-sdk",
+    "setuptools",
+    "attrs"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "aws_encryption_sdk",
+    "aws_encryption_sdk_cli",
+    "base64io",
+    "boto3",
+    "botocore",
+    "cffi",
+    "cryptography",
+    "dateutil",
+    "jmespath",
+    "pycparser",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

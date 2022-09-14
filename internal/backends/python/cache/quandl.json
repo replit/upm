@@ -1,0 +1,28 @@
+{
+  "name": "Quandl",
+  "version": "3.7.0",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "requests",
+    "inflection",
+    "python-dateutil",
+    "six",
+    "more-itertools"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "inflection",
+    "more_itertools",
+    "numpy",
+    "pandas",
+    "pytz",
+    "quandl",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pyarrow",
+  "version": "9.0.0",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "pyarrow"
+  ]
+}

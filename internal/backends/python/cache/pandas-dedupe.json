@@ -1,0 +1,43 @@
+{
+  "name": "pandas-dedupe",
+  "version": "1.5.0",
+  "requires_dist": [
+    "dedupe",
+    "unidecode",
+    "pandas"
+  ],
+  "modules": [
+    "BTrees",
+    "Levenshtein_search",
+    "_cffi_backend",
+    "affinegap",
+    "categorical",
+    "cffi",
+    "datetime_distance",
+    "dateutil",
+    "dedupe",
+    "doublemetaphone",
+    "future",
+    "haversine",
+    "highered",
+    "joblib",
+    "lbfgs",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "pandas",
+    "pandas_dedupe",
+    "past",
+    "persistent",
+    "pycparser",
+    "pyhacrf",
+    "pytz",
+    "scipy",
+    "simplecosine",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "typing_extensions",
+    "unidecode"
+  ]
+}

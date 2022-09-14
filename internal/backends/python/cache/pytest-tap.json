@@ -1,0 +1,22 @@
+{
+  "name": "pytest-tap",
+  "version": "3.3",
+  "requires_dist": [
+    "pytest",
+    "tap.py"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_tap",
+    "tap",
+    "tomli"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "nh-currency",
+  "version": "1.0.1",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "currency",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "plivo",
+  "version": "4.26.0",
+  "requires_dist": [
+    "requests",
+    "six",
+    "decorator",
+    "lxml",
+    "PyJWT"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "decorator",
+    "idna",
+    "jwt",
+    "lxml",
+    "plivo",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

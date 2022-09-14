@@ -1,0 +1,11 @@
+{
+  "name": "bella",
+  "version": "2.1.6",
+  "requires_dist": [
+    "ujson"
+  ],
+  "modules": [
+    "bella",
+    "ujson"
+  ]
+}

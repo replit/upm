@@ -1,0 +1,21 @@
+{
+  "name": "cloudflare",
+  "version": "2.10.1",
+  "modules": [
+    "CloudFlare",
+    "_yaml",
+    "attr",
+    "attrs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "cli4",
+    "examples",
+    "idna",
+    "jsonlines",
+    "requests",
+    "soupsieve",
+    "urllib3",
+    "yaml"
+  ]
+}

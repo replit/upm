@@ -1,0 +1,7 @@
+{
+  "name": "sq-native",
+  "version": "1.1.2.0.0",
+  "modules": [
+    "sq_native"
+  ]
+}

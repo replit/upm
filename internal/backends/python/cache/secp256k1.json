@@ -1,0 +1,10 @@
+{
+  "name": "secp256k1",
+  "version": "0.14.0",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "secp256k1"
+  ]
+}

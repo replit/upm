@@ -1,0 +1,7 @@
+{
+  "name": "attrify",
+  "version": "3.0",
+  "modules": [
+    "attrify"
+  ]
+}

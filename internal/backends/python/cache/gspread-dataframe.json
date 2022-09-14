@@ -1,0 +1,30 @@
+{
+  "name": "gspread-dataframe",
+  "version": "3.3.0",
+  "requires_dist": [
+    "gspread",
+    "pandas",
+    "six"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "google_auth_oauthlib",
+    "gspread",
+    "gspread_dataframe",
+    "idna",
+    "numpy",
+    "oauthlib",
+    "pandas",
+    "pyasn1",
+    "pyasn1_modules",
+    "pytz",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

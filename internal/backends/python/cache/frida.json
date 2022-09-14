@@ -1,0 +1,8 @@
+{
+  "name": "frida",
+  "version": "15.2.2",
+  "modules": [
+    "_frida",
+    "frida"
+  ]
+}

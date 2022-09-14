@@ -1,0 +1,16 @@
+{
+  "name": "torchextractor",
+  "version": "0.3.0",
+  "requires_dist": [
+    "numpy",
+    "torch"
+  ],
+  "modules": [
+    "caffe2",
+    "numpy",
+    "torch",
+    "torchextractor",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

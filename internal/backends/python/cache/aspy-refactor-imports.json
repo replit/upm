@@ -1,0 +1,10 @@
+{
+  "name": "aspy.refactor-imports",
+  "version": "3.0.2",
+  "requires_dist": [
+    "cached-property"
+  ],
+  "modules": [
+    "aspy"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "ggplot",
+  "version": "0.11.5",
+  "modules": [
+    "PIL",
+    "brewer2mpl",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "ggplot",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "bitmap",
+  "version": "0.0.7",
+  "requires_dist": [
+    "future"
+  ],
+  "modules": [
+    "bitmap",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

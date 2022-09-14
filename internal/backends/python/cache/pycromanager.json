@@ -1,0 +1,31 @@
+{
+  "name": "pycromanager",
+  "version": "0.19.2",
+  "requires_dist": [
+    "numpy",
+    "dask",
+    "pyzmq",
+    "docstring-inheritance",
+    "ndtiff",
+    "pytest",
+    "black"
+  ],
+  "modules": [
+    "_yaml",
+    "cloudpickle",
+    "dask",
+    "docstring_inheritance",
+    "fsspec",
+    "locket",
+    "ndtiff",
+    "numpy",
+    "packaging",
+    "partd",
+    "pycromanager",
+    "pyparsing",
+    "tlz",
+    "toolz",
+    "yaml",
+    "zmq"
+  ]
+}

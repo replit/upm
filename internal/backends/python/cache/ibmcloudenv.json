@@ -1,0 +1,11 @@
+{
+  "name": "ibmcloudenv",
+  "version": "0.2.1",
+  "modules": [
+    "decorator",
+    "ibmcloudenv",
+    "jsonpath_rw",
+    "ply",
+    "six"
+  ]
+}

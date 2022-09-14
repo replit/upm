@@ -1,0 +1,8 @@
+{
+  "name": "user-agent",
+  "version": "0.1.10",
+  "modules": [
+    "six",
+    "user_agent"
+  ]
+}

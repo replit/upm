@@ -1,0 +1,8 @@
+{
+  "name": "face",
+  "version": "20.1.1",
+  "modules": [
+    "boltons",
+    "face"
+  ]
+}

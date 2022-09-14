@@ -1,0 +1,7 @@
+{
+  "name": "logging_tree",
+  "version": "1.9",
+  "modules": [
+    "logging_tree"
+  ]
+}

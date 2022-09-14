@@ -1,0 +1,7 @@
+{
+  "name": "msgraph-core",
+  "version": "0.2.2",
+  "modules": [
+    "msgraph"
+  ]
+}

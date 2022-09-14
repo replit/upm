@@ -1,0 +1,35 @@
+{
+  "name": "sanic-session",
+  "version": "0.8.0",
+  "requires_dist": [
+    "sanic",
+    "ujson",
+    "aiomcache",
+    "aioredis",
+    "pytest",
+    "aiohttp",
+    "pytest-asyncio",
+    "pytest-mock",
+    "pytest-cov",
+    "wheel",
+    "sphinx",
+    "sphinxcontrib-fulltoc",
+    "flake8",
+    "black",
+    "sanic-motor",
+    "pymongo",
+    "asyncio-redis"
+  ],
+  "modules": [
+    "aiofiles",
+    "httptools",
+    "multidict",
+    "sanic",
+    "sanic_routing",
+    "sanic_session",
+    "tests",
+    "ujson",
+    "uvloop",
+    "websockets"
+  ]
+}

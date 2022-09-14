@@ -1,0 +1,7 @@
+{
+  "name": "clang",
+  "version": "14.0",
+  "modules": [
+    "clang"
+  ]
+}

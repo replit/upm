@@ -1,0 +1,7 @@
+{
+  "name": "backports.ssl",
+  "version": "0.0.9",
+  "modules": [
+    "backports"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "eclipse-zenoh-nightly",
+  "version": "0.6.0.dev20220913",
+  "modules": [
+    "zenoh"
+  ]
+}

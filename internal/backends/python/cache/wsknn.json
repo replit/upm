@@ -1,0 +1,15 @@
+{
+  "name": "wsknn",
+  "version": "0.1.5",
+  "requires_dist": [
+    "numpy",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "numpy",
+    "tests",
+    "wsknn",
+    "yaml"
+  ]
+}

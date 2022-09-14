@@ -1,0 +1,17 @@
+{
+  "name": "language-tool-python",
+  "version": "2.7.1",
+  "requires_dist": [
+    "requests",
+    "tqdm"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "language_tool_python",
+    "requests",
+    "tqdm",
+    "urllib3"
+  ]
+}

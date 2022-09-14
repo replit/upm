@@ -1,0 +1,27 @@
+{
+  "name": "msal-extensions",
+  "version": "1.0.0",
+  "requires_dist": [
+    "msal",
+    "pathlib2",
+    "portalocker",
+    "portalocker",
+    "portalocker",
+    "portalocker"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "jwt",
+    "msal",
+    "msal_extensions",
+    "portalocker",
+    "pycparser",
+    "requests",
+    "urllib3"
+  ]
+}

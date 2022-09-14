@@ -1,0 +1,8 @@
+{
+  "name": "pretty-bad-protocol",
+  "version": "3.1.1",
+  "modules": [
+    "pretty_bad_protocol",
+    "psutil"
+  ]
+}

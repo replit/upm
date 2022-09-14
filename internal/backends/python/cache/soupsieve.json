@@ -1,0 +1,10 @@
+{
+  "name": "soupsieve",
+  "version": "2.3.2.post1",
+  "requires_dist": [
+    "backports-functools-lru-cache"
+  ],
+  "modules": [
+    "soupsieve"
+  ]
+}

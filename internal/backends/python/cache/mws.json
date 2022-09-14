@@ -1,0 +1,15 @@
+{
+  "name": "mws",
+  "version": "0.8.15",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mws",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "GeoAlchemy2",
+  "version": "0.12.5",
+  "requires_dist": [
+    "SQLAlchemy",
+    "packaging"
+  ],
+  "modules": [
+    "geoalchemy2",
+    "greenlet",
+    "packaging",
+    "pyparsing",
+    "sqlalchemy"
+  ]
+}

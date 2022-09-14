@@ -1,0 +1,33 @@
+{
+  "name": "pytest-aiohttp",
+  "version": "1.0.4",
+  "requires_dist": [
+    "pytest",
+    "aiohttp",
+    "pytest-asyncio",
+    "coverage",
+    "mypy"
+  ],
+  "modules": [
+    "_pytest",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "iniconfig",
+    "multidict",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_aiohttp",
+    "pytest_asyncio",
+    "tomli",
+    "yarl"
+  ]
+}

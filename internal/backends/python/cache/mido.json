@@ -1,0 +1,15 @@
+{
+  "name": "mido",
+  "version": "1.2.10",
+  "requires_dist": [
+    "check-manifest",
+    "flake8",
+    "pytest",
+    "sphinx",
+    "tox",
+    "python-rtmidi"
+  ],
+  "modules": [
+    "mido"
+  ]
+}

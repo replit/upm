@@ -1,0 +1,22 @@
+{
+  "name": "businessready",
+  "version": "0.9.151",
+  "requires_dist": [
+    "MarkupSafe",
+    "Jinja2",
+    "requests",
+    "xmltodict",
+    "urllib3"
+  ],
+  "modules": [
+    "businessready",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "urllib3",
+    "xmltodict"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "python-graphql-client",
+  "version": "0.4.3",
+  "requires_dist": [
+    "aiohttp",
+    "requests",
+    "websockets",
+    "pre-commit",
+    "black",
+    "flake8",
+    "flake8-docstrings",
+    "flake8-black",
+    "flake8-isort",
+    "gitchangelog",
+    "pystache"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "python_graphql_client",
+    "requests",
+    "urllib3",
+    "websockets",
+    "yarl"
+  ]
+}

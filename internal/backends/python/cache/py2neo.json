@@ -1,0 +1,27 @@
+{
+  "name": "py2neo",
+  "version": "2021.2.3",
+  "requires_dist": [
+    "certifi",
+    "interchange",
+    "monotonic",
+    "packaging",
+    "pansi",
+    "pygments",
+    "six",
+    "urllib3"
+  ],
+  "modules": [
+    "certifi",
+    "interchange",
+    "monotonic",
+    "packaging",
+    "pansi",
+    "py2neo",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "six",
+    "urllib3"
+  ]
+}

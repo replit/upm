@@ -1,0 +1,8 @@
+{
+  "name": "hnswlib",
+  "version": "0.6.2",
+  "modules": [
+    "hnswlib",
+    "numpy"
+  ]
+}

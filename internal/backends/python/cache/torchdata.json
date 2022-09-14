@@ -1,0 +1,23 @@
+{
+  "name": "torchdata",
+  "version": "0.4.1",
+  "requires_dist": [
+    "urllib3",
+    "requests",
+    "portalocker",
+    "torch"
+  ],
+  "modules": [
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "portalocker",
+    "requests",
+    "torch",
+    "torchdata",
+    "torchgen",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

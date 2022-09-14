@@ -1,0 +1,7 @@
+{
+  "name": "json2table",
+  "version": "1.1.5",
+  "modules": [
+    "json2table"
+  ]
+}

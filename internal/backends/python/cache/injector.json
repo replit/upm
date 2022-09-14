@@ -1,0 +1,17 @@
+{
+  "name": "injector",
+  "version": "0.20.1",
+  "requires_dist": [
+    "typing-extensions",
+    "pytest",
+    "pytest-cov",
+    "check-manifest",
+    "mypy",
+    "black",
+    "dataclasses"
+  ],
+  "modules": [
+    "injector",
+    "typing_extensions"
+  ]
+}

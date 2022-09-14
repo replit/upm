@@ -1,0 +1,13 @@
+{
+  "name": "QtAwesome",
+  "version": "1.1.1",
+  "requires_dist": [
+    "qtpy"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "qtawesome",
+    "qtpy"
+  ]
+}

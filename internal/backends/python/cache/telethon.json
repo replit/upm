@@ -1,0 +1,15 @@
+{
+  "name": "Telethon",
+  "version": "1.25.0",
+  "requires_dist": [
+    "pyaes",
+    "rsa",
+    "cryptg"
+  ],
+  "modules": [
+    "pyaes",
+    "pyasn1",
+    "rsa",
+    "telethon"
+  ]
+}

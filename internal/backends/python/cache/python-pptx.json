@@ -1,0 +1,10 @@
+{
+  "name": "python-pptx",
+  "version": "0.6.21",
+  "modules": [
+    "PIL",
+    "lxml",
+    "pptx",
+    "xlsxwriter"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "workalendar",
+  "version": "16.3.0",
+  "requires_dist": [
+    "python-dateutil",
+    "lunardate",
+    "convertdate",
+    "pyluach",
+    "tzdata",
+    "importlib-metadata",
+    "backports.zoneinfo",
+    "skyfield",
+    "skyfield-data"
+  ],
+  "modules": [
+    "backports",
+    "convertdate",
+    "dateutil",
+    "lunardate",
+    "pyluach",
+    "pymeeus",
+    "six",
+    "workalendar"
+  ]
+}

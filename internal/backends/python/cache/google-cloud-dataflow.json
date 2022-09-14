@@ -1,0 +1,5 @@
+{
+  "name": "google-cloud-dataflow",
+  "version": "2.5.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/google-cloud-dataflow/bin/python3', '-m', 'pip', 'install', 'google-cloud-dataflow']' returned non-zero exit status 1.\"}"
+}

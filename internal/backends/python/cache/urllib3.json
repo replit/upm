@@ -1,0 +1,19 @@
+{
+  "name": "urllib3",
+  "version": "1.26.12",
+  "requires_dist": [
+    "brotlicffi",
+    "brotli",
+    "brotlipy",
+    "pyOpenSSL",
+    "cryptography",
+    "idna",
+    "certifi",
+    "urllib3-secure-extra",
+    "ipaddress",
+    "PySocks"
+  ],
+  "modules": [
+    "urllib3"
+  ]
+}

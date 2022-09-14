@@ -1,0 +1,9 @@
+{
+  "name": "excel2json",
+  "version": "1.0.1",
+  "modules": [
+    "exceltojson",
+    "six",
+    "xlrd"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "fastapi-utils",
+  "version": "0.2.1",
+  "requires_dist": [
+    "fastapi",
+    "pydantic",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "anyio",
+    "fastapi",
+    "fastapi_utils",
+    "greenlet",
+    "idna",
+    "pydantic",
+    "sniffio",
+    "sqlalchemy",
+    "starlette",
+    "typing_extensions"
+  ]
+}

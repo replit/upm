@@ -1,0 +1,11 @@
+{
+  "name": "parsimonious",
+  "version": "0.10.0",
+  "requires_dist": [
+    "regex"
+  ],
+  "modules": [
+    "parsimonious",
+    "regex"
+  ]
+}

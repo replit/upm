@@ -1,0 +1,9 @@
+{
+  "name": "pyngrok",
+  "version": "5.1.0",
+  "modules": [
+    "_yaml",
+    "pyngrok",
+    "yaml"
+  ]
+}

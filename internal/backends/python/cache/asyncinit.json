@@ -1,0 +1,11 @@
+{
+  "name": "asyncinit",
+  "version": "0.2.4",
+  "requires_dist": [
+    "pylint",
+    "pytest"
+  ],
+  "modules": [
+    "asyncinit"
+  ]
+}

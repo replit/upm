@@ -1,0 +1,11 @@
+{
+  "name": "userpath",
+  "version": "1.8.0",
+  "requires_dist": [
+    "click"
+  ],
+  "modules": [
+    "click",
+    "userpath"
+  ]
+}

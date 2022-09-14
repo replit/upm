@@ -1,0 +1,17 @@
+{
+  "name": "facets-overview",
+  "version": "1.0.0",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "protobuf"
+  ],
+  "modules": [
+    "dateutil",
+    "facets_overview",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six"
+  ]
+}

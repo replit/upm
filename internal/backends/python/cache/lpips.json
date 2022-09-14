@@ -1,0 +1,28 @@
+{
+  "name": "lpips",
+  "version": "0.1.4",
+  "requires_dist": [
+    "torch",
+    "torchvision",
+    "numpy",
+    "scipy",
+    "tqdm"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lpips",
+    "numpy",
+    "requests",
+    "scipy",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

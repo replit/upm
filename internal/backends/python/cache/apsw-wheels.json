@@ -1,0 +1,7 @@
+{
+  "name": "apsw-wheels",
+  "version": "3.36.0.post1",
+  "modules": [
+    "apsw"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pytest-icdiff",
+  "version": "0.6",
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "icdiff",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "pprintpp",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_icdiff",
+    "tomli"
+  ]
+}

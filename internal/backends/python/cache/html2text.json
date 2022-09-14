@@ -1,0 +1,7 @@
+{
+  "name": "html2text",
+  "version": "2020.1.16",
+  "modules": [
+    "html2text"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "torchbiggraph",
+  "version": "1.0.0",
+  "requires_dist": [
+    "attrs",
+    "h5py",
+    "numpy",
+    "setuptools",
+    "torch",
+    "tqdm",
+    "Sphinx"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "caffe2",
+    "h5py",
+    "numpy",
+    "torch",
+    "torchbiggraph",
+    "torchgen",
+    "tqdm",
+    "typing_extensions"
+  ]
+}

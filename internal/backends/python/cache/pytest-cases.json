@@ -1,0 +1,15 @@
+{
+  "name": "pytest-cases",
+  "version": "3.6.13",
+  "requires_dist": [
+    "decopatch",
+    "makefun",
+    "functools32",
+    "funcsigs"
+  ],
+  "modules": [
+    "decopatch",
+    "makefun",
+    "pytest_cases"
+  ]
+}

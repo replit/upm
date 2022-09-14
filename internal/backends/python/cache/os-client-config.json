@@ -1,0 +1,37 @@
+{
+  "name": "os-client-config",
+  "version": "2.1.0",
+  "requires_dist": [
+    "openstacksdk"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "appdirs",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "decorator",
+    "dogpile",
+    "idna",
+    "iso8601",
+    "jmespath",
+    "jsonpatch",
+    "jsonpointer",
+    "keystoneauth1",
+    "munch",
+    "netifaces",
+    "openstack",
+    "os_client_config",
+    "os_service_types",
+    "pbr",
+    "pycparser",
+    "requests",
+    "requestsexceptions",
+    "six",
+    "stevedore",
+    "urllib3",
+    "yaml"
+  ]
+}

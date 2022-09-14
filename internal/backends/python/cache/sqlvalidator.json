@@ -1,0 +1,10 @@
+{
+  "name": "sqlvalidator",
+  "version": "0.0.19",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "sqlvalidator"
+  ]
+}

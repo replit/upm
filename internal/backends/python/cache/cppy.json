@@ -1,0 +1,7 @@
+{
+  "name": "cppy",
+  "version": "1.2.1",
+  "modules": [
+    "cppy"
+  ]
+}

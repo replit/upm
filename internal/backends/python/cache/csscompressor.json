@@ -1,0 +1,7 @@
+{
+  "name": "csscompressor",
+  "version": "0.9.5",
+  "modules": [
+    "csscompressor"
+  ]
+}

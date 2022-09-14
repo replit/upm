@@ -1,0 +1,21 @@
+{
+  "name": "python-utils",
+  "version": "3.3.3",
+  "requires_dist": [
+    "mock",
+    "sphinx",
+    "python-utils",
+    "loguru",
+    "flake8",
+    "pytest",
+    "pytest-cov",
+    "pytest-mypy",
+    "pytest-asyncio",
+    "sphinx",
+    "types-setuptools",
+    "loguru"
+  ],
+  "modules": [
+    "python_utils"
+  ]
+}

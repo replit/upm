@@ -1,0 +1,8 @@
+{
+  "name": "gdata",
+  "version": "2.0.18",
+  "modules": [
+    "atom",
+    "gdata"
+  ]
+}

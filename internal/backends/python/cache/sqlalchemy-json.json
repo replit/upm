@@ -1,0 +1,10 @@
+{
+  "name": "sqlalchemy-json",
+  "version": "0.5.0",
+  "modules": [
+    "greenlet",
+    "six",
+    "sqlalchemy",
+    "sqlalchemy_json"
+  ]
+}

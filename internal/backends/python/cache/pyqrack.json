@@ -1,0 +1,7 @@
+{
+  "name": "pyqrack",
+  "version": "0.21.4",
+  "modules": [
+    "pyqrack"
+  ]
+}

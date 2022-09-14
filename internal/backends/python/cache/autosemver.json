@@ -1,0 +1,9 @@
+{
+  "name": "autosemver",
+  "version": "1.0.0",
+  "modules": [
+    "autosemver",
+    "dulwich",
+    "urllib3"
+  ]
+}

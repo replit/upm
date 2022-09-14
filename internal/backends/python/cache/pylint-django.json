@@ -1,0 +1,31 @@
+{
+  "name": "pylint-django",
+  "version": "2.5.3",
+  "requires_dist": [
+    "pylint-plugin-utils",
+    "pylint",
+    "django-tables2",
+    "factory-boy",
+    "coverage",
+    "pytest",
+    "wheel",
+    "django-tastypie",
+    "pylint",
+    "Django"
+  ],
+  "modules": [
+    "astroid",
+    "dill",
+    "isort",
+    "lazy_object_proxy",
+    "mccabe",
+    "platformdirs",
+    "pylint",
+    "pylint_django",
+    "pylint_plugin_utils",
+    "tomli",
+    "tomlkit",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

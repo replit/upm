@@ -1,0 +1,23 @@
+{
+  "name": "gcs-oauth2-boto-plugin",
+  "version": "3.0",
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "boto",
+    "cffi",
+    "cryptography",
+    "gcs_oauth2_boto_plugin",
+    "google_reauth",
+    "httplib2",
+    "oauth2client",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "pyparsing",
+    "pyu2f",
+    "retry_decorator",
+    "rsa",
+    "six"
+  ]
+}

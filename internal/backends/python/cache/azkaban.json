@@ -1,0 +1,14 @@
+{
+  "name": "azkaban",
+  "version": "0.9.14",
+  "modules": [
+    "azkaban",
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

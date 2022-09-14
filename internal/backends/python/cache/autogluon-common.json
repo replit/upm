@@ -1,0 +1,22 @@
+{
+  "name": "autogluon.common",
+  "version": "0.5.2",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "boto3",
+    "pytest"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "numpy",
+    "pandas",
+    "pytz",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

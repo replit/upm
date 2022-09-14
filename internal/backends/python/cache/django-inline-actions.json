@@ -1,0 +1,14 @@
+{
+  "name": "django-inline-actions",
+  "version": "2.4.0",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "inline_actions",
+    "sqlparse"
+  ]
+}

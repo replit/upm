@@ -1,0 +1,5 @@
+{
+  "name": "pyobjc-framework-ExceptionHandling",
+  "version": "8.5",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-ExceptionHandling/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-ExceptionHandling']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "setuptools-scm-git-archive",
+  "version": "1.4",
+  "modules": [
+    "setuptools_scm_git_archive"
+  ]
+}

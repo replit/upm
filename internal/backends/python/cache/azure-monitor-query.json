@@ -1,0 +1,21 @@
+{
+  "name": "azure-monitor-query",
+  "version": "1.0.3",
+  "requires_dist": [
+    "msrest",
+    "azure-core"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

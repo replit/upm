@@ -1,0 +1,22 @@
+{
+  "name": "fugue-sql-antlr",
+  "version": "0.1.0",
+  "modules": [
+    "antlr4",
+    "appdirs",
+    "dateutil",
+    "fs",
+    "fugue_sql_antlr",
+    "fugue_sql_antlr_version",
+    "jinja2",
+    "markupsafe",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pytz",
+    "six",
+    "tests",
+    "triad",
+    "triad_version"
+  ]
+}

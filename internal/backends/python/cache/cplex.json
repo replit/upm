@@ -1,0 +1,7 @@
+{
+  "name": "cplex",
+  "version": "22.1.0.0",
+  "modules": [
+    "cplex"
+  ]
+}

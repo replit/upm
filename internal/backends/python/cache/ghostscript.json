@@ -1,0 +1,10 @@
+{
+  "name": "ghostscript",
+  "version": "0.7",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "ghostscript"
+  ]
+}

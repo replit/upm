@@ -1,0 +1,9 @@
+{
+  "name": "lxml-stubs",
+  "version": "0.4.0",
+  "requires_dist": [
+    "coverage",
+    "pytest",
+    "pytest-mypy-plugins"
+  ]
+}

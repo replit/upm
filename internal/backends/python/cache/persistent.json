@@ -1,0 +1,10 @@
+{
+  "name": "persistent",
+  "version": "4.9.0",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "persistent",
+    "pycparser"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "django-sortedm2m",
+  "version": "3.1.1",
+  "modules": [
+    "sortedm2m"
+  ]
+}

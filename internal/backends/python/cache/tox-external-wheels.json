@@ -1,0 +1,29 @@
+{
+  "name": "tox-external-wheels",
+  "version": "0.1.8",
+  "requires_dist": [
+    "tox",
+    "sphinx",
+    "towncrier",
+    "pygments-github-lexers",
+    "sphinxcontrib-autoprogram",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-xdist"
+  ],
+  "modules": [
+    "distlib",
+    "filelock",
+    "packaging",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "six",
+    "tomli",
+    "tox",
+    "tox_external_wheels",
+    "virtualenv"
+  ]
+}

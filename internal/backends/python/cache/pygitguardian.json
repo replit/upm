@@ -1,0 +1,19 @@
+{
+  "name": "pygitguardian",
+  "version": "1.3.5",
+  "requires_dist": [
+    "marshmallow",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "marshmallow",
+    "packaging",
+    "pygitguardian",
+    "pyparsing",
+    "requests",
+    "urllib3"
+  ]
+}

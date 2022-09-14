@@ -1,0 +1,14 @@
+{
+  "name": "html-sanitizer",
+  "version": "1.9.3",
+  "requires_dist": [
+    "beautifulsoup4",
+    "lxml"
+  ],
+  "modules": [
+    "bs4",
+    "html_sanitizer",
+    "lxml",
+    "soupsieve"
+  ]
+}

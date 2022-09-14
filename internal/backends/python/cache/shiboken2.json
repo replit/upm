@@ -1,0 +1,7 @@
+{
+  "name": "shiboken2",
+  "version": "5.15.2.1",
+  "modules": [
+    "shiboken2"
+  ]
+}

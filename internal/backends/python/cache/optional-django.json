@@ -1,0 +1,7 @@
+{
+  "name": "optional-django",
+  "version": "0.3.0",
+  "modules": [
+    "optional_django"
+  ]
+}

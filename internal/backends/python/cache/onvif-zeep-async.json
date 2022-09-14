@@ -1,0 +1,33 @@
+{
+  "name": "onvif-zeep-async",
+  "version": "1.2.1",
+  "requires_dist": [
+    "httpx",
+    "zeep"
+  ],
+  "modules": [
+    "anyio",
+    "attr",
+    "attrs",
+    "cached_property",
+    "certifi",
+    "charset_normalizer",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "isodate",
+    "lxml",
+    "onvif",
+    "platformdirs",
+    "pytz",
+    "requests",
+    "requests_file",
+    "requests_toolbelt",
+    "rfc3986",
+    "six",
+    "sniffio",
+    "urllib3",
+    "zeep"
+  ]
+}

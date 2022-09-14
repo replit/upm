@@ -1,0 +1,22 @@
+{
+  "name": "cassandra-sigv4",
+  "version": "4.0.2",
+  "requires_dist": [
+    "cassandra-driver",
+    "boto3",
+    "six"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "cassandra",
+    "cassandra_sigv4",
+    "click",
+    "dateutil",
+    "geomet",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

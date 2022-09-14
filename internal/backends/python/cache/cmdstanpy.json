@@ -1,0 +1,36 @@
+{
+  "name": "cmdstanpy",
+  "version": "1.0.7",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "ujson",
+    "tqdm",
+    "xarray",
+    "sphinx",
+    "sphinx-gallery",
+    "sphinx-rtd-theme",
+    "numpydoc",
+    "matplotlib",
+    "flake8",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+    "pytest-order",
+    "mypy",
+    "testfixtures",
+    "tqdm",
+    "xarray",
+    "types-ujson"
+  ],
+  "modules": [
+    "cmdstanpy",
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pytz",
+    "six",
+    "tqdm",
+    "ujson"
+  ]
+}

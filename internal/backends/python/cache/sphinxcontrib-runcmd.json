@@ -1,0 +1,32 @@
+{
+  "name": "sphinxcontrib-runcmd",
+  "version": "0.2.0",
+  "requires_dist": [
+    "sphinx",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "sphinx-testing"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

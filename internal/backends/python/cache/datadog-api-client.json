@@ -1,0 +1,33 @@
+{
+  "name": "datadog-api-client",
+  "version": "2.3.0",
+  "requires_dist": [
+    "urllib3",
+    "certifi",
+    "python-dateutil",
+    "typing-extensions",
+    "ddtrace",
+    "aiosonic",
+    "aiosonic",
+    "glom",
+    "jinja2",
+    "pytest",
+    "pytest-bdd",
+    "pytest-asyncio",
+    "pytest-randomly",
+    "pytest-recording",
+    "python-dateutil",
+    "mypy",
+    "types-python-dateutil",
+    "zstandard",
+    "zstandard"
+  ],
+  "modules": [
+    "certifi",
+    "datadog_api_client",
+    "dateutil",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

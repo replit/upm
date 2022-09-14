@@ -1,0 +1,21 @@
+{
+  "name": "python-anticaptcha",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests",
+    "six",
+    "sphinx",
+    "retry",
+    "nose2",
+    "selenium"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "python_anticaptcha",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

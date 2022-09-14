@@ -1,0 +1,8 @@
+{
+  "name": "multiprocessing-logging",
+  "version": "0.3.3",
+  "modules": [
+    "multiprocessing_logging",
+    "tests"
+  ]
+}

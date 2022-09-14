@@ -1,0 +1,20 @@
+{
+  "name": "pangres",
+  "version": "4.1.2",
+  "modules": [
+    "alembic",
+    "dateutil",
+    "greenlet",
+    "importlib_metadata",
+    "importlib_resources",
+    "mako",
+    "markupsafe",
+    "numpy",
+    "pandas",
+    "pangres",
+    "pytz",
+    "six",
+    "sqlalchemy",
+    "zipp"
+  ]
+}

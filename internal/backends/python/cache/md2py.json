@@ -1,0 +1,12 @@
+{
+  "name": "md2py",
+  "version": "0.0.1",
+  "modules": [
+    "bs4",
+    "importlib_metadata",
+    "markdown",
+    "md2py",
+    "soupsieve",
+    "zipp"
+  ]
+}

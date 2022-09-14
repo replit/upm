@@ -1,0 +1,7 @@
+{
+  "name": "hpack",
+  "version": "4.0.0",
+  "modules": [
+    "hpack"
+  ]
+}

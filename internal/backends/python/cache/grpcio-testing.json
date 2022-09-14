@@ -1,0 +1,13 @@
+{
+  "name": "grpcio-testing",
+  "version": "1.48.1",
+  "requires_dist": [
+    "protobuf",
+    "grpcio"
+  ],
+  "modules": [
+    "grpc",
+    "grpc_testing",
+    "six"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "elasticsearch7",
+  "version": "7.17.6",
+  "requires_dist": [
+    "urllib3",
+    "certifi",
+    "aiohttp",
+    "requests",
+    "coverage",
+    "mock",
+    "pyyaml",
+    "pytest",
+    "pytest-cov",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "black",
+    "jinja2",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "elasticsearch7",
+    "urllib3"
+  ]
+}

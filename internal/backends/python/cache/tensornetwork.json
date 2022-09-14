@@ -1,0 +1,20 @@
+{
+  "name": "tensornetwork",
+  "version": "0.4.6",
+  "requires_dist": [
+    "numpy",
+    "graphviz",
+    "opt-einsum",
+    "h5py",
+    "scipy"
+  ],
+  "modules": [
+    "examples",
+    "graphviz",
+    "h5py",
+    "numpy",
+    "opt_einsum",
+    "scipy",
+    "tensornetwork"
+  ]
+}

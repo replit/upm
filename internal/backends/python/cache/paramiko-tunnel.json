@@ -1,0 +1,15 @@
+{
+  "name": "paramiko_tunnel",
+  "version": "0.31",
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "nacl",
+    "paramiko",
+    "paramiko_tunnel",
+    "pycparser",
+    "six"
+  ]
+}

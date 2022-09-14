@@ -1,0 +1,11 @@
+{
+  "name": "multipledispatch",
+  "version": "0.6.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "multipledispatch",
+    "six"
+  ]
+}

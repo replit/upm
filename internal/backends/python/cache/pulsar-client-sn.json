@@ -1,0 +1,27 @@
+{
+  "name": "pulsar-client-sn",
+  "version": "2.10.1.6",
+  "requires_dist": [
+    "six",
+    "certifi",
+    "enum34",
+    "apache-bookkeeper-client",
+    "fastavro",
+    "grpcio",
+    "prometheus-client",
+    "protobuf",
+    "ratelimit",
+    "fastavro",
+    "apache-bookkeeper-client",
+    "grpcio",
+    "prometheus-client",
+    "protobuf",
+    "ratelimit"
+  ],
+  "modules": [
+    "_pulsar",
+    "certifi",
+    "pulsar",
+    "six"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "textstat",
+  "version": "0.7.3",
+  "requires_dist": [
+    "pyphen"
+  ],
+  "modules": [
+    "pyphen",
+    "textstat"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PyLaTeX",
+  "version": "1.4.1",
+  "modules": [
+    "ordered_set",
+    "pylatex"
+  ]
+}

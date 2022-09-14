@@ -1,0 +1,20 @@
+{
+  "name": "zope.location",
+  "version": "4.2",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.proxy",
+    "zope.schema",
+    "zope.component",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component",
+    "zope.configuration",
+    "zope.component",
+    "zope.configuration",
+    "zope.copy",
+    "zope.testrunner",
+    "zope.configuration"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PySide6-Essentials",
+  "version": "6.3.2",
+  "requires_dist": [
+    "shiboken6"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/PySide6-Essentials/bin/python3', '-m', 'pip', 'install', 'PySide6-Essentials']' returned non-zero exit status 1.\"}"
+}

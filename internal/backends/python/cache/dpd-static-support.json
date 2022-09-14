@@ -1,0 +1,7 @@
+{
+  "name": "dpd-static-support",
+  "version": "0.0.5",
+  "modules": [
+    "dpd_static_support"
+  ]
+}

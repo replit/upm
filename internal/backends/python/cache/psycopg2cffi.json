@@ -1,0 +1,11 @@
+{
+  "name": "psycopg2cffi",
+  "version": "2.9.0",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "psycopg2cffi",
+    "pycparser",
+    "six"
+  ]
+}

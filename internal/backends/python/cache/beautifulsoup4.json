@@ -1,0 +1,13 @@
+{
+  "name": "beautifulsoup4",
+  "version": "4.11.1",
+  "requires_dist": [
+    "soupsieve",
+    "html5lib",
+    "lxml"
+  ],
+  "modules": [
+    "bs4",
+    "soupsieve"
+  ]
+}

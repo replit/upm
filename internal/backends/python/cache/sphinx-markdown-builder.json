@@ -1,0 +1,39 @@
+{
+  "name": "sphinx-markdown-builder",
+  "version": "0.5.5",
+  "requires_dist": [
+    "html2text",
+    "pydash",
+    "sphinx",
+    "unify",
+    "yapf"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "html2text",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pydash",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_markdown_builder",
+    "unify",
+    "untokenize",
+    "urllib3",
+    "yapf",
+    "yapftests",
+    "zipp"
+  ]
+}

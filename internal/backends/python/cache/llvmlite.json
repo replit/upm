@@ -1,0 +1,7 @@
+{
+  "name": "llvmlite",
+  "version": "0.39.1",
+  "modules": [
+    "llvmlite"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sseclient",
+  "version": "0.0.27",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "sseclient",
+    "urllib3"
+  ]
+}

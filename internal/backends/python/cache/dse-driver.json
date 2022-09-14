@@ -1,0 +1,15 @@
+{
+  "name": "dse-driver",
+  "version": "2.11.1",
+  "requires_dist": [
+    "six",
+    "geomet",
+    "futures"
+  ],
+  "modules": [
+    "click",
+    "dse",
+    "geomet",
+    "six"
+  ]
+}

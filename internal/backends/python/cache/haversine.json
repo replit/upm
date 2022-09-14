@@ -1,0 +1,7 @@
+{
+  "name": "haversine",
+  "version": "2.7.0",
+  "modules": [
+    "haversine"
+  ]
+}

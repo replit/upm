@@ -1,0 +1,13 @@
+{
+  "name": "mandrill-really-maintained",
+  "version": "1.2.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "mandrill",
+    "requests",
+    "urllib3"
+  ]
+}

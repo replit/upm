@@ -1,0 +1,15 @@
+{
+  "name": "quickchart.io",
+  "version": "1.0.1",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "quickchart",
+    "requests",
+    "urllib3"
+  ]
+}

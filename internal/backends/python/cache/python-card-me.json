@@ -1,0 +1,9 @@
+{
+  "name": "python-card-me",
+  "version": "0.9.3",
+  "modules": [
+    "card_me",
+    "dateutil",
+    "six"
+  ]
+}

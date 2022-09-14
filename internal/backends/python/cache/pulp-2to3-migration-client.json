@@ -1,0 +1,17 @@
+{
+  "name": "pulp-2to3-migration-client",
+  "version": "0.16.0",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "pulpcore",
+    "six",
+    "urllib3"
+  ]
+}

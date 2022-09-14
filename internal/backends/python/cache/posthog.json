@@ -1,0 +1,34 @@
+{
+  "name": "posthog",
+  "version": "2.1.0",
+  "requires_dist": [
+    "requests",
+    "six",
+    "monotonic",
+    "backoff",
+    "python-dateutil",
+    "black",
+    "isort",
+    "pre-commit",
+    "sentry-sdk",
+    "django",
+    "mock",
+    "freezegun",
+    "pylint",
+    "flake8",
+    "coverage",
+    "pytest"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "monotonic",
+    "posthog",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

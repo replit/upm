@@ -1,0 +1,13 @@
+{
+  "name": "PyUtilib",
+  "version": "6.0.0",
+  "requires_dist": [
+    "nose",
+    "six"
+  ],
+  "modules": [
+    "nose",
+    "pyutilib",
+    "six"
+  ]
+}

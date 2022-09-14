@@ -1,0 +1,7 @@
+{
+  "name": "python-ptrace",
+  "version": "0.9.8",
+  "modules": [
+    "ptrace"
+  ]
+}

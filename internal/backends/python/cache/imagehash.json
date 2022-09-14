@@ -1,0 +1,11 @@
+{
+  "name": "ImageHash",
+  "version": "4.3.0",
+  "modules": [
+    "PIL",
+    "imagehash",
+    "numpy",
+    "pywt",
+    "scipy"
+  ]
+}

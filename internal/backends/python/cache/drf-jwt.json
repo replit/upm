@@ -1,0 +1,34 @@
+{
+  "name": "drf-jwt",
+  "version": "1.19.2",
+  "requires_dist": [
+    "PyJWT",
+    "Django",
+    "djangorestframework",
+    "tox",
+    "mkdocs",
+    "isort",
+    "black",
+    "flake8",
+    "mock",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "pytest-runner",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "cffi",
+    "cryptography",
+    "django",
+    "jwt",
+    "pycparser",
+    "pytz",
+    "rest_framework",
+    "rest_framework_jwt",
+    "sqlparse"
+  ]
+}

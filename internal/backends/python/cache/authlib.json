@@ -1,0 +1,14 @@
+{
+  "name": "Authlib",
+  "version": "1.1.0",
+  "requires_dist": [
+    "cryptography"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "authlib",
+    "cffi",
+    "cryptography",
+    "pycparser"
+  ]
+}

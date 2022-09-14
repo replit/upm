@@ -1,0 +1,21 @@
+{
+  "name": "pytest-rerunfailures",
+  "version": "10.2",
+  "requires_dist": [
+    "setuptools",
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

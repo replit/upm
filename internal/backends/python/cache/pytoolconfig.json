@@ -1,0 +1,23 @@
+{
+  "name": "pytoolconfig",
+  "version": "1.2.2",
+  "requires_dist": [
+    "packaging",
+    "tomli",
+    "typing-extensions",
+    "tabulate",
+    "sphinx",
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "sphinx-rtd-theme",
+    "pytoolconfig",
+    "appdirs",
+    "pydantic"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "pytoolconfig",
+    "tomli"
+  ]
+}

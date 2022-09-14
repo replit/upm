@@ -1,0 +1,16 @@
+{
+  "name": "pynndescent",
+  "version": "0.5.7",
+  "modules": [
+    "importlib_metadata",
+    "joblib",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "pynndescent",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "zipp"
+  ]
+}

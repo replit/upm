@@ -1,0 +1,10 @@
+{
+  "name": "QuantLib-Python",
+  "version": "1.18",
+  "requires_dist": [
+    "QuantLib"
+  ],
+  "modules": [
+    "QuantLib"
+  ]
+}

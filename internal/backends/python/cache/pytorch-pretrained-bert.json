@@ -1,0 +1,33 @@
+{
+  "name": "pytorch-pretrained-bert",
+  "version": "0.6.2",
+  "requires_dist": [
+    "torch",
+    "numpy",
+    "boto3",
+    "requests",
+    "tqdm",
+    "regex"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jmespath",
+    "numpy",
+    "pytorch_pretrained_bert",
+    "regex",
+    "requests",
+    "s3transfer",
+    "six",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

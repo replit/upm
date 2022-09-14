@@ -1,0 +1,9 @@
+{
+  "name": "PyReact",
+  "version": "0.6.0",
+  "modules": [
+    "execjs",
+    "react",
+    "six"
+  ]
+}

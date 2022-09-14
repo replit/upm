@@ -1,0 +1,20 @@
+{
+  "name": "pdfplumber",
+  "version": "0.7.4",
+  "requires_dist": [
+    "pdfminer.six",
+    "Pillow",
+    "Wand"
+  ],
+  "modules": [
+    "PIL",
+    "_cffi_backend",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "pdfminer",
+    "pdfplumber",
+    "pycparser",
+    "wand"
+  ]
+}

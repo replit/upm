@@ -1,0 +1,17 @@
+{
+  "name": "pygount",
+  "version": "1.4.0",
+  "requires_dist": [
+    "chardet",
+    "pygments",
+    "rich"
+  ],
+  "modules": [
+    "chardet",
+    "commonmark",
+    "pygments",
+    "pygount",
+    "rich",
+    "typing_extensions"
+  ]
+}

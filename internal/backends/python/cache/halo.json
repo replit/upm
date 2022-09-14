@@ -1,0 +1,22 @@
+{
+  "name": "halo",
+  "version": "0.0.31",
+  "requires_dist": [
+    "log-symbols",
+    "spinners",
+    "termcolor",
+    "colorama",
+    "six",
+    "backports.shutil-get-terminal-size",
+    "IPython",
+    "ipywidgets"
+  ],
+  "modules": [
+    "colorama",
+    "halo",
+    "log_symbols",
+    "six",
+    "spinners",
+    "termcolor"
+  ]
+}

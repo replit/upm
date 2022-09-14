@@ -1,0 +1,19 @@
+{
+  "name": "zope.configuration",
+  "version": "4.4.1",
+  "requires_dist": [
+    "setuptools",
+    "zope.i18nmessageid",
+    "zope.interface",
+    "zope.schema",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "manuel",
+    "zope.schema",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "six"
+  ]
+}

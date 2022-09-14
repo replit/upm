@@ -1,0 +1,17 @@
+{
+  "name": "hentai",
+  "version": "3.2.10",
+  "requires_dist": [
+    "tqdm",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "hentai",
+    "idna",
+    "requests",
+    "tqdm",
+    "urllib3"
+  ]
+}

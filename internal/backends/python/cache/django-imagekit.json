@@ -1,0 +1,23 @@
+{
+  "name": "django-imagekit",
+  "version": "4.1.0",
+  "requires_dist": [
+    "pilkit",
+    "six",
+    "django-appconf",
+    "django-appconf",
+    "django-celery",
+    "django-dramatiq",
+    "django-rq"
+  ],
+  "modules": [
+    "appconf",
+    "asgiref",
+    "backports",
+    "django",
+    "imagekit",
+    "pilkit",
+    "six",
+    "sqlparse"
+  ]
+}

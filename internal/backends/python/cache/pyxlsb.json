@@ -1,0 +1,7 @@
+{
+  "name": "pyxlsb",
+  "version": "1.0.9",
+  "modules": [
+    "pyxlsb"
+  ]
+}

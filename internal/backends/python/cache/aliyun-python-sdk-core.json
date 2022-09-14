@@ -1,0 +1,12 @@
+{
+  "name": "aliyun-python-sdk-core",
+  "version": "2.13.36",
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

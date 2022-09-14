@@ -1,0 +1,26 @@
+{
+  "name": "aioredlock",
+  "version": "0.7.3",
+  "requires_dist": [
+    "aioredis",
+    "attrs",
+    "codecov",
+    "aiodocker",
+    "bump2version",
+    "twine",
+    "wheel",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-mock",
+    "pytest-cov",
+    "flake8"
+  ],
+  "modules": [
+    "aioredis",
+    "aioredlock",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "hiredis"
+  ]
+}

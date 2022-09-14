@@ -1,0 +1,10 @@
+{
+  "name": "xpinyin",
+  "version": "0.7.6",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "xpinyin"
+  ]
+}

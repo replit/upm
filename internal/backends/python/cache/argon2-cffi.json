@@ -1,0 +1,31 @@
+{
+  "name": "argon2-cffi",
+  "version": "21.3.0",
+  "requires_dist": [
+    "argon2-cffi-bindings",
+    "dataclasses",
+    "typing-extensions",
+    "pre-commit",
+    "cogapp",
+    "tomli",
+    "coverage",
+    "hypothesis",
+    "pytest",
+    "sphinx",
+    "sphinx-notfound-page",
+    "furo",
+    "sphinx",
+    "sphinx-notfound-page",
+    "furo",
+    "coverage",
+    "hypothesis",
+    "pytest"
+  ],
+  "modules": [
+    "_argon2_cffi_bindings",
+    "_cffi_backend",
+    "argon2",
+    "cffi",
+    "pycparser"
+  ]
+}

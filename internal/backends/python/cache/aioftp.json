@@ -1,0 +1,16 @@
+{
+  "name": "aioftp",
+  "version": "0.21.3",
+  "requires_dist": [
+    "siosocks",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "trustme",
+    "async-timeout",
+    "siosocks"
+  ],
+  "modules": [
+    "aioftp"
+  ]
+}

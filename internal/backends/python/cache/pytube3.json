@@ -1,0 +1,11 @@
+{
+  "name": "pytube3",
+  "version": "9.6.4",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "pytube",
+    "typing_extensions"
+  ]
+}

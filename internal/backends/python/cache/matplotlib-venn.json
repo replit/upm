@@ -1,0 +1,19 @@
+{
+  "name": "matplotlib-venn",
+  "version": "0.11.7",
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "matplotlib_venn",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "large-image-converter",
+  "version": "1.16.2",
+  "requires_dist": [
+    "gdal",
+    "large-image-source-tiff",
+    "numpy",
+    "psutil",
+    "pyvips",
+    "tifftools",
+    "importlib-metadata",
+    "glymur",
+    "large-image",
+    "packaging",
+    "scikit-image"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/large-image-converter/bin/python3', '-m', 'pip', 'install', 'large-image-converter']' returned non-zero exit status 1.\"}"
+}

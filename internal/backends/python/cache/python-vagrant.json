@@ -1,0 +1,12 @@
+{
+  "name": "python-vagrant",
+  "version": "1.0.0",
+  "requires_dist": [
+    "coverage",
+    "pytest-cov",
+    "pytest"
+  ],
+  "modules": [
+    "vagrant"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "PyGLM",
+  "version": "2.5.7",
+  "modules": [
+    "glm"
+  ]
+}

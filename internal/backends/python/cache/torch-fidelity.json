@@ -1,0 +1,29 @@
+{
+  "name": "torch-fidelity",
+  "version": "0.3.0",
+  "requires_dist": [
+    "numpy",
+    "Pillow",
+    "scipy",
+    "torch",
+    "torchvision",
+    "tqdm"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "numpy",
+    "requests",
+    "scipy",
+    "torch",
+    "torch_fidelity",
+    "torchgen",
+    "torchvision",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

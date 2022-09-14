@@ -1,0 +1,30 @@
+{
+  "name": "django-celery-email",
+  "version": "3.0.0",
+  "requires_dist": [
+    "django",
+    "celery",
+    "django-appconf"
+  ],
+  "modules": [
+    "amqp",
+    "appconf",
+    "asgiref",
+    "backports",
+    "billiard",
+    "celery",
+    "click",
+    "click_didyoumean",
+    "click_plugins",
+    "click_repl",
+    "django",
+    "djcelery_email",
+    "kombu",
+    "prompt_toolkit",
+    "pytz",
+    "six",
+    "sqlparse",
+    "vine",
+    "wcwidth"
+  ]
+}

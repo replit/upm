@@ -1,0 +1,5 @@
+{
+  "name": "dragonfly-opt",
+  "version": "0.1.6",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dragonfly-opt/bin/python3', '-m', 'pip', 'install', 'dragonfly-opt']' returned non-zero exit status 1.\"}"
+}

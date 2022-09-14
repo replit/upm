@@ -1,0 +1,13 @@
+{
+  "name": "maturin",
+  "version": "0.13.2",
+  "requires_dist": [
+    "tomli",
+    "ziglang",
+    "patchelf"
+  ],
+  "modules": [
+    "maturin",
+    "tomli"
+  ]
+}

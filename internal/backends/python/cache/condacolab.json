@@ -1,0 +1,7 @@
+{
+  "name": "condacolab",
+  "version": "0.1.4",
+  "modules": [
+    "condacolab"
+  ]
+}

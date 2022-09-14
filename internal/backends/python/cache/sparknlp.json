@@ -1,0 +1,13 @@
+{
+  "name": "sparknlp",
+  "version": "1.0.0",
+  "requires_dist": [
+    "spark-nlp",
+    "numpy"
+  ],
+  "modules": [
+    "com",
+    "numpy",
+    "sparknlp"
+  ]
+}

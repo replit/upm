@@ -1,0 +1,27 @@
+{
+  "name": "aws-encryption-sdk",
+  "version": "3.1.1",
+  "requires_dist": [
+    "boto3",
+    "cryptography",
+    "attrs",
+    "wrapt"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "aws_encryption_sdk",
+    "boto3",
+    "botocore",
+    "cffi",
+    "cryptography",
+    "dateutil",
+    "jmespath",
+    "pycparser",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

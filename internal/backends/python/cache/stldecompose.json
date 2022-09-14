@@ -1,0 +1,30 @@
+{
+  "name": "stldecompose",
+  "version": "0.0.5",
+  "requires_dist": [
+    "pandas",
+    "numpy",
+    "scipy",
+    "statsmodels",
+    "matplotlib"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels",
+    "stldecompose"
+  ]
+}

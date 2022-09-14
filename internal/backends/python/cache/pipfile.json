@@ -1,0 +1,8 @@
+{
+  "name": "pipfile",
+  "version": "0.0.2",
+  "modules": [
+    "pipfile",
+    "toml"
+  ]
+}

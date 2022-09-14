@@ -1,0 +1,15 @@
+{
+  "name": "peewee-migrations",
+  "version": "0.3.32",
+  "requires_dist": [
+    "peewee",
+    "click"
+  ],
+  "modules": [
+    "click",
+    "peewee",
+    "peewee_migrations",
+    "playhouse",
+    "pwiz"
+  ]
+}

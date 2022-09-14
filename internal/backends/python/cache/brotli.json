@@ -1,0 +1,8 @@
+{
+  "name": "Brotli",
+  "version": "1.0.9",
+  "modules": [
+    "_brotli",
+    "brotli"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "kt-legacy",
+  "version": "1.0.4",
+  "modules": [
+    "kerastuner"
+  ]
+}

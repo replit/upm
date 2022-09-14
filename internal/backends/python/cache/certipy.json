@@ -1,0 +1,17 @@
+{
+  "name": "certipy",
+  "version": "0.1.3",
+  "requires_dist": [
+    "pyopenssl",
+    "pytest",
+    "pytest"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certipy",
+    "cffi",
+    "cryptography",
+    "pycparser"
+  ]
+}

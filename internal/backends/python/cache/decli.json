@@ -1,0 +1,7 @@
+{
+  "name": "decli",
+  "version": "0.5.2",
+  "modules": [
+    "decli"
+  ]
+}

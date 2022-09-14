@@ -1,0 +1,13 @@
+{
+  "name": "humanize",
+  "version": "4.3.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "freezegun",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "humanize"
+  ]
+}

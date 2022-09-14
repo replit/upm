@@ -1,0 +1,7 @@
+{
+  "name": "pytimeparse",
+  "version": "1.1.8",
+  "modules": [
+    "pytimeparse"
+  ]
+}

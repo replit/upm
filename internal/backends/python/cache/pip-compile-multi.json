@@ -1,0 +1,21 @@
+{
+  "name": "pip-compile-multi",
+  "version": "2.4.6",
+  "requires_dist": [
+    "click",
+    "pip-tools",
+    "toposort"
+  ],
+  "modules": [
+    "build",
+    "click",
+    "packaging",
+    "pep517",
+    "pipcompilemulti",
+    "piptools",
+    "pyparsing",
+    "tomli",
+    "toposort",
+    "wheel"
+  ]
+}

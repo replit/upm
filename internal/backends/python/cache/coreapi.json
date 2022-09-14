@@ -1,0 +1,17 @@
+{
+  "name": "coreapi",
+  "version": "2.3.3",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "coreapi",
+    "coreschema",
+    "idna",
+    "itypes",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "uritemplate",
+    "urllib3"
+  ]
+}

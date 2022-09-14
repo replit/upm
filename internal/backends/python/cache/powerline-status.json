@@ -1,0 +1,7 @@
+{
+  "name": "powerline-status",
+  "version": "2.7",
+  "modules": [
+    "powerline"
+  ]
+}

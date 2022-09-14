@@ -1,0 +1,19 @@
+{
+  "name": "html5lib",
+  "version": "1.1",
+  "requires_dist": [
+    "six",
+    "webencodings",
+    "genshi",
+    "chardet",
+    "lxml",
+    "chardet",
+    "genshi",
+    "lxml"
+  ],
+  "modules": [
+    "html5lib",
+    "six",
+    "webencodings"
+  ]
+}

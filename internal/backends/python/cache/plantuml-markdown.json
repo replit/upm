@@ -1,0 +1,21 @@
+{
+  "name": "plantuml-markdown",
+  "version": "3.6.3",
+  "requires_dist": [
+    "Markdown",
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "importlib_metadata",
+    "markdown",
+    "plantuml_markdown",
+    "requests",
+    "six",
+    "urllib3",
+    "zipp"
+  ]
+}

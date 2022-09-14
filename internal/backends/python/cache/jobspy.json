@@ -1,0 +1,13 @@
+{
+  "name": "jobspy",
+  "version": "0.28.1",
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "jobs",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "wrapt"
+  ]
+}

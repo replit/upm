@@ -1,0 +1,9 @@
+{
+  "name": "memory-profiler",
+  "version": "0.60.0",
+  "modules": [
+    "memory_profiler",
+    "mprof",
+    "psutil"
+  ]
+}

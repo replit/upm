@@ -1,0 +1,17 @@
+{
+  "name": "fp-NGFW-SMC-python",
+  "version": "1.0.18",
+  "requires_dist": [
+    "pytz",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pytz",
+    "requests",
+    "smc",
+    "urllib3"
+  ]
+}

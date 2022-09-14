@@ -1,0 +1,36 @@
+{
+  "name": "mkdocstrings",
+  "version": "0.19.0",
+  "requires_dist": [
+    "Jinja2",
+    "Markdown",
+    "MarkupSafe",
+    "mkdocs-autorefs",
+    "mkdocs",
+    "pymdown-extensions",
+    "mkdocstrings-crystal",
+    "mkdocstrings-python",
+    "mkdocstrings-python-legacy"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_autorefs",
+    "packaging",
+    "pymdownx",
+    "pyparsing",
+    "six",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

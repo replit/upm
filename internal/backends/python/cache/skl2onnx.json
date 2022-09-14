@@ -1,0 +1,23 @@
+{
+  "name": "skl2onnx",
+  "version": "1.12",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "protobuf",
+    "onnx",
+    "scikit-learn",
+    "onnxconverter-common"
+  ],
+  "modules": [
+    "joblib",
+    "numpy",
+    "onnx",
+    "onnxconverter_common",
+    "scipy",
+    "skl2onnx",
+    "sklearn",
+    "threadpoolctl",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "python-geoip-geolite2",
+  "version": "2015.0303",
+  "modules": [
+    "_geoip_geolite2",
+    "geoip"
+  ]
+}

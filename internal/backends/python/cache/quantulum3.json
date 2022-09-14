@@ -1,0 +1,16 @@
+{
+  "name": "quantulum3",
+  "version": "0.7.10",
+  "requires_dist": [
+    "inflect",
+    "num2words"
+  ],
+  "modules": [
+    "docopt",
+    "inflect",
+    "num2words",
+    "pydantic",
+    "quantulum3",
+    "typing_extensions"
+  ]
+}

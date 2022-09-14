@@ -1,0 +1,15 @@
+{
+  "name": "robotframework-httplibrary",
+  "version": "0.4.2",
+  "modules": [
+    "HttpLibrary",
+    "bs4",
+    "jsonpatch",
+    "jsonpointer",
+    "robot",
+    "soupsieve",
+    "waitress",
+    "webob",
+    "webtest"
+  ]
+}

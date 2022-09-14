@@ -1,0 +1,30 @@
+{
+  "name": "pop-config",
+  "version": "10.1.0",
+  "requires_dist": [
+    "pop",
+    "rend",
+    "dict-toolbox",
+    "aiologger",
+    "aiofiles",
+    "PyPiWin32",
+    "aiologger",
+    "aiofiles",
+    "PyPiWin32"
+  ],
+  "modules": [
+    "_yaml",
+    "aiofiles",
+    "colored",
+    "dict_tools",
+    "jinja2",
+    "lazy_object_proxy",
+    "markupsafe",
+    "msgpack",
+    "nest_asyncio",
+    "pop",
+    "sniffio",
+    "toml",
+    "yaml"
+  ]
+}

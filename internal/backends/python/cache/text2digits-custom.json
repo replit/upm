@@ -1,0 +1,7 @@
+{
+  "name": "text2digits-custom",
+  "version": "0.1.0",
+  "modules": [
+    "text2digits"
+  ]
+}

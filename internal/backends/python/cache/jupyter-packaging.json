@@ -1,0 +1,27 @@
+{
+  "name": "jupyter-packaging",
+  "version": "0.12.3",
+  "requires_dist": [
+    "deprecation",
+    "packaging",
+    "setuptools",
+    "tomlkit",
+    "wheel",
+    "build",
+    "coverage",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-timeout"
+  ],
+  "modules": [
+    "_distutils_hack",
+    "deprecation",
+    "jupyter_packaging",
+    "packaging",
+    "pyparsing",
+    "tomlkit",
+    "wheel"
+  ]
+}

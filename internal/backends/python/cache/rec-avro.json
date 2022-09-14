@@ -1,0 +1,7 @@
+{
+  "name": "rec-avro",
+  "version": "0.0.4",
+  "modules": [
+    "rec_avro"
+  ]
+}

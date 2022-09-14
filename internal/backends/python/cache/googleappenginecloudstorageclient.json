@@ -1,0 +1,7 @@
+{
+  "name": "GoogleAppEngineCloudStorageClient",
+  "version": "1.9.22.1",
+  "modules": [
+    "cloudstorage"
+  ]
+}

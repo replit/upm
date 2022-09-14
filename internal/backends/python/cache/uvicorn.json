@@ -1,0 +1,21 @@
+{
+  "name": "uvicorn",
+  "version": "0.18.3",
+  "requires_dist": [
+    "click",
+    "h11",
+    "typing-extensions",
+    "colorama",
+    "httptools",
+    "python-dotenv",
+    "pyyaml",
+    "uvloop",
+    "watchfiles",
+    "websockets"
+  ],
+  "modules": [
+    "click",
+    "h11",
+    "uvicorn"
+  ]
+}

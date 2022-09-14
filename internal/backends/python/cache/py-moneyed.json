@@ -1,0 +1,19 @@
+{
+  "name": "py-moneyed",
+  "version": "2.0",
+  "requires_dist": [
+    "babel",
+    "typing-extensions",
+    "pytest",
+    "tox",
+    "pytest",
+    "pytest-mypy-plugins",
+    "mypy"
+  ],
+  "modules": [
+    "babel",
+    "moneyed",
+    "pytz",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "django-cryptography",
+  "version": "1.1",
+  "requires_dist": [
+    "Django",
+    "cryptography",
+    "django-appconf"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "appconf",
+    "asgiref",
+    "backports",
+    "cffi",
+    "cryptography",
+    "django",
+    "django_cryptography",
+    "pycparser",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "yapf",
+  "version": "0.32.0",
+  "modules": [
+    "yapf",
+    "yapftests"
+  ]
+}

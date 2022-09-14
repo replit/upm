@@ -1,0 +1,21 @@
+{
+  "name": "pulumi",
+  "version": "3.39.3",
+  "requires_dist": [
+    "protobuf",
+    "grpcio",
+    "dill",
+    "six",
+    "semver",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "dill",
+    "grpc",
+    "pulumi",
+    "semver",
+    "six",
+    "yaml"
+  ]
+}

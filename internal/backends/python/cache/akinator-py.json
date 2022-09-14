@@ -1,0 +1,13 @@
+{
+  "name": "akinator.py",
+  "version": "0.2.1",
+  "requires_dist": [
+    "sphinx",
+    "furo",
+    "sphinxext-opengraph",
+    "sphinx-copybutton"
+  ],
+  "modules": [
+    "akinator"
+  ]
+}

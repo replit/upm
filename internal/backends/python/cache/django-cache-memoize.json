@@ -1,0 +1,14 @@
+{
+  "name": "django-cache-memoize",
+  "version": "0.1.10",
+  "requires_dist": [
+    "flake8",
+    "tox",
+    "twine",
+    "therapist",
+    "black"
+  ],
+  "modules": [
+    "cache_memoize"
+  ]
+}

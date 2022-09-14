@@ -1,0 +1,25 @@
+{
+  "name": "djangorestframework-xml",
+  "version": "2.0.0",
+  "requires_dist": [
+    "defusedxml",
+    "mkdocs",
+    "Django",
+    "djangorestframework",
+    "pytest-django",
+    "pytest",
+    "flake8",
+    "tox",
+    "pre-commit",
+    "mkdocs",
+    "Django",
+    "djangorestframework",
+    "pytest-django",
+    "pytest",
+    "flake8"
+  ],
+  "modules": [
+    "defusedxml",
+    "rest_framework_xml"
+  ]
+}

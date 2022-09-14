@@ -1,0 +1,8 @@
+{
+  "name": "docplex",
+  "version": "2.23.222",
+  "modules": [
+    "docplex",
+    "six"
+  ]
+}

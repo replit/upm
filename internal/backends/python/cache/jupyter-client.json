@@ -1,0 +1,40 @@
+{
+  "name": "jupyter-client",
+  "version": "7.3.5",
+  "requires_dist": [
+    "entrypoints",
+    "jupyter-core",
+    "nest-asyncio",
+    "python-dateutil",
+    "pyzmq",
+    "tornado",
+    "traitlets",
+    "ipykernel",
+    "myst-parser",
+    "sphinx-rtd-theme",
+    "sphinx",
+    "sphinxcontrib-github-alt",
+    "codecov",
+    "coverage",
+    "ipykernel",
+    "ipython",
+    "mypy",
+    "pre-commit",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pytest-timeout"
+  ],
+  "modules": [
+    "dateutil",
+    "entrypoints",
+    "jupyter",
+    "jupyter_client",
+    "jupyter_core",
+    "nest_asyncio",
+    "six",
+    "tornado",
+    "traitlets",
+    "zmq"
+  ]
+}

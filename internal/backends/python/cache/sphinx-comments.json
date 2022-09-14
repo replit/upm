@@ -1,0 +1,41 @@
+{
+  "name": "sphinx-comments",
+  "version": "0.0.3",
+  "requires_dist": [
+    "sphinx",
+    "flake8",
+    "black",
+    "pre-commit",
+    "sphinx",
+    "sphinx-book-theme",
+    "myst-parser",
+    "beautifulsoup4",
+    "myst-parser",
+    "pytest",
+    "pytest-regressions",
+    "sphinx",
+    "sphinx-book-theme"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_comments",
+    "urllib3",
+    "zipp"
+  ]
+}

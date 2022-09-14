@@ -1,0 +1,8 @@
+{
+  "name": "django-registration-redux",
+  "version": "2.11",
+  "modules": [
+    "registration",
+    "test_app"
+  ]
+}

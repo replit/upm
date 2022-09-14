@@ -1,0 +1,17 @@
+{
+  "name": "edx-opaque-keys",
+  "version": "2.3.0",
+  "requires_dist": [
+    "pymongo",
+    "stevedore"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "opaque_keys",
+    "pbr",
+    "pymongo",
+    "settings",
+    "stevedore"
+  ]
+}

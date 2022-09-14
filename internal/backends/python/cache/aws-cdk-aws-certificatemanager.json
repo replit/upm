@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk.aws-certificatemanager",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-acmpca",
+    "aws-cdk.aws-cloudwatch",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-lambda",
+    "aws-cdk.aws-route53",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pansi",
+  "version": "2020.7.3",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pansi",
+    "six"
+  ]
+}

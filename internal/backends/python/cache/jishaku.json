@@ -1,0 +1,40 @@
+{
+  "name": "jishaku",
+  "version": "2.5.1",
+  "requires_dist": [
+    "braceexpand",
+    "click",
+    "import-expression",
+    "line-profiler",
+    "importlib-metadata",
+    "typing-extensions",
+    "discord.py",
+    "Sphinx",
+    "sphinxcontrib-asyncio",
+    "psutil",
+    "Jinja2",
+    "coverage",
+    "flake8",
+    "isort",
+    "pylint",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pytest-mock",
+    "yt-dlp"
+  ],
+  "modules": [
+    "astunparse",
+    "braceexpand",
+    "click",
+    "import_expression",
+    "importlib_metadata",
+    "jishaku",
+    "kernprof",
+    "line_profiler",
+    "six",
+    "typing_extensions",
+    "wheel",
+    "zipp"
+  ]
+}

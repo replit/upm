@@ -1,0 +1,8 @@
+{
+  "name": "dbf",
+  "version": "0.99.2",
+  "modules": [
+    "aenum",
+    "dbf"
+  ]
+}

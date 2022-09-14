@@ -1,0 +1,19 @@
+{
+  "name": "meshio",
+  "version": "5.3.4",
+  "requires_dist": [
+    "numpy",
+    "rich",
+    "importlib-metadata",
+    "netCDF4",
+    "h5py"
+  ],
+  "modules": [
+    "commonmark",
+    "meshio",
+    "numpy",
+    "pygments",
+    "rich",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "sops",
+  "version": "1.18",
+  "modules": [
+    "_cffi_backend",
+    "_ruamel_yaml",
+    "boto3",
+    "botocore",
+    "cffi",
+    "cryptography",
+    "dateutil",
+    "jmespath",
+    "ordereddict",
+    "pycparser",
+    "s3transfer",
+    "simplejson",
+    "six",
+    "sops",
+    "tests",
+    "urllib3"
+  ]
+}

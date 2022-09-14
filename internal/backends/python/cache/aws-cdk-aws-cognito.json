@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk.aws-cognito",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-certificatemanager",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-kms",
+    "aws-cdk.aws-lambda",
+    "aws-cdk.core",
+    "aws-cdk.custom-resources",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

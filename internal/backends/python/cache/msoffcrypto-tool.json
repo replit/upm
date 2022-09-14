@@ -1,0 +1,16 @@
+{
+  "name": "msoffcrypto-tool",
+  "version": "5.0.0",
+  "requires_dist": [
+    "cryptography",
+    "olefile"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "msoffcrypto",
+    "olefile",
+    "pycparser"
+  ]
+}

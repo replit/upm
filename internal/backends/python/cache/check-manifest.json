@@ -1,0 +1,19 @@
+{
+  "name": "check-manifest",
+  "version": "0.48",
+  "requires_dist": [
+    "build",
+    "setuptools",
+    "tomli",
+    "mock",
+    "pytest"
+  ],
+  "modules": [
+    "build",
+    "check_manifest",
+    "packaging",
+    "pep517",
+    "pyparsing",
+    "tomli"
+  ]
+}

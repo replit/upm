@@ -1,0 +1,13 @@
+{
+  "name": "autocfg",
+  "version": "0.0.8",
+  "requires_dist": [
+    "pyyaml",
+    "dataclasses"
+  ],
+  "modules": [
+    "_yaml",
+    "autocfg",
+    "yaml"
+  ]
+}

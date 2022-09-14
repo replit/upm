@@ -1,0 +1,13 @@
+{
+  "name": "Paste",
+  "version": "3.5.2",
+  "requires_dist": [
+    "setuptools",
+    "six",
+    "flup",
+    "python-openid"
+  ],
+  "modules": [
+    "six"
+  ]
+}

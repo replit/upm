@@ -1,0 +1,35 @@
+{
+  "name": "aio.api.github",
+  "version": "0.1.4",
+  "requires_dist": [
+    "abstracts",
+    "aio.core",
+    "aiohttp",
+    "gidgethub",
+    "packaging"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "abstracts",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "frozenlist",
+    "gidgethub",
+    "idna",
+    "jwt",
+    "multidict",
+    "orjson",
+    "packaging",
+    "pycparser",
+    "pyparsing",
+    "trycast",
+    "uritemplate",
+    "yarl"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "num2words",
+  "version": "0.5.12",
+  "requires_dist": [
+    "docopt"
+  ],
+  "modules": [
+    "docopt",
+    "num2words"
+  ]
+}

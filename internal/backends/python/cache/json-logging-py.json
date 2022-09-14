@@ -1,0 +1,7 @@
+{
+  "name": "json-logging-py",
+  "version": "0.2",
+  "modules": [
+    "jsonlogging"
+  ]
+}

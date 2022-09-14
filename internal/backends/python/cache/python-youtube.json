@@ -1,0 +1,30 @@
+{
+  "name": "python-youtube",
+  "version": "0.8.2",
+  "requires_dist": [
+    "requests",
+    "requests-oauthlib",
+    "isodate",
+    "dataclasses-json"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dataclasses_json",
+    "idna",
+    "isodate",
+    "marshmallow",
+    "marshmallow_enum",
+    "mypy_extensions",
+    "oauthlib",
+    "packaging",
+    "pyparsing",
+    "pyyoutube",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "typing_inspect",
+    "urllib3"
+  ]
+}

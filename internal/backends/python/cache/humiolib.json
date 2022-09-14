@@ -1,0 +1,34 @@
+{
+  "name": "humiolib",
+  "version": "0.2.4",
+  "requires_dist": [
+    "requests",
+    "pytest",
+    "vcrpy"
+  ],
+  "modules": [
+    "_pytest",
+    "_yaml",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "humiolib",
+    "idna",
+    "iniconfig",
+    "multidict",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "requests",
+    "six",
+    "tomli",
+    "urllib3",
+    "vcr",
+    "wrapt",
+    "yaml",
+    "yarl"
+  ]
+}

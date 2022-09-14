@@ -1,0 +1,26 @@
+{
+  "name": "cloudfoundry-client",
+  "version": "1.30.0",
+  "modules": [
+    "_yaml",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "cloudfoundry_client",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "oauth2_client",
+    "polling2",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket",
+    "yaml",
+    "yarl"
+  ]
+}

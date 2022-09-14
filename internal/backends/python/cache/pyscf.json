@@ -1,0 +1,43 @@
+{
+  "name": "pyscf",
+  "version": "2.1.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "h5py",
+    "pyberny",
+    "geometric",
+    "pyscf-qsdopt",
+    "pyscf-dftd3",
+    "pyscf-doci",
+    "pyscf-icmpspt",
+    "pyscf-properties",
+    "pyscf-semiempirical",
+    "pyscf-shciscf",
+    "cppe",
+    "pyqmc",
+    "mcfun",
+    "pyscf-cornell-shci",
+    "cppe",
+    "pyscf-dftd3",
+    "pyscf-doci",
+    "pyscf-fciqmc",
+    "pyberny",
+    "geometric",
+    "pyscf-qsdopt",
+    "pyscf-icmpspt",
+    "mcfun",
+    "pyscf-nao",
+    "pyscf-properties",
+    "pyqmc",
+    "pyscf-semiempirical",
+    "pyscf-shciscf",
+    "pyscf-tblis"
+  ],
+  "modules": [
+    "h5py",
+    "numpy",
+    "pyscf",
+    "scipy"
+  ]
+}

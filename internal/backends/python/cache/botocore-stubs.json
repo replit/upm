@@ -1,0 +1,7 @@
+{
+  "name": "botocore-stubs",
+  "version": "1.27.71",
+  "requires_dist": [
+    "types-awscrt"
+  ]
+}

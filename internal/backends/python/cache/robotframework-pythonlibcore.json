@@ -1,0 +1,7 @@
+{
+  "name": "robotframework-pythonlibcore",
+  "version": "3.0.0",
+  "modules": [
+    "robotlibcore"
+  ]
+}

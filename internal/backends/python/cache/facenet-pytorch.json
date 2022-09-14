@@ -1,0 +1,25 @@
+{
+  "name": "facenet-pytorch",
+  "version": "2.5.2",
+  "requires_dist": [
+    "numpy",
+    "requests",
+    "torchvision",
+    "pillow"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "facenet_pytorch",
+    "idna",
+    "numpy",
+    "requests",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

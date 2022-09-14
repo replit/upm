@@ -1,0 +1,21 @@
+{
+  "name": "gotrue",
+  "version": "0.5.4",
+  "requires_dist": [
+    "httpx",
+    "pydantic"
+  ],
+  "modules": [
+    "anyio",
+    "certifi",
+    "gotrue",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "pydantic",
+    "rfc3986",
+    "sniffio",
+    "typing_extensions"
+  ]
+}

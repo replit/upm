@@ -1,0 +1,7 @@
+{
+  "name": "django-cursor-pagination",
+  "version": "0.2.0",
+  "modules": [
+    "cursor_pagination"
+  ]
+}

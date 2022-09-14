@@ -1,0 +1,21 @@
+{
+  "name": "hatchling",
+  "version": "1.9.0",
+  "requires_dist": [
+    "editables",
+    "importlib-metadata",
+    "packaging",
+    "pathspec",
+    "pluggy",
+    "tomli"
+  ],
+  "modules": [
+    "editables",
+    "hatchling",
+    "packaging",
+    "pathspec",
+    "pluggy",
+    "pyparsing",
+    "tomli"
+  ]
+}

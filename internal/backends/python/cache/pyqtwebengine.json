@@ -1,0 +1,12 @@
+{
+  "name": "PyQtWebEngine",
+  "version": "5.15.6",
+  "requires_dist": [
+    "PyQt5-sip",
+    "PyQtWebEngine-Qt5",
+    "PyQt5"
+  ],
+  "modules": [
+    "PyQt5"
+  ]
+}

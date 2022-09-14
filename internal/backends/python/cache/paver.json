@@ -1,0 +1,11 @@
+{
+  "name": "Paver",
+  "version": "1.3.4",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "paver",
+    "six"
+  ]
+}

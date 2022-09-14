@@ -1,0 +1,32 @@
+{
+  "name": "cornac",
+  "version": "1.14.2",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "tqdm",
+    "powerlaw",
+    "pytest",
+    "pytest-pep8",
+    "pytest-xdist",
+    "pytest-cov"
+  ],
+  "modules": [
+    "PIL",
+    "cornac",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "mpmath",
+    "numpy",
+    "packaging",
+    "powerlaw",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six",
+    "tqdm"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "mkdocs-literate-nav",
+  "version": "0.4.1",
+  "requires_dist": [
+    "mkdocs",
+    "dataclasses"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_literate_nav",
+    "packaging",
+    "pyparsing",
+    "six",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

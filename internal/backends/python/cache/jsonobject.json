@@ -1,0 +1,11 @@
+{
+  "name": "jsonobject",
+  "version": "2.0.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "jsonobject",
+    "six"
+  ]
+}

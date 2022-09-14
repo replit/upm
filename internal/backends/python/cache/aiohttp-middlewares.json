@@ -1,0 +1,22 @@
+{
+  "name": "aiohttp-middlewares",
+  "version": "2.1.0",
+  "requires_dist": [
+    "aiohttp",
+    "async-timeout",
+    "yarl"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiohttp_middlewares",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

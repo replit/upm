@@ -1,0 +1,7 @@
+{
+  "name": "chromedriver-binary-auto",
+  "version": "0.2.0",
+  "modules": [
+    "chromedriver_binary"
+  ]
+}

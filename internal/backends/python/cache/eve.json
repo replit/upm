@@ -1,0 +1,42 @@
+{
+  "name": "Eve",
+  "version": "2.0.1",
+  "requires_dist": [
+    "cerberus",
+    "events",
+    "flask",
+    "pymongo",
+    "simplejson",
+    "redis",
+    "testfixtures",
+    "pytest",
+    "tox",
+    "sphinx",
+    "alabaster",
+    "doc8",
+    "sphinx",
+    "alabaster",
+    "doc8",
+    "redis",
+    "testfixtures",
+    "pytest",
+    "tox"
+  ],
+  "modules": [
+    "bson",
+    "cerberus",
+    "click",
+    "eve",
+    "events",
+    "flask",
+    "gridfs",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pymongo",
+    "simplejson",
+    "werkzeug",
+    "zipp"
+  ]
+}

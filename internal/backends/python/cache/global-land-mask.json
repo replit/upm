@@ -1,0 +1,7 @@
+{
+  "name": "global-land-mask",
+  "version": "1.0.0",
+  "modules": [
+    "global_land_mask"
+  ]
+}

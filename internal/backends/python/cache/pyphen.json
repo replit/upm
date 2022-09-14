@@ -1,0 +1,18 @@
+{
+  "name": "pyphen",
+  "version": "0.13.0",
+  "requires_dist": [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "pytest",
+    "pytest-xdist",
+    "pytest-flake8",
+    "pytest-isort",
+    "pytest-cov",
+    "coverage",
+    "flake8"
+  ],
+  "modules": [
+    "pyphen"
+  ]
+}

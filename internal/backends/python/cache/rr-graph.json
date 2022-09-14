@@ -1,0 +1,18 @@
+{
+  "name": "rr-graph",
+  "version": "0.0.1.post22",
+  "requires_dist": [
+    "progressbar2",
+    "simplejson",
+    "pycapnp",
+    "lxml"
+  ],
+  "modules": [
+    "capnp",
+    "lxml",
+    "progressbar",
+    "python_utils",
+    "rr_graph",
+    "simplejson"
+  ]
+}

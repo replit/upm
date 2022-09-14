@@ -1,0 +1,7 @@
+{
+  "name": "latex2mathml",
+  "version": "3.74.1",
+  "modules": [
+    "latex2mathml"
+  ]
+}

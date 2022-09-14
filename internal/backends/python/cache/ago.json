@@ -1,0 +1,7 @@
+{
+  "name": "ago",
+  "version": "0.0.95",
+  "modules": [
+    "ago"
+  ]
+}

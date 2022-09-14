@@ -1,0 +1,39 @@
+{
+  "name": "jsonschema",
+  "version": "4.16.0",
+  "requires_dist": [
+    "attrs",
+    "importlib-metadata",
+    "importlib-resources",
+    "pkgutil-resolve-name",
+    "pyrsistent",
+    "typing-extensions",
+    "fqdn",
+    "idna",
+    "isoduration",
+    "jsonpointer",
+    "rfc3339-validator",
+    "rfc3987",
+    "uri-template",
+    "webcolors",
+    "fqdn",
+    "idna",
+    "isoduration",
+    "jsonpointer",
+    "rfc3339-validator",
+    "rfc3986-validator",
+    "uri-template",
+    "webcolors"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "zipp"
+  ]
+}

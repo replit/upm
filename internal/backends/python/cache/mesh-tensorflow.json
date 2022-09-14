@@ -1,0 +1,25 @@
+{
+  "name": "mesh-tensorflow",
+  "version": "0.1.21",
+  "requires_dist": [
+    "absl-py",
+    "future",
+    "gin-config",
+    "six",
+    "ortools",
+    "tensorflow",
+    "tensorflow-probability",
+    "tensorflow-datasets",
+    "scipy"
+  ],
+  "modules": [
+    "absl",
+    "future",
+    "gin",
+    "libfuturize",
+    "libpasteurize",
+    "mesh_tensorflow",
+    "past",
+    "six"
+  ]
+}

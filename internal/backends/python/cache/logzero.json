@@ -1,0 +1,10 @@
+{
+  "name": "logzero",
+  "version": "1.7.0",
+  "requires_dist": [
+    "colorama"
+  ],
+  "modules": [
+    "logzero"
+  ]
+}

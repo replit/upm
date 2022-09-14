@@ -1,0 +1,41 @@
+{
+  "name": "testcontainers",
+  "version": "3.6.1",
+  "requires_dist": [
+    "docker",
+    "wrapt",
+    "deprecation",
+    "python-arango",
+    "clickhouse-driver",
+    "docker-compose",
+    "google-cloud-pubsub",
+    "kafka-python",
+    "python-keycloak",
+    "pymongo",
+    "pymssql",
+    "sqlalchemy",
+    "pymysql",
+    "neo4j",
+    "sqlalchemy",
+    "cx-Oracle",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "pika",
+    "redis",
+    "selenium"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecation",
+    "docker",
+    "idna",
+    "packaging",
+    "pyparsing",
+    "requests",
+    "testcontainers",
+    "urllib3",
+    "websocket",
+    "wrapt"
+  ]
+}

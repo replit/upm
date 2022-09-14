@@ -1,0 +1,11 @@
+{
+  "name": "pyphonetics",
+  "version": "0.5.3",
+  "requires_dist": [
+    "unidecode"
+  ],
+  "modules": [
+    "pyphonetics",
+    "unidecode"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "formulaic",
+  "version": "0.5.1",
+  "requires_dist": [
+    "astor",
+    "cached-property",
+    "graphlib-backport",
+    "interface-meta",
+    "numpy",
+    "pandas",
+    "scipy",
+    "typing-extensions",
+    "wrapt",
+    "pyarrow",
+    "sympy"
+  ],
+  "modules": [
+    "astor",
+    "dateutil",
+    "formulaic",
+    "graphlib",
+    "interface_meta",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

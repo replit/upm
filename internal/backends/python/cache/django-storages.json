@@ -1,0 +1,20 @@
+{
+  "name": "django-storages",
+  "version": "1.13.1",
+  "requires_dist": [
+    "Django",
+    "azure-storage-blob",
+    "boto3",
+    "dropbox",
+    "google-cloud-storage",
+    "apache-libcloud",
+    "paramiko"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse",
+    "storages"
+  ]
+}

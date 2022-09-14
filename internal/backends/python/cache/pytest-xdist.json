@@ -1,0 +1,27 @@
+{
+  "name": "pytest-xdist",
+  "version": "2.5.0",
+  "requires_dist": [
+    "execnet",
+    "pytest",
+    "pytest-forked",
+    "psutil",
+    "setproctitle",
+    "filelock"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "execnet",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_forked",
+    "tomli",
+    "xdist"
+  ]
+}

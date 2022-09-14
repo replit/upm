@@ -1,0 +1,14 @@
+{
+  "name": "pyathenajdbc",
+  "version": "3.0.1",
+  "requires_dist": [
+    "jpype1",
+    "pandas",
+    "sqlalchemy"
+  ],
+  "modules": [
+    "_jpype",
+    "jpype",
+    "pyathenajdbc"
+  ]
+}

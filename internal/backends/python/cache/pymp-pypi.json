@@ -1,0 +1,8 @@
+{
+  "name": "pymp-pypi",
+  "version": "0.5.0",
+  "modules": [
+    "pymp",
+    "tests"
+  ]
+}

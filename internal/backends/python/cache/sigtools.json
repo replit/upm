@@ -1,0 +1,20 @@
+{
+  "name": "sigtools",
+  "version": "4.0.0",
+  "requires_dist": [
+    "attrs",
+    "repeated-test",
+    "sphinx",
+    "mock",
+    "coverage",
+    "repeated-test",
+    "sphinx",
+    "mock",
+    "coverage"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "sigtools"
+  ]
+}

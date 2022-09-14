@@ -1,0 +1,17 @@
+{
+  "name": "mandrill",
+  "version": "1.0.60",
+  "requires_dist": [
+    "requests",
+    "docopt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "mandrill",
+    "requests",
+    "urllib3"
+  ]
+}

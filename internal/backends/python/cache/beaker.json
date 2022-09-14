@@ -1,0 +1,7 @@
+{
+  "name": "Beaker",
+  "version": "1.11.0",
+  "modules": [
+    "beaker"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "bezier",
+  "version": "2021.2.12",
+  "modules": [
+    "bezier",
+    "numpy"
+  ]
+}

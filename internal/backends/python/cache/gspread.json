@@ -1,0 +1,24 @@
+{
+  "name": "gspread",
+  "version": "5.5.0",
+  "requires_dist": [
+    "google-auth",
+    "google-auth-oauthlib"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_oauthlib",
+    "gspread",
+    "idna",
+    "oauthlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

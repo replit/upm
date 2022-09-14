@@ -1,0 +1,14 @@
+{
+  "name": "geolib",
+  "version": "1.0.7",
+  "requires_dist": [
+    "future"
+  ],
+  "modules": [
+    "future",
+    "geolib",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

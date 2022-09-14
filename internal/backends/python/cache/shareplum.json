@@ -1,0 +1,26 @@
+{
+  "name": "SharePlum",
+  "version": "0.5.1",
+  "requires_dist": [
+    "lxml",
+    "requests",
+    "requests-ntlm",
+    "requests-toolbelt"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "lxml",
+    "ntlm_auth",
+    "pycparser",
+    "requests",
+    "requests_ntlm",
+    "requests_toolbelt",
+    "shareplum",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "aiocontextvars",
+  "version": "0.2.2",
+  "requires_dist": [
+    "contextvars"
+  ],
+  "modules": [
+    "aiocontextvars"
+  ]
+}

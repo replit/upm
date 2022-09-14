@@ -1,0 +1,22 @@
+{
+  "name": "contours",
+  "version": "0.0.2",
+  "modules": [
+    "PIL",
+    "contours",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "future",
+    "kiwisolver",
+    "libfuturize",
+    "libpasteurize",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "past",
+    "pylab",
+    "pyparsing",
+    "six"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "djangorestframework-gis",
+  "version": "1.0",
+  "requires_dist": [
+    "djangorestframework"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "rest_framework_gis",
+    "sqlparse"
+  ]
+}

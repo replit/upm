@@ -1,0 +1,22 @@
+{
+  "name": "arq",
+  "version": "0.24.0",
+  "requires_dist": [
+    "click",
+    "redis",
+    "typing-extensions",
+    "watchfiles"
+  ],
+  "modules": [
+    "arq",
+    "async_timeout",
+    "click",
+    "deprecated",
+    "hiredis",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pyte",
+  "version": "0.8.1",
+  "requires_dist": [
+    "wcwidth"
+  ],
+  "modules": [
+    "pyte",
+    "wcwidth"
+  ]
+}

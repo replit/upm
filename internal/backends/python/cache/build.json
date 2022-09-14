@@ -1,0 +1,36 @@
+{
+  "name": "build",
+  "version": "0.8.0",
+  "requires_dist": [
+    "packaging",
+    "pep517",
+    "colorama",
+    "tomli",
+    "importlib-metadata",
+    "furo",
+    "sphinx",
+    "sphinx-argparse-cli",
+    "sphinx-autodoc-typehints",
+    "filelock",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-rerunfailures",
+    "pytest-xdist",
+    "toml",
+    "wheel",
+    "setuptools",
+    "setuptools",
+    "importlib-metadata",
+    "mypy",
+    "typing-extensions",
+    "virtualenv"
+  ],
+  "modules": [
+    "build",
+    "packaging",
+    "pep517",
+    "pyparsing",
+    "tomli"
+  ]
+}

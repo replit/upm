@@ -1,0 +1,10 @@
+{
+  "name": "happybase",
+  "version": "1.2.0",
+  "modules": [
+    "happybase",
+    "ply",
+    "six",
+    "thriftpy2"
+  ]
+}

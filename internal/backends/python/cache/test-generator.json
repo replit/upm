@@ -1,0 +1,11 @@
+{
+  "name": "test-generator",
+  "version": "0.1.2",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "generator",
+    "six"
+  ]
+}

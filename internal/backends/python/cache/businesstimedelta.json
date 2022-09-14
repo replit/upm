@@ -1,0 +1,19 @@
+{
+  "name": "businesstimedelta",
+  "version": "1.0.1",
+  "requires_dist": [
+    "pytz",
+    "holidays"
+  ],
+  "modules": [
+    "businesstimedelta",
+    "convertdate",
+    "dateutil",
+    "hijri_converter",
+    "holidays",
+    "korean_lunar_calendar",
+    "pymeeus",
+    "pytz",
+    "six"
+  ]
+}

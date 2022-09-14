@@ -1,0 +1,15 @@
+{
+  "name": "SoundFile",
+  "version": "0.10.3.post1",
+  "requires_dist": [
+    "cffi",
+    "numpy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_soundfile",
+    "cffi",
+    "pycparser",
+    "soundfile"
+  ]
+}

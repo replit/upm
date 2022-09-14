@@ -1,0 +1,32 @@
+{
+  "name": "virtualenv",
+  "version": "20.16.5",
+  "requires_dist": [
+    "distlib",
+    "filelock",
+    "platformdirs",
+    "importlib-resources",
+    "importlib-metadata",
+    "proselint",
+    "sphinx",
+    "sphinx-argparse",
+    "sphinx-rtd-theme",
+    "towncrier",
+    "coverage",
+    "coverage-enable-subprocess",
+    "flaky",
+    "packaging",
+    "pytest",
+    "pytest-env",
+    "pytest-freezegun",
+    "pytest-mock",
+    "pytest-randomly",
+    "pytest-timeout"
+  ],
+  "modules": [
+    "distlib",
+    "filelock",
+    "platformdirs",
+    "virtualenv"
+  ]
+}

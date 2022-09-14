@@ -1,0 +1,29 @@
+{
+  "name": "azure-iot-device",
+  "version": "2.12.0",
+  "requires_dist": [
+    "urllib3",
+    "deprecation",
+    "paho-mqtt",
+    "requests",
+    "requests-unixsocket",
+    "janus",
+    "PySocks"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecation",
+    "idna",
+    "janus",
+    "packaging",
+    "paho",
+    "pyparsing",
+    "requests",
+    "requests_unixsocket",
+    "socks",
+    "sockshandler",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

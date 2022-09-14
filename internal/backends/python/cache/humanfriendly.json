@@ -1,0 +1,12 @@
+{
+  "name": "humanfriendly",
+  "version": "10.0",
+  "requires_dist": [
+    "monotonic",
+    "pyreadline",
+    "pyreadline3"
+  ],
+  "modules": [
+    "humanfriendly"
+  ]
+}

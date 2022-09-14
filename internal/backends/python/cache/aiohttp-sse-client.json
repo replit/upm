@@ -1,0 +1,23 @@
+{
+  "name": "aiohttp-sse-client",
+  "version": "0.2.1",
+  "requires_dist": [
+    "aiohttp",
+    "attrs",
+    "multidict",
+    "yarl"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiohttp_sse_client",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "yarl"
+  ]
+}

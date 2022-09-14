@@ -1,0 +1,14 @@
+{
+  "name": "django-solo",
+  "version": "2.0.0",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "solo",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "cycler",
+  "version": "0.11.0",
+  "modules": [
+    "cycler"
+  ]
+}

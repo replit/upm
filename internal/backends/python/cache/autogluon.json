@@ -1,0 +1,14 @@
+{
+  "name": "autogluon",
+  "version": "0.5.2",
+  "requires_dist": [
+    "autogluon.core",
+    "autogluon.features",
+    "autogluon.tabular",
+    "autogluon.multimodal",
+    "autogluon.text",
+    "autogluon.vision",
+    "autogluon.timeseries"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/autogluon/bin/python3', '-m', 'pip', 'install', 'autogluon']' returned non-zero exit status 2.\"}"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "python-amazon-sp-api",
+  "version": "0.17.2",
+  "requires_dist": [
+    "requests",
+    "six",
+    "boto3",
+    "cachetools",
+    "pytz",
+    "confuse"
+  ],
+  "modules": [
+    "_yaml",
+    "boto3",
+    "botocore",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "confuse",
+    "dateutil",
+    "idna",
+    "jmespath",
+    "pytz",
+    "requests",
+    "s3transfer",
+    "six",
+    "sp_api",
+    "tests",
+    "urllib3",
+    "yaml"
+  ]
+}

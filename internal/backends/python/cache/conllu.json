@@ -1,0 +1,7 @@
+{
+  "name": "conllu",
+  "version": "4.5.2",
+  "modules": [
+    "conllu"
+  ]
+}

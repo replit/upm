@@ -1,0 +1,8 @@
+{
+  "name": "natural",
+  "version": "0.2.0",
+  "modules": [
+    "natural",
+    "six"
+  ]
+}

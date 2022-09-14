@@ -1,0 +1,13 @@
+{
+  "name": "django-nested-admin",
+  "version": "3.4.0",
+  "requires_dist": [
+    "python-monkey-business",
+    "six"
+  ],
+  "modules": [
+    "monkeybiz",
+    "nested_admin",
+    "six"
+  ]
+}

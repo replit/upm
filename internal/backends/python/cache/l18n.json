@@ -1,0 +1,13 @@
+{
+  "name": "l18n",
+  "version": "2021.3",
+  "requires_dist": [
+    "pytz",
+    "six"
+  ],
+  "modules": [
+    "l18n",
+    "pytz",
+    "six"
+  ]
+}

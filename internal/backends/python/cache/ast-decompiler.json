@@ -1,0 +1,7 @@
+{
+  "name": "ast-decompiler",
+  "version": "0.6.0",
+  "modules": [
+    "ast_decompiler"
+  ]
+}

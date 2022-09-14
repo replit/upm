@@ -1,0 +1,8 @@
+{
+  "name": "patool",
+  "version": "1.12",
+  "modules": [
+    "_patool_configdata",
+    "patoolib"
+  ]
+}

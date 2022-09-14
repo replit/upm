@@ -1,0 +1,33 @@
+{
+  "name": "googleads",
+  "version": "33.0.0",
+  "modules": [
+    "_yaml",
+    "attr",
+    "attrs",
+    "cached_property",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_oauthlib",
+    "googleads",
+    "idna",
+    "isodate",
+    "lxml",
+    "oauthlib",
+    "platformdirs",
+    "pyasn1",
+    "pyasn1_modules",
+    "pytz",
+    "requests",
+    "requests_file",
+    "requests_oauthlib",
+    "requests_toolbelt",
+    "rsa",
+    "six",
+    "urllib3",
+    "xmltodict",
+    "yaml",
+    "zeep"
+  ]
+}

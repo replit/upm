@@ -1,0 +1,30 @@
+{
+  "name": "pyts",
+  "version": "0.12.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "joblib",
+    "numba",
+    "docutils",
+    "sphinx",
+    "sphinx-gallery",
+    "numpydoc",
+    "matplotlib",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "joblib",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "pyts",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "zipp"
+  ]
+}

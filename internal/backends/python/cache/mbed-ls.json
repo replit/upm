@@ -1,0 +1,35 @@
+{
+  "name": "mbed-ls",
+  "version": "1.8.14",
+  "requires_dist": [
+    "mbed-os-tools",
+    "PrettyTable",
+    "prettytable",
+    "colorlog"
+  ],
+  "modules": [
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "colorama",
+    "fasteners",
+    "future",
+    "idna",
+    "intelhex",
+    "junit_xml",
+    "libfuturize",
+    "libpasteurize",
+    "lockfile",
+    "mbed_lstools",
+    "mbed_os_tools",
+    "past",
+    "prettytable",
+    "requests",
+    "serial",
+    "six",
+    "soupsieve",
+    "urllib3",
+    "wcwidth"
+  ]
+}

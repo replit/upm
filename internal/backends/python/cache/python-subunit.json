@@ -1,0 +1,11 @@
+{
+  "name": "python-subunit",
+  "version": "1.4.0",
+  "modules": [
+    "extras",
+    "fixtures",
+    "pbr",
+    "subunit",
+    "testtools"
+  ]
+}

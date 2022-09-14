@@ -1,0 +1,19 @@
+{
+  "name": "TikTokApi",
+  "version": "5.2.2",
+  "modules": [
+    "TikTokApi",
+    "certifi",
+    "charset_normalizer",
+    "examples",
+    "greenlet",
+    "idna",
+    "playwright",
+    "pyee",
+    "requests",
+    "tests",
+    "typing_extensions",
+    "urllib3",
+    "websockets"
+  ]
+}

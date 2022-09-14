@@ -1,0 +1,15 @@
+{
+  "name": "rake-nltk",
+  "version": "1.0.6",
+  "requires_dist": [
+    "nltk"
+  ],
+  "modules": [
+    "click",
+    "joblib",
+    "nltk",
+    "rake_nltk",
+    "regex",
+    "tqdm"
+  ]
+}

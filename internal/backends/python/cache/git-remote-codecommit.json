@@ -1,0 +1,12 @@
+{
+  "name": "git-remote-codecommit",
+  "version": "1.16",
+  "modules": [
+    "botocore",
+    "dateutil",
+    "git_remote_codecommit",
+    "jmespath",
+    "six",
+    "urllib3"
+  ]
+}

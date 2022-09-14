@@ -1,0 +1,12 @@
+{
+  "name": "dead-bytecode",
+  "version": "0.2.0",
+  "requires_dist": [
+    "aenum",
+    "unittest2",
+    "coverage",
+    "pytest",
+    "pytest-cov"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dead-bytecode/bin/python3', '-m', 'pip', 'install', 'dead-bytecode']' returned non-zero exit status 1.\"}"
+}

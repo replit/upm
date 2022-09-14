@@ -1,0 +1,19 @@
+{
+  "name": "carto",
+  "version": "1.11.3",
+  "modules": [
+    "carto",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyrestcli",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

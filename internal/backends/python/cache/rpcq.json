@@ -1,0 +1,11 @@
+{
+  "name": "rpcq",
+  "version": "3.10.0",
+  "modules": [
+    "_ruamel_yaml",
+    "msgpack",
+    "rapidjson",
+    "rpcq",
+    "zmq"
+  ]
+}

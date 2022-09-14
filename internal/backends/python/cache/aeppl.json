@@ -1,0 +1,27 @@
+{
+  "name": "aeppl",
+  "version": "0.0.35",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "aesara"
+  ],
+  "modules": [
+    "_distutils_hack",
+    "aeppl",
+    "aesara",
+    "bin",
+    "cons",
+    "etuples",
+    "filelock",
+    "kanren",
+    "multipledispatch",
+    "numpy",
+    "scipy",
+    "six",
+    "tlz",
+    "toolz",
+    "typing_extensions",
+    "unification"
+  ]
+}

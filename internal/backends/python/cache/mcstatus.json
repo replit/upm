@@ -1,0 +1,13 @@
+{
+  "name": "mcstatus",
+  "version": "9.4.2",
+  "requires_dist": [
+    "asyncio-dgram",
+    "dnspython"
+  ],
+  "modules": [
+    "asyncio_dgram",
+    "dns",
+    "mcstatus"
+  ]
+}

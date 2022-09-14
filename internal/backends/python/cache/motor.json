@@ -1,0 +1,20 @@
+{
+  "name": "motor",
+  "version": "3.0.0",
+  "requires_dist": [
+    "pymongo",
+    "pymongo",
+    "pymongo",
+    "pymongo",
+    "pymongo",
+    "pymongo",
+    "pymongo",
+    "pymongo"
+  ],
+  "modules": [
+    "bson",
+    "gridfs",
+    "motor",
+    "pymongo"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "drf-nested-routers",
+  "version": "0.93.4",
+  "requires_dist": [
+    "djangorestframework",
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "rest_framework_nested",
+    "sqlparse"
+  ]
+}

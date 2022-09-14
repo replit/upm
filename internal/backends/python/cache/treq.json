@@ -1,0 +1,40 @@
+{
+  "name": "treq",
+  "version": "22.2.0",
+  "requires_dist": [
+    "incremental",
+    "requests",
+    "hyperlink",
+    "Twisted",
+    "attrs",
+    "pep8",
+    "pyflakes",
+    "httpbin",
+    "sphinx"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "automat",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "constantly",
+    "cryptography",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "pyasn1",
+    "pyasn1_modules",
+    "pycparser",
+    "requests",
+    "service_identity",
+    "six",
+    "treq",
+    "twisted",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

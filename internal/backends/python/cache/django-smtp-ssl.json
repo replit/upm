@@ -1,0 +1,7 @@
+{
+  "name": "django-smtp-ssl",
+  "version": "1.0",
+  "modules": [
+    "django_smtp_ssl"
+  ]
+}

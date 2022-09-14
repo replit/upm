@@ -1,0 +1,11 @@
+{
+  "name": "parameterized",
+  "version": "0.8.1",
+  "requires_dist": [
+    "jinja2"
+  ],
+  "modules": [
+    "nose_parameterized",
+    "parameterized"
+  ]
+}

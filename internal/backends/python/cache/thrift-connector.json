@@ -1,0 +1,7 @@
+{
+  "name": "thrift-connector",
+  "version": "0.24",
+  "modules": [
+    "thrift_connector"
+  ]
+}

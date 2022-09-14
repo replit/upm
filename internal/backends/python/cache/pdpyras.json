@@ -1,0 +1,12 @@
+{
+  "name": "pdpyras",
+  "version": "4.5.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pdpyras",
+    "requests",
+    "urllib3"
+  ]
+}

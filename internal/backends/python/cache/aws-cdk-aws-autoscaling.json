@@ -1,0 +1,32 @@
+{
+  "name": "aws-cdk.aws-autoscaling",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-autoscaling-common",
+    "aws-cdk.aws-cloudwatch",
+    "aws-cdk.aws-ec2",
+    "aws-cdk.aws-elasticloadbalancing",
+    "aws-cdk.aws-elasticloadbalancingv2",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-sns",
+    "aws-cdk.core",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

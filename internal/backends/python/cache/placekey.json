@@ -1,0 +1,23 @@
+{
+  "name": "placekey",
+  "version": "0.0.11",
+  "requires_dist": [
+    "h3",
+    "shapely",
+    "requests",
+    "ratelimit",
+    "backoff"
+  ],
+  "modules": [
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "h3",
+    "idna",
+    "placekey",
+    "ratelimit",
+    "requests",
+    "shapely",
+    "urllib3"
+  ]
+}

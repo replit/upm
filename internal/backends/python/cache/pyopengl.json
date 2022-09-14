@@ -1,0 +1,7 @@
+{
+  "name": "PyOpenGL",
+  "version": "3.1.6",
+  "modules": [
+    "OpenGL"
+  ]
+}

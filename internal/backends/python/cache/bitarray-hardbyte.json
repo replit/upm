@@ -1,0 +1,7 @@
+{
+  "name": "bitarray-hardbyte",
+  "version": "2.3.8",
+  "modules": [
+    "bitarray"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "watermark",
+  "version": "2.3.1",
+  "requires_dist": [
+    "ipython",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "IPython",
+    "asttokens",
+    "backcall",
+    "decorator",
+    "executing",
+    "jedi",
+    "matplotlib_inline",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pygments",
+    "six",
+    "stack_data",
+    "traitlets",
+    "watermark",
+    "wcwidth"
+  ]
+}

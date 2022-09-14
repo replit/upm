@@ -1,0 +1,7 @@
+{
+  "name": "datadiff",
+  "version": "2.0.0",
+  "modules": [
+    "datadiff"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "ccxt",
+  "version": "1.93.43",
+  "requires_dist": [
+    "setuptools",
+    "certifi",
+    "requests",
+    "cryptography",
+    "aiohttp",
+    "aiodns",
+    "yarl",
+    "Sphinx",
+    "mistune",
+    "m2r2",
+    "sphinx-rtd-theme",
+    "readthedocs-sphinx-search",
+    "flake8"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_distutils_hack",
+    "aiodns",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "ccxt",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "pycares",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

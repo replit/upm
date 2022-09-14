@@ -1,0 +1,7 @@
+{
+  "name": "bitarray",
+  "version": "2.6.0",
+  "modules": [
+    "bitarray"
+  ]
+}

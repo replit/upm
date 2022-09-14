@@ -1,0 +1,7 @@
+{
+  "name": "mdutils",
+  "version": "1.4.0",
+  "modules": [
+    "mdutils"
+  ]
+}

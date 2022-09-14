@@ -1,0 +1,16 @@
+{
+  "name": "gcovr",
+  "version": "5.2",
+  "requires_dist": [
+    "jinja2",
+    "lxml",
+    "pygments"
+  ],
+  "modules": [
+    "gcovr",
+    "jinja2",
+    "lxml",
+    "markupsafe",
+    "pygments"
+  ]
+}

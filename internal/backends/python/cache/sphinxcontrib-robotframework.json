@@ -1,0 +1,36 @@
+{
+  "name": "sphinxcontrib-robotframework",
+  "version": "0.8.1",
+  "requires_dist": [
+    "setuptools",
+    "Pygments",
+    "Sphinx",
+    "robotframework",
+    "robotframework",
+    "robotframework-selenium2library",
+    "robotframework-selenium2screenshots"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "robot",
+    "snowballstemmer",
+    "sphinx",
+    "sphinxcontrib_robotframework",
+    "urllib3",
+    "zipp"
+  ]
+}

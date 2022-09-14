@@ -1,0 +1,36 @@
+{
+  "name": "aws-cdk.aws-route53-targets",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-apigateway",
+    "aws-cdk.aws-cloudfront",
+    "aws-cdk.aws-cognito",
+    "aws-cdk.aws-ec2",
+    "aws-cdk.aws-elasticloadbalancing",
+    "aws-cdk.aws-elasticloadbalancingv2",
+    "aws-cdk.aws-globalaccelerator",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-route53",
+    "aws-cdk.aws-s3",
+    "aws-cdk.core",
+    "aws-cdk.region-info",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

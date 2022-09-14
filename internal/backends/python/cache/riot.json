@@ -1,0 +1,25 @@
+{
+  "name": "riot",
+  "version": "0.12.2",
+  "requires_dist": [
+    "click",
+    "virtualenv",
+    "rich",
+    "pexpect",
+    "dataclasses"
+  ],
+  "modules": [
+    "click",
+    "commonmark",
+    "distlib",
+    "filelock",
+    "pexpect",
+    "platformdirs",
+    "ptyprocess",
+    "pygments",
+    "rich",
+    "riot",
+    "typing_extensions",
+    "virtualenv"
+  ]
+}

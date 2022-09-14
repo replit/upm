@@ -1,0 +1,11 @@
+{
+  "name": "woothee",
+  "version": "1.10.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "six",
+    "woothee"
+  ]
+}

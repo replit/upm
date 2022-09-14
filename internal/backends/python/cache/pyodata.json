@@ -1,0 +1,12 @@
+{
+  "name": "pyodata",
+  "version": "1.10.0",
+  "requires_dist": [
+    "lxml"
+  ],
+  "modules": [
+    "lxml",
+    "pyodata",
+    "tests"
+  ]
+}

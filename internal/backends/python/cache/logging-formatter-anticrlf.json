@@ -1,0 +1,7 @@
+{
+  "name": "logging-formatter-anticrlf",
+  "version": "1.2",
+  "modules": [
+    "anticrlf"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "traceml",
+  "version": "1.0.3",
+  "requires_dist": [
+    "scikit-learn",
+    "Pillow",
+    "matplotlib",
+    "moviepy",
+    "plotly",
+    "bokeh",
+    "pandas",
+    "altair",
+    "pandas",
+    "ipython",
+    "scikit-learn",
+    "altair",
+    "matplotlib",
+    "moviepy",
+    "plotly",
+    "Pillow",
+    "bokeh",
+    "aiofiles",
+    "polyaxon"
+  ],
+  "modules": [
+    "traceml"
+  ]
+}

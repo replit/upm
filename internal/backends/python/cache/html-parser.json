@@ -1,0 +1,7 @@
+{
+  "name": "html-parser",
+  "version": "0.2",
+  "modules": [
+    "ply"
+  ]
+}

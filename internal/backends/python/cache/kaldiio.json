@@ -1,0 +1,8 @@
+{
+  "name": "kaldiio",
+  "version": "2.17.2",
+  "modules": [
+    "kaldiio",
+    "numpy"
+  ]
+}

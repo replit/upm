@@ -1,0 +1,37 @@
+{
+  "name": "dython",
+  "version": "0.7.1.post4",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "seaborn",
+    "scipy",
+    "matplotlib",
+    "scikit-learn",
+    "scikit-plot",
+    "pytest",
+    "hypothesis"
+  ],
+  "modules": [
+    "PIL",
+    "cycler",
+    "dateutil",
+    "dython",
+    "fontTools",
+    "joblib",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scikitplot",
+    "scipy",
+    "seaborn",
+    "six",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "keen",
+  "version": "0.7.0",
+  "modules": [
+    "Crypto",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "keen",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

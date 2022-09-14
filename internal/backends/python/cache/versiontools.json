@@ -1,0 +1,7 @@
+{
+  "name": "versiontools",
+  "version": "1.9.1",
+  "modules": [
+    "versiontools"
+  ]
+}

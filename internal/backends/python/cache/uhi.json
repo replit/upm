@@ -1,0 +1,18 @@
+{
+  "name": "uhi",
+  "version": "0.3.1",
+  "requires_dist": [
+    "numpy",
+    "typing-extensions",
+    "sphinx",
+    "sphinx-book-theme",
+    "sphinx-copybutton",
+    "pytest",
+    "importlib-metadata",
+    "boost-histogram"
+  ],
+  "modules": [
+    "numpy",
+    "uhi"
+  ]
+}

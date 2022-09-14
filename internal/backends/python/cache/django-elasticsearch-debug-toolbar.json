@@ -1,0 +1,8 @@
+{
+  "name": "django-elasticsearch-debug-toolbar",
+  "version": "3.0.2",
+  "modules": [
+    "elastic_panel",
+    "tests"
+  ]
+}

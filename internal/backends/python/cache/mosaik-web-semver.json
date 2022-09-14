@@ -1,0 +1,15 @@
+{
+  "name": "mosaik.Web-SemVer",
+  "version": "0.2.3rc20220913000352",
+  "requires_dist": [
+    "arrow",
+    "networkx"
+  ],
+  "modules": [
+    "arrow",
+    "dateutil",
+    "mosaik_web",
+    "networkx",
+    "six"
+  ]
+}

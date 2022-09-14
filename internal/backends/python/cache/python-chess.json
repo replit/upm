@@ -1,0 +1,10 @@
+{
+  "name": "python-chess",
+  "version": "1.999",
+  "requires_dist": [
+    "chess"
+  ],
+  "modules": [
+    "chess"
+  ]
+}

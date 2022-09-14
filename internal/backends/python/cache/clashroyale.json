@@ -1,0 +1,22 @@
+{
+  "name": "clashroyale",
+  "version": "4.0.1",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_generator",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "box",
+    "certifi",
+    "charset_normalizer",
+    "clashroyale",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "requests",
+    "urllib3",
+    "yarl"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pysimdjson",
+  "version": "5.0.2",
+  "requires_dist": [
+    "sphinx",
+    "furo",
+    "ghp-import",
+    "bumpversion",
+    "pytest",
+    "pytest-benchmark",
+    "flake8",
+    "coverage"
+  ],
+  "modules": [
+    "csimdjson",
+    "simdjson"
+  ]
+}

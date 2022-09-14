@@ -1,0 +1,41 @@
+{
+  "name": "attrs",
+  "version": "22.1.0",
+  "requires_dist": [
+    "coverage",
+    "hypothesis",
+    "pympler",
+    "pytest",
+    "mypy",
+    "pytest-mypy-plugins",
+    "zope.interface",
+    "furo",
+    "sphinx",
+    "sphinx-notfound-page",
+    "pre-commit",
+    "cloudpickle",
+    "furo",
+    "sphinx",
+    "zope.interface",
+    "sphinx-notfound-page",
+    "coverage",
+    "hypothesis",
+    "pympler",
+    "pytest",
+    "mypy",
+    "pytest-mypy-plugins",
+    "zope.interface",
+    "cloudpickle",
+    "coverage",
+    "hypothesis",
+    "pympler",
+    "pytest",
+    "mypy",
+    "pytest-mypy-plugins",
+    "cloudpickle"
+  ],
+  "modules": [
+    "attr",
+    "attrs"
+  ]
+}

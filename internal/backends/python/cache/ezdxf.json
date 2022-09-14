@@ -1,0 +1,9 @@
+{
+  "name": "ezdxf",
+  "version": "0.18.1",
+  "modules": [
+    "ezdxf",
+    "pyparsing",
+    "typing_extensions"
+  ]
+}

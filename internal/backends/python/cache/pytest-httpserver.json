@@ -1,0 +1,12 @@
+{
+  "name": "pytest-httpserver",
+  "version": "1.0.6",
+  "requires_dist": [
+    "Werkzeug"
+  ],
+  "modules": [
+    "markupsafe",
+    "pytest_httpserver",
+    "werkzeug"
+  ]
+}

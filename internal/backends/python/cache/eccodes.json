@@ -1,0 +1,15 @@
+{
+  "name": "eccodes",
+  "version": "1.5.0",
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "cffi",
+    "eccodes",
+    "findlibs",
+    "gribapi",
+    "numpy",
+    "pycparser"
+  ]
+}

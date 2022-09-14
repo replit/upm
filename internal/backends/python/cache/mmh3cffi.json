@@ -1,0 +1,14 @@
+{
+  "name": "mmh3cffi",
+  "version": "0.2.1",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "mmh3cffi",
+    "past",
+    "pycparser"
+  ]
+}

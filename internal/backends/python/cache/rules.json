@@ -1,0 +1,7 @@
+{
+  "name": "rules",
+  "version": "3.3",
+  "modules": [
+    "rules"
+  ]
+}

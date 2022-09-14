@@ -1,0 +1,12 @@
+{
+  "name": "requests-aws",
+  "version": "0.1.8",
+  "modules": [
+    "awsauth",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "vokativ",
+  "version": "1.2.1",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "six",
+    "vokativ"
+  ]
+}

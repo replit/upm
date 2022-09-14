@@ -1,0 +1,14 @@
+{
+  "name": "haralyzer",
+  "version": "2.1.0",
+  "requires_dist": [
+    "cached-property",
+    "python-dateutil"
+  ],
+  "modules": [
+    "cached_property",
+    "dateutil",
+    "haralyzer",
+    "six"
+  ]
+}

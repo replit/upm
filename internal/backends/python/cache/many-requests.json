@@ -1,0 +1,39 @@
+{
+  "name": "many-requests",
+  "version": "0.2.1",
+  "requires_dist": [
+    "trio",
+    "asks",
+    "tqdm",
+    "pytest",
+    "wheel",
+    "setuptools",
+    "twine",
+    "sphinx",
+    "codecov",
+    "recommonmark",
+    "sphinx-rtd-theme",
+    "bump2version",
+    "aiohttp",
+    "requests",
+    "aiohttp-basicauth-middleware",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "anyio",
+    "asks",
+    "async_generator",
+    "attr",
+    "attrs",
+    "h11",
+    "idna",
+    "many_requests",
+    "outcome",
+    "sniffio",
+    "sortedcontainers",
+    "tests",
+    "tqdm",
+    "trio"
+  ]
+}

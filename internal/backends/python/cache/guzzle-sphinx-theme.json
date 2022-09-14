@@ -1,0 +1,26 @@
+{
+  "name": "guzzle_sphinx_theme",
+  "version": "0.7.11",
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "guzzle_sphinx_theme",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

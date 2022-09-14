@@ -1,0 +1,20 @@
+{
+  "name": "logbeam",
+  "version": "1.0.1",
+  "modules": [
+    "awscli",
+    "boto3",
+    "botocore",
+    "colorama",
+    "cwlogs",
+    "dateutil",
+    "docutils",
+    "jmespath",
+    "logbeam",
+    "pyasn1",
+    "rsa",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

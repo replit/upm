@@ -1,0 +1,9 @@
+{
+  "name": "python-louvain",
+  "version": "0.16",
+  "modules": [
+    "community",
+    "networkx",
+    "numpy"
+  ]
+}

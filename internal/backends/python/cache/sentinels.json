@@ -1,0 +1,7 @@
+{
+  "name": "sentinels",
+  "version": "1.0.0",
+  "modules": [
+    "sentinels"
+  ]
+}

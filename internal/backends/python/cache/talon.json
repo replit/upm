@@ -1,0 +1,20 @@
+{
+  "name": "talon",
+  "version": "1.4.4",
+  "modules": [
+    "cchardet",
+    "chardet",
+    "cssselect",
+    "html5lib",
+    "joblib",
+    "lxml",
+    "numpy",
+    "regex",
+    "scipy",
+    "six",
+    "sklearn",
+    "talon",
+    "threadpoolctl",
+    "webencodings"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "TM1py",
+  "version": "1.9.1",
+  "modules": [
+    "TM1py",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "ijson",
+    "mdxpy",
+    "pytz",
+    "requests",
+    "urllib3"
+  ]
+}

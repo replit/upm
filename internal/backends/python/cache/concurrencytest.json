@@ -1,0 +1,12 @@
+{
+  "name": "concurrencytest",
+  "version": "0.1.2",
+  "modules": [
+    "concurrencytest",
+    "extras",
+    "fixtures",
+    "pbr",
+    "subunit",
+    "testtools"
+  ]
+}

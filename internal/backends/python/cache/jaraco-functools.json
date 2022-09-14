@@ -1,0 +1,22 @@
+{
+  "name": "jaraco.functools",
+  "version": "3.5.1",
+  "requires_dist": [
+    "more-itertools",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "jaraco.tidelift",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "jaraco.classes",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "more_itertools"
+  ]
+}

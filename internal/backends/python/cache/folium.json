@@ -1,0 +1,16 @@
+{
+  "name": "folium",
+  "version": "0.12.1.post1",
+  "modules": [
+    "branca",
+    "certifi",
+    "charset_normalizer",
+    "folium",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "numpy",
+    "requests",
+    "urllib3"
+  ]
+}

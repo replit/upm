@@ -1,0 +1,7 @@
+{
+  "name": "zxing",
+  "version": "0.14",
+  "modules": [
+    "zxing"
+  ]
+}

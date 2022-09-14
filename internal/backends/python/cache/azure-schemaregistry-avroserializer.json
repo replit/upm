@@ -1,0 +1,23 @@
+{
+  "name": "azure-schemaregistry-avroserializer",
+  "version": "1.0.0b4",
+  "requires_dist": [
+    "azure-schemaregistry",
+    "avro",
+    "backports.functools-lru-cache"
+  ],
+  "modules": [
+    "avro",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

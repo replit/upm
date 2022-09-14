@@ -1,0 +1,13 @@
+{
+  "name": "watchgod",
+  "version": "0.8.2",
+  "requires_dist": [
+    "anyio"
+  ],
+  "modules": [
+    "anyio",
+    "idna",
+    "sniffio",
+    "watchgod"
+  ]
+}

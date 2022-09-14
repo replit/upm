@@ -1,0 +1,7 @@
+{
+  "name": "flashtext",
+  "version": "2.7",
+  "modules": [
+    "flashtext"
+  ]
+}

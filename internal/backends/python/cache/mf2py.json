@@ -1,0 +1,17 @@
+{
+  "name": "mf2py",
+  "version": "1.1.2",
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "html5lib",
+    "idna",
+    "mf2py",
+    "requests",
+    "six",
+    "soupsieve",
+    "urllib3",
+    "webencodings"
+  ]
+}

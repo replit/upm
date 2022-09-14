@@ -1,0 +1,17 @@
+{
+  "name": "pandas-vet",
+  "version": "0.2.3",
+  "requires_dist": [
+    "flake8",
+    "attrs"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "flake8",
+    "mccabe",
+    "pandas_vet",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

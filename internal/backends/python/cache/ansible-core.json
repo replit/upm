@@ -1,0 +1,26 @@
+{
+  "name": "ansible-core",
+  "version": "2.13.4",
+  "requires_dist": [
+    "jinja2",
+    "PyYAML",
+    "cryptography",
+    "packaging",
+    "resolvelib"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "ansible",
+    "ansible_test",
+    "cffi",
+    "cryptography",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pycparser",
+    "pyparsing",
+    "resolvelib",
+    "yaml"
+  ]
+}

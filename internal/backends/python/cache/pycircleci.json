@@ -1,0 +1,18 @@
+{
+  "name": "pycircleci",
+  "version": "0.5.2",
+  "requires_dist": [
+    "requests",
+    "requests-toolbelt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pycircleci",
+    "requests",
+    "requests_toolbelt",
+    "tests",
+    "urllib3"
+  ]
+}

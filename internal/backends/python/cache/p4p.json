@@ -1,0 +1,21 @@
+{
+  "name": "p4p",
+  "version": "4.1.1",
+  "requires_dist": [
+    "epicscorelibs",
+    "pvxslibs",
+    "numpy",
+    "nose2",
+    "ply",
+    "qtpy"
+  ],
+  "modules": [
+    "epicscorelibs",
+    "nose2",
+    "numpy",
+    "p4p",
+    "ply",
+    "pvxslibs",
+    "setuptools_dso"
+  ]
+}

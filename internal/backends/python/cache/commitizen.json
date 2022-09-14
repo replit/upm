@@ -1,0 +1,36 @@
+{
+  "name": "commitizen",
+  "version": "2.32.5",
+  "requires_dist": [
+    "questionary",
+    "decli",
+    "colorama",
+    "termcolor",
+    "packaging",
+    "tomlkit",
+    "jinja2",
+    "pyyaml",
+    "argcomplete",
+    "typing-extensions",
+    "charset-normalizer"
+  ],
+  "modules": [
+    "_yaml",
+    "argcomplete",
+    "charset_normalizer",
+    "colorama",
+    "commitizen",
+    "decli",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "prompt_toolkit",
+    "pyparsing",
+    "questionary",
+    "termcolor",
+    "tomlkit",
+    "typing_extensions",
+    "wcwidth",
+    "yaml"
+  ]
+}

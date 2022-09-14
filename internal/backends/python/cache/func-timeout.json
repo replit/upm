@@ -1,0 +1,7 @@
+{
+  "name": "func-timeout",
+  "version": "4.3.5",
+  "modules": [
+    "func_timeout"
+  ]
+}

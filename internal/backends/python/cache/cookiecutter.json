@@ -1,0 +1,34 @@
+{
+  "name": "cookiecutter",
+  "version": "2.1.1",
+  "requires_dist": [
+    "binaryornot",
+    "Jinja2",
+    "click",
+    "pyyaml",
+    "jinja2-time",
+    "python-slugify",
+    "requests"
+  ],
+  "modules": [
+    "_yaml",
+    "arrow",
+    "binaryornot",
+    "certifi",
+    "chardet",
+    "charset_normalizer",
+    "click",
+    "cookiecutter",
+    "dateutil",
+    "idna",
+    "jinja2",
+    "jinja2_time",
+    "markupsafe",
+    "requests",
+    "six",
+    "slugify",
+    "text_unidecode",
+    "urllib3",
+    "yaml"
+  ]
+}

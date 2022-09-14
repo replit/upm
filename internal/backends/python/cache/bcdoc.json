@@ -1,0 +1,9 @@
+{
+  "name": "bcdoc",
+  "version": "0.16.0",
+  "modules": [
+    "bcdoc",
+    "docutils",
+    "six"
+  ]
+}

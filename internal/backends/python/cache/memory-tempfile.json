@@ -1,0 +1,7 @@
+{
+  "name": "memory-tempfile",
+  "version": "2.2.3",
+  "modules": [
+    "memory_tempfile"
+  ]
+}

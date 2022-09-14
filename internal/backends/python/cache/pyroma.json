@@ -1,0 +1,31 @@
+{
+  "name": "pyroma",
+  "version": "4.0",
+  "requires_dist": [
+    "build",
+    "docutils",
+    "pygments",
+    "requests",
+    "setuptools",
+    "wheel",
+    "pytest",
+    "pytest-cov",
+    "setuptools"
+  ],
+  "modules": [
+    "build",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "packaging",
+    "pep517",
+    "pygments",
+    "pyparsing",
+    "pyroma",
+    "requests",
+    "tomli",
+    "urllib3",
+    "wheel"
+  ]
+}

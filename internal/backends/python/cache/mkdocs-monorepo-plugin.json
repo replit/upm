@@ -1,0 +1,30 @@
+{
+  "name": "mkdocs-monorepo-plugin",
+  "version": "1.0.3",
+  "requires_dist": [
+    "mkdocs",
+    "python-slugify"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_monorepo_plugin",
+    "packaging",
+    "pyparsing",
+    "six",
+    "slugify",
+    "text_unidecode",
+    "watchdog",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

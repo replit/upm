@@ -1,0 +1,13 @@
+{
+  "name": "djangorestframework-datatables",
+  "version": "0.7.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "rest_framework_datatables",
+    "sqlparse"
+  ]
+}

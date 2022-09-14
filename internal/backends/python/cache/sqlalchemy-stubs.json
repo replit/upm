@@ -1,0 +1,18 @@
+{
+  "name": "sqlalchemy-stubs",
+  "version": "0.4",
+  "requires_dist": [
+    "mypy",
+    "typing-extensions"
+  ],
+  "modules": [
+    "f4771e8a540c98c8e0df__mypyc",
+    "mypy",
+    "mypy_extensions",
+    "mypyc",
+    "sqlmypy",
+    "sqltyping",
+    "tomli",
+    "typing_extensions"
+  ]
+}

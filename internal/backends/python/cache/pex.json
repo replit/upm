@@ -1,0 +1,10 @@
+{
+  "name": "pex",
+  "version": "2.1.104",
+  "requires_dist": [
+    "subprocess32"
+  ],
+  "modules": [
+    "pex"
+  ]
+}

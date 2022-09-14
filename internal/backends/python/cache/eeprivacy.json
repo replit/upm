@@ -1,0 +1,19 @@
+{
+  "name": "eeprivacy",
+  "version": "0.0.5",
+  "requires_dist": [
+    "click",
+    "pandas",
+    "scipy"
+  ],
+  "modules": [
+    "click",
+    "dateutil",
+    "eeprivacy",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six"
+  ]
+}

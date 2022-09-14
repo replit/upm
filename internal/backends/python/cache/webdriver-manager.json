@@ -1,0 +1,20 @@
+{
+  "name": "webdriver-manager",
+  "version": "3.8.3",
+  "requires_dist": [
+    "requests",
+    "python-dotenv",
+    "tqdm"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dotenv",
+    "idna",
+    "requests",
+    "tests_negative",
+    "tqdm",
+    "urllib3",
+    "webdriver_manager"
+  ]
+}

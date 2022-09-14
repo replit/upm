@@ -1,0 +1,24 @@
+{
+  "name": "marshmallow-oneofschema",
+  "version": "3.0.1",
+  "requires_dist": [
+    "marshmallow",
+    "pytest",
+    "mock",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "tox",
+    "flake8",
+    "flake8-bugbear",
+    "pre-commit",
+    "pytest",
+    "mock"
+  ],
+  "modules": [
+    "marshmallow",
+    "marshmallow_oneofschema",
+    "packaging",
+    "pyparsing"
+  ]
+}

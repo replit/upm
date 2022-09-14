@@ -1,0 +1,26 @@
+{
+  "name": "django-dramatiq",
+  "version": "0.11.0",
+  "requires_dist": [
+    "django",
+    "dramatiq",
+    "bumpversion",
+    "flake8",
+    "flake8-quotes",
+    "isort",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "tox",
+    "twine"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_dramatiq",
+    "dramatiq",
+    "prometheus_client",
+    "sqlparse"
+  ]
+}

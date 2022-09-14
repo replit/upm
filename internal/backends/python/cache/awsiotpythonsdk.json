@@ -1,0 +1,7 @@
+{
+  "name": "AWSIoTPythonSDK",
+  "version": "1.5.2",
+  "modules": [
+    "AWSIoTPythonSDK"
+  ]
+}

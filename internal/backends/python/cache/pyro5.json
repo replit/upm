@@ -1,0 +1,11 @@
+{
+  "name": "Pyro5",
+  "version": "5.13.1",
+  "requires_dist": [
+    "serpent"
+  ],
+  "modules": [
+    "Pyro5",
+    "serpent"
+  ]
+}

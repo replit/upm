@@ -1,0 +1,7 @@
+{
+  "name": "shellingham",
+  "version": "1.5.0",
+  "modules": [
+    "shellingham"
+  ]
+}

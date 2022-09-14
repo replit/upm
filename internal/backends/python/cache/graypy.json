@@ -1,0 +1,14 @@
+{
+  "name": "graypy",
+  "version": "2.1.0",
+  "requires_dist": [
+    "amqplib",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autodoc-typehints"
+  ],
+  "modules": [
+    "graypy",
+    "tests"
+  ]
+}

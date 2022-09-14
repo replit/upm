@@ -1,0 +1,7 @@
+{
+  "name": "django-rest-multiple-models",
+  "version": "2.1.3",
+  "modules": [
+    "drf_multiple_model"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "azure-keyvault-administration",
+  "version": "4.1.1",
+  "requires_dist": [
+    "azure-common",
+    "azure-core",
+    "msrest",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

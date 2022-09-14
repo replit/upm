@@ -1,0 +1,7 @@
+{
+  "name": "Tempita",
+  "version": "0.5.2",
+  "modules": [
+    "tempita"
+  ]
+}

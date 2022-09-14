@@ -1,0 +1,12 @@
+{
+  "name": "update",
+  "version": "0.0.1",
+  "requires_dist": [
+    "style"
+  ],
+  "modules": [
+    "style",
+    "tests",
+    "update"
+  ]
+}

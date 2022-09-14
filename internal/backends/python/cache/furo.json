@@ -1,0 +1,35 @@
+{
+  "name": "furo",
+  "version": "2022.6.21",
+  "requires_dist": [
+    "beautifulsoup4",
+    "sphinx",
+    "sphinx-basic-ng",
+    "pygments"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "furo",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "soupsieve",
+    "sphinx",
+    "sphinx_basic_ng",
+    "urllib3",
+    "zipp"
+  ]
+}

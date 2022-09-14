@@ -1,0 +1,7 @@
+{
+  "name": "micawber",
+  "version": "0.5.4",
+  "modules": [
+    "micawber"
+  ]
+}

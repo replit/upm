@@ -1,0 +1,14 @@
+{
+  "name": "pip-with-requires-python",
+  "version": "1.0.1",
+  "requires_dist": [
+    "pip",
+    "pip",
+    "pip",
+    "pip",
+    "pip"
+  ],
+  "modules": [
+    "pip_with_requires_python"
+  ]
+}

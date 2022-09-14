@@ -1,0 +1,10 @@
+{
+  "name": "dbt-sqlserver",
+  "version": "1.1.0",
+  "requires_dist": [
+    "dbt-core",
+    "pyodbc",
+    "azure-identity"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dbt-sqlserver/bin/python3', '-m', 'pip', 'install', 'dbt-sqlserver']' returned non-zero exit status 1.\"}"
+}

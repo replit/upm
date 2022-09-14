@@ -1,0 +1,7 @@
+{
+  "name": "py-expression-eval",
+  "version": "0.3.14",
+  "modules": [
+    "py_expression_eval"
+  ]
+}

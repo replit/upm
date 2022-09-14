@@ -1,0 +1,8 @@
+{
+  "name": "pyemojify",
+  "version": "0.2.0",
+  "modules": [
+    "click",
+    "pyemojify"
+  ]
+}

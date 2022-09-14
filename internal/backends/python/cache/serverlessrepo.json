@@ -1,0 +1,21 @@
+{
+  "name": "serverlessrepo",
+  "version": "0.1.10",
+  "requires_dist": [
+    "pyyaml",
+    "boto3",
+    "six"
+  ],
+  "modules": [
+    "_yaml",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "serverlessrepo",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

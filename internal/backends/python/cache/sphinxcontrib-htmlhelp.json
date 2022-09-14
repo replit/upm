@@ -1,0 +1,11 @@
+{
+  "name": "sphinxcontrib-htmlhelp",
+  "version": "2.0.0",
+  "requires_dist": [
+    "flake8",
+    "mypy",
+    "docutils-stubs",
+    "pytest",
+    "html5lib"
+  ]
+}

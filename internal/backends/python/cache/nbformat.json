@@ -1,0 +1,31 @@
+{
+  "name": "nbformat",
+  "version": "5.5.0",
+  "requires_dist": [
+    "fastjsonschema",
+    "jsonschema",
+    "jupyter_core",
+    "traitlets",
+    "check-manifest",
+    "testpath",
+    "pytest",
+    "pre-commit",
+    "pep440"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "fastjsonschema",
+    "importlib_resources",
+    "jsonschema",
+    "jupyter",
+    "jupyter_core",
+    "nbformat",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "traitlets",
+    "zipp"
+  ]
+}

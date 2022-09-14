@@ -1,0 +1,22 @@
+{
+  "name": "resampy",
+  "version": "0.4.2",
+  "requires_dist": [
+    "numpy",
+    "numba",
+    "optuna",
+    "numpydoc",
+    "sphinx",
+    "pytest",
+    "pytest-cov",
+    "scipy"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "llvmlite",
+    "numba",
+    "numpy",
+    "resampy",
+    "zipp"
+  ]
+}

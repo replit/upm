@@ -1,0 +1,26 @@
+{
+  "name": "scikit-learn-extra",
+  "version": "0.2.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "pillow",
+    "sphinx",
+    "sphinx-gallery",
+    "sphinx-rtd-theme",
+    "numpydoc",
+    "matplotlib",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "benchmarks",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "sklearn_extra",
+    "threadpoolctl"
+  ]
+}

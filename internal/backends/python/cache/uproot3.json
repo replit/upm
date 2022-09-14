@@ -1,0 +1,29 @@
+{
+  "name": "uproot3",
+  "version": "3.14.4",
+  "requires_dist": [
+    "numpy",
+    "awkward0",
+    "uproot3-methods",
+    "cachetools",
+    "lz4",
+    "zstandard",
+    "xxhash",
+    "backports.lzma",
+    "pytest",
+    "pkgconfig",
+    "lz4",
+    "zstandard",
+    "xxhash",
+    "mock",
+    "requests",
+    "backports.lzma"
+  ],
+  "modules": [
+    "awkward0",
+    "cachetools",
+    "numpy",
+    "uproot3",
+    "uproot3_methods"
+  ]
+}

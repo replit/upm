@@ -1,0 +1,14 @@
+{
+  "name": "ZConfig",
+  "version": "3.6.0",
+  "requires_dist": [
+    "sphinxcontrib-programoutput",
+    "docutils",
+    "manuel",
+    "zope.exceptions",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "ZConfig"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pygments-style-dracula",
+  "version": "1.2.5.1",
+  "requires_dist": [
+    "pygments"
+  ],
+  "modules": [
+    "pygments",
+    "pygments_style_dracula"
+  ]
+}

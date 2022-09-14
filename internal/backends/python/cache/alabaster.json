@@ -1,0 +1,7 @@
+{
+  "name": "alabaster",
+  "version": "0.7.12",
+  "modules": [
+    "alabaster"
+  ]
+}

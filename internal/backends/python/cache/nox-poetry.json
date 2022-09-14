@@ -1,0 +1,23 @@
+{
+  "name": "nox-poetry",
+  "version": "1.0.1",
+  "requires_dist": [
+    "nox",
+    "packaging",
+    "tomlkit"
+  ],
+  "modules": [
+    "argcomplete",
+    "colorlog",
+    "distlib",
+    "filelock",
+    "nox",
+    "nox_poetry",
+    "packaging",
+    "platformdirs",
+    "py",
+    "pyparsing",
+    "tomlkit",
+    "virtualenv"
+  ]
+}

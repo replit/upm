@@ -1,0 +1,9 @@
+{
+  "name": "dumbyaml",
+  "version": "0.9.3",
+  "modules": [
+    "_yaml",
+    "dumbyaml",
+    "yaml"
+  ]
+}

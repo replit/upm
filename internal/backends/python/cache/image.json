@@ -1,0 +1,13 @@
+{
+  "name": "image",
+  "version": "1.5.33",
+  "modules": [
+    "PIL",
+    "asgiref",
+    "backports",
+    "django",
+    "image",
+    "six",
+    "sqlparse"
+  ]
+}

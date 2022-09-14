@@ -1,0 +1,22 @@
+{
+  "name": "notifications-python-client",
+  "version": "6.3.0",
+  "requires_dist": [
+    "requests",
+    "PyJWT",
+    "docopt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docopt",
+    "idna",
+    "integration_test",
+    "jwt",
+    "notifications_python_client",
+    "requests",
+    "tests",
+    "urllib3",
+    "utils"
+  ]
+}

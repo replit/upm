@@ -1,0 +1,11 @@
+{
+  "name": "aiounittest",
+  "version": "1.4.2",
+  "requires_dist": [
+    "wrapt"
+  ],
+  "modules": [
+    "aiounittest",
+    "wrapt"
+  ]
+}

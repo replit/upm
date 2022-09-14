@@ -1,0 +1,17 @@
+{
+  "name": "docker-squash",
+  "version": "1.0.9",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docker",
+    "docker_squash",
+    "idna",
+    "packaging",
+    "pyparsing",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket"
+  ]
+}

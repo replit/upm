@@ -1,0 +1,17 @@
+{
+  "name": "napari-plugin-engine",
+  "version": "0.2.0",
+  "requires_dist": [
+    "importlib-metadata",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+    "tox",
+    "tox-conda",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "napari_plugin_engine"
+  ]
+}

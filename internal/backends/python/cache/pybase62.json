@@ -1,0 +1,7 @@
+{
+  "name": "pybase62",
+  "version": "0.5.0",
+  "modules": [
+    "base62"
+  ]
+}

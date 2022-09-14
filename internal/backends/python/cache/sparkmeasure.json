@@ -1,0 +1,7 @@
+{
+  "name": "sparkmeasure",
+  "version": "0.21.1",
+  "modules": [
+    "sparkmeasure"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "enlighten",
+  "version": "1.10.2",
+  "requires_dist": [
+    "blessed",
+    "prefixed"
+  ],
+  "modules": [
+    "blessed",
+    "enlighten",
+    "examples",
+    "prefixed",
+    "six",
+    "wcwidth"
+  ]
+}

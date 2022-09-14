@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk.aws-ecr-assets",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.assets",
+    "aws-cdk.aws-ecr",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-s3",
+    "aws-cdk.core",
+    "aws-cdk.cx-api",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

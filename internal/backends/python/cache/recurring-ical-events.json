@@ -1,0 +1,19 @@
+{
+  "name": "recurring-ical-events",
+  "version": "1.0.2b0",
+  "requires_dist": [
+    "icalendar",
+    "pytz",
+    "python-dateutil",
+    "x-wr-timezone",
+    "x-wr-timezone"
+  ],
+  "modules": [
+    "dateutil",
+    "icalendar",
+    "pytz",
+    "recurring_ical_events",
+    "six",
+    "x_wr_timezone"
+  ]
+}

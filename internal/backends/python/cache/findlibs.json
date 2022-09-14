@@ -1,0 +1,7 @@
+{
+  "name": "findlibs",
+  "version": "0.0.2",
+  "modules": [
+    "findlibs"
+  ]
+}

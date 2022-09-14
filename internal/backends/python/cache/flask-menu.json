@@ -1,0 +1,41 @@
+{
+  "name": "Flask-Menu",
+  "version": "0.7.2",
+  "requires_dist": [
+    "Flask",
+    "six",
+    "sphinx",
+    "flask-classy",
+    "check-manifest",
+    "coverage",
+    "isort",
+    "pydocstyle",
+    "pytest",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8",
+    "flask-classy",
+    "sphinx",
+    "flask-classy",
+    "check-manifest",
+    "coverage",
+    "isort",
+    "pydocstyle",
+    "pytest",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_menu",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "six",
+    "werkzeug",
+    "zipp"
+  ]
+}

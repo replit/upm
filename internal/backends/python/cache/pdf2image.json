@@ -1,0 +1,11 @@
+{
+  "name": "pdf2image",
+  "version": "1.16.0",
+  "requires_dist": [
+    "pillow"
+  ],
+  "modules": [
+    "PIL",
+    "pdf2image"
+  ]
+}

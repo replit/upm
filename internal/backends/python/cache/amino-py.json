@@ -1,0 +1,31 @@
+{
+  "name": "Amino.py",
+  "version": "3.0.6",
+  "requires_dist": [
+    "setuptools",
+    "requests",
+    "six",
+    "websockets",
+    "websocket-client",
+    "aiohttp"
+  ],
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "amino",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket",
+    "websockets",
+    "yarl"
+  ]
+}

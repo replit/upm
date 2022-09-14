@@ -1,0 +1,21 @@
+{
+  "name": "ros-cdk-core",
+  "version": "1.0.10",
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "ros_cdk_assembly_schema",
+    "ros_cdk_core",
+    "ros_cdk_cxapi",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

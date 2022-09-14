@@ -1,0 +1,26 @@
+{
+  "name": "azure-keyvault",
+  "version": "4.2.0",
+  "requires_dist": [
+    "azure-keyvault-certificates",
+    "azure-keyvault-secrets",
+    "azure-keyvault-keys"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "isodate",
+    "msrest",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

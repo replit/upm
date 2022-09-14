@@ -1,0 +1,23 @@
+{
+  "name": "Flask-JWT-Extended",
+  "version": "4.4.4",
+  "requires_dist": [
+    "Werkzeug",
+    "Flask",
+    "PyJWT",
+    "typing-extensions",
+    "cryptography"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_jwt_extended",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "jwt",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

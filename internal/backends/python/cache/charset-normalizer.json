@@ -1,0 +1,10 @@
+{
+  "name": "charset-normalizer",
+  "version": "2.1.1",
+  "requires_dist": [
+    "unicodedata2"
+  ],
+  "modules": [
+    "charset_normalizer"
+  ]
+}

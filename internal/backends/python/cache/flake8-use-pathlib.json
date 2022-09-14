@@ -1,0 +1,14 @@
+{
+  "name": "flake8-use-pathlib",
+  "version": "0.3.0",
+  "requires_dist": [
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_use_pathlib",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

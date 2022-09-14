@@ -1,0 +1,5 @@
+{
+  "name": "zVMCloudConnector",
+  "version": "1.4.1",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/zVMCloudConnector/bin/python3', '-m', 'pip', 'install', 'zVMCloudConnector']' returned non-zero exit status 1.\"}"
+}

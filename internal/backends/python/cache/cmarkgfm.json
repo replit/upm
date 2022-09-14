@@ -1,0 +1,13 @@
+{
+  "name": "cmarkgfm",
+  "version": "0.8.0",
+  "requires_dist": [
+    "cffi"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cmarkgfm",
+    "pycparser"
+  ]
+}

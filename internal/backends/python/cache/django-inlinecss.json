@@ -1,0 +1,32 @@
+{
+  "name": "django-inlinecss",
+  "version": "0.3.0",
+  "requires_dist": [
+    "Django",
+    "pynliner",
+    "future",
+    "flake8",
+    "flake8-isort",
+    "isort",
+    "testfixtures",
+    "mock",
+    "pytest",
+    "pytest-django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "bs4",
+    "cssutils",
+    "django",
+    "django_inlinecss",
+    "encutils",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pynliner",
+    "soupsieve",
+    "sqlparse"
+  ]
+}

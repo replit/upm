@@ -1,0 +1,27 @@
+{
+  "name": "signalfx",
+  "version": "1.1.15",
+  "requires_dist": [
+    "certifi",
+    "protobuf",
+    "pyformance",
+    "requests",
+    "sseclient-py",
+    "urllib3",
+    "six",
+    "ws4py"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pyformance",
+    "requests",
+    "signalfx",
+    "six",
+    "sseclient",
+    "tests",
+    "urllib3",
+    "ws4py"
+  ]
+}

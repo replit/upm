@@ -1,0 +1,29 @@
+{
+  "name": "pepperize.cdk-terraform-state-backend",
+  "version": "0.1.204",
+  "requires_dist": [
+    "aws-cdk-lib",
+    "constructs",
+    "jsii",
+    "pepperize.cdk-private-bucket",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "aws_cdk",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "pepperize_cdk_private_bucket",
+    "pepperize_cdk_terraform_state_backend",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

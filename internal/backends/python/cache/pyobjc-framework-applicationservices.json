@@ -1,0 +1,10 @@
+{
+  "name": "pyobjc-framework-ApplicationServices",
+  "version": "8.5",
+  "requires_dist": [
+    "pyobjc-core",
+    "pyobjc-framework-Cocoa",
+    "pyobjc-framework-Quartz"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-ApplicationServices/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-ApplicationServices']' returned non-zero exit status 1.\"}"
+}

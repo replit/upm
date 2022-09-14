@@ -1,0 +1,42 @@
+{
+  "name": "stanza",
+  "version": "1.4.0",
+  "requires_dist": [
+    "emoji",
+    "numpy",
+    "protobuf",
+    "requests",
+    "six",
+    "torch",
+    "tqdm",
+    "transformers",
+    "check-manifest",
+    "coverage",
+    "pytest"
+  ],
+  "modules": [
+    "_yaml",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "emoji",
+    "filelock",
+    "huggingface_hub",
+    "idna",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "regex",
+    "requests",
+    "six",
+    "stanza",
+    "tokenizers",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "transformers",
+    "typing_extensions",
+    "urllib3",
+    "yaml"
+  ]
+}

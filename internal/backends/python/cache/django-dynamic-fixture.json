@@ -1,0 +1,11 @@
+{
+  "name": "django-dynamic-fixture",
+  "version": "3.1.2",
+  "modules": [
+    "ddf",
+    "ddf_setup",
+    "django_dynamic_fixture",
+    "queries",
+    "six"
+  ]
+}

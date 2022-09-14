@@ -1,0 +1,13 @@
+{
+  "name": "ruyaml",
+  "version": "0.91.0",
+  "requires_dist": [
+    "distro",
+    "setuptools",
+    "Sphinx"
+  ],
+  "modules": [
+    "distro",
+    "ruyaml"
+  ]
+}

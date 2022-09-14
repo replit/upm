@@ -1,0 +1,15 @@
+{
+  "name": "Kivy-Garden",
+  "version": "0.1.5",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "garden",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

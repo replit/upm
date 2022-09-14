@@ -1,0 +1,10 @@
+{
+  "name": "TestSlide",
+  "version": "2.7.0",
+  "modules": [
+    "psutil",
+    "pygments",
+    "testslide",
+    "typeguard"
+  ]
+}

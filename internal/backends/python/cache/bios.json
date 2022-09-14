@@ -1,0 +1,10 @@
+{
+  "name": "bios",
+  "version": "0.1.2",
+  "modules": [
+    "_yaml",
+    "bios",
+    "oyaml",
+    "yaml"
+  ]
+}

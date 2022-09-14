@@ -1,0 +1,9 @@
+{
+  "name": "sqlalchemy-citext",
+  "version": "1.8.0",
+  "modules": [
+    "citext",
+    "greenlet",
+    "sqlalchemy"
+  ]
+}

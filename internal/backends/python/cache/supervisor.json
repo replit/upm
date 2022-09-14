@@ -1,0 +1,12 @@
+{
+  "name": "supervisor",
+  "version": "4.2.4",
+  "requires_dist": [
+    "setuptools",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "supervisor"
+  ]
+}

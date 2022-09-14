@@ -1,0 +1,7 @@
+{
+  "name": "aplus",
+  "version": "0.11.0",
+  "modules": [
+    "aplus"
+  ]
+}

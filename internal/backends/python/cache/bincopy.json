@@ -1,0 +1,15 @@
+{
+  "name": "bincopy",
+  "version": "17.10.3",
+  "requires_dist": [
+    "humanfriendly",
+    "argparse-addons",
+    "pyelftools"
+  ],
+  "modules": [
+    "argparse_addons",
+    "bincopy",
+    "elftools",
+    "humanfriendly"
+  ]
+}

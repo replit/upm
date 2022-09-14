@@ -1,0 +1,14 @@
+{
+  "name": "scikit-spark",
+  "version": "0.4.0",
+  "requires_dist": [
+    "numpy",
+    "six"
+  ],
+  "modules": [
+    "numpy",
+    "six",
+    "skspark",
+    "tests"
+  ]
+}

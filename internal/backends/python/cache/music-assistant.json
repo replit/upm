@@ -1,0 +1,21 @@
+{
+  "name": "music-assistant",
+  "version": "1.8.7",
+  "requires_dist": [
+    "async-timeout",
+    "aiohttp",
+    "asyncio-throttle",
+    "aiofiles",
+    "databases",
+    "aiosqlite",
+    "python-slugify",
+    "memory-tempfile",
+    "pillow",
+    "unidecode",
+    "mashumaro",
+    "xmltodict",
+    "ytmusicapi",
+    "pytube"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/music-assistant/bin/python3', '-m', 'pip', 'install', 'music-assistant']' returned non-zero exit status 1.\"}"
+}

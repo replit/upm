@@ -1,0 +1,36 @@
+{
+  "name": "acme",
+  "version": "1.30.0",
+  "requires_dist": [
+    "cryptography",
+    "josepy",
+    "PyOpenSSL",
+    "pyrfc3339",
+    "pytz",
+    "requests",
+    "requests-toolbelt",
+    "setuptools",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "pytest",
+    "pytest-xdist",
+    "typing-extensions"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "acme",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "josepy",
+    "pycparser",
+    "pyrfc3339",
+    "pytz",
+    "requests",
+    "requests_toolbelt",
+    "urllib3"
+  ]
+}

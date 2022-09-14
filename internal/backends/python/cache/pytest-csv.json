@@ -1,0 +1,25 @@
+{
+  "name": "pytest-csv",
+  "version": "3.0.0",
+  "requires_dist": [
+    "pytest",
+    "six",
+    "pytest-xdist",
+    "pytest-flake8",
+    "tabulate"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_csv",
+    "six",
+    "tomli"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "flake8-docstrings",
+  "version": "1.6.0",
+  "requires_dist": [
+    "flake8",
+    "pydocstyle"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_docstrings",
+    "mccabe",
+    "pycodestyle",
+    "pydocstyle",
+    "pyflakes",
+    "snowballstemmer"
+  ]
+}

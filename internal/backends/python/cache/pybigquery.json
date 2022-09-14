@@ -1,0 +1,38 @@
+{
+  "name": "pybigquery",
+  "version": "0.10.2",
+  "requires_dist": [
+    "google-api-core",
+    "google-auth",
+    "google-cloud-bigquery",
+    "sqlalchemy",
+    "future"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "future",
+    "google_crc32c",
+    "greenlet",
+    "grpc",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "packaging",
+    "past",
+    "proto",
+    "pyarrow",
+    "pyasn1",
+    "pyasn1_modules",
+    "pybigquery",
+    "pyparsing",
+    "requests",
+    "rsa",
+    "six",
+    "sqlalchemy",
+    "urllib3"
+  ]
+}

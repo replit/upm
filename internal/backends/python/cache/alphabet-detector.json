@@ -1,0 +1,7 @@
+{
+  "name": "alphabet-detector",
+  "version": "0.0.7",
+  "modules": [
+    "alphabet_detector"
+  ]
+}

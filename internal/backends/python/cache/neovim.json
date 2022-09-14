@@ -1,0 +1,10 @@
+{
+  "name": "neovim",
+  "version": "0.3.1",
+  "modules": [
+    "greenlet",
+    "msgpack",
+    "neovim",
+    "pynvim"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "evmdasm",
+  "version": "0.1.10",
+  "modules": [
+    "evmdasm"
+  ]
+}

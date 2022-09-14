@@ -1,0 +1,24 @@
+{
+  "name": "azure-storage-common",
+  "version": "2.1.0",
+  "requires_dist": [
+    "azure-common",
+    "cryptography",
+    "python-dateutil",
+    "requests",
+    "azure-storage-nspkg"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "pycparser",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

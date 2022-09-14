@@ -1,0 +1,7 @@
+{
+  "name": "sentencepiece",
+  "version": "0.1.97",
+  "modules": [
+    "sentencepiece"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "marrow.mailer",
+  "version": "4.0.3",
+  "requires_dist": [
+    "marrow.util",
+    "futures",
+    "pytest",
+    "pytest-cov",
+    "pytest-spec",
+    "pytest-flakes",
+    "coverage",
+    "transaction",
+    "requests"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "minimal-snowplow-tracker",
+  "version": "0.0.2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "six",
+    "snowplow_tracker",
+    "urllib3"
+  ]
+}

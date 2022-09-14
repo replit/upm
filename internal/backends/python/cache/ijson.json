@@ -1,0 +1,7 @@
+{
+  "name": "ijson",
+  "version": "3.1.4",
+  "modules": [
+    "ijson"
+  ]
+}

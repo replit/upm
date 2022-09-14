@@ -1,0 +1,29 @@
+{
+  "name": "apprise",
+  "version": "1.0.0",
+  "requires_dist": [
+    "requests",
+    "requests-oauthlib",
+    "six",
+    "click",
+    "markdown",
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "apprise",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "idna",
+    "importlib_metadata",
+    "markdown",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "urllib3",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-reversion",
+  "version": "5.0.2",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "reversion",
+    "sqlparse"
+  ]
+}

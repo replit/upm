@@ -1,0 +1,8 @@
+{
+  "name": "scandir",
+  "version": "1.10.0",
+  "modules": [
+    "_scandir",
+    "scandir"
+  ]
+}

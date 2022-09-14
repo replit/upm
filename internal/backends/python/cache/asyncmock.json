@@ -1,0 +1,11 @@
+{
+  "name": "asyncmock",
+  "version": "0.4.2",
+  "requires_dist": [
+    "mock"
+  ],
+  "modules": [
+    "asyncmock",
+    "mock"
+  ]
+}

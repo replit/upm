@@ -1,0 +1,22 @@
+{
+  "name": "fakeredis",
+  "version": "1.9.1",
+  "requires_dist": [
+    "aioredis",
+    "lupa",
+    "redis",
+    "six",
+    "sortedcontainers"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "fakeredis",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "six",
+    "sortedcontainers",
+    "wrapt"
+  ]
+}

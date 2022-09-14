@@ -1,0 +1,25 @@
+{
+  "name": "pem",
+  "version": "21.2.0",
+  "requires_dist": [
+    "coverage",
+    "pytest",
+    "certifi",
+    "pretend",
+    "pyopenssl",
+    "sphinx",
+    "furo",
+    "twisted",
+    "pre-commit",
+    "sphinx",
+    "furo",
+    "coverage",
+    "pytest",
+    "certifi",
+    "pretend",
+    "pyopenssl"
+  ],
+  "modules": [
+    "pem"
+  ]
+}

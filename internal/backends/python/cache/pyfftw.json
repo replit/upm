@@ -1,0 +1,14 @@
+{
+  "name": "pyFFTW",
+  "version": "0.13.0",
+  "requires_dist": [
+    "numpy",
+    "numpy",
+    "dask",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "pyfftw"
+  ]
+}

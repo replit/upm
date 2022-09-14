@@ -1,0 +1,9 @@
+{
+  "name": "Py3AMF",
+  "version": "0.8.10",
+  "modules": [
+    "cpyamf",
+    "defusedxml",
+    "pyamf"
+  ]
+}

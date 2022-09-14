@@ -1,0 +1,14 @@
+{
+  "name": "torch-struct",
+  "version": "0.5",
+  "requires_dist": [
+    "torch"
+  ],
+  "modules": [
+    "caffe2",
+    "torch",
+    "torch_struct",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "azure-mgmt-machinelearningcompute",
+  "version": "0.4.1",
+  "requires_dist": [
+    "msrestazure",
+    "azure-common",
+    "azure-mgmt-nspkg"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "adal",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "dateutil",
+    "idna",
+    "isodate",
+    "jwt",
+    "msrest",
+    "msrestazure",
+    "oauthlib",
+    "pycparser",
+    "requests",
+    "requests_oauthlib",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

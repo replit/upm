@@ -1,0 +1,21 @@
+{
+  "name": "model-index",
+  "version": "0.1.11",
+  "requires_dist": [
+    "pyyaml",
+    "markdown",
+    "ordered-set",
+    "click"
+  ],
+  "modules": [
+    "_yaml",
+    "click",
+    "importlib_metadata",
+    "markdown",
+    "modelindex",
+    "ordered_set",
+    "tests",
+    "yaml",
+    "zipp"
+  ]
+}

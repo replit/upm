@@ -1,0 +1,7 @@
+{
+  "name": "flaky",
+  "version": "3.7.0",
+  "modules": [
+    "flaky"
+  ]
+}

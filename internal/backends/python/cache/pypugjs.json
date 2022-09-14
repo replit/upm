@@ -1,0 +1,13 @@
+{
+  "name": "pypugjs",
+  "version": "5.9.12",
+  "requires_dist": [
+    "six",
+    "charset-normalizer"
+  ],
+  "modules": [
+    "charset_normalizer",
+    "pypugjs",
+    "six"
+  ]
+}

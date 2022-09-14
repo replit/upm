@@ -1,0 +1,12 @@
+{
+  "name": "draftjs-exporter",
+  "version": "5.0.0",
+  "requires_dist": [
+    "beautifulsoup4",
+    "html5lib",
+    "lxml"
+  ],
+  "modules": [
+    "draftjs_exporter"
+  ]
+}

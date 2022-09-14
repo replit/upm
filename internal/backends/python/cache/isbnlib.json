@@ -1,0 +1,7 @@
+{
+  "name": "isbnlib",
+  "version": "3.10.10",
+  "modules": [
+    "isbnlib"
+  ]
+}

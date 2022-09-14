@@ -1,0 +1,29 @@
+{
+  "name": "pywinrm",
+  "version": "0.4.3",
+  "requires_dist": [
+    "xmltodict",
+    "requests",
+    "requests-ntlm",
+    "six",
+    "requests-credssp",
+    "pykerberos",
+    "winkerberos"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "ntlm_auth",
+    "pycparser",
+    "requests",
+    "requests_ntlm",
+    "six",
+    "urllib3",
+    "winrm",
+    "xmltodict"
+  ]
+}

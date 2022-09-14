@@ -1,0 +1,9 @@
+{
+  "name": "sendgrid-django",
+  "version": "4.2.0",
+  "modules": [
+    "python_http_client",
+    "sendgrid",
+    "sgbackend"
+  ]
+}

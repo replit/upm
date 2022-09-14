@@ -1,0 +1,15 @@
+{
+  "name": "pdftopng",
+  "version": "0.2.3",
+  "requires_dist": [
+    "Click",
+    "Pillow",
+    "pytest",
+    "pytest-cov",
+    "Click"
+  ],
+  "modules": [
+    "click",
+    "pdftopng"
+  ]
+}

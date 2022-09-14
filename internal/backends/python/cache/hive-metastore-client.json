@@ -1,0 +1,13 @@
+{
+  "name": "hive-metastore-client",
+  "version": "1.0.9",
+  "requires_dist": [
+    "thrift"
+  ],
+  "modules": [
+    "hive_metastore_client",
+    "six",
+    "thrift",
+    "thrift_files"
+  ]
+}

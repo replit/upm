@@ -1,0 +1,12 @@
+{
+  "name": "large-image-source-bioformats",
+  "version": "1.16.2",
+  "requires_dist": [
+    "large-image",
+    "python-bioformats",
+    "scikit-image",
+    "importlib-metadata",
+    "girder-large-image"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/large-image-source-bioformats/bin/python3', '-m', 'pip', 'install', 'large-image-source-bioformats']' returned non-zero exit status 1.\"}"
+}

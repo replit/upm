@@ -1,0 +1,24 @@
+{
+  "name": "dialogflow",
+  "version": "2.0.0",
+  "requires_dist": [
+    "google-api-core"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dialogflow",
+    "dialogflow_v2",
+    "dialogflow_v2beta1",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

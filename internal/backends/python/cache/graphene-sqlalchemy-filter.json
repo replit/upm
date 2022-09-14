@@ -1,0 +1,22 @@
+{
+  "name": "graphene-sqlalchemy-filter",
+  "version": "1.13.0",
+  "requires_dist": [
+    "graphene-sqlalchemy",
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "aniso8601",
+    "graphene",
+    "graphene_sqlalchemy",
+    "graphene_sqlalchemy_filter",
+    "graphql",
+    "graphql_relay",
+    "greenlet",
+    "promise",
+    "rx",
+    "singledispatch",
+    "six",
+    "sqlalchemy"
+  ]
+}

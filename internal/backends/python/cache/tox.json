@@ -1,0 +1,41 @@
+{
+  "name": "tox",
+  "version": "3.26.0",
+  "requires_dist": [
+    "filelock",
+    "packaging",
+    "pluggy",
+    "py",
+    "six",
+    "virtualenv",
+    "colorama",
+    "importlib-metadata",
+    "toml",
+    "tomli",
+    "pygments-github-lexers",
+    "sphinx",
+    "sphinxcontrib-autoprogram",
+    "towncrier",
+    "flaky",
+    "freezegun",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-randomly",
+    "psutil",
+    "pathlib2"
+  ],
+  "modules": [
+    "distlib",
+    "filelock",
+    "packaging",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "six",
+    "tomli",
+    "tox",
+    "virtualenv"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "leankitmocks",
+  "version": "0.2.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/leankitmocks/bin/python3', '-m', 'pip', 'install', 'leankitmocks']' returned non-zero exit status 1.\"}"
+}

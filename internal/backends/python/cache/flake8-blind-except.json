@@ -1,0 +1,7 @@
+{
+  "name": "flake8-blind-except",
+  "version": "0.2.1",
+  "modules": [
+    "flake8_blind_except"
+  ]
+}

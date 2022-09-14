@@ -1,0 +1,20 @@
+{
+  "name": "disputils",
+  "version": "0.2.0",
+  "requires_dist": [
+    "discord.py"
+  ],
+  "modules": [
+    "aiohttp",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "chardet",
+    "discord",
+    "disputils",
+    "idna",
+    "multidict",
+    "typing_extensions",
+    "yarl"
+  ]
+}

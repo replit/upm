@@ -1,0 +1,25 @@
+{
+  "name": "dynamodb-encryption-sdk",
+  "version": "3.1.0",
+  "requires_dist": [
+    "boto3",
+    "cryptography",
+    "attrs"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "attr",
+    "attrs",
+    "boto3",
+    "botocore",
+    "cffi",
+    "cryptography",
+    "dateutil",
+    "dynamodb_encryption_sdk",
+    "jmespath",
+    "pycparser",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

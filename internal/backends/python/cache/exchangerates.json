@@ -1,0 +1,14 @@
+{
+  "name": "exchangerates",
+  "version": "0.3.4",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "exchangerates",
+    "idna",
+    "lxml",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

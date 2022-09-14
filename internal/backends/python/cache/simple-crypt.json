@@ -1,0 +1,8 @@
+{
+  "name": "simple-crypt",
+  "version": "4.1.7",
+  "modules": [
+    "Crypto",
+    "simplecrypt"
+  ]
+}

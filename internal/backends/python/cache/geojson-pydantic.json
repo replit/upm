@@ -1,0 +1,16 @@
+{
+  "name": "geojson-pydantic",
+  "version": "0.4.3",
+  "requires_dist": [
+    "pydantic",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "shapely"
+  ],
+  "modules": [
+    "geojson_pydantic",
+    "pydantic",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "plaid-python",
+  "version": "9.9.0",
+  "modules": [
+    "dateutil",
+    "nulltype",
+    "plaid",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

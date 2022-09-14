@@ -1,0 +1,17 @@
+{
+  "name": "pydeequ",
+  "version": "1.0.1",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "pyspark"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pydeequ",
+    "pytz",
+    "six"
+  ]
+}

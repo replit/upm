@@ -1,0 +1,30 @@
+{
+  "name": "pip-upgrader",
+  "version": "1.4.15",
+  "requires_dist": [
+    "docopt",
+    "packaging",
+    "requests",
+    "terminaltables",
+    "colorclass",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-pep8",
+    "mock",
+    "responses"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "colorclass",
+    "docopt",
+    "idna",
+    "packaging",
+    "pip_upgrader",
+    "pyparsing",
+    "requests",
+    "terminaltables",
+    "urllib3"
+  ]
+}

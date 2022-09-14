@@ -1,0 +1,19 @@
+{
+  "name": "html-telegraph-poster",
+  "version": "0.4.0",
+  "requires_dist": [
+    "lxml",
+    "requests",
+    "requests-toolbelt"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "html_telegraph_poster",
+    "idna",
+    "lxml",
+    "requests",
+    "requests_toolbelt",
+    "urllib3"
+  ]
+}

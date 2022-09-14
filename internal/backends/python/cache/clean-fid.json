@@ -1,0 +1,30 @@
+{
+  "name": "clean-fid",
+  "version": "0.1.31",
+  "requires_dist": [
+    "torch",
+    "torchvision",
+    "numpy",
+    "scipy",
+    "tqdm",
+    "pillow",
+    "requests"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "chardet",
+    "cleanfid",
+    "idna",
+    "numpy",
+    "requests",
+    "scipy",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

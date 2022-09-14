@@ -1,0 +1,14 @@
+{
+  "name": "pypki2",
+  "version": "0.11.0",
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pycparser",
+    "pypki2",
+    "pypki2config",
+    "pypki2pip"
+  ]
+}

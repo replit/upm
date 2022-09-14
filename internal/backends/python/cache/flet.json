@@ -1,0 +1,19 @@
+{
+  "name": "flet",
+  "version": "0.1.58",
+  "requires_dist": [
+    "beartype",
+    "repath",
+    "typing_extensions",
+    "watchdog",
+    "websocket-client"
+  ],
+  "modules": [
+    "beartype",
+    "flet",
+    "repath",
+    "six",
+    "watchdog",
+    "websocket"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "sphinx-sitemap",
+  "version": "2.2.0",
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "six",
+    "snowballstemmer",
+    "sphinx",
+    "sphinx_sitemap",
+    "urllib3",
+    "zipp"
+  ]
+}

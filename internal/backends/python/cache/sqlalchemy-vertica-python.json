@@ -1,0 +1,13 @@
+{
+  "name": "sqlalchemy-vertica-python",
+  "version": "0.5.10",
+  "requires_dist": [
+    "vertica-python"
+  ],
+  "modules": [
+    "dateutil",
+    "six",
+    "sqla_vertica_python",
+    "vertica_python"
+  ]
+}

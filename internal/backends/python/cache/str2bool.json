@@ -1,0 +1,7 @@
+{
+  "name": "str2bool",
+  "version": "1.1",
+  "modules": [
+    "str2bool"
+  ]
+}

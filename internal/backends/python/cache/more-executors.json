@@ -1,0 +1,15 @@
+{
+  "name": "more-executors",
+  "version": "2.11.1",
+  "requires_dist": [
+    "six",
+    "monotonic",
+    "futures",
+    "prometheus-client"
+  ],
+  "modules": [
+    "monotonic",
+    "more_executors",
+    "six"
+  ]
+}

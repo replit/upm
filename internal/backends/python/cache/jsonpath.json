@@ -1,0 +1,7 @@
+{
+  "name": "jsonpath",
+  "version": "0.82",
+  "modules": [
+    "jsonpath"
+  ]
+}

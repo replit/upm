@@ -1,0 +1,13 @@
+{
+  "name": "retry2",
+  "version": "0.9.4",
+  "requires_dist": [
+    "decorator",
+    "py"
+  ],
+  "modules": [
+    "decorator",
+    "py",
+    "retry"
+  ]
+}

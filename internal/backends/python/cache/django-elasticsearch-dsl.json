@@ -1,0 +1,17 @@
+{
+  "name": "django-elasticsearch-dsl",
+  "version": "7.2.2",
+  "requires_dist": [
+    "elasticsearch-dsl",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "django_elasticsearch_dsl",
+    "elasticsearch",
+    "elasticsearch_dsl",
+    "six",
+    "urllib3"
+  ]
+}

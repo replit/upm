@@ -1,0 +1,11 @@
+{
+  "name": "pygerduty",
+  "version": "0.38.3",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pygerduty",
+    "six"
+  ]
+}

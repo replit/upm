@@ -1,0 +1,40 @@
+{
+  "name": "nflx-genie-client",
+  "version": "3.6.16",
+  "requires_dist": [
+    "decorator",
+    "multipledispatch",
+    "pyconfigurator",
+    "python-dateutil",
+    "requests",
+    "six"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "configurator",
+    "dateutil",
+    "decorator",
+    "distlib",
+    "filelock",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "multipledispatch",
+    "nose",
+    "packaging",
+    "past",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pygenie",
+    "pyparsing",
+    "requests",
+    "six",
+    "toml",
+    "tox",
+    "urllib3",
+    "virtualenv"
+  ]
+}

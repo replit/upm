@@ -1,0 +1,11 @@
+{
+  "name": "mammoth",
+  "version": "1.5.0",
+  "requires_dist": [
+    "cobble"
+  ],
+  "modules": [
+    "cobble",
+    "mammoth"
+  ]
+}

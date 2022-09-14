@@ -1,0 +1,31 @@
+{
+  "name": "maya",
+  "version": "0.6.1",
+  "requires_dist": [
+    "humanize",
+    "pytz",
+    "dateparser",
+    "tzlocal",
+    "pendulum",
+    "snaptime"
+  ],
+  "modules": [
+    "backports",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "humanize",
+    "maya",
+    "pendulum",
+    "pytz",
+    "pytz_deprecation_shim",
+    "pytzdata",
+    "regex",
+    "six",
+    "snaptime",
+    "tzdata",
+    "tzlocal"
+  ]
+}

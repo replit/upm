@@ -1,0 +1,18 @@
+{
+  "name": "lbt-grasshopper",
+  "version": "1.5.30",
+  "requires_dist": [
+    "ladybug-grasshopper",
+    "honeybee-grasshopper-core",
+    "honeybee-grasshopper-radiance",
+    "honeybee-grasshopper-energy",
+    "dragonfly-grasshopper"
+  ],
+  "modules": [
+    "dragonfly_grasshopper",
+    "honeybee_grasshopper_core",
+    "honeybee_grasshopper_energy",
+    "honeybee_grasshopper_radiance",
+    "ladybug_grasshopper"
+  ]
+}

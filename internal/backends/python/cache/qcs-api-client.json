@@ -1,0 +1,35 @@
+{
+  "name": "qcs-api-client",
+  "version": "0.21.1",
+  "requires_dist": [
+    "attrs",
+    "httpx",
+    "iso8601",
+    "pydantic",
+    "python-dateutil",
+    "retrying",
+    "rfc3339",
+    "toml",
+    "PyJWT"
+  ],
+  "modules": [
+    "attr",
+    "certifi",
+    "dateutil",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "iso8601",
+    "jwt",
+    "pydantic",
+    "qcs_api_client",
+    "retrying",
+    "rfc3339",
+    "rfc3986",
+    "six",
+    "sniffio",
+    "toml",
+    "typing_extensions"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "mkdocs-awesome-pages-plugin",
+  "version": "2.8.0",
+  "requires_dist": [
+    "mkdocs",
+    "wcmatch",
+    "natsort"
+  ],
+  "modules": [
+    "_yaml",
+    "bracex",
+    "click",
+    "dateutil",
+    "ghp_import",
+    "importlib_metadata",
+    "jinja2",
+    "markdown",
+    "markupsafe",
+    "mergedeep",
+    "mkdocs",
+    "mkdocs_awesome_pages_plugin",
+    "natsort",
+    "packaging",
+    "pyparsing",
+    "six",
+    "watchdog",
+    "wcmatch",
+    "yaml",
+    "yaml_env_tag",
+    "zipp"
+  ]
+}

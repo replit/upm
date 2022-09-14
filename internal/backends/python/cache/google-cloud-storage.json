@@ -1,0 +1,25 @@
+{
+  "name": "google-cloud-storage",
+  "version": "2.5.0",
+  "requires_dist": [
+    "google-auth",
+    "google-api-core",
+    "google-cloud-core",
+    "google-resumable-media",
+    "requests",
+    "protobuf"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_crc32c",
+    "idna",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

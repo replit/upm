@@ -1,0 +1,16 @@
+{
+  "name": "django-leaflet",
+  "version": "0.28.3",
+  "requires_dist": [
+    "Django",
+    "sphinx",
+    "sphinx-autobuild"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "leaflet",
+    "sqlparse"
+  ]
+}

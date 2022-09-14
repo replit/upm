@@ -1,0 +1,25 @@
+{
+  "name": "numdifftools",
+  "version": "0.9.40",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "algopy",
+    "statsmodels",
+    "sphinx"
+  ],
+  "modules": [
+    "algopy",
+    "dateutil",
+    "numdifftools",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels"
+  ]
+}

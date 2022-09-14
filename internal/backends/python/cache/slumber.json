@@ -1,0 +1,12 @@
+{
+  "name": "slumber",
+  "version": "0.7.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "slumber",
+    "urllib3"
+  ]
+}

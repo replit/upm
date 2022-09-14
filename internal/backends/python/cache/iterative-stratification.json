@@ -1,0 +1,18 @@
+{
+  "name": "iterative-stratification",
+  "version": "0.1.7",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "scikit-learn"
+  ],
+  "modules": [
+    "iterstrat",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "tests",
+    "threadpoolctl"
+  ]
+}

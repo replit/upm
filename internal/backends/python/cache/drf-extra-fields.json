@@ -1,0 +1,18 @@
+{
+  "name": "drf-extra-fields",
+  "version": "3.4.0",
+  "requires_dist": [
+    "Django",
+    "djangorestframework",
+    "Pillow"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "drf_extra_fields",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "pydocumentdb",
+  "version": "2.3.5",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "doc",
+    "idna",
+    "pydocumentdb",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

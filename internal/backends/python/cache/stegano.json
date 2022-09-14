@@ -1,0 +1,20 @@
+{
+  "name": "stegano",
+  "version": "0.10.2",
+  "requires_dist": [
+    "pillow",
+    "piexif",
+    "crayons",
+    "opencv-python"
+  ],
+  "modules": [
+    "PIL",
+    "bin",
+    "colorama",
+    "crayons",
+    "cv2",
+    "numpy",
+    "piexif",
+    "stegano"
+  ]
+}

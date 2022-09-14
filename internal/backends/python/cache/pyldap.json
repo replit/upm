@@ -1,0 +1,8 @@
+{
+  "name": "pyldap",
+  "version": "3.0.0.post1",
+  "requires_dist": [
+    "python-ldap"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyldap/bin/python3', '-m', 'pip', 'install', 'pyldap']' returned non-zero exit status 1.\"}"
+}

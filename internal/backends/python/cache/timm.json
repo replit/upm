@@ -1,0 +1,23 @@
+{
+  "name": "timm",
+  "version": "0.6.7",
+  "requires_dist": [
+    "torch",
+    "torchvision"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "numpy",
+    "requests",
+    "timm",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

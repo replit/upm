@@ -1,0 +1,29 @@
+{
+  "name": "Random-Word",
+  "version": "1.0.10",
+  "requires_dist": [
+    "requests",
+    "pytest",
+    "pyyaml"
+  ],
+  "modules": [
+    "_pytest",
+    "_yaml",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "random_word",
+    "requests",
+    "tomli",
+    "urllib3",
+    "yaml"
+  ]
+}

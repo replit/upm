@@ -1,0 +1,19 @@
+{
+  "name": "h3",
+  "version": "3.7.4",
+  "requires_dist": [
+    "numpy",
+    "pytest",
+    "pytest-cov",
+    "flake8",
+    "pylint",
+    "numpy",
+    "pytest",
+    "pytest-cov",
+    "flake8",
+    "pylint"
+  ],
+  "modules": [
+    "h3"
+  ]
+}

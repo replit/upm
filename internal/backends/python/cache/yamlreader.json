@@ -1,0 +1,10 @@
+{
+  "name": "yamlreader",
+  "version": "3.0.4",
+  "modules": [
+    "_yaml",
+    "six",
+    "yaml",
+    "yamlreader"
+  ]
+}

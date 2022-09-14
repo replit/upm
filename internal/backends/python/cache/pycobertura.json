@@ -1,0 +1,12 @@
+{
+  "name": "pycobertura",
+  "version": "2.1.0",
+  "modules": [
+    "click",
+    "jinja2",
+    "lxml",
+    "markupsafe",
+    "pycobertura",
+    "tabulate"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "dask-glm",
+  "version": "0.2.0",
+  "requires_dist": [
+    "cloudpickle",
+    "dask",
+    "multipledispatch",
+    "scipy",
+    "scikit-learn",
+    "jupyter",
+    "nbsphinx",
+    "notebook",
+    "numpydoc",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "_yaml",
+    "cloudpickle",
+    "dask",
+    "dask_glm",
+    "fsspec",
+    "joblib",
+    "locket",
+    "multipledispatch",
+    "numpy",
+    "packaging",
+    "partd",
+    "pyparsing",
+    "scipy",
+    "six",
+    "sklearn",
+    "threadpoolctl",
+    "tlz",
+    "toolz",
+    "yaml"
+  ]
+}

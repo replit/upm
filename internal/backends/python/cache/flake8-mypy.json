@@ -1,0 +1,24 @@
+{
+  "name": "flake8-mypy",
+  "version": "17.8.0",
+  "requires_dist": [
+    "attrs",
+    "flake8",
+    "mypy"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "f4771e8a540c98c8e0df__mypyc",
+    "flake8",
+    "flake8_mypy",
+    "mccabe",
+    "mypy",
+    "mypy_extensions",
+    "mypyc",
+    "pycodestyle",
+    "pyflakes",
+    "tomli",
+    "typing_extensions"
+  ]
+}

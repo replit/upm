@@ -1,0 +1,17 @@
+{
+  "name": "mixpanel-py-async",
+  "version": "0.3.0",
+  "requires_dist": [
+    "mixpanel"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mixpanel",
+    "mixpanel_async",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

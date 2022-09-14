@@ -1,0 +1,25 @@
+{
+  "name": "h2o-wave",
+  "version": "0.22.0",
+  "requires_dist": [
+    "Click",
+    "httpx",
+    "starlette",
+    "uvicorn",
+    "h2o-wave-ml"
+  ],
+  "modules": [
+    "asgiref",
+    "certifi",
+    "click",
+    "h11",
+    "h2o_wave",
+    "httpcore",
+    "httpx",
+    "idna",
+    "rfc3986",
+    "sniffio",
+    "starlette",
+    "uvicorn"
+  ]
+}

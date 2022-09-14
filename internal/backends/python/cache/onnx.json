@@ -1,0 +1,18 @@
+{
+  "name": "onnx",
+  "version": "1.12.0",
+  "requires_dist": [
+    "numpy",
+    "protobuf",
+    "typing-extensions",
+    "clang-format",
+    "flake8",
+    "mypy",
+    "types-protobuf"
+  ],
+  "modules": [
+    "numpy",
+    "onnx",
+    "typing_extensions"
+  ]
+}

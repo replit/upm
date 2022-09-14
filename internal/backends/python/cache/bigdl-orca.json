@@ -1,0 +1,42 @@
+{
+  "name": "bigdl-orca",
+  "version": "2.0.0",
+  "requires_dist": [
+    "conda-pack",
+    "packaging",
+    "filelock",
+    "bigdl-tf",
+    "bigdl-math",
+    "bigdl-dllib",
+    "pyzmq",
+    "ray",
+    "aiohttp",
+    "async-timeout",
+    "aioredis",
+    "hiredis",
+    "setproctitle",
+    "psutil",
+    "ray",
+    "scikit-learn",
+    "tensorboard",
+    "ray",
+    "aiohttp",
+    "async-timeout",
+    "aioredis",
+    "hiredis",
+    "setproctitle",
+    "psutil"
+  ],
+  "modules": [
+    "bigdl",
+    "conda_pack",
+    "filelock",
+    "numpy",
+    "packaging",
+    "py4j",
+    "pyparsing",
+    "pyspark",
+    "six",
+    "zmq"
+  ]
+}

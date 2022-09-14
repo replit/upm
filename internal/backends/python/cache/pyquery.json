@@ -1,0 +1,13 @@
+{
+  "name": "pyquery",
+  "version": "1.4.3",
+  "requires_dist": [
+    "lxml",
+    "cssselect"
+  ],
+  "modules": [
+    "cssselect",
+    "lxml",
+    "pyquery"
+  ]
+}

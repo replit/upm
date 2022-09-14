@@ -1,0 +1,14 @@
+{
+  "name": "pygeocoder",
+  "version": "1.2.5",
+  "modules": [
+    "__version__",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pygeocoder",
+    "pygeolib",
+    "requests",
+    "urllib3"
+  ]
+}

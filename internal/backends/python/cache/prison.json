@@ -1,0 +1,14 @@
+{
+  "name": "prison",
+  "version": "0.2.1",
+  "requires_dist": [
+    "six",
+    "nose",
+    "pipreqs",
+    "twine"
+  ],
+  "modules": [
+    "prison",
+    "six"
+  ]
+}

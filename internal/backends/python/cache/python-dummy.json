@@ -1,0 +1,14 @@
+{
+  "name": "python-dummy",
+  "version": "0.1.0",
+  "requires_dist": [
+    "PyYAML",
+    "simplejson"
+  ],
+  "modules": [
+    "_yaml",
+    "dummy",
+    "simplejson",
+    "yaml"
+  ]
+}

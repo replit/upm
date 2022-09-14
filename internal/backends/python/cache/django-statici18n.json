@@ -1,0 +1,16 @@
+{
+  "name": "django-statici18n",
+  "version": "2.3.1",
+  "requires_dist": [
+    "Django",
+    "django-appconf"
+  ],
+  "modules": [
+    "appconf",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse",
+    "statici18n"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "dynamorm",
+  "version": "0.11.0",
+  "requires_dist": [
+    "blinker",
+    "boto3",
+    "six",
+    "marshmallow",
+    "schematics"
+  ],
+  "modules": [
+    "blinker",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "dynamorm",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

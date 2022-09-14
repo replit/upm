@@ -1,0 +1,13 @@
+{
+  "name": "daal4py",
+  "version": "2021.6.3",
+  "requires_dist": [
+    "daal",
+    "numpy"
+  ],
+  "modules": [
+    "daal4py",
+    "numpy",
+    "onedal"
+  ]
+}

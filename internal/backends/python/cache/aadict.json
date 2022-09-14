@@ -1,0 +1,8 @@
+{
+  "name": "aadict",
+  "version": "0.2.3",
+  "modules": [
+    "aadict",
+    "six"
+  ]
+}

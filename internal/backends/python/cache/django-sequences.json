@@ -1,0 +1,14 @@
+{
+  "name": "django-sequences",
+  "version": "2.7",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "sequences",
+    "sqlparse"
+  ]
+}

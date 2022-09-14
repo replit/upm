@@ -1,0 +1,13 @@
+{
+  "name": "JayDeBeApi",
+  "version": "1.2.3",
+  "requires_dist": [
+    "JPype1",
+    "JPype1"
+  ],
+  "modules": [
+    "_jpype",
+    "jaydebeapi",
+    "jpype"
+  ]
+}

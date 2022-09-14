@@ -1,0 +1,7 @@
+{
+  "name": "cramjam",
+  "version": "2.5.0",
+  "modules": [
+    "cramjam"
+  ]
+}

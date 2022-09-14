@@ -1,0 +1,22 @@
+{
+  "name": "pytest-dotenv",
+  "version": "0.5.2",
+  "requires_dist": [
+    "pytest",
+    "python-dotenv"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "dotenv",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_dotenv",
+    "tomli"
+  ]
+}

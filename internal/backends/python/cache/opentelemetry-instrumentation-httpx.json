@@ -1,0 +1,17 @@
+{
+  "name": "opentelemetry-instrumentation-httpx",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-instrumentation",
+    "opentelemetry-semantic-conventions",
+    "httpx",
+    "opentelemetry-sdk",
+    "opentelemetry-test-utils",
+    "httpx"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "tritonclient",
+  "version": "2.25.0",
+  "requires_dist": [
+    "numpy",
+    "python-rapidjson",
+    "protobuf",
+    "grpcio",
+    "numpy",
+    "python-rapidjson",
+    "geventhttpclient",
+    "aiohttp",
+    "protobuf",
+    "grpcio",
+    "numpy",
+    "python-rapidjson",
+    "geventhttpclient",
+    "aiohttp",
+    "numpy",
+    "python-rapidjson"
+  ],
+  "modules": [
+    "numpy",
+    "rapidjson",
+    "tritonclient",
+    "tritonclientutils",
+    "tritongrpcclient",
+    "tritonhttpclient",
+    "tritonshmutils"
+  ]
+}

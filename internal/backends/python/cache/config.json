@@ -1,0 +1,7 @@
+{
+  "name": "config",
+  "version": "0.5.1",
+  "modules": [
+    "config"
+  ]
+}

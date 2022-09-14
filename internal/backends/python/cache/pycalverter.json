@@ -1,0 +1,7 @@
+{
+  "name": "pyCalverter",
+  "version": "1.6.1",
+  "modules": [
+    "calverter"
+  ]
+}

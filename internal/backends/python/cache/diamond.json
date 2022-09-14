@@ -1,0 +1,16 @@
+{
+  "name": "diamond",
+  "version": "4.0.515",
+  "requires_dist": [
+    "configobj",
+    "psutil"
+  ],
+  "modules": [
+    "_version",
+    "configobj",
+    "diamond",
+    "psutil",
+    "six",
+    "validate"
+  ]
+}

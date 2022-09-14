@@ -1,0 +1,15 @@
+{
+  "name": "Flask-Testing",
+  "version": "0.8.1",
+  "modules": [
+    "click",
+    "flask",
+    "flask_testing",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

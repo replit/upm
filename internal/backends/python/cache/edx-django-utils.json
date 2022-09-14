@@ -1,0 +1,32 @@
+{
+  "name": "edx-django-utils",
+  "version": "5.0.1",
+  "requires_dist": [
+    "Django",
+    "PyNaCl",
+    "click",
+    "django-crum",
+    "django-waffle",
+    "newrelic",
+    "psutil",
+    "stevedore"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "asgiref",
+    "backports",
+    "cffi",
+    "click",
+    "crum",
+    "django",
+    "edx_django_utils",
+    "nacl",
+    "newrelic",
+    "pbr",
+    "psutil",
+    "pycparser",
+    "sqlparse",
+    "stevedore",
+    "waffle"
+  ]
+}

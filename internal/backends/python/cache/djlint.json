@@ -1,0 +1,37 @@
+{
+  "name": "djlint",
+  "version": "1.14.0",
+  "requires_dist": [
+    "click",
+    "PyYAML",
+    "colorama",
+    "regex",
+    "tqdm",
+    "tomli",
+    "pathspec",
+    "importlib-metadata",
+    "html-void-elements",
+    "html-tag-names",
+    "jsbeautifier",
+    "cssbeautifier"
+  ],
+  "modules": [
+    "HtmlTagNames",
+    "HtmlVoidElements",
+    "_yaml",
+    "click",
+    "colorama",
+    "cssbeautifier",
+    "djlint",
+    "editorconfig",
+    "importlib_metadata",
+    "jsbeautifier",
+    "pathspec",
+    "regex",
+    "six",
+    "tomli",
+    "tqdm",
+    "yaml",
+    "zipp"
+  ]
+}

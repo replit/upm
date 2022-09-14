@@ -1,0 +1,13 @@
+{
+  "name": "pinject",
+  "version": "0.14.1",
+  "requires_dist": [
+    "six",
+    "decorator"
+  ],
+  "modules": [
+    "decorator",
+    "pinject",
+    "six"
+  ]
+}

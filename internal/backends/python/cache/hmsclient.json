@@ -1,0 +1,16 @@
+{
+  "name": "hmsclient",
+  "version": "0.1.1",
+  "requires_dist": [
+    "thrift",
+    "click",
+    "pytest",
+    "pytest"
+  ],
+  "modules": [
+    "click",
+    "hmsclient",
+    "six",
+    "thrift"
+  ]
+}

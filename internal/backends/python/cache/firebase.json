@@ -1,0 +1,15 @@
+{
+  "name": "firebase",
+  "version": "3.0.1",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "firebase",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

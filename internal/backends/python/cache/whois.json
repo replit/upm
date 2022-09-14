@@ -1,0 +1,7 @@
+{
+  "name": "whois",
+  "version": "0.9.16",
+  "modules": [
+    "whois"
+  ]
+}

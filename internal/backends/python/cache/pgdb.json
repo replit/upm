@@ -1,0 +1,8 @@
+{
+  "name": "pgdb",
+  "version": "0.0.11",
+  "modules": [
+    "pgdb",
+    "psycopg2"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "thriftrw",
+  "version": "1.8.1",
+  "requires_dist": [
+    "six",
+    "ply"
+  ],
+  "modules": [
+    "examples",
+    "ply",
+    "six",
+    "thriftrw"
+  ]
+}

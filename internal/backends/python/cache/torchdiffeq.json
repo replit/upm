@@ -1,0 +1,17 @@
+{
+  "name": "torchdiffeq",
+  "version": "0.2.3",
+  "requires_dist": [
+    "torch",
+    "scipy"
+  ],
+  "modules": [
+    "caffe2",
+    "numpy",
+    "scipy",
+    "torch",
+    "torchdiffeq",
+    "torchgen",
+    "typing_extensions"
+  ]
+}

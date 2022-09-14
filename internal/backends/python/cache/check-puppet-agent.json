@@ -1,0 +1,11 @@
+{
+  "name": "check-puppet-agent",
+  "version": "1.0.0",
+  "modules": [
+    "_yaml",
+    "check_puppet_agent",
+    "pyaml",
+    "six",
+    "yaml"
+  ]
+}

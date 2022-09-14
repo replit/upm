@@ -1,0 +1,17 @@
+{
+  "name": "jedi",
+  "version": "0.18.1",
+  "requires_dist": [
+    "parso",
+    "flake8",
+    "mypy",
+    "Django",
+    "colorama",
+    "docopt",
+    "pytest"
+  ],
+  "modules": [
+    "jedi",
+    "parso"
+  ]
+}

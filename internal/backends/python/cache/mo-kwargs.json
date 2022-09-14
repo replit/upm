@@ -1,0 +1,10 @@
+{
+  "name": "mo-kwargs",
+  "version": "7.173.22126",
+  "modules": [
+    "mo_dots",
+    "mo_future",
+    "mo_imports",
+    "mo_kwargs"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "spikeinterface",
+  "version": "0.95.1",
+  "requires_dist": [
+    "numpy",
+    "neo",
+    "joblib",
+    "tqdm",
+    "probeinterface",
+    "packaging",
+    "MEArec",
+    "pynwb",
+    "pyedflib",
+    "sonpy",
+    "zarr",
+    "h5py",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "networkx",
+    "distinctipy",
+    "matplotlib",
+    "ipympl",
+    "ipywidgets",
+    "sortingview"
+  ],
+  "modules": [
+    "joblib",
+    "neo",
+    "numpy",
+    "packaging",
+    "probeinterface",
+    "pyparsing",
+    "quantities",
+    "spikeinterface",
+    "tqdm"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "logical-unification",
+  "version": "0.4.5",
+  "modules": [
+    "multipledispatch",
+    "six",
+    "tlz",
+    "toolz",
+    "unification"
+  ]
+}

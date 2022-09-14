@@ -1,0 +1,17 @@
+{
+  "name": "pipdeptree",
+  "version": "2.3.1",
+  "requires_dist": [
+    "graphviz",
+    "covdefaults",
+    "diff-cover",
+    "pip",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest",
+    "virtualenv"
+  ],
+  "modules": [
+    "pipdeptree"
+  ]
+}

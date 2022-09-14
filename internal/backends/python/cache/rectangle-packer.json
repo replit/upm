@@ -1,0 +1,7 @@
+{
+  "name": "rectangle-packer",
+  "version": "2.0.1",
+  "modules": [
+    "rpack"
+  ]
+}

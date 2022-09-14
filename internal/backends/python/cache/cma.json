@@ -1,0 +1,13 @@
+{
+  "name": "cma",
+  "version": "3.2.2",
+  "requires_dist": [
+    "numpy",
+    "moarchiving",
+    "matplotlib"
+  ],
+  "modules": [
+    "cma",
+    "numpy"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "flatdict",
+  "version": "4.0.1",
+  "modules": [
+    "flatdict"
+  ]
+}

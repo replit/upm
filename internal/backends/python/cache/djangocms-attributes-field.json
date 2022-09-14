@@ -1,0 +1,23 @@
+{
+  "name": "djangocms-attributes-field",
+  "version": "2.1.0",
+  "requires_dist": [
+    "django-cms",
+    "django-treebeard"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "classytags",
+    "cms",
+    "django",
+    "djangocms_admin_style",
+    "djangocms_attributes_field",
+    "formtools",
+    "menus",
+    "sekizai",
+    "sqlparse",
+    "tests",
+    "treebeard"
+  ]
+}

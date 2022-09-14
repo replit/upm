@@ -1,0 +1,7 @@
+{
+  "name": "tokenize-rt",
+  "version": "4.2.1",
+  "modules": [
+    "tokenize_rt"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "yamllint",
+  "version": "1.28.0",
+  "modules": [
+    "_yaml",
+    "pathspec",
+    "yaml",
+    "yamllint"
+  ]
+}

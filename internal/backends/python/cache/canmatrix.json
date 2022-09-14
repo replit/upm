@@ -1,0 +1,34 @@
+{
+  "name": "canmatrix",
+  "version": "0.9.5",
+  "requires_dist": [
+    "attrs",
+    "click",
+    "future",
+    "six",
+    "enum34",
+    "typing",
+    "lxml",
+    "lxml",
+    "lxml",
+    "ldfparser",
+    "lxml",
+    "pytest",
+    "pathlib2",
+    "xlrd",
+    "xlwt",
+    "xlsxwriter",
+    "pyyaml"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "canmatrix",
+    "click",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "six"
+  ]
+}

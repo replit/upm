@@ -1,0 +1,21 @@
+{
+  "name": "adh-sample-library-preview",
+  "version": "0.9.3rc0",
+  "requires_dist": [
+    "jsonpatch",
+    "python-dateutil",
+    "requests"
+  ],
+  "modules": [
+    "adh_sample_library_preview",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "jsonpatch",
+    "jsonpointer",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

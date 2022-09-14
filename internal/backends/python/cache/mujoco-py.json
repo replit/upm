@@ -1,0 +1,26 @@
+{
+  "name": "mujoco-py",
+  "version": "2.1.2.14",
+  "requires_dist": [
+    "glfw",
+    "numpy",
+    "Cython",
+    "imageio",
+    "cffi",
+    "fasteners"
+  ],
+  "modules": [
+    "Cython",
+    "PIL",
+    "_cffi_backend",
+    "cffi",
+    "cython",
+    "fasteners",
+    "glfw",
+    "imageio",
+    "mujoco_py",
+    "numpy",
+    "pycparser",
+    "pyximport"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "delocate",
+  "version": "0.10.2",
+  "requires_dist": [
+    "wheel",
+    "typing-extensions",
+    "machomachomangler",
+    "bindepend"
+  ],
+  "modules": [
+    "delocate",
+    "typing_extensions",
+    "wheel"
+  ]
+}

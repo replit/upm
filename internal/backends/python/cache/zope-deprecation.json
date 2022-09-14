@@ -1,0 +1,9 @@
+{
+  "name": "zope.deprecation",
+  "version": "4.4.0",
+  "requires_dist": [
+    "setuptools",
+    "Sphinx",
+    "zope.testrunner"
+  ]
+}

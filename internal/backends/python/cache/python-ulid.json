@@ -1,0 +1,11 @@
+{
+  "name": "python-ulid",
+  "version": "1.1.0",
+  "requires_dist": [
+    "importlib-metadata"
+  ],
+  "modules": [
+    "tests",
+    "ulid"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "splink",
+  "version": "3.2.1",
+  "requires_dist": [
+    "jsonschema",
+    "pandas",
+    "duckdb",
+    "sqlglot",
+    "altair",
+    "Jinja2"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "altair",
+    "attr",
+    "attrs",
+    "dateutil",
+    "duckdb",
+    "duckdb_query_graph",
+    "entrypoints",
+    "jinja2",
+    "jsonschema",
+    "markupsafe",
+    "numpy",
+    "pandas",
+    "pvectorc",
+    "pyrsistent",
+    "pytz",
+    "six",
+    "splink",
+    "sqlglot",
+    "tlz",
+    "toolz"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "h2o-pysparkling-scoring-3.1",
+  "version": "3.36.1.4.post1",
+  "modules": [
+    "ai",
+    "pysparkling",
+    "sparkling_water"
+  ]
+}

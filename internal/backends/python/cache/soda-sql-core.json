@@ -1,0 +1,31 @@
+{
+  "name": "soda-sql-core",
+  "version": "2.2.2",
+  "requires_dist": [
+    "markupsafe",
+    "Jinja2",
+    "click",
+    "pyyaml",
+    "requests",
+    "Deprecated",
+    "opentelemetry-api",
+    "opentelemetry-exporter-otlp-proto-http",
+    "protobuf"
+  ],
+  "modules": [
+    "_yaml",
+    "backoff",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "deprecated",
+    "idna",
+    "jinja2",
+    "markupsafe",
+    "requests",
+    "typing_extensions",
+    "urllib3",
+    "wrapt",
+    "yaml"
+  ]
+}

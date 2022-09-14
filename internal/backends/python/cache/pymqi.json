@@ -1,0 +1,5 @@
+{
+  "name": "pymqi",
+  "version": "1.12.8",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pymqi/bin/python3', '-m', 'pip', 'install', 'pymqi']' returned non-zero exit status 1.\"}"
+}

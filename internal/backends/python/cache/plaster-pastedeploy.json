@@ -1,0 +1,14 @@
+{
+  "name": "plaster-pastedeploy",
+  "version": "0.7",
+  "requires_dist": [
+    "PasteDeploy",
+    "plaster",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "plaster",
+    "plaster_pastedeploy"
+  ]
+}

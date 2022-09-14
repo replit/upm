@@ -1,0 +1,19 @@
+{
+  "name": "robyn",
+  "version": "0.17.4",
+  "requires_dist": [
+    "watchdog",
+    "multiprocess",
+    "uvloop",
+    "uvloop",
+    "uvloop"
+  ],
+  "modules": [
+    "_multiprocess",
+    "dill",
+    "multiprocess",
+    "robyn",
+    "uvloop",
+    "watchdog"
+  ]
+}

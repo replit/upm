@@ -1,0 +1,5 @@
+{
+  "name": "spark-sklearn",
+  "version": "0.3.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/spark-sklearn/bin/python3', '-m', 'pip', 'install', 'spark-sklearn']' returned non-zero exit status 1.\"}"
+}

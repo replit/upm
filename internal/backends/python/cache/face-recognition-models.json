@@ -1,0 +1,7 @@
+{
+  "name": "face_recognition_models",
+  "version": "0.3.0",
+  "modules": [
+    "face_recognition_models"
+  ]
+}

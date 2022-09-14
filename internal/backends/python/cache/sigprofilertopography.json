@@ -1,0 +1,42 @@
+{
+  "name": "SigProfilerTopography",
+  "version": "1.0.68",
+  "requires_dist": [
+    "SigProfilerMatrixGenerator",
+    "SigProfilerSimulator",
+    "XlsxWriter",
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "scipy",
+    "statsmodels",
+    "fastrand",
+    "psutil"
+  ],
+  "modules": [
+    "PIL",
+    "SigProfilerMatrixGenerator",
+    "SigProfilerSimulator",
+    "SigProfilerTopography",
+    "cycler",
+    "dateutil",
+    "fastrand",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "psutil",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "seaborn",
+    "sigProfilerPlotting",
+    "six",
+    "statsmodels",
+    "xlsxwriter"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "sortedcollections",
+  "version": "2.1.0",
+  "requires_dist": [
+    "sortedcontainers"
+  ],
+  "modules": [
+    "sortedcollections",
+    "sortedcontainers"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "tika",
+  "version": "1.24",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "tika",
+    "urllib3"
+  ]
+}

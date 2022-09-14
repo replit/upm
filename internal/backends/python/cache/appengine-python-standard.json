@@ -1,0 +1,36 @@
+{
+  "name": "appengine-python-standard",
+  "version": "1.0.0",
+  "requires_dist": [
+    "attrs",
+    "frozendict",
+    "google-auth",
+    "mock",
+    "Pillow",
+    "protobuf",
+    "pytz",
+    "requests",
+    "ruamel.yaml",
+    "six",
+    "urllib3"
+  ],
+  "modules": [
+    "PIL",
+    "_ruamel_yaml",
+    "attr",
+    "attrs",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "frozendict",
+    "idna",
+    "mock",
+    "pyasn1",
+    "pyasn1_modules",
+    "pytz",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

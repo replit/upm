@@ -1,0 +1,8 @@
+{
+  "name": "sas7bdat",
+  "version": "2.2.3",
+  "modules": [
+    "sas7bdat",
+    "six"
+  ]
+}

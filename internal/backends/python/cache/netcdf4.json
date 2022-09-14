@@ -1,0 +1,13 @@
+{
+  "name": "netCDF4",
+  "version": "1.6.0",
+  "requires_dist": [
+    "numpy",
+    "cftime"
+  ],
+  "modules": [
+    "cftime",
+    "netCDF4",
+    "numpy"
+  ]
+}

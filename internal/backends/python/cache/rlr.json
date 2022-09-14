@@ -1,0 +1,13 @@
+{
+  "name": "rlr",
+  "version": "2.4.6",
+  "requires_dist": [
+    "numpy",
+    "pylbfgs"
+  ],
+  "modules": [
+    "lbfgs",
+    "numpy",
+    "rlr"
+  ]
+}

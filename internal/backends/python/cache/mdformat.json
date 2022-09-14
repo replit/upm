@@ -1,0 +1,18 @@
+{
+  "name": "mdformat",
+  "version": "0.7.16",
+  "requires_dist": [
+    "markdown-it-py",
+    "importlib-metadata",
+    "tomli",
+    "typing-extensions"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "markdown_it",
+    "mdformat",
+    "mdurl",
+    "tomli",
+    "zipp"
+  ]
+}

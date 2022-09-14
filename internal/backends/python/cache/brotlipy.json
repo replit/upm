@@ -1,0 +1,10 @@
+{
+  "name": "brotlipy",
+  "version": "0.7.0",
+  "modules": [
+    "_cffi_backend",
+    "brotli",
+    "cffi",
+    "pycparser"
+  ]
+}

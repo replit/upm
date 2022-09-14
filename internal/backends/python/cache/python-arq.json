@@ -1,0 +1,29 @@
+{
+  "name": "python-arq",
+  "version": "6.0.5",
+  "requires_dist": [
+    "pyrogram",
+    "dotmap",
+    "aiohttp",
+    "aiofiles"
+  ],
+  "modules": [
+    "Python_ARQ",
+    "aiofiles",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "dotmap",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "pyaes",
+    "pyrogram",
+    "socks",
+    "sockshandler",
+    "yarl"
+  ]
+}

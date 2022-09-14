@@ -1,0 +1,25 @@
+{
+  "name": "pytest-profiling",
+  "version": "1.7.0",
+  "requires_dist": [
+    "six",
+    "pytest",
+    "gprof2dot",
+    "pytest-virtualenv"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "gprof2dot",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_profiling",
+    "six",
+    "tomli"
+  ]
+}

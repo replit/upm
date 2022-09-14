@@ -1,0 +1,7 @@
+{
+  "name": "ffprobe",
+  "version": "0.5",
+  "modules": [
+    "ffprobe"
+  ]
+}

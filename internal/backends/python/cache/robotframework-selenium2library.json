@@ -1,0 +1,29 @@
+{
+  "name": "robotframework-selenium2library",
+  "version": "3.0.0",
+  "requires_dist": [
+    "robotframework-seleniumlibrary"
+  ],
+  "modules": [
+    "Selenium2Library",
+    "SeleniumLibrary",
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "robot",
+    "robotlibcore",
+    "selenium",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

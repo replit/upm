@@ -1,0 +1,33 @@
+{
+  "name": "pytest-sanic",
+  "version": "1.9.1",
+  "requires_dist": [
+    "pytest",
+    "async_generator",
+    "httpx",
+    "websockets"
+  ],
+  "modules": [
+    "_pytest",
+    "anyio",
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_sanic",
+    "rfc3986",
+    "sniffio",
+    "tomli",
+    "websockets"
+  ]
+}

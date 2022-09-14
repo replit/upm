@@ -1,0 +1,20 @@
+{
+  "name": "PGPy",
+  "version": "0.5.4",
+  "requires_dist": [
+    "cryptography",
+    "pyasn1",
+    "six",
+    "singledispatch",
+    "enum34"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pgpy",
+    "pyasn1",
+    "pycparser",
+    "six"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "librapid",
+  "version": "0.5.5",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "librapid"
+  ]
+}

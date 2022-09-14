@@ -1,0 +1,15 @@
+{
+  "name": "codespell",
+  "version": "2.2.1",
+  "requires_dist": [
+    "check-manifest",
+    "flake8",
+    "pytest",
+    "pytest-cov",
+    "pytest-dependency",
+    "chardet"
+  ],
+  "modules": [
+    "codespell_lib"
+  ]
+}

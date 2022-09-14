@@ -1,0 +1,20 @@
+{
+  "name": "zope.size",
+  "version": "4.4",
+  "requires_dist": [
+    "setuptools",
+    "zope.interface",
+    "zope.i18nmessageid",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component",
+    "zope.configuration",
+    "zope.security",
+    "zope.component",
+    "zope.configuration",
+    "zope.security"
+  ],
+  "modules": [
+    "six"
+  ]
+}

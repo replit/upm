@@ -1,0 +1,11 @@
+{
+  "name": "untangle",
+  "version": "1.2.1",
+  "requires_dist": [
+    "defusedxml"
+  ],
+  "modules": [
+    "defusedxml",
+    "untangle"
+  ]
+}

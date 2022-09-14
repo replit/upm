@@ -1,0 +1,11 @@
+{
+  "name": "kwarray",
+  "version": "0.6.3",
+  "modules": [
+    "kwarray",
+    "numpy",
+    "scipy",
+    "six",
+    "ubelt"
+  ]
+}

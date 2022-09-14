@@ -1,0 +1,12 @@
+{
+  "name": "cligj",
+  "version": "0.7.2",
+  "requires_dist": [
+    "click",
+    "pytest-cov"
+  ],
+  "modules": [
+    "click",
+    "cligj"
+  ]
+}

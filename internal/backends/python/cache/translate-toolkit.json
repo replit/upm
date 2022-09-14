@@ -1,0 +1,37 @@
+{
+  "name": "translate-toolkit",
+  "version": "3.7.3",
+  "requires_dist": [
+    "lxml",
+    "fluent.syntax",
+    "iniparse",
+    "pycountry",
+    "python-Levenshtein",
+    "phply",
+    "pyparsing",
+    "aeidon",
+    "BeautifulSoup4",
+    "ruamel.yaml",
+    "aeidon",
+    "BeautifulSoup4",
+    "charset-normalizer",
+    "cheroot",
+    "fluent.syntax",
+    "iniparse",
+    "phply",
+    "pycountry",
+    "pyenchant",
+    "pyparsing",
+    "python-Levenshtein",
+    "ruamel.yaml",
+    "vobject",
+    "charset-normalizer",
+    "vobject",
+    "pyenchant",
+    "cheroot"
+  ],
+  "modules": [
+    "lxml",
+    "translate"
+  ]
+}

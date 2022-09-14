@@ -1,0 +1,8 @@
+{
+  "name": "django-cookies-samesite",
+  "version": "0.9.0",
+  "modules": [
+    "django_cookies_samesite",
+    "ua_parser"
+  ]
+}

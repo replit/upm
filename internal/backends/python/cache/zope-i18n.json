@@ -1,0 +1,29 @@
+{
+  "name": "zope.i18n",
+  "version": "4.9.0",
+  "requires_dist": [
+    "setuptools",
+    "python-gettext",
+    "pytz",
+    "zope.deprecation",
+    "zope.schema",
+    "zope.i18nmessageid",
+    "zope.component",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component",
+    "zope.configuration",
+    "zope.security",
+    "zope.publisher",
+    "zope.testing",
+    "zope.testrunner",
+    "zope.component",
+    "zope.configuration",
+    "zope.security"
+  ],
+  "modules": [
+    "pythongettext",
+    "pytz",
+    "six"
+  ]
+}

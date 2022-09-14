@@ -1,0 +1,8 @@
+{
+  "name": "cookies",
+  "version": "2.2.1",
+  "modules": [
+    "cookies",
+    "test_cookies"
+  ]
+}

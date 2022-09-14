@@ -1,0 +1,13 @@
+{
+  "name": "pathlib2",
+  "version": "2.3.7.post1",
+  "requires_dist": [
+    "six",
+    "scandir",
+    "typing"
+  ],
+  "modules": [
+    "pathlib2",
+    "six"
+  ]
+}

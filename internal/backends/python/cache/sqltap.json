@@ -1,0 +1,13 @@
+{
+  "name": "sqltap",
+  "version": "0.3.11",
+  "modules": [
+    "greenlet",
+    "mako",
+    "markupsafe",
+    "sqlalchemy",
+    "sqlparse",
+    "sqltap",
+    "werkzeug"
+  ]
+}

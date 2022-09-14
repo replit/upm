@@ -1,0 +1,16 @@
+{
+  "name": "flake8-expression-complexity",
+  "version": "0.0.11",
+  "requires_dist": [
+    "astpretty",
+    "flake8"
+  ],
+  "modules": [
+    "astpretty",
+    "flake8",
+    "flake8_expression_complexity",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

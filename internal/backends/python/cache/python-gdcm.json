@@ -1,0 +1,8 @@
+{
+  "name": "python-gdcm",
+  "version": "3.0.17.1",
+  "modules": [
+    "_gdcm",
+    "gdcm"
+  ]
+}

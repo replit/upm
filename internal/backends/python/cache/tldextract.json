@@ -1,0 +1,21 @@
+{
+  "name": "tldextract",
+  "version": "3.3.1",
+  "requires_dist": [
+    "idna",
+    "requests",
+    "requests-file",
+    "filelock"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "filelock",
+    "idna",
+    "requests",
+    "requests_file",
+    "six",
+    "tldextract",
+    "urllib3"
+  ]
+}

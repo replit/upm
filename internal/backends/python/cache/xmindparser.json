@@ -1,0 +1,7 @@
+{
+  "name": "xmindparser",
+  "version": "1.0.9",
+  "modules": [
+    "xmindparser"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "item",
+  "version": "0.0.3",
+  "modules": [
+    "item",
+    "lxml",
+    "pytils",
+    "script",
+    "selection",
+    "six",
+    "user_agent",
+    "weblib"
+  ]
+}

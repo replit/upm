@@ -1,0 +1,12 @@
+{
+  "name": "log-symbols",
+  "version": "0.0.14",
+  "requires_dist": [
+    "colorama",
+    "enum34"
+  ],
+  "modules": [
+    "colorama",
+    "log_symbols"
+  ]
+}

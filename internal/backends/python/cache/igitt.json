@@ -1,0 +1,19 @@
+{
+  "name": "IGitt",
+  "version": "0.4.1",
+  "requires_dist": [
+    "GitPython",
+    "requests"
+  ],
+  "modules": [
+    "IGitt",
+    "certifi",
+    "charset_normalizer",
+    "git",
+    "gitdb",
+    "idna",
+    "requests",
+    "smmap",
+    "urllib3"
+  ]
+}

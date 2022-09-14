@@ -1,0 +1,12 @@
+{
+  "name": "screeninfo",
+  "version": "0.8.1",
+  "requires_dist": [
+    "dataclasses",
+    "Cython",
+    "pyobjc-framework-Cocoa"
+  ],
+  "modules": [
+    "screeninfo"
+  ]
+}

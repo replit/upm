@@ -1,0 +1,7 @@
+{
+  "name": "pyftpdlib",
+  "version": "1.5.6",
+  "modules": [
+    "pyftpdlib"
+  ]
+}

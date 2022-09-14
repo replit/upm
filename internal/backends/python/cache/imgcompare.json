@@ -1,0 +1,11 @@
+{
+  "name": "imgcompare",
+  "version": "2.0.1",
+  "requires_dist": [
+    "pillow"
+  ],
+  "modules": [
+    "PIL",
+    "imgcompare"
+  ]
+}

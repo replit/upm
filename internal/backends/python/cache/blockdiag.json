@@ -1,0 +1,25 @@
+{
+  "name": "blockdiag",
+  "version": "3.0.0",
+  "requires_dist": [
+    "setuptools",
+    "funcparserlib",
+    "Pillow",
+    "webcolors",
+    "reportlab",
+    "docutils",
+    "nose",
+    "flake8",
+    "flake8-coding",
+    "flake8-copyright",
+    "flake8-isort",
+    "reportlab",
+    "docutils"
+  ],
+  "modules": [
+    "PIL",
+    "blockdiag",
+    "funcparserlib",
+    "webcolors"
+  ]
+}

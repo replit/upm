@@ -1,0 +1,13 @@
+{
+  "name": "django-coverage-plugin",
+  "version": "2.0.3",
+  "requires_dist": [
+    "coverage",
+    "six"
+  ],
+  "modules": [
+    "coverage",
+    "django_coverage_plugin",
+    "six"
+  ]
+}

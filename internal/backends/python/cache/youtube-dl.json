@@ -1,0 +1,7 @@
+{
+  "name": "youtube_dl",
+  "version": "2021.12.17",
+  "modules": [
+    "youtube_dl"
+  ]
+}

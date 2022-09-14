@@ -1,0 +1,11 @@
+{
+  "name": "django-secure",
+  "version": "1.0.2",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "djangosecure",
+    "sqlparse"
+  ]
+}

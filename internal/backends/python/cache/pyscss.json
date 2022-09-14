@@ -1,0 +1,8 @@
+{
+  "name": "pyScss",
+  "version": "1.4.0",
+  "modules": [
+    "scss",
+    "six"
+  ]
+}

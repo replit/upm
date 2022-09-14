@@ -1,0 +1,17 @@
+{
+  "name": "json-spec",
+  "version": "0.10.1",
+  "requires_dist": [
+    "six",
+    "pathlib",
+    "pathlib",
+    "pathlib",
+    "termcolor",
+    "ipaddress",
+    "ipaddress"
+  ],
+  "modules": [
+    "jsonspec",
+    "six"
+  ]
+}

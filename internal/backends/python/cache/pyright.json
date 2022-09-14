@@ -1,0 +1,14 @@
+{
+  "name": "pyright",
+  "version": "1.1.270",
+  "requires_dist": [
+    "nodeenv",
+    "typing-extensions",
+    "twine",
+    "twine"
+  ],
+  "modules": [
+    "nodeenv",
+    "pyright"
+  ]
+}

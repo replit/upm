@@ -1,0 +1,32 @@
+{
+  "name": "domaintools-api",
+  "version": "1.0.1",
+  "requires_dist": [
+    "httpx",
+    "dateparser"
+  ],
+  "modules": [
+    "anyio",
+    "backports",
+    "certifi",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "domaintools",
+    "domaintools_async",
+    "h11",
+    "httpcore",
+    "httpx",
+    "idna",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "rfc3986",
+    "six",
+    "sniffio",
+    "tzdata",
+    "tzlocal"
+  ]
+}

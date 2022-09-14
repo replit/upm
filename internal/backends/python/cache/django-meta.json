@@ -1,0 +1,12 @@
+{
+  "name": "django-meta",
+  "version": "2.1.0",
+  "requires_dist": [
+    "six",
+    "django"
+  ],
+  "modules": [
+    "meta",
+    "six"
+  ]
+}

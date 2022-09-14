@@ -1,0 +1,11 @@
+{
+  "name": "awkward0",
+  "version": "0.15.5",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "awkward0",
+    "numpy"
+  ]
+}

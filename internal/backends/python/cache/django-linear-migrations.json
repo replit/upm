@@ -1,0 +1,14 @@
+{
+  "name": "django-linear-migrations",
+  "version": "2.5.1",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_linear_migrations",
+    "sqlparse"
+  ]
+}

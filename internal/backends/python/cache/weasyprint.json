@@ -1,0 +1,40 @@
+{
+  "name": "weasyprint",
+  "version": "56.1",
+  "requires_dist": [
+    "pydyf",
+    "cffi",
+    "html5lib",
+    "tinycss2",
+    "cssselect2",
+    "Pyphen",
+    "Pillow",
+    "fonttools",
+    "sphinx",
+    "sphinx_rtd_theme",
+    "pytest",
+    "pytest-xdist",
+    "pytest-flake8",
+    "pytest-isort",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "PIL",
+    "_brotli",
+    "_cffi_backend",
+    "brotli",
+    "cffi",
+    "cssselect2",
+    "fontTools",
+    "html5lib",
+    "pycparser",
+    "pydyf",
+    "pyphen",
+    "six",
+    "tinycss2",
+    "weasyprint",
+    "webencodings",
+    "zopfli"
+  ]
+}

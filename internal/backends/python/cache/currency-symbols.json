@@ -1,0 +1,7 @@
+{
+  "name": "currency-symbols",
+  "version": "2.0.3",
+  "modules": [
+    "currency_symbols"
+  ]
+}

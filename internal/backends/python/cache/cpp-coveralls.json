@@ -1,0 +1,27 @@
+{
+  "name": "cpp-coveralls",
+  "version": "0.4.2",
+  "requires_dist": [
+    "requests",
+    "urllib3",
+    "future"
+  ],
+  "modules": [
+    "OpenSSL",
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cpp_coveralls",
+    "cryptography",
+    "future",
+    "idna",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "urllib3_secure_extra"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "awslambdaric",
+  "version": "2.0.4",
+  "requires_dist": [
+    "simplejson",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "awslambdaric",
+    "runtime_client",
+    "simplejson"
+  ]
+}

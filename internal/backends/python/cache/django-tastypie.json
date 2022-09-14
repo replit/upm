@@ -1,0 +1,10 @@
+{
+  "name": "django-tastypie",
+  "version": "0.14.4",
+  "modules": [
+    "dateutil",
+    "mimeparse",
+    "six",
+    "tastypie"
+  ]
+}

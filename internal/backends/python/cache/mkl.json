@@ -1,0 +1,8 @@
+{
+  "name": "mkl",
+  "version": "2022.1.0",
+  "requires_dist": [
+    "intel-openmp",
+    "tbb"
+  ]
+}

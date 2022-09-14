@@ -1,0 +1,15 @@
+{
+  "name": "pybacklogpy",
+  "version": "0.12",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "chardet",
+    "idna",
+    "pybacklogpy",
+    "requests",
+    "urllib3"
+  ]
+}

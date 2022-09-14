@@ -1,0 +1,7 @@
+{
+  "name": "IP2Location",
+  "version": "8.8.1",
+  "modules": [
+    "IP2Location"
+  ]
+}

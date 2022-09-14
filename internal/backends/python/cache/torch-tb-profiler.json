@@ -1,0 +1,42 @@
+{
+  "name": "torch-tb-profiler",
+  "version": "0.4.0",
+  "requires_dist": [
+    "pandas",
+    "tensorboard",
+    "azure-storage-blob",
+    "google-cloud-storage",
+    "boto3"
+  ],
+  "modules": [
+    "absl",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "google_auth_oauthlib",
+    "grpc",
+    "idna",
+    "importlib_metadata",
+    "markdown",
+    "markupsafe",
+    "numpy",
+    "oauthlib",
+    "pandas",
+    "pyasn1",
+    "pyasn1_modules",
+    "pytz",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "tensorboard",
+    "tensorboard_data_server",
+    "tensorboard_plugin_wit",
+    "torch_tb_profiler",
+    "urllib3",
+    "werkzeug",
+    "wheel",
+    "zipp"
+  ]
+}

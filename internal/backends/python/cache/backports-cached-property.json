@@ -1,0 +1,10 @@
+{
+  "name": "backports.cached-property",
+  "version": "1.0.2",
+  "requires_dist": [
+    "typing"
+  ],
+  "modules": [
+    "backports"
+  ]
+}

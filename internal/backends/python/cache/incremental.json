@@ -1,0 +1,11 @@
+{
+  "name": "incremental",
+  "version": "21.3.0",
+  "requires_dist": [
+    "click",
+    "twisted"
+  ],
+  "modules": [
+    "incremental"
+  ]
+}

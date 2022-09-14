@@ -1,0 +1,23 @@
+{
+  "name": "fuzzymatcher",
+  "version": "0.0.6",
+  "requires_dist": [
+    "pandas",
+    "metaphone",
+    "python-Levenshtein",
+    "rapidfuzz",
+    "python-dateutil"
+  ],
+  "modules": [
+    "Levenshtein",
+    "dateutil",
+    "fuzzymatcher",
+    "jarowinkler",
+    "metaphone",
+    "numpy",
+    "pandas",
+    "pytz",
+    "rapidfuzz",
+    "six"
+  ]
+}

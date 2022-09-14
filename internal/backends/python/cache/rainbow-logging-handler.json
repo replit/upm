@@ -1,0 +1,9 @@
+{
+  "name": "rainbow_logging_handler",
+  "version": "2.2.2",
+  "modules": [
+    "colorama",
+    "logutils",
+    "rainbow_logging_handler"
+  ]
+}

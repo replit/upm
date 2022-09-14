@@ -1,0 +1,20 @@
+{
+  "name": "pytest-ordering",
+  "version": "0.6",
+  "requires_dist": [
+    "pytest"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_ordering",
+    "tomli"
+  ]
+}

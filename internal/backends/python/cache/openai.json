@@ -1,0 +1,21 @@
+{
+  "name": "openai",
+  "version": "0.23.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "et_xmlfile",
+    "idna",
+    "numpy",
+    "openai",
+    "openpyxl",
+    "pandas",
+    "pytz",
+    "requests",
+    "six",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

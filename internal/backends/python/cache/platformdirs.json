@@ -1,0 +1,17 @@
+{
+  "name": "platformdirs",
+  "version": "2.5.2",
+  "requires_dist": [
+    "furo",
+    "proselint",
+    "sphinx-autodoc-typehints",
+    "sphinx",
+    "appdirs",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest"
+  ],
+  "modules": [
+    "platformdirs"
+  ]
+}

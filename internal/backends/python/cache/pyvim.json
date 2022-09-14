@@ -1,0 +1,20 @@
+{
+  "name": "pyvim",
+  "version": "3.0.3",
+  "requires_dist": [
+    "prompt-toolkit",
+    "six",
+    "pyflakes",
+    "pygments",
+    "docopt"
+  ],
+  "modules": [
+    "docopt",
+    "prompt_toolkit",
+    "pyflakes",
+    "pygments",
+    "pyvim",
+    "six",
+    "wcwidth"
+  ]
+}

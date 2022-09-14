@@ -1,0 +1,28 @@
+{
+  "name": "razorpay.alohomora",
+  "version": "0.5.0",
+  "requires_dist": [
+    "credstash",
+    "click",
+    "jinja2"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "boto3",
+    "botocore",
+    "cffi",
+    "click",
+    "credstash",
+    "cryptography",
+    "dateutil",
+    "jinja2",
+    "jmespath",
+    "markupsafe",
+    "pycparser",
+    "razorpay",
+    "s3transfer",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

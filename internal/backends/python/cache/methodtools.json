@@ -1,0 +1,9 @@
+{
+  "name": "methodtools",
+  "version": "0.4.5",
+  "modules": [
+    "methodtools",
+    "six",
+    "wirerope"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "slack-webhook",
+  "version": "1.0.7",
+  "modules": [
+    "slack_webhook"
+  ]
+}

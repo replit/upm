@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-cdn",
+  "version": "3.7.4",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcdn",
+    "aliyunsdkcore",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

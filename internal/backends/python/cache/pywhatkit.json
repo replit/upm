@@ -1,0 +1,40 @@
+{
+  "name": "pywhatkit",
+  "version": "5.4",
+  "requires_dist": [
+    "Pillow",
+    "pyautogui",
+    "requests",
+    "wikipedia",
+    "Flask"
+  ],
+  "modules": [
+    "PIL",
+    "Xlib",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "mouseinfo",
+    "pyautogui",
+    "pygetwindow",
+    "pymsgbox",
+    "pyperclip",
+    "pyrect",
+    "pyscreeze",
+    "pytweening",
+    "pywhatkit",
+    "requests",
+    "soupsieve",
+    "urllib3",
+    "werkzeug",
+    "wikipedia",
+    "zipp"
+  ]
+}

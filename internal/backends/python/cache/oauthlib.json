@@ -1,0 +1,13 @@
+{
+  "name": "oauthlib",
+  "version": "3.2.1",
+  "requires_dist": [
+    "cryptography",
+    "blinker",
+    "cryptography",
+    "pyjwt"
+  ],
+  "modules": [
+    "oauthlib"
+  ]
+}

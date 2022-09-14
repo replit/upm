@@ -1,0 +1,38 @@
+{
+  "name": "trie",
+  "version": "2.0.1",
+  "requires_dist": [
+    "eth-hash",
+    "eth-utils",
+    "hexbytes",
+    "rlp",
+    "sortedcontainers",
+    "typing-extensions",
+    "bumpversion",
+    "wheel",
+    "twine",
+    "eth-hash",
+    "pytest-xdist",
+    "tox",
+    "hypothesis",
+    "pycryptodome",
+    "flake8",
+    "flake8",
+    "pytest-xdist",
+    "tox",
+    "hypothesis",
+    "pycryptodome"
+  ],
+  "modules": [
+    "cytoolz",
+    "eth_hash",
+    "eth_typing",
+    "eth_utils",
+    "hexbytes",
+    "rlp",
+    "sortedcontainers",
+    "tlz",
+    "toolz",
+    "trie"
+  ]
+}

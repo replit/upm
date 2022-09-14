@@ -1,0 +1,7 @@
+{
+  "name": "fysom",
+  "version": "2.1.6",
+  "modules": [
+    "fysom"
+  ]
+}

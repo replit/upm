@@ -1,0 +1,13 @@
+{
+  "name": "preshed",
+  "version": "3.0.7",
+  "requires_dist": [
+    "cymem",
+    "murmurhash"
+  ],
+  "modules": [
+    "cymem",
+    "murmurhash",
+    "preshed"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "kivy-deps.sdl2",
+  "version": "0.5.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/kivy-deps.sdl2/bin/python3', '-m', 'pip', 'install', 'kivy-deps.sdl2']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "sqreen",
+  "version": "1.27.4",
+  "modules": [
+    "py_mini_racer",
+    "sq_native",
+    "sqreen"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "cftime",
+  "version": "1.6.1",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "cftime",
+    "numpy"
+  ]
+}

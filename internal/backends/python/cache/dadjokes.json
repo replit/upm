@@ -1,0 +1,16 @@
+{
+  "name": "dadjokes",
+  "version": "1.3.2",
+  "requires_dist": [
+    "requests",
+    "bump"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dadjokes",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

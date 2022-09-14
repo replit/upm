@@ -1,0 +1,25 @@
+{
+  "name": "cfl-common",
+  "version": "6.20.0",
+  "requires_dist": [
+    "django",
+    "djangorestframework",
+    "django-two-factor-auth",
+    "django-countries"
+  ],
+  "modules": [
+    "asgiref",
+    "common",
+    "django",
+    "django_countries",
+    "django_otp",
+    "formtools",
+    "phonenumber_field",
+    "pytz",
+    "qrcode",
+    "rest_framework",
+    "sqlparse",
+    "two_factor",
+    "typing_extensions"
+  ]
+}

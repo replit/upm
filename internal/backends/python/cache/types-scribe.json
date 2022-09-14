@@ -1,0 +1,7 @@
+{
+  "name": "types-scribe",
+  "version": "2.0.0",
+  "requires_dist": [
+    "types-fb303"
+  ]
+}

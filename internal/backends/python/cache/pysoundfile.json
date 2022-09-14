@@ -1,0 +1,10 @@
+{
+  "name": "PySoundFile",
+  "version": "0.9.0.post1",
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "pycparser",
+    "soundfile"
+  ]
+}

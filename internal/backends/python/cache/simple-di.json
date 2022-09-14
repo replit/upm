@@ -1,0 +1,13 @@
+{
+  "name": "simple-di",
+  "version": "0.1.5",
+  "requires_dist": [
+    "dataclasses",
+    "types-dataclasses",
+    "pytest",
+    "mypy"
+  ],
+  "modules": [
+    "simple_di"
+  ]
+}

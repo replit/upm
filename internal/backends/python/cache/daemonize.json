@@ -1,0 +1,7 @@
+{
+  "name": "daemonize",
+  "version": "2.5.0",
+  "modules": [
+    "daemonize"
+  ]
+}

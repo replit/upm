@@ -1,0 +1,8 @@
+{
+  "name": "Geohash",
+  "version": "1.0",
+  "modules": [
+    "Geohash",
+    "docutils"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "CacheControl",
+  "version": "0.12.11",
+  "requires_dist": [
+    "requests",
+    "msgpack",
+    "lockfile",
+    "redis"
+  ],
+  "modules": [
+    "cachecontrol",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "msgpack",
+    "requests",
+    "urllib3"
+  ]
+}

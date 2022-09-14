@@ -1,0 +1,12 @@
+{
+  "name": "cpgclientlib",
+  "version": "0.11.321",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "cpgclient",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

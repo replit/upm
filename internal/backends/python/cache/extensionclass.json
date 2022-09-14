@@ -1,0 +1,9 @@
+{
+  "name": "ExtensionClass",
+  "version": "4.6",
+  "modules": [
+    "ComputedAttribute",
+    "ExtensionClass",
+    "MethodObject"
+  ]
+}

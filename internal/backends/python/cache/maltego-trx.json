@@ -1,0 +1,26 @@
+{
+  "name": "maltego-trx",
+  "version": "1.6.0",
+  "requires_dist": [
+    "flask",
+    "six",
+    "cryptography",
+    "dataclasses"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "click",
+    "cryptography",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "maltego_trx",
+    "markupsafe",
+    "pycparser",
+    "six",
+    "werkzeug",
+    "zipp"
+  ]
+}

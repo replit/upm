@@ -1,0 +1,7 @@
+{
+  "name": "pylint-exit",
+  "version": "1.2.0",
+  "modules": [
+    "pylint_exit"
+  ]
+}

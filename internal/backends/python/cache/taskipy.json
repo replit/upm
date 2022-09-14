@@ -1,0 +1,17 @@
+{
+  "name": "taskipy",
+  "version": "1.10.3",
+  "requires_dist": [
+    "tomli",
+    "tomli",
+    "psutil",
+    "mslex",
+    "colorama"
+  ],
+  "modules": [
+    "colorama",
+    "psutil",
+    "taskipy",
+    "tomli"
+  ]
+}

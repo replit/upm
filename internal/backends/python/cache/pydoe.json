@@ -1,0 +1,9 @@
+{
+  "name": "pyDOE",
+  "version": "0.3.8",
+  "modules": [
+    "numpy",
+    "pyDOE",
+    "scipy"
+  ]
+}

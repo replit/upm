@@ -1,0 +1,26 @@
+{
+  "name": "GoogleNews",
+  "version": "1.6.5",
+  "requires_dist": [
+    "beautifulsoup4",
+    "dateparser",
+    "python-dateutil"
+  ],
+  "modules": [
+    "GoogleNews",
+    "backports",
+    "bs4",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "six",
+    "soupsieve",
+    "tzdata",
+    "tzlocal"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "aliyun-python-sdk-vpc",
+  "version": "3.0.24",
+  "requires_dist": [
+    "aliyun-python-sdk-core"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "aliyunsdkcore",
+    "aliyunsdkvpc",
+    "cffi",
+    "cryptography",
+    "jmespath",
+    "pycparser"
+  ]
+}

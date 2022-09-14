@@ -1,0 +1,10 @@
+{
+  "name": "zope.contenttype",
+  "version": "4.6",
+  "requires_dist": [
+    "setuptools",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "zope.testrunner"
+  ]
+}

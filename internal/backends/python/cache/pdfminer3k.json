@@ -1,0 +1,11 @@
+{
+  "name": "pdfminer3k",
+  "version": "1.3.4",
+  "requires_dist": [
+    "ply"
+  ],
+  "modules": [
+    "pdfminer",
+    "ply"
+  ]
+}

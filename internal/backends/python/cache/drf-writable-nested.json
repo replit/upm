@@ -1,0 +1,7 @@
+{
+  "name": "drf-writable-nested",
+  "version": "0.7.0",
+  "modules": [
+    "drf_writable_nested"
+  ]
+}

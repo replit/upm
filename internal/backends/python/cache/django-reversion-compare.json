@@ -1,0 +1,17 @@
+{
+  "name": "django-reversion-compare",
+  "version": "0.15.0",
+  "requires_dist": [
+    "diff-match-patch",
+    "django-reversion"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "diff_match_patch",
+    "django",
+    "reversion",
+    "reversion_compare",
+    "sqlparse"
+  ]
+}

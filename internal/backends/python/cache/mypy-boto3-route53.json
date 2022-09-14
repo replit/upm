@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-route53",
+  "version": "1.24.69",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_route53",
+    "typing_extensions"
+  ]
+}

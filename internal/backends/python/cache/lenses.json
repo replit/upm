@@ -1,0 +1,19 @@
+{
+  "name": "lenses",
+  "version": "1.1.0",
+  "requires_dist": [
+    "dataclasses",
+    "sphinx",
+    "pyrsistent",
+    "pyrsistent",
+    "pytest",
+    "pytest-sugar",
+    "coverage",
+    "pytest-coverage",
+    "hypothesis",
+    "mypy"
+  ],
+  "modules": [
+    "lenses"
+  ]
+}

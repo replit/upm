@@ -1,0 +1,20 @@
+{
+  "name": "flake8-html",
+  "version": "0.4.2",
+  "requires_dist": [
+    "jinja2",
+    "pygments",
+    "flake8",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_html",
+    "jinja2",
+    "markupsafe",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "pygments"
+  ]
+}

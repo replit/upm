@@ -1,0 +1,28 @@
+{
+  "name": "azure-identity",
+  "version": "1.10.0",
+  "requires_dist": [
+    "azure-core",
+    "cryptography",
+    "msal",
+    "msal-extensions",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "jwt",
+    "msal",
+    "msal_extensions",
+    "portalocker",
+    "pycparser",
+    "requests",
+    "six",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

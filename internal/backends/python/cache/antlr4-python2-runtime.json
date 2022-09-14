@@ -1,0 +1,7 @@
+{
+  "name": "antlr4-python2-runtime",
+  "version": "4.11.1",
+  "modules": [
+    "antlr4"
+  ]
+}

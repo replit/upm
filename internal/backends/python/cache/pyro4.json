@@ -1,0 +1,13 @@
+{
+  "name": "Pyro4",
+  "version": "4.82",
+  "requires_dist": [
+    "serpent",
+    "serpent",
+    "selectors34"
+  ],
+  "modules": [
+    "Pyro4",
+    "serpent"
+  ]
+}

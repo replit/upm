@@ -1,0 +1,33 @@
+{
+  "name": "robotframework-pageobjectlibrary",
+  "version": "1.1",
+  "requires_dist": [
+    "robotframework",
+    "robotframework-seleniumlibrary",
+    "selenium",
+    "six"
+  ],
+  "modules": [
+    "PageObjectLibrary",
+    "SeleniumLibrary",
+    "async_generator",
+    "attr",
+    "attrs",
+    "certifi",
+    "h11",
+    "idna",
+    "outcome",
+    "robot",
+    "robotlibcore",
+    "selenium",
+    "six",
+    "sniffio",
+    "socks",
+    "sockshandler",
+    "sortedcontainers",
+    "trio",
+    "trio_websocket",
+    "urllib3",
+    "wsproto"
+  ]
+}

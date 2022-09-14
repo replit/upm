@@ -1,0 +1,26 @@
+{
+  "name": "lightstep",
+  "version": "4.4.8",
+  "requires_dist": [
+    "thrift",
+    "jsonpickle",
+    "six",
+    "basictracer",
+    "googleapis-common-protos",
+    "requests",
+    "protobuf"
+  ],
+  "modules": [
+    "basictracer",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jsonpickle",
+    "lightstep",
+    "opentracing",
+    "requests",
+    "six",
+    "thrift",
+    "urllib3"
+  ]
+}

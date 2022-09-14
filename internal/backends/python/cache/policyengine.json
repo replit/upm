@@ -1,0 +1,29 @@
+{
+  "name": "PolicyEngine",
+  "version": "1.106.2",
+  "requires_dist": [
+    "dpath",
+    "flask",
+    "flask-cors",
+    "google-cloud-storage",
+    "google-cloud-logging",
+    "gunicorn",
+    "itsdangerous",
+    "Jinja2",
+    "kaleido",
+    "microdf-python",
+    "numpy",
+    "OpenFisca-Core",
+    "OpenFisca-Tools",
+    "OpenFisca-UK",
+    "OpenFisca-US",
+    "pandas",
+    "plotly",
+    "pytest",
+    "rdbl",
+    "tables",
+    "wheel",
+    "yaml-changelog"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/PolicyEngine/bin/python3', '-m', 'pip', 'install', 'PolicyEngine']' returned non-zero exit status 1.\"}"
+}

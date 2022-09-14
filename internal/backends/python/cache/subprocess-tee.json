@@ -1,0 +1,16 @@
+{
+  "name": "subprocess-tee",
+  "version": "0.3.5",
+  "requires_dist": [
+    "enrich",
+    "mock",
+    "molecule",
+    "pytest-cov",
+    "pytest-plus",
+    "pytest-xdist",
+    "pytest"
+  ],
+  "modules": [
+    "subprocess_tee"
+  ]
+}

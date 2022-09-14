@@ -1,0 +1,15 @@
+{
+  "name": "Flask-HAL",
+  "version": "1.0.4",
+  "modules": [
+    "click",
+    "flask",
+    "flask_hal",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

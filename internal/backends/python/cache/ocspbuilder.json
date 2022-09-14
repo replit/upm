@@ -1,0 +1,13 @@
+{
+  "name": "ocspbuilder",
+  "version": "0.10.2",
+  "requires_dist": [
+    "asn1crypto",
+    "oscrypto"
+  ],
+  "modules": [
+    "asn1crypto",
+    "ocspbuilder",
+    "oscrypto"
+  ]
+}

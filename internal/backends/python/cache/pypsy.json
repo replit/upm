@@ -1,0 +1,17 @@
+{
+  "name": "Pypsy",
+  "version": "0.1.5",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "sklearn"
+  ],
+  "modules": [
+    "Pypsy",
+    "joblib",
+    "numpy",
+    "scipy",
+    "sklearn",
+    "threadpoolctl"
+  ]
+}

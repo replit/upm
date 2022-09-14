@@ -1,0 +1,9 @@
+{
+  "name": "keras-self-attention",
+  "version": "0.51.0",
+  "modules": [
+    "keras_self_attention",
+    "numpy",
+    "tests"
+  ]
+}

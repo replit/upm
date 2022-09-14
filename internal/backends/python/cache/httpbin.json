@@ -1,0 +1,33 @@
+{
+  "name": "httpbin",
+  "version": "0.7.0",
+  "requires_dist": [
+    "Flask",
+    "MarkupSafe",
+    "decorator",
+    "itsdangerous",
+    "six",
+    "brotlipy",
+    "raven",
+    "werkzeug"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "blinker",
+    "brotli",
+    "cffi",
+    "click",
+    "decorator",
+    "flask",
+    "httpbin",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "pycparser",
+    "raven",
+    "six",
+    "werkzeug",
+    "zipp"
+  ]
+}

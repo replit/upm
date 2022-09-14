@@ -1,0 +1,19 @@
+{
+  "name": "boto3",
+  "version": "1.24.72",
+  "requires_dist": [
+    "botocore",
+    "jmespath",
+    "s3transfer",
+    "botocore"
+  ],
+  "modules": [
+    "boto3",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

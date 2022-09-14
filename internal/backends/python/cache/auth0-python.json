@@ -1,0 +1,24 @@
+{
+  "name": "auth0-python",
+  "version": "3.23.1",
+  "requires_dist": [
+    "requests",
+    "pyjwt",
+    "coverage",
+    "mock",
+    "pre-commit"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "auth0",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "idna",
+    "jwt",
+    "pycparser",
+    "requests",
+    "urllib3"
+  ]
+}

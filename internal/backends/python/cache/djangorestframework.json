@@ -1,0 +1,16 @@
+{
+  "name": "djangorestframework",
+  "version": "3.13.1",
+  "requires_dist": [
+    "django",
+    "pytz"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

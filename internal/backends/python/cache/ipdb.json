@@ -1,0 +1,26 @@
+{
+  "name": "ipdb",
+  "version": "0.13.9",
+  "modules": [
+    "IPython",
+    "asttokens",
+    "backcall",
+    "decorator",
+    "executing",
+    "ipdb",
+    "jedi",
+    "matplotlib_inline",
+    "parso",
+    "pexpect",
+    "pickleshare",
+    "prompt_toolkit",
+    "ptyprocess",
+    "pure_eval",
+    "pygments",
+    "six",
+    "stack_data",
+    "toml",
+    "traitlets",
+    "wcwidth"
+  ]
+}

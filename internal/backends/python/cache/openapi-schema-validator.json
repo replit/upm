@@ -1,0 +1,23 @@
+{
+  "name": "openapi-schema-validator",
+  "version": "0.3.4",
+  "requires_dist": [
+    "jsonschema",
+    "rfc3339-validator",
+    "strict-rfc3339",
+    "isodate",
+    "attrs"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "openapi_schema_validator",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "zipp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-admin-sortable",
+  "version": "2.3",
+  "requires_dist": [
+    "django"
+  ],
+  "modules": [
+    "adminsortable",
+    "asgiref",
+    "backports",
+    "django",
+    "sqlparse"
+  ]
+}

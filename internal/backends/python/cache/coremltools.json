@@ -1,0 +1,21 @@
+{
+  "name": "coremltools",
+  "version": "5.2.0",
+  "requires_dist": [
+    "numpy",
+    "protobuf",
+    "sympy",
+    "tqdm",
+    "packaging"
+  ],
+  "modules": [
+    "coremltools",
+    "isympy",
+    "mpmath",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "sympy",
+    "tqdm"
+  ]
+}

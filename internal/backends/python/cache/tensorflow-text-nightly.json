@@ -1,0 +1,15 @@
+{
+  "name": "tensorflow-text-nightly",
+  "version": "2.11.0.dev20220913",
+  "requires_dist": [
+    "tensorflow-hub",
+    "absl-py",
+    "pytest",
+    "tensorflow-datasets"
+  ],
+  "modules": [
+    "numpy",
+    "tensorflow_hub",
+    "tensorflow_text"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "AMQPStorm",
+  "version": "2.10.5",
+  "modules": [
+    "amqpstorm",
+    "pamqp"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "setoptconf-tmp",
+  "version": "0.3.1",
+  "requires_dist": [
+    "pyyaml"
+  ],
+  "modules": [
+    "setoptconf"
+  ]
+}

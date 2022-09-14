@@ -1,0 +1,23 @@
+{
+  "name": "pytest-mock",
+  "version": "3.8.2",
+  "requires_dist": [
+    "pytest",
+    "pre-commit",
+    "tox",
+    "pytest-asyncio"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_mock",
+    "tomli"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "histoprint",
+  "version": "2.4.0",
+  "requires_dist": [
+    "click",
+    "numpy",
+    "uhi",
+    "boost-histogram",
+    "rich",
+    "pytest",
+    "awkward",
+    "uproot"
+  ],
+  "modules": [
+    "click",
+    "histoprint",
+    "numpy",
+    "uhi"
+  ]
+}

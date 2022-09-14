@@ -1,0 +1,12 @@
+{
+  "name": "lazr.restfulclient",
+  "version": "0.14.4",
+  "modules": [
+    "distro",
+    "httplib2",
+    "oauthlib",
+    "pyparsing",
+    "six",
+    "wadllib"
+  ]
+}

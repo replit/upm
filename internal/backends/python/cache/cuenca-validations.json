@@ -1,0 +1,22 @@
+{
+  "name": "cuenca-validations",
+  "version": "0.11.1",
+  "requires_dist": [
+    "clabe",
+    "pydantic",
+    "python-dateutil",
+    "dataclasses"
+  ],
+  "modules": [
+    "clabe",
+    "cuenca_validations",
+    "dateutil",
+    "dns",
+    "email_validator",
+    "idna",
+    "pydantic",
+    "six",
+    "tests",
+    "typing_extensions"
+  ]
+}

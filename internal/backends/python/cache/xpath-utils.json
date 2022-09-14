@@ -1,0 +1,7 @@
+{
+  "name": "xpath-utils",
+  "version": "0.0.3",
+  "modules": [
+    "xpath_utils"
+  ]
+}

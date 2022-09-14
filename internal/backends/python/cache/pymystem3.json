@@ -1,0 +1,12 @@
+{
+  "name": "pymystem3",
+  "version": "0.2.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pymystem3",
+    "requests",
+    "urllib3"
+  ]
+}

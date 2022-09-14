@@ -1,0 +1,10 @@
+{
+  "name": "odict",
+  "version": "1.9.0",
+  "requires_dist": [
+    "setuptools"
+  ],
+  "modules": [
+    "odict"
+  ]
+}

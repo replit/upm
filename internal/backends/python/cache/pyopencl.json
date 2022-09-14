@@ -1,0 +1,21 @@
+{
+  "name": "pyopencl",
+  "version": "2022.2.3",
+  "requires_dist": [
+    "numpy",
+    "pytools",
+    "platformdirs",
+    "dataclasses",
+    "oclgrind-binary-distribution",
+    "pocl-binary-distribution",
+    "pytest",
+    "Mako"
+  ],
+  "modules": [
+    "numpy",
+    "platformdirs",
+    "pyopencl",
+    "pytools",
+    "typing_extensions"
+  ]
+}

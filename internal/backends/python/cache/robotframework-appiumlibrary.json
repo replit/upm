@@ -1,0 +1,15 @@
+{
+  "name": "robotframework-appiumlibrary",
+  "version": "1.6.3",
+  "modules": [
+    "AppiumLibrary",
+    "appium",
+    "decorator",
+    "docutils",
+    "kitchen",
+    "robot",
+    "selenium",
+    "six",
+    "urllib3"
+  ]
+}

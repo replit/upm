@@ -1,0 +1,8 @@
+{
+  "name": "pyactiveresource",
+  "version": "2.2.2",
+  "modules": [
+    "pyactiveresource",
+    "six"
+  ]
+}

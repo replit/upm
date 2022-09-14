@@ -1,0 +1,42 @@
+{
+  "name": "pytorch-metric-learning",
+  "version": "1.6.0",
+  "requires_dist": [
+    "numpy",
+    "scikit-learn",
+    "tqdm",
+    "torch",
+    "torchvision",
+    "black",
+    "isort",
+    "nbqa",
+    "flake8",
+    "mkdocs-material",
+    "record-keeper",
+    "faiss-gpu",
+    "tensorboard",
+    "record-keeper",
+    "faiss-cpu",
+    "tensorboard"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "joblib",
+    "numpy",
+    "pytorch_metric_learning",
+    "requests",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "torch",
+    "torchgen",
+    "torchvision",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

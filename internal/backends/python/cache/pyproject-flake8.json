@@ -1,0 +1,16 @@
+{
+  "name": "pyproject-flake8",
+  "version": "5.0.4.post1",
+  "requires_dist": [
+    "tomli",
+    "flake8"
+  ],
+  "modules": [
+    "flake8",
+    "mccabe",
+    "pflake8",
+    "pycodestyle",
+    "pyflakes",
+    "tomli"
+  ]
+}

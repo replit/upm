@@ -1,0 +1,32 @@
+{
+  "name": "fastapi-cloudauth",
+  "version": "0.4.3",
+  "requires_dist": [
+    "fastapi",
+    "python-jose",
+    "requests"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "anyio",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "ecdsa",
+    "fastapi",
+    "fastapi_cloudauth",
+    "idna",
+    "jose",
+    "pyasn1",
+    "pycparser",
+    "pydantic",
+    "requests",
+    "rsa",
+    "six",
+    "sniffio",
+    "starlette",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

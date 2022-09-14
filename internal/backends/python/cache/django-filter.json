@@ -1,0 +1,14 @@
+{
+  "name": "django-filter",
+  "version": "22.1",
+  "requires_dist": [
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_filters",
+    "sqlparse"
+  ]
+}

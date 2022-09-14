@@ -1,0 +1,13 @@
+{
+  "name": "niet",
+  "version": "2.4.0",
+  "requires_dist": [
+    "PyYAML",
+    "jmespath"
+  ],
+  "modules": [
+    "jmespath",
+    "niet",
+    "yaml"
+  ]
+}

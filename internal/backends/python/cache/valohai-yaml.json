@@ -1,0 +1,22 @@
+{
+  "name": "valohai-yaml",
+  "version": "0.25.2",
+  "requires_dist": [
+    "jsonschema",
+    "PyYAML"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "valohai_yaml",
+    "yaml",
+    "zipp"
+  ]
+}

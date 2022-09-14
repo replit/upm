@@ -1,0 +1,17 @@
+{
+  "name": "flake8-isort",
+  "version": "4.2.0",
+  "requires_dist": [
+    "flake8",
+    "isort",
+    "pytest-cov"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_isort",
+    "isort",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

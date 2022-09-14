@@ -1,0 +1,16 @@
+{
+  "name": "compiledb",
+  "version": "0.10.1",
+  "requires_dist": [
+    "click",
+    "bashlex",
+    "shutilwhich",
+    "pytest"
+  ],
+  "modules": [
+    "bashlex",
+    "click",
+    "compiledb",
+    "shutilwhich"
+  ]
+}

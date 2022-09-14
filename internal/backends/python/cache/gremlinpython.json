@@ -1,0 +1,29 @@
+{
+  "name": "gremlinpython",
+  "version": "3.6.1",
+  "requires_dist": [
+    "nest-asyncio",
+    "aiohttp",
+    "aenum",
+    "isodate",
+    "kerberos",
+    "ujson"
+  ],
+  "modules": [
+    "aenum",
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "charset_normalizer",
+    "frozenlist",
+    "gremlin_python",
+    "idna",
+    "isodate",
+    "multidict",
+    "nest_asyncio",
+    "six",
+    "yarl"
+  ]
+}

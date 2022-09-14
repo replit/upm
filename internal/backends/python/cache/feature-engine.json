@@ -1,0 +1,27 @@
+{
+  "name": "feature-engine",
+  "version": "1.4.1",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "statsmodels"
+  ],
+  "modules": [
+    "dateutil",
+    "feature_engine",
+    "joblib",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "statsmodels",
+    "threadpoolctl"
+  ]
+}

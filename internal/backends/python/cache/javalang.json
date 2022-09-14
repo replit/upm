@@ -1,0 +1,11 @@
+{
+  "name": "javalang",
+  "version": "0.13.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "javalang",
+    "six"
+  ]
+}

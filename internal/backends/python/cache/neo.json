@@ -1,0 +1,11 @@
+{
+  "name": "neo",
+  "version": "0.11.0",
+  "modules": [
+    "neo",
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "quantities"
+  ]
+}

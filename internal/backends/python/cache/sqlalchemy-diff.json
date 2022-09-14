@@ -1,0 +1,19 @@
+{
+  "name": "sqlalchemy-diff",
+  "version": "0.1.5",
+  "requires_dist": [
+    "sqlalchemy-utils",
+    "mysql-connector-python-rf",
+    "pytest",
+    "pylint",
+    "flake8",
+    "coverage",
+    "sphinx"
+  ],
+  "modules": [
+    "greenlet",
+    "sqlalchemy",
+    "sqlalchemy_utils",
+    "sqlalchemydiff"
+  ]
+}

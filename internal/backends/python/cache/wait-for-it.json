@@ -1,0 +1,18 @@
+{
+  "name": "wait-for-it",
+  "version": "2.2.1",
+  "requires_dist": [
+    "click",
+    "black",
+    "click",
+    "flake8",
+    "parameterized",
+    "pytest",
+    "pytest-cov",
+    "twine"
+  ],
+  "modules": [
+    "click",
+    "wait_for_it"
+  ]
+}

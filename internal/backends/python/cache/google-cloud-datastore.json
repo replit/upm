@@ -1,0 +1,26 @@
+{
+  "name": "google-cloud-datastore",
+  "version": "2.8.1",
+  "requires_dist": [
+    "google-api-core",
+    "google-cloud-core",
+    "proto-plus",
+    "protobuf",
+    "libcst"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

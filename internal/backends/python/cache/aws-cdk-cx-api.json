@@ -1,0 +1,23 @@
+{
+  "name": "aws-cdk.cx-api",
+  "version": "2.41.0",
+  "requires_dist": [
+    "aws-cdk.cloud-assembly-schema",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

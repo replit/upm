@@ -1,0 +1,26 @@
+{
+  "name": "unicon",
+  "version": "22.8",
+  "requires_dist": [
+    "pyyaml",
+    "dill",
+    "unicon.plugins",
+    "cisco-distutils",
+    "coverage",
+    "restview",
+    "Sphinx",
+    "sphinxcontrib-napoleon",
+    "sphinxcontrib-mockautodoc",
+    "sphinx-rtd-theme",
+    "pyats",
+    "robotframework"
+  ],
+  "modules": [
+    "_yaml",
+    "dill",
+    "prettytable",
+    "unicon",
+    "wcwidth",
+    "yaml"
+  ]
+}

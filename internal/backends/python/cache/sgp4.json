@@ -1,0 +1,7 @@
+{
+  "name": "sgp4",
+  "version": "2.21",
+  "modules": [
+    "sgp4"
+  ]
+}

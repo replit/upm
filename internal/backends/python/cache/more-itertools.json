@@ -1,0 +1,7 @@
+{
+  "name": "more-itertools",
+  "version": "8.14.0",
+  "modules": [
+    "more_itertools"
+  ]
+}

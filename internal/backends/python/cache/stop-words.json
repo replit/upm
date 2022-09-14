@@ -1,0 +1,7 @@
+{
+  "name": "stop-words",
+  "version": "2018.7.23",
+  "modules": [
+    "stop_words"
+  ]
+}

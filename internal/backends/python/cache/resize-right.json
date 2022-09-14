@@ -1,0 +1,7 @@
+{
+  "name": "resize-right",
+  "version": "0.0.2",
+  "modules": [
+    "resize_right"
+  ]
+}

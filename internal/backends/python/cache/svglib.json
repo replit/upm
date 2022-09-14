@@ -1,0 +1,13 @@
+{
+  "name": "svglib",
+  "version": "1.4.1",
+  "modules": [
+    "PIL",
+    "cssselect2",
+    "lxml",
+    "reportlab",
+    "svglib",
+    "tinycss2",
+    "webencodings"
+  ]
+}

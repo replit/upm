@@ -1,0 +1,25 @@
+{
+  "name": "KDEpy",
+  "version": "1.1.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "matplotlib"
+  ],
+  "modules": [
+    "KDEpy",
+    "PIL",
+    "cutils",
+    "cycler",
+    "dateutil",
+    "fontTools",
+    "kiwisolver",
+    "matplotlib",
+    "numpy",
+    "packaging",
+    "pylab",
+    "pyparsing",
+    "scipy",
+    "six"
+  ]
+}

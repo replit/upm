@@ -1,0 +1,17 @@
+{
+  "name": "discord-webhook",
+  "version": "0.17.0",
+  "requires_dist": [
+    "requests",
+    "httpx"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "discord_webhook",
+    "idna",
+    "requests",
+    "tests",
+    "urllib3"
+  ]
+}

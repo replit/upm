@@ -1,0 +1,13 @@
+{
+  "name": "pystempel",
+  "version": "1.2.0",
+  "requires_dist": [
+    "sortedcontainers",
+    "tqdm"
+  ],
+  "modules": [
+    "sortedcontainers",
+    "stempel",
+    "tqdm"
+  ]
+}

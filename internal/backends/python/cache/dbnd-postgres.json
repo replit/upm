@@ -1,0 +1,40 @@
+{
+  "name": "dbnd-postgres",
+  "version": "1.0.2.1",
+  "requires_dist": [
+    "psycopg2-binary",
+    "pyyaml",
+    "pyrsistent",
+    "dbnd"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "attr",
+    "attrs",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "databand",
+    "dateutil",
+    "dbnd",
+    "dbnd_postgres",
+    "idna",
+    "more_itertools",
+    "psycopg2",
+    "pvectorc",
+    "pygments",
+    "pyrsistent",
+    "pytz",
+    "pytz_deprecation_shim",
+    "pytzdata",
+    "requests",
+    "six",
+    "sqlparse",
+    "targets",
+    "tzdata",
+    "tzlocal",
+    "urllib3",
+    "yaml"
+  ]
+}

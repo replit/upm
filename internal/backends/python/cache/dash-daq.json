@@ -1,0 +1,27 @@
+{
+  "name": "dash-daq",
+  "version": "0.5.0",
+  "modules": [
+    "_brotli",
+    "_plotly_future_",
+    "_plotly_utils",
+    "brotli",
+    "click",
+    "dash",
+    "dash_core_components",
+    "dash_daq",
+    "dash_html_components",
+    "dash_table",
+    "flask",
+    "flask_compress",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "jupyterlab_plotly",
+    "markupsafe",
+    "plotly",
+    "tenacity",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "webdataset",
+  "version": "0.2.20",
+  "requires_dist": [
+    "braceexpand",
+    "numpy",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "braceexpand",
+    "numpy",
+    "webdataset",
+    "yaml"
+  ]
+}

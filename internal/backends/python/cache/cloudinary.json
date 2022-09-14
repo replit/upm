@@ -1,0 +1,10 @@
+{
+  "name": "cloudinary",
+  "version": "1.29.0",
+  "modules": [
+    "certifi",
+    "cloudinary",
+    "six",
+    "urllib3"
+  ]
+}

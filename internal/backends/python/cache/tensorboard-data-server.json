@@ -1,0 +1,7 @@
+{
+  "name": "tensorboard-data-server",
+  "version": "0.6.1",
+  "modules": [
+    "tensorboard_data_server"
+  ]
+}

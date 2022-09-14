@@ -1,0 +1,29 @@
+{
+  "name": "colcon-python-setup-py",
+  "version": "0.2.7",
+  "requires_dist": [
+    "colcon-core",
+    "setuptools"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "colcon",
+    "colcon_core",
+    "colcon_python_setup_py",
+    "coverage",
+    "distlib",
+    "em",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "pytest_repeat",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

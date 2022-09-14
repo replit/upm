@@ -1,0 +1,7 @@
+{
+  "name": "scrapy-splash",
+  "version": "0.8.0",
+  "modules": [
+    "scrapy_splash"
+  ]
+}

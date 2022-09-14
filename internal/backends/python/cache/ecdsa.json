@@ -1,0 +1,13 @@
+{
+  "name": "ecdsa",
+  "version": "0.18.0",
+  "requires_dist": [
+    "six",
+    "gmpy",
+    "gmpy2"
+  ],
+  "modules": [
+    "ecdsa",
+    "six"
+  ]
+}

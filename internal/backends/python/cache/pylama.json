@@ -1,0 +1,40 @@
+{
+  "name": "pylama",
+  "version": "8.4.1",
+  "requires_dist": [
+    "mccabe",
+    "pycodestyle",
+    "pydocstyle",
+    "pyflakes",
+    "pylint",
+    "eradicate",
+    "radon",
+    "mypy",
+    "vulture",
+    "eradicate",
+    "mypy",
+    "pylint",
+    "radon",
+    "pytest",
+    "pytest-mypy",
+    "eradicate",
+    "radon",
+    "mypy",
+    "pylint",
+    "pylama-quotes",
+    "toml",
+    "vulture",
+    "types-setuptools",
+    "types-toml",
+    "toml",
+    "vulture"
+  ],
+  "modules": [
+    "mccabe",
+    "pycodestyle",
+    "pydocstyle",
+    "pyflakes",
+    "pylama",
+    "snowballstemmer"
+  ]
+}

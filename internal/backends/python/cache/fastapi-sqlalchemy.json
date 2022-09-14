@@ -1,0 +1,18 @@
+{
+  "name": "FastAPI-SQLAlchemy",
+  "version": "0.2.1",
+  "requires_dist": [
+    "starlette",
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "anyio",
+    "fastapi_sqlalchemy",
+    "greenlet",
+    "idna",
+    "sniffio",
+    "sqlalchemy",
+    "starlette",
+    "typing_extensions"
+  ]
+}

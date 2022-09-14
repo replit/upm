@@ -1,0 +1,12 @@
+{
+  "name": "grpc-google-iam-v1",
+  "version": "0.12.4",
+  "requires_dist": [
+    "googleapis-common-protos",
+    "grpcio"
+  ],
+  "modules": [
+    "grpc",
+    "six"
+  ]
+}

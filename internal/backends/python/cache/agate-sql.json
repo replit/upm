@@ -1,0 +1,32 @@
+{
+  "name": "agate-sql",
+  "version": "0.5.8",
+  "requires_dist": [
+    "agate",
+    "sqlalchemy",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "crate",
+    "nose",
+    "geojson"
+  ],
+  "modules": [
+    "agate",
+    "agatesql",
+    "babel",
+    "future",
+    "greenlet",
+    "isodate",
+    "leather",
+    "libfuturize",
+    "libpasteurize",
+    "parsedatetime",
+    "past",
+    "pytimeparse",
+    "pytz",
+    "six",
+    "slugify",
+    "sqlalchemy",
+    "text_unidecode"
+  ]
+}

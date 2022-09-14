@@ -1,0 +1,16 @@
+{
+  "name": "s3transfer",
+  "version": "0.6.0",
+  "requires_dist": [
+    "botocore",
+    "botocore"
+  ],
+  "modules": [
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

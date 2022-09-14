@@ -1,0 +1,22 @@
+{
+  "name": "pytest-xprocess",
+  "version": "0.20.0",
+  "requires_dist": [
+    "pytest",
+    "psutil"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "psutil",
+    "py",
+    "pyparsing",
+    "pytest",
+    "tomli",
+    "xprocess"
+  ]
+}

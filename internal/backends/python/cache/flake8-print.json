@@ -1,0 +1,15 @@
+{
+  "name": "flake8-print",
+  "version": "5.0.0",
+  "requires_dist": [
+    "flake8",
+    "pycodestyle"
+  ],
+  "modules": [
+    "flake8",
+    "flake8_print",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

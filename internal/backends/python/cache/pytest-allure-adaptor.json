@@ -1,0 +1,27 @@
+{
+  "name": "pytest-allure-adaptor",
+  "version": "1.7.10",
+  "requires_dist": [
+    "lxml",
+    "pytest",
+    "namedlist",
+    "six",
+    "enum34"
+  ],
+  "modules": [
+    "_pytest",
+    "allure",
+    "attr",
+    "attrs",
+    "iniconfig",
+    "lxml",
+    "namedlist",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "six",
+    "tomli"
+  ]
+}

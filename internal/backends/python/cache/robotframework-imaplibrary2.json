@@ -1,0 +1,19 @@
+{
+  "name": "robotframework-imaplibrary2",
+  "version": "0.4.5",
+  "requires_dist": [
+    "future",
+    "robotframework",
+    "pysocks"
+  ],
+  "modules": [
+    "ImapLibrary2",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "robot",
+    "socks",
+    "sockshandler"
+  ]
+}

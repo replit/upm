@@ -1,0 +1,7 @@
+{
+  "name": "udatetime",
+  "version": "0.0.17",
+  "modules": [
+    "udatetime"
+  ]
+}

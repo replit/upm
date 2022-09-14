@@ -1,0 +1,34 @@
+{
+  "name": "sphinxcontrib-spelling",
+  "version": "7.6.0",
+  "requires_dist": [
+    "PyEnchant",
+    "Sphinx",
+    "importlib-metadata",
+    "pytest",
+    "pytest-cov",
+    "coverage"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "enchant",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

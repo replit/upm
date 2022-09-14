@@ -1,0 +1,17 @@
+{
+  "name": "django-organizations",
+  "version": "2.0.2",
+  "requires_dist": [
+    "six",
+    "Django",
+    "typing"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "organizations",
+    "six",
+    "sqlparse"
+  ]
+}

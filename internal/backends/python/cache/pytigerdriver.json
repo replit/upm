@@ -1,0 +1,7 @@
+{
+  "name": "pyTigerDriver",
+  "version": "1.0.15",
+  "modules": [
+    "pyTigerDriver"
+  ]
+}

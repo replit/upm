@@ -1,0 +1,11 @@
+{
+  "name": "triangle",
+  "version": "20220202",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "triangle"
+  ]
+}

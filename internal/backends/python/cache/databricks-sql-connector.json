@@ -1,0 +1,19 @@
+{
+  "name": "databricks-sql-connector",
+  "version": "2.0.5",
+  "requires_dist": [
+    "thrift",
+    "pandas",
+    "pyarrow"
+  ],
+  "modules": [
+    "databricks",
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pytz",
+    "six",
+    "thrift"
+  ]
+}

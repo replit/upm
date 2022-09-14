@@ -1,0 +1,12 @@
+{
+  "name": "jusText",
+  "version": "3.0.0",
+  "requires_dist": [
+    "lxml",
+    "backports.functools-lru-cache"
+  ],
+  "modules": [
+    "justext",
+    "lxml"
+  ]
+}

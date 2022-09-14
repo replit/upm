@@ -1,0 +1,18 @@
+{
+  "name": "fab-classic",
+  "version": "1.19.1",
+  "requires_dist": [
+    "paramiko-ng",
+    "six"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "fabric",
+    "paramiko",
+    "pycparser",
+    "six"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "rope",
+  "version": "1.3.0",
+  "requires_dist": [
+    "pytoolconfig",
+    "pytest",
+    "pytest-timeout",
+    "build",
+    "pytoolconfig",
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing",
+    "pytoolconfig",
+    "rope",
+    "tomli"
+  ]
+}

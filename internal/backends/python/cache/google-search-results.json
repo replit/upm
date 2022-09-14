@@ -1,0 +1,13 @@
+{
+  "name": "google-search-results",
+  "version": "2.4.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "serpapi",
+    "tests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "hellosign-python-sdk",
+  "version": "4.0.0",
+  "requires_dist": [
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "hellosign_sdk",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

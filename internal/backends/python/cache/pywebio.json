@@ -1,0 +1,10 @@
+{
+  "name": "pywebio",
+  "version": "1.6.3",
+  "modules": [
+    "pywebio",
+    "tornado",
+    "ua_parser",
+    "user_agents"
+  ]
+}

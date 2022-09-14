@@ -1,0 +1,7 @@
+{
+  "name": "pyenchant",
+  "version": "3.2.2",
+  "modules": [
+    "enchant"
+  ]
+}

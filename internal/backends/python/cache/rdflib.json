@@ -1,0 +1,34 @@
+{
+  "name": "rdflib",
+  "version": "6.2.0",
+  "requires_dist": [
+    "isodate",
+    "pyparsing",
+    "setuptools",
+    "importlib-metadata",
+    "berkeleydb",
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pep8-naming",
+    "types-setuptools",
+    "flakeheaven",
+    "myst-parser",
+    "sphinx",
+    "sphinxcontrib-apidoc",
+    "sphinxcontrib-kroki",
+    "sphinx-autodoc-typehints",
+    "html5lib",
+    "networkx",
+    "html5lib",
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "isodate",
+    "pyparsing",
+    "rdflib",
+    "six"
+  ]
+}

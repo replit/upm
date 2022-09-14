@@ -1,0 +1,21 @@
+{
+  "name": "hydra-colorlog",
+  "version": "1.2.0",
+  "requires_dist": [
+    "colorlog",
+    "hydra-core"
+  ],
+  "modules": [
+    "_yaml",
+    "antlr4",
+    "colorlog",
+    "hydra",
+    "importlib_resources",
+    "omegaconf",
+    "packaging",
+    "pydevd_plugins",
+    "pyparsing",
+    "yaml",
+    "zipp"
+  ]
+}

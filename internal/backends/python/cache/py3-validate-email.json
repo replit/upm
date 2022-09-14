@@ -1,0 +1,10 @@
+{
+  "name": "py3-validate-email",
+  "version": "1.0.7",
+  "modules": [
+    "dns",
+    "filelock",
+    "idna",
+    "validate_email"
+  ]
+}

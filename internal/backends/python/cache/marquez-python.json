@@ -1,0 +1,34 @@
+{
+  "name": "marquez-python",
+  "version": "0.25.0",
+  "requires_dist": [
+    "requests",
+    "six",
+    "pyrfc3339",
+    "deprecation",
+    "flake8",
+    "pytest-cov",
+    "pytest",
+    "mock",
+    "pytest",
+    "pytest-cov",
+    "mock",
+    "flake8"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "deprecation",
+    "examples",
+    "idna",
+    "marquez_client",
+    "packaging",
+    "pyparsing",
+    "pyrfc3339",
+    "pytz",
+    "requests",
+    "six",
+    "tests",
+    "urllib3"
+  ]
+}

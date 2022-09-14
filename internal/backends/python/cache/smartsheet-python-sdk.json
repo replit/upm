@@ -1,0 +1,29 @@
+{
+  "name": "smartsheet-python-sdk",
+  "version": "2.177.1",
+  "requires_dist": [
+    "requests",
+    "requests-toolbelt",
+    "six",
+    "certifi",
+    "python-dateutil",
+    "coverage",
+    "coveralls",
+    "pytest",
+    "pytest-instafail",
+    "coverage",
+    "coveralls",
+    "pytest"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "requests",
+    "requests_toolbelt",
+    "six",
+    "smartsheet",
+    "urllib3"
+  ]
+}

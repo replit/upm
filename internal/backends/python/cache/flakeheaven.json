@@ -1,0 +1,29 @@
+{
+  "name": "flakeheaven",
+  "version": "3.0.0",
+  "requires_dist": [
+    "colorama",
+    "entrypoints",
+    "flake8",
+    "pygments",
+    "toml",
+    "urllib3",
+    "importlib-metadata",
+    "alabaster",
+    "pygments-github-lexers",
+    "sphinx",
+    "myst-parser"
+  ],
+  "modules": [
+    "colorama",
+    "entrypoints",
+    "flake8",
+    "flakeheaven",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes",
+    "pygments",
+    "toml",
+    "urllib3"
+  ]
+}

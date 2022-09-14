@@ -1,0 +1,7 @@
+{
+  "name": "python-gflags",
+  "version": "3.1.2",
+  "modules": [
+    "gflags"
+  ]
+}

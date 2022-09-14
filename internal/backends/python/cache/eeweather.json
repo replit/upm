@@ -1,0 +1,27 @@
+{
+  "name": "eeweather",
+  "version": "0.3.24",
+  "requires_dist": [
+    "click",
+    "pandas",
+    "pyproj",
+    "requests",
+    "shapely"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "dateutil",
+    "eeweather",
+    "idna",
+    "numpy",
+    "pandas",
+    "pyproj",
+    "pytz",
+    "requests",
+    "shapely",
+    "six",
+    "urllib3"
+  ]
+}

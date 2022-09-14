@@ -1,0 +1,12 @@
+{
+  "name": "sacremoses",
+  "version": "0.0.53",
+  "modules": [
+    "click",
+    "joblib",
+    "regex",
+    "sacremoses",
+    "six",
+    "tqdm"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "jupyter-server-ydoc",
+  "version": "0.1.11",
+  "requires_dist": [
+    "jupyter-ydoc",
+    "ypy-websocket",
+    "coverage",
+    "jupyter-server",
+    "pytest-cov",
+    "pytest-timeout",
+    "pytest-tornasync",
+    "pytest"
+  ],
+  "modules": [
+    "aiofiles",
+    "aiosqlite",
+    "jupyter_server_ydoc",
+    "jupyter_ydoc",
+    "typing_extensions",
+    "y_py",
+    "ypy_websocket"
+  ]
+}

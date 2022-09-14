@@ -1,0 +1,25 @@
+{
+  "name": "kfac",
+  "version": "0.2.4",
+  "requires_dist": [
+    "numpy",
+    "six",
+    "tensorflow-probability",
+    "h5py",
+    "tensorflow",
+    "tensorflow-gpu",
+    "pytest",
+    "dm-sonnet",
+    "numpy"
+  ],
+  "modules": [
+    "cloudpickle",
+    "decorator",
+    "gast",
+    "h5py",
+    "kfac",
+    "numpy",
+    "six",
+    "tensorflow_probability"
+  ]
+}

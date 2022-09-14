@@ -1,0 +1,23 @@
+{
+  "name": "matrix-client",
+  "version": "0.4.0",
+  "requires_dist": [
+    "requests",
+    "urllib3",
+    "Sphinx",
+    "sphinx-rtd-theme",
+    "sphinxcontrib-napoleon",
+    "python-olm",
+    "canonicaljson",
+    "pytest",
+    "responses"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "matrix_client",
+    "requests",
+    "urllib3"
+  ]
+}

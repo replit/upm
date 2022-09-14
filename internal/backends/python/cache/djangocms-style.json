@@ -1,0 +1,24 @@
+{
+  "name": "djangocms-style",
+  "version": "3.0.0",
+  "requires_dist": [
+    "django-cms",
+    "djangocms-attributes-field"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "classytags",
+    "cms",
+    "django",
+    "djangocms_admin_style",
+    "djangocms_attributes_field",
+    "djangocms_style",
+    "formtools",
+    "menus",
+    "sekizai",
+    "sqlparse",
+    "tests",
+    "treebeard"
+  ]
+}

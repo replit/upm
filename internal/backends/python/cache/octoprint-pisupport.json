@@ -1,0 +1,13 @@
+{
+  "name": "OctoPrint-PiSupport",
+  "version": "2022.6.13",
+  "requires_dist": [
+    "pytest",
+    "ddt",
+    "mock",
+    "pre-commit"
+  ],
+  "modules": [
+    "octoprint_pi_support"
+  ]
+}

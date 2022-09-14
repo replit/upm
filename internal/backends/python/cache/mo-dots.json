@@ -1,0 +1,9 @@
+{
+  "name": "mo-dots",
+  "version": "9.189.22201",
+  "modules": [
+    "mo_dots",
+    "mo_future",
+    "mo_imports"
+  ]
+}

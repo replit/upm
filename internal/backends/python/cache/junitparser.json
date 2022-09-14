@@ -1,0 +1,14 @@
+{
+  "name": "junitparser",
+  "version": "2.8.0",
+  "requires_dist": [
+    "future"
+  ],
+  "modules": [
+    "future",
+    "junitparser",
+    "libfuturize",
+    "libpasteurize",
+    "past"
+  ]
+}

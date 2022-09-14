@@ -1,0 +1,8 @@
+{
+  "name": "python-tds",
+  "version": "1.11.0",
+  "modules": [
+    "pytds",
+    "six"
+  ]
+}

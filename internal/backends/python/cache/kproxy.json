@@ -1,0 +1,14 @@
+{
+  "name": "kproxy",
+  "version": "0.0.1",
+  "requires_dist": [
+    "jsoncodable",
+    "noraise"
+  ],
+  "modules": [
+    "jsoncodable",
+    "jsonpickle",
+    "kproxy",
+    "noraise"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "demjson3",
+  "version": "3.0.5",
+  "modules": [
+    "demjson3"
+  ]
+}

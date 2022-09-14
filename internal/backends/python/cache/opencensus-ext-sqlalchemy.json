@@ -1,0 +1,22 @@
+{
+  "name": "opencensus-ext-sqlalchemy",
+  "version": "0.1.3",
+  "requires_dist": [
+    "opencensus",
+    "SQLAlchemy"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "opencensus",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "sqlalchemy",
+    "urllib3"
+  ]
+}

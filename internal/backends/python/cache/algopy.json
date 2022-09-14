@@ -1,0 +1,7 @@
+{
+  "name": "algopy",
+  "version": "0.5.7",
+  "modules": [
+    "algopy"
+  ]
+}

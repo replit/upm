@@ -1,0 +1,7 @@
+{
+  "name": "jupyter_highlight_selected_word",
+  "version": "0.2.0",
+  "modules": [
+    "jupyter_highlight_selected_word"
+  ]
+}

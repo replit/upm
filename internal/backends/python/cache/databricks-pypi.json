@@ -1,0 +1,7 @@
+{
+  "name": "databricks-pypi",
+  "version": "0.2",
+  "modules": [
+    "whl_pypi"
+  ]
+}

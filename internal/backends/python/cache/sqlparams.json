@@ -1,0 +1,7 @@
+{
+  "name": "sqlparams",
+  "version": "5.0.0",
+  "modules": [
+    "sqlparams"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "click",
+  "version": "8.1.3",
+  "requires_dist": [
+    "colorama",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "click"
+  ]
+}

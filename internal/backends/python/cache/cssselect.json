@@ -1,0 +1,7 @@
+{
+  "name": "cssselect",
+  "version": "1.1.0",
+  "modules": [
+    "cssselect"
+  ]
+}

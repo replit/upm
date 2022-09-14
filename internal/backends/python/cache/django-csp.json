@@ -1,0 +1,23 @@
+{
+  "name": "django-csp",
+  "version": "3.7",
+  "requires_dist": [
+    "Django",
+    "jinja2",
+    "pytest",
+    "pytest-django",
+    "pytest-flakes",
+    "pytest-pep8",
+    "pep8",
+    "mock",
+    "six",
+    "jinja2"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "csp",
+    "django",
+    "sqlparse"
+  ]
+}

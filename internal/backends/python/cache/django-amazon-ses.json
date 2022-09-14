@@ -1,0 +1,22 @@
+{
+  "name": "django-amazon-ses",
+  "version": "4.0.1",
+  "requires_dist": [
+    "boto3",
+    "Django"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "boto3",
+    "botocore",
+    "dateutil",
+    "django",
+    "django_amazon_ses",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "sqlparse",
+    "urllib3"
+  ]
+}

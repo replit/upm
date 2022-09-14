@@ -1,0 +1,27 @@
+{
+  "name": "search-engine-parser",
+  "version": "0.6.7",
+  "requires_dist": [
+    "lxml",
+    "aiohttp",
+    "beautifulsoup4",
+    "fake-useragent",
+    "blessed"
+  ],
+  "modules": [
+    "aiohttp",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "bs4",
+    "chardet",
+    "fake_useragent",
+    "idna",
+    "lxml",
+    "multidict",
+    "search_engine_parser",
+    "soupsieve",
+    "typing_extensions",
+    "yarl"
+  ]
+}

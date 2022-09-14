@@ -1,0 +1,41 @@
+{
+  "name": "cmd2",
+  "version": "2.4.2",
+  "requires_dist": [
+    "attrs",
+    "pyperclip",
+    "wcwidth",
+    "importlib-metadata",
+    "typing-extensions",
+    "pyreadline3",
+    "codecov",
+    "doc8",
+    "flake8",
+    "invoke",
+    "mypy",
+    "nox",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autobuild",
+    "twine",
+    "codecov",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "gnureadline",
+    "flake8",
+    "mypy",
+    "types-pkg-resources"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cmd2",
+    "pyperclip",
+    "wcwidth"
+  ]
+}

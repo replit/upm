@@ -1,0 +1,13 @@
+{
+  "name": "db-psycopg2",
+  "version": "0.0.7",
+  "modules": [
+    "antiorm",
+    "antipool",
+    "db",
+    "db_psycopg2",
+    "dbapiext",
+    "dbrelmgr",
+    "psycopg2"
+  ]
+}

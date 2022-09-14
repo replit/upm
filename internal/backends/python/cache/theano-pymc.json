@@ -1,0 +1,12 @@
+{
+  "name": "Theano-PyMC",
+  "version": "1.1.2",
+  "modules": [
+    "bin",
+    "filelock",
+    "numpy",
+    "scipy",
+    "tests",
+    "theano"
+  ]
+}

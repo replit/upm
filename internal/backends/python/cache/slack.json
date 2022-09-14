@@ -1,0 +1,7 @@
+{
+  "name": "slack",
+  "version": "0.0.3",
+  "modules": [
+    "slack"
+  ]
+}

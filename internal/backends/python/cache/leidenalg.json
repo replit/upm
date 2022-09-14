@@ -1,0 +1,12 @@
+{
+  "name": "leidenalg",
+  "version": "0.8.10",
+  "requires_dist": [
+    "igraph"
+  ],
+  "modules": [
+    "igraph",
+    "leidenalg",
+    "texttable"
+  ]
+}

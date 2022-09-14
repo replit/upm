@@ -1,0 +1,7 @@
+{
+  "name": "fusepy",
+  "version": "3.0.1",
+  "modules": [
+    "fuse"
+  ]
+}

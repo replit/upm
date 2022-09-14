@@ -1,0 +1,7 @@
+{
+  "name": "collection",
+  "version": "0.1.6",
+  "modules": [
+    "collection"
+  ]
+}

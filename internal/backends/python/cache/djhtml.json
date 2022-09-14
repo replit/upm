@@ -1,0 +1,7 @@
+{
+  "name": "djhtml",
+  "version": "1.5.2",
+  "modules": [
+    "djhtml"
+  ]
+}

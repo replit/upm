@@ -1,0 +1,8 @@
+{
+  "name": "pychalk",
+  "version": "2.0.1",
+  "modules": [
+    "chalk",
+    "six"
+  ]
+}

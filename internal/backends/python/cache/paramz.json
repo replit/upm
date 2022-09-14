@@ -1,0 +1,11 @@
+{
+  "name": "paramz",
+  "version": "0.9.5",
+  "modules": [
+    "decorator",
+    "numpy",
+    "paramz",
+    "scipy",
+    "six"
+  ]
+}

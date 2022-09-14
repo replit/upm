@@ -1,0 +1,7 @@
+{
+  "name": "h3-pyspark",
+  "version": "1.2.6",
+  "modules": [
+    "h3_pyspark"
+  ]
+}

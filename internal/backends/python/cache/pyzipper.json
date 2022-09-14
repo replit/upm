@@ -1,0 +1,11 @@
+{
+  "name": "pyzipper",
+  "version": "0.3.6",
+  "requires_dist": [
+    "pycryptodomex"
+  ],
+  "modules": [
+    "Cryptodome",
+    "pyzipper"
+  ]
+}

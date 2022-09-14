@@ -1,0 +1,14 @@
+{
+  "name": "djangorestframework-simplejwt",
+  "version": "5.2.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "jwt",
+    "pytz",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "sqlparse"
+  ]
+}

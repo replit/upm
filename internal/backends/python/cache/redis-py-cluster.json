@@ -1,0 +1,12 @@
+{
+  "name": "redis-py-cluster",
+  "version": "2.1.3",
+  "requires_dist": [
+    "redis",
+    "hiredis"
+  ],
+  "modules": [
+    "redis",
+    "rediscluster"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "fairlearn",
+  "version": "0.7.0",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "matplotlib"
+  ],
+  "modules": [
+    "dateutil",
+    "fairlearn",
+    "joblib",
+    "numpy",
+    "pandas",
+    "pytz",
+    "scipy",
+    "six",
+    "sklearn",
+    "test_othermlpackages",
+    "threadpoolctl"
+  ]
+}

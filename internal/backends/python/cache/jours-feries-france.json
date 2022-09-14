@@ -1,0 +1,7 @@
+{
+  "name": "jours-feries-france",
+  "version": "0.7.0",
+  "modules": [
+    "jours_feries_france"
+  ]
+}

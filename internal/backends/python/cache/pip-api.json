@@ -1,0 +1,10 @@
+{
+  "name": "pip-api",
+  "version": "0.0.30",
+  "requires_dist": [
+    "pip"
+  ],
+  "modules": [
+    "pip_api"
+  ]
+}

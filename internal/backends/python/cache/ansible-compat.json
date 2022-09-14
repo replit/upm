@@ -1,0 +1,35 @@
+{
+  "name": "ansible-compat",
+  "version": "2.2.0",
+  "requires_dist": [
+    "PyYAML",
+    "subprocess-tee",
+    "jsonschema",
+    "sphinx-autobuild",
+    "sphinx",
+    "sphinx-ansible-theme",
+    "myst-parser",
+    "coverage",
+    "flaky",
+    "pip-tools",
+    "pytest",
+    "pytest-markdown",
+    "pytest-mock",
+    "pytest-plus"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_yaml",
+    "ansible_compat",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "subprocess_tee",
+    "yaml",
+    "zipp"
+  ]
+}

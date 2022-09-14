@@ -1,0 +1,11 @@
+{
+  "name": "mozprocess",
+  "version": "1.3.0",
+  "modules": [
+    "distro",
+    "mozfile",
+    "mozinfo",
+    "mozprocess",
+    "six"
+  ]
+}

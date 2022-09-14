@@ -1,0 +1,7 @@
+{
+  "name": "classify-imports",
+  "version": "4.2.0",
+  "modules": [
+    "classify_imports"
+  ]
+}

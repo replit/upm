@@ -1,0 +1,27 @@
+{
+  "name": "google-cloud-bigquery-storage",
+  "version": "2.15.0",
+  "requires_dist": [
+    "google-api-core",
+    "proto-plus",
+    "protobuf",
+    "fastavro",
+    "pandas",
+    "pyarrow"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "grpc",
+    "grpc_status",
+    "idna",
+    "proto",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

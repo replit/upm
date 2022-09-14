@@ -1,0 +1,7 @@
+{
+  "name": "pyfiglet",
+  "version": "0.8.post1",
+  "modules": [
+    "pyfiglet"
+  ]
+}

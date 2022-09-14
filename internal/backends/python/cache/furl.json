@@ -1,0 +1,13 @@
+{
+  "name": "furl",
+  "version": "2.1.3",
+  "requires_dist": [
+    "six",
+    "orderedmultidict"
+  ],
+  "modules": [
+    "furl",
+    "orderedmultidict",
+    "six"
+  ]
+}

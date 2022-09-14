@@ -1,0 +1,13 @@
+{
+  "name": "python-debian",
+  "version": "0.1.47",
+  "requires_dist": [
+    "chardet"
+  ],
+  "modules": [
+    "chardet",
+    "deb822",
+    "debian",
+    "debian_bundle"
+  ]
+}

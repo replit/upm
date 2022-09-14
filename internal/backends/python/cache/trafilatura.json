@@ -1,0 +1,43 @@
+{
+  "name": "trafilatura",
+  "version": "1.3.0",
+  "requires_dist": [
+    "certifi",
+    "charset-normalizer",
+    "courlan",
+    "htmldate",
+    "justext",
+    "lxml",
+    "urllib3",
+    "cchardet",
+    "htmldate",
+    "py3langid",
+    "pycurl",
+    "urllib3",
+    "Gooey"
+  ],
+  "modules": [
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "courlan",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "htmldate",
+    "justext",
+    "langcodes",
+    "lxml",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "six",
+    "tld",
+    "trafilatura",
+    "tzdata",
+    "tzlocal",
+    "urllib3"
+  ]
+}

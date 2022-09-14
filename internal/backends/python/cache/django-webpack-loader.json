@@ -1,0 +1,7 @@
+{
+  "name": "django-webpack-loader",
+  "version": "1.6.0",
+  "modules": [
+    "webpack_loader"
+  ]
+}

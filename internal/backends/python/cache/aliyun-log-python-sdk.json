@@ -1,0 +1,27 @@
+{
+  "name": "aliyun-log-python-sdk",
+  "version": "0.7.13",
+  "modules": [
+    "aliyun",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "dateparser",
+    "dateparser_cli",
+    "dateparser_data",
+    "dateparser_scripts",
+    "dateutil",
+    "elastic_transport",
+    "elasticsearch",
+    "idna",
+    "jmespath",
+    "pytz",
+    "pytz_deprecation_shim",
+    "regex",
+    "requests",
+    "six",
+    "tzdata",
+    "tzlocal",
+    "urllib3"
+  ]
+}

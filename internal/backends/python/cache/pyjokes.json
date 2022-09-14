@@ -1,0 +1,14 @@
+{
+  "name": "pyjokes",
+  "version": "0.6.0",
+  "requires_dist": [
+    "mkdocs",
+    "pytest",
+    "coverage",
+    "tox"
+  ],
+  "modules": [
+    "pyjokes",
+    "pyjokescli"
+  ]
+}

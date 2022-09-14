@@ -1,0 +1,7 @@
+{
+  "name": "pycld2",
+  "version": "0.41",
+  "modules": [
+    "pycld2"
+  ]
+}

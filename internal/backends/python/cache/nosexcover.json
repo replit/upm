@@ -1,0 +1,9 @@
+{
+  "name": "nosexcover",
+  "version": "1.0.11",
+  "modules": [
+    "coverage",
+    "nose",
+    "nosexcover"
+  ]
+}

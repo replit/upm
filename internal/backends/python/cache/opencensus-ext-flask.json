@@ -1,0 +1,29 @@
+{
+  "name": "opencensus-ext-flask",
+  "version": "0.8.1",
+  "requires_dist": [
+    "flask",
+    "opencensus"
+  ],
+  "modules": [
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "opencensus",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

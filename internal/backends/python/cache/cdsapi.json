@@ -1,0 +1,13 @@
+{
+  "name": "cdsapi",
+  "version": "0.5.1",
+  "modules": [
+    "cdsapi",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "tqdm",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "casbin",
+  "version": "1.17.1",
+  "requires_dist": [
+    "simpleeval"
+  ],
+  "modules": [
+    "casbin",
+    "simpleeval"
+  ]
+}

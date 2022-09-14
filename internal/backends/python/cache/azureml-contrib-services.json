@@ -1,0 +1,18 @@
+{
+  "name": "azureml-contrib-services",
+  "version": "1.45.0",
+  "requires_dist": [
+    "Flask"
+  ],
+  "modules": [
+    "azureml",
+    "click",
+    "flask",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

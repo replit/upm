@@ -1,0 +1,24 @@
+{
+  "name": "zope.sendmail",
+  "version": "5.2",
+  "requires_dist": [
+    "setuptools",
+    "transaction",
+    "zope.i18nmessageid",
+    "zope.interface",
+    "zope.schema",
+    "zope.component",
+    "zope.configuration",
+    "pywin32",
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "sphinxcontrib-programoutput",
+    "zope.security",
+    "zope.testing",
+    "zope.testrunner"
+  ],
+  "modules": [
+    "six",
+    "transaction"
+  ]
+}

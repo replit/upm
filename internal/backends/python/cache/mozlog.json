@@ -1,0 +1,11 @@
+{
+  "name": "mozlog",
+  "version": "7.1.0",
+  "modules": [
+    "blessings",
+    "mozfile",
+    "mozlog",
+    "mozterm",
+    "six"
+  ]
+}

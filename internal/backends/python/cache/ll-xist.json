@@ -1,0 +1,17 @@
+{
+  "name": "ll-xist",
+  "version": "5.73.2",
+  "requires_dist": [
+    "cssutils",
+    "lxml",
+    "cx-Oracle",
+    "pyscopg",
+    "setproctitle",
+    "requests"
+  ],
+  "modules": [
+    "antlr3",
+    "cssutils",
+    "encutils"
+  ]
+}

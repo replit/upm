@@ -1,0 +1,28 @@
+{
+  "name": "colcon-recursive-crawl",
+  "version": "0.2.1",
+  "requires_dist": [
+    "colcon-core"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "colcon",
+    "colcon_core",
+    "colcon_recursive_crawl",
+    "coverage",
+    "distlib",
+    "em",
+    "iniconfig",
+    "packaging",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_cov",
+    "pytest_repeat",
+    "pytest_rerunfailures",
+    "tomli"
+  ]
+}

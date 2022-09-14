@@ -1,0 +1,7 @@
+{
+  "name": "PDFNetPython3",
+  "version": "9.3.0",
+  "modules": [
+    "PDFNetPython3"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "applicationinsights",
+  "version": "0.11.10",
+  "modules": [
+    "applicationinsights"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "django-ltree",
+  "version": "0.5.3",
+  "requires_dist": [
+    "django",
+    "six",
+    "twine",
+    "tox"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "django_ltree",
+    "six",
+    "sqlparse"
+  ]
+}

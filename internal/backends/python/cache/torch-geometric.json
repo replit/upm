@@ -1,0 +1,21 @@
+{
+  "name": "torch-geometric",
+  "version": "2.1.0.post1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "jinja2",
+    "joblib",
+    "markupsafe",
+    "numpy",
+    "pyparsing",
+    "requests",
+    "scipy",
+    "sklearn",
+    "threadpoolctl",
+    "torch_geometric",
+    "tqdm",
+    "urllib3"
+  ]
+}

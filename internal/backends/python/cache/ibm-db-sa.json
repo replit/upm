@@ -1,0 +1,21 @@
+{
+  "name": "ibm-db-sa",
+  "version": "0.3.8",
+  "requires_dist": [
+    "sqlalchemy",
+    "ibm-db"
+  ],
+  "modules": [
+    "certs",
+    "clidriver",
+    "greenlet",
+    "ibm_db",
+    "ibm_db_dbi",
+    "ibm_db_dlls",
+    "ibm_db_sa",
+    "ibm_db_tests",
+    "sqlalchemy",
+    "testfunctions",
+    "tests"
+  ]
+}

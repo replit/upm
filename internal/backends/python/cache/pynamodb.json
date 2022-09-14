@@ -1,0 +1,17 @@
+{
+  "name": "pynamodb",
+  "version": "5.2.1",
+  "requires_dist": [
+    "botocore",
+    "typing-extensions",
+    "blinker"
+  ],
+  "modules": [
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "pynamodb",
+    "six",
+    "urllib3"
+  ]
+}

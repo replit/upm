@@ -1,0 +1,10 @@
+{
+  "name": "sentinel",
+  "version": "1.0.0",
+  "requires_dist": [
+    "varname"
+  ],
+  "modules": [
+    "sentinel"
+  ]
+}

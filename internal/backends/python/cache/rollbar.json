@@ -1,0 +1,20 @@
+{
+  "name": "rollbar",
+  "version": "0.16.3",
+  "requires_dist": [
+    "six",
+    "requests",
+    "requests",
+    "requests",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "rollbar",
+    "six",
+    "urllib3"
+  ]
+}

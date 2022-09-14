@@ -1,0 +1,7 @@
+{
+  "name": "countryinfo",
+  "version": "0.1.2",
+  "modules": [
+    "countryinfo"
+  ]
+}

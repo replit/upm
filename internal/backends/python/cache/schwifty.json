@@ -1,0 +1,17 @@
+{
+  "name": "schwifty",
+  "version": "2022.7.1",
+  "requires_dist": [
+    "iso3166",
+    "pycountry",
+    "importlib-resources",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "importlib_resources",
+    "iso3166",
+    "pycountry",
+    "schwifty",
+    "zipp"
+  ]
+}

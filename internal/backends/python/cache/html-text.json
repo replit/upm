@@ -1,0 +1,11 @@
+{
+  "name": "html-text",
+  "version": "0.5.2",
+  "requires_dist": [
+    "lxml"
+  ],
+  "modules": [
+    "html_text",
+    "lxml"
+  ]
+}

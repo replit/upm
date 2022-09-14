@@ -1,0 +1,7 @@
+{
+  "name": "zope.i18nmessageid",
+  "version": "5.0.1",
+  "modules": [
+    "six"
+  ]
+}

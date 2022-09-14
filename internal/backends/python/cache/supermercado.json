@@ -1,0 +1,31 @@
+{
+  "name": "supermercado",
+  "version": "0.2.0",
+  "requires_dist": [
+    "affine",
+    "click",
+    "click-plugins",
+    "cligj",
+    "mercantile",
+    "numpy",
+    "rasterio",
+    "pytest",
+    "pytest-cov",
+    "codecov"
+  ],
+  "modules": [
+    "affine",
+    "attr",
+    "attrs",
+    "certifi",
+    "click",
+    "click_plugins",
+    "cligj",
+    "mercantile",
+    "numpy",
+    "pyparsing",
+    "rasterio",
+    "snuggs",
+    "supermercado"
+  ]
+}

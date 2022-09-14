@@ -1,0 +1,11 @@
+{
+  "name": "tap.py",
+  "version": "3.1",
+  "requires_dist": [
+    "more-itertools",
+    "PyYAML"
+  ],
+  "modules": [
+    "tap"
+  ]
+}

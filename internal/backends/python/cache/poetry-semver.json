@@ -1,0 +1,10 @@
+{
+  "name": "poetry-semver",
+  "version": "0.1.0",
+  "requires_dist": [
+    "typing"
+  ],
+  "modules": [
+    "semver"
+  ]
+}

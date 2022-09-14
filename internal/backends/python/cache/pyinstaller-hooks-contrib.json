@@ -1,0 +1,7 @@
+{
+  "name": "pyinstaller-hooks-contrib",
+  "version": "2022.10",
+  "modules": [
+    "_pyinstaller_hooks_contrib"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "ecl",
+  "version": "2.14.0",
+  "requires_dist": [
+    "cwrap",
+    "future",
+    "six",
+    "functools32",
+    "numpy",
+    "pandas",
+    "numpy",
+    "pandas"
+  ],
+  "modules": [
+    "cwrap",
+    "dateutil",
+    "ecl",
+    "future",
+    "libfuturize",
+    "libpasteurize",
+    "numpy",
+    "pandas",
+    "past",
+    "pytz",
+    "six"
+  ]
+}

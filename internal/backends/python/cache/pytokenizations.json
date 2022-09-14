@@ -1,0 +1,7 @@
+{
+  "name": "pytokenizations",
+  "version": "0.8.4",
+  "modules": [
+    "tokenizations"
+  ]
+}

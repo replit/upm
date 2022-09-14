@@ -1,0 +1,9 @@
+{
+  "name": "cov-core",
+  "version": "1.15.0",
+  "modules": [
+    "cov_core",
+    "cov_core_init",
+    "coverage"
+  ]
+}

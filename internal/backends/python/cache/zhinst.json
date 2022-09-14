@@ -1,0 +1,25 @@
+{
+  "name": "zhinst",
+  "version": "22.8.1",
+  "requires_dist": [
+    "zhinst.core",
+    "zhinst.utils",
+    "zhinst.toolkit"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonref",
+    "jsonschema",
+    "numpy",
+    "pkgutil_resolve_name",
+    "proxytypes",
+    "pvectorc",
+    "pyrsistent",
+    "typing_extensions",
+    "zhinst",
+    "zipp"
+  ]
+}

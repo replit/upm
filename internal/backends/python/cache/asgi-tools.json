@@ -1,0 +1,35 @@
+{
+  "name": "asgi-tools",
+  "version": "0.64.1",
+  "requires_dist": [
+    "http-router",
+    "multidict",
+    "sniffio",
+    "yarl",
+    "bump2version",
+    "wheel",
+    "sphinx",
+    "pydata-sphinx-theme",
+    "uvicorn",
+    "websockets",
+    "jinja2",
+    "httpx",
+    "orjson",
+    "aiofile",
+    "pytest",
+    "pytest-aio",
+    "pytest-benchmark",
+    "PyYAML",
+    "pytest-mypy",
+    "uvloop",
+    "ujson"
+  ],
+  "modules": [
+    "asgi_tools",
+    "http_router",
+    "idna",
+    "multidict",
+    "sniffio",
+    "yarl"
+  ]
+}

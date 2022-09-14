@@ -1,0 +1,20 @@
+{
+  "name": "investigate",
+  "version": "1.10.1",
+  "requires_dist": [
+    "requests",
+    "future"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "future",
+    "idna",
+    "investigate",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "requests",
+    "urllib3"
+  ]
+}

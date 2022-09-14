@@ -1,0 +1,8 @@
+{
+  "name": "emoji-data-python",
+  "version": "1.5.0",
+  "modules": [
+    "emoji_data_python",
+    "tests"
+  ]
+}

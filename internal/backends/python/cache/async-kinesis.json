@@ -1,0 +1,35 @@
+{
+  "name": "async-kinesis",
+  "version": "1.1.5",
+  "requires_dist": [
+    "aiobotocore",
+    "async-timeout",
+    "asyncio-throttle",
+    "aws-kinesis-agg",
+    "msgpack",
+    "aredis"
+  ],
+  "modules": [
+    "aiobotocore",
+    "aiohttp",
+    "aioitertools",
+    "aiosignal",
+    "async_timeout",
+    "asyncio_throttle",
+    "attr",
+    "attrs",
+    "botocore",
+    "charset_normalizer",
+    "dateutil",
+    "frozenlist",
+    "idna",
+    "jmespath",
+    "kinesis",
+    "multidict",
+    "six",
+    "typing_extensions",
+    "urllib3",
+    "wrapt",
+    "yarl"
+  ]
+}

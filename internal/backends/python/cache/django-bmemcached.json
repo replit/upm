@@ -1,0 +1,10 @@
+{
+  "name": "django-bmemcached",
+  "version": "0.3.0",
+  "modules": [
+    "bmemcached",
+    "django_bmemcached",
+    "six",
+    "uhashring"
+  ]
+}

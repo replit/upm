@@ -1,0 +1,32 @@
+{
+  "name": "lyricsgenius",
+  "version": "3.0.1",
+  "requires_dist": [
+    "beautifulsoup4",
+    "requests",
+    "tox",
+    "doc8",
+    "flake8",
+    "flake8-bugbear",
+    "pygments",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "tox",
+    "doc8",
+    "flake8",
+    "flake8-bugbear",
+    "pygments",
+    "sphinx",
+    "sphinx-rtd-theme"
+  ],
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lyricsgenius",
+    "requests",
+    "soupsieve",
+    "urllib3"
+  ]
+}

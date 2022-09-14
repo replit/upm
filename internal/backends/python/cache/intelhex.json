@@ -1,0 +1,7 @@
+{
+  "name": "intelhex",
+  "version": "2.3.0",
+  "modules": [
+    "intelhex"
+  ]
+}

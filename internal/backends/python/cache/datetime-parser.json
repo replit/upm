@@ -1,0 +1,14 @@
+{
+  "name": "datetime-parser",
+  "version": "1.0.0",
+  "requires_dist": [
+    "pendulum"
+  ],
+  "modules": [
+    "datetime_parser",
+    "dateutil",
+    "pendulum",
+    "pytzdata",
+    "six"
+  ]
+}

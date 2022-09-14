@@ -1,0 +1,13 @@
+{
+  "name": "pep517",
+  "version": "0.13.0",
+  "requires_dist": [
+    "tomli",
+    "importlib_metadata",
+    "zipp"
+  ],
+  "modules": [
+    "pep517",
+    "tomli"
+  ]
+}

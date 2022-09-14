@@ -1,0 +1,7 @@
+{
+  "name": "flexmock",
+  "version": "0.11.3",
+  "modules": [
+    "flexmock"
+  ]
+}

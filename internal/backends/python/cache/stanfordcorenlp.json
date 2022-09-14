@@ -1,0 +1,17 @@
+{
+  "name": "stanfordcorenlp",
+  "version": "3.9.1.1",
+  "requires_dist": [
+    "psutil",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "psutil",
+    "requests",
+    "stanfordcorenlp",
+    "urllib3"
+  ]
+}

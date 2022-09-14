@@ -1,0 +1,5 @@
+{
+  "name": "discordSuperUtils",
+  "version": "0.3.0",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/discordSuperUtils/bin/python3', '-m', 'pip', 'install', 'discordSuperUtils']' returned non-zero exit status 1.\"}"
+}

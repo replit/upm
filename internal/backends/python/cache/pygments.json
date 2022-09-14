@@ -1,0 +1,10 @@
+{
+  "name": "Pygments",
+  "version": "2.13.0",
+  "requires_dist": [
+    "importlib-metadata"
+  ],
+  "modules": [
+    "pygments"
+  ]
+}

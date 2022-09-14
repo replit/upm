@@ -1,0 +1,39 @@
+{
+  "name": "reliability",
+  "version": "0.8.6",
+  "requires_dist": [
+    "autograd",
+    "scipy",
+    "numpy",
+    "matplotlib",
+    "pandas",
+    "autograd-gamma",
+    "mplcursors",
+    "docutils"
+  ],
+  "modules": [
+    "PIL",
+    "autograd",
+    "autograd_gamma",
+    "cycler",
+    "dateutil",
+    "docutils",
+    "fontTools",
+    "future",
+    "kiwisolver",
+    "libfuturize",
+    "libpasteurize",
+    "matplotlib",
+    "mplcursors",
+    "numpy",
+    "packaging",
+    "pandas",
+    "past",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "reliability",
+    "scipy",
+    "six"
+  ]
+}

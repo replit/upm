@@ -1,0 +1,7 @@
+{
+  "name": "et-xmlfile",
+  "version": "1.1.0",
+  "modules": [
+    "et_xmlfile"
+  ]
+}

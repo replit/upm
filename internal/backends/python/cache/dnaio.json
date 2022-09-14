@@ -1,0 +1,14 @@
+{
+  "name": "dnaio",
+  "version": "0.9.1",
+  "requires_dist": [
+    "xopen",
+    "Cython",
+    "pytest"
+  ],
+  "modules": [
+    "dnaio",
+    "isal",
+    "xopen"
+  ]
+}

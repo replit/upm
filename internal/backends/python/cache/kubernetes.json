@@ -1,0 +1,37 @@
+{
+  "name": "kubernetes",
+  "version": "24.2.0",
+  "requires_dist": [
+    "certifi",
+    "six",
+    "python-dateutil",
+    "setuptools",
+    "pyyaml",
+    "google-auth",
+    "websocket-client",
+    "requests",
+    "requests-oauthlib",
+    "urllib3",
+    "ipaddress",
+    "adal"
+  ],
+  "modules": [
+    "_yaml",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "kubernetes",
+    "oauthlib",
+    "pyasn1",
+    "pyasn1_modules",
+    "requests",
+    "requests_oauthlib",
+    "rsa",
+    "six",
+    "urllib3",
+    "websocket",
+    "yaml"
+  ]
+}

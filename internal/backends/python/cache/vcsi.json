@@ -1,0 +1,22 @@
+{
+  "name": "vcsi",
+  "version": "7.0.13",
+  "requires_dist": [
+    "numpy",
+    "pillow",
+    "jinja2",
+    "texttable",
+    "parsedatetime",
+    "check-manifest",
+    "coverage"
+  ],
+  "modules": [
+    "PIL",
+    "jinja2",
+    "markupsafe",
+    "numpy",
+    "parsedatetime",
+    "texttable",
+    "vcsi"
+  ]
+}

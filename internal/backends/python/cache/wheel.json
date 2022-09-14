@@ -1,0 +1,11 @@
+{
+  "name": "wheel",
+  "version": "0.37.1",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov"
+  ],
+  "modules": [
+    "wheel"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Willow",
+  "version": "1.4.1",
+  "requires_dist": [
+    "Pillow",
+    "Wand",
+    "mock"
+  ],
+  "modules": [
+    "willow"
+  ]
+}

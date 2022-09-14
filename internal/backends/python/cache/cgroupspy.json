@@ -1,0 +1,7 @@
+{
+  "name": "cgroupspy",
+  "version": "0.2.2",
+  "modules": [
+    "cgroupspy"
+  ]
+}

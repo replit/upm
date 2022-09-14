@@ -1,0 +1,7 @@
+{
+  "name": "drf-flex-fields",
+  "version": "1.0.0",
+  "modules": [
+    "rest_flex_fields"
+  ]
+}

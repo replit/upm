@@ -1,0 +1,5 @@
+{
+  "name": "pyobjc-framework-ExecutionPolicy",
+  "version": "8.5",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-ExecutionPolicy/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-ExecutionPolicy']' returned non-zero exit status 1.\"}"
+}

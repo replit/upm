@@ -1,0 +1,13 @@
+{
+  "name": "dj-rest-auth",
+  "version": "2.2.5",
+  "modules": [
+    "asgiref",
+    "backports",
+    "dj_rest_auth",
+    "django",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

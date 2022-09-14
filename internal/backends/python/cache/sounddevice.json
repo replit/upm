@@ -1,0 +1,15 @@
+{
+  "name": "sounddevice",
+  "version": "0.4.5",
+  "requires_dist": [
+    "CFFI",
+    "NumPy"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_sounddevice",
+    "cffi",
+    "pycparser",
+    "sounddevice"
+  ]
+}

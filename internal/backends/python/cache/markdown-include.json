@@ -1,0 +1,13 @@
+{
+  "name": "markdown-include",
+  "version": "0.7.0",
+  "requires_dist": [
+    "markdown"
+  ],
+  "modules": [
+    "importlib_metadata",
+    "markdown",
+    "markdown_include",
+    "zipp"
+  ]
+}

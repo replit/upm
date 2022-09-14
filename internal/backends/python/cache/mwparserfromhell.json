@@ -1,0 +1,7 @@
+{
+  "name": "mwparserfromhell",
+  "version": "0.6.4",
+  "modules": [
+    "mwparserfromhell"
+  ]
+}

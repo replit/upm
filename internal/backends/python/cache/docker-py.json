@@ -1,0 +1,15 @@
+{
+  "name": "docker-py",
+  "version": "1.10.6",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "docker",
+    "dockerpycreds",
+    "idna",
+    "requests",
+    "six",
+    "urllib3",
+    "websocket"
+  ]
+}

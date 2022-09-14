@@ -1,0 +1,11 @@
+{
+  "name": "simplecosine",
+  "version": "1.2",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "simplecosine"
+  ]
+}

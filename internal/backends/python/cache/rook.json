@@ -1,0 +1,28 @@
+{
+  "name": "rook",
+  "version": "0.1.179",
+  "requires_dist": [
+    "six",
+    "websocket-client",
+    "psutil",
+    "certifi",
+    "funcsigs",
+    "distro",
+    "protobuf",
+    "protobuf",
+    "protobuf",
+    "backports.ssl",
+    "backports.ssl-match-hostname",
+    "PyOpenSSL"
+  ],
+  "modules": [
+    "certifi",
+    "distro",
+    "funcsigs",
+    "native_extensions",
+    "psutil",
+    "rook",
+    "six",
+    "websocket"
+  ]
+}

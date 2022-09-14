@@ -1,0 +1,18 @@
+{
+  "name": "robotframework-datadriver",
+  "version": "1.6.1",
+  "requires_dist": [
+    "robotframework",
+    "docutils",
+    "Pygments",
+    "pandas",
+    "xlrd",
+    "openpyxl"
+  ],
+  "modules": [
+    "DataDriver",
+    "docutils",
+    "pygments",
+    "robot"
+  ]
+}

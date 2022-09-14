@@ -1,0 +1,11 @@
+{
+  "name": "uiautomation",
+  "version": "2.0.17",
+  "requires_dist": [
+    "comtypes"
+  ],
+  "modules": [
+    "comtypes",
+    "uiautomation"
+  ]
+}

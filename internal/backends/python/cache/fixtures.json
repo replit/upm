@@ -1,0 +1,8 @@
+{
+  "name": "fixtures",
+  "version": "4.0.1",
+  "modules": [
+    "fixtures",
+    "pbr"
+  ]
+}

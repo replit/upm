@@ -1,0 +1,42 @@
+{
+  "name": "Flask-Breadcrumbs",
+  "version": "0.5.1",
+  "requires_dist": [
+    "Flask",
+    "six",
+    "Flask-Menu",
+    "Sphinx",
+    "check-manifest",
+    "coverage",
+    "isort",
+    "mock",
+    "pydocstyle",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8",
+    "pytest",
+    "Sphinx",
+    "check-manifest",
+    "coverage",
+    "isort",
+    "mock",
+    "pydocstyle",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8",
+    "pytest"
+  ],
+  "modules": [
+    "click",
+    "flask",
+    "flask_breadcrumbs",
+    "flask_menu",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "six",
+    "werkzeug",
+    "zipp"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "polyline",
+  "version": "1.4.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "polyline",
+    "six"
+  ]
+}

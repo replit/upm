@@ -1,0 +1,12 @@
+{
+  "name": "envyaml",
+  "version": "1.10.211231",
+  "requires_dist": [
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "envyaml",
+    "yaml"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "eth-typing",
+  "version": "3.1.0",
+  "requires_dist": [
+    "bumpversion",
+    "pytest-watch",
+    "wheel",
+    "twine",
+    "ipython",
+    "pytest",
+    "pytest-xdist",
+    "tox",
+    "flake8",
+    "isort",
+    "mypy",
+    "pydocstyle",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "towncrier",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "towncrier",
+    "flake8",
+    "isort",
+    "mypy",
+    "pydocstyle",
+    "pytest",
+    "pytest-xdist",
+    "tox"
+  ],
+  "modules": [
+    "eth_typing"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "hug",
+  "version": "2.6.1",
+  "requires_dist": [
+    "falcon",
+    "requests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "falcon",
+    "hug",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

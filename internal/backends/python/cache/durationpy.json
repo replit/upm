@@ -1,0 +1,7 @@
+{
+  "name": "durationpy",
+  "version": "0.5",
+  "modules": [
+    "durationpy"
+  ]
+}

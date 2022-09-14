@@ -1,0 +1,7 @@
+{
+  "name": "ppretty",
+  "version": "1.3",
+  "modules": [
+    "ppretty"
+  ]
+}

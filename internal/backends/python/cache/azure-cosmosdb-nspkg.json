@@ -1,0 +1,7 @@
+{
+  "name": "azure-cosmosdb-nspkg",
+  "version": "2.0.2",
+  "requires_dist": [
+    "azure-nspkg"
+  ]
+}

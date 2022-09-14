@@ -1,0 +1,8 @@
+{
+  "name": "sys-detection",
+  "version": "1.3.0",
+  "modules": [
+    "autorepr",
+    "sys_detection"
+  ]
+}

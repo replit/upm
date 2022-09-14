@@ -1,0 +1,21 @@
+{
+  "name": "tswift",
+  "version": "0.7.0",
+  "requires_dist": [
+    "lxml",
+    "requests",
+    "google"
+  ],
+  "modules": [
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "googlesearch",
+    "idna",
+    "lxml",
+    "requests",
+    "soupsieve",
+    "tswift",
+    "urllib3"
+  ]
+}

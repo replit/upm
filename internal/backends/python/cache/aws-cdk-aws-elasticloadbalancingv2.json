@@ -1,0 +1,35 @@
+{
+  "name": "aws-cdk.aws-elasticloadbalancingv2",
+  "version": "1.172.0",
+  "requires_dist": [
+    "aws-cdk.aws-certificatemanager",
+    "aws-cdk.aws-cloudwatch",
+    "aws-cdk.aws-ec2",
+    "aws-cdk.aws-iam",
+    "aws-cdk.aws-lambda",
+    "aws-cdk.aws-route53",
+    "aws-cdk.aws-s3",
+    "aws-cdk.cloud-assembly-schema",
+    "aws-cdk.core",
+    "aws-cdk.cx-api",
+    "aws-cdk.region-info",
+    "constructs",
+    "jsii",
+    "publication",
+    "typeguard"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "cattr",
+    "cattrs",
+    "constructs",
+    "dateutil",
+    "exceptiongroup",
+    "jsii",
+    "publication",
+    "six",
+    "typeguard",
+    "typing_extensions"
+  ]
+}

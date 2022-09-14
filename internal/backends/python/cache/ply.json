@@ -1,0 +1,7 @@
+{
+  "name": "ply",
+  "version": "3.11",
+  "modules": [
+    "ply"
+  ]
+}

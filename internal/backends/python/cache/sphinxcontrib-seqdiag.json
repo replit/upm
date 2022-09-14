@@ -1,0 +1,35 @@
+{
+  "name": "sphinxcontrib-seqdiag",
+  "version": "3.0.0",
+  "requires_dist": [
+    "blockdiag",
+    "seqdiag",
+    "Sphinx"
+  ],
+  "modules": [
+    "PIL",
+    "alabaster",
+    "babel",
+    "blockdiag",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "funcparserlib",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "seqdiag",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "webcolors",
+    "zipp"
+  ]
+}

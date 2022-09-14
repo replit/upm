@@ -1,0 +1,14 @@
+{
+  "name": "mirakuru",
+  "version": "2.4.2",
+  "requires_dist": [
+    "psutil",
+    "pytest",
+    "pytest-cov",
+    "python-daemon"
+  ],
+  "modules": [
+    "mirakuru",
+    "psutil"
+  ]
+}

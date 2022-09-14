@@ -1,0 +1,7 @@
+{
+  "name": "nvidia-pyindex",
+  "version": "1.0.9",
+  "modules": [
+    "nvidia_pyindex"
+  ]
+}

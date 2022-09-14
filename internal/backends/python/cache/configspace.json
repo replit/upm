@@ -1,0 +1,26 @@
+{
+  "name": "ConfigSpace",
+  "version": "0.6.0",
+  "requires_dist": [
+    "numpy",
+    "cython",
+    "pyparsing",
+    "scipy",
+    "typing-extensions",
+    "pytest",
+    "mypy",
+    "pre-commit",
+    "pytest-cov",
+    "automl-sphinx-theme"
+  ],
+  "modules": [
+    "ConfigSpace",
+    "Cython",
+    "cython",
+    "numpy",
+    "pyparsing",
+    "pyximport",
+    "scipy",
+    "typing_extensions"
+  ]
+}

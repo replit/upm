@@ -1,0 +1,24 @@
+{
+  "name": "amplify-aws-utils",
+  "version": "0.3.19",
+  "modules": [
+    "amplify_aws_utils",
+    "aws_lambda_powertools",
+    "aws_xray_sdk",
+    "boto",
+    "boto3",
+    "botocore",
+    "botostubs",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "fastjsonschema",
+    "idna",
+    "jmespath",
+    "requests",
+    "s3transfer",
+    "six",
+    "urllib3",
+    "wrapt"
+  ]
+}

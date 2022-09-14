@@ -1,0 +1,15 @@
+{
+  "name": "django-modeltranslation",
+  "version": "0.18.4",
+  "requires_dist": [
+    "Django",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "modeltranslation",
+    "sqlparse"
+  ]
+}

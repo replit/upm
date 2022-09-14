@@ -1,0 +1,10 @@
+{
+  "name": "pyinstrument",
+  "version": "4.3.0",
+  "requires_dist": [
+    "ipython"
+  ],
+  "modules": [
+    "pyinstrument"
+  ]
+}

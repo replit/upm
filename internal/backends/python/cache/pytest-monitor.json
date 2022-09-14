@@ -1,0 +1,33 @@
+{
+  "name": "pytest-monitor",
+  "version": "1.6.4",
+  "requires_dist": [
+    "pytest",
+    "requests",
+    "psutil",
+    "memory-profiler",
+    "wheel"
+  ],
+  "modules": [
+    "_pytest",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "iniconfig",
+    "memory_profiler",
+    "mprof",
+    "packaging",
+    "pluggy",
+    "psutil",
+    "py",
+    "pyparsing",
+    "pytest",
+    "pytest_monitor",
+    "requests",
+    "tomli",
+    "urllib3",
+    "wheel"
+  ]
+}

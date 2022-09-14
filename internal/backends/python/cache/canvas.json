@@ -1,0 +1,7 @@
+{
+  "name": "canvas",
+  "version": "0.3",
+  "modules": [
+    "canvas"
+  ]
+}

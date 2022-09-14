@@ -1,0 +1,16 @@
+{
+  "name": "django-ical",
+  "version": "1.8.3",
+  "modules": [
+    "asgiref",
+    "backports",
+    "dateutil",
+    "django",
+    "django_ical",
+    "icalendar",
+    "pytz",
+    "recurrence",
+    "six",
+    "sqlparse"
+  ]
+}

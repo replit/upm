@@ -1,0 +1,5 @@
+{
+  "name": "models",
+  "version": "0.9.7",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/models/bin/python3', '-m', 'pip', 'install', 'models']' returned non-zero exit status 1.\"}"
+}

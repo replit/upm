@@ -1,0 +1,7 @@
+{
+  "name": "easydict",
+  "version": "1.9",
+  "modules": [
+    "easydict"
+  ]
+}

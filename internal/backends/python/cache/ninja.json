@@ -1,0 +1,17 @@
+{
+  "name": "ninja",
+  "version": "1.10.2.3",
+  "requires_dist": [
+    "codecov",
+    "coverage",
+    "flake8",
+    "pytest",
+    "pytest-cov",
+    "pytest-runner",
+    "pytest-virtualenv",
+    "virtualenv"
+  ],
+  "modules": [
+    "ninja"
+  ]
+}

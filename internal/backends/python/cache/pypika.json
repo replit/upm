@@ -1,0 +1,7 @@
+{
+  "name": "PyPika",
+  "version": "0.48.9",
+  "modules": [
+    "pypika"
+  ]
+}

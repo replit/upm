@@ -1,0 +1,7 @@
+{
+  "name": "PyRect",
+  "version": "0.2.0",
+  "modules": [
+    "pyrect"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "cos-python-sdk-v5",
+  "version": "1.9.20",
+  "modules": [
+    "Crypto",
+    "certifi",
+    "charset_normalizer",
+    "crcmod",
+    "dicttoxml",
+    "idna",
+    "qcloud_cos",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

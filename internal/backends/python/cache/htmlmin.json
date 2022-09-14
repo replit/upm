@@ -1,0 +1,7 @@
+{
+  "name": "htmlmin",
+  "version": "0.1.12",
+  "modules": [
+    "htmlmin"
+  ]
+}

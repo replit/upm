@@ -1,0 +1,7 @@
+{
+  "name": "puremagic",
+  "version": "1.14",
+  "modules": [
+    "puremagic"
+  ]
+}

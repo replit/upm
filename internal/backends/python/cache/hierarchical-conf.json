@@ -1,0 +1,12 @@
+{
+  "name": "hierarchical-conf",
+  "version": "1.0.2",
+  "requires_dist": [
+    "PyYAML"
+  ],
+  "modules": [
+    "_yaml",
+    "hierarchical_conf",
+    "yaml"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "fqdn",
+  "version": "1.5.1",
+  "requires_dist": [
+    "cached-property"
+  ],
+  "modules": [
+    "fqdn"
+  ]
+}

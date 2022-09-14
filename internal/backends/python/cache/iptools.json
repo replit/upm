@@ -1,0 +1,10 @@
+{
+  "name": "iptools",
+  "version": "0.7.0",
+  "requires_dist": [
+    "nose"
+  ],
+  "modules": [
+    "iptools"
+  ]
+}

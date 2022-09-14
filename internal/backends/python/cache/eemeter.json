@@ -1,0 +1,24 @@
+{
+  "name": "eemeter",
+  "version": "3.1.0",
+  "requires_dist": [
+    "click",
+    "pandas",
+    "statsmodels",
+    "scipy"
+  ],
+  "modules": [
+    "click",
+    "dateutil",
+    "eemeter",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "pyparsing",
+    "pytz",
+    "scipy",
+    "six",
+    "statsmodels"
+  ]
+}

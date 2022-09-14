@@ -1,0 +1,24 @@
+{
+  "name": "pycfmodel",
+  "version": "0.20.1",
+  "requires_dist": [
+    "pydantic",
+    "black",
+    "flake8",
+    "httpx",
+    "isort",
+    "pip-tools",
+    "pytest",
+    "pytest-cov",
+    "AutoMacDoc",
+    "livereload",
+    "mkdocs-material",
+    "mkdocs",
+    "mkdocstrings"
+  ],
+  "modules": [
+    "pycfmodel",
+    "pydantic",
+    "typing_extensions"
+  ]
+}

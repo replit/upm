@@ -1,0 +1,12 @@
+{
+  "name": "sshconf",
+  "version": "0.2.5",
+  "requires_dist": [
+    "pytest",
+    "pytest-cov",
+    "codecov"
+  ],
+  "modules": [
+    "sshconf"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "html2markdown",
+  "version": "0.1.7",
+  "modules": [
+    "bs4",
+    "html2markdown",
+    "soupsieve"
+  ]
+}

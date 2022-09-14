@@ -1,0 +1,26 @@
+{
+  "name": "testfixtures",
+  "version": "7.0.0",
+  "requires_dist": [
+    "setuptools-git",
+    "wheel",
+    "twine",
+    "sphinx",
+    "furo",
+    "zope.component",
+    "django",
+    "sybil",
+    "twisted",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "zope.component",
+    "django",
+    "sybil",
+    "twisted"
+  ],
+  "modules": [
+    "testfixtures"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Flask-OAuthlib",
+  "version": "0.9.6",
+  "requires_dist": [
+    "Flask",
+    "oauthlib",
+    "requests-oauthlib",
+    "cachelib"
+  ],
+  "modules": [
+    "cachelib",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "flask",
+    "flask_oauthlib",
+    "idna",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "oauthlib",
+    "requests",
+    "requests_oauthlib",
+    "urllib3",
+    "werkzeug",
+    "zipp"
+  ]
+}

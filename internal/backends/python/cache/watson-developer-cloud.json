@@ -1,0 +1,15 @@
+{
+  "name": "watson-developer-cloud",
+  "version": "2.10.1",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "requests",
+    "six",
+    "urllib3",
+    "watson_developer_cloud",
+    "websocket"
+  ]
+}

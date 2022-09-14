@@ -1,0 +1,11 @@
+{
+  "name": "packaging",
+  "version": "21.3",
+  "requires_dist": [
+    "pyparsing"
+  ],
+  "modules": [
+    "packaging",
+    "pyparsing"
+  ]
+}

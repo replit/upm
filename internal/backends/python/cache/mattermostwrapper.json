@@ -1,0 +1,12 @@
+{
+  "name": "mattermostwrapper",
+  "version": "2.2",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "mattermostwrapper",
+    "requests",
+    "urllib3"
+  ]
+}

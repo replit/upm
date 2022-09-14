@@ -1,0 +1,7 @@
+{
+  "name": "boto",
+  "version": "2.49.0",
+  "modules": [
+    "boto"
+  ]
+}

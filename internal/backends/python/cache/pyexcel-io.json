@@ -1,0 +1,14 @@
+{
+  "name": "pyexcel-io",
+  "version": "0.6.6",
+  "requires_dist": [
+    "lml",
+    "pyexcel-ods3",
+    "pyexcel-xls",
+    "pyexcel-xlsx"
+  ],
+  "modules": [
+    "lml",
+    "pyexcel_io"
+  ]
+}

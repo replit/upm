@@ -1,0 +1,15 @@
+{
+  "name": "django-easysettings",
+  "version": "2.0.1",
+  "requires_dist": [
+    "tox",
+    "django",
+    "pytest-mock",
+    "zest.releaser",
+    "pytest-mock",
+    "pytest-cov"
+  ],
+  "modules": [
+    "easysettings"
+  ]
+}

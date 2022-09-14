@@ -1,0 +1,12 @@
+{
+  "name": "always-updates",
+  "version": "83.0",
+  "requires_dist": [
+    "pip",
+    "progress"
+  ],
+  "modules": [
+    "always_updates",
+    "progress"
+  ]
+}

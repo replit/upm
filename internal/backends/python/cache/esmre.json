@@ -1,0 +1,8 @@
+{
+  "name": "esmre",
+  "version": "1.0",
+  "modules": [
+    "esm",
+    "esmre"
+  ]
+}

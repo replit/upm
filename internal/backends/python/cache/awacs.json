@@ -1,0 +1,10 @@
+{
+  "name": "awacs",
+  "version": "2.2.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "awacs"
+  ]
+}

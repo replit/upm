@@ -1,0 +1,32 @@
+{
+  "name": "django-rest-swagger",
+  "version": "2.2.0",
+  "requires_dist": [
+    "coreapi",
+    "openapi-codec",
+    "djangorestframework",
+    "simplejson"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "coreapi",
+    "coreschema",
+    "django",
+    "idna",
+    "itypes",
+    "jinja2",
+    "markupsafe",
+    "openapi_codec",
+    "pytz",
+    "requests",
+    "rest_framework",
+    "rest_framework_swagger",
+    "simplejson",
+    "sqlparse",
+    "uritemplate",
+    "urllib3"
+  ]
+}

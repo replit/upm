@@ -1,0 +1,13 @@
+{
+  "name": "requests-oauth2",
+  "version": "0.3.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "requests_oauth2",
+    "six",
+    "urllib3"
+  ]
+}

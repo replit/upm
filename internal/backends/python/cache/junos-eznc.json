@@ -1,0 +1,40 @@
+{
+  "name": "junos-eznc",
+  "version": "2.6.5",
+  "requires_dist": [
+    "lxml",
+    "ncclient",
+    "paramiko",
+    "scp",
+    "jinja2",
+    "PyYAML",
+    "netaddr",
+    "six",
+    "pyserial",
+    "yamlordereddictloader",
+    "pyparsing",
+    "transitions"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "_yaml",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "jinja2",
+    "lxml",
+    "markupsafe",
+    "nacl",
+    "ncclient",
+    "netaddr",
+    "paramiko",
+    "pycparser",
+    "pyparsing",
+    "scp",
+    "serial",
+    "six",
+    "transitions",
+    "yaml",
+    "yamlordereddictloader"
+  ]
+}

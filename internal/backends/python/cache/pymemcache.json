@@ -1,0 +1,11 @@
+{
+  "name": "pymemcache",
+  "version": "3.5.2",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "pymemcache",
+    "six"
+  ]
+}

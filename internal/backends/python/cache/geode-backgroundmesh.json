@@ -1,0 +1,15 @@
+{
+  "name": "Geode-BackgroundMesh",
+  "version": "4.1.14",
+  "requires_dist": [
+    "OpenGeode-core",
+    "Geode-Common",
+    "Geode-Conversion"
+  ],
+  "modules": [
+    "geode_backgroundmesh",
+    "geode_common",
+    "geode_conversion",
+    "opengeode"
+  ]
+}

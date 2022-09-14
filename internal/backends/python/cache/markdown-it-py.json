@@ -1,0 +1,35 @@
+{
+  "name": "markdown-it-py",
+  "version": "2.1.0",
+  "requires_dist": [
+    "mdurl",
+    "typing_extensions",
+    "psutil",
+    "pytest",
+    "pytest-benchmark",
+    "pre-commit",
+    "commonmark",
+    "markdown",
+    "mistletoe",
+    "mistune",
+    "panflute",
+    "linkify-it-py",
+    "mdit-py-plugins",
+    "gprof2dot",
+    "attrs",
+    "myst-parser",
+    "pyyaml",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-design",
+    "sphinx_book_theme",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-regressions"
+  ],
+  "modules": [
+    "markdown_it",
+    "mdurl"
+  ]
+}

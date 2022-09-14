@@ -1,0 +1,14 @@
+{
+  "name": "pybit",
+  "version": "2.4.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "pybit",
+    "requests",
+    "urllib3",
+    "websocket",
+    "websockets"
+  ]
+}

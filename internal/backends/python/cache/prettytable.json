@@ -1,0 +1,15 @@
+{
+  "name": "prettytable",
+  "version": "3.4.1",
+  "requires_dist": [
+    "wcwidth",
+    "importlib-metadata",
+    "pytest",
+    "pytest-cov",
+    "pytest-lazy-fixture"
+  ],
+  "modules": [
+    "prettytable",
+    "wcwidth"
+  ]
+}

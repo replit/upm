@@ -1,0 +1,22 @@
+{
+  "name": "django-rosetta",
+  "version": "0.9.8",
+  "requires_dist": [
+    "Django",
+    "requests",
+    "polib"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "django",
+    "idna",
+    "polib",
+    "requests",
+    "rosetta",
+    "sqlparse",
+    "urllib3"
+  ]
+}

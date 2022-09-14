@@ -1,0 +1,11 @@
+{
+  "name": "tf-slim",
+  "version": "1.1.0",
+  "requires_dist": [
+    "absl-py"
+  ],
+  "modules": [
+    "absl",
+    "tf_slim"
+  ]
+}

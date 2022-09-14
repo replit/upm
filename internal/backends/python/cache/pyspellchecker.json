@@ -1,0 +1,7 @@
+{
+  "name": "pyspellchecker",
+  "version": "0.7.0",
+  "modules": [
+    "spellchecker"
+  ]
+}

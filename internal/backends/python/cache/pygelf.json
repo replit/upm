@@ -1,0 +1,7 @@
+{
+  "name": "pygelf",
+  "version": "0.4.2",
+  "modules": [
+    "pygelf"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "crontab",
+  "version": "0.23.0",
+  "modules": [
+    "crontab"
+  ]
+}

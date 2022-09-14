@@ -1,0 +1,17 @@
+{
+  "name": "pulp-ansible-client",
+  "version": "0.14.1",
+  "requires_dist": [
+    "urllib3",
+    "six",
+    "certifi",
+    "python-dateutil"
+  ],
+  "modules": [
+    "certifi",
+    "dateutil",
+    "pulpcore",
+    "six",
+    "urllib3"
+  ]
+}

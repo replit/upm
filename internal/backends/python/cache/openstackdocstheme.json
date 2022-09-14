@@ -1,0 +1,14 @@
+{
+  "name": "openstackdocstheme",
+  "version": "3.0.0",
+  "requires_dist": [
+    "dulwich",
+    "pbr"
+  ],
+  "modules": [
+    "dulwich",
+    "openstackdocstheme",
+    "pbr",
+    "urllib3"
+  ]
+}

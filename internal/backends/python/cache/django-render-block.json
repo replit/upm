@@ -1,0 +1,15 @@
+{
+  "name": "django-render-block",
+  "version": "0.9.1",
+  "requires_dist": [
+    "django",
+    "Jinja2"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "render_block",
+    "sqlparse"
+  ]
+}

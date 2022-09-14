@@ -1,0 +1,10 @@
+{
+  "name": "data",
+  "version": "0.4",
+  "modules": [
+    "data",
+    "decorator",
+    "funcsigs",
+    "six"
+  ]
+}

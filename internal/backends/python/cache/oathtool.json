@@ -1,0 +1,26 @@
+{
+  "name": "oathtool",
+  "version": "2.3.1",
+  "requires_dist": [
+    "autocommand",
+    "path",
+    "importlib-resources",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-enabler",
+    "pytest-black",
+    "pytest-mypy"
+  ],
+  "modules": [
+    "autocommand",
+    "importlib_resources",
+    "oathtool",
+    "path",
+    "zipp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "gpsoauth",
+  "version": "1.0.2",
+  "requires_dist": [
+    "pycryptodomex",
+    "requests"
+  ],
+  "modules": [
+    "Cryptodome",
+    "certifi",
+    "charset_normalizer",
+    "gpsoauth",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "coinbase",
+  "version": "2.1.0",
+  "modules": [
+    "Crypto",
+    "certifi",
+    "charset_normalizer",
+    "coinbase",
+    "idna",
+    "requests",
+    "six",
+    "urllib3"
+  ]
+}

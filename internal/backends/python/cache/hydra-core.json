@@ -1,0 +1,22 @@
+{
+  "name": "hydra-core",
+  "version": "1.2.0",
+  "requires_dist": [
+    "omegaconf",
+    "antlr4-python3-runtime",
+    "packaging",
+    "importlib-resources"
+  ],
+  "modules": [
+    "_yaml",
+    "antlr4",
+    "hydra",
+    "importlib_resources",
+    "omegaconf",
+    "packaging",
+    "pydevd_plugins",
+    "pyparsing",
+    "yaml",
+    "zipp"
+  ]
+}

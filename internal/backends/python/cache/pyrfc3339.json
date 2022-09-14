@@ -1,0 +1,11 @@
+{
+  "name": "pyRFC3339",
+  "version": "1.1",
+  "requires_dist": [
+    "pytz"
+  ],
+  "modules": [
+    "pyrfc3339",
+    "pytz"
+  ]
+}

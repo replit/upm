@@ -1,0 +1,11 @@
+{
+  "name": "ddlparse",
+  "version": "1.10.0",
+  "requires_dist": [
+    "pyparsing"
+  ],
+  "modules": [
+    "ddlparse",
+    "pyparsing"
+  ]
+}

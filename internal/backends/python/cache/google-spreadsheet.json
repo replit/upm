@@ -1,0 +1,24 @@
+{
+  "name": "google_spreadsheet",
+  "version": "0.0.6",
+  "modules": [
+    "apiclient",
+    "cachetools",
+    "certifi",
+    "charset_normalizer",
+    "google_auth_httplib2",
+    "google_spreadsheet",
+    "googleapiclient",
+    "httplib2",
+    "idna",
+    "oauth2client",
+    "pyasn1",
+    "pyasn1_modules",
+    "pyparsing",
+    "requests",
+    "rsa",
+    "six",
+    "uritemplate",
+    "urllib3"
+  ]
+}

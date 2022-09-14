@@ -1,0 +1,5 @@
+{
+  "name": "GeoIP",
+  "version": "1.3.2",
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/GeoIP/bin/python3', '-m', 'pip', 'install', 'GeoIP']' returned non-zero exit status 1.\"}"
+}

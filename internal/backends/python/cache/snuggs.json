@@ -1,0 +1,15 @@
+{
+  "name": "snuggs",
+  "version": "1.4.7",
+  "requires_dist": [
+    "numpy",
+    "pyparsing",
+    "pytest",
+    "hypothesis"
+  ],
+  "modules": [
+    "numpy",
+    "pyparsing",
+    "snuggs"
+  ]
+}

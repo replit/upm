@@ -1,0 +1,13 @@
+{
+  "name": "rejson",
+  "version": "0.5.6",
+  "requires_dist": [
+    "redis",
+    "six"
+  ],
+  "modules": [
+    "redis",
+    "rejson",
+    "six"
+  ]
+}

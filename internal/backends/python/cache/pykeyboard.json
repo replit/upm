@@ -1,0 +1,13 @@
+{
+  "name": "pykeyboard",
+  "version": "0.1.5",
+  "modules": [
+    "pyaes",
+    "pykeyboard",
+    "pyrogram",
+    "socks",
+    "sockshandler",
+    "tests",
+    "tgcrypto"
+  ]
+}

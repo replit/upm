@@ -1,0 +1,39 @@
+{
+  "name": "cirq-ionq",
+  "version": "1.0.0",
+  "requires_dist": [
+    "cirq-core",
+    "requests"
+  ],
+  "modules": [
+    "PIL",
+    "certifi",
+    "charset_normalizer",
+    "cirq",
+    "cirq_ionq",
+    "cycler",
+    "dateutil",
+    "duet",
+    "fontTools",
+    "idna",
+    "isympy",
+    "kiwisolver",
+    "matplotlib",
+    "mpmath",
+    "networkx",
+    "numpy",
+    "packaging",
+    "pandas",
+    "pylab",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "scipy",
+    "six",
+    "sortedcontainers",
+    "sympy",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

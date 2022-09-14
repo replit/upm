@@ -1,0 +1,9 @@
+{
+  "name": "codd",
+  "version": "0.2.3",
+  "modules": [
+    "codd",
+    "test_xlocal",
+    "xlocal"
+  ]
+}

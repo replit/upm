@@ -1,0 +1,16 @@
+{
+  "name": "python-freeipa",
+  "version": "1.0.6",
+  "requires_dist": [
+    "requests",
+    "responses"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "python_freeipa",
+    "requests",
+    "urllib3"
+  ]
+}

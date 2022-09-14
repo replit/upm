@@ -1,0 +1,16 @@
+{
+  "name": "django-redis-sessions",
+  "version": "0.6.2",
+  "requires_dist": [
+    "redis"
+  ],
+  "modules": [
+    "async_timeout",
+    "deprecated",
+    "packaging",
+    "pyparsing",
+    "redis",
+    "redis_sessions",
+    "wrapt"
+  ]
+}

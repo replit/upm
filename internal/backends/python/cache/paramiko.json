@@ -1,0 +1,32 @@
+{
+  "name": "paramiko",
+  "version": "2.11.0",
+  "requires_dist": [
+    "bcrypt",
+    "cryptography",
+    "pynacl",
+    "six",
+    "pyasn1",
+    "pynacl",
+    "bcrypt",
+    "invoke",
+    "gssapi",
+    "pywin32",
+    "pynacl",
+    "bcrypt",
+    "pyasn1",
+    "gssapi",
+    "pywin32",
+    "invoke"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "nacl",
+    "paramiko",
+    "pycparser",
+    "six"
+  ]
+}

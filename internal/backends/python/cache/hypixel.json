@@ -1,0 +1,19 @@
+{
+  "name": "hypixel",
+  "version": "0.8.0",
+  "requires_dist": [
+    "grequests"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "gevent",
+    "greenlet",
+    "grequests",
+    "hypixel",
+    "idna",
+    "leveling",
+    "requests",
+    "urllib3"
+  ]
+}

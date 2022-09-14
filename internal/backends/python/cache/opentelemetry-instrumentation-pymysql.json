@@ -1,0 +1,16 @@
+{
+  "name": "opentelemetry-instrumentation-pymysql",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-instrumentation-dbapi",
+    "opentelemetry-instrumentation",
+    "PyMySQL",
+    "opentelemetry-test-utils",
+    "PyMySQL"
+  ],
+  "modules": [
+    "deprecated",
+    "wrapt"
+  ]
+}

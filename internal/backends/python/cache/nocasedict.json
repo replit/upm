@@ -1,0 +1,20 @@
+{
+  "name": "nocasedict",
+  "version": "1.0.4",
+  "requires_dist": [
+    "six",
+    "packaging",
+    "pluggy",
+    "pathlib2",
+    "pytest",
+    "virtualenv",
+    "pytest",
+    "virtualenv",
+    "pytest",
+    "pytest"
+  ],
+  "modules": [
+    "nocasedict",
+    "six"
+  ]
+}

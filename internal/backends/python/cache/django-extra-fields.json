@@ -1,0 +1,13 @@
+{
+  "name": "django-extra-fields",
+  "version": "3.0.2",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "drf_extra_fields",
+    "pytz",
+    "rest_framework",
+    "sqlparse"
+  ]
+}

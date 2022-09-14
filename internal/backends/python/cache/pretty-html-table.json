@@ -1,0 +1,15 @@
+{
+  "name": "pretty-html-table",
+  "version": "0.9.16",
+  "requires_dist": [
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "numpy",
+    "pandas",
+    "pretty_html_table",
+    "pytz",
+    "six"
+  ]
+}

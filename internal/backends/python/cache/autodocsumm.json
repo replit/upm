@@ -1,0 +1,29 @@
+{
+  "name": "autodocsumm",
+  "version": "0.2.9",
+  "requires_dist": [
+    "Sphinx"
+  ],
+  "modules": [
+    "alabaster",
+    "autodocsumm",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "snowballstemmer",
+    "sphinx",
+    "urllib3",
+    "zipp"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "slowapi",
+  "version": "0.1.6",
+  "requires_dist": [
+    "limits"
+  ],
+  "modules": [
+    "limits",
+    "six",
+    "slowapi"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "asgi_redis",
+  "version": "1.4.3",
+  "modules": [
+    "asgi_redis",
+    "asgiref",
+    "msgpack",
+    "redis",
+    "six"
+  ]
+}

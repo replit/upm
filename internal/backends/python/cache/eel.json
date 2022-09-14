@@ -1,0 +1,18 @@
+{
+  "name": "Eel",
+  "version": "0.14.0",
+  "modules": [
+    "bottle",
+    "bottle_websocket",
+    "eel",
+    "future",
+    "gevent",
+    "geventwebsocket",
+    "greenlet",
+    "libfuturize",
+    "libpasteurize",
+    "past",
+    "pyparsing",
+    "whichcraft"
+  ]
+}

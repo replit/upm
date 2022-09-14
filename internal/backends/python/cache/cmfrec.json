@@ -1,0 +1,17 @@
+{
+  "name": "cmfrec",
+  "version": "3.4.3",
+  "modules": [
+    "Cython",
+    "cmfrec",
+    "cython",
+    "dateutil",
+    "findblas",
+    "numpy",
+    "pandas",
+    "pytz",
+    "pyximport",
+    "scipy",
+    "six"
+  ]
+}

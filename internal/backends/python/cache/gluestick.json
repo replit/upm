@@ -1,0 +1,19 @@
+{
+  "name": "gluestick",
+  "version": "1.0.11",
+  "modules": [
+    "backoff",
+    "ciso8601",
+    "dateutil",
+    "gluestick",
+    "jsonschema",
+    "numpy",
+    "pandas",
+    "pytz",
+    "simplejson",
+    "singer",
+    "six",
+    "tests",
+    "xlrd"
+  ]
+}

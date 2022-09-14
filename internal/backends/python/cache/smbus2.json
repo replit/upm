@@ -1,0 +1,13 @@
+{
+  "name": "smbus2",
+  "version": "0.4.2",
+  "requires_dist": [
+    "sphinx",
+    "flake8",
+    "nose",
+    "mock"
+  ],
+  "modules": [
+    "smbus2"
+  ]
+}

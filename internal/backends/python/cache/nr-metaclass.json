@@ -1,0 +1,7 @@
+{
+  "name": "nr.metaclass",
+  "version": "0.0.6",
+  "modules": [
+    "nr"
+  ]
+}

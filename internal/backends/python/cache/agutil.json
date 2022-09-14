@@ -1,0 +1,14 @@
+{
+  "name": "agutil",
+  "version": "5.0.0",
+  "requires_dist": [
+    "pycryptodomex",
+    "rsa"
+  ],
+  "modules": [
+    "Cryptodome",
+    "agutil",
+    "pyasn1",
+    "rsa"
+  ]
+}

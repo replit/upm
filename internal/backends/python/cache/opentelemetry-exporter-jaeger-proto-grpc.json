@@ -1,0 +1,17 @@
+{
+  "name": "opentelemetry-exporter-jaeger-proto-grpc",
+  "version": "1.12.0",
+  "requires_dist": [
+    "grpcio",
+    "googleapis-common-protos",
+    "opentelemetry-api",
+    "opentelemetry-sdk"
+  ],
+  "modules": [
+    "deprecated",
+    "grpc",
+    "six",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

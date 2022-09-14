@@ -1,0 +1,11 @@
+{
+  "name": "objgraph",
+  "version": "3.5.0",
+  "requires_dist": [
+    "graphviz"
+  ],
+  "modules": [
+    "graphviz",
+    "objgraph"
+  ]
+}

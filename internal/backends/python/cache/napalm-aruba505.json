@@ -1,0 +1,7 @@
+{
+  "name": "napalm-aruba505",
+  "version": "0.0.138",
+  "modules": [
+    "napalm_aruba505"
+  ]
+}

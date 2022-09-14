@@ -1,0 +1,21 @@
+{
+  "name": "elasticsearch-async",
+  "version": "6.2.0",
+  "modules": [
+    "aiohttp",
+    "aiosignal",
+    "async_timeout",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "elastic_transport",
+    "elasticsearch",
+    "elasticsearch_async",
+    "frozenlist",
+    "idna",
+    "multidict",
+    "urllib3",
+    "yarl"
+  ]
+}

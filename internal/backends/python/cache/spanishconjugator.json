@@ -1,0 +1,12 @@
+{
+  "name": "spanishconjugator",
+  "version": "2.3.2942",
+  "requires_dist": [
+    "pytest",
+    "check-manifest",
+    "twine"
+  ],
+  "modules": [
+    "spanishconjugator"
+  ]
+}

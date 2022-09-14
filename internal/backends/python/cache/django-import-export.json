@@ -1,0 +1,27 @@
+{
+  "name": "django-import-export",
+  "version": "2.8.0",
+  "requires_dist": [
+    "diff-match-patch",
+    "Django",
+    "tablib"
+  ],
+  "modules": [
+    "MarkupPy",
+    "_yaml",
+    "asgiref",
+    "backports",
+    "defusedxml",
+    "diff_match_patch",
+    "django",
+    "et_xmlfile",
+    "import_export",
+    "odf",
+    "openpyxl",
+    "sqlparse",
+    "tablib",
+    "xlrd",
+    "xlwt",
+    "yaml"
+  ]
+}

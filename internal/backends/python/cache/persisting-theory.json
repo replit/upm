@@ -1,0 +1,9 @@
+{
+  "name": "persisting-theory",
+  "version": "1.0",
+  "modules": [
+    "example",
+    "persisting_theory",
+    "tests"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "sphinxcontrib-robotdoc",
+  "version": "0.11.0",
+  "requires_dist": [
+    "setuptools",
+    "sphinx",
+    "pygments",
+    "robotframework"
+  ],
+  "modules": [
+    "alabaster",
+    "babel",
+    "certifi",
+    "charset_normalizer",
+    "docutils",
+    "idna",
+    "imagesize",
+    "importlib_metadata",
+    "jinja2",
+    "markupsafe",
+    "packaging",
+    "pygments",
+    "pyparsing",
+    "pytz",
+    "requests",
+    "robot",
+    "snowballstemmer",
+    "sphinx",
+    "sphinxcontrib_robotdoc",
+    "urllib3",
+    "zipp"
+  ]
+}

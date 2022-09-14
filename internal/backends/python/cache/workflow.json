@@ -1,0 +1,39 @@
+{
+  "name": "workflow",
+  "version": "2.1.6",
+  "requires_dist": [
+    "autosemver",
+    "configobj",
+    "blinker",
+    "six",
+    "enum34",
+    "Sphinx",
+    "coverage",
+    "mock",
+    "isort",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8",
+    "pytest",
+    "Sphinx",
+    "coverage",
+    "mock",
+    "isort",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-pep8",
+    "pytest"
+  ],
+  "modules": [
+    "_version",
+    "autosemver",
+    "blinker",
+    "certifi",
+    "configobj",
+    "dulwich",
+    "six",
+    "urllib3",
+    "validate",
+    "workflow"
+  ]
+}

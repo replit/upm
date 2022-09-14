@@ -1,0 +1,13 @@
+{
+  "name": "h2",
+  "version": "4.1.0",
+  "requires_dist": [
+    "hyperframe",
+    "hpack"
+  ],
+  "modules": [
+    "h2",
+    "hpack",
+    "hyperframe"
+  ]
+}

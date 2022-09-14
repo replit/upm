@@ -1,0 +1,19 @@
+{
+  "name": "pydantic-factories",
+  "version": "1.6.1",
+  "requires_dist": [
+    "pydantic",
+    "faker",
+    "typing-extensions",
+    "xeger"
+  ],
+  "modules": [
+    "dateutil",
+    "faker",
+    "pydantic",
+    "pydantic_factories",
+    "six",
+    "typing_extensions",
+    "xeger"
+  ]
+}

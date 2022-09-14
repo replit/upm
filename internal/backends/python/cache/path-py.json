@@ -1,0 +1,21 @@
+{
+  "name": "path.py",
+  "version": "12.5.0",
+  "requires_dist": [
+    "path",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "pytest",
+    "pytest-checkdocs",
+    "pytest-flake8",
+    "pytest-black-multipy",
+    "pytest-cov",
+    "appdirs",
+    "packaging",
+    "pygments"
+  ],
+  "modules": [
+    "path"
+  ]
+}

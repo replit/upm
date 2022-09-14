@@ -1,0 +1,7 @@
+{
+  "name": "pyprof2calltree",
+  "version": "1.4.5",
+  "modules": [
+    "pyprof2calltree"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "webdrivermanager",
+  "version": "0.10.0",
+  "modules": [
+    "appdirs",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "lxml",
+    "requests",
+    "soupsieve",
+    "tqdm",
+    "urllib3",
+    "webdrivermanager"
+  ]
+}

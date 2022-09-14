@@ -1,0 +1,27 @@
+{
+  "name": "opentok",
+  "version": "3.2.0",
+  "requires_dist": [
+    "enum34",
+    "python-jose",
+    "pytz",
+    "requests",
+    "rsa",
+    "six",
+    "enum34"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "ecdsa",
+    "idna",
+    "jose",
+    "opentok",
+    "pyasn1",
+    "pytz",
+    "requests",
+    "rsa",
+    "six",
+    "urllib3"
+  ]
+}

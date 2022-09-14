@@ -1,0 +1,13 @@
+{
+  "name": "ConfigArgParse",
+  "version": "1.5.3",
+  "requires_dist": [
+    "mock",
+    "PyYAML",
+    "pytest",
+    "PyYAML"
+  ],
+  "modules": [
+    "configargparse"
+  ]
+}

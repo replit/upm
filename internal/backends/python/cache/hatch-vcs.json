@@ -1,0 +1,21 @@
+{
+  "name": "hatch-vcs",
+  "version": "0.2.0",
+  "requires_dist": [
+    "hatchling",
+    "setuptools-scm",
+    "setuptools-scm"
+  ],
+  "modules": [
+    "editables",
+    "hatch_vcs",
+    "hatchling",
+    "packaging",
+    "pathspec",
+    "pluggy",
+    "pyparsing",
+    "setuptools_scm",
+    "tomli",
+    "typing_extensions"
+  ]
+}

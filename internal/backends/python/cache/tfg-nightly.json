@@ -1,0 +1,21 @@
+{
+  "name": "tfg-nightly",
+  "version": "2022.9.6",
+  "requires_dist": [
+    "tensorflow",
+    "tensorflow-addons",
+    "tensorflow-datasets",
+    "absl-py",
+    "h5py",
+    "matplotlib",
+    "numpy",
+    "psutil",
+    "scipy",
+    "tqdm",
+    "OpenEXR",
+    "termcolor",
+    "trimesh",
+    "networkx"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/tfg-nightly/bin/python3', '-m', 'pip', 'install', 'tfg-nightly']' returned non-zero exit status 1.\"}"
+}

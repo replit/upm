@@ -1,0 +1,7 @@
+{
+  "name": "parse-torrent-name",
+  "version": "1.1.1",
+  "modules": [
+    "PTN"
+  ]
+}

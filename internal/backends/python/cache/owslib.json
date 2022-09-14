@@ -1,0 +1,24 @@
+{
+  "name": "OWSLib",
+  "version": "0.27.2",
+  "requires_dist": [
+    "python-dateutil",
+    "pytz",
+    "requests",
+    "pyyaml",
+    "dataclasses"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "idna",
+    "owslib",
+    "pytz",
+    "requests",
+    "six",
+    "urllib3",
+    "yaml"
+  ]
+}

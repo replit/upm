@@ -1,0 +1,12 @@
+{
+  "name": "flake8-snippets",
+  "version": "0.2",
+  "modules": [
+    "flake8",
+    "flake8_polyfill",
+    "flake8_snippets",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "robotframework-sshlibrary",
+  "version": "3.8.0",
+  "modules": [
+    "SSHLibrary",
+    "_cffi_backend",
+    "bcrypt",
+    "cffi",
+    "cryptography",
+    "nacl",
+    "paramiko",
+    "pycparser",
+    "robot",
+    "scp",
+    "six"
+  ]
+}

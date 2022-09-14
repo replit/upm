@@ -1,0 +1,14 @@
+{
+  "name": "launchdarkly-server-sdk",
+  "version": "7.5.0",
+  "modules": [
+    "certifi",
+    "expiringdict",
+    "ldclient",
+    "pyrfc3339",
+    "pytz",
+    "semver",
+    "testing",
+    "urllib3"
+  ]
+}

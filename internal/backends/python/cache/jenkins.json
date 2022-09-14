@@ -1,0 +1,8 @@
+{
+  "name": "jenkins",
+  "version": "1.0.2",
+  "modules": [
+    "jenkins",
+    "lookup3"
+  ]
+}

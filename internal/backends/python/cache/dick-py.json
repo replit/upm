@@ -1,0 +1,31 @@
+{
+  "name": "Dick.py",
+  "version": "1.7",
+  "requires_dist": [
+    "setuptools",
+    "requests",
+    "six",
+    "websocket-client",
+    "json-minify",
+    "secmail",
+    "bs4",
+    "names",
+    "requests-random-user-agent"
+  ],
+  "modules": [
+    "amino",
+    "bs4",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "json_minify",
+    "names",
+    "requests",
+    "requests_random_user_agent",
+    "secmail",
+    "six",
+    "soupsieve",
+    "urllib3",
+    "websocket"
+  ]
+}

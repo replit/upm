@@ -1,0 +1,33 @@
+{
+  "name": "tox-gh-actions",
+  "version": "2.9.1",
+  "requires_dist": [
+    "importlib-resources",
+    "tox",
+    "typing",
+    "coverage",
+    "flake8",
+    "pytest-cov",
+    "pytest-mock",
+    "black",
+    "pytest",
+    "pytest",
+    "pytest-randomly"
+  ],
+  "modules": [
+    "distlib",
+    "filelock",
+    "importlib_resources",
+    "packaging",
+    "platformdirs",
+    "pluggy",
+    "py",
+    "pyparsing",
+    "six",
+    "toml",
+    "tox",
+    "tox_gh_actions",
+    "virtualenv",
+    "zipp"
+  ]
+}

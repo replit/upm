@@ -1,0 +1,17 @@
+{
+  "name": "pyspnego",
+  "version": "0.6.0",
+  "requires_dist": [
+    "cryptography",
+    "gssapi",
+    "krb5",
+    "ruamel.yaml"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "cryptography",
+    "pycparser",
+    "spnego"
+  ]
+}

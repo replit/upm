@@ -1,0 +1,13 @@
+{
+  "name": "dunamai",
+  "version": "1.13.0",
+  "requires_dist": [
+    "packaging",
+    "importlib-metadata"
+  ],
+  "modules": [
+    "dunamai",
+    "packaging",
+    "pyparsing"
+  ]
+}

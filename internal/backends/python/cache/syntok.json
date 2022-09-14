@@ -1,0 +1,11 @@
+{
+  "name": "syntok",
+  "version": "1.4.4",
+  "requires_dist": [
+    "regex"
+  ],
+  "modules": [
+    "regex",
+    "syntok"
+  ]
+}

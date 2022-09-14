@@ -1,0 +1,13 @@
+{
+  "name": "nbdev-django",
+  "version": "0.0.304",
+  "requires_dist": [
+    "pip",
+    "packaging"
+  ],
+  "modules": [
+    "nbdev_django",
+    "packaging",
+    "pyparsing"
+  ]
+}

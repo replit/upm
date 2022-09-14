@@ -1,0 +1,25 @@
+{
+  "name": "contourpy",
+  "version": "1.0.5",
+  "requires_dist": [
+    "numpy",
+    "bokeh",
+    "selenium",
+    "docutils",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "pytest",
+    "matplotlib",
+    "Pillow",
+    "flake8",
+    "isort",
+    "pytest",
+    "pytest",
+    "matplotlib",
+    "Pillow"
+  ],
+  "modules": [
+    "contourpy",
+    "numpy"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "singledispatch",
+  "version": "3.7.0",
+  "requires_dist": [
+    "six",
+    "ordereddict",
+    "sphinx",
+    "jaraco.packaging",
+    "rst.linker",
+    "pytest",
+    "pytest-flake8",
+    "pytest-cov",
+    "pytest-black",
+    "unittest2",
+    "pytest-checkdocs"
+  ],
+  "modules": [
+    "singledispatch",
+    "six"
+  ]
+}

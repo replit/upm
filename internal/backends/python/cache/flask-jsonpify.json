@@ -1,0 +1,15 @@
+{
+  "name": "Flask-Jsonpify",
+  "version": "1.5.0",
+  "modules": [
+    "click",
+    "flask",
+    "flask_jsonpify",
+    "importlib_metadata",
+    "itsdangerous",
+    "jinja2",
+    "markupsafe",
+    "werkzeug",
+    "zipp"
+  ]
+}

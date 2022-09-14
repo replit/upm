@@ -1,0 +1,13 @@
+{
+  "name": "smartystreets-python-sdk",
+  "version": "4.11.6",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "requests",
+    "smartystreets_python_sdk",
+    "smartystreets_python_sdk_version",
+    "urllib3"
+  ]
+}

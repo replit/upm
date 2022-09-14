@@ -1,0 +1,15 @@
+{
+  "name": "opentelemetry-distro",
+  "version": "0.33b0",
+  "requires_dist": [
+    "opentelemetry-api",
+    "opentelemetry-instrumentation",
+    "opentelemetry-sdk",
+    "opentelemetry-exporter-otlp"
+  ],
+  "modules": [
+    "deprecated",
+    "typing_extensions",
+    "wrapt"
+  ]
+}

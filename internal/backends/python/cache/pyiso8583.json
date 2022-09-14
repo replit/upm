@@ -1,0 +1,7 @@
+{
+  "name": "pyiso8583",
+  "version": "2.2.0",
+  "modules": [
+    "iso8583"
+  ]
+}

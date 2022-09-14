@@ -1,0 +1,14 @@
+{
+  "name": "mobly",
+  "version": "1.12",
+  "modules": [
+    "_yaml",
+    "mobly",
+    "portpicker",
+    "psutil",
+    "serial",
+    "timeout_decorator",
+    "typing_extensions",
+    "yaml"
+  ]
+}

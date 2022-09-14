@@ -1,0 +1,18 @@
+{
+  "name": "aiortc",
+  "version": "1.3.2",
+  "requires_dist": [
+    "aioice",
+    "av",
+    "cffi",
+    "cryptography",
+    "google-crc32c",
+    "pyee",
+    "pylibsrtp",
+    "dataclasses",
+    "aiohttp",
+    "coverage",
+    "numpy"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/aiortc/bin/python3', '-m', 'pip', 'install', 'aiortc']' returned non-zero exit status 2.\"}"
+}

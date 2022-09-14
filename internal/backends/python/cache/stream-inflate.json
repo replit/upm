@@ -1,0 +1,7 @@
+{
+  "name": "stream-inflate",
+  "version": "0.0.14",
+  "modules": [
+    "stream_inflate"
+  ]
+}

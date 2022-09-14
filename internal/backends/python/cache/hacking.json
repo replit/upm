@@ -1,0 +1,23 @@
+{
+  "name": "hacking",
+  "version": "4.1.0",
+  "requires_dist": [
+    "flake8",
+    "flake8-docstrings",
+    "coverage",
+    "ddt",
+    "eventlet",
+    "fixtures",
+    "python-subunit",
+    "stestr",
+    "testscenarios",
+    "testtools"
+  ],
+  "modules": [
+    "flake8",
+    "hacking",
+    "mccabe",
+    "pycodestyle",
+    "pyflakes"
+  ]
+}

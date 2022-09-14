@@ -1,0 +1,10 @@
+{
+  "name": "logging-json",
+  "version": "0.2.1",
+  "requires_dist": [
+    "pytest-cov"
+  ],
+  "modules": [
+    "logging_json"
+  ]
+}

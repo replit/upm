@@ -1,0 +1,35 @@
+{
+  "name": "verta",
+  "version": "0.20.4",
+  "requires_dist": [
+    "click",
+    "cloudpickle",
+    "googleapis-common-protos",
+    "pathlib2",
+    "protobuf",
+    "pytimeparse",
+    "pyyaml",
+    "requests",
+    "filelock",
+    "hypothesis",
+    "pytest",
+    "pytest-xdist",
+    "six"
+  ],
+  "modules": [
+    "_yaml",
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "cloudpickle",
+    "idna",
+    "pathlib2",
+    "pytimeparse",
+    "requests",
+    "six",
+    "tests",
+    "urllib3",
+    "verta",
+    "yaml"
+  ]
+}

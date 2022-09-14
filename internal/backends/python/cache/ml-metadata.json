@@ -1,0 +1,19 @@
+{
+  "name": "ml-metadata",
+  "version": "1.10.0",
+  "requires_dist": [
+    "absl-py",
+    "attrs",
+    "grpcio",
+    "protobuf",
+    "six"
+  ],
+  "modules": [
+    "absl",
+    "attr",
+    "attrs",
+    "grpc",
+    "ml_metadata",
+    "six"
+  ]
+}

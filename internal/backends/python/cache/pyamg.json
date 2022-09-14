@@ -1,0 +1,13 @@
+{
+  "name": "pyamg",
+  "version": "4.2.3",
+  "requires_dist": [
+    "numpy",
+    "scipy"
+  ],
+  "modules": [
+    "numpy",
+    "pyamg",
+    "scipy"
+  ]
+}

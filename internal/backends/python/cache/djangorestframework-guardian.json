@@ -1,0 +1,19 @@
+{
+  "name": "djangorestframework-guardian",
+  "version": "0.3.0",
+  "requires_dist": [
+    "django",
+    "djangorestframework",
+    "django-guardian"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "guardian",
+    "pytz",
+    "rest_framework",
+    "rest_framework_guardian",
+    "sqlparse"
+  ]
+}

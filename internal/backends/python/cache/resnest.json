@@ -1,0 +1,30 @@
+{
+  "name": "resnest",
+  "version": "0.0.5",
+  "requires_dist": [
+    "numpy",
+    "tqdm",
+    "nose",
+    "torch",
+    "Pillow",
+    "scipy",
+    "requests"
+  ],
+  "modules": [
+    "PIL",
+    "caffe2",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "nose",
+    "numpy",
+    "requests",
+    "resnest",
+    "scipy",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "typing_extensions",
+    "urllib3"
+  ]
+}

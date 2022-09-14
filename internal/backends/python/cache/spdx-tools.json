@@ -1,0 +1,22 @@
+{
+  "name": "spdx-tools",
+  "version": "0.6.1",
+  "requires_dist": [
+    "ply",
+    "rdflib",
+    "six",
+    "pyyaml",
+    "xmltodict"
+  ],
+  "modules": [
+    "_yaml",
+    "isodate",
+    "ply",
+    "pyparsing",
+    "rdflib",
+    "six",
+    "spdx",
+    "xmltodict",
+    "yaml"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "bindep",
+  "version": "2.11.0",
+  "requires_dist": [
+    "Parsley",
+    "pbr",
+    "distro",
+    "packaging",
+    "distro",
+    "packaging"
+  ],
+  "modules": [
+    "bindep",
+    "distro",
+    "ometa",
+    "packaging",
+    "parsley",
+    "pbr",
+    "pyparsing",
+    "terml"
+  ]
+}

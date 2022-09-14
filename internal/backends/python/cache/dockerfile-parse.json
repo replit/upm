@@ -1,0 +1,11 @@
+{
+  "name": "dockerfile-parse",
+  "version": "1.2.0",
+  "requires_dist": [
+    "six"
+  ],
+  "modules": [
+    "dockerfile_parse",
+    "six"
+  ]
+}

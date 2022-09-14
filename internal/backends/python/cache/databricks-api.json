@@ -1,0 +1,21 @@
+{
+  "name": "databricks-api",
+  "version": "0.8.0",
+  "requires_dist": [
+    "databricks-cli"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "databricks_api",
+    "databricks_cli",
+    "idna",
+    "jwt",
+    "oauthlib",
+    "requests",
+    "six",
+    "tabulate",
+    "urllib3"
+  ]
+}

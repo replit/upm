@@ -1,0 +1,11 @@
+{
+  "name": "pyasn1-modules",
+  "version": "0.2.8",
+  "requires_dist": [
+    "pyasn1"
+  ],
+  "modules": [
+    "pyasn1",
+    "pyasn1_modules"
+  ]
+}

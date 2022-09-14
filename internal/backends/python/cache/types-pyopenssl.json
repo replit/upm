@@ -1,0 +1,7 @@
+{
+  "name": "types-pyOpenSSL",
+  "version": "22.0.10",
+  "requires_dist": [
+    "types-cryptography"
+  ]
+}

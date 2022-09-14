@@ -1,0 +1,25 @@
+{
+  "name": "humbug",
+  "version": "0.2.7",
+  "requires_dist": [
+    "requests",
+    "dataclasses",
+    "black",
+    "mypy",
+    "wheel",
+    "types-pkg-resources",
+    "types-requests",
+    "types-dataclasses",
+    "setuptools",
+    "twine",
+    "wheel"
+  ],
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "humbug",
+    "idna",
+    "requests",
+    "urllib3"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "pdfminer.six",
+  "version": "20220524",
+  "requires_dist": [
+    "charset-normalizer",
+    "cryptography",
+    "black",
+    "mypy",
+    "nox",
+    "pytest",
+    "sphinx",
+    "sphinx-argparse",
+    "Pillow"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "cffi",
+    "charset_normalizer",
+    "cryptography",
+    "pdfminer",
+    "pycparser"
+  ]
+}

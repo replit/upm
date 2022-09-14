@@ -1,0 +1,19 @@
+{
+  "name": "boa-str",
+  "version": "1.1.0",
+  "requires_dist": [
+    "codecov",
+    "cov-core",
+    "nose2",
+    "flake8",
+    "invoke",
+    "pycodestyle",
+    "twine",
+    "codecov",
+    "cov-core",
+    "nose2"
+  ],
+  "modules": [
+    "boa"
+  ]
+}

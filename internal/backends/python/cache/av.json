@@ -1,0 +1,7 @@
+{
+  "name": "av",
+  "version": "9.2.0",
+  "modules": [
+    "av"
+  ]
+}

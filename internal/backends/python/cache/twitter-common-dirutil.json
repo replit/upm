@@ -1,0 +1,7 @@
+{
+  "name": "twitter.common.dirutil",
+  "version": "0.3.11",
+  "requires_dist": [
+    "twitter.common.lang"
+  ]
+}

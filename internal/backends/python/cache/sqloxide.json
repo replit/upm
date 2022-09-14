@@ -1,0 +1,7 @@
+{
+  "name": "sqloxide",
+  "version": "0.1.22",
+  "modules": [
+    "sqloxide"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "asyncio-dgram",
+  "version": "2.1.2",
+  "requires_dist": [
+    "black",
+    "flake8",
+    "mypy-extensions",
+    "mypy",
+    "pytest-asyncio",
+    "pytest",
+    "typed-ast",
+    "typing-extensions"
+  ],
+  "modules": [
+    "asyncio_dgram"
+  ]
+}

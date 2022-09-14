@@ -1,0 +1,24 @@
+{
+  "name": "pymilvus",
+  "version": "2.1.2",
+  "requires_dist": [
+    "grpcio",
+    "grpcio-tools",
+    "ujson",
+    "mmh3",
+    "pandas",
+    "pandas"
+  ],
+  "modules": [
+    "dateutil",
+    "grpc",
+    "grpc_tools",
+    "mmh3",
+    "numpy",
+    "pandas",
+    "pymilvus",
+    "pytz",
+    "six",
+    "ujson"
+  ]
+}

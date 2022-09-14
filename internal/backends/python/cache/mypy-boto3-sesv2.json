@@ -1,0 +1,11 @@
+{
+  "name": "mypy-boto3-sesv2",
+  "version": "1.24.36.post1",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "mypy_boto3_sesv2",
+    "typing_extensions"
+  ]
+}

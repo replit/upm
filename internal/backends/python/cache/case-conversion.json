@@ -1,0 +1,8 @@
+{
+  "name": "case_conversion",
+  "version": "2.1.0",
+  "modules": [
+    "case_conversion",
+    "regex"
+  ]
+}

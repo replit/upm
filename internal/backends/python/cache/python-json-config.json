@@ -1,0 +1,21 @@
+{
+  "name": "python-json-config",
+  "version": "1.2.3",
+  "requires_dist": [
+    "jsonschema",
+    "msgpack"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "msgpack",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "python_json_config",
+    "zipp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "click-config-file",
+  "version": "0.6.0",
+  "requires_dist": [
+    "click",
+    "configobj"
+  ],
+  "modules": [
+    "_version",
+    "click",
+    "click_config_file",
+    "configobj",
+    "six",
+    "validate"
+  ]
+}

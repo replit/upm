@@ -1,0 +1,11 @@
+{
+  "name": "table-logger",
+  "version": "0.3.6",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "table_logger"
+  ]
+}

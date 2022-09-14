@@ -1,0 +1,41 @@
+{
+  "name": "sigmatools",
+  "version": "0.22.1",
+  "requires_dist": [
+    "PyYAML",
+    "pymisp",
+    "progressbar2",
+    "ruamel.yaml",
+    "coverage",
+    "yamllint",
+    "attackcti"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "_ruamel_yaml",
+    "_yaml",
+    "attr",
+    "attrs",
+    "certifi",
+    "charset_normalizer",
+    "dateutil",
+    "deprecated",
+    "idna",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "progressbar",
+    "publicsuffixlist",
+    "pvectorc",
+    "pymisp",
+    "pyrsistent",
+    "python_utils",
+    "requests",
+    "sigma",
+    "six",
+    "urllib3",
+    "wrapt",
+    "yaml",
+    "zipp"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "uritemplate.py",
+  "version": "3.0.2",
+  "requires_dist": [
+    "uritemplate"
+  ],
+  "modules": [
+    "uritemplate"
+  ]
+}

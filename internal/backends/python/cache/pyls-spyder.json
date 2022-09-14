@@ -1,0 +1,16 @@
+{
+  "name": "pyls-spyder",
+  "version": "0.4.0",
+  "requires_dist": [
+    "python-lsp-server"
+  ],
+  "modules": [
+    "jedi",
+    "parso",
+    "pluggy",
+    "pyls_spyder",
+    "pylsp",
+    "pylsp_jsonrpc",
+    "ujson"
+  ]
+}

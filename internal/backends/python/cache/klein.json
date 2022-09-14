@@ -1,0 +1,30 @@
+{
+  "name": "klein",
+  "version": "21.8.0",
+  "requires_dist": [
+    "attrs",
+    "hyperlink",
+    "incremental",
+    "Tubes",
+    "Twisted",
+    "Werkzeug",
+    "zope.interface",
+    "typing-extensions"
+  ],
+  "modules": [
+    "attr",
+    "attrs",
+    "automat",
+    "constantly",
+    "hyperlink",
+    "idna",
+    "incremental",
+    "klein",
+    "markupsafe",
+    "six",
+    "tubes",
+    "twisted",
+    "typing_extensions",
+    "werkzeug"
+  ]
+}

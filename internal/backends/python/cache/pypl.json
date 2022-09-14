@@ -1,0 +1,11 @@
+{
+  "name": "pypl",
+  "version": "40.10",
+  "requires_dist": [
+    "svgwrite"
+  ],
+  "modules": [
+    "pypl",
+    "svgwrite"
+  ]
+}

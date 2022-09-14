@@ -1,0 +1,20 @@
+{
+  "name": "django-rest-hooks",
+  "version": "1.5.0",
+  "requires_dist": [
+    "Django",
+    "requests"
+  ],
+  "modules": [
+    "asgiref",
+    "backports",
+    "certifi",
+    "charset_normalizer",
+    "django",
+    "idna",
+    "requests",
+    "rest_hooks",
+    "sqlparse",
+    "urllib3"
+  ]
+}

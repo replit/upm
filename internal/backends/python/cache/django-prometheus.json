@@ -1,0 +1,11 @@
+{
+  "name": "django-prometheus",
+  "version": "2.2.0",
+  "requires_dist": [
+    "prometheus-client"
+  ],
+  "modules": [
+    "django_prometheus",
+    "prometheus_client"
+  ]
+}

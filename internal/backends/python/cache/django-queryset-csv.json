@@ -1,0 +1,12 @@
+{
+  "name": "django-queryset-csv",
+  "version": "1.1.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "djqscsv",
+    "sqlparse",
+    "unicodecsv"
+  ]
+}

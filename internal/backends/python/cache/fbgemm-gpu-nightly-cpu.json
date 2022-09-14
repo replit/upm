@@ -1,0 +1,7 @@
+{
+  "name": "fbgemm-gpu-nightly-cpu",
+  "version": "2022.9.13",
+  "modules": [
+    "fbgemm_gpu"
+  ]
+}

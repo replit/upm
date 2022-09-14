@@ -1,0 +1,30 @@
+{
+  "name": "mpire",
+  "version": "2.6.0",
+  "requires_dist": [
+    "pygments",
+    "tqdm",
+    "pywin32",
+    "pywin32",
+    "dataclasses",
+    "flask",
+    "multiprocess",
+    "docutils",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autodoc-typehints",
+    "sphinxcontrib-images",
+    "sphinx-versions",
+    "multiprocess",
+    "numpy",
+    "pywin32",
+    "pywin32",
+    "dataclasses"
+  ],
+  "modules": [
+    "mpire",
+    "pygments",
+    "tests",
+    "tqdm"
+  ]
+}

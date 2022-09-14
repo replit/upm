@@ -1,0 +1,28 @@
+{
+  "name": "pyviz-comms",
+  "version": "2.2.1",
+  "requires_dist": [
+    "param",
+    "flake8",
+    "jupyter-packaging",
+    "jupyterlab",
+    "keyring",
+    "pytest",
+    "rfc3986",
+    "setuptools",
+    "twine",
+    "setuptools",
+    "jupyterlab",
+    "jupyter-packaging",
+    "twine",
+    "rfc3986",
+    "keyring",
+    "flake8",
+    "pytest"
+  ],
+  "modules": [
+    "numbergen",
+    "param",
+    "pyviz_comms"
+  ]
+}

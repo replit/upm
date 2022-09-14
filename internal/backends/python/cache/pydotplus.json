@@ -1,0 +1,8 @@
+{
+  "name": "pydotplus",
+  "version": "2.0.2",
+  "modules": [
+    "pydotplus",
+    "pyparsing"
+  ]
+}

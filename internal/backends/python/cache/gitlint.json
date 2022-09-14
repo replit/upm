@@ -1,0 +1,15 @@
+{
+  "name": "gitlint",
+  "version": "0.17.0",
+  "requires_dist": [
+    "gitlint-core"
+  ],
+  "modules": [
+    "arrow",
+    "click",
+    "dateutil",
+    "gitlint",
+    "sh",
+    "six"
+  ]
+}

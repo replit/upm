@@ -1,0 +1,14 @@
+{
+  "name": "boto3-extensions",
+  "version": "0.19.0",
+  "modules": [
+    "boto3",
+    "boto3_extensions",
+    "botocore",
+    "dateutil",
+    "jmespath",
+    "s3transfer",
+    "six",
+    "urllib3"
+  ]
+}

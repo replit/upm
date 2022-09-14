@@ -1,0 +1,26 @@
+{
+  "name": "PyGithub",
+  "version": "1.55",
+  "requires_dist": [
+    "deprecated",
+    "pyjwt",
+    "pynacl",
+    "requests",
+    "cryptography"
+  ],
+  "modules": [
+    "_cffi_backend",
+    "certifi",
+    "cffi",
+    "charset_normalizer",
+    "deprecated",
+    "github",
+    "idna",
+    "jwt",
+    "nacl",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "wrapt"
+  ]
+}

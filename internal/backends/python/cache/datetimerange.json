@@ -1,0 +1,22 @@
+{
+  "name": "DateTimeRange",
+  "version": "1.2.0",
+  "requires_dist": [
+    "python-dateutil",
+    "typepy",
+    "pytest",
+    "pytest-md-report",
+    "pytz"
+  ],
+  "modules": [
+    "chardet",
+    "datetimerange",
+    "dateutil",
+    "mbstrdecoder",
+    "packaging",
+    "pyparsing",
+    "pytz",
+    "six",
+    "typepy"
+  ]
+}

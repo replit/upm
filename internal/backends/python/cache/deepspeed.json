@@ -1,0 +1,21 @@
+{
+  "name": "deepspeed",
+  "version": "0.7.2",
+  "modules": [
+    "benchmarks",
+    "caffe2",
+    "cpuinfo",
+    "deepspeed",
+    "hjson",
+    "ninja",
+    "numpy",
+    "packaging",
+    "psutil",
+    "pydantic",
+    "pyparsing",
+    "torch",
+    "torchgen",
+    "tqdm",
+    "typing_extensions"
+  ]
+}

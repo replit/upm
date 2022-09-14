@@ -1,0 +1,12 @@
+{
+  "name": "ci-info",
+  "version": "0.3.0",
+  "requires_dist": [
+    "pytest",
+    "pytest",
+    "pytest"
+  ],
+  "modules": [
+    "ci_info"
+  ]
+}

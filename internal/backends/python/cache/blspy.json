@@ -1,0 +1,11 @@
+{
+  "name": "blspy",
+  "version": "1.0.16",
+  "requires_dist": [
+    "wheel"
+  ],
+  "modules": [
+    "blspy",
+    "wheel"
+  ]
+}

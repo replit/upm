@@ -1,0 +1,11 @@
+{
+  "name": "plyfile",
+  "version": "0.7.4",
+  "requires_dist": [
+    "numpy"
+  ],
+  "modules": [
+    "numpy",
+    "plyfile"
+  ]
+}

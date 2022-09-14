@@ -1,0 +1,7 @@
+{
+  "name": "token-bucket",
+  "version": "0.3.0",
+  "modules": [
+    "token_bucket"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "qutip",
+  "version": "4.7.0",
+  "requires_dist": [
+    "numpy",
+    "scipy",
+    "packaging",
+    "matplotlib",
+    "cython",
+    "cvxpy",
+    "cvxopt",
+    "pytest",
+    "pytest-rerunfailures",
+    "matplotlib",
+    "cython",
+    "cvxpy",
+    "cvxopt",
+    "pytest",
+    "pytest-rerunfailures"
+  ],
+  "modules": [
+    "numpy",
+    "packaging",
+    "pyparsing",
+    "qutip",
+    "scipy"
+  ]
+}

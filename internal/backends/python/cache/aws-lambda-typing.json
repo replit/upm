@@ -1,0 +1,10 @@
+{
+  "name": "aws-lambda-typing",
+  "version": "2.16.0",
+  "requires_dist": [
+    "typing-extensions"
+  ],
+  "modules": [
+    "aws_lambda_typing"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "isoduration",
+  "version": "20.11.0",
+  "requires_dist": [
+    "arrow"
+  ],
+  "modules": [
+    "arrow",
+    "dateutil",
+    "isoduration",
+    "six"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "linearmodels",
+  "version": "4.27",
+  "requires_dist": [
+    "numpy",
+    "pandas",
+    "scipy",
+    "statsmodels",
+    "property-cached",
+    "mypy-extensions",
+    "Cython",
+    "pyhdfe",
+    "formulaic",
+    "setuptools-scm"
+  ],
+  "modules": [
+    "Cython",
+    "astor",
+    "cython",
+    "dateutil",
+    "formulaic",
+    "interface_meta",
+    "linearmodels",
+    "mypy_extensions",
+    "numpy",
+    "packaging",
+    "pandas",
+    "patsy",
+    "property_cached",
+    "pyhdfe",
+    "pyparsing",
+    "pytz",
+    "pyximport",
+    "scipy",
+    "setuptools_scm",
+    "six",
+    "statsmodels",
+    "tomli",
+    "wrapt"
+  ]
+}

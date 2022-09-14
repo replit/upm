@@ -1,0 +1,7 @@
+{
+  "name": "DAWG-Python",
+  "version": "0.7.2",
+  "modules": [
+    "dawg_python"
+  ]
+}

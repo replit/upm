@@ -1,0 +1,12 @@
+{
+  "name": "gym",
+  "version": "0.26.0",
+  "modules": [
+    "cloudpickle",
+    "gym",
+    "gym_notices",
+    "importlib_metadata",
+    "numpy",
+    "zipp"
+  ]
+}

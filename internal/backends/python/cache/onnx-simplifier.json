@@ -1,0 +1,17 @@
+{
+  "name": "onnx-simplifier",
+  "version": "0.4.8",
+  "requires_dist": [
+    "onnx",
+    "rich"
+  ],
+  "modules": [
+    "commonmark",
+    "numpy",
+    "onnx",
+    "onnxsim",
+    "pygments",
+    "rich",
+    "typing_extensions"
+  ]
+}

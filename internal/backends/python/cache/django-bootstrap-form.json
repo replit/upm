@@ -1,0 +1,11 @@
+{
+  "name": "django-bootstrap-form",
+  "version": "3.4",
+  "modules": [
+    "asgiref",
+    "backports",
+    "bootstrapform",
+    "django",
+    "sqlparse"
+  ]
+}

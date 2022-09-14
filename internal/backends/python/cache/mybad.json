@@ -1,0 +1,18 @@
+{
+  "name": "mybad",
+  "version": "0.2.0",
+  "requires_dist": [
+    "setupextras",
+    "six",
+    "rootpath",
+    "inspecta",
+    "attributedict",
+    "termcolor",
+    "colour-runner",
+    "deepdiff",
+    "tox",
+    "coverage",
+    "codecov"
+  ],
+  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mybad/bin/python3', '-m', 'pip', 'install', 'mybad']' returned non-zero exit status 1.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "datadispatch",
+  "version": "1.0.0",
+  "modules": [
+    "datadispatch"
+  ]
+}

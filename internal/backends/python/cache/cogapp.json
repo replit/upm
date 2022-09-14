@@ -1,0 +1,7 @@
+{
+  "name": "cogapp",
+  "version": "3.3.0",
+  "modules": [
+    "cogapp"
+  ]
+}

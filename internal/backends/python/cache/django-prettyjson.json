@@ -1,0 +1,13 @@
+{
+  "name": "django-prettyjson",
+  "version": "0.4.1",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "prettyjson",
+    "six",
+    "sqlparse",
+    "standardjson"
+  ]
+}

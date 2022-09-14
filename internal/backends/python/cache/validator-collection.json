@@ -1,0 +1,31 @@
+{
+  "name": "validator-collection",
+  "version": "1.5.0",
+  "requires_dist": [
+    "jsonschema",
+    "regex",
+    "check-manifest",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-tabs",
+    "coverage",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "tox",
+    "codecov",
+    "pyfakefs"
+  ],
+  "modules": [
+    "_pyrsistent_version",
+    "attr",
+    "attrs",
+    "importlib_resources",
+    "jsonschema",
+    "pkgutil_resolve_name",
+    "pvectorc",
+    "pyrsistent",
+    "validator_collection",
+    "zipp"
+  ]
+}

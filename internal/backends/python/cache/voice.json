@@ -1,0 +1,12 @@
+{
+  "name": "Voice",
+  "version": "0.1.0",
+  "modules": [
+    "asgiref",
+    "backports",
+    "django",
+    "south",
+    "sqlparse",
+    "voice"
+  ]
+}

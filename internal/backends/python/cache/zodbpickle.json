@@ -1,0 +1,7 @@
+{
+  "name": "zodbpickle",
+  "version": "2.3",
+  "modules": [
+    "zodbpickle"
+  ]
+}

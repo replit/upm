@@ -1,0 +1,21 @@
+{
+  "name": "zarr",
+  "version": "2.12.0",
+  "requires_dist": [
+    "asciitree",
+    "numpy",
+    "fasteners",
+    "numcodecs",
+    "notebook",
+    "ipytree"
+  ],
+  "modules": [
+    "asciitree",
+    "entrypoints",
+    "fasteners",
+    "numcodecs",
+    "numpy",
+    "typing_extensions",
+    "zarr"
+  ]
+}

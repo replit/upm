@@ -1,0 +1,16 @@
+{
+  "name": "shodan",
+  "version": "1.28.0",
+  "modules": [
+    "certifi",
+    "charset_normalizer",
+    "click",
+    "click_plugins",
+    "colorama",
+    "idna",
+    "requests",
+    "shodan",
+    "urllib3",
+    "xlsxwriter"
+  ]
+}

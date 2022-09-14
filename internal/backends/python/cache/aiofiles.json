@@ -1,0 +1,7 @@
+{
+  "name": "aiofiles",
+  "version": "22.1.0",
+  "modules": [
+    "aiofiles"
+  ]
+}

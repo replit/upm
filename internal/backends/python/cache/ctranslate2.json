@@ -1,0 +1,14 @@
+{
+  "name": "ctranslate2",
+  "version": "2.22.0",
+  "requires_dist": [
+    "numpy",
+    "pyyaml"
+  ],
+  "modules": [
+    "_yaml",
+    "ctranslate2",
+    "numpy",
+    "yaml"
+  ]
+}
