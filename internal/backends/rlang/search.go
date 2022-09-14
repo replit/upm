@@ -72,6 +72,7 @@ type CranResponse struct {
 }
 
 func searchPackages(name string, size int) CranResponse {
+	// TODO: figure out how to deal with other mirrors
 	searchURL := "http://search.r-pkg.org/package/_search?q=" + url.QueryEscape(name) + "&size=" + strconv.Itoa(size)
 
 	if req, err := http.Get(searchURL); err == nil {
