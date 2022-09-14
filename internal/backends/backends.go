@@ -7,12 +7,14 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/backends/dart"
+	"github.com/replit/upm/internal/backends/dotnet"
 	"github.com/replit/upm/internal/backends/elisp"
 	"github.com/replit/upm/internal/backends/java"
 	"github.com/replit/upm/internal/backends/nodejs"
 	"github.com/replit/upm/internal/backends/python"
 	"github.com/replit/upm/internal/backends/rlang"
 	"github.com/replit/upm/internal/backends/ruby"
+	"github.com/replit/upm/internal/backends/rust"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -31,6 +33,8 @@ var languageBackends = []api.LanguageBackend{
 	dart.DartPubBackend,
 	java.JavaBackend,
 	rlang.RlangBackend,
+	dotnet.DotNetBackend,
+	rust.RustBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for

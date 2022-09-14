@@ -51,6 +51,9 @@ machine-parseable specfile and lockfile listing.
 | elisp-cask            | yes  | yes   | yes   |
 | dart-pub.dev          | yes  | yes   |       |
 | rlang                 | yes  | yes   |       |
+| java                  | yes  | yes   |       |
+| rust                  | yes  | yes   |       |
+| dotnet                | yes  | yes   |       |
 
 ## Installation
 

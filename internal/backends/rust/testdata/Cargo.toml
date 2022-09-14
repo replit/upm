@@ -1,0 +1,10 @@
+[package]
+name = "rust-upm-test"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+serde = "1.0.130"
+serde_json = "1.0.68"
+rand = { git = "https://github.com/rust-lang-nursery/rand" }
+sqlx = "0.5.7"

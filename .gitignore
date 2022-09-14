@@ -10,3 +10,7 @@
 internal/backends/python/cache
 internal/backends/python/regression_tests/*.txt
 internal/backends/python/regression_tests/test
+/.idea/
+
+# nix build creates a "result" symlink to the nix store output
+result

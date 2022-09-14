@@ -6,7 +6,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "6d:ae:08:71:61:cc:a1:b7:c8:87:f2:a3:84:ca:db:ad"
+            - "60:59:74:11:08:94:2e:c3:d2:5e:6b:03:17:1a:f8:8a"
       - run: apk add --no-cache --no-progress make git openssh
       - run:
           name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
@@ -14,13 +14,29 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: make light full
+  nix_build:
+    docker:
+      - image: nixos/nix
+    steps:
+      - checkout
+      - restore_cache:
+          key: nix-store
+      - run: nix-env -iA nixpkgs.git
+      - run: git diff
+      - run: git status
+      - run: nix-build
+      - save_cache:
+          key: nix-store
+          when: always
+          paths:
+            - /nix
   build_test_and_deploy:
     docker:
       - image: docker:18.09
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "6d:ae:08:71:61:cc:a1:b7:c8:87:f2:a3:84:ca:db:ad"
+            - "60:59:74:11:08:94:2e:c3:d2:5e:6b:03:17:1a:f8:8a"
       - run: apk add --no-cache --no-progress make git openssh
       - run:
           name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
@@ -41,7 +57,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "6d:ae:08:71:61:cc:a1:b7:c8:87:f2:a3:84:ca:db:ad"
+            - "60:59:74:11:08:94:2e:c3:d2:5e:6b:03:17:1a:f8:8a"
       - run: apk add --no-cache --no-progress make git openssh
       - run:
           name: Keyscan Github (HACK) #https://discuss.circleci.com/t/known-hosts-in-circle-2-0/18544
@@ -55,8 +71,8 @@ jobs:
       - run: sh /tmp/get-docker.sh
       - run: |
           cd /tmp
-          wget -nv https://dl.google.com/go/go1.11.11.linux-amd64.tar.gz
-          tar -C /usr/local -xzf go1.11.11.linux-amd64.tar.gz
+          wget -nv https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz
+          tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz
       - setup_remote_docker
       - run: >-
           echo "$DOCKER_PASSWORD" |
@@ -85,6 +101,12 @@ workflows:
   ci:
     jobs:
       - build_and_test:
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - nix_build:
           filters:
             branches:
               ignore: master
