@@ -108,6 +108,7 @@ func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePa
 	fmt.Fprintf(codeWriter, "package %v\n\n", pkg)
 	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, moduleToPypiPackageReason, codeWriter)
 	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, map[string]string{}, codeWriter)
+	DumpIntMapToGoVar("pypiPackageToDownloads", downloadStats, codeWriter)
 
 	fmt.Printf("Wrote %s\n", outputFilePath)
 	codeWriter.Close()
@@ -124,6 +125,15 @@ func DumpMapToGoVar(name string, m map[string]string, reasons map[string]string,
 			reason = "// " + reason
 		}
 		fmt.Fprintf(writer, "\t\"%v\":  \"%v\", %s\n", key, value, reason)
+	}
+	fmt.Fprintf(writer, "}\n\n")
+}
+
+func DumpIntMapToGoVar(name string, m map[string]int, writer io.Writer) {
+	fmt.Fprintf(writer, "var %v= map[string]int{\n", name)
+
+	for key, value := range m {
+		fmt.Fprintf(writer, "\t\"%v\":  %d,\n", key, value)
 	}
 	fmt.Fprintf(writer, "}\n\n")
 }
