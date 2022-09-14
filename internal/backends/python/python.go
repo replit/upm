@@ -234,7 +234,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Search: func(query string) []api.PkgInfo {
 			// Do a search on pypiPackageToModules
 			var packages []string
-			for p, _ := range pypiPackageToModules() {
+			for p, _ := range pypiPackageToModules {
 				if strings.Contains(p, query) {
 					packages = append(packages, p)
 				}
@@ -259,7 +259,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			}
 
 			sort.Slice(results, func(i, j int) bool {
-				return pypiPackageToDownloads()[results[i].Name] > pypiPackageToDownloads()[results[j].Name]
+				return pypiPackageToDownloads[results[i].Name] > pypiPackageToDownloads[results[j].Name]
 			})
 
 			return results
@@ -402,7 +402,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	if knownPkgs, err := listSpecfile(); err == nil {
 		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules()[string(pkgName)]
+			mods, ok := pypiPackageToModules[string(pkgName)]
 			if ok {
 				for _, mod := range strings.Split(mods, ",") {
 					availMods[mod] = true
