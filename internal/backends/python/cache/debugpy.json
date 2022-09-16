@@ -1,7 +1,0 @@
-{
-  "name": "debugpy",
-  "version": "1.6.3",
-  "modules": [
-    "debugpy"
-  ]
-}

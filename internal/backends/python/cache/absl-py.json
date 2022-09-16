@@ -1,7 +1,0 @@
-{
-  "name": "absl-py",
-  "version": "1.2.0",
-  "modules": [
-    "absl"
-  ]
-}

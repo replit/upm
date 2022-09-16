@@ -1,8 +1,0 @@
-{
-  "name": "python-multipart",
-  "version": "0.0.5",
-  "modules": [
-    "multipart",
-    "six"
-  ]
-}

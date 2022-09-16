@@ -1,7 +1,0 @@
-{
-  "name": "immutabledict",
-  "version": "2.2.1",
-  "modules": [
-    "immutabledict"
-  ]
-}

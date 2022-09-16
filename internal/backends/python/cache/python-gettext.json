@@ -1,7 +1,0 @@
-{
-  "name": "python-gettext",
-  "version": "4.1",
-  "modules": [
-    "pythongettext"
-  ]
-}

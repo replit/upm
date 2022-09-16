@@ -1,9 +1,0 @@
-{
-  "name": "sqlalchemy-repr",
-  "version": "0.0.2",
-  "modules": [
-    "greenlet",
-    "sqlalchemy",
-    "sqlalchemy_repr"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "thrift",
-  "version": "0.16.0",
-  "modules": [
-    "six",
-    "thrift"
-  ]
-}

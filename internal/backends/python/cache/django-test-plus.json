@@ -1,7 +1,0 @@
-{
-  "name": "django-test-plus",
-  "version": "2.2.0",
-  "modules": [
-    "test_plus"
-  ]
-}

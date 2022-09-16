@@ -1,7 +1,0 @@
-{
-  "name": "pythondialog",
-  "version": "3.5.3",
-  "modules": [
-    "dialog"
-  ]
-}

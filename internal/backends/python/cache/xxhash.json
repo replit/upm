@@ -1,7 +1,0 @@
-{
-  "name": "xxhash",
-  "version": "3.0.0",
-  "modules": [
-    "xxhash"
-  ]
-}

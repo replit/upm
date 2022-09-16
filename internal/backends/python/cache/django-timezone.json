@@ -1,9 +1,0 @@
-{
-  "name": "django-timezone",
-  "version": "0.3",
-  "modules": [
-    "pytz",
-    "six",
-    "timezone"
-  ]
-}

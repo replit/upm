@@ -1,7 +1,0 @@
-{
-  "name": "mixpanel-utils",
-  "version": "2.2.5",
-  "modules": [
-    "mixpanel_utils"
-  ]
-}

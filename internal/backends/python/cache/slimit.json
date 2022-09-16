@@ -1,8 +1,0 @@
-{
-  "name": "slimit",
-  "version": "0.8.1",
-  "modules": [
-    "ply",
-    "slimit"
-  ]
-}

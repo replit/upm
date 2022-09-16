@@ -1,5 +1,0 @@
-{
-  "name": "tesserocr",
-  "version": "2.5.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/tesserocr/bin/python3', '-m', 'pip', 'install', 'tesserocr']' returned non-zero exit status 1.\"}"
-}

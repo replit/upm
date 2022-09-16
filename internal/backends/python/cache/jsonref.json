@@ -1,8 +1,0 @@
-{
-  "name": "jsonref",
-  "version": "0.2",
-  "modules": [
-    "jsonref",
-    "proxytypes"
-  ]
-}

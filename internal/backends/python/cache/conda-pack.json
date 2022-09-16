@@ -1,7 +1,0 @@
-{
-  "name": "conda-pack",
-  "version": "0.6.0",
-  "modules": [
-    "conda_pack"
-  ]
-}

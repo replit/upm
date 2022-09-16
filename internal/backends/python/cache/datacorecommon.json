@@ -1,7 +1,0 @@
-{
-  "name": "datacorecommon",
-  "version": "0.2.8",
-  "modules": [
-    "datacorecommon"
-  ]
-}

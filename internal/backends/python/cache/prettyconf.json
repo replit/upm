@@ -1,7 +1,0 @@
-{
-  "name": "prettyconf",
-  "version": "2.2.1",
-  "modules": [
-    "prettyconf"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "mlperf-compliance",
-  "version": "0.0.10",
-  "modules": [
-    "mlperf_compliance"
-  ]
-}

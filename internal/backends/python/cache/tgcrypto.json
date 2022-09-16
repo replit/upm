@@ -1,8 +1,0 @@
-{
-  "name": "TgCrypto",
-  "version": "1.2.3",
-  "modules": [
-    "tests",
-    "tgcrypto"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "srt",
-  "version": "3.5.2",
-  "modules": [
-    "srt",
-    "srt_tools"
-  ]
-}

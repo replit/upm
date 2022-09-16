@@ -1,7 +1,0 @@
-{
-  "name": "pyscrypt",
-  "version": "1.6.2",
-  "modules": [
-    "pyscrypt"
-  ]
-}

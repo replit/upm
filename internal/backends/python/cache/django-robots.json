@@ -1,7 +1,0 @@
-{
-  "name": "django-robots",
-  "version": "5.0",
-  "modules": [
-    "robots"
-  ]
-}

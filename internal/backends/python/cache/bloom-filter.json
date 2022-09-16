@@ -1,8 +1,0 @@
-{
-  "name": "bloom-filter",
-  "version": "1.3.3",
-  "modules": [
-    "bloom_filter",
-    "python2x3"
-  ]
-}

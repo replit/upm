@@ -1,8 +1,0 @@
-{
-  "name": "python-interface",
-  "version": "1.6.1",
-  "modules": [
-    "interface",
-    "six"
-  ]
-}

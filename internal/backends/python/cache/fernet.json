@@ -1,8 +1,0 @@
-{
-  "name": "fernet",
-  "version": "1.0.1",
-  "modules": [
-    "fernet",
-    "pyaes"
-  ]
-}

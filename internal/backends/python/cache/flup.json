@@ -1,7 +1,0 @@
-{
-  "name": "flup",
-  "version": "1.0.3",
-  "modules": [
-    "flup"
-  ]
-}

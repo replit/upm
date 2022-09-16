@@ -1,9 +1,0 @@
-{
-  "name": "elastic-apm",
-  "version": "6.12.0",
-  "modules": [
-    "certifi",
-    "elasticapm",
-    "urllib3"
-  ]
-}

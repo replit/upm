@@ -1,5 +1,0 @@
-{
-  "name": "protodf",
-  "version": "0.1",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/protodf/bin/python3', '-m', 'pip', 'install', 'protodf']' returned non-zero exit status 2.\"}"
-}

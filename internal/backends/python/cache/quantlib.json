@@ -1,7 +1,0 @@
-{
-  "name": "QuantLib",
-  "version": "1.27",
-  "modules": [
-    "QuantLib"
-  ]
-}

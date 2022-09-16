@@ -1,7 +1,0 @@
-{
-  "name": "ntplib",
-  "version": "0.4.0",
-  "modules": [
-    "ntplib"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "name": "html5-parser",
-  "version": "0.4.10",
-  "modules": [
-    "chardet",
-    "html5_parser",
-    "lxml"
-  ]
-}

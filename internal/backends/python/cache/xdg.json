@@ -1,7 +1,0 @@
-{
-  "name": "xdg",
-  "version": "5.1.1",
-  "modules": [
-    "xdg"
-  ]
-}

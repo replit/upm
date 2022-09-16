@@ -1,5 +1,0 @@
-{
-  "name": "MulticoreTSNE",
-  "version": "0.1",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/MulticoreTSNE/bin/python3', '-m', 'pip', 'install', 'MulticoreTSNE']' returned non-zero exit status 1.\"}"
-}

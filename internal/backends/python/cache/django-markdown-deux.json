@@ -1,8 +1,0 @@
-{
-  "name": "django-markdown-deux",
-  "version": "1.0.5",
-  "modules": [
-    "markdown2",
-    "markdown_deux"
-  ]
-}

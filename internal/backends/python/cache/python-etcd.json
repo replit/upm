@@ -1,9 +1,0 @@
-{
-  "name": "python-etcd",
-  "version": "0.4.5",
-  "modules": [
-    "dns",
-    "etcd",
-    "urllib3"
-  ]
-}

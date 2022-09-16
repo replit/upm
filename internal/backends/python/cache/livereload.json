@@ -1,9 +1,0 @@
-{
-  "name": "livereload",
-  "version": "2.6.3",
-  "modules": [
-    "livereload",
-    "six",
-    "tornado"
-  ]
-}

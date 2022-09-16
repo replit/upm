@@ -1,7 +1,0 @@
-{
-  "name": "maxminddb",
-  "version": "2.2.0",
-  "modules": [
-    "maxminddb"
-  ]
-}

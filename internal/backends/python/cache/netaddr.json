@@ -1,7 +1,0 @@
-{
-  "name": "netaddr",
-  "version": "0.8.0",
-  "modules": [
-    "netaddr"
-  ]
-}

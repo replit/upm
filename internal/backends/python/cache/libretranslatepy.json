@@ -1,7 +1,0 @@
-{
-  "name": "libretranslatepy",
-  "version": "2.1.2",
-  "modules": [
-    "libretranslatepy"
-  ]
-}

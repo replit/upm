@@ -1,8 +1,0 @@
-{
-  "name": "repl",
-  "version": "1.0",
-  "modules": [
-    "click",
-    "repl"
-  ]
-}

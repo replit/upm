@@ -1,8 +1,0 @@
-{
-  "name": "awsglue-local",
-  "version": "1.0.2",
-  "requires_dist": [
-    "pyspark"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/awsglue-local/bin/python3', '-m', 'pip', 'install', 'awsglue-local']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "hexdump",
-  "version": "3.3",
-  "modules": [
-    "hexdump"
-  ]
-}

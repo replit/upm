@@ -1,7 +1,0 @@
-{
-  "name": "pyotp",
-  "version": "2.7.0",
-  "modules": [
-    "pyotp"
-  ]
-}

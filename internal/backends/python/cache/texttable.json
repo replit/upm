@@ -1,7 +1,0 @@
-{
-  "name": "texttable",
-  "version": "1.6.4",
-  "modules": [
-    "texttable"
-  ]
-}

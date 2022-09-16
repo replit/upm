@@ -1,9 +1,0 @@
-{
-  "name": "abydos",
-  "version": "0.5.0",
-  "requires_dist": [
-    "numpy",
-    "deprecation"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/abydos/bin/python3', '-m', 'pip', 'install', 'abydos']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "fastcache",
-  "version": "1.1.0",
-  "modules": [
-    "fastcache"
-  ]
-}

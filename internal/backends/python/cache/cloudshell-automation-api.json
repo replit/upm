@@ -1,8 +1,0 @@
-{
-  "name": "cloudshell-automation-api",
-  "version": "2022.1.0.184116",
-  "modules": [
-    "cloudshell",
-    "urllib3"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "kfp-pipeline-spec",
-  "version": "0.1.16",
-  "requires_dist": [
-    "protobuf"
-  ]
-}

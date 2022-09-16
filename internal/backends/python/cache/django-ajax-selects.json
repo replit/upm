@@ -1,7 +1,0 @@
-{
-  "name": "django-ajax-selects",
-  "version": "2.2.0",
-  "modules": [
-    "ajax_select"
-  ]
-}

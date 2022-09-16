@@ -1,7 +1,0 @@
-{
-  "name": "jsonpath-python",
-  "version": "1.0.6",
-  "modules": [
-    "jsonpath"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "nest-asyncio",
-  "version": "1.5.5",
-  "modules": [
-    "nest_asyncio"
-  ]
-}

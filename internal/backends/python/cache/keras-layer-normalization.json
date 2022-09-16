@@ -1,9 +1,0 @@
-{
-  "name": "keras-layer-normalization",
-  "version": "0.16.0",
-  "modules": [
-    "keras_layer_normalization",
-    "numpy",
-    "tests"
-  ]
-}

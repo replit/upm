@@ -1,7 +1,0 @@
-{
-  "name": "json-tricks",
-  "version": "3.15.5",
-  "modules": [
-    "json_tricks"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "subprocess32",
-  "version": "3.5.4",
-  "modules": [
-    "subprocess32"
-  ]
-}

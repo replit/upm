@@ -1,8 +1,0 @@
-{
-  "name": "multisig-hmac",
-  "version": "0.2.4",
-  "modules": [
-    "multisig_hmac",
-    "tests"
-  ]
-}

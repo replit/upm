@@ -1,9 +1,0 @@
-{
-  "name": "keras-pos-embd",
-  "version": "0.13.0",
-  "modules": [
-    "keras_pos_embd",
-    "numpy",
-    "tests"
-  ]
-}

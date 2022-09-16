@@ -1,5 +1,0 @@
-{
-  "name": "mariadb",
-  "version": "1.1.4",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mariadb/bin/python3', '-m', 'pip', 'install', 'mariadb']' returned non-zero exit status 1.\"}"
-}

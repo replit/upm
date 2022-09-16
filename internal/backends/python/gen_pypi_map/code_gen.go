@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -14,31 +13,18 @@ type ModuleItem struct {
 	PackageList []PackageInfo
 }
 
-func generateSource(pkg string, outputFilePath string, cacheDir string, bqFilePath string, pypiPackagesPath string) error {
+func generateSource(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
 	downloadStats, err := LoadDownloadStats(bqFilePath)
 	if err != nil {
 		return err
 	}
 
-	legacyPypiPackages := loadLegacyPypyPackages(pypiPackagesPath)
-
-	// Map every module to a list of packages that can provide it
-	files, err := ioutil.ReadDir(cacheDir)
-	if err != nil {
-		return err
-	}
+	legacyPypiPackages := loadLegacyPypyPackages(pkgsLegacyFile)
 
 	packagesProcessed := make(map[string]bool)
 	var moduleToPackageList = map[string][]PackageInfo{}
 
-	for _, file := range files {
-		var info PackageInfo
-		filePath := cacheDir + "/" + file.Name()
-		err := loadPackageInfoFile(filePath, &info)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Warning: failed to load %s: %s\n", filePath, err.Error())
-			continue
-		}
+	for _, info := range cache {
 		pkgName := strings.ToLower(info.Name)
 		if info.Error != "" {
 			// fallback to legacy package module info

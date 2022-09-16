@@ -1,7 +1,0 @@
-{
-  "name": "pyRXP",
-  "version": "3.0.1",
-  "modules": [
-    "pyRXPU"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pypandoc",
-  "version": "1.8.1",
-  "modules": [
-    "pypandoc"
-  ]
-}

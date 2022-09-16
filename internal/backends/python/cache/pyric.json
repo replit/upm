@@ -1,7 +1,0 @@
-{
-  "name": "PyRIC",
-  "version": "0.1.6.3",
-  "modules": [
-    "pyric"
-  ]
-}

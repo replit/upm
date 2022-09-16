@@ -1,7 +1,0 @@
-{
-  "name": "dnslib",
-  "version": "0.9.20",
-  "modules": [
-    "dnslib"
-  ]
-}

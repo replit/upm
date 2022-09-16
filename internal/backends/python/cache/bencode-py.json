@@ -1,8 +1,0 @@
-{
-  "name": "bencode.py",
-  "version": "4.0.0",
-  "modules": [
-    "bencode",
-    "bencodepy"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "tensorboard-plugin-wit",
-  "version": "1.8.1",
-  "modules": [
-    "tensorboard_plugin_wit"
-  ]
-}

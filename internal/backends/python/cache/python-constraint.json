@@ -1,8 +1,0 @@
-{
-  "name": "python-constraint",
-  "version": "1.4.0",
-  "modules": [
-    "constraint",
-    "examples"
-  ]
-}

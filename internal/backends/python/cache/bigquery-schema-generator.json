@@ -1,7 +1,0 @@
-{
-  "name": "bigquery-schema-generator",
-  "version": "1.5",
-  "modules": [
-    "bigquery_schema_generator"
-  ]
-}

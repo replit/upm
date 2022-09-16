@@ -1,8 +1,0 @@
-{
-  "name": "OleFileIO_PL",
-  "version": "0.42.1",
-  "modules": [
-    "OleFileIO_PL",
-    "olefile"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "types-pysftp",
-  "version": "0.2.17",
-  "requires_dist": [
-    "types-paramiko"
-  ]
-}

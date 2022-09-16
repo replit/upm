@@ -1,7 +1,0 @@
-{
-  "name": "wheel-filename",
-  "version": "1.4.1",
-  "modules": [
-    "wheel_filename"
-  ]
-}

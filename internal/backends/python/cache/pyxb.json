@@ -1,7 +1,0 @@
-{
-  "name": "PyXB",
-  "version": "1.2.6",
-  "modules": [
-    "pyxb"
-  ]
-}

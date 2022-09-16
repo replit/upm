@@ -1,7 +1,0 @@
-{
-  "name": "parse",
-  "version": "1.19.0",
-  "modules": [
-    "parse"
-  ]
-}

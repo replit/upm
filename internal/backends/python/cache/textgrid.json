@@ -1,7 +1,0 @@
-{
-  "name": "TextGrid",
-  "version": "1.5",
-  "modules": [
-    "textgrid"
-  ]
-}

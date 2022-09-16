@@ -1,7 +1,0 @@
-{
-  "name": "bash",
-  "version": "0.6",
-  "modules": [
-    "bash"
-  ]
-}

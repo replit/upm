@@ -1,9 +1,0 @@
-{
-  "name": "pyobjc-framework-GameController",
-  "version": "8.5",
-  "requires_dist": [
-    "pyobjc-core",
-    "pyobjc-framework-Cocoa"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-GameController/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-GameController']' returned non-zero exit status 1.\"}"
-}

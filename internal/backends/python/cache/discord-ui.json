@@ -1,7 +1,0 @@
-{
-  "name": "discord-ui",
-  "version": "5.1.6",
-  "modules": [
-    "discord_ui"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "json-checker",
-  "version": "2.0.0",
-  "modules": [
-    "json_checker",
-    "tests"
-  ]
-}

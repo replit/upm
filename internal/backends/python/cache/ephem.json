@@ -1,7 +1,0 @@
-{
-  "name": "ephem",
-  "version": "4.1.3",
-  "modules": [
-    "ephem"
-  ]
-}

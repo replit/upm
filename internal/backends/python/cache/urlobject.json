@@ -1,7 +1,0 @@
-{
-  "name": "URLObject",
-  "version": "2.4.3",
-  "modules": [
-    "urlobject"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "filesplit",
-  "version": "4.0.0",
-  "modules": [
-    "filesplit"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "backports.shutil_which",
-  "version": "3.5.2",
-  "modules": [
-    "backports"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "dry-rest-permissions",
-  "version": "0.1.10",
-  "modules": [
-    "dry_rest_permissions"
-  ]
-}

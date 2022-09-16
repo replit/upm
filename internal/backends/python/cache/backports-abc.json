@@ -1,7 +1,0 @@
-{
-  "name": "backports_abc",
-  "version": "0.5",
-  "modules": [
-    "backports_abc"
-  ]
-}

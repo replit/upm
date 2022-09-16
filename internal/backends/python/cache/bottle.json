@@ -1,7 +1,0 @@
-{
-  "name": "bottle",
-  "version": "0.12.23",
-  "modules": [
-    "bottle"
-  ]
-}

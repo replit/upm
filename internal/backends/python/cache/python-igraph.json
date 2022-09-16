@@ -1,8 +1,0 @@
-{
-  "name": "python-igraph",
-  "version": "0.10.1",
-  "modules": [
-    "igraph",
-    "texttable"
-  ]
-}

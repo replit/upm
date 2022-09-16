@@ -1,7 +1,0 @@
-{
-  "name": "snowflake-id",
-  "version": "0.0.2",
-  "modules": [
-    "snowflake"
-  ]
-}

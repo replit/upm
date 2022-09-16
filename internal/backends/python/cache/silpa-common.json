@@ -1,7 +1,0 @@
-{
-  "name": "silpa_common",
-  "version": "0.3",
-  "modules": [
-    "silpa_common"
-  ]
-}

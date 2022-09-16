@@ -1,7 +1,0 @@
-{
-  "name": "nats-py",
-  "version": "2.1.7",
-  "modules": [
-    "nats"
-  ]
-}

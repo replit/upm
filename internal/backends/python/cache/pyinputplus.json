@@ -1,9 +1,0 @@
-{
-  "name": "PyInputPlus",
-  "version": "0.2.12",
-  "modules": [
-    "pyinputplus",
-    "pysimplevalidate",
-    "stdiomask"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "voluptuous",
-  "version": "0.13.1",
-  "modules": [
-    "voluptuous"
-  ]
-}

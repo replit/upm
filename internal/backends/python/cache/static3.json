@@ -1,7 +1,0 @@
-{
-  "name": "static3",
-  "version": "0.7.0",
-  "modules": [
-    "static"
-  ]
-}

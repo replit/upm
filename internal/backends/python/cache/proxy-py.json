@@ -1,7 +1,0 @@
-{
-  "name": "proxy.py",
-  "version": "2.4.3",
-  "modules": [
-    "proxy"
-  ]
-}

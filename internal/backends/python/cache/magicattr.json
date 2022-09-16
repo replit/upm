@@ -1,7 +1,0 @@
-{
-  "name": "magicattr",
-  "version": "0.1.6",
-  "modules": [
-    "magicattr"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "transforms3d",
-  "version": "0.4.1",
-  "modules": [
-    "transforms3d"
-  ]
-}

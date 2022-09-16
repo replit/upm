@@ -1,7 +1,0 @@
-{
-  "name": "timelib",
-  "version": "0.2.5",
-  "modules": [
-    "timelib"
-  ]
-}

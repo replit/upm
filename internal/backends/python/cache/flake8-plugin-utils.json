@@ -1,7 +1,0 @@
-{
-  "name": "flake8-plugin-utils",
-  "version": "1.3.2",
-  "modules": [
-    "flake8_plugin_utils"
-  ]
-}

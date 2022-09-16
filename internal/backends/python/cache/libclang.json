@@ -1,7 +1,0 @@
-{
-  "name": "libclang",
-  "version": "14.0.6",
-  "modules": [
-    "clang"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "npTDMS",
-  "version": "1.6.0",
-  "modules": [
-    "nptdms",
-    "numpy"
-  ]
-}

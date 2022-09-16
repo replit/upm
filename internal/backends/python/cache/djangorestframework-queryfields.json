@@ -1,7 +1,0 @@
-{
-  "name": "djangorestframework-queryfields",
-  "version": "1.0.0",
-  "modules": [
-    "drf_queryfields"
-  ]
-}

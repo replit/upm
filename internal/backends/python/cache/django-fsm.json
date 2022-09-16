@@ -1,7 +1,0 @@
-{
-  "name": "django-fsm",
-  "version": "2.8.1",
-  "modules": [
-    "django_fsm"
-  ]
-}

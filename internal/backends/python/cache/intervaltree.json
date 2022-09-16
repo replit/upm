@@ -1,8 +1,0 @@
-{
-  "name": "intervaltree",
-  "version": "3.1.0",
-  "modules": [
-    "intervaltree",
-    "sortedcontainers"
-  ]
-}

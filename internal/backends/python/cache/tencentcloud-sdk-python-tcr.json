@@ -1,7 +1,0 @@
-{
-  "name": "tencentcloud-sdk-python-tcr",
-  "version": "3.0.730",
-  "modules": [
-    "tencentcloud"
-  ]
-}

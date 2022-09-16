@@ -1,7 +1,0 @@
-{
-  "name": "types-tzlocal",
-  "version": "4.2.2",
-  "requires_dist": [
-    "types-pytz"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "mnemonic",
-  "version": "0.20",
-  "modules": [
-    "mnemonic"
-  ]
-}

@@ -1,5 +1,0 @@
-{
-  "name": "flake8-pep585",
-  "version": "0.1.5.1",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/flake8-pep585/bin/python3', '-m', 'pip', 'install', 'flake8-pep585']' returned non-zero exit status 1.\"}"
-}

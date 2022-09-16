@@ -1,7 +1,0 @@
-{
-  "name": "sql-formatter",
-  "version": "0.6.2",
-  "modules": [
-    "sql_formatter"
-  ]
-}

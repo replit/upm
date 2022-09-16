@@ -1,7 +1,0 @@
-{
-  "name": "dsnparse",
-  "version": "0.1.15",
-  "modules": [
-    "dsnparse"
-  ]
-}

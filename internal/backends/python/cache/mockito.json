@@ -1,7 +1,0 @@
-{
-  "name": "mockito",
-  "version": "1.4.0",
-  "modules": [
-    "mockito"
-  ]
-}

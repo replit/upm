@@ -1,7 +1,0 @@
-{
-  "name": "shell",
-  "version": "1.0.1",
-  "modules": [
-    "shell"
-  ]
-}

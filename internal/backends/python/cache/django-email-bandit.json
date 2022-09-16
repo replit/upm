@@ -1,7 +1,0 @@
-{
-  "name": "django-email-bandit",
-  "version": "2.0",
-  "modules": [
-    "bandit"
-  ]
-}

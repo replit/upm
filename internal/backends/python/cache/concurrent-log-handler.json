@@ -1,8 +1,0 @@
-{
-  "name": "concurrent-log-handler",
-  "version": "0.9.20",
-  "modules": [
-    "concurrent_log_handler",
-    "portalocker"
-  ]
-}

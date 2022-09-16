@@ -1,8 +1,0 @@
-{
-  "name": "jump-consistent-hash",
-  "version": "3.2.0",
-  "modules": [
-    "_jump",
-    "jump"
-  ]
-}

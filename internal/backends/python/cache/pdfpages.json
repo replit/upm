@@ -1,9 +1,0 @@
-{
-  "name": "pdfpages",
-  "version": "0.1.0",
-  "modules": [
-    "PyPDF2",
-    "pdfpages",
-    "typing_extensions"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pycapnp",
-  "version": "1.2.1",
-  "modules": [
-    "capnp"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "name": "coreschema",
-  "version": "0.0.4",
-  "modules": [
-    "coreschema",
-    "jinja2",
-    "markupsafe"
-  ]
-}

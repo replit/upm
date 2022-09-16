@@ -1,9 +1,0 @@
-{
-  "name": "sure",
-  "version": "2.0.0",
-  "modules": [
-    "mock",
-    "six",
-    "sure"
-  ]
-}

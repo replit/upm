@@ -1,7 +1,0 @@
-{
-  "name": "faiss-gpu",
-  "version": "1.7.2",
-  "modules": [
-    "faiss"
-  ]
-}

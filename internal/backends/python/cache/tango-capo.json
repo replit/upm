@@ -1,7 +1,0 @@
-{
-  "name": "tango-capo",
-  "version": "0.3.2",
-  "modules": [
-    "tango_capo"
-  ]
-}

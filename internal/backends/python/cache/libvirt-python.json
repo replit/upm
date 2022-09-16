@@ -1,5 +1,0 @@
-{
-  "name": "libvirt-python",
-  "version": "8.7.0",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/libvirt-python/bin/python3', '-m', 'pip', 'install', 'libvirt-python']' returned non-zero exit status 1.\"}"
-}

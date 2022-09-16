@@ -1,5 +1,0 @@
-{
-  "name": "pyobjc-framework-NaturalLanguage",
-  "version": "8.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-NaturalLanguage/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-NaturalLanguage']' returned non-zero exit status 1.\"}"
-}

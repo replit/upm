@@ -1,7 +1,0 @@
-{
-  "name": "pyxDamerauLevenshtein",
-  "version": "1.7.1",
-  "modules": [
-    "pyxdameraulevenshtein"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "bitstruct",
-  "version": "8.15.1",
-  "modules": [
-    "bitstruct"
-  ]
-}

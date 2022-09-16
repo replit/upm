@@ -1,7 +1,0 @@
-{
-  "name": "expecttest",
-  "version": "0.1.3",
-  "modules": [
-    "expecttest"
-  ]
-}

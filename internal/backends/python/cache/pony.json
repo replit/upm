@@ -1,7 +1,0 @@
-{
-  "name": "pony",
-  "version": "0.7.16",
-  "modules": [
-    "pony"
-  ]
-}

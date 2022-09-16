@@ -1,7 +1,0 @@
-{
-  "name": "wasabi",
-  "version": "0.10.1",
-  "modules": [
-    "wasabi"
-  ]
-}

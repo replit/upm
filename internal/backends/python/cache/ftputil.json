@@ -1,7 +1,0 @@
-{
-  "name": "ftputil",
-  "version": "5.0.4",
-  "modules": [
-    "ftputil"
-  ]
-}

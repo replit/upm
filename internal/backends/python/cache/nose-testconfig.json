@@ -1,7 +1,0 @@
-{
-  "name": "nose-testconfig",
-  "version": "0.10",
-  "modules": [
-    "testconfig"
-  ]
-}

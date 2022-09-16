@@ -1,8 +1,0 @@
-{
-  "name": "nbimporter",
-  "version": "0.3.4",
-  "modules": [
-    "display_nb",
-    "nbimporter"
-  ]
-}

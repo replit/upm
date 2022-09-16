@@ -1,7 +1,0 @@
-{
-  "name": "python-terraform",
-  "version": "0.10.1",
-  "modules": [
-    "python_terraform"
-  ]
-}

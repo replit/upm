@@ -1,7 +1,0 @@
-{
-  "name": "accumulation-tree",
-  "version": "0.6.2",
-  "modules": [
-    "accumulation_tree"
-  ]
-}

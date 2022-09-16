@@ -1,5 +1,0 @@
-{
-  "name": "leankit",
-  "version": "1.5.0",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/leankit/bin/python3', '-m', 'pip', 'install', 'leankit']' returned non-zero exit status 1.\"}"
-}

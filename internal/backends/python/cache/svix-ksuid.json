@@ -1,8 +1,0 @@
-{
-  "name": "svix-ksuid",
-  "version": "0.6.0",
-  "modules": [
-    "baseconv",
-    "ksuid"
-  ]
-}

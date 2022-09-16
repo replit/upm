@@ -1,7 +1,0 @@
-{
-  "name": "toml",
-  "version": "0.10.2",
-  "modules": [
-    "toml"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "jsonrpcclient",
-  "version": "4.0.2",
-  "modules": [
-    "jsonrpcclient"
-  ]
-}

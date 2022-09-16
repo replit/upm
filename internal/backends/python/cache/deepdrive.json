@@ -1,8 +1,0 @@
-{
-  "name": "deepdrive",
-  "version": "2.0.20190722213951",
-  "requires_dist": [
-    "numpy"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/deepdrive/bin/python3', '-m', 'pip', 'install', 'deepdrive']' returned non-zero exit status 1.\"}"
-}

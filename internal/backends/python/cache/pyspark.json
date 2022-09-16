@@ -1,8 +1,0 @@
-{
-  "name": "pyspark",
-  "version": "3.3.0",
-  "modules": [
-    "py4j",
-    "pyspark"
-  ]
-}

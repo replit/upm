@@ -1,7 +1,0 @@
-{
-  "name": "IP2Proxy",
-  "version": "3.4.0",
-  "modules": [
-    "IP2Proxy"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "flake8-mock",
-  "version": "0.3",
-  "modules": [
-    "flake8_mock"
-  ]
-}

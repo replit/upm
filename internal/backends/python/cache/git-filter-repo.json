@@ -1,7 +1,0 @@
-{
-  "name": "git-filter-repo",
-  "version": "2.34.0",
-  "modules": [
-    "git_filter_repo"
-  ]
-}

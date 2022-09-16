@@ -1,7 +1,0 @@
-{
-  "name": "Flask-UUID",
-  "version": "0.2",
-  "modules": [
-    "flask_uuid"
-  ]
-}

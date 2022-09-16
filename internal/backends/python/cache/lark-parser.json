@@ -1,7 +1,0 @@
-{
-  "name": "lark-parser",
-  "version": "0.12.0",
-  "modules": [
-    "lark"
-  ]
-}

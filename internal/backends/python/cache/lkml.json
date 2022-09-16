@@ -1,7 +1,0 @@
-{
-  "name": "lkml",
-  "version": "1.2.0",
-  "modules": [
-    "lkml"
-  ]
-}

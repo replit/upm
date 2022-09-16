@@ -1,7 +1,0 @@
-{
-  "name": "singleton-decorator",
-  "version": "1.0.0",
-  "modules": [
-    "singleton_decorator"
-  ]
-}

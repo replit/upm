@@ -1,8 +1,0 @@
-{
-  "name": "kaldi-python-io",
-  "version": "1.2.2",
-  "modules": [
-    "kaldi_python_io",
-    "numpy"
-  ]
-}

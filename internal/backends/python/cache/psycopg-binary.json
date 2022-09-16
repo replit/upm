@@ -1,7 +1,0 @@
-{
-  "name": "psycopg-binary",
-  "version": "3.1.1",
-  "modules": [
-    "psycopg_binary"
-  ]
-}

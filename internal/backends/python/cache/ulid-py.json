@@ -1,7 +1,0 @@
-{
-  "name": "ulid-py",
-  "version": "1.1.0",
-  "modules": [
-    "ulid"
-  ]
-}

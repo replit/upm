@@ -1,7 +1,0 @@
-{
-  "name": "django-cache-url",
-  "version": "3.4.2",
-  "modules": [
-    "django_cache_url"
-  ]
-}

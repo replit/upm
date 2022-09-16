@@ -1,8 +1,0 @@
-{
-  "name": "ansiwrap",
-  "version": "0.8.4",
-  "modules": [
-    "ansiwrap",
-    "textwrap3"
-  ]
-}

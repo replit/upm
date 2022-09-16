@@ -1,8 +1,0 @@
-{
-  "name": "multiprocessing_on_dill",
-  "version": "3.5.0a4",
-  "modules": [
-    "dill",
-    "multiprocessing_on_dill"
-  ]
-}

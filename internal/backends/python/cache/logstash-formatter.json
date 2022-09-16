@@ -1,7 +1,0 @@
-{
-  "name": "logstash_formatter",
-  "version": "0.5.17",
-  "modules": [
-    "logstash_formatter"
-  ]
-}

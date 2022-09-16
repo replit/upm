@@ -1,7 +1,0 @@
-{
-  "name": "prefixed",
-  "version": "0.3.2",
-  "modules": [
-    "prefixed"
-  ]
-}

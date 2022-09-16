@@ -1,7 +1,0 @@
-{
-  "name": "zope.cachedescriptors",
-  "version": "4.4",
-  "requires_dist": [
-    "setuptools"
-  ]
-}

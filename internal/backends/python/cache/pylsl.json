@@ -1,7 +1,0 @@
-{
-  "name": "pylsl",
-  "version": "1.16.0",
-  "modules": [
-    "pylsl"
-  ]
-}

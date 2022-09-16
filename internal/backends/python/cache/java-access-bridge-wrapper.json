@@ -1,7 +1,0 @@
-{
-  "name": "java-access-bridge-wrapper",
-  "version": "0.9.5",
-  "requires_dist": [
-    "pywin32"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "logger",
-  "version": "1.4",
-  "modules": [
-    "logger"
-  ]
-}

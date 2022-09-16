@@ -1,8 +1,0 @@
-{
-  "name": "unittest-parallel",
-  "version": "1.5.2",
-  "modules": [
-    "coverage",
-    "unittest_parallel"
-  ]
-}

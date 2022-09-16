@@ -1,8 +1,0 @@
-{
-  "name": "websockify",
-  "version": "0.10.0",
-  "modules": [
-    "numpy",
-    "websockify"
-  ]
-}

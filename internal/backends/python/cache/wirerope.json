@@ -1,8 +1,0 @@
-{
-  "name": "wirerope",
-  "version": "0.4.6",
-  "modules": [
-    "six",
-    "wirerope"
-  ]
-}

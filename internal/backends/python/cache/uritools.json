@@ -1,7 +1,0 @@
-{
-  "name": "uritools",
-  "version": "4.0.0",
-  "modules": [
-    "uritools"
-  ]
-}

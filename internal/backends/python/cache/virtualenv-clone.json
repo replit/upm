@@ -1,7 +1,0 @@
-{
-  "name": "virtualenv-clone",
-  "version": "0.5.7",
-  "modules": [
-    "clonevirtualenv"
-  ]
-}

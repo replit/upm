@@ -1,8 +1,0 @@
-{
-  "name": "pysrt",
-  "version": "1.1.2",
-  "modules": [
-    "chardet",
-    "pysrt"
-  ]
-}

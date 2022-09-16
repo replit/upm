@@ -1,7 +1,0 @@
-{
-  "name": "strict-rfc3339",
-  "version": "0.7",
-  "modules": [
-    "strict_rfc3339"
-  ]
-}

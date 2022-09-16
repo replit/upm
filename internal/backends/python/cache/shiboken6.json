@@ -1,7 +1,0 @@
-{
-  "name": "shiboken6",
-  "version": "6.3.2",
-  "modules": [
-    "shiboken6"
-  ]
-}

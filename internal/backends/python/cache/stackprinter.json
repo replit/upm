@@ -1,7 +1,0 @@
-{
-  "name": "stackprinter",
-  "version": "0.2.8",
-  "modules": [
-    "stackprinter"
-  ]
-}

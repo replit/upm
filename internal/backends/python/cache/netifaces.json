@@ -1,7 +1,0 @@
-{
-  "name": "netifaces",
-  "version": "0.11.0",
-  "modules": [
-    "netifaces"
-  ]
-}

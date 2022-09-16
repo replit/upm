@@ -1,8 +1,0 @@
-{
-  "name": "unittest-pyspark",
-  "version": "0.0.5",
-  "modules": [
-    "tests",
-    "unittest_pyspark"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sqlglot",
-  "version": "6.0.4",
-  "modules": [
-    "sqlglot"
-  ]
-}

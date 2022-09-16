@@ -1,7 +1,0 @@
-{
-  "name": "annoy",
-  "version": "1.17.1",
-  "modules": [
-    "annoy"
-  ]
-}

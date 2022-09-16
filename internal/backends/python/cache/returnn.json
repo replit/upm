@@ -1,7 +1,0 @@
-{
-  "name": "returnn",
-  "version": "1.20220913.203544",
-  "modules": [
-    "returnn"
-  ]
-}

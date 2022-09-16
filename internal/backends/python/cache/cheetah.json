@@ -1,5 +1,0 @@
-{
-  "name": "Cheetah",
-  "version": "2.4.4",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/Cheetah/bin/python3', '-m', 'pip', 'install', 'Cheetah']' returned non-zero exit status 1.\"}"
-}

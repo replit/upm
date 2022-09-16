@@ -1,7 +1,0 @@
-{
-  "name": "inflection",
-  "version": "0.5.1",
-  "modules": [
-    "inflection"
-  ]
-}

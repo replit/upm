@@ -1,7 +1,0 @@
-{
-  "name": "pylsqpack",
-  "version": "0.3.16",
-  "modules": [
-    "pylsqpack"
-  ]
-}

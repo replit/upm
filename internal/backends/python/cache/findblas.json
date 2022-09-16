@@ -1,7 +1,0 @@
-{
-  "name": "findblas",
-  "version": "0.1.20",
-  "modules": [
-    "findblas"
-  ]
-}

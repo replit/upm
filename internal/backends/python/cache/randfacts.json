@@ -1,7 +1,0 @@
-{
-  "name": "randfacts",
-  "version": "0.18.0",
-  "modules": [
-    "randfacts"
-  ]
-}

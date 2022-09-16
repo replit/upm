@@ -1,7 +1,0 @@
-{
-  "name": "async-exit-stack",
-  "version": "1.0.1",
-  "modules": [
-    "async_exit_stack"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pyutilib.component.core",
-  "version": "4.6.4",
-  "modules": [
-    "six"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "zc.lockfile",
-  "version": "2.0",
-  "requires_dist": [
-    "setuptools",
-    "zope.testing"
-  ]
-}

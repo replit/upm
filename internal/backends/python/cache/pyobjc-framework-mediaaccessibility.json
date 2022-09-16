@@ -1,5 +1,0 @@
-{
-  "name": "pyobjc-framework-MediaAccessibility",
-  "version": "8.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-MediaAccessibility/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-MediaAccessibility']' returned non-zero exit status 1.\"}"
-}

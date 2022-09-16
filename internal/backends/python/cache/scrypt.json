@@ -1,8 +1,0 @@
-{
-  "name": "scrypt",
-  "version": "0.8.20",
-  "modules": [
-    "_scrypt",
-    "scrypt"
-  ]
-}

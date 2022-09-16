@@ -1,7 +1,0 @@
-{
-  "name": "filemagic",
-  "version": "1.6",
-  "modules": [
-    "magic"
-  ]
-}

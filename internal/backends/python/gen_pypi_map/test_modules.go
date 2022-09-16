@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, distMods bool, workers int, force bool) {
+func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
 	fmt.Printf("Loading pypi stats from cache file\n")
 	bqCache, err := LoadDownloadStats(bigqueryFile)
 	if err != nil {
@@ -18,6 +18,13 @@ func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, di
 		return
 	}
 	fmt.Printf("Loaded %v stats\n", len(bqCache))
+
+	cache := loadCache(cacheDir, pkgsFile)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to load cache file and directory")
+		return
+	}
 
 	discoveredPackages := 0
 	fmt.Printf("Using %d workers.\n", workers)
@@ -44,9 +51,10 @@ func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, di
 			concurrencyLimiter <- struct{}{}
 			defer func() { <-concurrencyLimiter }()
 
-			packageInfo, err := ProcessPackage(packageName, cacheDir, distMods, force)
+			packageInfo, err := ProcessPackage(packageName, cache, cacheDir, distMods, force)
 			packageInfo.Name = packageName
 			if err != nil {
+				fmt.Fprintf(os.Stderr, "Failed to process package: %s\n", err.Error())
 				packageInfo.Error = err.Error()
 			}
 			resultQueue <- packageInfo
@@ -90,6 +98,10 @@ func testModules(packages PackageIndex, bigqueryFile string, cacheDir string, di
 
 	fmt.Printf("Found %v modules in %v packages in %.0f seconds. %v packages failed\n", modules, packageCount, time.Since(startTime).Seconds(), errors)
 
+	err = updateCache(cacheDir, pkgsFile)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to update cache: %s\n", err.Error())
+	}
 }
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
@@ -97,6 +109,11 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 	if err != nil {
 		return PackageData{}, err
 	}
+
+	if resp.StatusCode != 200 {
+		return PackageData{}, fmt.Errorf("failed to get package info: %d", resp.StatusCode)
+	}
+
 	defer resp.Body.Close()
 
 	decoder := json.NewDecoder(resp.Body)
@@ -119,15 +136,14 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 }
 
 // NOTE: cache is read only
-func ProcessPackage(packageName string, cacheDir string, distMods bool, force bool) (PackageInfo, error) {
+func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir string, distMods bool, force bool) (PackageInfo, error) {
 	// Get the package metadata from pypi
 	metadata, err := GetPackageMetadata(packageName)
 	if err != nil {
 		return PackageInfo{}, PypiError{DownloadFailure, "", err}
 	}
 
-	var cached PackageInfo
-	loadPackageInfo(packageName, cacheDir, &cached)
+	var cached PackageInfo = cache[packageName]
 
 	// Check if cached module is out of date
 	if !force && metadata.Info.Version == cached.Version {
@@ -154,7 +170,10 @@ func ProcessPackage(packageName string, cacheDir string, distMods bool, force bo
 		retval.Error = err.Error()
 	}
 
-	savePackageInfo(packageName, cacheDir, &retval)
+	err = savePackageInfo(packageName, cacheDir, &retval)
+	if err != nil {
+		return PackageInfo{}, err
+	}
 
 	return retval, nil
 }

@@ -1,7 +1,0 @@
-{
-  "name": "pylibftdi",
-  "version": "0.20.0",
-  "modules": [
-    "pylibftdi"
-  ]
-}

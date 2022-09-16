@@ -1,7 +1,0 @@
-{
-  "name": "atomicwrites-homeassistant",
-  "version": "1.4.1",
-  "modules": [
-    "atomicwrites"
-  ]
-}

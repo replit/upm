@@ -1,8 +1,0 @@
-{
-  "name": "aiofile",
-  "version": "3.8.1",
-  "modules": [
-    "aiofile",
-    "caio"
-  ]
-}

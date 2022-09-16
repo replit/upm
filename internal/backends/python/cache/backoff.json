@@ -1,7 +1,0 @@
-{
-  "name": "backoff",
-  "version": "2.1.2",
-  "modules": [
-    "backoff"
-  ]
-}

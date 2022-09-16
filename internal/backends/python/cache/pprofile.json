@@ -1,8 +1,0 @@
-{
-  "name": "pprofile",
-  "version": "2.1.0",
-  "modules": [
-    "pprofile",
-    "zpprofile"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "mozterm",
-  "version": "1.0.0",
-  "modules": [
-    "mozterm",
-    "six"
-  ]
-}

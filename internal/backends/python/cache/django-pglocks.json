@@ -1,8 +1,0 @@
-{
-  "name": "django-pglocks",
-  "version": "1.0.4",
-  "modules": [
-    "django_pglocks",
-    "six"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "remote-pdb",
-  "version": "2.1.0",
-  "modules": [
-    "remote_pdb"
-  ]
-}

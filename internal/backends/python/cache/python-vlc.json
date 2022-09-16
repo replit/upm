@@ -1,7 +1,0 @@
-{
-  "name": "python-vlc",
-  "version": "3.0.16120",
-  "modules": [
-    "vlc"
-  ]
-}

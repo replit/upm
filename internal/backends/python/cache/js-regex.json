@@ -1,7 +1,0 @@
-{
-  "name": "js-regex",
-  "version": "1.0.1",
-  "modules": [
-    "js_regex"
-  ]
-}

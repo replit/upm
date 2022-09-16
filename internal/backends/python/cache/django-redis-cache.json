@@ -1,8 +1,0 @@
-{
-  "name": "django-redis-cache",
-  "version": "3.0.1",
-  "modules": [
-    "redis",
-    "redis_cache"
-  ]
-}

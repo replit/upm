@@ -1,7 +1,0 @@
-{
-  "name": "aws-wsgi",
-  "version": "0.2.7",
-  "modules": [
-    "awsgi"
-  ]
-}

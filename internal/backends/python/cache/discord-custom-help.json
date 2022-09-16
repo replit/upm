@@ -1,7 +1,0 @@
-{
-  "name": "discord-custom-help",
-  "version": "0.0.7",
-  "modules": [
-    "dch"
-  ]
-}

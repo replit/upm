@@ -1,7 +1,0 @@
-{
-  "name": "graphyte",
-  "version": "1.7.1",
-  "modules": [
-    "graphyte"
-  ]
-}

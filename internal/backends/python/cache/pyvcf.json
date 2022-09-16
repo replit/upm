@@ -1,7 +1,0 @@
-{
-  "name": "PyVCF",
-  "version": "0.6.8",
-  "modules": [
-    "vcf"
-  ]
-}

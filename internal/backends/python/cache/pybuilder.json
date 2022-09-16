@@ -1,7 +1,0 @@
-{
-  "name": "pybuilder",
-  "version": "0.13.7",
-  "modules": [
-    "pybuilder"
-  ]
-}

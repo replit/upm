@@ -1,8 +1,0 @@
-{
-  "name": "pygeos",
-  "version": "0.13",
-  "modules": [
-    "numpy",
-    "pygeos"
-  ]
-}

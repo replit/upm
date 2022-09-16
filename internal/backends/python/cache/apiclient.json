@@ -1,9 +1,0 @@
-{
-  "name": "apiclient",
-  "version": "1.0.4",
-  "modules": [
-    "apiclient",
-    "certifi",
-    "urllib3"
-  ]
-}

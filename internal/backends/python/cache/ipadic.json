@@ -1,7 +1,0 @@
-{
-  "name": "ipadic",
-  "version": "1.0.0",
-  "modules": [
-    "ipadic"
-  ]
-}

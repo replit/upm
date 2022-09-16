@@ -1,7 +1,0 @@
-{
-  "name": "number-tools",
-  "version": "0.1.0",
-  "modules": [
-    "number_tools"
-  ]
-}

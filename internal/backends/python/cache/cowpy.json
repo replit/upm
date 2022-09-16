@@ -1,7 +1,0 @@
-{
-  "name": "cowpy",
-  "version": "1.1.5",
-  "modules": [
-    "cowpy"
-  ]
-}

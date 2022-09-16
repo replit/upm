@@ -1,8 +1,0 @@
-{
-  "name": "restructuredtext-lint",
-  "version": "1.4.0",
-  "modules": [
-    "docutils",
-    "restructuredtext_lint"
-  ]
-}

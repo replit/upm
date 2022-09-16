@@ -1,5 +1,0 @@
-{
-  "name": "arvados-python-client",
-  "version": "2.4.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/arvados-python-client/bin/python3', '-m', 'pip', 'install', 'arvados-python-client']' returned non-zero exit status 1.\"}"
-}

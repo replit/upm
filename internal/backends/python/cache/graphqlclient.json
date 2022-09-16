@@ -1,8 +1,0 @@
-{
-  "name": "graphqlclient",
-  "version": "0.2.4",
-  "modules": [
-    "graphqlclient",
-    "six"
-  ]
-}

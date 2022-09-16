@@ -1,9 +1,0 @@
-{
-  "name": "pyobjc-framework-ScreenSaver",
-  "version": "8.5",
-  "requires_dist": [
-    "pyobjc-core",
-    "pyobjc-framework-Cocoa"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-ScreenSaver/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-ScreenSaver']' returned non-zero exit status 1.\"}"
-}

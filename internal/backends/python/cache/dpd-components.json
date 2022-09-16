@@ -1,7 +1,0 @@
-{
-  "name": "dpd-components",
-  "version": "0.1.0",
-  "modules": [
-    "dpd_components"
-  ]
-}

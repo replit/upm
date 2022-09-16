@@ -1,7 +1,0 @@
-{
-  "name": "parquet-metadata",
-  "version": "0.0.1",
-  "modules": [
-    "parquet_metadata"
-  ]
-}

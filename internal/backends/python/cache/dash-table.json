@@ -1,7 +1,0 @@
-{
-  "name": "dash-table",
-  "version": "5.0.0",
-  "modules": [
-    "dash_table"
-  ]
-}

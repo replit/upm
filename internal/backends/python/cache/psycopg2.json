@@ -1,7 +1,0 @@
-{
-  "name": "psycopg2",
-  "version": "2.9.3",
-  "modules": [
-    "psycopg2"
-  ]
-}

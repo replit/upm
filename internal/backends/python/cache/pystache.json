@@ -1,7 +1,0 @@
-{
-  "name": "pystache",
-  "version": "0.6.0",
-  "modules": [
-    "pystache"
-  ]
-}

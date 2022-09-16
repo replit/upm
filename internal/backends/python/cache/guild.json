@@ -1,7 +1,0 @@
-{
-  "name": "guild",
-  "version": "1.1.4",
-  "modules": [
-    "guild"
-  ]
-}

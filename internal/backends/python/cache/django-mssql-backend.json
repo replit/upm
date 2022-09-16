@@ -1,8 +1,0 @@
-{
-  "name": "django-mssql-backend",
-  "version": "2.8.1",
-  "requires_dist": [
-    "pyodbc"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/django-mssql-backend/bin/python3', '-m', 'pip', 'install', 'django-mssql-backend']' returned non-zero exit status 1.\"}"
-}

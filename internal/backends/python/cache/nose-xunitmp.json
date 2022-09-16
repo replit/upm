@@ -1,8 +1,0 @@
-{
-  "name": "nose_xunitmp",
-  "version": "0.4.1",
-  "modules": [
-    "nose",
-    "nose_xunitmp"
-  ]
-}

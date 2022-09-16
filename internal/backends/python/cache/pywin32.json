@@ -1,5 +1,0 @@
-{
-  "name": "pywin32",
-  "version": "304",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pywin32/bin/python3', '-m', 'pip', 'install', 'pywin32']' returned non-zero exit status 1.\"}"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "repoze.lru",
-  "version": "0.7",
-  "requires_dist": [
-    "Sphinx",
-    "coverage",
-    "nose"
-  ]
-}

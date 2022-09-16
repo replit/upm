@@ -1,8 +1,0 @@
-{
-  "name": "nose-timer",
-  "version": "1.0.1",
-  "modules": [
-    "nose",
-    "nosetimer"
-  ]
-}

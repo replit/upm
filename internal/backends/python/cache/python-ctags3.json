@@ -1,7 +1,0 @@
-{
-  "name": "python-ctags3",
-  "version": "1.5.0",
-  "modules": [
-    "ctags"
-  ]
-}

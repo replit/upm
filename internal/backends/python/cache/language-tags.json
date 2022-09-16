@@ -1,7 +1,0 @@
-{
-  "name": "language-tags",
-  "version": "1.1.0",
-  "modules": [
-    "language_tags"
-  ]
-}

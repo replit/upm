@@ -1,7 +1,0 @@
-{
-  "name": "avro",
-  "version": "1.11.1",
-  "modules": [
-    "avro"
-  ]
-}

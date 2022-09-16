@@ -1,7 +1,0 @@
-{
-  "name": "torchcontrib",
-  "version": "0.0.2",
-  "modules": [
-    "torchcontrib"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "range-key-dict",
-  "version": "1.1.0",
-  "modules": [
-    "range_key_dict"
-  ]
-}

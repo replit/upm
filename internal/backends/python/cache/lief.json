@@ -1,7 +1,0 @@
-{
-  "name": "lief",
-  "version": "0.12.1",
-  "modules": [
-    "lief"
-  ]
-}

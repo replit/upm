@@ -1,7 +1,0 @@
-{
-  "name": "jieba",
-  "version": "0.42.1",
-  "modules": [
-    "jieba"
-  ]
-}

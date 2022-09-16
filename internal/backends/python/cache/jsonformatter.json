@@ -1,7 +1,0 @@
-{
-  "name": "jsonformatter",
-  "version": "0.3.1",
-  "modules": [
-    "jsonformatter"
-  ]
-}

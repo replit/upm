@@ -1,7 +1,0 @@
-{
-  "name": "async-property",
-  "version": "0.2.1",
-  "modules": [
-    "async_property"
-  ]
-}

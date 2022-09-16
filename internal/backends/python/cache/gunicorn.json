@@ -1,7 +1,0 @@
-{
-  "name": "gunicorn",
-  "version": "20.1.0",
-  "modules": [
-    "gunicorn"
-  ]
-}

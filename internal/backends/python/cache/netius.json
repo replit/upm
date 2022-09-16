@@ -1,7 +1,0 @@
-{
-  "name": "netius",
-  "version": "1.19.0",
-  "modules": [
-    "netius"
-  ]
-}

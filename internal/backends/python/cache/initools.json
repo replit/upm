@@ -1,7 +1,0 @@
-{
-  "name": "INITools",
-  "version": "0.3.1",
-  "modules": [
-    "initools"
-  ]
-}

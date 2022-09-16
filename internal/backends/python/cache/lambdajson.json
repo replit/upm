@@ -1,7 +1,0 @@
-{
-  "name": "lambdaJSON",
-  "version": "4.3",
-  "modules": [
-    "lambdaJSON"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "orjson",
-  "version": "3.8.0",
-  "modules": [
-    "orjson"
-  ]
-}

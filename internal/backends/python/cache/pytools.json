@@ -1,9 +1,0 @@
-{
-  "name": "pytools",
-  "version": "2022.1.12",
-  "modules": [
-    "platformdirs",
-    "pytools",
-    "typing_extensions"
-  ]
-}

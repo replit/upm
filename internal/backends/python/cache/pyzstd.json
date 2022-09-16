@@ -1,7 +1,0 @@
-{
-  "name": "pyzstd",
-  "version": "0.15.3",
-  "modules": [
-    "pyzstd"
-  ]
-}

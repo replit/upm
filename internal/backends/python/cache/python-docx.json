@@ -1,8 +1,0 @@
-{
-  "name": "python-docx",
-  "version": "0.8.11",
-  "modules": [
-    "docx",
-    "lxml"
-  ]
-}

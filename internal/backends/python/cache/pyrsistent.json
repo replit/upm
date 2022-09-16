@@ -1,9 +1,0 @@
-{
-  "name": "pyrsistent",
-  "version": "0.18.1",
-  "modules": [
-    "_pyrsistent_version",
-    "pvectorc",
-    "pyrsistent"
-  ]
-}

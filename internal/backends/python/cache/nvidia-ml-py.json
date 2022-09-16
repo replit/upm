@@ -1,8 +1,0 @@
-{
-  "name": "nvidia-ml-py",
-  "version": "11.515.75",
-  "modules": [
-    "example",
-    "pynvml"
-  ]
-}

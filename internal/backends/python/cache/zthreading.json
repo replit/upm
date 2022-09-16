@@ -1,7 +1,0 @@
-{
-  "name": "zthreading",
-  "version": "0.1.19",
-  "modules": [
-    "zthreading"
-  ]
-}

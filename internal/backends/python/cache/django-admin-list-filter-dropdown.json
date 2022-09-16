@@ -1,7 +1,0 @@
-{
-  "name": "django-admin-list-filter-dropdown",
-  "version": "1.0.3",
-  "modules": [
-    "django_admin_listfilter_dropdown"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "babelfish",
-  "version": "0.6.0",
-  "modules": [
-    "babelfish"
-  ]
-}

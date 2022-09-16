@@ -1,7 +1,0 @@
-{
-  "name": "wget",
-  "version": "3.2",
-  "modules": [
-    "wget"
-  ]
-}

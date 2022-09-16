@@ -1,7 +1,0 @@
-{
-  "name": "types-PyJWT",
-  "version": "1.7.1",
-  "requires_dist": [
-    "types-cryptography"
-  ]
-}

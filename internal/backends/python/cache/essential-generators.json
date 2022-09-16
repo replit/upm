@@ -1,7 +1,0 @@
-{
-  "name": "essential-generators",
-  "version": "1.0",
-  "modules": [
-    "essential_generators"
-  ]
-}

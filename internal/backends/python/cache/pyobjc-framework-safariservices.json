@@ -1,9 +1,0 @@
-{
-  "name": "pyobjc-framework-SafariServices",
-  "version": "8.5",
-  "requires_dist": [
-    "pyobjc-core",
-    "pyobjc-framework-Cocoa"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-SafariServices/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-SafariServices']' returned non-zero exit status 1.\"}"
-}

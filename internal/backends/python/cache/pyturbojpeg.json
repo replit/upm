@@ -1,8 +1,0 @@
-{
-  "name": "PyTurboJPEG",
-  "version": "1.6.7",
-  "modules": [
-    "numpy",
-    "turbojpeg"
-  ]
-}

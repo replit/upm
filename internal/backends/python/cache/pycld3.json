@@ -1,7 +1,0 @@
-{
-  "name": "pycld3",
-  "version": "0.22",
-  "modules": [
-    "cld3"
-  ]
-}

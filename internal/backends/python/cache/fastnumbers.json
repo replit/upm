@@ -1,7 +1,0 @@
-{
-  "name": "fastnumbers",
-  "version": "3.2.1",
-  "modules": [
-    "fastnumbers"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pydub",
-  "version": "0.25.1",
-  "modules": [
-    "pydub"
-  ]
-}

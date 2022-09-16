@@ -1,5 +1,0 @@
-{
-  "name": "torch-sparse",
-  "version": "0.6.15",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/torch-sparse/bin/python3', '-m', 'pip', 'install', 'torch-sparse']' returned non-zero exit status 1.\"}"
-}

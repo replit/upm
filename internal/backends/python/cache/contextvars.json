@@ -1,7 +1,0 @@
-{
-  "name": "contextvars",
-  "version": "2.4",
-  "modules": [
-    "immutables"
-  ]
-}

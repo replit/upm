@@ -1,8 +1,0 @@
-{
-  "name": "pure-python-adb",
-  "version": "0.3.0.dev0",
-  "modules": [
-    "ppadb",
-    "test_async"
-  ]
-}

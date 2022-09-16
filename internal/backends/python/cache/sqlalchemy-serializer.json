@@ -1,9 +1,0 @@
-{
-  "name": "SQLAlchemy-serializer",
-  "version": "1.4.1",
-  "modules": [
-    "greenlet",
-    "sqlalchemy",
-    "sqlalchemy_serializer"
-  ]
-}

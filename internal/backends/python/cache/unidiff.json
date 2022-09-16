@@ -1,7 +1,0 @@
-{
-  "name": "unidiff",
-  "version": "0.7.4",
-  "modules": [
-    "unidiff"
-  ]
-}

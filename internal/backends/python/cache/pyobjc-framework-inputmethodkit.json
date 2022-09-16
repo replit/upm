@@ -1,9 +1,0 @@
-{
-  "name": "pyobjc-framework-InputMethodKit",
-  "version": "8.5",
-  "requires_dist": [
-    "pyobjc-core",
-    "pyobjc-framework-Cocoa"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-InputMethodKit/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-InputMethodKit']' returned non-zero exit status 1.\"}"
-}

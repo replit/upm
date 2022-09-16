@@ -1,7 +1,0 @@
-{
-  "name": "spark-tensorflow-distributor",
-  "version": "1.0.0",
-  "modules": [
-    "spark_tensorflow_distributor"
-  ]
-}

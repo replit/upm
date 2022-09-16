@@ -1,7 +1,0 @@
-{
-  "name": "patch-ng",
-  "version": "1.17.4",
-  "modules": [
-    "patch_ng"
-  ]
-}

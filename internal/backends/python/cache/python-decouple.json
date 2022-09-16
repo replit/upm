@@ -1,7 +1,0 @@
-{
-  "name": "python-decouple",
-  "version": "3.6",
-  "modules": [
-    "decouple"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "business-duration",
-  "version": "0.66",
-  "modules": [
-    "business_duration"
-  ]
-}

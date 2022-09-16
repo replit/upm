@@ -1,7 +1,0 @@
-{
-  "name": "python-libpython-debian-bin",
-  "version": "0.0.5",
-  "modules": [
-    "libpython"
-  ]
-}

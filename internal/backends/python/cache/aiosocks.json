@@ -1,7 +1,0 @@
-{
-  "name": "aiosocks",
-  "version": "0.2.6",
-  "modules": [
-    "aiosocks"
-  ]
-}

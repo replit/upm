@@ -1,7 +1,0 @@
-{
-  "name": "gazpacho",
-  "version": "1.1",
-  "modules": [
-    "gazpacho"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "alembic_autogenerate_enums",
-  "version": "0.0.2",
-  "modules": [
-    "alembic_autogenerate_enums"
-  ]
-}

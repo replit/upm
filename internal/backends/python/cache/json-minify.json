@@ -1,7 +1,0 @@
-{
-  "name": "JSON_minify",
-  "version": "0.3.0",
-  "modules": [
-    "json_minify"
-  ]
-}

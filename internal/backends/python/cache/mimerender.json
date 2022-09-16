@@ -1,8 +1,0 @@
-{
-  "name": "mimerender",
-  "version": "0.6.0",
-  "modules": [
-    "mimeparse",
-    "mimerender"
-  ]
-}

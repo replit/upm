@@ -1,9 +1,0 @@
-{
-  "name": "pycm",
-  "version": "3.6",
-  "modules": [
-    "art",
-    "numpy",
-    "pycm"
-  ]
-}

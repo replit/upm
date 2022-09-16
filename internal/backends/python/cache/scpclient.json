@@ -1,7 +1,0 @@
-{
-  "name": "scpclient",
-  "version": "0.7",
-  "modules": [
-    "scpclient"
-  ]
-}

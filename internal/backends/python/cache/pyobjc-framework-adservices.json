@@ -1,5 +1,0 @@
-{
-  "name": "pyobjc-framework-AdServices",
-  "version": "8.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-AdServices/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-AdServices']' returned non-zero exit status 1.\"}"
-}

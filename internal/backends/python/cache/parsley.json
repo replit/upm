@@ -1,9 +1,0 @@
-{
-  "name": "Parsley",
-  "version": "1.3",
-  "modules": [
-    "ometa",
-    "parsley",
-    "terml"
-  ]
-}

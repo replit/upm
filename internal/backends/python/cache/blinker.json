@@ -1,7 +1,0 @@
-{
-  "name": "blinker",
-  "version": "1.5",
-  "modules": [
-    "blinker"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "falcon",
-  "version": "3.1.0",
-  "modules": [
-    "falcon"
-  ]
-}

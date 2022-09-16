@@ -1,7 +1,0 @@
-{
-  "name": "threadpool",
-  "version": "1.3.2",
-  "modules": [
-    "threadpool"
-  ]
-}

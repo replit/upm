@@ -1,7 +1,0 @@
-{
-  "name": "zalgo-text",
-  "version": "0.6",
-  "modules": [
-    "zalgo_text"
-  ]
-}

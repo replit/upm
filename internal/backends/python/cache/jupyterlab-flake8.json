@@ -1,7 +1,0 @@
-{
-  "name": "jupyterlab-flake8",
-  "version": "0.7.1",
-  "modules": [
-    "jupyterlab_flake8"
-  ]
-}

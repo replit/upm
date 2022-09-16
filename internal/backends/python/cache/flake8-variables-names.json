@@ -1,7 +1,0 @@
-{
-  "name": "flake8-variables-names",
-  "version": "0.0.5",
-  "modules": [
-    "flake8_variables_names"
-  ]
-}

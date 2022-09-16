@@ -1,7 +1,0 @@
-{
-  "name": "shelljob",
-  "version": "0.6.3",
-  "modules": [
-    "shelljob"
-  ]
-}

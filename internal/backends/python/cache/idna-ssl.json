@@ -1,8 +1,0 @@
-{
-  "name": "idna_ssl",
-  "version": "1.1.0",
-  "modules": [
-    "idna",
-    "idna_ssl"
-  ]
-}

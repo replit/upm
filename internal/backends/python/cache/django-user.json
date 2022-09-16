@@ -1,7 +1,0 @@
-{
-  "name": "django-user",
-  "version": "0.2.1",
-  "modules": [
-    "user"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "imbox",
-  "version": "0.9.8",
-  "modules": [
-    "chardet",
-    "imbox"
-  ]
-}

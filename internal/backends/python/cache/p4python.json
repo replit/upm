@@ -1,5 +1,0 @@
-{
-  "name": "p4python",
-  "version": "2022.1.2299330",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/p4python/bin/python3', '-m', 'pip', 'install', 'p4python']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "dataclass-csv",
-  "version": "1.4.0",
-  "modules": [
-    "dataclass_csv"
-  ]
-}

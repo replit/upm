@@ -1,7 +1,0 @@
-{
-  "name": "virgil-crypto-lib",
-  "version": "0.16.0",
-  "modules": [
-    "virgil_crypto_lib"
-  ]
-}

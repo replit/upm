@@ -1,7 +1,0 @@
-{
-  "name": "databricks-dash",
-  "version": "0.0.1",
-  "modules": [
-    "databricks_dash"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "django-compat",
-  "version": "1.0.15",
-  "modules": [
-    "compat",
-    "six"
-  ]
-}

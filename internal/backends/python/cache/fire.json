@@ -1,9 +1,0 @@
-{
-  "name": "fire",
-  "version": "0.4.0",
-  "modules": [
-    "fire",
-    "six",
-    "termcolor"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "dnspython3",
-  "version": "1.15.0",
-  "modules": [
-    "dns"
-  ]
-}

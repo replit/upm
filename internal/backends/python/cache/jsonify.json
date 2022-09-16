@@ -1,7 +1,0 @@
-{
-  "name": "jsonify",
-  "version": "0.5",
-  "modules": [
-    "jsonify"
-  ]
-}

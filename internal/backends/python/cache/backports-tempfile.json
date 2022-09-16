@@ -1,7 +1,0 @@
-{
-  "name": "backports.tempfile",
-  "version": "1.0",
-  "modules": [
-    "backports"
-  ]
-}

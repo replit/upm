@@ -1,7 +1,0 @@
-{
-  "name": "sagemaker-feature-store-pyspark",
-  "version": "1.0.0",
-  "modules": [
-    "feature_store_pyspark"
-  ]
-}

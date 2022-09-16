@@ -1,7 +1,0 @@
-{
-  "name": "aiotask-context",
-  "version": "0.6.1",
-  "modules": [
-    "aiotask_context"
-  ]
-}

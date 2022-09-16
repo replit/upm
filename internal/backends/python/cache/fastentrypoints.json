@@ -1,7 +1,0 @@
-{
-  "name": "fastentrypoints",
-  "version": "0.12",
-  "modules": [
-    "fastentrypoints"
-  ]
-}

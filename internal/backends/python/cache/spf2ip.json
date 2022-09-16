@@ -1,8 +1,0 @@
-{
-  "name": "SPF2IP",
-  "version": "1.0.5",
-  "modules": [
-    "SPF2IP",
-    "dns"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "django-resized",
-  "version": "1.0.2",
-  "modules": [
-    "django_resized"
-  ]
-}

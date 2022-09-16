@@ -1,7 +1,0 @@
-{
-  "name": "libconf",
-  "version": "2.0.1",
-  "modules": [
-    "libconf"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "imagesize",
-  "version": "1.4.1",
-  "modules": [
-    "imagesize"
-  ]
-}

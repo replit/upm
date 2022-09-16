@@ -1,7 +1,0 @@
-{
-  "name": "fastrlock",
-  "version": "0.8",
-  "modules": [
-    "fastrlock"
-  ]
-}

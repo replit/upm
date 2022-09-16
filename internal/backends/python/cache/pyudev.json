@@ -1,7 +1,0 @@
-{
-  "name": "pyudev",
-  "version": "0.24.0",
-  "modules": [
-    "pyudev"
-  ]
-}

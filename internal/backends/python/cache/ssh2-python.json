@@ -1,7 +1,0 @@
-{
-  "name": "ssh2-python",
-  "version": "1.0.0",
-  "modules": [
-    "ssh2"
-  ]
-}

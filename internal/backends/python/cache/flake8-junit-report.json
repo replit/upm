@@ -1,7 +1,0 @@
-{
-  "name": "flake8-junit-report",
-  "version": "2.1.0",
-  "modules": [
-    "junit_conversor"
-  ]
-}

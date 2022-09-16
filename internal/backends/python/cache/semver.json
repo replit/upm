@@ -1,7 +1,0 @@
-{
-  "name": "semver",
-  "version": "2.13.0",
-  "modules": [
-    "semver"
-  ]
-}

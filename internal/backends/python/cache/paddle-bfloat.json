@@ -1,7 +1,0 @@
-{
-  "name": "paddle-bfloat",
-  "version": "0.1.7",
-  "modules": [
-    "paddle_bfloat"
-  ]
-}

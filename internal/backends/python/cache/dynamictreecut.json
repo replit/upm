@@ -1,9 +1,0 @@
-{
-  "name": "dynamicTreeCut",
-  "version": "0.1.1",
-  "modules": [
-    "dynamicTreeCut",
-    "numpy",
-    "scipy"
-  ]
-}

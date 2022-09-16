@@ -1,7 +1,0 @@
-{
-  "name": "liac-arff",
-  "version": "2.5.0",
-  "modules": [
-    "arff"
-  ]
-}

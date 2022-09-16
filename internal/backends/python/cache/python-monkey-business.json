@@ -1,8 +1,0 @@
-{
-  "name": "python-monkey-business",
-  "version": "1.0.0",
-  "modules": [
-    "monkeybiz",
-    "six"
-  ]
-}

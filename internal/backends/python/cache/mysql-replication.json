@@ -1,8 +1,0 @@
-{
-  "name": "mysql-replication",
-  "version": "0.30",
-  "modules": [
-    "pymysql",
-    "pymysqlreplication"
-  ]
-}

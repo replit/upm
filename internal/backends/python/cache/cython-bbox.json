@@ -1,5 +1,0 @@
-{
-  "name": "cython-bbox",
-  "version": "0.1.3",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/cython-bbox/bin/python3', '-m', 'pip', 'install', 'cython-bbox']' returned non-zero exit status 1.\"}"
-}

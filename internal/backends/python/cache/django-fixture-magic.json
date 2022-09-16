@@ -1,7 +1,0 @@
-{
-  "name": "django-fixture-magic",
-  "version": "0.1.5",
-  "modules": [
-    "fixture_magic"
-  ]
-}

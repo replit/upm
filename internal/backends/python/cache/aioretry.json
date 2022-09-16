@@ -1,7 +1,0 @@
-{
-  "name": "aioretry",
-  "version": "5.0.2",
-  "modules": [
-    "aioretry"
-  ]
-}

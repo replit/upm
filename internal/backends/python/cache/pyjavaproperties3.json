@@ -1,8 +1,0 @@
-{
-  "name": "pyjavaproperties3",
-  "version": "0.6",
-  "modules": [
-    "pyjavaproperties3",
-    "pyjavaproperties3_test"
-  ]
-}

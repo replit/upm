@@ -1,7 +1,0 @@
-{
-  "name": "rfc3339",
-  "version": "6.2",
-  "modules": [
-    "rfc3339"
-  ]
-}

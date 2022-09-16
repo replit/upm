@@ -1,7 +1,0 @@
-{
-  "name": "ptvsd",
-  "version": "4.3.2",
-  "modules": [
-    "ptvsd"
-  ]
-}

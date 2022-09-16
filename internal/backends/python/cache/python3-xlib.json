@@ -1,7 +1,0 @@
-{
-  "name": "python3-xlib",
-  "version": "0.15",
-  "modules": [
-    "Xlib"
-  ]
-}

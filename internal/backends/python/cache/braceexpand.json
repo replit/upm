@@ -1,7 +1,0 @@
-{
-  "name": "braceexpand",
-  "version": "0.1.7",
-  "modules": [
-    "braceexpand"
-  ]
-}

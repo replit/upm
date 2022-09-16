@@ -1,7 +1,0 @@
-{
-  "name": "pygtrie",
-  "version": "2.5.0",
-  "modules": [
-    "pygtrie"
-  ]
-}

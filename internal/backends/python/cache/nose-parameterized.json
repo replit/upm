@@ -1,8 +1,0 @@
-{
-  "name": "nose-parameterized",
-  "version": "0.6.0",
-  "modules": [
-    "nose_parameterized",
-    "parameterized"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "jq",
-  "version": "1.2.3",
-  "modules": [
-    "jq"
-  ]
-}

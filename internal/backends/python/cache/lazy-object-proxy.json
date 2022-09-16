@@ -1,7 +1,0 @@
-{
-  "name": "lazy-object-proxy",
-  "version": "1.7.1",
-  "modules": [
-    "lazy_object_proxy"
-  ]
-}

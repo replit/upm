@@ -1,7 +1,0 @@
-{
-  "name": "pytest-check",
-  "version": "1.0.9",
-  "modules": [
-    "pytest_check"
-  ]
-}

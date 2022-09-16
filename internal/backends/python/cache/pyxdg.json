@@ -1,7 +1,0 @@
-{
-  "name": "pyxdg",
-  "version": "0.28",
-  "modules": [
-    "xdg"
-  ]
-}

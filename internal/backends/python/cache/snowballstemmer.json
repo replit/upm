@@ -1,7 +1,0 @@
-{
-  "name": "snowballstemmer",
-  "version": "2.2.0",
-  "modules": [
-    "snowballstemmer"
-  ]
-}

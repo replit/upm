@@ -1,8 +1,0 @@
-{
-  "name": "uiautomator",
-  "version": "1.0.2",
-  "modules": [
-    "uiautomator",
-    "urllib3"
-  ]
-}

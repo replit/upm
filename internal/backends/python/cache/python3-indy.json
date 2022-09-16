@@ -1,8 +1,0 @@
-{
-  "name": "python3-indy",
-  "version": "1.16.0.post286",
-  "modules": [
-    "base58",
-    "indy"
-  ]
-}

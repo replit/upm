@@ -1,7 +1,0 @@
-{
-  "name": "google-play-scraper",
-  "version": "1.2.2",
-  "modules": [
-    "google_play_scraper"
-  ]
-}

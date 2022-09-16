@@ -1,7 +1,0 @@
-{
-  "name": "application-properties",
-  "version": "0.5.2",
-  "modules": [
-    "application_properties"
-  ]
-}

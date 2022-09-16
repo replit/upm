@@ -1,7 +1,0 @@
-{
-  "name": "django-loginas",
-  "version": "0.3.10",
-  "modules": [
-    "loginas"
-  ]
-}

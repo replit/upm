@@ -1,7 +1,0 @@
-{
-  "name": "lit",
-  "version": "15.0.0.post0",
-  "modules": [
-    "lit"
-  ]
-}

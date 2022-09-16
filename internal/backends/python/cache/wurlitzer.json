@@ -1,7 +1,0 @@
-{
-  "name": "wurlitzer",
-  "version": "3.0.2",
-  "modules": [
-    "wurlitzer"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "inotify-simple",
-  "version": "1.3.5",
-  "modules": [
-    "inotify_simple"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "name": "neo4j-driver",
-  "version": "5.0.0",
-  "modules": [
-    "neo4j",
-    "pytz",
-    "testkitbackend"
-  ]
-}

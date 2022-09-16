@@ -1,8 +1,0 @@
-{
-  "name": "elasticsearch5",
-  "version": "5.5.6",
-  "modules": [
-    "elasticsearch5",
-    "urllib3"
-  ]
-}

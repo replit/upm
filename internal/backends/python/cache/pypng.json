@@ -1,7 +1,0 @@
-{
-  "name": "pypng",
-  "version": "0.20220715.0",
-  "modules": [
-    "png"
-  ]
-}

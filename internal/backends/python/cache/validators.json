@@ -1,8 +1,0 @@
-{
-  "name": "validators",
-  "version": "0.20.0",
-  "modules": [
-    "decorator",
-    "validators"
-  ]
-}

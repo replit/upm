@@ -1,7 +1,0 @@
-{
-  "name": "xmltodict",
-  "version": "0.13.0",
-  "modules": [
-    "xmltodict"
-  ]
-}

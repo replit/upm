@@ -1,5 +1,0 @@
-{
-  "name": "pyobjc-framework-VideoSubscriberAccount",
-  "version": "8.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-VideoSubscriberAccount/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-VideoSubscriberAccount']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "logwrap",
-  "version": "10.0.1",
-  "modules": [
-    "logwrap"
-  ]
-}

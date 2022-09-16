@@ -1,7 +1,0 @@
-{
-  "name": "json-api-doc",
-  "version": "0.15.0",
-  "modules": [
-    "json_api_doc"
-  ]
-}

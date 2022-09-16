@@ -1,7 +1,0 @@
-{
-  "name": "oneagent-sdk",
-  "version": "1.4.0.20210127.165413",
-  "modules": [
-    "oneagent"
-  ]
-}

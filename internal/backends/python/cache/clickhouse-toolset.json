@@ -1,7 +1,0 @@
-{
-  "name": "clickhouse-toolset",
-  "version": "0.21.dev0",
-  "modules": [
-    "chtoolset"
-  ]
-}

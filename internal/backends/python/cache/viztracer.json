@@ -1,8 +1,0 @@
-{
-  "name": "viztracer",
-  "version": "0.15.4",
-  "modules": [
-    "objprint",
-    "viztracer"
-  ]
-}

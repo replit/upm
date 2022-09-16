@@ -1,7 +1,0 @@
-{
-  "name": "graphitesend",
-  "version": "0.10.0",
-  "modules": [
-    "graphitesend"
-  ]
-}

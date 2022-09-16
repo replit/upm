@@ -1,9 +1,0 @@
-{
-  "name": "env_utils",
-  "version": "1.2.0",
-  "modules": [
-    "dateutil",
-    "env_utils",
-    "six"
-  ]
-}

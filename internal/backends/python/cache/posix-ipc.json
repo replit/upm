@@ -1,7 +1,0 @@
-{
-  "name": "posix-ipc",
-  "version": "1.0.5",
-  "modules": [
-    "posix_ipc"
-  ]
-}

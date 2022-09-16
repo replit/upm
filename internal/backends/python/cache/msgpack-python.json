@@ -1,7 +1,0 @@
-{
-  "name": "msgpack-python",
-  "version": "0.5.6",
-  "modules": [
-    "msgpack"
-  ]
-}

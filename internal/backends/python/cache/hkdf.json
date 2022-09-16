@@ -1,7 +1,0 @@
-{
-  "name": "hkdf",
-  "version": "0.0.3",
-  "modules": [
-    "hkdf"
-  ]
-}

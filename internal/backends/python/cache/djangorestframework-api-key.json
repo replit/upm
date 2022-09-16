@@ -1,7 +1,0 @@
-{
-  "name": "djangorestframework-api-key",
-  "version": "2.2.0",
-  "modules": [
-    "rest_framework_api_key"
-  ]
-}

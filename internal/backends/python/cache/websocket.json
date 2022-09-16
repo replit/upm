@@ -1,9 +1,0 @@
-{
-  "name": "websocket",
-  "version": "0.2.1",
-  "modules": [
-    "gevent",
-    "greenlet",
-    "websocket"
-  ]
-}

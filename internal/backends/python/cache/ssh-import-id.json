@@ -1,8 +1,0 @@
-{
-  "name": "ssh-import-id",
-  "version": "5.11",
-  "modules": [
-    "distro",
-    "ssh_import_id"
-  ]
-}

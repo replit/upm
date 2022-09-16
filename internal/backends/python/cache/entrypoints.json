@@ -1,7 +1,0 @@
-{
-  "name": "entrypoints",
-  "version": "0.4",
-  "modules": [
-    "entrypoints"
-  ]
-}

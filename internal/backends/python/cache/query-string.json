@@ -1,7 +1,0 @@
-{
-  "name": "query-string",
-  "version": "2020.12.3",
-  "modules": [
-    "query_string"
-  ]
-}

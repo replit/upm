@@ -1,8 +1,0 @@
-{
-  "name": "pyBigWig",
-  "version": "0.3.18",
-  "modules": [
-    "pyBigWig",
-    "pyBigWigTest"
-  ]
-}

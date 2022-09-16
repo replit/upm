@@ -1,8 +1,0 @@
-{
-  "name": "session-info",
-  "version": "1.0.0",
-  "modules": [
-    "session_info",
-    "stdlib_list"
-  ]
-}

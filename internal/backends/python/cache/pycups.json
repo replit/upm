@@ -1,5 +1,0 @@
-{
-  "name": "pycups",
-  "version": "2.0.1",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pycups/bin/python3', '-m', 'pip', 'install', 'pycups']' returned non-zero exit status 1.\"}"
-}

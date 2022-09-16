@@ -1,7 +1,0 @@
-{
-  "name": "wadllib",
-  "version": "1.3.6",
-  "modules": [
-    "wadllib"
-  ]
-}

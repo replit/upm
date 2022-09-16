@@ -1,7 +1,0 @@
-{
-  "name": "can-isotp",
-  "version": "1.8",
-  "modules": [
-    "isotp"
-  ]
-}

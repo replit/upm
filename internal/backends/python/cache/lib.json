@@ -1,7 +1,0 @@
-{
-  "name": "lib",
-  "version": "4.0.0",
-  "modules": [
-    "lib"
-  ]
-}

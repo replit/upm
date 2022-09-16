@@ -1,7 +1,0 @@
-{
-  "name": "entry-points-txt",
-  "version": "0.2.0",
-  "modules": [
-    "entry_points_txt"
-  ]
-}

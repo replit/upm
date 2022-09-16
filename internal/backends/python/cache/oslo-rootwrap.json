@@ -1,7 +1,0 @@
-{
-  "name": "oslo.rootwrap",
-  "version": "6.3.1",
-  "modules": [
-    "oslo_rootwrap"
-  ]
-}

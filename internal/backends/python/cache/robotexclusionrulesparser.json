@@ -1,7 +1,0 @@
-{
-  "name": "robotexclusionrulesparser",
-  "version": "1.7.1",
-  "modules": [
-    "robotexclusionrulesparser"
-  ]
-}

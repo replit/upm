@@ -1,8 +1,0 @@
-{
-  "name": "patchelf",
-  "version": "0.15.0.0",
-  "requires_dist": [
-    "pytest",
-    "importlib-metadata"
-  ]
-}

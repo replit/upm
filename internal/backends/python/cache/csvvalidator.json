@@ -1,7 +1,0 @@
-{
-  "name": "csvvalidator",
-  "version": "1.2",
-  "modules": [
-    "csvvalidator"
-  ]
-}

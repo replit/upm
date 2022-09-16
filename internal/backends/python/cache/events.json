@@ -1,7 +1,0 @@
-{
-  "name": "Events",
-  "version": "0.4",
-  "modules": [
-    "events"
-  ]
-}

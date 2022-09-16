@@ -1,7 +1,0 @@
-{
-  "name": "tencentcloud-sdk-python-gse",
-  "version": "3.0.728",
-  "modules": [
-    "tencentcloud"
-  ]
-}

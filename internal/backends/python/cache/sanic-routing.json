@@ -1,7 +1,0 @@
-{
-  "name": "sanic-routing",
-  "version": "22.8.0",
-  "modules": [
-    "sanic_routing"
-  ]
-}

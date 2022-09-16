@@ -1,8 +1,0 @@
-{
-  "name": "bcpy",
-  "version": "0.1.8",
-  "modules": [
-    "bcpy",
-    "tests"
-  ]
-}

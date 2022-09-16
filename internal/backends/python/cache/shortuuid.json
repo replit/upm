@@ -1,7 +1,0 @@
-{
-  "name": "shortuuid",
-  "version": "1.0.9",
-  "modules": [
-    "shortuuid"
-  ]
-}

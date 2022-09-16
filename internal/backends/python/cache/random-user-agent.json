@@ -1,7 +1,0 @@
-{
-  "name": "random-user-agent",
-  "version": "1.0.1",
-  "modules": [
-    "random_user_agent"
-  ]
-}

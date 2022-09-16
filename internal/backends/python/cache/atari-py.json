@@ -1,9 +1,0 @@
-{
-  "name": "atari-py",
-  "version": "0.2.9",
-  "modules": [
-    "atari_py",
-    "numpy",
-    "six"
-  ]
-}

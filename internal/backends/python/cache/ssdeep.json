@@ -1,5 +1,0 @@
-{
-  "name": "ssdeep",
-  "version": "3.4",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/ssdeep/bin/python3', '-m', 'pip', 'install', 'ssdeep']' returned non-zero exit status 1.\"}"
-}

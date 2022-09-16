@@ -1,7 +1,0 @@
-{
-  "name": "bounded-pool-executor",
-  "version": "0.0.3",
-  "modules": [
-    "bounded_pool_executor"
-  ]
-}

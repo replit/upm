@@ -1,7 +1,0 @@
-{
-  "name": "tomli-w",
-  "version": "1.0.0",
-  "modules": [
-    "tomli_w"
-  ]
-}

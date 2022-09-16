@@ -1,7 +1,0 @@
-{
-  "name": "django-cte",
-  "version": "1.2.1",
-  "modules": [
-    "django_cte"
-  ]
-}

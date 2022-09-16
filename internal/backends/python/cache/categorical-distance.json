@@ -1,8 +1,0 @@
-{
-  "name": "categorical-distance",
-  "version": "1.9",
-  "modules": [
-    "categorical",
-    "numpy"
-  ]
-}

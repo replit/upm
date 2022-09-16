@@ -1,7 +1,0 @@
-{
-  "name": "chromedriver",
-  "version": "2.24.1",
-  "modules": [
-    "chromedriver"
-  ]
-}

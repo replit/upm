@@ -1,7 +1,0 @@
-{
-  "name": "pymitter",
-  "version": "0.4.0",
-  "modules": [
-    "pymitter"
-  ]
-}

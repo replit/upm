@@ -1,7 +1,0 @@
-{
-  "name": "JSON-log-formatter",
-  "version": "0.5.1",
-  "modules": [
-    "json_log_formatter"
-  ]
-}

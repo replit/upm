@@ -1,9 +1,0 @@
-{
-  "name": "keras-position-wise-feed-forward",
-  "version": "0.8.0",
-  "modules": [
-    "keras_position_wise_feed_forward",
-    "numpy",
-    "tests"
-  ]
-}

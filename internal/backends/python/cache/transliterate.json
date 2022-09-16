@@ -1,8 +1,0 @@
-{
-  "name": "transliterate",
-  "version": "1.10.2",
-  "modules": [
-    "six",
-    "transliterate"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "slicer",
-  "version": "0.0.7",
-  "modules": [
-    "slicer"
-  ]
-}

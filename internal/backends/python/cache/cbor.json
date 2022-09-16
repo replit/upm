@@ -1,7 +1,0 @@
-{
-  "name": "cbor",
-  "version": "1.0.0",
-  "modules": [
-    "cbor"
-  ]
-}

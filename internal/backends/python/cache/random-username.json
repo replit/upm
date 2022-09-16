@@ -1,8 +1,0 @@
-{
-  "name": "random-username",
-  "version": "1.0.2",
-  "modules": [
-    "random_username",
-    "src"
-  ]
-}

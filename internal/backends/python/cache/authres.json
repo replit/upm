@@ -1,7 +1,0 @@
-{
-  "name": "authres",
-  "version": "1.2.0",
-  "modules": [
-    "authres"
-  ]
-}

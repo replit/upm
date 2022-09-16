@@ -1,8 +1,0 @@
-{
-  "name": "pdfminer",
-  "version": "20191125",
-  "modules": [
-    "Crypto",
-    "pdfminer"
-  ]
-}

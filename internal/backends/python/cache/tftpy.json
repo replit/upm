@@ -1,7 +1,0 @@
-{
-  "name": "tftpy",
-  "version": "0.8.2",
-  "modules": [
-    "tftpy"
-  ]
-}

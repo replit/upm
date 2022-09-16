@@ -1,7 +1,0 @@
-{
-  "name": "swimlane-connector-exceptions",
-  "version": "1.0.1",
-  "modules": [
-    "swimlane_connector_exceptions"
-  ]
-}

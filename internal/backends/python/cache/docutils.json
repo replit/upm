@@ -1,7 +1,0 @@
-{
-  "name": "docutils",
-  "version": "0.19",
-  "modules": [
-    "docutils"
-  ]
-}

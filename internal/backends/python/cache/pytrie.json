@@ -1,8 +1,0 @@
-{
-  "name": "PyTrie",
-  "version": "0.4.0",
-  "modules": [
-    "pytrie",
-    "sortedcontainers"
-  ]
-}

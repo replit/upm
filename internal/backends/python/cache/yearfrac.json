@@ -1,8 +1,0 @@
-{
-  "name": "yearfrac",
-  "version": "0.4.7",
-  "modules": [
-    "numpy",
-    "yearfrac"
-  ]
-}

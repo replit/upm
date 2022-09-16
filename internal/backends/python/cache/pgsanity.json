@@ -1,7 +1,0 @@
-{
-  "name": "pgsanity",
-  "version": "0.2.9",
-  "modules": [
-    "pgsanity"
-  ]
-}

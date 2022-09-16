@@ -1,8 +1,0 @@
-{
-  "name": "pyu2f",
-  "version": "0.1.5",
-  "modules": [
-    "pyu2f",
-    "six"
-  ]
-}

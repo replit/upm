@@ -1,7 +1,0 @@
-{
-  "name": "poetry-core",
-  "version": "1.1.0",
-  "requires_dist": [
-    "importlib-metadata"
-  ]
-}

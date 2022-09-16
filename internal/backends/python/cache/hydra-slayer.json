@@ -1,7 +1,0 @@
-{
-  "name": "hydra-slayer",
-  "version": "0.4.0",
-  "modules": [
-    "hydra_slayer"
-  ]
-}

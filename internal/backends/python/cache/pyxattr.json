@@ -1,7 +1,0 @@
-{
-  "name": "pyxattr",
-  "version": "0.7.2",
-  "modules": [
-    "xattr"
-  ]
-}

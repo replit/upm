@@ -1,7 +1,0 @@
-{
-  "name": "installer",
-  "version": "0.5.1",
-  "modules": [
-    "installer"
-  ]
-}

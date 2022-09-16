@@ -1,7 +1,0 @@
-{
-  "name": "ebcdic",
-  "version": "1.1.1",
-  "modules": [
-    "ebcdic"
-  ]
-}

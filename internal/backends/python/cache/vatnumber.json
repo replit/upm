@@ -1,8 +1,0 @@
-{
-  "name": "vatnumber",
-  "version": "1.2",
-  "modules": [
-    "stdnum",
-    "vatnumber"
-  ]
-}

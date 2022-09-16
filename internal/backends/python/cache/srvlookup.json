@@ -1,8 +1,0 @@
-{
-  "name": "srvlookup",
-  "version": "3.0.0",
-  "modules": [
-    "dns",
-    "srvlookup"
-  ]
-}

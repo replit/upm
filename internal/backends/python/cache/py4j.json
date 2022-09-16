@@ -1,7 +1,0 @@
-{
-  "name": "py4j",
-  "version": "0.10.9.7",
-  "modules": [
-    "py4j"
-  ]
-}

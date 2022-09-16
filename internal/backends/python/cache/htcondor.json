@@ -1,8 +1,0 @@
-{
-  "name": "htcondor",
-  "version": "9.11.1",
-  "modules": [
-    "classad",
-    "htcondor"
-  ]
-}

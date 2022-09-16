@@ -1,7 +1,0 @@
-{
-  "name": "evdev",
-  "version": "1.6.0",
-  "modules": [
-    "evdev"
-  ]
-}

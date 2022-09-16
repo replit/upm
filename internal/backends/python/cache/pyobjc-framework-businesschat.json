@@ -1,5 +1,0 @@
-{
-  "name": "pyobjc-framework-BusinessChat",
-  "version": "8.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pyobjc-framework-BusinessChat/bin/python3', '-m', 'pip', 'install', 'pyobjc-framework-BusinessChat']' returned non-zero exit status 1.\"}"
-}

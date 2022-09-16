@@ -1,7 +1,0 @@
-{
-  "name": "smtpapi",
-  "version": "0.4.12",
-  "modules": [
-    "smtpapi"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "pylibmc",
-  "version": "1.6.3",
-  "modules": [
-    "_pylibmc",
-    "pylibmc"
-  ]
-}

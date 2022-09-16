@@ -1,7 +1,0 @@
-{
-  "name": "sorl-thumbnail",
-  "version": "12.9.0",
-  "modules": [
-    "sorl"
-  ]
-}

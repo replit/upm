@@ -1,7 +1,0 @@
-{
-  "name": "python-snappy",
-  "version": "0.6.1",
-  "modules": [
-    "snappy"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "Logentries",
-  "version": "0.17",
-  "modules": [
-    "certifi",
-    "logentries"
-  ]
-}

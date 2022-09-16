@@ -1,5 +1,0 @@
-{
-  "name": "postal",
-  "version": "1.1.10",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/postal/bin/python3', '-m', 'pip', 'install', 'postal']' returned non-zero exit status 1.\"}"
-}

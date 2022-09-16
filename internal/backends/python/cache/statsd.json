@@ -1,7 +1,0 @@
-{
-  "name": "statsd",
-  "version": "3.3.0",
-  "modules": [
-    "statsd"
-  ]
-}

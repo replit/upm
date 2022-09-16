@@ -1,8 +1,0 @@
-{
-  "name": "dulwich",
-  "version": "0.20.46",
-  "modules": [
-    "dulwich",
-    "urllib3"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "libtmux",
-  "version": "0.15.1",
-  "modules": [
-    "libtmux"
-  ]
-}

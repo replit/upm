@@ -1,7 +1,0 @@
-{
-  "name": "mocker",
-  "version": "1.1.1",
-  "modules": [
-    "mocker"
-  ]
-}

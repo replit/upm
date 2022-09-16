@@ -1,8 +1,0 @@
-{
-  "name": "pygrok",
-  "version": "1.0.0",
-  "modules": [
-    "pygrok",
-    "regex"
-  ]
-}

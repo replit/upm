@@ -1,7 +1,0 @@
-{
-  "name": "tencentcloud-sdk-python-ssa",
-  "version": "3.0.729",
-  "modules": [
-    "tencentcloud"
-  ]
-}

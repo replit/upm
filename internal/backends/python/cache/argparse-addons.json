@@ -1,7 +1,0 @@
-{
-  "name": "argparse-addons",
-  "version": "0.8.0",
-  "modules": [
-    "argparse_addons"
-  ]
-}

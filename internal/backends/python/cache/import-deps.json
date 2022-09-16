@@ -1,8 +1,0 @@
-{
-  "name": "import-deps",
-  "version": "0.2.0",
-  "modules": [
-    "import_deps",
-    "tests"
-  ]
-}

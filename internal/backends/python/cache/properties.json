@@ -1,8 +1,0 @@
-{
-  "name": "properties",
-  "version": "0.6.1",
-  "modules": [
-    "properties",
-    "six"
-  ]
-}

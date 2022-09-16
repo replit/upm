@@ -1,7 +1,0 @@
-{
-  "name": "asyncpool",
-  "version": "1.0",
-  "modules": [
-    "asyncpool"
-  ]
-}

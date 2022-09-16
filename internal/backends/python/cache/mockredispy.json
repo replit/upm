@@ -1,7 +1,0 @@
-{
-  "name": "mockredispy",
-  "version": "2.9.3",
-  "modules": [
-    "mockredis"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "circlify",
-  "version": "0.15.0",
-  "modules": [
-    "circlify"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "lockfile",
-  "version": "0.12.2",
-  "modules": [
-    "lockfile"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "einops",
-  "version": "0.4.1",
-  "modules": [
-    "einops"
-  ]
-}

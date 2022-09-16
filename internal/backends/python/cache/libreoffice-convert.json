@@ -1,7 +1,0 @@
-{
-  "name": "libreoffice_convert",
-  "version": "1.0",
-  "modules": [
-    "libreoffice_convert"
-  ]
-}

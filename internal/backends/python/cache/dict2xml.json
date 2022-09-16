@@ -1,7 +1,0 @@
-{
-  "name": "dict2xml",
-  "version": "1.7.1",
-  "modules": [
-    "dict2xml"
-  ]
-}

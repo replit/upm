@@ -1,7 +1,0 @@
-{
-  "name": "wsgi-request-logger",
-  "version": "0.4.6",
-  "modules": [
-    "requestlogger"
-  ]
-}

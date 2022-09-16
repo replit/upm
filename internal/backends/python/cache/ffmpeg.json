@@ -1,7 +1,0 @@
-{
-  "name": "ffmpeg",
-  "version": "1.4",
-  "modules": [
-    "ffmpeg"
-  ]
-}

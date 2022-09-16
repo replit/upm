@@ -1,7 +1,0 @@
-{
-  "name": "graphene-django-optimizer",
-  "version": "0.9.1",
-  "modules": [
-    "graphene_django_optimizer"
-  ]
-}

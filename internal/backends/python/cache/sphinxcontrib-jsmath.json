@@ -1,9 +1,0 @@
-{
-  "name": "sphinxcontrib-jsmath",
-  "version": "1.0.1",
-  "requires_dist": [
-    "pytest",
-    "flake8",
-    "mypy"
-  ]
-}

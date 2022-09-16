@@ -1,8 +1,0 @@
-{
-  "name": "pip-autoremove",
-  "version": "0.10.0",
-  "requires_dist": [
-    "pip",
-    "setuptools"
-  ]
-}

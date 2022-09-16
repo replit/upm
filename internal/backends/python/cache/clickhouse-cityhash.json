@@ -1,7 +1,0 @@
-{
-  "name": "clickhouse-cityhash",
-  "version": "1.0.2.3",
-  "modules": [
-    "clickhouse_cityhash"
-  ]
-}

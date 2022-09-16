@@ -1,7 +1,0 @@
-{
-  "name": "stopwordsiso",
-  "version": "0.6.1",
-  "modules": [
-    "stopwordsiso"
-  ]
-}

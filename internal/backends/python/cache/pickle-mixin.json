@@ -1,7 +1,0 @@
-{
-  "name": "pickle-mixin",
-  "version": "1.0.2",
-  "modules": [
-    "pickle_mixin"
-  ]
-}

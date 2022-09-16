@@ -1,9 +1,0 @@
-{
-  "name": "nextcord-ext-menus",
-  "version": "1.5.5",
-  "requires_dist": [
-    "sphinx",
-    "sphinxcontrib-trio",
-    "sphinx-book-theme"
-  ]
-}

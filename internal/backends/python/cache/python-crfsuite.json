@@ -1,7 +1,0 @@
-{
-  "name": "python-crfsuite",
-  "version": "0.9.8",
-  "modules": [
-    "pycrfsuite"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pygeohash",
-  "version": "1.2.0",
-  "modules": [
-    "pygeohash"
-  ]
-}

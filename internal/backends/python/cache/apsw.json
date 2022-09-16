@@ -1,7 +1,0 @@
-{
-  "name": "apsw",
-  "version": "3.39.3.0",
-  "modules": [
-    "apsw"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "types-boto",
-  "version": "2.49.17",
-  "requires_dist": [
-    "types-six"
-  ]
-}

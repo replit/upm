@@ -1,7 +1,0 @@
-{
-  "name": "websockets",
-  "version": "10.3",
-  "modules": [
-    "websockets"
-  ]
-}

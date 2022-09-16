@@ -1,7 +1,0 @@
-{
-  "name": "Inject",
-  "version": "4.3.1",
-  "modules": [
-    "inject"
-  ]
-}

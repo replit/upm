@@ -1,8 +1,0 @@
-{
-  "name": "pyhocon",
-  "version": "0.3.59",
-  "modules": [
-    "pyhocon",
-    "pyparsing"
-  ]
-}

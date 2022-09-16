@@ -1,9 +1,0 @@
-{
-  "name": "docx",
-  "version": "0.2.4",
-  "modules": [
-    "PIL",
-    "docx",
-    "lxml"
-  ]
-}

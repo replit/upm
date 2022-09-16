@@ -1,7 +1,0 @@
-{
-  "name": "django-cprofile-middleware",
-  "version": "1.0.5",
-  "modules": [
-    "django_cprofile_middleware"
-  ]
-}

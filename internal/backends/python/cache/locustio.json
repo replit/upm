@@ -1,5 +1,0 @@
-{
-  "name": "locustio",
-  "version": "0.999",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/locustio/bin/python3', '-m', 'pip', 'install', 'locustio']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "erlang-py",
-  "version": "2.0.4",
-  "modules": [
-    "erlang"
-  ]
-}

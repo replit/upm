@@ -1,7 +1,0 @@
-{
-  "name": "python-Levenshtein-wheels",
-  "version": "0.13.2",
-  "modules": [
-    "Levenshtein"
-  ]
-}

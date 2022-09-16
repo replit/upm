@@ -1,9 +1,0 @@
-{
-  "name": "zope.structuredtext",
-  "version": "4.4",
-  "requires_dist": [
-    "setuptools",
-    "Sphinx",
-    "zope.testrunner"
-  ]
-}

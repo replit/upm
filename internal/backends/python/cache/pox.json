@@ -1,7 +1,0 @@
-{
-  "name": "pox",
-  "version": "0.3.1",
-  "modules": [
-    "pox"
-  ]
-}

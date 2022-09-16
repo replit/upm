@@ -1,7 +1,0 @@
-{
-  "name": "LEPL",
-  "version": "5.1.3",
-  "modules": [
-    "lepl"
-  ]
-}

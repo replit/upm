@@ -1,7 +1,0 @@
-{
-  "name": "diff-match-patch",
-  "version": "20200713",
-  "modules": [
-    "diff_match_patch"
-  ]
-}

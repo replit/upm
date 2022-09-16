@@ -1,7 +1,0 @@
-{
-  "name": "ip3country",
-  "version": "0.2.0",
-  "modules": [
-    "ip3country"
-  ]
-}

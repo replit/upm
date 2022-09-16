@@ -1,7 +1,0 @@
-{
-  "name": "mecab-python3",
-  "version": "1.0.5",
-  "modules": [
-    "MeCab"
-  ]
-}

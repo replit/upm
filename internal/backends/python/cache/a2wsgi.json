@@ -1,7 +1,0 @@
-{
-  "name": "a2wsgi",
-  "version": "1.6.0",
-  "modules": [
-    "a2wsgi"
-  ]
-}

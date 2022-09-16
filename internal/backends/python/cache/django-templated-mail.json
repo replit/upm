@@ -1,7 +1,0 @@
-{
-  "name": "django-templated-mail",
-  "version": "1.1.1",
-  "modules": [
-    "templated_mail"
-  ]
-}

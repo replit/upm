@@ -1,9 +1,0 @@
-{
-  "name": "pandoc",
-  "version": "2.2",
-  "modules": [
-    "pandoc",
-    "plumbum",
-    "ply"
-  ]
-}

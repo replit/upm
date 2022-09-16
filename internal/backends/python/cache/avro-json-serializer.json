@@ -1,8 +1,0 @@
-{
-  "name": "avro-json-serializer",
-  "version": "1.0.4",
-  "modules": [
-    "avro_json_serializer",
-    "six"
-  ]
-}

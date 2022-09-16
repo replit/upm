@@ -1,7 +1,0 @@
-{
-  "name": "types-requests",
-  "version": "2.28.10",
-  "requires_dist": [
-    "types-urllib3"
-  ]
-}

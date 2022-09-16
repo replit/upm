@@ -1,7 +1,0 @@
-{
-  "name": "short_url",
-  "version": "1.2.2",
-  "modules": [
-    "short_url"
-  ]
-}

@@ -1,5 +1,0 @@
-{
-  "name": "gecosistema_lite",
-  "version": "0.0.918",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/gecosistema_lite/bin/python3', '-m', 'pip', 'install', 'gecosistema_lite']' returned non-zero exit status 1.\"}"
-}

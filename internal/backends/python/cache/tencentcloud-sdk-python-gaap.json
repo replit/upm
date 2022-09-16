@@ -1,7 +1,0 @@
-{
-  "name": "tencentcloud-sdk-python-gaap",
-  "version": "3.0.730",
-  "modules": [
-    "tencentcloud"
-  ]
-}

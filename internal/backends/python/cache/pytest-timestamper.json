@@ -1,7 +1,0 @@
-{
-  "name": "pytest-timestamper",
-  "version": "0.0.9",
-  "modules": [
-    "pytest_timestamper"
-  ]
-}

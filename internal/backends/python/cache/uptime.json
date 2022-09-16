@@ -1,7 +1,0 @@
-{
-  "name": "uptime",
-  "version": "3.0.1",
-  "modules": [
-    "uptime"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "ConcurrentLogHandler",
-  "version": "0.9.1",
-  "modules": [
-    "cloghandler",
-    "portalocker"
-  ]
-}

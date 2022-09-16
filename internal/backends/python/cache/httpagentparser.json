@@ -1,7 +1,0 @@
-{
-  "name": "httpagentparser",
-  "version": "1.9.3",
-  "modules": [
-    "httpagentparser"
-  ]
-}

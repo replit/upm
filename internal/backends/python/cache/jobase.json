@@ -1,5 +1,0 @@
-{
-  "name": "JoBase",
-  "version": "2.3",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/JoBase/bin/python3', '-m', 'pip', 'install', 'JoBase']' returned non-zero exit status 1.\"}"
-}

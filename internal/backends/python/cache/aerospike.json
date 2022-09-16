@@ -1,8 +1,0 @@
-{
-  "name": "aerospike",
-  "version": "7.1.0",
-  "modules": [
-    "aerospike",
-    "aerospike_helpers"
-  ]
-}

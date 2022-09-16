@@ -1,9 +1,0 @@
-{
-  "name": "django-background-tasks",
-  "version": "1.2.5",
-  "modules": [
-    "background_task",
-    "compat",
-    "six"
-  ]
-}

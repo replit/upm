@@ -1,7 +1,0 @@
-{
-  "name": "urllib3-secure-extra",
-  "version": "0.1.0",
-  "modules": [
-    "urllib3_secure_extra"
-  ]
-}

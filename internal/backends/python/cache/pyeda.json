@@ -1,7 +1,0 @@
-{
-  "name": "pyeda",
-  "version": "0.28.0",
-  "modules": [
-    "pyeda"
-  ]
-}

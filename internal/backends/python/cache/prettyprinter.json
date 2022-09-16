@@ -1,9 +1,0 @@
-{
-  "name": "prettyprinter",
-  "version": "0.18.0",
-  "modules": [
-    "colorful",
-    "prettyprinter",
-    "pygments"
-  ]
-}

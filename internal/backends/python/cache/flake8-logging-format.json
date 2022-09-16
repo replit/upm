@@ -1,7 +1,0 @@
-{
-  "name": "flake8-logging-format",
-  "version": "0.7.5",
-  "modules": [
-    "logging_format"
-  ]
-}

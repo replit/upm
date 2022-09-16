@@ -1,7 +1,0 @@
-{
-  "name": "multi_key_dict",
-  "version": "2.0.3",
-  "modules": [
-    "multi_key_dict"
-  ]
-}

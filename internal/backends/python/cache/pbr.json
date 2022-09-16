@@ -1,7 +1,0 @@
-{
-  "name": "pbr",
-  "version": "5.10.0",
-  "modules": [
-    "pbr"
-  ]
-}

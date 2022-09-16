@@ -1,7 +1,0 @@
-{
-  "name": "publicsuffix2",
-  "version": "2.20191221",
-  "modules": [
-    "publicsuffix2"
-  ]
-}

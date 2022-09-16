@@ -1,7 +1,0 @@
-{
-  "name": "python-nmap",
-  "version": "0.7.1",
-  "modules": [
-    "nmap"
-  ]
-}

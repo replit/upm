@@ -1,5 +1,0 @@
-{
-  "name": "mysql-connector-python-rf",
-  "version": "2.2.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/mysql-connector-python-rf/bin/python3', '-m', 'pip', 'install', 'mysql-connector-python-rf']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "consul_kv",
-  "version": "0.7.3",
-  "modules": [
-    "consul_kv"
-  ]
-}

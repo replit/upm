@@ -1,7 +1,0 @@
-{
-  "name": "dash-renderer",
-  "version": "1.9.1",
-  "modules": [
-    "dash_renderer"
-  ]
-}

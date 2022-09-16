@@ -1,7 +1,0 @@
-{
-  "name": "plum-py",
-  "version": "0.8.1",
-  "modules": [
-    "plum"
-  ]
-}

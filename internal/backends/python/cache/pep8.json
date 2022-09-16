@@ -1,7 +1,0 @@
-{
-  "name": "pep8",
-  "version": "1.7.1",
-  "modules": [
-    "pep8"
-  ]
-}

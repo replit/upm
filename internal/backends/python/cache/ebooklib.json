@@ -1,9 +1,0 @@
-{
-  "name": "EbookLib",
-  "version": "0.17.1",
-  "modules": [
-    "ebooklib",
-    "lxml",
-    "six"
-  ]
-}

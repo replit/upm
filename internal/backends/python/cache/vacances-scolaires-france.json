@@ -1,7 +1,0 @@
-{
-  "name": "vacances-scolaires-france",
-  "version": "0.9.0",
-  "modules": [
-    "vacances_scolaires_france"
-  ]
-}

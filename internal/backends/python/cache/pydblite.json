@@ -1,7 +1,0 @@
-{
-  "name": "PyDbLite",
-  "version": "3.0.4",
-  "modules": [
-    "pydblite"
-  ]
-}

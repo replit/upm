@@ -1,7 +1,0 @@
-{
-  "name": "pycparser",
-  "version": "2.21",
-  "modules": [
-    "pycparser"
-  ]
-}

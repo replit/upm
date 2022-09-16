@@ -1,5 +1,0 @@
-{
-  "name": "dm.xmlsec.binding",
-  "version": "2.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/dm.xmlsec.binding/bin/python3', '-m', 'pip', 'install', 'dm.xmlsec.binding']' returned non-zero exit status 1.\"}"
-}

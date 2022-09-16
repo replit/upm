@@ -1,9 +1,0 @@
-{
-  "name": "m2r",
-  "version": "0.2.1",
-  "modules": [
-    "docutils",
-    "m2r",
-    "mistune"
-  ]
-}

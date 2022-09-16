@@ -1,7 +1,0 @@
-{
-  "name": "circuitbreaker",
-  "version": "1.4.0",
-  "modules": [
-    "circuitbreaker"
-  ]
-}

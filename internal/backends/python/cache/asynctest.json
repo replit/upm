@@ -1,7 +1,0 @@
-{
-  "name": "asynctest",
-  "version": "0.13.0",
-  "modules": [
-    "asynctest"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "goslate",
-  "version": "1.5.4",
-  "modules": [
-    "goslate"
-  ]
-}

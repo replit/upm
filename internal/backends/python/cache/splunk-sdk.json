@@ -1,7 +1,0 @@
-{
-  "name": "splunk-sdk",
-  "version": "1.7.1",
-  "modules": [
-    "splunklib"
-  ]
-}

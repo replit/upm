@@ -1,9 +1,0 @@
-{
-  "name": "basictracer",
-  "version": "3.2.0",
-  "modules": [
-    "basictracer",
-    "opentracing",
-    "six"
-  ]
-}

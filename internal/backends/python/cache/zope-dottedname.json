@@ -1,8 +1,0 @@
-{
-  "name": "zope.dottedname",
-  "version": "5.0",
-  "requires_dist": [
-    "setuptools",
-    "Sphinx"
-  ]
-}

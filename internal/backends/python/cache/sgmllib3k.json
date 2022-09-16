@@ -1,7 +1,0 @@
-{
-  "name": "sgmllib3k",
-  "version": "1.0.0",
-  "modules": [
-    "sgmllib"
-  ]
-}

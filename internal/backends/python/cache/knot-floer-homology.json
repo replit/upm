@@ -1,7 +1,0 @@
-{
-  "name": "knot-floer-homology",
-  "version": "1.2",
-  "modules": [
-    "knot_floer_homology"
-  ]
-}

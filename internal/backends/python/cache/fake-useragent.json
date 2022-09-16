@@ -1,7 +1,0 @@
-{
-  "name": "fake-useragent",
-  "version": "0.1.11",
-  "modules": [
-    "fake_useragent"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "versioneer-518",
-  "version": "0.19",
-  "modules": [
-    "versioneer"
-  ]
-}

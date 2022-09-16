@@ -1,5 +1,0 @@
-{
-  "name": "MySQL-python",
-  "version": "1.2.5",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/MySQL-python/bin/python3', '-m', 'pip', 'install', 'MySQL-python']' returned non-zero exit status 1.\"}"
-}

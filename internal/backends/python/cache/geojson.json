@@ -1,7 +1,0 @@
-{
-  "name": "geojson",
-  "version": "2.5.0",
-  "modules": [
-    "geojson"
-  ]
-}

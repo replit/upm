@@ -1,7 +1,0 @@
-{
-  "name": "netutils",
-  "version": "1.2.0",
-  "modules": [
-    "netutils"
-  ]
-}

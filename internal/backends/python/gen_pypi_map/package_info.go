@@ -26,6 +26,11 @@ func loadPackageInfoFile(filePath string, cached *PackageInfo) error {
 }
 
 func savePackageInfo(packageName string, cacheDir string, info *PackageInfo) error {
+	err := os.MkdirAll(cacheDir, 0774)
+
+	if err != nil {
+		return err
+	}
 	filePath := cacheDir + "/" + packageName + ".json"
 	writer, err := os.Create(filePath)
 	if err != nil {

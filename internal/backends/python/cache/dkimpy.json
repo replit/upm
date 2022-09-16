@@ -1,8 +1,0 @@
-{
-  "name": "dkimpy",
-  "version": "1.0.5",
-  "modules": [
-    "dkim",
-    "dns"
-  ]
-}

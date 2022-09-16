@@ -1,8 +1,0 @@
-{
-  "name": "scripts",
-  "version": "2.0",
-  "modules": [
-    "scripts",
-    "stua"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "python-libnmap",
-  "version": "0.7.3",
-  "modules": [
-    "libnmap"
-  ]
-}

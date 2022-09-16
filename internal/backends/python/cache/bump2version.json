@@ -1,7 +1,0 @@
-{
-  "name": "bump2version",
-  "version": "1.0.1",
-  "modules": [
-    "bumpversion"
-  ]
-}

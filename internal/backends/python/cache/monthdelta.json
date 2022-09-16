@@ -1,7 +1,0 @@
-{
-  "name": "MonthDelta",
-  "version": "0.9.1",
-  "modules": [
-    "monthdelta"
-  ]
-}

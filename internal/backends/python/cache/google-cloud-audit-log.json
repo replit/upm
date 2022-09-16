@@ -1,8 +1,0 @@
-{
-  "name": "google-cloud-audit-log",
-  "version": "0.2.4",
-  "requires_dist": [
-    "protobuf",
-    "googleapis-common-protos"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "aiosql",
-  "version": "6.4",
-  "modules": [
-    "aiosql"
-  ]
-}

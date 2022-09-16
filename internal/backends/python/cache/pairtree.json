@@ -1,8 +1,0 @@
-{
-  "name": "Pairtree",
-  "version": "0.8.1",
-  "modules": [
-    "pairtree",
-    "tests"
-  ]
-}

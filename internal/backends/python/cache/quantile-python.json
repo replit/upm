@@ -1,7 +1,0 @@
-{
-  "name": "quantile-python",
-  "version": "1.1",
-  "modules": [
-    "quantile"
-  ]
-}

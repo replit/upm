@@ -1,7 +1,0 @@
-{
-  "name": "lumigo-tracer",
-  "version": "1.1.203",
-  "modules": [
-    "lumigo_tracer"
-  ]
-}

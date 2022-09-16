@@ -1,7 +1,0 @@
-{
-  "name": "django-suit",
-  "version": "0.2.28",
-  "modules": [
-    "suit"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "json-rpc",
-  "version": "1.13.0",
-  "modules": [
-    "jsonrpc"
-  ]
-}

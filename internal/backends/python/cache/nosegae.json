@@ -1,8 +1,0 @@
-{
-  "name": "NoseGAE",
-  "version": "0.5.10",
-  "modules": [
-    "nose",
-    "nosegae"
-  ]
-}

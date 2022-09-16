@@ -1,7 +1,0 @@
-{
-  "name": "python-http-client",
-  "version": "3.3.7",
-  "modules": [
-    "python_http_client"
-  ]
-}

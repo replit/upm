@@ -1,5 +1,0 @@
-{
-  "name": "rrdtool",
-  "version": "0.1.16",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/rrdtool/bin/python3', '-m', 'pip', 'install', 'rrdtool']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "asyncio-nats-client",
-  "version": "0.11.5",
-  "modules": [
-    "nats"
-  ]
-}

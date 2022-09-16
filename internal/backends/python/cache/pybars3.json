@@ -1,8 +1,0 @@
-{
-  "name": "pybars3",
-  "version": "0.9.7",
-  "modules": [
-    "pybars",
-    "pymeta"
-  ]
-}

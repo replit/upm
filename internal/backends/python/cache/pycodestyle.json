@@ -1,7 +1,0 @@
-{
-  "name": "pycodestyle",
-  "version": "2.9.1",
-  "modules": [
-    "pycodestyle"
-  ]
-}

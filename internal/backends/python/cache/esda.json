@@ -1,5 +1,0 @@
-{
-  "name": "esda",
-  "version": "2.4.3",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/esda/bin/python3', '-m', 'pip', 'install', 'esda']' returned non-zero exit status 2.\"}"
-}

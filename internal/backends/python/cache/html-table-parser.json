@@ -1,8 +1,0 @@
-{
-  "name": "html_table_parser",
-  "version": "0.1.0",
-  "modules": [
-    "bs4",
-    "html_table_parser"
-  ]
-}

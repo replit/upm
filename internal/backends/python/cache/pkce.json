@@ -1,7 +1,0 @@
-{
-  "name": "pkce",
-  "version": "1.0.3",
-  "modules": [
-    "pkce"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "name": "xdis",
-  "version": "6.0.4",
-  "modules": [
-    "click",
-    "six",
-    "xdis"
-  ]
-}

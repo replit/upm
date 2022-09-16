@@ -1,5 +1,0 @@
-{
-  "name": "AppKit",
-  "version": "0.2.8",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/AppKit/bin/python3', '-m', 'pip', 'install', 'AppKit']' returned non-zero exit status 1.\"}"
-}

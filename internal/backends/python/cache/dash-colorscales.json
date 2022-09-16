@@ -1,7 +1,0 @@
-{
-  "name": "dash_colorscales",
-  "version": "0.0.4",
-  "modules": [
-    "dash_colorscales"
-  ]
-}

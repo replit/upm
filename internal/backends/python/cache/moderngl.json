@@ -1,8 +1,0 @@
-{
-  "name": "moderngl",
-  "version": "5.6.4",
-  "modules": [
-    "glcontext",
-    "moderngl"
-  ]
-}

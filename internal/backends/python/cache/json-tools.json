@@ -1,9 +1,0 @@
-{
-  "name": "json_tools",
-  "version": "0.4.1",
-  "modules": [
-    "colorama",
-    "json_tools",
-    "six"
-  ]
-}

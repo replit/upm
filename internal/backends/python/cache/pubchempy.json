@@ -1,7 +1,0 @@
-{
-  "name": "PubChemPy",
-  "version": "1.0.4",
-  "modules": [
-    "pubchempy"
-  ]
-}

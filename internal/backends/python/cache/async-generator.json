@@ -1,7 +1,0 @@
-{
-  "name": "async_generator",
-  "version": "1.10",
-  "modules": [
-    "async_generator"
-  ]
-}

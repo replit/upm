@@ -1,9 +1,0 @@
-{
-  "name": "biopython",
-  "version": "1.79",
-  "modules": [
-    "Bio",
-    "BioSQL",
-    "numpy"
-  ]
-}

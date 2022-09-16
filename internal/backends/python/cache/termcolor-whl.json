@@ -1,7 +1,0 @@
-{
-  "name": "termcolor-whl",
-  "version": "1.1.2",
-  "modules": [
-    "termcolor"
-  ]
-}

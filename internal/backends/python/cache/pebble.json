@@ -1,7 +1,0 @@
-{
-  "name": "Pebble",
-  "version": "5.0.0",
-  "modules": [
-    "pebble"
-  ]
-}

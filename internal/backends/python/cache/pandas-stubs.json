@@ -1,7 +1,0 @@
-{
-  "name": "pandas-stubs",
-  "version": "1.4.4.220912",
-  "requires_dist": [
-    "types-pytz"
-  ]
-}

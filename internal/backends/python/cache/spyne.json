@@ -1,8 +1,0 @@
-{
-  "name": "spyne",
-  "version": "2.14.0",
-  "modules": [
-    "pytz",
-    "spyne"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "observable",
-  "version": "1.0.3",
-  "modules": [
-    "observable",
-    "tests"
-  ]
-}

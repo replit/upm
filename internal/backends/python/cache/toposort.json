@@ -1,7 +1,0 @@
-{
-  "name": "toposort",
-  "version": "1.7",
-  "modules": [
-    "toposort"
-  ]
-}

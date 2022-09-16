@@ -1,7 +1,0 @@
-{
-  "name": "indexed-gzip",
-  "version": "1.7.0",
-  "modules": [
-    "indexed_gzip"
-  ]
-}

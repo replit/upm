@@ -1,7 +1,0 @@
-{
-  "name": "pure-sasl",
-  "version": "0.6.2",
-  "modules": [
-    "puresasl"
-  ]
-}

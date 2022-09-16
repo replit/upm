@@ -1,7 +1,0 @@
-{
-  "name": "rtoml",
-  "version": "0.8.0",
-  "modules": [
-    "rtoml"
-  ]
-}

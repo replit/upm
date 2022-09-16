@@ -1,7 +1,0 @@
-{
-  "name": "pyPEG2",
-  "version": "2.15.2",
-  "modules": [
-    "pypeg2"
-  ]
-}

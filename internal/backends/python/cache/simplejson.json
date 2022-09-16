@@ -1,7 +1,0 @@
-{
-  "name": "simplejson",
-  "version": "3.17.6",
-  "modules": [
-    "simplejson"
-  ]
-}

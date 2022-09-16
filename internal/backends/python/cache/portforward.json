@@ -1,8 +1,0 @@
-{
-  "name": "portforward",
-  "version": "0.2.8",
-  "modules": [
-    "_portforward",
-    "portforward"
-  ]
-}

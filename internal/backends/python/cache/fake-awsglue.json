@@ -1,7 +1,0 @@
-{
-  "name": "fake-awsglue",
-  "version": "0.0.0.post20190320",
-  "modules": [
-    "awsglue"
-  ]
-}

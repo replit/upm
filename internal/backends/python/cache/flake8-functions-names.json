@@ -1,7 +1,0 @@
-{
-  "name": "flake8-functions-names",
-  "version": "0.3.0",
-  "modules": [
-    "flake8_functions_names"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "hjson",
-  "version": "3.1.0",
-  "modules": [
-    "hjson"
-  ]
-}

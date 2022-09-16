@@ -1,8 +1,0 @@
-{
-  "name": "StringDist",
-  "version": "1.0.9",
-  "modules": [
-    "cstringdist",
-    "stringdist"
-  ]
-}

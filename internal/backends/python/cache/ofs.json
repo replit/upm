@@ -1,9 +1,0 @@
-{
-  "name": "ofs",
-  "version": "0.4.3",
-  "modules": [
-    "boto",
-    "ofs",
-    "six"
-  ]
-}

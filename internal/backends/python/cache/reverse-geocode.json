@@ -1,9 +1,0 @@
-{
-  "name": "reverse-geocode",
-  "version": "1.4.1",
-  "modules": [
-    "numpy",
-    "reverse_geocode",
-    "scipy"
-  ]
-}

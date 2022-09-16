@@ -1,7 +1,0 @@
-{
-  "name": "minilog",
-  "version": "2.1",
-  "modules": [
-    "log"
-  ]
-}

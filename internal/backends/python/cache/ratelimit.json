@@ -1,7 +1,0 @@
-{
-  "name": "ratelimit",
-  "version": "2.2.1",
-  "modules": [
-    "ratelimit"
-  ]
-}

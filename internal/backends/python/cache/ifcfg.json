@@ -1,7 +1,0 @@
-{
-  "name": "ifcfg",
-  "version": "0.23",
-  "modules": [
-    "ifcfg"
-  ]
-}

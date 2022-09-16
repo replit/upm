@@ -1,8 +1,0 @@
-{
-  "name": "phone-iso3166",
-  "version": "0.4.1",
-  "modules": [
-    "phone_iso3166",
-    "tests"
-  ]
-}

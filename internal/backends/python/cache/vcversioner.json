@@ -1,7 +1,0 @@
-{
-  "name": "vcversioner",
-  "version": "2.16.0.0",
-  "modules": [
-    "vcversioner"
-  ]
-}

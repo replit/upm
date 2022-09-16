@@ -1,7 +1,0 @@
-{
-  "name": "dbutils-typehint",
-  "version": "0.1.9",
-  "modules": [
-    "dbutils_typehint"
-  ]
-}

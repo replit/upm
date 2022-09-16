@@ -1,7 +1,0 @@
-{
-  "name": "simplekv",
-  "version": "0.14.1",
-  "modules": [
-    "simplekv"
-  ]
-}

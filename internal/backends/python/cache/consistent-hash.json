@@ -1,7 +1,0 @@
-{
-  "name": "consistent_hash",
-  "version": "1.0",
-  "modules": [
-    "consistent_hash"
-  ]
-}

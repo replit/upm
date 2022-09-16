@@ -1,7 +1,0 @@
-{
-  "name": "jsonnet",
-  "version": "0.18.0",
-  "modules": [
-    "_jsonnet"
-  ]
-}

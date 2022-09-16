@@ -1,7 +1,0 @@
-{
-  "name": "sanitize-filename",
-  "version": "1.2.0",
-  "modules": [
-    "sanitize_filename"
-  ]
-}

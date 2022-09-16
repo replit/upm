@@ -1,7 +1,0 @@
-{
-  "name": "python-gnupg",
-  "version": "0.5.0",
-  "modules": [
-    "gnupg"
-  ]
-}

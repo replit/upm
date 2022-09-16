@@ -1,8 +1,0 @@
-{
-  "name": "pptree",
-  "version": "3.1",
-  "modules": [
-    "ppbtree",
-    "pptree"
-  ]
-}

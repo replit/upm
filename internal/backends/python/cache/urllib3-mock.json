@@ -1,7 +1,0 @@
-{
-  "name": "urllib3-mock",
-  "version": "0.3.3",
-  "modules": [
-    "urllib3_mock"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "jplephem",
-  "version": "2.17",
-  "modules": [
-    "jplephem",
-    "numpy"
-  ]
-}

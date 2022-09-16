@@ -1,7 +1,0 @@
-{
-  "name": "ngram",
-  "version": "4.0.3",
-  "modules": [
-    "ngram"
-  ]
-}

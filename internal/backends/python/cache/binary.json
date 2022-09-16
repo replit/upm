@@ -1,8 +1,0 @@
-{
-  "name": "binary",
-  "version": "1.0.0",
-  "modules": [
-    "binary",
-    "tests"
-  ]
-}

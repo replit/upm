@@ -1,7 +1,0 @@
-{
-  "name": "home-assistant-frontend",
-  "version": "20220907.1",
-  "modules": [
-    "hass_frontend"
-  ]
-}

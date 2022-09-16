@@ -1,7 +1,0 @@
-{
-  "name": "bytecode",
-  "version": "0.13.0",
-  "modules": [
-    "bytecode"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "pyffx",
-  "version": "0.3.0",
-  "modules": [
-    "pyffx",
-    "six"
-  ]
-}

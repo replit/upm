@@ -1,8 +1,0 @@
-{
-  "name": "dj-static",
-  "version": "0.0.6",
-  "modules": [
-    "dj_static",
-    "static"
-  ]
-}

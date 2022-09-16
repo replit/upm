@@ -1,7 +1,0 @@
-{
-  "name": "spacy-legacy",
-  "version": "3.0.10",
-  "modules": [
-    "spacy_legacy"
-  ]
-}

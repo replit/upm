@@ -1,7 +1,0 @@
-{
-  "name": "apitools",
-  "version": "0.1.4",
-  "modules": [
-    "apitools"
-  ]
-}

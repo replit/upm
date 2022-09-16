@@ -1,7 +1,0 @@
-{
-  "name": "iso3166",
-  "version": "2.1.1",
-  "modules": [
-    "iso3166"
-  ]
-}

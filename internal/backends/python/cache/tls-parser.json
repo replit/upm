@@ -1,7 +1,0 @@
-{
-  "name": "tls-parser",
-  "version": "2.0.0",
-  "modules": [
-    "tls_parser"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "ua-parser",
-  "version": "0.16.1",
-  "modules": [
-    "ua_parser"
-  ]
-}

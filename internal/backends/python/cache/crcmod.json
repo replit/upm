@@ -1,7 +1,0 @@
-{
-  "name": "crcmod",
-  "version": "1.7",
-  "modules": [
-    "crcmod"
-  ]
-}

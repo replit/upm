@@ -1,5 +1,0 @@
-{
-  "name": "ruamel.ordereddict",
-  "version": "0.4.15",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/ruamel.ordereddict/bin/python3', '-m', 'pip', 'install', 'ruamel.ordereddict']' returned non-zero exit status 1.\"}"
-}

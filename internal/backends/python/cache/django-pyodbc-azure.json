@@ -1,9 +1,0 @@
-{
-  "name": "django-pyodbc-azure",
-  "version": "2.1.0.0",
-  "requires_dist": [
-    "Django",
-    "pyodbc"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/django-pyodbc-azure/bin/python3', '-m', 'pip', 'install', 'django-pyodbc-azure']' returned non-zero exit status 1.\"}"
-}

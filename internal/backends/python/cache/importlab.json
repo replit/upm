@@ -1,8 +1,0 @@
-{
-  "name": "importlab",
-  "version": "0.7",
-  "modules": [
-    "importlab",
-    "networkx"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "detect-delimiter",
-  "version": "0.1.1",
-  "modules": [
-    "detect_delimiter"
-  ]
-}

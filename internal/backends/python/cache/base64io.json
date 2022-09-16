@@ -1,7 +1,0 @@
-{
-  "name": "base64io",
-  "version": "1.0.3",
-  "modules": [
-    "base64io"
-  ]
-}

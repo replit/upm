@@ -1,7 +1,0 @@
-{
-  "name": "pymssql",
-  "version": "2.2.5",
-  "modules": [
-    "pymssql"
-  ]
-}

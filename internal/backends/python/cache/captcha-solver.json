@@ -1,8 +1,0 @@
-{
-  "name": "captcha-solver",
-  "version": "0.1.5",
-  "modules": [
-    "captcha_solver",
-    "six"
-  ]
-}

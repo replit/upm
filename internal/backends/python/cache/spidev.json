@@ -1,7 +1,0 @@
-{
-  "name": "spidev",
-  "version": "3.5",
-  "modules": [
-    "spidev"
-  ]
-}

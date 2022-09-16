@@ -1,7 +1,0 @@
-{
-  "name": "file-read-backwards",
-  "version": "2.0.0",
-  "modules": [
-    "file_read_backwards"
-  ]
-}

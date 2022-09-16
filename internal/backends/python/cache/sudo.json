@@ -1,7 +1,0 @@
-{
-  "name": "sudo",
-  "version": "1.0.0",
-  "modules": [
-    "sudo"
-  ]
-}

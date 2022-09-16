@@ -1,7 +1,0 @@
-{
-  "name": "timedelta",
-  "version": "2020.12.3",
-  "modules": [
-    "timedelta"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "backports.shutil_get_terminal_size",
-  "version": "1.0.0",
-  "modules": [
-    "backports",
-    "shutil_backports"
-  ]
-}

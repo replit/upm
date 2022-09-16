@@ -1,5 +1,0 @@
-{
-  "name": "kivy-deps.angle",
-  "version": "0.3.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/kivy-deps.angle/bin/python3', '-m', 'pip', 'install', 'kivy-deps.angle']' returned non-zero exit status 1.\"}"
-}

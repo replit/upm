@@ -1,7 +1,0 @@
-{
-  "name": "django-concurrency",
-  "version": "2.4",
-  "modules": [
-    "concurrency"
-  ]
-}

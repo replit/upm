@@ -1,7 +1,0 @@
-{
-  "name": "huey",
-  "version": "2.4.3",
-  "modules": [
-    "huey"
-  ]
-}

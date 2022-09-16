@@ -1,7 +1,0 @@
-{
-  "name": "progress",
-  "version": "1.6",
-  "modules": [
-    "progress"
-  ]
-}

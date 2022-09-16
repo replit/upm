@@ -1,7 +1,0 @@
-{
-  "name": "cvss",
-  "version": "2.5",
-  "modules": [
-    "cvss"
-  ]
-}

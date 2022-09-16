@@ -1,7 +1,0 @@
-{
-  "name": "secureme",
-  "version": "0.0.4",
-  "modules": [
-    "secureme"
-  ]
-}

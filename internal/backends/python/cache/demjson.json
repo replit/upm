@@ -1,7 +1,0 @@
-{
-  "name": "demjson",
-  "version": "2.2.4",
-  "modules": [
-    "demjson"
-  ]
-}

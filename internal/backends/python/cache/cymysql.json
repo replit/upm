@@ -1,7 +1,0 @@
-{
-  "name": "cymysql",
-  "version": "0.9.18",
-  "modules": [
-    "cymysql"
-  ]
-}

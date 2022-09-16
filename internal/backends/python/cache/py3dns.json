@@ -1,7 +1,0 @@
-{
-  "name": "py3dns",
-  "version": "3.2.1",
-  "modules": [
-    "DNS"
-  ]
-}

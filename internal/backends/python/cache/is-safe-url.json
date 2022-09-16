@@ -1,7 +1,0 @@
-{
-  "name": "is-safe-url",
-  "version": "1.0",
-  "modules": [
-    "is_safe_url"
-  ]
-}

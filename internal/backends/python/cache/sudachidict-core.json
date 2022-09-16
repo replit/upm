@@ -1,8 +1,0 @@
-{
-  "name": "SudachiDict-core",
-  "version": "20220729",
-  "modules": [
-    "sudachidict_core",
-    "sudachipy"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "deluge-client",
-  "version": "1.9.0",
-  "modules": [
-    "deluge_client"
-  ]
-}

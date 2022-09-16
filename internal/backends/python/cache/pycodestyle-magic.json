@@ -1,7 +1,0 @@
-{
-  "name": "pycodestyle_magic",
-  "version": "0.5",
-  "modules": [
-    "pycodestyle_magic"
-  ]
-}

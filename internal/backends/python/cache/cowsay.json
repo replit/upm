@@ -1,7 +1,0 @@
-{
-  "name": "cowsay",
-  "version": "5.0",
-  "modules": [
-    "cowsay"
-  ]
-}

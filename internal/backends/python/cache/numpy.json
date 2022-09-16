@@ -1,7 +1,0 @@
-{
-  "name": "numpy",
-  "version": "1.23.3",
-  "modules": [
-    "numpy"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "starkbank-ecdsa",
-  "version": "2.0.3",
-  "modules": [
-    "ellipticcurve"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "django-rest-slack",
-  "version": "0.4",
-  "modules": [
-    "rest_slack"
-  ]
-}

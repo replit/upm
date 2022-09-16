@@ -1,7 +1,0 @@
-{
-  "name": "docstring-parser",
-  "version": "0.15",
-  "modules": [
-    "docstring_parser"
-  ]
-}

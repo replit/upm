@@ -1,7 +1,0 @@
-{
-  "name": "geckodriver-autoinstaller",
-  "version": "0.1.0",
-  "modules": [
-    "geckodriver_autoinstaller"
-  ]
-}

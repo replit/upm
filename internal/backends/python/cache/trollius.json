@@ -1,8 +1,0 @@
-{
-  "name": "trollius",
-  "version": "2.2.1",
-  "modules": [
-    "six",
-    "trollius"
-  ]
-}

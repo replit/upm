@@ -1,5 +1,0 @@
-{
-  "name": "pygdal",
-  "version": "3.5.1.11",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/pygdal/bin/python3', '-m', 'pip', 'install', 'pygdal']' returned non-zero exit status 1.\"}"
-}

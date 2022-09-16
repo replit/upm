@@ -1,7 +1,0 @@
-{
-  "name": "cachelib",
-  "version": "0.9.0",
-  "modules": [
-    "cachelib"
-  ]
-}

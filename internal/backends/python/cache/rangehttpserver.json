@@ -1,7 +1,0 @@
-{
-  "name": "rangehttpserver",
-  "version": "1.2.0",
-  "modules": [
-    "RangeHTTPServer"
-  ]
-}

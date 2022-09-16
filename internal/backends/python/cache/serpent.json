@@ -1,7 +1,0 @@
-{
-  "name": "serpent",
-  "version": "1.41",
-  "modules": [
-    "serpent"
-  ]
-}

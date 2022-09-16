@@ -1,8 +1,0 @@
-{
-  "name": "rdp",
-  "version": "0.8",
-  "modules": [
-    "numpy",
-    "rdp"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "eyes-universal",
-  "version": "2.11.3",
-  "modules": [
-    "applitools"
-  ]
-}

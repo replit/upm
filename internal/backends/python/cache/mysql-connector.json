@@ -1,8 +1,0 @@
-{
-  "name": "mysql-connector",
-  "version": "2.2.9",
-  "modules": [
-    "mysql",
-    "mysqlx"
-  ]
-}

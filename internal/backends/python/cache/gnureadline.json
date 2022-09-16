@@ -1,7 +1,0 @@
-{
-  "name": "gnureadline",
-  "version": "8.1.2",
-  "modules": [
-    "gnureadline"
-  ]
-}

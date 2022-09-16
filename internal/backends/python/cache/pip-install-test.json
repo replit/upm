@@ -1,7 +1,0 @@
-{
-  "name": "pip-install-test",
-  "version": "0.5",
-  "modules": [
-    "pip_install_test"
-  ]
-}

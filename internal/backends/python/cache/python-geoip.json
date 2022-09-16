@@ -1,7 +1,0 @@
-{
-  "name": "python-geoip",
-  "version": "1.2",
-  "modules": [
-    "geoip"
-  ]
-}

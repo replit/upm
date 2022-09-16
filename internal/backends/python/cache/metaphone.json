@@ -1,7 +1,0 @@
-{
-  "name": "Metaphone",
-  "version": "0.6",
-  "modules": [
-    "metaphone"
-  ]
-}

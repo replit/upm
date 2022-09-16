@@ -1,7 +1,0 @@
-{
-  "name": "pyspf",
-  "version": "2.0.14",
-  "modules": [
-    "spf"
-  ]
-}

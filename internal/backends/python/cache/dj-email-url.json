@@ -1,7 +1,0 @@
-{
-  "name": "dj-email-url",
-  "version": "1.0.5",
-  "modules": [
-    "dj_email_url"
-  ]
-}

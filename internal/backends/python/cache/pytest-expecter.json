@@ -1,7 +1,0 @@
-{
-  "name": "pytest-expecter",
-  "version": "2.3",
-  "modules": [
-    "expecter"
-  ]
-}

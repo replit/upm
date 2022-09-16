@@ -1,8 +1,0 @@
-{
-  "name": "dockerpty",
-  "version": "0.4.1",
-  "modules": [
-    "dockerpty",
-    "six"
-  ]
-}

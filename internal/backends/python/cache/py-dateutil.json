@@ -1,8 +1,0 @@
-{
-  "name": "py-dateutil",
-  "version": "2.2",
-  "modules": [
-    "dateutil",
-    "six"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "python-json-logger",
-  "version": "2.0.4",
-  "modules": [
-    "pythonjsonlogger"
-  ]
-}

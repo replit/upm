@@ -1,7 +1,0 @@
-{
-  "name": "tempdir",
-  "version": "0.7.1",
-  "modules": [
-    "tempdir"
-  ]
-}

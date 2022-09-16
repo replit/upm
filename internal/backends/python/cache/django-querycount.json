@@ -1,7 +1,0 @@
-{
-  "name": "django-querycount",
-  "version": "0.7.0",
-  "modules": [
-    "querycount"
-  ]
-}

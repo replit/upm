@@ -1,7 +1,0 @@
-{
-  "name": "coinapi.rest.v1",
-  "version": "1.3",
-  "modules": [
-    "coinapi_rest_v1"
-  ]
-}

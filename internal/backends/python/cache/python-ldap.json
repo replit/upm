@@ -1,5 +1,0 @@
-{
-  "name": "python-ldap",
-  "version": "3.4.2",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/python-ldap/bin/python3', '-m', 'pip', 'install', 'python-ldap']' returned non-zero exit status 1.\"}"
-}

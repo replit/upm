@@ -1,9 +1,0 @@
-{
-  "name": "apache-airflow-providers-opsgenie",
-  "version": "4.0.0",
-  "requires_dist": [
-    "apache-airflow",
-    "opsgenie-sdk"
-  ],
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/apache-airflow-providers-opsgenie/bin/python3', '-m', 'pip', 'install', 'apache-airflow-providers-opsgenie']' returned non-zero exit status 1.\"}"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "scikit-multilearn",
-  "version": "0.2.0",
-  "modules": [
-    "skmultilearn"
-  ]
-}

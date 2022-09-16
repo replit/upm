@@ -1,7 +1,0 @@
-{
-  "name": "keras-nightly",
-  "version": "2.11.0.dev2022091307",
-  "modules": [
-    "keras"
-  ]
-}

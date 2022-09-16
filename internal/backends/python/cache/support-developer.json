@@ -1,7 +1,0 @@
-{
-  "name": "support-developer",
-  "version": "1.0.4",
-  "modules": [
-    "support_developer"
-  ]
-}

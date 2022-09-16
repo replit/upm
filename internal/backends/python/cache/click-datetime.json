@@ -1,8 +1,0 @@
-{
-  "name": "click-datetime",
-  "version": "0.2",
-  "modules": [
-    "click",
-    "click_datetime"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "hijri-converter",
-  "version": "2.2.4",
-  "modules": [
-    "hijri_converter"
-  ]
-}

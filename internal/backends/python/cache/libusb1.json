@@ -1,8 +1,0 @@
-{
-  "name": "libusb1",
-  "version": "3.0.0",
-  "modules": [
-    "libusb1",
-    "usb1"
-  ]
-}

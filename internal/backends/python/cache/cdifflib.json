@@ -1,8 +1,0 @@
-{
-  "name": "cdifflib",
-  "version": "1.2.6",
-  "modules": [
-    "_cdifflib",
-    "cdifflib"
-  ]
-}

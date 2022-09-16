@@ -1,7 +1,0 @@
-{
-  "name": "pytidylib",
-  "version": "0.3.2",
-  "modules": [
-    "tidylib"
-  ]
-}

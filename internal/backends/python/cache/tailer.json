@@ -1,7 +1,0 @@
-{
-  "name": "tailer",
-  "version": "0.4.1",
-  "modules": [
-    "tailer"
-  ]
-}

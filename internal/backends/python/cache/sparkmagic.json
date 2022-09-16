@@ -1,5 +1,0 @@
-{
-  "name": "sparkmagic",
-  "version": "0.20.0",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/sparkmagic/bin/python3', '-m', 'pip', 'install', 'sparkmagic']' returned non-zero exit status 1.\"}"
-}

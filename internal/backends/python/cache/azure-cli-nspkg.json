@@ -1,7 +1,0 @@
-{
-  "name": "azure-cli-nspkg",
-  "version": "3.0.4",
-  "requires_dist": [
-    "azure-nspkg"
-  ]
-}

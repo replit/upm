@@ -1,8 +1,0 @@
-{
-  "name": "pylzma",
-  "version": "0.5.0",
-  "modules": [
-    "py7zlib",
-    "pylzma"
-  ]
-}

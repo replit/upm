@@ -1,7 +1,0 @@
-{
-  "name": "recordclass",
-  "version": "0.17.5",
-  "modules": [
-    "recordclass"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "pip-install",
-  "version": "1.3.5",
-  "modules": [
-    "install"
-  ]
-}

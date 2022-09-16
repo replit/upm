@@ -1,7 +1,0 @@
-{
-  "name": "python-hosts",
-  "version": "1.0.3",
-  "modules": [
-    "python_hosts"
-  ]
-}

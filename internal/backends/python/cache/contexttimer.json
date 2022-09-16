@@ -1,7 +1,0 @@
-{
-  "name": "contexttimer",
-  "version": "0.3.3",
-  "modules": [
-    "contexttimer"
-  ]
-}

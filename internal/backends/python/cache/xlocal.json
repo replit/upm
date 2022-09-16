@@ -1,8 +1,0 @@
-{
-  "name": "xlocal",
-  "version": "0.5",
-  "modules": [
-    "test_xlocal",
-    "xlocal"
-  ]
-}

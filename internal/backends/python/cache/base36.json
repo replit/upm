@@ -1,7 +1,0 @@
-{
-  "name": "base36",
-  "version": "0.1.1",
-  "modules": [
-    "base36"
-  ]
-}

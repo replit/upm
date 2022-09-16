@@ -1,7 +1,0 @@
-{
-  "name": "dm-tree",
-  "version": "0.1.7",
-  "modules": [
-    "tree"
-  ]
-}

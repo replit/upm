@@ -1,7 +1,0 @@
-{
-  "name": "brewer2mpl",
-  "version": "1.4.1",
-  "modules": [
-    "brewer2mpl"
-  ]
-}

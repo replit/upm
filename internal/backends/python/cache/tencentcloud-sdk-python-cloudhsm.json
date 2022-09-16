@@ -1,7 +1,0 @@
-{
-  "name": "tencentcloud-sdk-python-cloudhsm",
-  "version": "3.0.728",
-  "modules": [
-    "tencentcloud"
-  ]
-}

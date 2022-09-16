@@ -1,7 +1,0 @@
-{
-  "name": "pyston-lite",
-  "version": "2.3.4.2",
-  "modules": [
-    "pyston_lite"
-  ]
-}

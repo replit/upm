@@ -1,9 +1,0 @@
-{
-  "name": "properscoring",
-  "version": "0.1",
-  "modules": [
-    "numpy",
-    "properscoring",
-    "scipy"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "statistics",
-  "version": "1.0.3.5",
-  "modules": [
-    "docutils"
-  ]
-}

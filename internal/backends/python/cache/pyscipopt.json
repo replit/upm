@@ -1,5 +1,0 @@
-{
-  "name": "PySCIPOpt",
-  "version": "4.2.0",
-  "error": "{\"type\": 5, \"message\": \"Failed to install: Command '['/tmp/pypi/PySCIPOpt/bin/python3', '-m', 'pip', 'install', 'PySCIPOpt']' returned non-zero exit status 1.\"}"
-}

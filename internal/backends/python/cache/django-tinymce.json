@@ -1,8 +1,0 @@
-{
-  "name": "django-tinymce",
-  "version": "3.5.0",
-  "modules": [
-    "tests",
-    "tinymce"
-  ]
-}

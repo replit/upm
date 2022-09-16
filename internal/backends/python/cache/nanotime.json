@@ -1,7 +1,0 @@
-{
-  "name": "nanotime",
-  "version": "0.5.2",
-  "modules": [
-    "nanotime"
-  ]
-}

@@ -1,7 +1,0 @@
-{
-  "name": "qasync",
-  "version": "0.23.0",
-  "modules": [
-    "qasync"
-  ]
-}

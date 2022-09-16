@@ -1,8 +1,0 @@
-{
-  "name": "validate-docbr",
-  "version": "1.10.0",
-  "modules": [
-    "tests",
-    "validate_docbr"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "django-hosts",
-  "version": "5.1",
-  "modules": [
-    "django_hosts",
-    "tests"
-  ]
-}

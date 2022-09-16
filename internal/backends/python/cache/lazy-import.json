@@ -1,8 +1,0 @@
-{
-  "name": "lazy-import",
-  "version": "0.2.2",
-  "modules": [
-    "lazy_import",
-    "six"
-  ]
-}

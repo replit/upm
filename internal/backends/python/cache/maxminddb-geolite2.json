@@ -1,9 +1,0 @@
-{
-  "name": "maxminddb-geolite2",
-  "version": "2018.703",
-  "modules": [
-    "_maxminddb_geolite2",
-    "geolite2",
-    "maxminddb"
-  ]
-}

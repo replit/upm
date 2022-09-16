@@ -1,7 +1,0 @@
-{
-  "name": "smmap",
-  "version": "5.0.0",
-  "modules": [
-    "smmap"
-  ]
-}

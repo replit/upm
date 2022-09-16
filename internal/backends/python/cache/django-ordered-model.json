@@ -1,7 +1,0 @@
-{
-  "name": "django-ordered-model",
-  "version": "3.6",
-  "modules": [
-    "ordered_model"
-  ]
-}

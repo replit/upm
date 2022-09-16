@@ -1,7 +1,0 @@
-{
-  "name": "databricks",
-  "version": "0.2",
-  "modules": [
-    "databricks"
-  ]
-}

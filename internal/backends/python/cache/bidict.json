@@ -1,7 +1,0 @@
-{
-  "name": "bidict",
-  "version": "0.22.0",
-  "modules": [
-    "bidict"
-  ]
-}

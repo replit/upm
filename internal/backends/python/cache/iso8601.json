@@ -1,7 +1,0 @@
-{
-  "name": "iso8601",
-  "version": "1.0.2",
-  "modules": [
-    "iso8601"
-  ]
-}

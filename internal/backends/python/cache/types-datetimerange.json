@@ -1,7 +1,0 @@
-{
-  "name": "types-DateTimeRange",
-  "version": "1.2.8",
-  "requires_dist": [
-    "types-python-dateutil"
-  ]
-}

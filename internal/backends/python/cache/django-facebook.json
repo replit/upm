@@ -1,9 +1,0 @@
-{
-  "name": "django-facebook",
-  "version": "6.0.3",
-  "modules": [
-    "django_facebook",
-    "open_facebook",
-    "unidecode"
-  ]
-}

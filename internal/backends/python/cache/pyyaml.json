@@ -1,8 +1,0 @@
-{
-  "name": "PyYAML",
-  "version": "6.0",
-  "modules": [
-    "_yaml",
-    "yaml"
-  ]
-}
