@@ -10,7 +10,7 @@ import (
 	"google.golang.org/api/iterator"
 )
 
-func fetchBQDownloads(gcp string, filePath string) error {
+func FetchBQDownloads(gcp string, filePath string) error {
 	bqCache, err := GetPypiStats(gcp)
 	if err != nil {
 		return err

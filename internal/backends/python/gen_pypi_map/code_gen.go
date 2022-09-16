@@ -13,7 +13,7 @@ type ModuleItem struct {
 	PackageList []PackageInfo
 }
 
-func generateSource(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
+func GenerateCode(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
 	downloadStats, err := LoadDownloadStats(bqFilePath)
 	if err != nil {
 		return err

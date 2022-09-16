@@ -37,7 +37,7 @@ func main() {
 			Fetch download stats from pypi's public big query table
 			Parameters: gcp, bq
 		*/
-		err := fetchBQDownloads(*gcp, *bq)
+		err := FetchBQDownloads(*gcp, *bq)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to fetch BQ download stats: %s", err.Error())
 			return
@@ -66,19 +66,19 @@ func main() {
 		} else {
 			packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 		}
-		testModules(packages, *bq, *cache, *pkgsFile, *distMods, *workers, *force)
+		TestModules(packages, *bq, *cache, *pkgsFile, *distMods, *workers, *force)
 	} else if *command == "gen" {
 		/*
 			Generate source file that provides pypi mappings
 			Parameters: pkg, out, cachedfr, cachefile, bq, pypipackages
 		*/
-		cache := loadCache(*cache, *pkgsFile)
-		err := generateSource(*pkg, *out, cache, *bq, *pkgsLegacyFile)
+		cache := LoadAllPackageInfo(*cache, *pkgsFile)
+		err := GenerateCode(*pkg, *out, cache, *bq, *pkgsLegacyFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to generate %s: %s", *out, err.Error())
 		}
 	} else if *command == "updatepkgs" {
-		err := updateCache(*cache, *pkgsFile)
+		err := UpdateAllPackageInfo(*cache, *pkgsFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed update cache: %s", err.Error())
 		}
