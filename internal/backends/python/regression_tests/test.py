@@ -7,6 +7,9 @@ import os
 
 TEST_DIR = "test"
 
+def normalize_name(name):
+    return name.replace('.', '-').lower()
+
 def load_json_file(filepath):
     file = open(filepath)
     data = json.load(file)
@@ -32,7 +35,7 @@ pkgs_file = open('../pkgs.json')
 pkgs = {}
 for line in pkgs_file:
     info = json.loads(line)
-    pkgs[info['name'].lower()] = info
+    pkgs[normalize_name(info['name'])] = info
 pkgs_file.close()
 
 skip_manual_checked = {
