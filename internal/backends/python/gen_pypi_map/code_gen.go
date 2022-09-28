@@ -56,10 +56,6 @@ func GenerateCode(pkg string, outputFilePath string, cache map[string]PackageInf
 
 	fmt.Printf("Loaded %d modules\n", len(moduleToPackageList))
 
-	// sort.Slice(moduleList, func(i, j int) bool {
-	// 	return len(moduleList[i].PackageList) < len(moduleList[j].PackageList)
-	// })
-
 	// fmt.Printf("Sorted modules by package list size\n")
 
 	var moduleToPypiPackage = map[string]string{}
@@ -69,15 +65,6 @@ func GenerateCode(pkg string, outputFilePath string, cache map[string]PackageInf
 	// Guess at every module, add the guess and the package that was guessed to
 	// the masp
 	for moduleName, candidates := range moduleToPackageList {
-		// // Filter out packages that have already been matched
-		// // We start with ones that have the fewest modules, so it will
-		// // match the atomic packages first
-		// for _, pkg := range module.PackageList {
-		// 	_, ok := pypiPackageToModules[pkg.Name]
-		// 	if !ok {
-		// 		candidates = append(candidates, pkg)
-		// 	}
-		// }
 		if guess, reason, guessable := GuessPackage(moduleName, candidates, downloadStats); guessable {
 			moduleToPypiPackage[moduleName] = guess.Name
 			moduleToPypiPackageReason[moduleName] = reason
