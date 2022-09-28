@@ -23,7 +23,7 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 	}
 
 	// Run a python script to find the newly installed modules
-	cmd = exec.Command("sh", "-c", ". "+path+"/bin/activate; python3 /home/toby/upm/internal/backends/python/gen_pypi_map/install_diff.py "+metadata.Info.Name)
+	cmd = exec.Command("sh", "-c", ". "+path+"/bin/activate; python3 ./gen_pypi_map/install_diff.py "+metadata.Info.Name)
 
 	cmdReader, err := cmd.StdoutPipe()
 
