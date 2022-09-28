@@ -137,7 +137,7 @@ else:
     downloads = json.load(downloads_file)
     downloads = list(downloads.items())
     downloads.sort(key=lambda item: item[1], reverse=True)
-    for pkg, _ in downloads[:10]:
+    for pkg, _ in downloads[:10000]:
         test_package(pkg)
 
 
