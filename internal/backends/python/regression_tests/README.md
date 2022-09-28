@@ -38,10 +38,13 @@ To test a specific module, pass its name to the test.py script:
 python3 test.py flask
 ```
 
-You should see output like `flask ok` if the output of the 2 binary were the same.
-If you old upm didn't have the package in its mapping, it will say:
-`<pkg> is not in the mapping`. If the output do not match between the 2, it will
-say `<pkg> failed`.
+You should see 4 kinds of outputs:
+
+* <pkg> ok - means the output of the old matches the new (or we added a manual override in test.py)
+* <pkg> failed - means the output of the old does not match the new
+* <pkg> added - means the old one did not have an entry for this pkg and the new one does
+* <pkg> missing - means neither the old or the new has an entry for this pkg
+* <pkg> test errored - means the old does not have an entry for this pkg and the new one error during the package test
 
 To run the regression tests on the top 10k packages, you can leave out the package name:
 
