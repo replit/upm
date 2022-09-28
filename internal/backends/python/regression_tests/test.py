@@ -93,7 +93,10 @@ def test_package(pkg):
     main_file = open(TEST_DIR + "/main.py", "w")
     if pkg not in pypi_to_module:
         if pkg in pkgs:
-            print("%s added" % pkg)
+            if "error" in pkgs[pkg]:
+                print("%s test errored" % pkg)
+            else:
+                print("%s added" % pkg)
         else:
             print("%s missing" % pkg)
 
