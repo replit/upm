@@ -122,8 +122,11 @@ if len(sys.argv) > 1:
     pkg = sys.argv[1]
     test_package(pkg)
 else:
-    top_10k = load_json_file("../top_10k.json")
-    for pkg in top_10k:
+    downloads_file = open('../download_stats.json')
+    downloads = json.load(downloads_file)
+    downloads = list(downloads.items())
+    downloads.sort(key=lambda item: item[1], reverse=True)
+    for pkg, _ in downloads[:10000]:
         test_package(pkg)
 
 
