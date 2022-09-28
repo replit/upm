@@ -3,6 +3,7 @@
 import json
 import subprocess
 import sys
+import os
 
 TEST_DIR = "test"
 
@@ -23,7 +24,8 @@ def reverse_mapping(dct):
     
     return retval
 
-module_to_pypi = load_json_file("../module_to_pypi.json")
+os.makedirs(TEST_DIR, exist_ok=True)
+module_to_pypi = load_json_file("module_to_pypi.legacy.json")
 pypi_to_module = reverse_mapping(module_to_pypi)
 
 skip_manual_checked = {
