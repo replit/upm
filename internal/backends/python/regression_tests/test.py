@@ -8,7 +8,7 @@ import os
 TEST_DIR = "test"
 
 def normalize_name(name):
-    return name.replace('.', '-').lower()
+    return name.replace('.', '-').replace('_', '-').lower()
 
 def load_json_file(filepath):
     file = open(filepath)
