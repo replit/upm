@@ -28,6 +28,13 @@ os.makedirs(TEST_DIR, exist_ok=True)
 module_to_pypi = load_json_file("module_to_pypi.legacy.json")
 pypi_to_module = reverse_mapping(module_to_pypi)
 
+pkgs_file = open('../pkgs.json')
+pkgs = {}
+for line in pkgs_file:
+    info = json.loads(line)
+    pkgs[info['name'].lower()] = True
+pkgs_file.close()
+
 skip_manual_checked = {
     'python-louvain': True,
     'pymilvus': True,
@@ -85,7 +92,11 @@ def test_package(pkg):
         return
     main_file = open(TEST_DIR + "/main.py", "w")
     if pkg not in pypi_to_module:
-        print("%s is not in the mapping" % pkg)
+        if pkg in pkgs:
+            print("%s added" % pkg)
+        else:
+            print("%s missing" % pkg)
+
         return
     if pkg in override:
         mod = override[pkg]
@@ -126,7 +137,7 @@ else:
     downloads = json.load(downloads_file)
     downloads = list(downloads.items())
     downloads.sort(key=lambda item: item[1], reverse=True)
-    for pkg, _ in downloads[:10000]:
+    for pkg, _ in downloads[:10]:
         test_package(pkg)
 
 
