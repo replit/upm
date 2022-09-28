@@ -32,7 +32,7 @@ pkgs_file = open('../pkgs.json')
 pkgs = {}
 for line in pkgs_file:
     info = json.loads(line)
-    pkgs[info['name'].lower()] = True
+    pkgs[info['name'].lower()] = info
 pkgs_file.close()
 
 skip_manual_checked = {
