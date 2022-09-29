@@ -31,11 +31,19 @@ os.makedirs(TEST_DIR, exist_ok=True)
 module_to_pypi = load_json_file("module_to_pypi.legacy.json")
 pypi_to_module = reverse_mapping(module_to_pypi)
 
+gen_go_file = open('../pypi_map.gen.go')
+gen_go = gen_go_file.read()
+gen_go_file.close()
+
 pkgs_file = open('../pkgs.json')
 pkgs = {}
 for line in pkgs_file:
     info = json.loads(line)
-    pkgs[normalize_name(info['name'])] = info
+    norm_name = normalize_name(info['name'])
+    pkgs[norm_name] = {
+        'name': info['name'],
+        'error': info.get('error')
+    }
 pkgs_file.close()
 
 skip_manual_checked = {
@@ -96,10 +104,15 @@ def test_package(pkg):
     main_file = open(TEST_DIR + "/main.py", "w")
     if pkg not in pypi_to_module:
         if pkg in pkgs:
-            if "error" in pkgs[pkg]:
-                print("%s test errored" % pkg)
+            info = pkgs[pkg]
+            if info['error']:
+                print("%s test-errored" % pkg)
             else:
-                print("%s added" % pkg)
+                str_to_look = '"' + info['name'] + '",'
+                if str_to_look in gen_go:
+                    print("%s added" % pkg)
+                else:
+                    print("%s no-guess" % pkg)
         else:
             print("%s missing" % pkg)
 
