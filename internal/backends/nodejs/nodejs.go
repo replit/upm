@@ -219,19 +219,13 @@ func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
 	return pkgs
 }
 
-// nodejsGuessRegexps is the value of GuessRegexps for nodejs-yarn and
-// nodejs-npm.
-var nodejsGuessRegexps = util.Regexps([]string{
-	// import defaultExport from "module-name";
-	// import * as name from "module-name";
-	// import { export } from "module-name";
-	`(?m)from\s*['"]([^'"]+)['"]\s*;?\s*$`,
-	// import "module-name";
-	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
-	// const mod = import("module-name")
-	// const mod = require("module-name")
-	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
-})
+// Don't use guess regexps to calculate hash because:
+//  1. github.com/amasad/esparse which we use to get the module list strips modules that
+//     were imported but the import not used, which causes situation where if the user
+//     guesses with unused imports, it results in the guess hash representing the import
+//     being present while the real guess does not, causing inconsistencies.
+//  2. esparse is fast anyway, not noticably slower than searching via regexp
+var nodejsGuessRegexps = []*regexp.Regexp{}
 
 // nodejsGuess implements Guess for nodejs-yarn and nodejs-npm.
 func nodejsGuess() (map[api.PkgName]bool, bool) {
