@@ -1,15 +1,16 @@
 package nodejs
 
 import (
+	"io/ioutil"
+	"log"
+	"path/filepath"
+	"strings"
+
 	"github.com/amasad/esparse/ast"
 	"github.com/amasad/esparse/logging"
 	"github.com/amasad/esparse/parser"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
-	"io/ioutil"
-	"log"
-	"path/filepath"
-	"strings"
 )
 
 var internalModules = []string{
@@ -70,17 +71,17 @@ type parseResult struct {
 
 func parseFile(source logging.Source, results chan parseResult) {
 	parseOptions := parser.ParseOptions{
-		IsBundling: true,
+		IsBundling:   true,
+		MangleSyntax: false,
 	}
 
 	// Always parse jsx
 	parseOptions.JSX.Parse = true
+	// TS parsing strips unused imports, that becomes
+	// inconsistent with the regex-based import searching used to
+	// generate the guess hash, so we disable it
+	parseOptions.TS.Parse = false
 
-	ext := getExt(source.AbsolutePath)
-
-	if ext == ".ts" || ext == ".tsx" {
-		parseOptions.TS.Parse = true
-	}
 	logo, _ := logging.NewDeferLog()
 
 	ast, ok := parser.Parse(logo, source, parseOptions)
