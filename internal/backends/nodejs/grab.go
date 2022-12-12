@@ -1,15 +1,16 @@
 package nodejs
 
 import (
+	"io/ioutil"
+	"log"
+	"path/filepath"
+	"strings"
+
 	"github.com/amasad/esparse/ast"
 	"github.com/amasad/esparse/logging"
 	"github.com/amasad/esparse/parser"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
-	"io/ioutil"
-	"log"
-	"path/filepath"
-	"strings"
 )
 
 var internalModules = []string{
@@ -70,7 +71,8 @@ type parseResult struct {
 
 func parseFile(source logging.Source, results chan parseResult) {
 	parseOptions := parser.ParseOptions{
-		IsBundling: true,
+		IsBundling:   true,
+		MangleSyntax: false,
 	}
 
 	// Always parse jsx

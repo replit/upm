@@ -5,6 +5,7 @@ package store
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -140,6 +141,7 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 		st.Languages[b.Name].GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
+		fmt.Println("Actually guessing")
 		var pkgs map[api.PkgName]bool
 		success := true
 		if new != "" {
@@ -177,6 +179,7 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 		}
 		return pkgs
 	} else {
+		fmt.Println("Using cached guesses")
 		pkgs := map[api.PkgName]bool{}
 		for _, name := range st.Languages[b.Name].GuessedImports {
 			pkgs[api.PkgName(name)] = true
