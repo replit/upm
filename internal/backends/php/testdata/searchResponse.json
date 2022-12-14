@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "name": "monolog/monolog",
+            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+            "url": "https://packagist.org/packages/monolog/monolog",
+            "repository": "https://github.com/Seldaek/monolog",
+            "downloads": 483361100,
+            "favers": 20851
+        },
+        {
+            "name": "symfony/monolog-bundle",
+            "description": "Symfony MonologBundle",
+            "url": "https://packagist.org/packages/symfony/monolog-bundle",
+            "repository": "https://github.com/symfony/monolog-bundle",
+            "downloads": 124786943,
+            "favers": 2703
+        }
+    ],
+    "total": 851,
+    "next": "https://packagist.org/search.json?q=monolog&page=2"
+}
