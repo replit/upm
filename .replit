@@ -1,2 +1,10 @@
-language = "go"
-run = "make"
+run = "make && echo \"UPM is built, can be found here: ./cmd/upm/upm\""
+
+[nix]
+channel = "stable-21_11" # Only channel with go 1.17
+
+[languages.go]
+pattern = "**/*.go"
+
+[languages.go.languageServer]
+start = "gopls"

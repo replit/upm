@@ -442,10 +442,28 @@ All of these dependencies are already installed in the
       make clean     Remove build artifacts
       make help      Show this message
 
-To build UPM, run `make upm` (or just `make`). This requires an
-installation of [Go](https://golang.org/). Then add the directory
-`./cmd/upm` to your `$PATH` so that you can run the binary. To remove
-build artifacts, run `make clean`.
+To build UPM, run `make upm` (or just `make`), the built
+binary can be found in `./cmd/upm/upm`. To remove build
+artifacts, run `make clean`.
+
+### Using Replit (simplest)
+
+You can develop UPM on Replit. Simply click on [this](https://replit.com/new/github/replit/upm)
+link and the repo will start cloning into a Repl.
+
+Once you're in your new Repl, you can hit run
+to build a new binary (or `make` in shell). You can create
+a test folder and use the binary and test your changes.
+For example say you made a change to the `nodejs-npm` language
+and want to test it, you would hit run and do the following:
+
+    $ mkdir testnpm
+    $ cd testnpm
+    $ npm init -y
+    $ ../cmd/upm/upm add left-pad -l nodejs-npm
+
+
+### Using Docker
 
 You can use [Docker](https://www.docker.com/) to avoid needing to
 install the package managers that UPM drives. To do this, run `make
