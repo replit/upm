@@ -1,6 +1,7 @@
 package nodejs
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -163,7 +164,7 @@ func guessBareImports() map[api.PkgName]bool {
 
 			isInternalMod := false
 			for _, internal := range internalModules {
-				if internal == mod {
+				if internal == mod || strings.HasPrefix(mod, fmt.Sprintf("%s/", internal)) {
 					isInternalMod = true
 					break
 				}
