@@ -1,0 +1,6 @@
+{
+    "minified": "composer/2.0",
+    "packages": {
+        "monolog/monolog": []
+	}
+}
