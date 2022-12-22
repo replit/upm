@@ -1,7 +1,6 @@
 package nodejs
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -162,17 +161,6 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
-			isInternalMod := false
-			for _, internal := range internalModules {
-				if internal == mod || strings.HasPrefix(mod, fmt.Sprintf("%s/", internal)) {
-					isInternalMod = true
-					break
-				}
-			}
-			if isInternalMod {
-				continue
-			}
-
 			// Skip empty imports
 			if mod == "" {
 				continue
@@ -198,7 +186,7 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
-			// Handle scoped modules
+			// Handle scoped modules or internal modules
 			if mod[0] == '@' {
 				parts := strings.Split(mod, "/")
 				if len(parts) < 2 {
@@ -208,6 +196,17 @@ func guessBareImports() map[api.PkgName]bool {
 			} else {
 				parts := strings.Split(mod, "/")
 				mod = parts[0]
+
+				isInternalMod := false
+				for _, internal := range internalModules {
+					if internal == mod {
+						isInternalMod = true
+						break
+					}
+				}
+				if isInternalMod {
+					continue
+				}
 			}
 
 			pkgs[api.PkgName(mod)] = true
