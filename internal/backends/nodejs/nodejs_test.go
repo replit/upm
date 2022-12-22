@@ -48,6 +48,14 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			expected: map[api.PkgName]bool{},
 		},
 		{
+			scenario: "Ignore internal submodules imports",
+			backend:  NodejsNPMBackend,
+			fileContent: `
+			const dns = require('dns/promises');
+		`,
+			expected: map[api.PkgName]bool{},
+		},
+		{
 			scenario: "Returns both requires and imports in mixed file",
 			backend:  NodejsNPMBackend,
 			fileContent: `
