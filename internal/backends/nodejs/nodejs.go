@@ -78,7 +78,7 @@ type packageLockJSON struct {
 }
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
-var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
+var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"}
 
 // nodejsSearch implements Search for nodejs-yarn and nodejs-npm.
 func nodejsSearch(query string) []api.PkgInfo {
