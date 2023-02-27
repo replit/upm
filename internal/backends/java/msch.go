@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	mavenURL string = "http://search.maven.org/solrsearch/select?q="
+	mavenURL string = "https://search.maven.org/solrsearch/select?q="
 )
 
 type SearchDoc struct {
