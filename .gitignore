@@ -5,7 +5,6 @@
 /packaging/aur/*.tar.xz
 /packaging/aur/pkg/
 /packaging/aur/src/
-*.gen.go
 /.vscode/
 internal/backends/python/cache
 internal/backends/python/regression_tests/*.txt
