@@ -234,7 +234,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Search: func(query string) []api.PkgInfo {
 			// Do a search on pypiPackageToModules
 			var packages []string
-			for p, _ := range pypiPackageToModules {
+			for p := range pypiPackageToModules {
 				if strings.Contains(p, query) {
 					packages = append(packages, p)
 				}
@@ -297,7 +297,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		},
 		Remove: func(pkgs map[api.PkgName]bool) {
 			cmd := []string{python, "-m", "poetry", "remove"}
-			for name, _ := range pkgs {
+			for name := range pkgs {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
