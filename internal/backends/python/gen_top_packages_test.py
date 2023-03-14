@@ -4,12 +4,11 @@ import json
 import sys
 
 def getOutputFile():
-	flag = sys.argv.index('--output')
-	return sys.argv[flag + 1]
+	return sys.argv[len(sys.argv) - 1]
 
 def getTopLimit():
 	try:
-		flag = sys.argv.index('--top')
+		flag = sys.argv.index('-n')
 		return int(sys.argv[flag + 1])
 	except ValueError:
 		return 10000
