@@ -54,6 +54,7 @@ machine-parseable specfile and lockfile listing.
 | java                  | yes  | yes   |       |
 | rust                  | yes  | yes   |       |
 | dotnet                | yes  | yes   |       |
+| php                   | yes  | yes   |       |
 
 ## Installation
 
