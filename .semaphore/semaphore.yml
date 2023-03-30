@@ -1,0 +1,26 @@
+---
+version: v1.0
+name: UPM
+agent:
+  machine:
+    type: e1-standard-2
+  containers:
+    - name: main
+      image: 'docker.nix-community.org/nix-flakes'
+
+blocks:
+  - name: setup
+    dependencies: []
+    task:
+      jobs:
+        - name: 'checkout pr'
+          commands:
+            - checkout
+            - git switch -c pr
+  - name: build
+    dependencies: [setup]
+    task:
+      jobs:
+        - name: nix build
+          commands:
+            - nix build
