@@ -4,19 +4,22 @@ name: UPM
 agent:
   machine:
     type: e1-standard-2
-  containers:
-    - name: main
-      image: 'docker.nix-community.org/nixpkgs/nix-flakes'
+    os_image: ubuntu2004
 
 blocks:
   - name: setup
     dependencies: []
     task:
       jobs:
-        - name: 'checkout pr'
+        - name: checkout pr
           commands:
             - checkout
             - git switch -c pr
+        - name: install nix
+          commands:
+            - >-
+              curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix
+              | sh -s -- install
   - name: build
     dependencies: [setup]
     task:
