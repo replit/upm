@@ -13,6 +13,9 @@ blocks:
     dependencies: []
     task:
       jobs:
+        - name: hmmm
+          commands:
+            - echo $SEMAPHORE
         - name: checkout pr
           commands:
             - checkout
