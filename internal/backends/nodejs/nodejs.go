@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 
 	"github.com/hashicorp/go-version"
@@ -242,6 +243,19 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 	return pkgs, true
 }
 
+func parseYarnSpec(specBytes []byte) map[api.PkgName]api.PkgVersion {
+  contents := string(specBytes)
+  r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+  pkgs := map[api.PkgName]api.PkgVersion{}
+  for _, match := range r.FindAllStringSubmatch(contents, -1) {
+    name := api.PkgName(match[1])
+    version := api.PkgVersion(match[2])
+    pkgs[name] = version
+  }
+
+  return pkgs
+}
+
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
 var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
@@ -289,15 +303,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 		if err != nil {
 			util.Die("yarn.lock: %s", err)
 		}
-		contents := string(contentsB)
-		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
-		pkgs := map[api.PkgName]api.PkgVersion{}
-		for _, match := range r.FindAllStringSubmatch(contents, -1) {
-			name := api.PkgName(match[1])
-			version := api.PkgVersion(match[2])
-			pkgs[name] = version
-		}
-		return pkgs
+		return parseYarnSpec(contentsB)
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: nodejsGuessRegexps,
@@ -360,6 +366,62 @@ var NodejsNPMBackend = api.LanguageBackend{
 			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
 		}
 		return pkgs
+	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
+}
+
+// NodejsBunBackend is a UPM backend for Node.js that uses Yarn.
+var NodejsBunBackend = api.LanguageBackend{
+	Name:             "nodejs-bun",
+	Specfile:         "package.json",
+	Lockfile:         "bun.lockb",
+	FilenamePatterns: nodejsPatterns,
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"bun", "init", "-y"})
+		}
+		cmd := []string{"bun", "add"}
+		for name, spec := range pkgs {
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
+		}
+		util.RunCmd(cmd)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		cmd := []string{"bun", "remove"}
+		for name, _ := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		util.RunCmd(cmd)
+	},
+	Lock: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	Install: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	ListSpecfile: nodejsListSpecfile,
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+    // when bun executes the lockfile it prints out a Yarn specfile
+    yarnSpec, err := exec.Command("bun", "bun.lockb").Output()
+    if err != nil {
+      util.Die("bun.lockb: %s", err)
+    }
+
+    return parseYarnSpec(yarnSpec)
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: nodejsGuessRegexps,
