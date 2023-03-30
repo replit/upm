@@ -7,7 +7,7 @@ agent:
   containers:
     - name: main
       image: docker.nix-community.org/nixpkgs/nix-flakes
-      command: nix-shell -p curl
+      command: nix-env -i curl
 
 blocks:
   - name: setup
