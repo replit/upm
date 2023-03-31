@@ -38,4 +38,7 @@ blocks:
         - name: nix build
           commands:
             - systemctl status nix-daemon
+            - ls -al $HOME
+            - ls -al /etc | grep nix
+            - ls -al /etc/nix
             - nix build
