@@ -16,6 +16,7 @@ blocks:
             - >-
               curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix
               | sh -s -- install linux --no-confirm --logger compact
+            - systemctl status nix-daemon
         - name: checkout pr
           commands:
             - checkout
