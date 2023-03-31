@@ -33,15 +33,8 @@ blocks:
         commands:
           - cache restore nix-installer
           - sudo ./nix-installer install linux --no-confirm --logger compact
-          - sudo systemctl start nix-daemon
+          - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       jobs:
-        - name: find nix
-          commands:
-            - curl --proto '=https' -o fd.tar.gz --tlsv1.2 -sSf -L https://github.com/sharkdp/fd/releases/download/v8.7.0/fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz
-            - tar xzvf fd.tar.gz
-            - chmod +x ./fd-v8.7.0-x86_64-unknown-linux-gnu/fd
-            - ./fd-v8.7.0-x86_64-unknown-linux-gnu/fd -gt x nix /
         - name: nix build
           commands:
-            - systemctl status nix-daemon
             - nix build
