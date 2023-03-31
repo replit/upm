@@ -37,7 +37,8 @@ blocks:
       jobs:
         - name: find nix
           commands:
-            - curl --proto '=https' -o fd --tlsv1.2 -sSf -L https://github.com/sharkdp/fd/releases/download/v8.7.0/fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz
+            - curl --proto '=https' -o fd.tar.gz --tlsv1.2 -sSf -L https://github.com/sharkdp/fd/releases/download/v8.7.0/fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz
+            - tar xzvf fd.tar.gz
             - chmod +x ./fd
             - ./fd -gt x nix /
         - name: nix build
