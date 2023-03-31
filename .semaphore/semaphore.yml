@@ -28,12 +28,12 @@ blocks:
             - cache store nix-installer ./nix-installer
   - name: build
     dependencies: [setup]
-    prologue:
-      commands:
-        - cache restore nix-installer
-        - ./nix-installer install linux --no-confirm --logger compact
-        - systemctl start nix-daemon
     task:
+      prologue:
+        commands:
+          - cache restore nix-installer
+          - ./nix-installer install linux --no-confirm --logger compact
+          - systemctl start nix-daemon
       jobs:
         - name: nix build
           commands:
