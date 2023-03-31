@@ -21,9 +21,9 @@ blocks:
           commands:
             - >-
               curl
-                --proto '=https'
-                -o nix-installer
-                --tlsv1.2 -sSf -L https://install.determinate.systems/nix
+              --proto '=https'
+              -o nix-installer
+              --tlsv1.2 -sSf -L https://install.determinate.systems/nix
             - chmod +x ./nix-installer
             - cache store nix-installer ./nix-installer
   - name: build
