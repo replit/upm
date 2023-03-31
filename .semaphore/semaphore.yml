@@ -32,8 +32,8 @@ blocks:
       prologue:
         commands:
           - cache restore nix-installer
-          - ./nix-installer install linux --no-confirm --logger compact
-          - systemctl start nix-daemon
+          - sudo ./nix-installer install linux --no-confirm --logger compact
+          - sudo systemctl start nix-daemon
       jobs:
         - name: nix build
           commands:
