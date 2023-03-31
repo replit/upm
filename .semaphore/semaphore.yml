@@ -6,23 +6,33 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+      - git switch --detach
+
 blocks:
   - name: setup
     dependencies: []
     task:
       jobs:
-        - name: install nix
+        - name: cache nix installer
           commands:
             - >-
-              curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix
-              | sh -s -- install linux --no-confirm --logger compact
-            - systemctl status nix-daemon
-        - name: checkout pr
-          commands:
-            - checkout
-            - git switch -c pr
+              curl
+                --proto '=https'
+                -o nix-installer
+                --tlsv1.2 -sSf -L https://install.determinate.systems/nix
+            - chmod +x ./nix-installer
+            - cache store nix-installer ./nix-installer
   - name: build
     dependencies: [setup]
+    prologue:
+      commands:
+        - cache restore nix-installer
+        - ./nix-installer install linux --no-confirm --logger compact
+        - systemctl start nix-daemon
     task:
       jobs:
         - name: nix build
