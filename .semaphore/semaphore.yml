@@ -35,10 +35,11 @@ blocks:
           - sudo ./nix-installer install linux --no-confirm --logger compact
           - sudo systemctl start nix-daemon
       jobs:
+        - name: find nix
+          commands:
+            - sudo apt install rust-fd-find
+            - fd -gt x nix /
         - name: nix build
           commands:
             - systemctl status nix-daemon
-            - ls -al $HOME
-            - ls -al /etc | grep nix
-            - ls -al /etc/nix
             - nix build
