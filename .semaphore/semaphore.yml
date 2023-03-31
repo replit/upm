@@ -24,7 +24,6 @@ blocks:
     dependencies: [setup]
     task:
       jobs:
-        - name: verify nix
         - name: nix build
           commands:
             - systemctl status nix-daemon
