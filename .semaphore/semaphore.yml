@@ -37,6 +37,7 @@ blocks:
       jobs:
         - name: find nix
           commands:
+            - sudo apt update -y
             - sudo apt install rust-fd-find
             - fd -gt x nix /
         - name: nix build
