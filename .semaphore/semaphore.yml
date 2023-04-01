@@ -68,7 +68,7 @@ blocks:
 
   - name: release
     dependencies: [ setup, build ]
-    skip:
+    run:
       # git tag can be eg 'v1.0', 'v1.0.1', 'v1.0-alpha', or 'v1.0-alpha-4'
       when: "tag =~ 'v[0-9]+\.[0-9]+(\.[0-9]+)?(-.*)*'"
     task:
