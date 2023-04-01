@@ -21,24 +21,24 @@ blocks:
           commands:
             - >-
               cache has_key nix-installer || (
-                curl
-                --proto '=https'
-                -o nix-installer
-                --tlsv1.2 -sSf -L
-                https://github.com/DeterminateSystems/nix-installer/releases/download/v0.7.0/nix-installer-x86_64-linux
-                && chmod +x ./nix-installer
-                && cache store nix-installer ./nix-installer
+              curl
+              --proto '=https'
+              -o nix-installer
+              --tlsv1.2 -sSf -L
+              https://github.com/DeterminateSystems/nix-installer/releases/download/v0.7.0/nix-installer-x86_64-linux
+              && chmod +x ./nix-installer
+              && cache store nix-installer ./nix-installer
               )
         - name: cache goreleaser
           commands:
             - >-
               cache has_key goreleaser || (
-                curl
-                --proto '=https'
-                -o goreleaser
-                -sL https://git.io/goreleaser
-                && chmod +x ./goreleaser
-                && cache store goreleaser ./goreleaser
+              curl
+              --proto '=https'
+              -o goreleaser
+              -sL https://git.io/goreleaser
+              && chmod +x ./goreleaser
+              && cache store goreleaser ./goreleaser
               )
 
   - name: build
