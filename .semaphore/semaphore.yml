@@ -29,6 +29,15 @@ blocks:
               && chmod +x ./nix-installer
               && cache store nix-installer ./nix-installer
               )
+            # TODO: cache the dependencies of the nix package
+            # this might be possible based on exploratory:
+            # ```
+            # $ DERIVATION="$(nix path-info --derivation .)"
+            # $ declare -p DERIVATION
+            # $ nix-store --query --references "${DERIVATION}"
+            # ```
+            # The above spits out the deps of the derivation
+            # just have to filter out the `-source`
         - name: cache goreleaser
           commands:
             - >-
@@ -40,9 +49,19 @@ blocks:
               && chmod +x ./goreleaser
               && cache store goreleaser ./goreleaser
               )
+        - name: cache golint-ci
+          commands:
+            - >-
+              cache has_key golangci-lint || (
+              mkdir -p bin &&
+              curl
+              -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
+              | sh -s v1.52.2
+              && cache store golangci-lint ./bin/golangci-lint
+              )
 
   - name: build
-    dependencies: [setup]
+    dependencies: [ setup ]
     task:
       prologue:
         commands:
@@ -65,9 +84,18 @@ blocks:
         - name: docker
           commands:
             - make light full
+  
+  - name: lint
+    dependencies: [ setup ]
+    task:
+      jobs:
+        - name: golang lint
+          commands:
+            - cache restore golangci-lint
+            - ./bin/golangci-lint run
 
   - name: release
-    dependencies: [ setup, build ]
+    dependencies: [ setup, build, lint ]
     run:
       # git tag can be eg 'v1.0', 'v1.0.1', 'v1.0-alpha', or 'v1.0-alpha-4'
       when: "tag =~ 'v[0-9]+\.[0-9]+(\.[0-9]+)?(-.*)*'"
