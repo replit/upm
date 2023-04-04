@@ -1,6 +1,7 @@
 SOURCES := $(shell find cmd internal -type d -o -name "*.go")
 RESOURCES := $(shell find resources)
 GENERATED := internal/backends/python/pypi_map.gen.go
+LD_FLAGS := "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
 export GO111MODULE=on
 
@@ -14,13 +15,16 @@ internal/backends/python/pypi_map.gen.go: internal/backends/python/download_stat
 	go generate ./internal/backends/python
 
 cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
-	cd cmd/upm && go build -ldflags "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
+	cd cmd/upm && go build -ldflags $(LD_FLAGS)
+
+build-release: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
+	goreleaser build -ldflags $(LD_FLAGS)
 
 internal/statik/statik.go: $(shell find resources -type f)
 	go run github.com/rakyll/statik -src resources -dest internal -f
 
 clean-gen:
-	rm ./internal/backends/python/pypi_map.gen.go
+	rm $(GENERATED)
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker

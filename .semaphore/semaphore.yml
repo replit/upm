@@ -69,17 +69,16 @@ blocks:
           - sudo ./nix-installer install linux --no-confirm --logger compact
           - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       jobs:
-        - name: nix build
+        - name: nix
           commands:
             - cache restore nix-store
             - nix build
             - ./result/bin/upm --version
             - cache store nix-store /nix
-        - name: gorelease build
+        - name: goreleaser
           commands:
             - cache restore goreleaser
-            - make upm
-            - ./goreleaser --release-notes=<(scripts/extract-changelog.py)
+            - PATH="$PWD/bin:$PATH" make build-release
             - cache store dist ./dist
         - name: docker
           commands:
@@ -100,17 +99,20 @@ blocks:
       # git tag can be eg 'v1.0', 'v1.0.1', 'v1.0-alpha', or 'v1.0-alpha-4'
       when: "tag =~ 'v[0-9]+\.[0-9]+(\.[0-9]+)?(-.*)*'"
     task:
+      prologue:
+        commands:
+          - cache restore dist
       jobs:
-        - name: gorelease
+        - name: goreleaser
+          commands:
+            - ./goreleaser release --prepare --release-notes=<(scripts/extract-changelog.py)
+        - name: snapcraft
           commands:
             - >-
               snapcraft login --with <(
                 echo "$SNAPCRAFT_LOGIN_FILE" |
                 base64 --decode --ignore-garbage
               )
-            - make upm
-            - cache restore goreleaser
-            - ./goreleaser --release-notes=<(scripts/extract-changelog.py)
             - scripts/upload-snap.bash
         # - name: deploy
         #   commands:
