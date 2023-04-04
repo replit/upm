@@ -78,7 +78,7 @@ blocks:
         - name: goreleaser
           commands:
             - cache restore goreleaser
-            - PATH="$PWD/bin:$PATH" make build-release
+            - make build-release
             - cache store dist ./dist
         - name: docker
           commands:
@@ -90,6 +90,7 @@ blocks:
       jobs:
         - name: golang lint
           commands:
+            - make generated
             - cache restore golangci-lint
             - ./bin/golangci-lint run
 

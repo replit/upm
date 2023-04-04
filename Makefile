@@ -14,11 +14,14 @@ install: cmd/upm/upm
 internal/backends/python/pypi_map.gen.go: internal/backends/python/download_stats.json
 	go generate ./internal/backends/python
 
-cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
+.PHONY: generated
+generated: $(GENERATED)
+
+cmd/upm/upm: $(SOURCES) $(RESOURCES) generated internal/statik/statik.go
 	cd cmd/upm && go build -ldflags $(LD_FLAGS)
 
-build-release: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
-	goreleaser build -ldflags $(LD_FLAGS)
+build-release: $(SOURCES) $(RESOURCES) generated internal/statik/statik.go
+	./goreleaser build -ldflags $(LD_FLAGS)
 
 internal/statik/statik.go: $(shell find resources -type f)
 	go run github.com/rakyll/statik -src resources -dest internal -f
