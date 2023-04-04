@@ -151,7 +151,7 @@ func parseInfo(body []byte, packageName api.PkgName) (api.PkgInfo, error) {
 		authors = append(authors, author.Name)
 	}
 
-	bugTracker, _ := latestVersionResult.Support["issues"]
+	bugTracker := latestVersionResult.Support["issues"]
 
 	return api.PkgInfo{
 		Name:          latestVersionResult.Name,
