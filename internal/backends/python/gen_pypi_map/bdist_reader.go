@@ -53,7 +53,7 @@ func ExtractBdist(reader ArchiveReader) ([]string, error) {
 	// does not contain an __init__ module is not an acessible module, unless
 	// that module is in the top level of the dist.
 	ret := make([]string, 0, len(modules))
-	for pkg, _ := range modules {
+	for pkg := range modules {
 		valid := ValidatePackage(pkg, modules)
 		if valid {
 			ret = append(ret, pkg)

@@ -23,10 +23,10 @@ func FetchBQDownloads(gcp string, filePath string) error {
 
 	cacheEncoder := json.NewEncoder(writer)
 	cacheEncoder.SetIndent("", "  ")
-	cacheEncoder.Encode(bqCache)
+	err = cacheEncoder.Encode(bqCache)
 
 	writer.Close()
-	return nil
+	return err
 }
 
 func LoadDownloadStats(path string) (map[string]int, error) {
@@ -38,9 +38,9 @@ func LoadDownloadStats(path string) (map[string]int, error) {
 	packages := map[string]int{}
 
 	decoder := json.NewDecoder(file)
-	decoder.Decode(&packages)
+	err = decoder.Decode(&packages)
 
-	return packages, nil
+	return packages, err
 }
 
 func SaveDownloadStats(path string, cache PackageCache) {
@@ -52,7 +52,10 @@ func SaveDownloadStats(path string, cache PackageCache) {
 
 	cacheEncoder := json.NewEncoder(writer)
 	cacheEncoder.SetIndent("", "  ")
-	cacheEncoder.Encode(cache)
+	err = cacheEncoder.Encode(cache)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func GetPypiStats(projectID string) (map[string]int, error) {

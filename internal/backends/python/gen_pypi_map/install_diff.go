@@ -39,7 +39,10 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 	decoder := json.NewDecoder(cmdReader)
 
 	var r InstallDiffResponse
-	decoder.Decode(&r)
+	err = decoder.Decode(&r)
+	if err != nil {
+		return nil, PypiError{InstallFailure, "Failed to decode response", err}
+	}
 
 	err = cmd.Wait()
 	if err != nil {

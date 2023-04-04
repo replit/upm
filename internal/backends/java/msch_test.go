@@ -54,13 +54,9 @@ func TestInfoWithArtifactNameOnly(t *testing.T) {
 
 func TestInfoWithUnknownArtifact(t *testing.T) {
 	artifact := "yyy"
-	info, err := Info(artifact)
+	_, err := Info(artifact)
 
 	if err != nil {
 		t.Errorf("Failed to find package with \n%q\n", err)
-	}
-
-	if &info == nil {
-		t.Error("Got nil instead of zero record")
 	}
 }

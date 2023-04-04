@@ -301,7 +301,11 @@ func DoCLI() {
 	specialArgs := map[string](func()){}
 	for _, helpFlag := range []string{"-help", "-?"} {
 		specialArgs[helpFlag] = func() {
-			rootCmd.Usage()
+			err := rootCmd.Usage()
+			if err != nil {
+				panic(err)
+			}
+
 			os.Exit(0)
 		}
 	}
@@ -320,5 +324,8 @@ func DoCLI() {
 	}
 
 	util.ChdirToUPM()
-	rootCmd.Execute()
+	err := rootCmd.Execute()
+	if err != nil {
+		panic(err)
+	}
 }

@@ -155,6 +155,10 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		util.Die("NPM registry: could not read response: %s", err)
+	}
+
 	var npmInfo npmInfoResult
 	if err := json.Unmarshal(body, &npmInfo); err != nil {
 		util.Die("NPM registry: %s", err)
@@ -272,7 +276,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"yarn", "remove"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
@@ -334,7 +338,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"npm", "uninstall"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)

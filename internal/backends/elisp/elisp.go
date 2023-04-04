@@ -100,7 +100,7 @@ var ElispBackend = api.LanguageBackend{
 			if spec != "" {
 				contents += fmt.Sprintf(" %s", spec)
 			}
-			contents += fmt.Sprint(")\n")
+			contents += ")\n"
 		}
 
 		contentsB = []byte(contents)
@@ -114,7 +114,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 		contents := string(contentsB)
 
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			contents = regexp.MustCompile(
 				fmt.Sprintf(
 					`(?m)^ *\(depends-on +"%s".*\)\n?$`,
