@@ -20,6 +20,7 @@ blocks:
       jobs:
         - name: cache nix installer
           commands:
+            - cache delete nix-installer
             - >-
               cache has_key nix-installer || (
               curl
@@ -41,6 +42,7 @@ blocks:
             # just have to filter out the `-source`
         - name: cache goreleaser
           commands:
+            - cache delete goreleaser
             - >-
               cache has_key goreleaser || (
               curl
@@ -52,6 +54,7 @@ blocks:
               )
         - name: cache golint-ci
           commands:
+            - cache delete golangci-lint
             - >-
               cache has_key golangci-lint || (
               mkdir -p bin &&
