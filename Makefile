@@ -28,6 +28,7 @@ internal/statik/statik.go: $(shell find resources -type f)
 
 clean-gen:
 	rm $(GENERATED)
+	rm -rf internal/statik
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker
@@ -70,7 +71,7 @@ pkgbuild: ## Update and test PKGBUILD
 
 .PHONY: clean
 clean: ## Remove build artifacts
-	rm -rf cmd/upm/upm dist internal/statik
+	rm -rf cmd/upm/upm dist
 
 .PHONY: help
 help: ## Show this message
