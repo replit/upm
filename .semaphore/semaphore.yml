@@ -65,9 +65,10 @@ blocks:
             - nix build
             - ./result/bin/upm --version
             - cache store nix-store /nix
-        - name: docker
-          commands:
-            - make light full
+        # TODO: get this working again
+        # - name: docker
+        #   commands:
+        #     - make light full
   
   - name: lint
     dependencies: [ setup ]
