@@ -249,7 +249,7 @@ func runAdd(
 			delete(guessedNorm, b.NormalizePackageName(api.PkgName(pkg)))
 		}
 
-		for name, _ := range guessed {
+		for name := range guessed {
 			if _, ok := normPkgs[b.NormalizePackageName(name)]; !ok {
 				normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
 					name: name,
@@ -261,7 +261,7 @@ func runAdd(
 
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
-		for name, _ := range b.ListSpecfile() {
+		for name := range b.ListSpecfile() {
 			delete(normPkgs, b.NormalizePackageName(name))
 		}
 		s.restore()
@@ -495,7 +495,7 @@ func runGuess(
 
 	if !all {
 		if util.Exists(b.Specfile) {
-			for name, _ := range b.ListSpecfile() {
+			for name := range b.ListSpecfile() {
 				delete(normPkgs, b.NormalizePackageName(name))
 			}
 		}

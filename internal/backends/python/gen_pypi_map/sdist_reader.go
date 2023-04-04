@@ -31,7 +31,10 @@ func dumpSetupPy(path string) (DistPackageMetadata, error) {
 	decoder := json.NewDecoder(cmdReader)
 
 	var metadata DistPackageMetadata
-	decoder.Decode(&metadata)
+	err = decoder.Decode(&metadata)
+	if err != nil {
+		return DistPackageMetadata{}, err
+	}
 
 	err = cmd.Wait()
 	if err != nil {

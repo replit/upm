@@ -121,8 +121,7 @@ func DoCLI() {
 	)
 	rootCmd.AddCommand(cmdSearch)
 
-	var cmdInfo *cobra.Command
-	cmdInfo = &cobra.Command{
+	cmdInfo := &cobra.Command{
 		Aliases: []string{"show"},
 		Use:     "info PACKAGE",
 		Short:   "Show package information from online registry",
