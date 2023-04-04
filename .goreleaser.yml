@@ -11,7 +11,7 @@ brews:
       name: replbot
     description: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
     folder: Formula
-    github:
+    tap:
       owner: replit
       name: homebrew-tap
     homepage: https://github.com/replit/upm
