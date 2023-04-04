@@ -30,8 +30,7 @@ builds:
 checksum:
   name_template: "checksums.txt"
 dockers:
-  - binaries: []
-    build_flag_templates:
+  - build_flag_templates:
       - "--build-arg"
       - "VERSION={{.Version}}"
     dockerfile: Dockerfile.full
@@ -46,8 +45,7 @@ dockers:
     image_templates:
       - replco/upm:{{.Version}}-full
       - replco/upm:{{.Version}}
-  - binaries: []
-    build_flag_templates:
+  - build_flag_templates:
       - "--build-arg"
       - "VERSION={{.Version}}"
     dockerfile: Dockerfile.light
