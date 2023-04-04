@@ -65,11 +65,6 @@ blocks:
             - nix build
             - ./result/bin/upm --version
             - cache store nix-store /nix
-        - name: goreleaser
-          commands:
-            - cache restore goreleaser
-            - make build-release
-            - cache store dist ./dist
         - name: docker
           commands:
             - make light full
