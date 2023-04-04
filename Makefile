@@ -21,7 +21,7 @@ cmd/upm/upm: $(SOURCES) $(RESOURCES) generated internal/statik/statik.go
 	cd cmd/upm && go build -ldflags $(LD_FLAGS)
 
 build-release: $(SOURCES) $(RESOURCES) generated internal/statik/statik.go
-	./goreleaser build
+	goreleaser build
 
 internal/statik/statik.go: $(shell find resources -type f)
 	go run github.com/rakyll/statik -src resources -dest internal -f

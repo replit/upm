@@ -11,6 +11,7 @@ global_job_config:
     commands:
       - checkout
       - git switch --detach
+      - export PATH="/tmp:$PATH"
 
 blocks:
   - name: setup
@@ -23,11 +24,11 @@ blocks:
               cache has_key nix-installer || (
               curl
               --proto '=https'
-              -o nix-installer
+              -o /tmp/nix-installer
               --tlsv1.2 -sSf -L
               https://github.com/DeterminateSystems/nix-installer/releases/download/v0.7.0/nix-installer-x86_64-linux
-              && chmod +x ./nix-installer
-              && cache store nix-installer ./nix-installer
+              && chmod +x /tmp/nix-installer
+              && cache store nix-installer /tmp/nix-installer
               )
             # TODO: cache the dependencies of the nix package
             # this might be possible based on exploratory:
@@ -44,10 +45,10 @@ blocks:
               cache has_key goreleaser || (
               curl
               --proto '=https'
-              -o goreleaser
+              -o /tmp/goreleaser
               -sL https://git.io/goreleaser
-              && chmod +x ./goreleaser
-              && cache store goreleaser ./goreleaser
+              && chmod +x /tmp/goreleaser
+              && cache store goreleaser /tmp/goreleaser
               )
         - name: cache golint-ci
           commands:
@@ -56,8 +57,8 @@ blocks:
               mkdir -p bin &&
               curl
               -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
-              | sh -s v1.52.2
-              && cache store golangci-lint ./bin/golangci-lint
+              | sh -s -- -b /tmp v1.52.2
+              && cache store golangci-lint /tmp/golangci-lint
               )
 
   - name: build
@@ -66,7 +67,7 @@ blocks:
       prologue:
         commands:
           - cache restore nix-installer
-          - sudo ./nix-installer install linux --no-confirm --logger compact
+          - sudo /tmp/nix-installer install linux --no-confirm --logger compact
           - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       jobs:
         - name: nix
@@ -92,7 +93,7 @@ blocks:
           commands:
             - make generated
             - cache restore golangci-lint
-            - ./bin/golangci-lint run
+            - golangci-lint run
 
   - name: release
     dependencies: [ build, lint ]
@@ -106,7 +107,7 @@ blocks:
       jobs:
         - name: goreleaser
           commands:
-            - ./goreleaser release --prepare --release-notes=<(scripts/extract-changelog.py)
+            - goreleaser release --prepare --release-notes=<(scripts/extract-changelog.py)
         - name: snapcraft
           commands:
             - >-
