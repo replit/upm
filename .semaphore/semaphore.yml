@@ -39,17 +39,6 @@ blocks:
             # ```
             # The above spits out the deps of the derivation
             # just have to filter out the `-source`
-        - name: cache goreleaser
-          commands:
-            - >-
-              cache has_key goreleaser || (
-              curl
-              --proto '=https'
-              -o /tmp/goreleaser
-              -sL https://git.io/goreleaser
-              && chmod +x /tmp/goreleaser
-              && cache store goreleaser /tmp/goreleaser
-              )
         - name: cache golint-ci
           commands:
             - >-
@@ -107,7 +96,17 @@ blocks:
       jobs:
         - name: goreleaser
           commands:
-            - goreleaser release --prepare --release-notes=<(scripts/extract-changelog.py)
+            - >-
+              cache has_key goreleaser || (
+              curl
+              --proto '=https'
+              -o /tmp/goreleaser
+              -sL https://git.io/goreleaser
+              && chmod +x /tmp/goreleaser
+              && cache store goreleaser /tmp/goreleaser
+              )
+            - cache restore goreleaser
+            - goreleaser --release-notes=<(scripts/extract-changelog.py)
         - name: snapcraft
           commands:
             - >-
