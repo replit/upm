@@ -103,14 +103,14 @@ blocks:
               )
             - cache restore goreleaser
             - goreleaser --release-notes=<(scripts/extract-changelog.py)
-        - name: snapcraft
-          commands:
-            - >-
-              snapcraft login --with <(
-                echo "$SNAPCRAFT_LOGIN_FILE" |
-                base64 --decode --ignore-garbage
-              )
-            - scripts/upload-snap.bash
+        # - name: snapcraft
+        #   commands:
+        #     - >-
+        #       snapcraft login --with <(
+        #         echo "$SNAPCRAFT_LOGIN_FILE" |
+        #         base64 --decode --ignore-garbage
+        #       )
+        #     - scripts/upload-snap.bash
         # - name: deploy
         #   commands:
         #     - >-
