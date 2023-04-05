@@ -11,7 +11,7 @@ brews:
       name: replbot
     description: "Universal package manager: Python, Node.js, Ruby, Emacs Lisp."
     folder: Formula
-    github:
+    tap:
       owner: replit
       name: homebrew-tap
     homepage: https://github.com/replit/upm
@@ -30,8 +30,7 @@ builds:
 checksum:
   name_template: "checksums.txt"
 dockers:
-  - binaries: []
-    build_flag_templates:
+  - build_flag_templates:
       - "--build-arg"
       - "VERSION={{.Version}}"
     dockerfile: Dockerfile.full
@@ -46,8 +45,7 @@ dockers:
     image_templates:
       - replco/upm:{{.Version}}-full
       - replco/upm:{{.Version}}
-  - binaries: []
-    build_flag_templates:
+  - build_flag_templates:
       - "--build-arg"
       - "VERSION={{.Version}}"
     dockerfile: Dockerfile.light

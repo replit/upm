@@ -27,7 +27,10 @@ func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
 	}
 
 	// Copy the contents of the reader to disk
-	io.Copy(cacheFile, reader)
+	_, err = io.Copy(cacheFile, reader)
+	if err != nil {
+		return ArchiveReader{}, err
+	}
 
 	cacheFile.Close()
 
@@ -107,11 +110,28 @@ func MakeTarballReader(reader io.Reader) (ArchiveReader, error) {
 
 	archiveDump := func(dir string) error {
 		cmd := exec.Command("tar", "-x", "-C", dir)
-		p, _ := cmd.StdinPipe()
+		p, err := cmd.StdinPipe()
+		if err != nil {
+			return err
+		}
+
 		defer p.Close()
-		cmd.Start()
-		io.Copy(p, gzipReader)
-		cmd.Wait()
+
+		err = cmd.Start()
+		if err != nil {
+			return err
+		}
+
+		_, err = io.Copy(p, gzipReader)
+		if err != nil {
+			return err
+		}
+
+		err = cmd.Wait()
+		if err != nil {
+			return err
+		}
+
 		return nil
 	}
 

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"net/http"
 	"path"
 	"sort"
@@ -19,18 +17,6 @@ var ignoredModules = map[string]bool{
 	"documentation": true,
 	"_private":      true,
 	"setup":         true,
-}
-
-func parseTopLevel(reader io.Reader) []string {
-	modules := make([]string, 0)
-
-	scanner := bufio.NewScanner(reader)
-	scanner.Split(bufio.ScanLines)
-	for scanner.Scan() {
-		modules = append(modules, scanner.Text())
-	}
-
-	return modules
 }
 
 func GetModules(metadata PackageData) ([]string, error) {
