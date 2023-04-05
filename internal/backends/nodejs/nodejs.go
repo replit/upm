@@ -248,16 +248,16 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 }
 
 func parseYarnSpec(specBytes []byte) map[api.PkgName]api.PkgVersion {
-  contents := string(specBytes)
-  r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
-  pkgs := map[api.PkgName]api.PkgVersion{}
-  for _, match := range r.FindAllStringSubmatch(contents, -1) {
-    name := api.PkgName(match[1])
-    version := api.PkgVersion(match[2])
-    pkgs[name] = version
-  }
+	contents := string(specBytes)
+	r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+	pkgs := map[api.PkgName]api.PkgVersion{}
+	for _, match := range r.FindAllStringSubmatch(contents, -1) {
+		name := api.PkgName(match[1])
+		version := api.PkgVersion(match[2])
+		pkgs[name] = version
+	}
 
-  return pkgs
+	return pkgs
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
@@ -406,7 +406,7 @@ var NodejsBunBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"bun", "remove"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
@@ -419,13 +419,13 @@ var NodejsBunBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-    // when bun executes the lockfile it prints out a Yarn specfile
-    yarnSpec, err := exec.Command("bun", "bun.lockb").Output()
-    if err != nil {
-      util.Die("bun.lockb: %s", err)
-    }
+		// when bun executes the lockfile it prints out a Yarn specfile
+		yarnSpec, err := exec.Command("bun", "bun.lockb").Output()
+		if err != nil {
+			util.Die("bun.lockb: %s", err)
+		}
 
-    return parseYarnSpec(yarnSpec)
+		return parseYarnSpec(yarnSpec)
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: nodejsGuessRegexps,
