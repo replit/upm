@@ -93,7 +93,7 @@ func PatternExists(pattern string) bool {
 // SearchRecursive terminates the process.
 func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 	matches := [][]string{}
-	filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			Die("%s: %s", path, err)
 		}
@@ -129,6 +129,9 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 		}
 		return nil
 	})
+	if err != nil {
+		panic(err)
+	}
 
 	return matches
 }

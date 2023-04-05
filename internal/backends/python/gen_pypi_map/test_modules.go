@@ -119,7 +119,10 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 	decoder := json.NewDecoder(resp.Body)
 
 	data := PackageData{}
-	decoder.Decode(&data)
+	err = decoder.Decode(&data)
+	if err != nil {
+		return PackageData{}, err
+	}
 
 	idRegex := regexp.MustCompile("^([a-zA-Z-_0-9.]+)")
 	var stripedRequiresDist []string

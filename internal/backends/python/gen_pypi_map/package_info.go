@@ -60,7 +60,10 @@ func LoadAllPackageInfo(cacheDir string, cacheFilePath string) map[string]Packag
 		decoder := json.NewDecoder(file)
 		for decoder.More() {
 			var info PackageInfo
-			decoder.Decode(&info)
+			err = decoder.Decode(&info)
+			if err != nil {
+				panic(err)
+			}
 
 			registry[strings.ToLower(info.Name)] = info
 		}
@@ -111,7 +114,10 @@ func UpdateAllPackageInfo(cacheDir string, cacheFilePath string) error {
 	encoder := json.NewEncoder(cacheFile)
 
 	for _, key := range keys {
-		encoder.Encode(registry[key])
+		err = encoder.Encode(registry[key])
+		if err != nil {
+			return err
+		}
 	}
 
 	cacheFile.Close()

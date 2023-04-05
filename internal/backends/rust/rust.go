@@ -129,6 +129,10 @@ func info(name api.PkgName) api.PkgInfo {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		util.Die("crates.io: could not read response: %s", err)
+	}
+
 	var crateInfo crateInfoResult
 	if err := json.Unmarshal(body, &crateInfo); err != nil {
 		util.Die("crates.io: %s", err)

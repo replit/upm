@@ -195,7 +195,7 @@ var RubyBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"bundle", "remove", "--skip-install"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)

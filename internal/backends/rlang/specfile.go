@@ -54,7 +54,10 @@ func RAdd(pkg RPackage) {
 
 		config.Packages = append(config.Packages, pkg)
 
-		encoder.Encode(&config)
+		err = encoder.Encode(&config)
+		if err != nil {
+			panic(err)
+		}
 
 		file.Close()
 	} else if os.IsNotExist(err) {
@@ -63,7 +66,11 @@ func RAdd(pkg RPackage) {
 			panic(err)
 		}
 
-		file.WriteString("{\n\t\"packages\": []\n}")
+		_, err = file.WriteString("{\n\t\"packages\": []\n}")
+		if err != nil {
+			panic(err)
+		}
+
 		file.Close()
 
 		RAdd(pkg)
@@ -110,7 +117,10 @@ func RRemove(pkg RPackage) {
 		}
 	}
 
-	encoder.Encode(&config)
+	err = encoder.Encode(&config)
+	if err != nil {
+		panic(err)
+	}
 
 	file.Close()
 }
