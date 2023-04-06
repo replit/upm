@@ -3,6 +3,8 @@ RESOURCES := $(shell find resources)
 GENERATED := internal/backends/python/pypi_map.gen.go
 LD_FLAGS := "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
+
+
 export GO111MODULE=on
 
 .PHONY: upm
