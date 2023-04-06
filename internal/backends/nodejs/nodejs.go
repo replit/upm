@@ -376,9 +376,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Guess:        nodejsGuess,
 }
 
-// NodejsBunBackend is a UPM backend for Node.js that uses Yarn.
-var NodejsBunBackend = api.LanguageBackend{
-	Name:             "nodejs-bun",
+// BunBackend is a UPM backend for Node.js that uses Yarn.
+var BunBackend = api.LanguageBackend{
+	Name:             "bun",
 	Specfile:         "package.json",
 	Lockfile:         "bun.lockb",
 	FilenamePatterns: nodejsPatterns,
