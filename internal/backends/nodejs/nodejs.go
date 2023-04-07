@@ -427,7 +427,7 @@ var BunBackend = api.LanguageBackend{
 		// - 1.2.3
 		// - 1.2.3-beta.1
 		// - 1.2.3-beta.1-build.1
-		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@([0-9]+\.[0-9]+\.[0-9]+(-.+)?)$`)
+		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 
 		for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
