@@ -419,14 +419,6 @@ var BunBackend = api.LanguageBackend{
 			util.Die("bun pm hash-string: %s", err)
 		}
 
-		// name could be:
-		// - @scope/name
-		// - scope/name
-		// - name
-		// version could be:
-		// - 1.2.3
-		// - 1.2.3-beta.1
-		// - 1.2.3-beta.1-build.1
 		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 
