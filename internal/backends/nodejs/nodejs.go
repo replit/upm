@@ -247,19 +247,6 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 	return pkgs, true
 }
 
-func parseYarnSpec(specBytes []byte) map[api.PkgName]api.PkgVersion {
-	contents := string(specBytes)
-	r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
-	pkgs := map[api.PkgName]api.PkgVersion{}
-	for _, match := range r.FindAllStringSubmatch(contents, -1) {
-		name := api.PkgName(match[1])
-		version := api.PkgVersion(match[2])
-		pkgs[name] = version
-	}
-
-	return pkgs
-}
-
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
 var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
@@ -307,7 +294,15 @@ var NodejsYarnBackend = api.LanguageBackend{
 		if err != nil {
 			util.Die("yarn.lock: %s", err)
 		}
-		return parseYarnSpec(contentsB)
+		contents := string(contentsB)
+		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+		pkgs := map[api.PkgName]api.PkgVersion{}
+		for _, match := range r.FindAllStringSubmatch(contents, -1) {
+			name := api.PkgName(match[1])
+			version := api.PkgVersion(match[2])
+			pkgs[name] = version
+		}
+		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: nodejsGuessRegexps,
