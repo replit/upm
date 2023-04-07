@@ -414,13 +414,28 @@ var BunBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		// when bun executes the lockfile it prints out a Yarn specfile
-		yarnSpec, err := exec.Command("bun", "bun.lockb").Output()
+		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
 		if err != nil {
-			util.Die("bun.lockb: %s", err)
+			util.Die("bun pm hash-string: %s", err)
 		}
 
-		return parseYarnSpec(yarnSpec)
+		// name could be:
+		// - @scope/name
+		// - scope/name
+		// - name
+		// version could be:
+		// - 1.2.3
+		// - 1.2.3-beta.1
+		// - 1.2.3-beta.1-build.1
+		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@([0-9]+\.[0-9]+\.[0-9]+(-.+)?)$`)
+		pkgs := map[api.PkgName]api.PkgVersion{}
+
+		for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
+			name := api.PkgName(match[1])
+			pkgs[name] = api.PkgVersion(match[2])
+		}
+
+		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps: nodejsGuessRegexps,
