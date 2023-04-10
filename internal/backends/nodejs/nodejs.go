@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 
 	"github.com/hashicorp/go-version"
@@ -363,6 +364,69 @@ var NodejsNPMBackend = api.LanguageBackend{
 		for nameStr, data := range cfg.Dependencies {
 			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
 		}
+		return pkgs
+	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
+}
+
+// BunBackend is a UPM backend for Node.js that uses Yarn.
+var BunBackend = api.LanguageBackend{
+	Name:             "bun",
+	Specfile:         "package.json",
+	Lockfile:         "bun.lockb",
+	FilenamePatterns: nodejsPatterns,
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"bun", "init", "-y"})
+		}
+		cmd := []string{"bun", "add"}
+		for name, spec := range pkgs {
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
+		}
+		util.RunCmd(cmd)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		cmd := []string{"bun", "remove"}
+		for name := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		util.RunCmd(cmd)
+	},
+	Lock: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	Install: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	ListSpecfile: nodejsListSpecfile,
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
+		if err != nil {
+			util.Die("bun pm hash-string: %s", err)
+		}
+
+		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
+		pkgs := map[api.PkgName]api.PkgVersion{}
+
+		for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
+			name := api.PkgName(match[1])
+			pkgs[name] = api.PkgVersion(match[2])
+		}
+
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
