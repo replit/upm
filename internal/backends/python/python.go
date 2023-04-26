@@ -191,7 +191,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// so complicated??)
 
 			outputB := util.GetCmdOutput([]string{
-				python, "-m", "poetry",
+				"poetry",
 				"config", "settings.virtualenvs.path",
 			})
 			var path string
@@ -260,7 +260,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 			// Initalize the specfile if it doesnt exist
 			if !util.Exists("pyproject.toml") {
-				cmd := []string{python, "-m", "poetry", "init", "--no-interaction"}
+				cmd := []string{"poetry", "init", "--no-interaction"}
 
 				if projectName != "" {
 					cmd = append(cmd, "--name", projectName)
@@ -269,7 +269,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				util.RunCmd(cmd)
 			}
 
-			cmd := []string{python, "-m", "poetry", "add"}
+			cmd := []string{"poetry", "add"}
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
@@ -288,14 +288,14 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Remove: func(pkgs map[api.PkgName]bool) {
-			cmd := []string{python, "-m", "poetry", "remove"}
+			cmd := []string{"poetry", "remove"}
 			for name := range pkgs {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
 		},
 		Lock: func() {
-			util.RunCmd([]string{python, "-m", "poetry", "lock", "--no-update"})
+			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
 		Install: func() {
 			// Unfortunately, this doesn't necessarily uninstall
@@ -303,7 +303,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// which happens for example if 'poetry remove' is
 			// interrupted. See
 			// <https://github.com/sdispater/poetry/issues/648>.
-			util.RunCmd([]string{python, "-m", "poetry", "install"})
+			util.RunCmd([]string{"poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			pkgs, err := listSpecfile()
