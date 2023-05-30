@@ -13,6 +13,7 @@
         pkgs.cask
         pkgs.nodejs-16_x
         pkgs.yarn
+        pkgs.nodePackages.pnpm
         pkgs.python39Full
         pkgs.python39Packages.pip
         pkgs.python39Packages.poetry
