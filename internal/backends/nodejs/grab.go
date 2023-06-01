@@ -67,14 +67,12 @@ func parseFile(contents []byte, results chan parseResult) {
 
 	importsQuery := `
 (import_statement
-	source: (string [
-		("'" . (_) @import . "'")
-		("\"" . (_) @import . "\"")]))
+	source: (string) @import)
 
 (
 	(call_expression
 		function: (identifier) @function
-		arguments: (arguments ((_) @other-imports)? ((string) @import) .))
+		arguments: (arguments ((_) @other-imports)? ((_) @import) .))
 	(#eq? @function "require"))
 `
 
@@ -106,8 +104,10 @@ func parseFile(contents []byte, results chan parseResult) {
 			continue
 		}
 
+		var importPath string
+
 		if match.PatternIndex == 0 {
-			importPaths = append(importPaths, string(match.Captures[0].Node.Content(contents)))
+			importPath = match.Captures[0].Node.Content(contents)
 		} else if match.PatternIndex == 1 {
 			// TODO: https://github.com/smacker/go-tree-sitter/issues/110
 			// once the above issue is resolved, uncomment the `@other-imports` predicate
@@ -116,13 +116,14 @@ func parseFile(contents []byte, results chan parseResult) {
 				continue
 			}
 
-			// TODO: https://github.com/smacker/go-tree-sitter/issues/111
-			// once the above issue is resolved, use the string destructuring used in the
-			// `import_statement` pattern above in the `call_expression` pattern instead
-			// of using this hacky trim
-			importPath := match.Captures[1].Node.Content(contents)
-			importPaths = append(importPaths, strings.Trim(importPath, "'\""))
+			importPath = match.Captures[1].Node.Content(contents)
 		}
+
+		// TODO: https://github.com/smacker/go-tree-sitter/issues/111
+		// once the above issue is resolved, use the string destructuring used in the
+		// `import_statement` pattern above in the `call_expression` pattern instead
+		// of using this hacky trim
+		importPaths = append(importPaths, strings.Trim(importPath, "'\""))
 	}
 
 	results <- parseResult{importPaths, true}
