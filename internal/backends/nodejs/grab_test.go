@@ -10,6 +10,7 @@ func TestParseFile(t *testing.T) {
 		"nan",
 		"buffer",
 		"console",
+		"dns",
 	}
 
 	content := `
@@ -21,6 +22,7 @@ const foo = require('buffer');
 const foo2 = require("console");
 require("cluster", "crypto");
 require('async_hooks', 'constants');
+require('dns',)
 
 foo('bar');
 
