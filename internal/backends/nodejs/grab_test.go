@@ -2,12 +2,6 @@ package nodejs
 
 import "testing"
 
-type ParseTestCase struct {
-	scenario string
-	content  string
-	expected []string
-}
-
 func TestParseFile(t *testing.T) {
 	expected := []string{
 		"fs",
