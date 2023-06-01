@@ -11,6 +11,7 @@ func TestParseFile(t *testing.T) {
 		"buffer",
 		"console",
 		"dns",
+		"child_process",
 	}
 
 	content := `
@@ -23,6 +24,7 @@ const foo2 = require("console");
 require("cluster", "crypto");
 require('async_hooks', 'constants');
 require('dns',)
+require(` + "`child_process`" + `)
 
 foo('bar');
 

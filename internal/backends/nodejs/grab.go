@@ -123,7 +123,7 @@ func parseFile(contents []byte, results chan parseResult) {
 		// once the above issue is resolved, use the string destructuring used in the
 		// `import_statement` pattern above in the `call_expression` pattern instead
 		// of using this hacky trim
-		importPaths = append(importPaths, strings.Trim(importPath, "'\""))
+		importPaths = append(importPaths, strings.Trim(importPath, "'\"`"))
 	}
 
 	results <- parseResult{importPaths, true}
