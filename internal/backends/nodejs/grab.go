@@ -66,15 +66,16 @@ func parseFile(contents []byte, results chan parseResult) {
 	language := javascript.GetLanguage()
 
 	importsQuery := `
-	(import_statement
-		source: (string) @import)
-	(
-		(call_expression
-			function: (identifier) @function
-			arguments: (arguments ((_) @other-imports)? ((_) @import) .))
-		;(#eq? @other-imports "")
-		(#eq? @function "require")
-	)
+(import_statement
+	source: (string [
+		("'" . (_) @import . "'")
+		("\"" . (_) @import . "\"")]))
+
+(
+	(call_expression
+		function: (identifier) @function
+		arguments: (arguments ((_) @other-imports)? ((string) @import) .))
+	(#eq? @function "require"))
 `
 
 	query, err := sitter.NewQuery([]byte(importsQuery), language)
@@ -115,7 +116,12 @@ func parseFile(contents []byte, results chan parseResult) {
 				continue
 			}
 
-			importPaths = append(importPaths, string(match.Captures[1].Node.Content(contents)))
+			// TODO: https://github.com/smacker/go-tree-sitter/issues/111
+			// once the above issue is resolved, use the string destructuring used in the
+			// `import_statement` pattern above in the `call_expression` pattern instead
+			// of using this hacky trim
+			importPath := match.Captures[1].Node.Content(contents)
+			importPaths = append(importPaths, strings.Trim(importPath, "'\""))
 		}
 	}
 
