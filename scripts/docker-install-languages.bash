@@ -45,6 +45,7 @@ yarn
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y $packages
+curl -fsSL https://get.pnpm.io/install.sh | sh - # Install via script given that PNPM is not on APT
 rm -rf /var/lib/apt/lists/*
 
 pip2 --disable-pip-version-check install poetry
