@@ -351,18 +351,35 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("pnpm-lock.yaml")
+		// pnpm does scoped dependencies, so only list the dependencies at the top level
+		workspaceSpecContents, err := exec.Command("pnpm", "list", "--json", "--depth", "0").Output()
 		if err != nil {
-			util.Die("pnpm-lock.yaml: %s", err)
+			util.Die("pnpm list: %s", err)
 		}
-		contents := string(contentsB)
-		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"`)
+
+		workspaceSpec := []map[string]interface{}{}
+		err = json.Unmarshal(workspaceSpecContents, &workspaceSpec)
+		if err != nil {
+			util.Die("pnpm list: %s", err)
+		}
+
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		for _, match := range r.FindAllStringSubmatch(contents, -1) {
-			name := api.PkgName(match[1])
-			version := api.PkgVersion(match[2])
-			pkgs[name] = version
+		for _, pkgSpec := range workspaceSpec {
+			for depName, depInfo := range pkgSpec["dependencies"].(map[string]interface{}) {
+				pkgName := api.PkgName(depName)
+				if _, ok := pkgs[pkgName]; ok {
+					continue
+				}
+
+				depVersion, ok := depInfo.(map[string]interface{})["version"].(string)
+				if !ok {
+					util.Die("pnpm list: %s", err)
+				}
+
+				pkgs[pkgName] = api.PkgVersion(depVersion)
+			}
 		}
+
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
