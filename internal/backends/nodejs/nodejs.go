@@ -324,7 +324,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	Info:   nodejsInfo,
 	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		if !util.Exists("package.json") {
-			util.RunCmd([]string{"npm", "init", "-y"})
+			util.RunCmd([]string{"pnpm", "init"})
 		}
 		cmd := []string{"pnpm", "add"}
 		for name, spec := range pkgs {
