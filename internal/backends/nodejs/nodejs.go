@@ -351,7 +351,10 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		// pnpm does scoped dependencies, so only list the dependencies at the top level
+		// In Replit front end repo, `--depth Infinity` refuses to run due to Node refusing to make
+		// a string with such size. `--depth 10` works in shell, but crashes with a 0 exit code when
+		// writing to a file (eg `pnpm list --json --depth 10 >file.json`). Instead of trying to get
+		// the full dependency tree, instead we'll just get the top-level dependencies.
 		workspaceSpecContents, err := exec.Command("pnpm", "list", "--json", "--depth", "0").Output()
 		if err != nil {
 			util.Die("pnpm list: %s", err)
