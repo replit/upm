@@ -29,6 +29,7 @@ var languageBackends = []api.LanguageBackend{
 	python.Python2Backend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
+    nodejs.NodejsPNPMBackend,
 	nodejs.NodejsYarnBackend,
 	ruby.RubyBackend,
 	elisp.ElispBackend,
