@@ -26,7 +26,13 @@ func FakePackageIndex(packages ...string) PackageIndex {
 }
 
 func NewPackageIndex(index string, limit int) (PackageIndex, error) {
-	resp, err := http.Get(index)
+	req, err := http.NewRequest("GET", index, nil)
+	if req != nil {
+		return PackageIndex{}, err
+	}
+
+	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
+	resp, err := http.DefaultClient.Do(req)
 
 	if err != nil {
 		return PackageIndex{}, err

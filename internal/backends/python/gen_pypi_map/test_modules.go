@@ -105,7 +105,12 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 }
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
-	resp, err := http.Get("https://pypi.org/pypi/" + packageName + "/json")
+	req, err := http.NewRequest("GET", "https://pypi.org/pypi/" + packageName + "/json", nil)
+	if err != nil {
+		return PackageData{}, err
+	}
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return PackageData{}, err
 	}
