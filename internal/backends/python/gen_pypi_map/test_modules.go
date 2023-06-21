@@ -3,11 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 	"os"
 	"regexp"
 	"sync"
 	"time"
+
+	"github.com/replit/upm/internal/api"
 )
 
 func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
@@ -105,13 +106,8 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 }
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
-	req, err := http.NewRequest("GET", "https://pypi.org/pypi/" + packageName + "/json", nil)
-	if err != nil {
-		return PackageData{}, err
-	}
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
+	resp, err := api.HttpClient.Get("https://pypi.org/pypi/" + packageName + "/json")
+	if resp == nil || err != nil {
 		return PackageData{}, err
 	}
 
