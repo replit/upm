@@ -28,7 +28,7 @@ func FakePackageIndex(packages ...string) PackageIndex {
 
 func NewPackageIndex(index string, limit int) (PackageIndex, error) {
 	resp, err := api.HttpClient.Get(index)
-	if resp == nil || err != nil {
+	if err != nil {
 		return PackageIndex{}, err
 	}
 
