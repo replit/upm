@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
@@ -106,7 +105,7 @@ func normalizePackageName(name api.PkgName) api.PkgName {
 // UPM_PYTHON2 and UPM_PYTHON3.)
 func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	info_func := func(name api.PkgName) api.PkgInfo {
-		res, err := http.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
+		res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
 
 		if err != nil {
 			util.Die("HTTP Request failed with error: %s", err)

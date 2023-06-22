@@ -131,7 +131,6 @@ const (
 // Make sure to update the Check method when adding/removing fields
 // from this struct.
 type LanguageBackend struct {
-
 	// The name of the language backend. This is matched against
 	// the value of the --lang argument on the command line. The
 	// format is a sequence of one or more tokens separated by

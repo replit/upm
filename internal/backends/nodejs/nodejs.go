@@ -4,7 +4,6 @@ package nodejs
 import (
 	"encoding/json"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"os"
 	"os/exec"
@@ -100,7 +99,7 @@ func nodejsSearch(query string) []api.PkgInfo {
 	endpoint := "https://registry.npmjs.org/-/v1/search"
 	queryParams := "?text=" + url.QueryEscape(query)
 
-	resp, err := http.Get(endpoint + queryParams)
+	resp, err := api.HttpClient.Get(endpoint + queryParams)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}
@@ -140,7 +139,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	endpoint := "https://registry.npmjs.org"
 	path := "/" + url.QueryEscape(string(name))
 
-	resp, err := http.Get(endpoint + path)
+	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}

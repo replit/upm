@@ -2,8 +2,9 @@ package main
 
 import (
 	"bufio"
-	"net/http"
 	"regexp"
+
+	"github.com/replit/upm/internal/api"
 )
 
 type PackageIndex struct {
@@ -26,8 +27,7 @@ func FakePackageIndex(packages ...string) PackageIndex {
 }
 
 func NewPackageIndex(index string, limit int) (PackageIndex, error) {
-	resp, err := http.Get(index)
-
+	resp, err := api.HttpClient.Get(index)
 	if err != nil {
 		return PackageIndex{}, err
 	}

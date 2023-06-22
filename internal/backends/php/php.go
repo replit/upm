@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"strings"
 
@@ -14,7 +13,7 @@ import (
 )
 
 /*
- Used for composer.lock Parsing
+Used for composer.lock Parsing
 */
 type composerLock struct {
 	Packages []composerPackageLock `json:"packages"`
@@ -26,7 +25,7 @@ type composerPackageLock struct {
 }
 
 /*
- Used for Package Search
+Used for Package Search
 */
 type packagistSearchResults struct {
 	Packages []packagistSearchResult `json:"results"`
@@ -39,7 +38,7 @@ type packagistSearchResult struct {
 }
 
 /*
-  Used for Package Info
+Used for Package Info
 */
 type packagistInfoSearchResult struct {
 	PackageInfo map[string][]packageDetail `json:"packages"`
@@ -62,7 +61,7 @@ type authors struct {
 
 func search(query string) []api.PkgInfo {
 	endpoint := "https://packagist.org/search.json?q=" + url.QueryEscape(query)
-	resp, err := http.Get(endpoint)
+	resp, err := api.HttpClient.Get(endpoint)
 
 	if err != nil {
 		util.Die("packagist search err: %s", err)
@@ -106,7 +105,7 @@ func parseSearch(arr []byte) ([]api.PkgInfo, error) {
 // This API can only accept strings in the [vendor]/[packageName] format
 func info(name api.PkgName) api.PkgInfo {
 	endpoint := fmt.Sprintf("https://repo.packagist.org/p2/%s.json", string(name))
-	resp, err := http.Get(endpoint)
+	resp, err := api.HttpClient.Get(endpoint)
 
 	if err != nil {
 		util.Die("packagist err: %s", err)

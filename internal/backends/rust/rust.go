@@ -4,7 +4,6 @@ package rust
 import (
 	"encoding/json"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 
 	"github.com/BurntSushi/toml"
@@ -82,7 +81,7 @@ func search(query string) []api.PkgInfo {
 	endpoint := "https://crates.io/api/v1/crates"
 	path := "?q=" + url.QueryEscape(query)
 
-	resp, err := http.Get(endpoint + path)
+	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
 		util.Die("crates.io: %s", err)
 	}
@@ -113,7 +112,7 @@ func info(name api.PkgName) api.PkgInfo {
 	endpoint := "https://crates.io/api/v1/crates"
 	path := "/" + url.PathEscape(string(name))
 
-	resp, err := http.Get(endpoint + path)
+	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
 		util.Die("crates.io: %s", err)
 	}

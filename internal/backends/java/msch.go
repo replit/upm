@@ -27,9 +27,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/replit/upm/internal/api"
 )
 
 const (
@@ -51,7 +52,7 @@ type SearchResult struct {
 }
 
 func mavenSearch(searchURL string) ([]SearchDoc, error) {
-	res, err := http.Get(searchURL)
+	res, err := api.HttpClient.Get(searchURL)
 	if err != nil {
 		return []SearchDoc{}, err
 	}

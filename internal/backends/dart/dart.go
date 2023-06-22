@@ -122,10 +122,10 @@ func dartSearch(query string) []api.PkgInfo {
 		util.Die("Pub.dev: %s", err)
 	}
 
-	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
 	req.Header.Add("Accept", "application/json")
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := api.HttpClient.Do(req)
+
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -176,10 +176,9 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 		util.Die("Pub.dev: %s", err)
 	}
 
-	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
 	req.Header.Add("Accept", "application/json")
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := api.HttpClient.Do(req)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}

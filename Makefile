@@ -15,7 +15,7 @@ internal/backends/python/pypi_map.gen.go: internal/backends/python/download_stat
 	go generate ./internal/backends/python
 
 .PHONY: generated
-generated: $(GENERATED) internal/statik/statik.go
+generated: internal/statik/statik.go $(GENERATED)
 
 cmd/upm/upm: $(SOURCES) $(RESOURCES) generated
 	cd cmd/upm && go build -ldflags $(LD_FLAGS)
