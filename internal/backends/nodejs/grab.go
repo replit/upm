@@ -72,7 +72,7 @@ func parseFile(contents []byte, results chan parseResult) {
 (
 	(call_expression
 		function: (identifier) @function
-		arguments: (arguments ((_) @other-imports)? ((_) @import) .))
+		arguments: (arguments ((_) @other-imports)? ((string) @import) .))
 	(#eq? @function "require"))
 `
 
