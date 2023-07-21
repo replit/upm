@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/backends"
@@ -353,20 +354,28 @@ func runRemove(language string, args []string, upgrade bool,
 
 // runLock implements 'upm lock'.
 func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
+	now := time.Now()
+	fmt.Println(now, "runLock", language, upgrade, forceLock, forceInstall)
 	b := backends.GetBackend(language)
 
 	if upgrade {
+		fmt.Println(now, "deleteLockfile")
 		deleteLockfile(b)
 	}
 
+	fmt.Println(now, "maybeLock")
 	didLock := maybeLock(b, forceLock)
 
 	if !(didLock && b.QuirksDoesLockAlsoInstall()) {
+		fmt.Println(now, "maybeInstall")
 		maybeInstall(b, forceInstall)
 	}
 
+	fmt.Println(now, "store.UpdateFileHashes(b)")
 	store.UpdateFileHashes(b)
+	fmt.Println(now, "store.Write()")
 	store.Write()
+	fmt.Println(now, "done")
 }
 
 // runInstall implements 'upm install'.
@@ -494,6 +503,7 @@ func runGuess(
 	}
 
 	if !all {
+		fmt.Println("spec file", b.ListSpecfile())
 		if util.Exists(b.Specfile) {
 			for name := range b.ListSpecfile() {
 				delete(normPkgs, b.NormalizePackageName(name))

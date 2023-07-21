@@ -4,6 +4,7 @@ package cli
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/replit/upm/internal/backends"
 	"github.com/replit/upm/internal/config"
@@ -38,6 +39,8 @@ func getVersion() string {
 // DoCLI reads the command-line arguments and runs the appropriate
 // code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
+	now := time.Now()
+	fmt.Println(now, "DoCLI")
 	backends.SetupAll()
 
 	var language string

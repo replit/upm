@@ -340,6 +340,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
+		fmt.Println("err", err.Error())
 		return nil, err
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
@@ -370,6 +371,7 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	fmt.Println("guess", python)
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
@@ -389,27 +391,9 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 		util.Die("pipreqs: %s", err)
 	}
 
-	availMods := map[string]bool{}
-
-	if knownPkgs, err := listSpecfile(); err == nil {
-		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules[string(pkgName)]
-			if ok {
-				for _, mod := range strings.Split(mods, ",") {
-					availMods[mod] = true
-				}
-			}
-		}
-	}
-
 	pkgs := map[api.PkgName]bool{}
 
 	for modname, pragmas := range output.Imports {
-		// provided by an existing package or perhaps by the system
-		if availMods[modname] {
-			continue
-		}
-
 		// If this module has a package pragma, use that
 		if pragmas.Package != "" {
 			name := api.PkgName(pragmas.Package)
