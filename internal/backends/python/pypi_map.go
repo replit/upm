@@ -25,7 +25,7 @@ func NewPypiMap() (*PypiMap, error) {
 	}
 	// Open db in read-only mode so it doesn't try to make any modifications
 	// which would cause it to copy on write in our layered fs
-	db, err := sql.Open("sqlite3", dbFilePath+"?mode=ro")
+	db, err := sql.Open("sqlite3", dbFilePath+"?immutable=1")
 	if err != nil {
 		return nil, err
 	}
