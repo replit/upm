@@ -26,6 +26,8 @@ buildGo117Module {
 
     buildInputs = [ makeWrapper ];
 
+    subPackages = ["cmd/upm"];
+
     postInstall = ''
       make internal/backends/python/pypi_map.sqlite
       mv internal/backends/python/pypi_map.sqlite $out/
