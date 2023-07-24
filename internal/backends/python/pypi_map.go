@@ -55,7 +55,10 @@ func (p *PypiMap) ModuleToPackage(moduleName string) (string, bool) {
 		return "", false
 	}
 	var guess string
-	rows.Scan(&guess)
+	err = rows.Scan(&guess)
+	if err != nil {
+		return "", false
+	}
 	return guess, true
 }
 
@@ -74,7 +77,10 @@ func (p *PypiMap) PackageToModules(packageName string) ([]string, bool) {
 		return nil, false
 	}
 	var moduleList string
-	rows.Scan(&moduleList)
+	err = rows.Scan(&moduleList)
+	if err != nil {
+		return nil, false
+	}
 	return strings.Split(moduleList, ","), true
 }
 
@@ -100,7 +106,10 @@ func (p *PypiMap) SearchModules(query string) []string {
 			break
 		}
 		var pkg string
-		rows.Scan(&pkg)
+		_ = rows.Scan(&pkg)
+		if err != nil {
+			break
+		}
 		packages = append(packages, pkg)
 	}
 	return packages
