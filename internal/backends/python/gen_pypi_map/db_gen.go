@@ -55,7 +55,7 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 	fmt.Printf("Loaded %d modules\n", len(moduleToPackageList))
 
 	err = os.Remove(outputFilePath)
-	if !errors.Is(err, os.ErrNotExist) {
+	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		return err
 	}
 	db, err := sql.Open("sqlite3", outputFilePath)
