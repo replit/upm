@@ -220,7 +220,6 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return filepath.Join(path, base+"-py"+version)
 		},
 		Search: func(query string) []api.PkgInfo {
-			// TODO: speed up search using database tricks? unless the slowness is from info_func
 			pypiMap, err := NewPypiMap()
 			if err != nil {
 				util.Die(err.Error())
