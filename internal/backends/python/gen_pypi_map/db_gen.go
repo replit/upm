@@ -90,7 +90,10 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 
 			stmt, err = db.Prepare(`
 			insert into pypi_packages values (?, ?, ?)
-			on conflict (package_name) do nothing;
+			on conflict (package_name)
+			do update set
+				module_list = excluded.module_list,
+				downloads = excluded.downloads;
 			`)
 			if err != nil {
 				return err
