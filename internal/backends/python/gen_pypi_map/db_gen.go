@@ -79,7 +79,7 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 	}
 
 	// Guess at every module, add the guess and the package that was guessed to
-	// the masp
+	// the map
 	for moduleName, candidates := range moduleToPackageList {
 		if guess, reason, guessable := GuessPackage(moduleName, candidates, downloadStats); guessable {
 			stmt, err := db.Prepare("insert into module_to_pypi_package values (?, ?, ?);")
