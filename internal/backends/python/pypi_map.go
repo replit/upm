@@ -19,7 +19,7 @@ func NewPypiMap() (*PypiMap, error) {
 		return nil, fmt.Errorf("PYPI_MAP_DB not set. Set it to the path of the sqlite database.")
 	}
 	// Open db in read-only mode so it doesn't try to make any modifications
-	// which would cause it to make a copy of the file in our layered fs
+	// which would cause it to copy on write in our layered fs
 	db, err := sql.Open("sqlite3", dbFilePath+"?mode=ro")
 	if err != nil {
 		return nil, err
@@ -32,7 +32,6 @@ func NewPypiMap() (*PypiMap, error) {
 
 func (p *PypiMap) Close() error {
 	err := p.db.Close()
-	fmt.Println("Closed pypi map db")
 	return err
 }
 
