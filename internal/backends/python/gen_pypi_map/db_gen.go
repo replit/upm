@@ -1,19 +1,16 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
-type ModuleItem struct {
-	Module      string
-	PackageList []PackageInfo
-}
-
-func GenerateCode(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
+func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
 	downloadStats, err := LoadDownloadStats(bqFilePath)
 	if err != nil {
 		return err
@@ -56,59 +53,79 @@ func GenerateCode(pkg string, outputFilePath string, cache map[string]PackageInf
 
 	fmt.Printf("Loaded %d modules\n", len(moduleToPackageList))
 
-	// fmt.Printf("Sorted modules by package list size\n")
+	err = os.Remove(outputFilePath)
+	db, err := sql.Open("sqlite3", outputFilePath)
+	if err != nil {
+		return err
+	}
+	_, err = db.Exec(`
+	create table module_to_pypi_package (module_name text primary key, guess text, reason text);
+	create table pypi_packages (package_name text primary key, module_list text, downloads int);
+	create index downloads_index on pypi_packages (downloads);
+	`)
+	if err != nil {
+		return err
+	}
 
-	var moduleToPypiPackage = map[string]string{}
-	var moduleToPypiPackageReason = map[string]string{}
-	var pypiPackageToModules = map[string]string{}
+	// Write all data within one transaction for speed
+	// https://stackoverflow.com/questions/1711631/improve-insert-per-second-performance-of-sqlite
+	_, err = db.Exec(`begin transaction;`)
+	if err != nil {
+		return err
+	}
 
 	// Guess at every module, add the guess and the package that was guessed to
 	// the masp
 	for moduleName, candidates := range moduleToPackageList {
 		if guess, reason, guessable := GuessPackage(moduleName, candidates, downloadStats); guessable {
-			moduleToPypiPackage[moduleName] = guess.Name
-			moduleToPypiPackageReason[moduleName] = reason
-			pypiPackageToModules[guess.Name] = strings.Join(guess.Modules, ",")
+			stmt, err := db.Prepare("insert into module_to_pypi_package values (?, ?, ?);")
+			if err != nil {
+				return err
+			}
+			_, err = stmt.Exec(moduleName, guess.Name, reason)
+			if err != nil {
+				return err
+			}
+			stmt.Close()
+
+			stmt, err = db.Prepare(`
+			insert into pypi_packages values (?, ?, ?)
+			on conflict (package_name) do nothing;
+			`)
+			if err != nil {
+				return err
+			}
+			download, ok := downloadStats[normalizePackageName(guess.Name)]
+			if !ok {
+				download = 0
+			}
+			_, err = stmt.Exec(guess.Name, strings.Join(guess.Modules, ","), download)
+			if err != nil {
+				return fmt.Errorf("%s on %s", err.Error(), guess.Name)
+			}
+			stmt.Close()
 		}
 	}
 
-	codeWriter, err := os.Create(outputFilePath)
-
+	_, err = db.Exec(`end transaction;`)
 	if err != nil {
 		return err
 	}
 
-	fmt.Fprintf(codeWriter, "package %v\n\n", pkg)
-	DumpMapToGoVar("moduleToPypiPackage", moduleToPypiPackage, moduleToPypiPackageReason, codeWriter)
-	DumpMapToGoVar("pypiPackageToModules", pypiPackageToModules, map[string]string{}, codeWriter)
-	DumpIntMapToGoVar("pypiPackageToDownloads", downloadStats, codeWriter)
+	err = db.Close()
+	if err != nil {
+		return err
+	}
+
+	// Make it read only
+	err = os.Chmod(outputFilePath, 0444)
+	if err != nil {
+		return err
+	}
 
 	fmt.Printf("Wrote %s\n", outputFilePath)
-	codeWriter.Close()
 	return nil
 
-}
-
-func DumpMapToGoVar(name string, m map[string]string, reasons map[string]string, writer io.Writer) {
-	fmt.Fprintf(writer, "var %v= map[string]string{\n", name)
-
-	for key, value := range m {
-		reason := reasons[key]
-		if reason != "" {
-			reason = "// " + reason
-		}
-		fmt.Fprintf(writer, "\t\"%v\":  \"%v\", %s\n", key, value, reason)
-	}
-	fmt.Fprintf(writer, "}\n\n")
-}
-
-func DumpIntMapToGoVar(name string, m map[string]int, writer io.Writer) {
-	fmt.Fprintf(writer, "var %v= map[string]int{\n", name)
-
-	for key, value := range m {
-		fmt.Fprintf(writer, "\t\"%v\":  %d,\n", key, value)
-	}
-	fmt.Fprintf(writer, "}\n\n")
 }
 
 func loadLegacyPypyPackages(filePath string) map[string]LegacyPackageInfo {
@@ -131,4 +148,11 @@ func loadLegacyPypyPackages(filePath string) map[string]LegacyPackageInfo {
 	}
 
 	return infoMap
+}
+
+func normalizePackageName(name string) string {
+	nameStr := string(name)
+	nameStr = strings.ToLower(nameStr)
+	nameStr = strings.Replace(nameStr, "_", "-", -1)
+	return nameStr
 }

@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
 	"sync"
 
@@ -18,8 +17,6 @@ import (
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
-//go:generate go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.gen.go -cache cache -cmd gen
-
 // pypiEntryInfoResponse is a wrapper around pypiEntryInfo
 // that matches the format of the REST API
 type pypiEntryInfoResponse struct {
@@ -223,35 +220,37 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return filepath.Join(path, base+"-py"+version)
 		},
 		Search: func(query string) []api.PkgInfo {
-			// Do a search on pypiPackageToModules
-			var packages []string
-			for p := range pypiPackageToModules {
-				if strings.Contains(p, query) {
-					packages = append(packages, p)
-				}
+			// TODO: speed up search using database tricks? unless the slowness is from info_func
+			pypiMap, err := NewPypiMap()
+			if err != nil {
+				util.Die(err.Error())
 			}
+			defer pypiMap.Close()
+			packages := pypiMap.SearchModules(query)
 
 			// Lookup the package info for each result
 			var barrier sync.WaitGroup
-			packageQueries := make(chan api.PkgInfo, len(packages))
-			for _, p := range packages {
+			packageQueries := make(chan struct {
+				info  api.PkgInfo
+				index int
+			}, len(packages))
+			for i, p := range packages {
 				barrier.Add(1)
-				go func(name api.PkgName) {
-					packageQueries <- info_func(name)
+				go func(name api.PkgName, i int) {
+					packageQueries <- struct {
+						info  api.PkgInfo
+						index int
+					}{info: info_func(name), index: i}
 					barrier.Done()
-				}(api.PkgName(p))
+				}(api.PkgName(p), i)
 			}
 			barrier.Wait()
 			close(packageQueries)
 
-			results := []api.PkgInfo{}
+			results := make([]api.PkgInfo, len(packages))
 			for pkg := range packageQueries {
-				results = append(results, pkg)
+				results[pkg.index] = pkg.info
 			}
-
-			sort.Slice(results, func(i, j int) bool {
-				return pypiPackageToDownloads[results[i].Name] > pypiPackageToDownloads[results[j].Name]
-			})
 
 			return results
 		},
@@ -370,6 +369,12 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	pypiMap, err := NewPypiMap()
+	if err != nil {
+		util.Die(err.Error())
+	}
+	defer pypiMap.Close()
+
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
@@ -393,9 +398,9 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	if knownPkgs, err := listSpecfile(); err == nil {
 		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules[string(pkgName)]
+			mods, ok := pypiMap.PackageToModules(string(pkgName))
 			if ok {
-				for _, mod := range strings.Split(mods, ",") {
+				for _, mod := range mods {
 					availMods[mod] = true
 				}
 			}
@@ -421,7 +426,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			var ok bool
 			pkg, ok = moduleToPypiPackageOverride[modname]
 			if !ok {
-				pkg, ok = moduleToPypiPackage[modname]
+				pkg, ok = pypiMap.ModuleToPackage(modname)
 			}
 			if ok {
 				name := api.PkgName(pkg)

@@ -14,3 +14,5 @@ internal/backends/python/regression_tests/test
 
 # nix build creates a "result" symlink to the nix store output
 result
+internal/backends/python/pypi_map.sqlite
+play
