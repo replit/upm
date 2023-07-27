@@ -1,6 +1,5 @@
 # UPM
 
-![upm](https://amasad.me/public/images/long.png)
 [![GoDoc](https://godoc.org/github.com/replit/upm?status.svg)](https://godoc.org/github.com/replit/upm)
 [![Run on Repl.it](https://repl.it/badge/github/replit/upm)](https://replit.com/new/github/replit/upm)
 
