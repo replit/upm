@@ -158,7 +158,9 @@ func guessBareImports() map[api.PkgName]bool {
 			if extension != ".js" &&
 				extension != ".jsx" &&
 				extension != ".tsx" &&
-				extension != ".ts" {
+				extension != ".ts" &&
+				extension != ".mjs" &&
+				extension != ".cjs" {
 				continue
 			}
 
