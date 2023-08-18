@@ -8,9 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
-	"sync"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
@@ -232,36 +230,10 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return filepath.Join(path, base+"-py"+version)
 		},
 		Search: func(query string) []api.PkgInfo {
-			// Do a search on pypiPackageToModules
-			var packages []string
-			for p, _ := range pypiPackageToModules() {
-				if strings.Contains(p, query) {
-					packages = append(packages, p)
-				}
+			results, err := SearchPypi(query)
+			if err != nil {
+				util.Die("failed to search pypi: %s", err.Error())
 			}
-
-			// Lookup the package info for each result
-			var barrier sync.WaitGroup
-			packageQueries := make(chan api.PkgInfo, len(packages))
-			for _, p := range packages {
-				barrier.Add(1)
-				go func(name api.PkgName) {
-					packageQueries <- info_func(name)
-					barrier.Done()
-				}(api.PkgName(p))
-			}
-			barrier.Wait()
-			close(packageQueries)
-
-			results := []api.PkgInfo{}
-			for pkg := range packageQueries {
-				results = append(results, pkg)
-			}
-
-			sort.Slice(results, func(i, j int) bool {
-				return pypiPackageToDownloads()[results[i].Name] > pypiPackageToDownloads()[results[j].Name]
-			})
-
 			return results
 		},
 		Info: info_func,
