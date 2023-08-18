@@ -8,7 +8,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
@@ -220,37 +219,10 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			return filepath.Join(path, base+"-py"+version)
 		},
 		Search: func(query string) []api.PkgInfo {
-			pypiMap, err := NewPypiMap()
+			results, err := SearchPypi(query)
 			if err != nil {
-				util.Die(err.Error())
+				util.Die("failed to search pypi: %s", err.Error())
 			}
-			defer pypiMap.Close()
-			packages := pypiMap.SearchModules(query)
-
-			// Lookup the package info for each result
-			var barrier sync.WaitGroup
-			packageQueries := make(chan struct {
-				info  api.PkgInfo
-				index int
-			}, len(packages))
-			for i, p := range packages {
-				barrier.Add(1)
-				go func(name api.PkgName, i int) {
-					packageQueries <- struct {
-						info  api.PkgInfo
-						index int
-					}{info: info_func(name), index: i}
-					barrier.Done()
-				}(api.PkgName(p), i)
-			}
-			barrier.Wait()
-			close(packageQueries)
-
-			results := make([]api.PkgInfo, len(packages))
-			for pkg := range packageQueries {
-				results[pkg.index] = pkg.info
-			}
-
 			return results
 		},
 		Info: info_func,
