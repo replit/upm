@@ -20,6 +20,9 @@ func SearchPypi(query string) ([]api.PkgInfo, error) {
 		return nil, err
 	}
 	resp, err := api.HttpClient.Do(req)
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("Request to %s failed with %s", endpoint, resp.Status)
+	}
 	if err != nil {
 		return nil, err
 	}
