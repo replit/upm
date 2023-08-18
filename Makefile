@@ -7,14 +7,20 @@ export GO111MODULE=on
 .PHONY: upm
 upm: cmd/upm/upm ## Build the UPM binary
 
+install: cmd/upm/upm
+	go install ./cmd/upm
+
+internal/backends/python/pypi_map.gen.go: internal/backends/python/download_stats.json
+	go generate ./internal/backends/python
+
 cmd/upm/upm: $(SOURCES) $(RESOURCES) $(GENERATED) internal/statik/statik.go
 	cd cmd/upm && go build -ldflags "-X 'github.com/replit/upm/internal/cli.version=$${VERSION:-development version}'"
 
 internal/statik/statik.go: $(shell find resources -type f)
 	go run github.com/rakyll/statik -src resources -dest internal -f
 
-internal/backends/python/pypi_map.gen.go: internal/backends/python/pypi_packages.json
-	go generate ./internal/backends/python
+clean-gen:
+	rm ./internal/backends/python/pypi_map.gen.go
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker

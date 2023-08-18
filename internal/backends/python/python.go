@@ -17,7 +17,7 @@ import (
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
-//go:generate go run ./gen_pypi_map -from pypi_packages.json -pkg python -out pypi_map.gen.go
+//go:generate go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.gen.go -cache cache -cmd gen
 
 // pypiEntry represents one element of the response we get from
 // the PyPI API search results.
@@ -374,7 +374,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	if knownPkgs, err := listSpecfile(); err == nil {
 		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules()[string(pkgName)]
+			mods, ok := pypiPackageToModules[string(pkgName)]
 			if ok {
 				for _, mod := range strings.Split(mods, ",") {
 					availMods[mod] = true
@@ -398,7 +398,12 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 		} else {
 			// Otherwise, try and look it up in Pypi
-			pkg, ok := moduleToPypiPackage()[modname]
+			var pkg string
+			var ok bool
+			pkg, ok = moduleToPypiPackageOverride[modname]
+			if !ok {
+				pkg, ok = moduleToPypiPackage[modname]
+			}
 			if ok {
 				name := api.PkgName(pkg)
 				pkgs[normalizePackageName(name)] = true
