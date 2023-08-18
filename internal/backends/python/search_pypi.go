@@ -14,7 +14,7 @@ var WhiteSpaceChars = " \n\t"
 
 // Port of https://github.com/asadmoosvi/pypi-search/blob/main/pypi_search/search.py
 func SearchPypi(query string) ([]api.PkgInfo, error) {
-	endpoint := fmt.Sprintf("http://pypi.org/search/?q=%s", url.QueryEscape(query))
+	endpoint := fmt.Sprintf("https://pypi.org/search/?q=%s", url.QueryEscape(query))
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
 		return nil, err
