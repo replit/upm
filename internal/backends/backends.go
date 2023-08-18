@@ -11,6 +11,7 @@ import (
 	"github.com/replit/upm/internal/backends/elisp"
 	"github.com/replit/upm/internal/backends/java"
 	"github.com/replit/upm/internal/backends/nodejs"
+	"github.com/replit/upm/internal/backends/php"
 	"github.com/replit/upm/internal/backends/python"
 	"github.com/replit/upm/internal/backends/rlang"
 	"github.com/replit/upm/internal/backends/ruby"
@@ -26,7 +27,9 @@ import (
 var languageBackends = []api.LanguageBackend{
 	python.Python3Backend,
 	python.Python2Backend,
+	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
+    nodejs.NodejsPNPMBackend,
 	nodejs.NodejsYarnBackend,
 	ruby.RubyBackend,
 	elisp.ElispBackend,
@@ -35,6 +38,7 @@ var languageBackends = []api.LanguageBackend{
 	rlang.RlangBackend,
 	dotnet.DotNetBackend,
 	rust.RustBackend,
+	php.PhpComposerBackend,
 }
 
 // matchesLanguage checks if a language backend matches a value for

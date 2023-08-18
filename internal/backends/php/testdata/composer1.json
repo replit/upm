@@ -1,0 +1,10 @@
+{
+    "name": "asdf/jkjl",
+    "require": {
+		"aws/aws-sdk-php": "^3.209",
+		"guzzlehttp/guzzle": "7.0"
+    },
+	"require-dev": {
+		"monolog/monolog": "^3.2"
+	}
+}

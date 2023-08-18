@@ -29,7 +29,7 @@ func main() {
 	distMods := flag.Bool("dist", false, "Determine modules by examining dists")
 	force := flag.Bool("force", false, "Force re-test when cached")
 	pkg := flag.String("pkg", "python", "the pkg name for the output source")
-	out := flag.String("out", "pypi_map.gen.go", "the destination file for the generated code")
+	out := flag.String("out", "pypi_map.sqlite", "the destination file for the generated data")
 	flag.Parse()
 
 	if *command == "bq" {
@@ -73,7 +73,7 @@ func main() {
 			Parameters: pkg, out, cachedfr, cachefile, bq, pypipackages
 		*/
 		cache := LoadAllPackageInfo(*cache, *pkgsFile)
-		err := GenerateCode(*pkg, *out, cache, *bq, *pkgsLegacyFile)
+		err := GenerateDB(*pkg, *out, cache, *bq, *pkgsLegacyFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to generate %s: %s", *out, err.Error())
 		}

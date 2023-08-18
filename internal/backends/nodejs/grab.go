@@ -1,15 +1,17 @@
 package nodejs
 
 import (
-	"github.com/amasad/esparse/ast"
-	"github.com/amasad/esparse/logging"
-	"github.com/amasad/esparse/parser"
-	"github.com/replit/upm/internal/api"
-	"github.com/replit/upm/internal/util"
+	"context"
 	"io/ioutil"
 	"log"
+	"path"
 	"path/filepath"
 	"strings"
+
+	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/util"
+	sitter "github.com/smacker/go-tree-sitter"
+	"github.com/smacker/go-tree-sitter/javascript"
 )
 
 var internalModules = []string{
@@ -55,37 +57,76 @@ var internalModules = []string{
 	"zlib",
 }
 
-func getExt(path string) string {
-	extension := ""
-	if lastDot := strings.LastIndexByte(path, '.'); lastDot >= 0 {
-		extension = path[lastDot:]
-	}
-	return extension
-}
-
 type parseResult struct {
-	ast ast.AST
-	ok  bool
+	importPaths []string
+	ok          bool
 }
 
-func parseFile(source logging.Source, results chan parseResult) {
-	parseOptions := parser.ParseOptions{
-		IsBundling: true,
+func parseFile(contents []byte, results chan parseResult) {
+	language := javascript.GetLanguage()
+
+	importsQuery := `
+(import_statement
+	source: (string) @import)
+
+(
+	(call_expression
+		function: (identifier) @function
+		arguments: (arguments ((_) @other-imports)? ((string) @import) .))
+	(#eq? @function "require"))
+`
+
+	query, err := sitter.NewQuery([]byte(importsQuery), language)
+	if err != nil {
+		// This should never happen - the query is hardcoded
+		log.Fatalln(err, importsQuery)
 	}
 
-	// Always parse jsx
-	parseOptions.JSX.Parse = true
+	qc := sitter.NewQueryCursor()
 
-	ext := getExt(source.AbsolutePath)
-
-	if ext == ".ts" || ext == ".tsx" {
-		parseOptions.TS.Parse = true
+	node, err := sitter.ParseCtx(context.Background(), contents, language)
+	if err != nil {
+		results <- parseResult{nil, false}
+		return
 	}
-	logo, _ := logging.NewDeferLog()
 
-	ast, ok := parser.Parse(logo, source, parseOptions)
+	qc.Exec(query, node)
 
-	results <- parseResult{ast, ok}
+	importPaths := []string{}
+	for {
+		match, ok := qc.NextMatch()
+		if !ok {
+			break
+		}
+
+		match = qc.FilterPredicates(match, contents)
+		if len(match.Captures) == 0 {
+			continue
+		}
+
+		var importPath string
+
+		if match.PatternIndex == 0 {
+			importPath = match.Captures[0].Node.Content(contents)
+		} else if match.PatternIndex == 1 {
+			// TODO: https://github.com/smacker/go-tree-sitter/issues/110
+			// once the above issue is resolved, uncomment the `@other-imports` predicate
+			// and remove this check
+			if len(match.Captures) != 2 {
+				continue
+			}
+
+			importPath = match.Captures[1].Node.Content(contents)
+		}
+
+		// TODO: https://github.com/smacker/go-tree-sitter/issues/111
+		// once the above issue is resolved, use the string destructuring used in the
+		// `import_statement` pattern above in the `call_expression` pattern instead
+		// of using this hacky trim
+		importPaths = append(importPaths, strings.Trim(importPath, "'\"`"))
+	}
+
+	results <- parseResult{importPaths, true}
 }
 
 func guessBareImports() map[api.PkgName]bool {
@@ -106,18 +147,20 @@ func guessBareImports() map[api.PkgName]bool {
 			log.Fatalln(err)
 		}
 
-		for i, file := range files {
+		for _, file := range files {
 			absPath := filepath.Join(dirName, file.Name())
 			if file.IsDir() {
 				visitDir(absPath)
 				continue
 			}
 
-			extension := getExt(absPath)
+			extension := path.Ext(absPath)
 			if extension != ".js" &&
 				extension != ".jsx" &&
 				extension != ".tsx" &&
-				extension != ".ts" {
+				extension != ".ts" &&
+				extension != ".mjs" &&
+				extension != ".cjs" {
 				continue
 			}
 
@@ -126,16 +169,9 @@ func guessBareImports() map[api.PkgName]bool {
 				log.Fatalln(err)
 			}
 
-			source := logging.Source{
-				Index:        uint32(i),
-				AbsolutePath: absPath,
-				PrettyPath:   absPath,
-				Contents:     string(contents),
-			}
 			numParsedFiles++
-			go parseFile(source, results)
+			go parseFile(contents, results)
 		}
-
 	}
 
 	dir, err := filepath.Abs(".")
@@ -151,23 +187,10 @@ func guessBareImports() map[api.PkgName]bool {
 			continue
 		}
 
-		for _, importPath := range result.ast.ImportPaths {
-			mod := importPath.Path.Text
-
+		for _, mod := range result.importPaths {
 			// Since Node.js 16, you can prefix the import path with `node:` to denote that the
 			// module is a core module.
 			if strings.HasPrefix(mod, "node:") {
-				continue
-			}
-
-			isInternalMod := false
-			for _, internal := range internalModules {
-				if internal == mod {
-					isInternalMod = true
-					break
-				}
-			}
-			if isInternalMod {
 				continue
 			}
 
@@ -196,7 +219,7 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
-			// Handle scoped modules
+			// Handle scoped modules or internal modules
 			if mod[0] == '@' {
 				parts := strings.Split(mod, "/")
 				if len(parts) < 2 {
@@ -206,6 +229,17 @@ func guessBareImports() map[api.PkgName]bool {
 			} else {
 				parts := strings.Split(mod, "/")
 				mod = parts[0]
+
+				isInternalMod := false
+				for _, internal := range internalModules {
+					if internal == mod {
+						isInternalMod = true
+						break
+					}
+				}
+				if isInternalMod {
+					continue
+				}
 			}
 
 			pkgs[api.PkgName(mod)] = true

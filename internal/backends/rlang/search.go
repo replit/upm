@@ -2,11 +2,12 @@ package rlang
 
 import (
 	"encoding/json"
-	"net/http"
 	"net/url"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/replit/upm/internal/api"
 )
 
 // CranHitSource represents the JSON we get about the information for a single package from a package search
@@ -73,9 +74,9 @@ type CranResponse struct {
 
 func searchPackages(name string, size int) CranResponse {
 	// TODO: figure out how to deal with other mirrors
-	searchURL := "http://search.r-pkg.org/package/_search?q=" + url.QueryEscape(name) + "&size=" + strconv.Itoa(size)
+	searchURL := "https://search.r-pkg.org/package/_search?q=" + url.QueryEscape(name) + "&size=" + strconv.Itoa(size)
 
-	if req, err := http.Get(searchURL); err == nil {
+	if req, err := api.HttpClient.Get(searchURL); err == nil {
 		var res CranResponse
 
 		decoder := json.NewDecoder(req.Body)

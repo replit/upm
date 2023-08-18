@@ -31,9 +31,15 @@ func dumpSetupPy(path string) (DistPackageMetadata, error) {
 	decoder := json.NewDecoder(cmdReader)
 
 	var metadata DistPackageMetadata
-	decoder.Decode(&metadata)
+	err = decoder.Decode(&metadata)
+	if err != nil {
+		return DistPackageMetadata{}, err
+	}
 
-	cmd.Wait()
+	err = cmd.Wait()
+	if err != nil {
+		return DistPackageMetadata{}, err
+	}
 
 	if metadata.Error != "" {
 		return DistPackageMetadata{}, fmt.Errorf("Error reading setup.py: %v", metadata.Error)
@@ -45,7 +51,10 @@ func dumpSetupPy(path string) (DistPackageMetadata, error) {
 func ExtractSdist(reader ArchiveReader) ([]string, error) {
 	tempDir, _ := ioutil.TempDir(os.TempDir(), "sdist-")
 	defer os.RemoveAll(tempDir)
-	reader.Dump(tempDir)
+	err := reader.Dump(tempDir)
+	if err != nil {
+		return nil, err
+	}
 
 	contents, err := ioutil.ReadDir(tempDir)
 	if err != nil {

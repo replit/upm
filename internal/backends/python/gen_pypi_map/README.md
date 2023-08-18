@@ -17,11 +17,11 @@ The package download counts are needed for heuristics in the guess algorithm dur
 The stats are downloaded from a public BigQuery table made available
 by Pypi. To download the stats and update the `download_stats.json` file:
 
-```
+```bash
 go run ./gen_pypi_map -cmd bq -gcp <gcp-project-name>
 ```
 
-The gcp-project-name can be any replit gcp project, because the table we are accessing `bigquery-public-data.pypi.file_downloads` is public. More info here: https://packaging.python.org/en/latest/guides/analyzing-pypi-package-downloads/
+The gcp-project-name can be any replit gcp project, because the table we are accessing `bigquery-public-data.pypi.file_downloads` is public. More info here: <https://packaging.python.org/en/latest/guides/analyzing-pypi-package-downloads/>
 
 ## Step 2: test modules
 
@@ -33,10 +33,19 @@ is:
 2. use pkgutil to see what new modules were added compared to before
 
 We used to run this test on all modules on pypi. Now we have the option to
-run it only on a subset of modules. You can provide the list of modules to test
-in a json file (`pkgs_to_test.json` in this example) as an array of strings and provide it to the command:
+run it only on a subset of modules. You may use the `gen_top_packages.py` script
+to generate a list of the top packages to test. The default is to collect the
+top 10000 packages. You can change this by passing in a different number to the
+optional `-n` flag. For example, to generate the top 50000 packages and output
+it to `pkgs_to_test.json`:
 
+```bash
+./gen_top_packages.py -n 50000 pkgs_to_test.json
 ```
+
+This may then be used to test the packages and update `pkgs.json` with:
+
+```bash
 go run ./gen_pypi_map/ -cmd test -index pkgs_to_test.json
 ```
 
@@ -50,13 +59,13 @@ want to force a retest of the packages, you can use the `-force` flag.
 
 Finally, we use the collected data to generate the code file. This is done with:
 
-```
+```bash
 go run ./gen_pypi_map/ -cmd gen
 ```
 
 Or:
 
-```
+```bash
 go generate .
 ```
 

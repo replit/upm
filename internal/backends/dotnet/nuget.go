@@ -68,7 +68,7 @@ func search(query string) []api.PkgInfo {
 	pkgs := []api.PkgInfo{}
 	queryURL := fmt.Sprintf("%s?q=%s&take=10", searchQueryURL, url.QueryEscape(query))
 
-	res, err := http.Get(queryURL)
+	res, err := api.HttpClient.Get(queryURL)
 	if err != nil {
 		util.Die("failed to query for packages: %s", err)
 	}
@@ -106,7 +106,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	lowID := url.PathEscape(strings.ToLower(string(pkgName)))
 	infoURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/index.json", lowID)
 
-	res, err := http.Get(infoURL)
+	res, err := api.HttpClient.Get(infoURL)
 	if err != nil {
 		util.Die("failed to get the versions: %s", err)
 	}
@@ -124,7 +124,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	util.ProgressMsg(fmt.Sprintf("latest version of %s is %s", pkgName, latestVersion))
 	specURL := fmt.Sprintf("https://api.nuget.org/v3-flatcontainer/%s/%s/%s.nuspec", lowID, url.PathEscape(latestVersion), lowID)
 	util.ProgressMsg(fmt.Sprintf("Getting spec from %s", specURL))
-	res, err = http.Get(specURL)
+	res, err = api.HttpClient.Get(specURL)
 	if err != nil {
 		util.Die("failed to get the spec: %s", err)
 	}

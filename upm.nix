@@ -1,4 +1,4 @@
-{ buildGoModule, statik, rev, go_1_17 } :
+{ buildGoModule, statik, rev, go_1_17, makeWrapper } :
 
 let
 
@@ -13,7 +13,7 @@ buildGo117Module {
 
     src = ./.;
 
-    vendorSha256 = "sha256-cz+K6d6Dcq7U+iQ8cBtS4szm0+pA1JAbdAuU1rwSLVI=";
+    vendorSha256 = "sha256-HX05YGcyrIYNbwRPE2HvXiV8wvg+4nhkPaW1rEW5kzc=";
 
     ldflags = [
       "-X github.com/replit/upm/internal/cli.version=${rev}"
@@ -22,6 +22,18 @@ buildGo117Module {
     preBuild = ''
         ${statik}/bin/statik -src resources -dest internal -f
         go generate ./internal/backends/python
+    '';
+
+    buildInputs = [ makeWrapper ];
+
+    subPackages = ["cmd/upm"];
+
+    postInstall = ''
+      make internal/backends/python/pypi_map.sqlite
+      mv internal/backends/python/pypi_map.sqlite $out/
+
+      wrapProgram $out/bin/upm \
+        --set PYPI_MAP_DB "$out/pypi_map.sqlite"
     '';
 
     doCheck = false;

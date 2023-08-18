@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -17,16 +16,6 @@ import (
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
-//go:generate go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.gen.go -cache cache -cmd gen
-
-// pypiEntry represents one element of the response we get from
-// the PyPI API search results.
-type pypiEntry struct {
-	Name    string `json:"name"`
-	Summary string `json:"summary"`
-	Version string `json:"version"`
-}
-
 // pypiEntryInfoResponse is a wrapper around pypiEntryInfo
 // that matches the format of the REST API
 type pypiEntryInfoResponse struct {
@@ -112,7 +101,7 @@ func normalizePackageName(name api.PkgName) api.PkgName {
 // UPM_PYTHON2 and UPM_PYTHON3.)
 func pythonMakeBackend(name string, python string) api.LanguageBackend {
 	info_func := func(name api.PkgName) api.PkgInfo {
-		res, err := http.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
+		res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
 
 		if err != nil {
 			util.Die("HTTP Request failed with error: %s", err)
@@ -197,7 +186,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// so complicated??)
 
 			outputB := util.GetCmdOutput([]string{
-				python, "-m", "poetry",
+				"poetry",
 				"config", "settings.virtualenvs.path",
 			})
 			var path string
@@ -240,7 +229,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 			// Initalize the specfile if it doesnt exist
 			if !util.Exists("pyproject.toml") {
-				cmd := []string{python, "-m", "poetry", "init", "--no-interaction"}
+				cmd := []string{"poetry", "init", "--no-interaction"}
 
 				if projectName != "" {
 					cmd = append(cmd, "--name", projectName)
@@ -249,7 +238,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 				util.RunCmd(cmd)
 			}
 
-			cmd := []string{python, "-m", "poetry", "add"}
+			cmd := []string{"poetry", "add"}
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
@@ -268,14 +257,14 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Remove: func(pkgs map[api.PkgName]bool) {
-			cmd := []string{python, "-m", "poetry", "remove"}
-			for name, _ := range pkgs {
+			cmd := []string{"poetry", "remove"}
+			for name := range pkgs {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
 		},
 		Lock: func() {
-			util.RunCmd([]string{python, "-m", "poetry", "lock", "--no-update"})
+			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
 		Install: func() {
 			// Unfortunately, this doesn't necessarily uninstall
@@ -283,7 +272,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// which happens for example if 'poetry remove' is
 			// interrupted. See
 			// <https://github.com/sdispater/poetry/issues/648>.
-			util.RunCmd([]string{python, "-m", "poetry", "install"})
+			util.RunCmd([]string{"poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			pkgs, err := listSpecfile()
@@ -351,6 +340,12 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	pypiMap, err := NewPypiMap()
+	if err != nil {
+		util.Die(err.Error())
+	}
+	defer pypiMap.Close()
+
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
@@ -374,9 +369,9 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	if knownPkgs, err := listSpecfile(); err == nil {
 		for pkgName := range knownPkgs {
-			mods, ok := pypiPackageToModules[string(pkgName)]
+			mods, ok := pypiMap.PackageToModules(string(pkgName))
 			if ok {
-				for _, mod := range strings.Split(mods, ",") {
+				for _, mod := range mods {
 					availMods[mod] = true
 				}
 			}
@@ -402,7 +397,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			var ok bool
 			pkg, ok = moduleToPypiPackageOverride[modname]
 			if !ok {
-				pkg, ok = moduleToPypiPackage[modname]
+				pkg, ok = pypiMap.ModuleToPackage(modname)
 			}
 			if ok {
 				name := api.PkgName(pkg)

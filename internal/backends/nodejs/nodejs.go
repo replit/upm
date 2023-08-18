@@ -1,12 +1,12 @@
-// Package nodejs provides backends for Node.js using Yarn and NPM.
+// Package nodejs provides backends for Node.js using Yarn, PNPM and NPM.
 package nodejs
 
 import (
 	"encoding/json"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 
 	"github.com/hashicorp/go-version"
@@ -78,9 +78,9 @@ type packageLockJSON struct {
 }
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
-var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx"}
+var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"}
 
-// nodejsSearch implements Search for nodejs-yarn and nodejs-npm.
+// nodejsSearch implements Search for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsSearch(query string) []api.PkgInfo {
 	// Special case: if search query is only one character, the
 	// API doesn't return any results. The web interface to NPM
@@ -99,7 +99,7 @@ func nodejsSearch(query string) []api.PkgInfo {
 	endpoint := "https://registry.npmjs.org/-/v1/search"
 	queryParams := "?text=" + url.QueryEscape(query)
 
-	resp, err := http.Get(endpoint + queryParams)
+	resp, err := api.HttpClient.Get(endpoint + queryParams)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}
@@ -134,12 +134,12 @@ func nodejsSearch(query string) []api.PkgInfo {
 	return results
 }
 
-// nodejsInfo implements Info for nodejs-yarn and nodejs-npm.
+// nodejsInfo implements Info for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsInfo(name api.PkgName) api.PkgInfo {
 	endpoint := "https://registry.npmjs.org"
 	path := "/" + url.QueryEscape(string(name))
 
-	resp, err := http.Get(endpoint + path)
+	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}
@@ -155,6 +155,10 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		util.Die("NPM registry: could not read response: %s", err)
+	}
+
 	var npmInfo npmInfoResult
 	if err := json.Unmarshal(body, &npmInfo); err != nil {
 		util.Die("NPM registry: %s", err)
@@ -198,7 +202,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	}
 }
 
-// nodejsListSpecfile implements ListSpecfile for nodejs-yarn and
+// nodejsListSpecfile implements ListSpecfile for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
 func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
 	contentsB, err := ioutil.ReadFile("package.json")
@@ -219,7 +223,7 @@ func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
 	return pkgs
 }
 
-// nodejsGuessRegexps is the value of GuessRegexps for nodejs-yarn and
+// nodejsGuessRegexps is the value of GuessRegexps for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
 var nodejsGuessRegexps = util.Regexps([]string{
 	// import defaultExport from "module-name";
@@ -233,7 +237,7 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 })
 
-// nodejsGuess implements Guess for nodejs-yarn and nodejs-npm.
+// nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsGuess() (map[api.PkgName]bool, bool) {
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
@@ -272,7 +276,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"yarn", "remove"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
@@ -297,6 +301,87 @@ var NodejsYarnBackend = api.LanguageBackend{
 			version := api.PkgVersion(match[2])
 			pkgs[name] = version
 		}
+		return pkgs
+	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
+}
+
+var NodejsPNPMBackend = api.LanguageBackend{
+	Name:             "nodejs-pnpm",
+	Specfile:         "package.json",
+	Lockfile:         "pnpm-lock.yaml",
+	FilenamePatterns: nodejsPatterns,
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"pnpm", "init"})
+		}
+		cmd := []string{"pnpm", "add"}
+		for name, spec := range pkgs {
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
+		}
+		util.RunCmd(cmd)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		cmd := []string{"pnpm", "remove"}
+		for name := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		util.RunCmd(cmd)
+	},
+	Lock: func() {
+		util.RunCmd([]string{"pnpm", "install"})
+	},
+	Install: func() {
+		util.RunCmd([]string{"pnpm", "install"})
+	},
+	ListSpecfile: nodejsListSpecfile,
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		// In Replit front end repo, `--depth Infinity` refuses to run due to Node refusing to make
+		// a string with such size. `--depth 10` works in shell, but crashes with a 0 exit code when
+		// writing to a file (eg `pnpm list --json --depth 10 >file.json`). Instead of trying to get
+		// the full dependency tree, instead we'll just get the top-level dependencies.
+		workspaceSpecContents, err := exec.Command("pnpm", "list", "--json", "--depth", "0").Output()
+		if err != nil {
+			util.Die("pnpm list: %s", err)
+		}
+
+		workspaceSpec := []map[string]interface{}{}
+		err = json.Unmarshal(workspaceSpecContents, &workspaceSpec)
+		if err != nil {
+			util.Die("pnpm list: %s", err)
+		}
+
+		pkgs := map[api.PkgName]api.PkgVersion{}
+		for _, pkgSpec := range workspaceSpec {
+			for depName, depInfo := range pkgSpec["dependencies"].(map[string]interface{}) {
+				pkgName := api.PkgName(depName)
+				if _, ok := pkgs[pkgName]; ok {
+					continue
+				}
+
+				depVersion, ok := depInfo.(map[string]interface{})["version"].(string)
+				if !ok {
+					util.Die("pnpm list: %s", err)
+				}
+
+				pkgs[pkgName] = api.PkgVersion(depVersion)
+			}
+		}
+
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
@@ -334,7 +419,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"npm", "uninstall"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
@@ -359,6 +444,69 @@ var NodejsNPMBackend = api.LanguageBackend{
 		for nameStr, data := range cfg.Dependencies {
 			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
 		}
+		return pkgs
+	},
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+	GuessRegexps: nodejsGuessRegexps,
+	Guess:        nodejsGuess,
+}
+
+// BunBackend is a UPM backend for Node.js that uses Yarn.
+var BunBackend = api.LanguageBackend{
+	Name:             "bun",
+	Specfile:         "package.json",
+	Lockfile:         "bun.lockb",
+	FilenamePatterns: nodejsPatterns,
+	Quirks: api.QuirksAddRemoveAlsoLocks |
+		api.QuirksAddRemoveAlsoInstalls |
+		api.QuirksLockAlsoInstalls,
+	GetPackageDir: func() string {
+		return "node_modules"
+	},
+	Search: nodejsSearch,
+	Info:   nodejsInfo,
+	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		if !util.Exists("package.json") {
+			util.RunCmd([]string{"bun", "init", "-y"})
+		}
+		cmd := []string{"bun", "add"}
+		for name, spec := range pkgs {
+			arg := string(name)
+			if spec != "" {
+				arg += "@" + string(spec)
+			}
+			cmd = append(cmd, arg)
+		}
+		util.RunCmd(cmd)
+	},
+	Remove: func(pkgs map[api.PkgName]bool) {
+		cmd := []string{"bun", "remove"}
+		for name := range pkgs {
+			cmd = append(cmd, string(name))
+		}
+		util.RunCmd(cmd)
+	},
+	Lock: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	Install: func() {
+		util.RunCmd([]string{"bun", "install"})
+	},
+	ListSpecfile: nodejsListSpecfile,
+	ListLockfile: func() map[api.PkgName]api.PkgVersion {
+		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
+		if err != nil {
+			util.Die("bun pm hash-string: %s", err)
+		}
+
+		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
+		pkgs := map[api.PkgName]api.PkgVersion{}
+
+		for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
+			name := api.PkgName(match[1])
+			pkgs[name] = api.PkgVersion(match[2])
+		}
+
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import

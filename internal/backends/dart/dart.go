@@ -55,9 +55,7 @@ type dartPubspecYaml struct {
 
 // dartListPubspecYaml lists all deps in a pubspec.yaml file
 func dartListPubspecYaml() map[api.PkgName]api.PkgSpec {
-
-	var specs dartPubspecYaml
-	specs = readSpecFile()
+	specs := readSpecFile()
 
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for nameStr, specStr := range specs.Dependencies {
@@ -124,10 +122,10 @@ func dartSearch(query string) []api.PkgInfo {
 		util.Die("Pub.dev: %s", err)
 	}
 
-	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
 	req.Header.Add("Accept", "application/json")
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := api.HttpClient.Do(req)
+
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -178,10 +176,9 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 		util.Die("Pub.dev: %s", err)
 	}
 
-	req.Header.Add("User-Agent", "upm (+https://github.com/replit/upm)")
 	req.Header.Add("Accept", "application/json")
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := api.HttpClient.Do(req)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -231,7 +228,10 @@ func writeSpecFile(specs dartPubspecYaml) {
 		fmt.Println("Marshal Error")
 	}
 
-	ioutil.WriteFile("pubspec.yaml", data, 0666)
+	err = ioutil.WriteFile("pubspec.yaml", data, 0666)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func readSpecFile() dartPubspecYaml {
@@ -253,8 +253,7 @@ func dartAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		createSpecFile()
 	}
 
-	var specs dartPubspecYaml
-	specs = readSpecFile()
+	specs := readSpecFile()
 
 	for name, spec := range pkgs {
 		arg := string(name)
@@ -269,8 +268,7 @@ func dartAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 }
 
 func dartRemove(pkgs map[api.PkgName]bool) {
-	var specs dartPubspecYaml
-	specs = readSpecFile()
+	specs := readSpecFile()
 
 	for name := range pkgs {
 		delete(specs.Dependencies, string(name))

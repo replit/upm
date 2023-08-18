@@ -4,7 +4,6 @@ package ruby
 import (
 	"encoding/json"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"os"
 	"strings"
@@ -82,7 +81,7 @@ var RubyBackend = api.LanguageBackend{
 		endpoint := "https://rubygems.org/api/v1/search.json"
 		queryParams := "?query=" + url.QueryEscape(query)
 
-		resp, err := http.Get(endpoint + queryParams)
+		resp, err := api.HttpClient.Get(endpoint + queryParams)
 		if err != nil {
 			util.Die("RubyGems: %s", err)
 		}
@@ -125,7 +124,7 @@ var RubyBackend = api.LanguageBackend{
 		endpoint := "https://rubygems.org/api/v1/gems/"
 		path := url.QueryEscape(string(name)) + ".json"
 
-		resp, err := http.Get(endpoint + path)
+		resp, err := api.HttpClient.Get(endpoint + path)
 		if err != nil {
 			util.Die("RubyGems: %s", err)
 		}
@@ -195,7 +194,7 @@ var RubyBackend = api.LanguageBackend{
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
 		cmd := []string{"bundle", "remove", "--skip-install"}
-		for name, _ := range pkgs {
+		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
