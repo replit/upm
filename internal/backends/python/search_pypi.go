@@ -19,7 +19,7 @@ func SearchPypi(query string) ([]api.PkgInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := api.HttpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
