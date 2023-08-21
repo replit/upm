@@ -150,10 +150,3 @@ func loadLegacyPypyPackages(filePath string) map[string]LegacyPackageInfo {
 
 	return infoMap
 }
-
-func normalizePackageName(name string) string {
-	nameStr := string(name)
-	nameStr = strings.ToLower(nameStr)
-	nameStr = strings.Replace(nameStr, "_", "-", -1)
-	return nameStr
-}
