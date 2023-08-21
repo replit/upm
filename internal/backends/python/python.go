@@ -380,7 +380,8 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 
 	pkgs := map[api.PkgName]bool{}
 
-	for modname, pragmas := range output.Imports {
+	for fullModname, pragmas := range output.Imports {
+		modname := getTopLevelModuleName(fullModname)
 		// provided by an existing package or perhaps by the system
 		if availMods[modname] {
 			continue
@@ -395,7 +396,10 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			// Otherwise, try and look it up in Pypi
 			var pkg string
 			var ok bool
-			pkg, ok = moduleToPypiPackageOverride[modname]
+			pkg, ok = moduleToPypiPackageOverride[fullModname]
+			if !ok {
+				pkg, ok = moduleToPypiPackageOverride[modname]
+			}
 			if !ok {
 				pkg, ok = pypiMap.ModuleToPackage(modname)
 			}
@@ -407,6 +411,10 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 	}
 
 	return pkgs, output.Success
+}
+
+func getTopLevelModuleName(fullModname string) string {
+	return strings.Split(fullModname, ".")[0]
 }
 
 // getPython2 returns either "python2" or the value of the UPM_PYTHON2
