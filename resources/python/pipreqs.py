@@ -87,14 +87,7 @@ def get_all_imports(
                 had_errors = True
                 continue
 
-    # Clean up imports
-    for name in raw_imports.keys():
-        # Cleanup: We only want to first part of the import.
-        # Ex: from django.conf --> django.conf. But we only want django
-        # as an import.
-        cleaned_name, _, _ = name.partition('.')
-        imports[cleaned_name] = raw_imports[name]
-
+    imports = raw_imports
     missing_modules = imports.keys() - (set(candidates) & imports.keys())
     return {k: imports[k] for k in missing_modules}, had_errors
 
