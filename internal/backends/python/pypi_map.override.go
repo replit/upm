@@ -11,5 +11,4 @@ var moduleToPypiPackageOverride = map[string]string{
 	"faiss":        "faiss-cpu",
 	"graphics":     "graphics.py", // this package is popular, but the module doesn't match the package name https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/graphics.html#a-graphics-introduction
 	"replit.ai":    "replit-ai",   // Replit's AI package
-	"google.cloud": "google-cloud", // GCP SDK
 }
