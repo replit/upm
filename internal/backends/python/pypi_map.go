@@ -83,34 +83,3 @@ func (p *PypiMap) PackageToModules(packageName string) ([]string, bool) {
 	}
 	return strings.Split(moduleList, ","), true
 }
-
-func (p *PypiMap) SearchModules(query string) []string {
-	stmt, err := p.db.Prepare(`
-	select package_name
-	from pypi_packages
-	where package_name like ?
-	order by downloads desc limit 20
-	`)
-	if err != nil {
-		return nil
-	}
-	defer stmt.Close()
-	rows, err := stmt.Query(fmt.Sprintf("%%%s%%", query))
-	if err != nil {
-		return nil
-	}
-	defer rows.Close()
-	var packages []string = nil
-	for {
-		if !rows.Next() {
-			break
-		}
-		var pkg string
-		_ = rows.Scan(&pkg)
-		if err != nil {
-			break
-		}
-		packages = append(packages, pkg)
-	}
-	return packages
-}

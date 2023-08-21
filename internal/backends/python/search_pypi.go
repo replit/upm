@@ -88,10 +88,10 @@ func collectText(node *html.Node) string {
 }
 
 func findNodes(node *html.Node, want func(*html.Node) bool) []*html.Node {
-	var results []*html.Node
 	if want(node) {
-		results = append(results, node)
+		return []*html.Node{node}
 	}
+	var results []*html.Node
 	for child := node.FirstChild; child != nil; child = child.NextSibling {
 		subResults := findNodes(child, want)
 		results = append(results, subResults...)
