@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -396,13 +397,27 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			// Otherwise, try and look it up in Pypi
 			var pkg string
 			var ok bool
-			pkg, ok = moduleToPypiPackageOverride[fullModname]
-			if !ok {
-				pkg, ok = moduleToPypiPackageOverride[modname]
-			}
-			if !ok {
-				pkg, ok = pypiMap.ModuleToPackage(modname)
-			}
+
+      modNameParts := strings.Split(fullModname, ".")
+      for len(modNameParts) > 0 {
+        testModName := strings.Join(modNameParts, ".")
+
+        // test overrides
+        pkg, ok = moduleToPypiPackageOverride[testModName]
+        if ok {
+          break
+        }
+
+        // test pypi
+        pkg, ok = pypiMap.ModuleToPackage(testModName)
+        if ok {
+          break
+        }
+
+        // loop with everything except the deepest submodule
+        modNameParts = modNameParts[:len(modNameParts) - 2]
+      }
+      
 			if ok {
 				name := api.PkgName(pkg)
 				pkgs[normalizePackageName(name)] = true
