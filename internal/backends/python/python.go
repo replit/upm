@@ -414,7 +414,7 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 				}
 
 				// loop with everything except the deepest submodule
-				modNameParts = modNameParts[:len(modNameParts)-2]
+				modNameParts = modNameParts[:len(modNameParts)-1]
 			}
 
 			if ok {
