@@ -5,7 +5,6 @@ package store
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -40,7 +39,7 @@ func read() {
 	}()
 
 	filename := getStoreLocation()
-	bytes, err := ioutil.ReadFile(filename)
+	bytes, err := os.ReadFile(filename)
 
 	if err != nil {
 		if os.IsNotExist(err) {

@@ -3,8 +3,9 @@ package rust
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/url"
+	"os"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
@@ -87,7 +88,7 @@ func search(query string) []api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("crates.io: %s", err)
 	}
@@ -127,7 +128,7 @@ func info(name api.PkgName) api.PkgInfo {
 		util.Die("crates.io: HTTP status %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("crates.io: could not read response: %s", err)
 	}
@@ -141,7 +142,7 @@ func info(name api.PkgName) api.PkgInfo {
 }
 
 func listSpecfile() map[api.PkgName]api.PkgSpec {
-	contents, err := ioutil.ReadFile("Cargo.toml")
+	contents, err := os.ReadFile("Cargo.toml")
 	if err != nil {
 		util.Die("Cargo.toml: %s", err)
 	}
@@ -192,7 +193,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 }
 
 func listLockfile() map[api.PkgName]api.PkgVersion {
-	contents, err := ioutil.ReadFile("Cargo.lock")
+	contents, err := os.ReadFile("Cargo.lock")
 	if err != nil {
 		util.Die("Cargo.lock: %s", err)
 	}

@@ -2,7 +2,7 @@ package rlang
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -141,7 +141,7 @@ func RLock() {
 
 	defer config.Close()
 
-	contents, err := ioutil.ReadAll(config)
+	contents, err := io.ReadAll(config)
 	if err != nil {
 		panic(err)
 	}

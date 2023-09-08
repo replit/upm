@@ -2,8 +2,8 @@ package nodejs
 
 import (
 	"context"
-	"io/ioutil"
 	"log"
+	"os"
 	"path"
 	"path/filepath"
 	"strings"
@@ -142,7 +142,7 @@ func guessBareImports() map[api.PkgName]bool {
 			}
 		}
 
-		files, err := ioutil.ReadDir(dirName)
+		files, err := os.ReadDir(dirName)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -164,7 +164,7 @@ func guessBareImports() map[api.PkgName]bool {
 				continue
 			}
 
-			contents, err := ioutil.ReadFile(absPath)
+			contents, err := os.ReadFile(absPath)
 			if err != nil {
 				log.Fatalln(err)
 			}

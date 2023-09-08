@@ -4,7 +4,6 @@ package elisp
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -28,7 +27,7 @@ var ElispBackend = api.LanguageBackend{
 		return ".cask"
 	},
 	Search: func(query string) []api.PkgInfo {
-		tmpdir, err := ioutil.TempDir("", "elpa")
+		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
 			util.Die("%s", err)
 		}
@@ -52,7 +51,7 @@ var ElispBackend = api.LanguageBackend{
 		return results
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
-		tmpdir, err := ioutil.TempDir("", "elpa")
+		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
 			util.Die("%s", err)
 		}
@@ -76,7 +75,7 @@ var ElispBackend = api.LanguageBackend{
 		return info
 	},
 	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		contentsB, err := ioutil.ReadFile("Cask")
+		contentsB, err := os.ReadFile("Cask")
 		var contents string
 		if os.IsNotExist(err) {
 			contents = `(source melpa)
@@ -108,7 +107,7 @@ var ElispBackend = api.LanguageBackend{
 		util.TryWriteAtomic("Cask", contentsB)
 	},
 	Remove: func(pkgs map[api.PkgName]bool) {
-		contentsB, err := ioutil.ReadFile("Cask")
+		contentsB, err := os.ReadFile("Cask")
 		if err != nil {
 			util.Die("Cask: %s", err)
 		}
@@ -159,7 +158,7 @@ var ElispBackend = api.LanguageBackend{
 		return pkgs
 	},
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("packages.txt")
+		contentsB, err := os.ReadFile("packages.txt")
 		if err != nil {
 			util.Die("packages.txt: %s", err)
 		}
@@ -197,7 +196,7 @@ var ElispBackend = api.LanguageBackend{
 			provided[match[1]] = true
 		}
 
-		tempdir, err := ioutil.TempDir("", "epkgs")
+		tempdir, err := os.MkdirTemp("", "epkgs")
 		if err != nil {
 			util.Die("%s", err)
 		}

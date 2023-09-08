@@ -3,7 +3,6 @@ package util
 import (
 	"bytes"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
@@ -56,7 +55,7 @@ func AddIngoredPaths(paths []string) {
 // TryWriteAtomic terminates the process.
 func TryWriteAtomic(filename string, contents []byte) {
 	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
-		if err2 := ioutil.WriteFile(filename, contents, 0666); err2 != nil {
+		if err2 := os.WriteFile(filename, contents, 0666); err2 != nil {
 			Die("%s: %s; on non-atomic retry: %s", filename, err1, err2)
 		}
 	}
@@ -117,7 +116,7 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 			return nil
 		}
 		if info.Mode().IsRegular() {
-			contentsB, err := ioutil.ReadFile(path)
+			contentsB, err := os.ReadFile(path)
 			if err != nil {
 				Die("%s: %s", path, err)
 			}
@@ -161,7 +160,7 @@ func DownloadFile(filepath string, url string) {
 // creation fails, it terminates the process. The caller is
 // responsible for cleaning up the temporary directory afterwards.
 func TempDir() string {
-	if tempdir, err := ioutil.TempDir("", "upm"); err != nil {
+	if tempdir, err := os.MkdirTemp("", "upm"); err != nil {
 		Die("%s", err)
 		return ""
 	} else {
@@ -206,7 +205,7 @@ func WriteResource(url string, tempdir string) string {
 	contents := GetResource(url)
 	basename := path.Base(url)
 	filename := filepath.Join(tempdir, basename)
-	if err := ioutil.WriteFile(filename, []byte(contents), 0666); err != nil {
+	if err := os.WriteFile(filename, []byte(contents), 0666); err != nil {
 		Die("%s", err)
 	}
 	return filename
