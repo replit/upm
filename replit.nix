@@ -2,7 +2,7 @@
     deps = [
         pkgs.wget
         pkgs.gnumake
-        pkgs.go_1_17
+        pkgs.go_1_20
         pkgs.gopls
         pkgs.gcc
         pkgs.curl
