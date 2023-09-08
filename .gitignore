@@ -16,3 +16,8 @@ internal/backends/python/regression_tests/test
 result
 internal/backends/python/pypi_map.sqlite
 play
+
+/vendor
+
+/.direnv
+/.envrc
