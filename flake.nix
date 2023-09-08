@@ -16,8 +16,8 @@
           };
         in
         {
-          defaultPackage = upm;
           packages = {
+            default = upm;
             inherit upm;
           };
         }
