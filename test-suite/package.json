@@ -1,0 +1,17 @@
+{
+  "name": "upm-test-suite",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -b",
+    "cucumber": "NODE_OPTIONS='--enable-source-maps' cucumber-js --config cucumber.mjs",
+    "tests": "yarn run build && yarn run cucumber"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^9.5.1",
+    "@types/node": "^20.5.9",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2",
+    "source-map-support": "^0.5.21"
+  }
+}
