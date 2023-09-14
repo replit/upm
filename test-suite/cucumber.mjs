@@ -14,7 +14,7 @@ const getNixpkg = (pkg) => {
 };
 
 const upm = execSync(
-  `nix build --print-out-paths --no-link --no-warn-dirty ${upmRepo}#upm`
+  `nix build --print-out-paths --no-link --allow-dirty --no-warn-dirty ${upmRepo}#upm`
 )
   .toString("utf-8")
   .trim();
