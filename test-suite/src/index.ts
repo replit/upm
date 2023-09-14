@@ -1,20 +1,22 @@
-import { After, AfterStep, Given, IWorldOptions, Then, When, World, setWorldConstructor } from "@cucumber/cucumber";
+import { After, AfterStep, Before, BeforeAll, Given, IWorldOptions, Then, When, World, setWorldConstructor } from "@cucumber/cucumber";
 import assert from "assert";
-import { mkdtemp, writeFile } from "fs/promises";
+import { link, mkdir, mkdtemp, writeFile } from "fs/promises";
 import { promisify } from 'node:util';
 import * as javascript from './javascript';
 import { execSync } from "child_process";
-import { existsSync } from "fs";
+import { exists, existsSync, mkdirSync, mkdtempSync } from "fs";
 import { rimraf } from 'rimraf';
+import { tmpdir } from "os";
+import path from "path";
+import { Err, Result } from "./types";
 
 export interface UPMParameters {
 	bins: Record<string, string>;
 }
 
 class UPMWorld extends World<UPMParameters> {
-	upm: string;
-	/** The path to the temp directory containing the test project */
-	projectDirectory: string | null = null;
+	testRoot: string;
+
 	/** The path to the package manager bin that's being tested  */
 	packageManager: string | null = null;
 	/**
@@ -28,11 +30,49 @@ class UPMWorld extends World<UPMParameters> {
 	constructor(options: IWorldOptions<UPMParameters>) {
 		super(options);
 
-		this.upm = `${options.parameters.bins.upm}/bin/upm`;
+		this.testRoot = mkdtempSync(path.join(tmpdir(), 'upm-test-'));
+		assert(existsSync(this.testRoot), 'expected mkdtemp to make the testRoot');
+	}
+
+	async install(command: string): Promise<void> {
+		if (!(command in this.parameters.bins)) {
+			throw new Error(`${command} is not configured`);
+		}
+
+		const bin = this.parameters.bins[command];
+		const binPath = path.join(this.testRoot, 'bin');
+		if (!existsSync(binPath)) {
+			await mkdir(binPath);
+		}
+
+		const installedBin = path.join(binPath, command);
+		if (existsSync(installedBin)) {
+			throw new Error(`${command} is already installed`);
+		}
+
+		await link(bin, installedBin);
+	}
+
+	exec(command: string, options?: Parameters<typeof execSync>[1]): ReturnType<typeof execSync> {
+		const extendEnv = options?.env ?? {};
+		delete options?.env;
+
+		return execSync(command, {
+			env: {
+				PATH: `${this.testRoot}/bin`,
+				...extendEnv
+			},
+			stdio: ['ignore', 'pipe', 'inherit'],
+			...options,
+		});
 	}
 }
 
 setWorldConstructor(UPMWorld);
+
+Before<UPMWorld>(async function () {
+	this.install('upm');
+});
 
 AfterStep<UPMWorld>(async function ({ result }) {
 	if (result.status === 'FAILED') {
@@ -65,6 +105,7 @@ Given<UPMWorld>("{word} is installed", function (packageManager: string) {
 	assert(packageManager in this.parameters.bins);
 
 	const bin = this.parameters.bins[packageManager];
+	console.log({ bin })
 	try {
 		execSync(`${bin} --version`, {
 			stdio: 'ignore',
@@ -73,7 +114,7 @@ Given<UPMWorld>("{word} is installed", function (packageManager: string) {
 		throw new Error(`${packageManager} is not installed: ${e}`)
 	}
 
-	this.packageManager = bin;
+	this.path.push(bin);
 });
 
 Given<UPMWorld>("a file named {string} with:", async function (filename: string, content: string) {

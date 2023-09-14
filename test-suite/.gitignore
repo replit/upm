@@ -1,3 +1,4 @@
 /dist
 /node_modules
-/upm-test-*
+/test-results/*
+!/test-results/.gitkeep
