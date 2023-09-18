@@ -17,7 +17,8 @@ const upm = execSync(
   `nix build --print-out-paths --no-link --allow-dirty --no-warn-dirty ${upmRepo}#upm`
 )
   .toString("utf-8")
-  .trim();
+  .trim()
+  + "/bin/upm";
 
 const npm = `${getNixpkg("nodejs")}/bin/npm`;
 
