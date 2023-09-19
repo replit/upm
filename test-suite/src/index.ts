@@ -1,12 +1,16 @@
 import { After, AfterStep, Before, BeforeAll, Given, IWorldOptions, Then, When, World, setWorldConstructor } from "@cucumber/cucumber";
 import assert from "assert";
-import { mkdir, symlink, writeFile } from "fs/promises";
+import { mkdir, readFile, readdir, symlink, writeFile } from "fs/promises";
 import * as javascript from './javascript';
 import { execSync } from "child_process";
 import { existsSync, mkdirSync, mkdtempSync } from "fs";
 import { rimraf } from 'rimraf';
 import { tmpdir } from "os";
 import path from "path";
+
+const RESULTS_TO_KEEP_FOR_DEBUGGING = [
+	'FAILED',
+];
 
 export interface UPMParameters {
 	bins: Record<string, string>;
@@ -60,21 +64,30 @@ class UPMWorld extends World<UPMParameters> {
 		const extendEnv = options?.env ?? {};
 		delete options?.env;
 
-		return execSync(command, {
-			env: {
-				PATH: this.binDirectory,
-				...extendEnv
-			},
+		const env = {
+			PATH: this.binDirectory,
+			...extendEnv
+		};
+
+		const output = execSync(command, {
+			cwd: this.projectDirectory,
+			env,
 			stdio: ['ignore', 'pipe', 'inherit'],
 			...options,
 		});
+
+		const envString = Object.entries(env).map(([key, value]) => `${key}=${value}`).join(' ');
+		this.attach(`$ ${envString} ${command}\n${output}`);
+
+		return output;
 	}
 }
 
 setWorldConstructor(UPMWorld);
 
-Before<UPMWorld>(async function () {
-	this.install('upm');
+Before<UPMWorld>({ name: 'Install UPM' }, async function () {
+	this.attach(`Test directory is ${this.testRoot}`);
+	await this.install('upm');
 });
 
 AfterStep<UPMWorld>(async function ({ result }) {
@@ -83,8 +96,12 @@ AfterStep<UPMWorld>(async function ({ result }) {
 	}
 });
 
-After<UPMWorld>(async function () {
-	if (!this.failed) {
+After<UPMWorld>(async function ({ result }) {
+	const installedBins = await readdir(this.binDirectory);
+	this.attach(`Installed bins: ${installedBins.join(', ')}`);
+	// TODO: attach the project directory as a zip or something even more helpful for debugging
+
+	if (!RESULTS_TO_KEEP_FOR_DEBUGGING.includes(result?.status ?? 'UNKNOWN')) {
 		await rimraf(this.testRoot);
 	}
 });
@@ -104,30 +121,48 @@ Given<UPMWorld>("{word} is installed", function (bin: string) {
 });
 
 Given<UPMWorld>("a file named {string} with:", async function (filename: string, content: string) {
-	const filePath = `${this.projectDirectory}/${filename}`;
-
-	if (existsSync(filePath)) {
-		throw new Error(`File ${filename} already exists`);
-	}
-
-	await writeFile(filePath, content);
+	await writeFile(path.join(this.projectDirectory, filename), content);
 });
 
-Then<UPMWorld>("the detected language should be {string}", async function (expectLanguage: string) {
-	const output = this.exec('upm detect-language').toString().trim();
-	assert.equal(output, expectLanguage);
+When<UPMWorld>("I add the {string} dependency", function (packageName: string) {
+	this.exec(`upm add ${packageName}`);
 });
 
-When<UPMWorld>("I search for {string}", async function (query: string) {
+When<UPMWorld>("I run {string}", function (command: string) {
+	this.exec(command);
+});
+
+When<UPMWorld>("I search for {string}", function (query: string) {
 	assert(this.searchResults === null);
-
 	const output = this.exec(`upm search -f json ${query}`).toString().trim();
-
 	this.searchResults = JSON.parse(output);
 });
 
-Then<UPMWorld>("I should see {string} in the results", function (packageName: string) {
-	assert(this.searchResults !== null);
+Then<UPMWorld>("the detected language should be {string}", async function (expectLanguage: string) {
+	const output = this.exec('upm which-language').toString().trim();
+	assert.equal(output, expectLanguage);
+});
 
+Then<UPMWorld>("the package directory should be {string}", async function (dir: string) {
+	const output = this.exec('upm show-package-dir').toString().trim();
+	assert.equal(output, dir);
+});
+
+Then<UPMWorld>("I should get info for {string}", async function (packageName: string) {
+	const output = this.exec(`upm info -f json ${packageName}`).toString().trim();
+	const outputJson = JSON.parse(output);
+
+	assert(outputJson.name === packageName, `expected ${packageName} but got ${outputJson.name}`);
+});
+
+Then<UPMWorld>("I should see {string} in the search results", function (packageName: string) {
+	assert(this.searchResults !== null, "expected a search to be executed");
 	assert(this.searchResults.some((result) => (result['name'] as string) === packageName));
+});
+
+Then<UPMWorld>("the {string} file should be:", async function (filename: string, content: string) {
+	assert(existsSync(path.join(this.projectDirectory, filename)), `expected ${filename} to exist`);
+	const file = await readFile(path.join(this.projectDirectory, filename), { encoding: 'utf-8' });
+	this.attach("File contents:\n" + file);
+	assert.equal(file, content);
 });
