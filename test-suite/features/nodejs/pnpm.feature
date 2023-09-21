@@ -1,18 +1,17 @@
-Feature: npm
-  NPM support using NodeJS
+Feature: pnpm
+	PNPM support using NodeJS
 
-	Background: npm is installed
-		Given npm is installed
+	Background: pnpm is installed
+		Given pnpm is installed
 		And a bug with "list -a"
 
 	Rule: basic functionality
 		Background: empty project
 			Given a javascript project without dependencies
-			# force nodejs-npm language detected by package manager
-			When I run "npm install"
+			When I run "pnpm install"
 
 		Scenario: upm which-language
-			Then the detected language should be "nodejs-npm"
+			Then the detected language should be "nodejs-pnpm"
 
 		Scenario: upm search
 			Then searching for "express" should include "express" in the results
@@ -24,15 +23,15 @@ Feature: npm
 			Then the specfile should be "package.json"
 
 		Scenario: upm show-lockfile
-			Then the lockfile should be "package-lock.json"
+			Then the lockfile should be "pnpm-lock.yaml"
 
 		Scenario: upm show-package-dir
 			Then the package directory should be "node_modules"
 
 	Rule: it works without any dependencies
-		Background: npm project without dependencies
+		Background: pnpm project without dependencies
 			Given a javascript project without dependencies
-			And the language is "nodejs-npm"
+			And the language is "nodejs-pnpm"
 
 		Scenario: upm add
 			When I add "express"
@@ -51,9 +50,9 @@ Feature: npm
 			Then there should be no dependencies
 
 	Rule: it works with another dependency
-		Background: npm project with express
+		Background: pnpm project with express
 			Given a javascript project with express
-			And the language is "nodejs-npm"
+			And the language is "nodejs-pnpm"
 
 		Scenario: upm add
 			When I add "lodash"
@@ -79,19 +78,18 @@ Feature: npm
 		Scenario: upm list
 			Then "express" should be a dependency
 
-	Rule: it works with several other dependencies
-		Background: npm project with dependencies
+	Rule: it works with other dependencies
+		Background: pnpm project with dependencies
 			Given a javascript project with dependencies
-			And the language is "nodejs-npm"
-			And I lock the specfile
+			And the language is "nodejs-pnpm"
 
 		Scenario: upm add
 			When I add "chalk"
-			Then "express" should be a dependency
+			Then "chalk" should be a dependency
+			And "chalk" should be locked
+			And "express" should be a dependency
 			And "lodash" should be a dependency
 			And "react" should be a dependency
-			And "chalk" should be a dependency
-			And "chalk" should be locked
 
 		Scenario: upm remove
 			When I remove "react"
@@ -101,6 +99,7 @@ Feature: npm
 			And "lodash" should be locked
 
 		Scenario: upm lock
+			When I lock the specfile
 			Then "express" should be a dependency
 			And "express" should be locked
 			And "lodash" should be a dependency

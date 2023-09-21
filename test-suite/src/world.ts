@@ -20,6 +20,9 @@ export default class UPMWorld extends World<UPMParameters> {
 	/** explicitly-set language */
 	upmLanguage?: string;
 
+	/** bugs */
+	knownBugs: string[] = [];
+
 	get binDirectory(): string {
 		return path.join(this.testRoot, 'bin');
 	}

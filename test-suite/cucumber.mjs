@@ -20,14 +20,18 @@ const upm = execSync(
   .trim()
   + "/bin/upm";
 
+const bun = `${getNixpkg("bun")}/bin/bun`;
 const npm = `${getNixpkg("nodejs")}/bin/npm`;
+const pnpm = `${getNixpkg("nodePackages.pnpm")}/bin/pnpm`;
 const yarn = `${getNixpkg("nodePackages.yarn")}/bin/yarn`;
 
 /** @type {import('./src').UPMParameters}  */
 const worldParameters = {
   bins: {
     upm,
+    bun,
     npm,
+    pnpm,
     yarn,
   },
 };

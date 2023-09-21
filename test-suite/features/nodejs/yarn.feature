@@ -7,9 +7,9 @@ Feature: yarn
 	Rule: basic functionality
 		Background: empty project
 			Given a javascript project without dependencies
+			When I run "yarn"
 
 		Scenario: upm which-language
-			When I run "yarn"
 			Then the detected language should be "nodejs-yarn"
 
 		Scenario: upm search
@@ -22,7 +22,6 @@ Feature: yarn
 			Then the specfile should be "package.json"
 
 		Scenario: upm show-lockfile
-			When I run "yarn"
 			Then the lockfile should be "yarn.lock"
 
 		Scenario: upm show-package-dir
@@ -88,14 +87,13 @@ Feature: yarn
 			And the language is "nodejs-yarn"
 			And I lock the specfile
 
-		@bug
 		Scenario: upm add
-			When I add "@replit/crosis"
+			When I add "chalk"
 			Then "express" should be a dependency
 			And "lodash" should be a dependency
 			And "react" should be a dependency
-			And "@replit/crosis" should be a dependency
-			And "@replit/crosis" should be locked
+			And "chalk" should be a dependency
+			And "chalk" should be locked
 
 		Scenario: upm remove
 			When I remove "react"
@@ -103,6 +101,15 @@ Feature: yarn
 			And "express" should be locked
 			And "lodash" should be a dependency
 			And "lodash" should be locked
+
+		Scenario: upm lock
+			When I lock the specfile
+			Then "express" should be a dependency
+			And "express" should be locked
+			And "lodash" should be a dependency
+			And "lodash" should be locked
+			And "react" should be a dependency
+			And "react" should be locked
 
 		Scenario: upm install
 			When I delete the package directory

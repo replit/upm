@@ -4,6 +4,13 @@ import { writeFile } from "fs/promises";
 import path from "path";
 
 Given<UPMWorld>(
+	"a bug with {string}",
+	function (bug: string) {
+		this.knownBugs.push(bug);
+	}
+)
+
+Given<UPMWorld>(
 	"{word} is installed",
 	function (bin: string) {
 		this.install(bin);

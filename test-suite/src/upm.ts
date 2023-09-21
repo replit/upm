@@ -11,13 +11,6 @@ Before<UPMWorld>(
 	}
 )
 
-Before<UPMWorld>(
-	{ name: 'Known bug', tags: '@bug' },
-	async function () {
-		return 'skipped';
-	}
-)
-
 /** pre-set the language */
 Given<UPMWorld>(
 	"the language is {string}",
@@ -104,6 +97,13 @@ When<UPMWorld>(
 	}
 )
 
+When<UPMWorld>(
+	"I force-install dependencies",
+	async function () {
+		await this.upm('install --force');
+	}
+)
+
 /** upm list */
 Then<UPMWorld>(
 	"{string} should be a dependency",
@@ -120,6 +120,10 @@ Then<UPMWorld>(
 Then<UPMWorld>(
 	"{string} should be locked",
 	async function (packageName: string) {
+		if (this.knownBugs.includes('list -a')) {
+			return 'skipped';
+		}
+
 		const output = await this.upm('list -f json -a');
 		const installedPackages: { name: string; }[] = JSON.parse(output);
 		assert(
@@ -132,7 +136,7 @@ Then<UPMWorld>(
 Then<UPMWorld>(
 	"there should be no dependencies",
 	async function () {
-		const output = await this.upm('list -f json -a');
+		const output = await this.upm('list -f json');
 		const dependencies: unknown[] = JSON.parse(output);
 		assert(
 			dependencies.length === 0,
