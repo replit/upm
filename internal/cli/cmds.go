@@ -191,7 +191,7 @@ func maybeInstall(b api.LanguageBackend, forceInstall bool) {
 	}
 
 	if b.QuirksIsReproducible() {
-		if forceInstall || store.HasLockfileChanged(b) {
+		if !util.Exists(b.GetPackageDir()) || !util.Exists(b.Lockfile) || forceInstall || store.HasLockfileChanged(b) {
 			b.Install()
 		}
 	} else {
