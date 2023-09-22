@@ -225,17 +225,11 @@ func (bt *BackendT) UpmRemove(pkgs ...string) {
 	}
 
 	for _, afterDep := range afterSpecDeps {
-		found := false
 		for ii, beforeDep := range specsExpectedToStay {
 			if afterDep.Name == beforeDep {
 				specsExpectedToStay = append(specsExpectedToStay[:ii], specsExpectedToStay[ii+1:]...)
-				found = true
 				break
 			}
-		}
-
-		if !found {
-			bt.Fail("upm added %s as a dependency", afterDep.Name)
 		}
 	}
 

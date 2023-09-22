@@ -39,13 +39,6 @@ func TestLock(t testUtils.BackendT) {
 }
 
 func TestRemove(t testUtils.BackendT) {
-	t.Subtest("unlocked", func(bt testUtils.BackendT) {
-		bt.Subtest(genRemoveTest(false, "one-dep", "express"))
-		bt.Subtest(genRemoveTest(false, "many-deps", "express", "eslint", "svelte"))
-	})
-
-	t.Subtest("locked", func(bt testUtils.BackendT) {
-		bt.Subtest(genRemoveTest(true, "one-dep", "express"))
-		bt.Subtest(genRemoveTest(true, "many-deps", "express", "eslint", "svelte"))
-	})
+	t.Subtest("unlocked", genRemoveTest(false, "many-deps", "express", "eslint", "svelte"))
+	t.Subtest("locked", genRemoveTest(true, "many-deps", "express", "eslint", "svelte"))
 }

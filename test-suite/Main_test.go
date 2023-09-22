@@ -39,10 +39,10 @@ func TestWhichLanguage(t *testing.T) {
 	}
 
 	templates := map[string]string{
-		"bun":         "javascript/no-deps",
-		"nodejs-npm":  "javascript/no-deps",
-		"nodejs-pnpm": "javascript/no-deps",
-		"nodejs-yarn": "javascript/no-deps",
+		"bun":         "npm/one-dep",
+		"nodejs-npm":  "npm/one-dep",
+		"nodejs-pnpm": "npm/one-dep",
+		"nodejs-yarn": "npm/one-dep",
 	}
 
 	for _, bt := range languageBackends {
@@ -55,8 +55,8 @@ func TestWhichLanguage(t *testing.T) {
 				return
 			}
 
-			bt.AddTestFile("/"+template+bt.Backend.Specfile, bt.Backend.Specfile)
-			bt.AddTestFile("/"+template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+			bt.AddTestFile("/"+template+"/"+bt.Backend.Specfile, bt.Backend.Specfile)
+			bt.AddTestFile("/"+template+"/"+bt.Backend.Lockfile, bt.Backend.Lockfile)
 
 			bt.UpmWhichLanguage()
 		})
@@ -65,7 +65,7 @@ func TestWhichLanguage(t *testing.T) {
 			bt.Subtest(bt.Backend.Name+" by default", func(bt testUtils.BackendT) {
 				template := templates[bt.Backend.Name]
 
-				bt.AddTestFile("/"+template+bt.Backend.Specfile, bt.Backend.Specfile)
+				bt.AddTestFile("/"+template+"/"+bt.Backend.Specfile, bt.Backend.Specfile)
 
 				bt.UpmWhichLanguage()
 			})
@@ -73,7 +73,7 @@ func TestWhichLanguage(t *testing.T) {
 	}
 }
 
-func Test_Search(t *testing.T) {
+func TestSearch(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -98,7 +98,7 @@ func Test_Search(t *testing.T) {
 	}
 }
 
-func Test_Info(t *testing.T) {
+func TestInfo(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -123,7 +123,7 @@ func Test_Info(t *testing.T) {
 	}
 }
 
-func Test_Add(t *testing.T) {
+func TestAdd(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -140,7 +140,7 @@ func Test_Add(t *testing.T) {
 	}
 }
 
-func Test_Remove(t *testing.T) {
+func TestRemove(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -157,7 +157,7 @@ func Test_Remove(t *testing.T) {
 	}
 }
 
-func Test_Lock(t *testing.T) {
+func TestLock(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -174,7 +174,7 @@ func Test_Lock(t *testing.T) {
 	}
 }
 
-func Test_Install(t *testing.T) {
+func TestInstall(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -191,7 +191,7 @@ func Test_Install(t *testing.T) {
 	}
 }
 
-func Test_List(t *testing.T) {
+func TestList(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
@@ -208,5 +208,6 @@ func Test_List(t *testing.T) {
 	}
 }
 
-func Test_Guess(t *testing.T) {
+func TestGuess(t *testing.T) {
+	// TODO: test guessing
 }

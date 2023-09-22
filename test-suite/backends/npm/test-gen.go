@@ -8,7 +8,7 @@ import (
 )
 
 func genAddTest(locked bool, templateName string) (string, func(t testUtils.BackendT)) {
-	template := "/javascript/" + templateName + "/"
+	template := "/npm/" + templateName + "/"
 
 	return templateName, func(t testUtils.BackendT) {
 		t.Subtest("each", func(t testUtils.BackendT) {
@@ -36,7 +36,7 @@ func genAddTest(locked bool, templateName string) (string, func(t testUtils.Back
 }
 
 func genInstallTest(templateName string) (string, func(t testUtils.BackendT)) {
-	template := "/javascript/" + templateName + "/"
+	template := "/npm/" + templateName + "/"
 
 	return templateName, func(t testUtils.BackendT) {
 		t.AddTestFile(template+"package.json", "package.json")
@@ -54,7 +54,7 @@ func genInstallTest(templateName string) (string, func(t testUtils.BackendT)) {
 }
 
 func genListTest(locked bool, templateName string, expects ...string) (string, func(t testUtils.BackendT)) {
-	template := "/javascript/" + templateName + "/"
+	template := "/npm/" + templateName + "/"
 
 	return templateName, func(t testUtils.BackendT) {
 		t.AddTestFile(template+"package.json", "package.json")
@@ -93,7 +93,7 @@ func genListTest(locked bool, templateName string, expects ...string) (string, f
 }
 
 func genLockTest(templateName string) (string, func(t testUtils.BackendT)) {
-	template := "/javascript/" + templateName + "/"
+	template := "/npm/" + templateName + "/"
 
 	return templateName, func(t testUtils.BackendT) {
 		t.AddTestFile(template+"package.json", "package.json")
@@ -119,10 +119,16 @@ func genLockTest(templateName string) (string, func(t testUtils.BackendT)) {
 	}
 }
 
-func genRemoveTest(locked bool, templateName string, remove ...string) (string, func(t testUtils.BackendT)) {
-	template := "/javascript/" + templateName + "/"
+func genRemoveTest(locked bool, templateName string, remove ...string) func(t testUtils.BackendT) {
+	template := "/npm/" + templateName + "/"
 
-	return templateName, func(t testUtils.BackendT) {
+	specsToRemove := []string{
+		"enquirer",
+		"eslint",
+		"express",
+	}
+
+	return func(t testUtils.BackendT) {
 		t.Subtest("each", func(t testUtils.BackendT) {
 			t.AddTestFile(template+"package.json", "package.json")
 
@@ -130,9 +136,9 @@ func genRemoveTest(locked bool, templateName string, remove ...string) (string, 
 				t.AddTestFile(template+t.Backend.Lockfile, t.Backend.Lockfile)
 			}
 
-			t.UpmRemove("lodash")
-			t.UpmRemove("react")
-			t.UpmRemove("@replit/protocol")
+			for _, pkg := range remove {
+				t.UpmRemove(pkg)
+			}
 		})
 
 		t.Subtest("all", func(t testUtils.BackendT) {
@@ -142,7 +148,7 @@ func genRemoveTest(locked bool, templateName string, remove ...string) (string, 
 				t.AddTestFile(template+t.Backend.Lockfile, t.Backend.Lockfile)
 			}
 
-			t.UpmRemove("lodash", "react", "@replit/protocol")
+			t.UpmRemove(specsToRemove...)
 		})
 	}
 }
