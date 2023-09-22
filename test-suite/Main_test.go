@@ -56,18 +56,104 @@ func TestWhichLanguage(t *testing.T) {
 }
 
 func Test_Search(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
+				bt.Subtest("express", func(bt testUtils.BackendT) {
+					bt.UpmSearch("express", "express")
+				})
+
+				bt.Subtest("@replit->@replit/crosis", func(bt testUtils.BackendT) {
+					bt.UpmSearch("@replit", "@replit/crosis")
+				})
+			})
+		}
+	}
 }
 
 func Test_Info(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
+				bt.Subtest("express", func(bt testUtils.BackendT) {
+					bt.UpmInfo("express")
+				})
+
+				bt.Subtest("@replit/crosis", func(bt testUtils.BackendT) {
+					bt.UpmInfo("@replit/crosis")
+				})
+			})
+		}
+	}
 }
 
 func Test_Add(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestAdd)
+		}
+	}
 }
 
 func Test_Remove(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestRemove)
+		}
+	}
 }
 
 func Test_Lock(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestLock)
+		}
+	}
 }
 
 func Test_Install(t *testing.T) {

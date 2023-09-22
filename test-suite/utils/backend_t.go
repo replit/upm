@@ -35,6 +35,11 @@ func InitBackendT(
 	}
 }
 
+func (bt BackendT) Fail(fmt string, args ...interface{}) {
+	bt.t.Helper()
+	bt.t.Fatalf(fmt, args...)
+}
+
 func (bt *BackendT) Start(t *testing.T) {
 	bt.t = t
 }
@@ -78,6 +83,8 @@ func (bt *BackendT) AddTestFile(template, as string) {
 }
 
 func (bt *BackendT) Exec(command string, args ...string) (struct{ Stdout, Stderr string }, error) {
+	bt.Log("$ %s %s", command, strings.Join(args, " "))
+
 	cmd := exec.Command(command, args...)
 	cmd.Dir = bt.TestDir()
 
@@ -89,20 +96,21 @@ func (bt *BackendT) Exec(command string, args ...string) (struct{ Stdout, Stderr
 
 	err := cmd.Run()
 
+	Stdout := stdout.String()
+	Stderr := stderr.String()
+
+	bt.Log("=== STDOUT ===")
+	bt.Log(Stdout)
+	bt.Log("")
+	bt.Log("=== STDERR ===")
+	bt.Log(Stderr)
+
 	return struct{ Stdout, Stderr string }{
-		Stdout: stdout.String(),
-		Stderr: stderr.String(),
+		Stdout,
+		Stderr,
 	}, err
 }
 
-func (bt *BackendT) UpmWhichLanguage(expect string) {
-	out, err := bt.Exec("upm", "which-language")
-	if err != nil {
-		bt.t.Fatalf("upm failed to detect language: %v", err)
-	}
-
-	detected := strings.TrimSpace(out.Stdout)
-	if detected != expect {
-		bt.t.Fatalf("expected %s, got %s", expect, detected)
-	}
+func (bt *BackendT) Log(format string, args ...interface{}) {
+	bt.t.Logf(format, args...)
 }
