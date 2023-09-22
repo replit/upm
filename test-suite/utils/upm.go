@@ -83,6 +83,19 @@ func (bt *BackendT) UpmInfo(pkg string) {
 	}
 }
 
+func (bt *BackendT) UpmInstall() {
+	_, err := bt.Exec(
+		"upm",
+		"--lang",
+		bt.Backend.Name,
+		"install",
+	)
+
+	if err != nil {
+		bt.Fail("upm failed to install: %v", err)
+	}
+}
+
 func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 	out, err := bt.Exec(
 		"upm",
@@ -135,6 +148,21 @@ func (bt *BackendT) UpmLock() {
 	if err != nil {
 		bt.Fail("upm failed to lock: %v", err)
 	}
+}
+
+func (bt *BackendT) UpmPackageDir() string {
+	out, err := bt.Exec(
+		"upm",
+		"--lang",
+		bt.Backend.Name,
+		"show-package-dir",
+	)
+
+	if err != nil {
+		bt.Fail("upm failed to show package dir: %v", err)
+	}
+
+	return strings.TrimSpace(out.Stdout)
 }
 
 func (bt *BackendT) UpmRemove(pkgs ...string) {
@@ -247,14 +275,14 @@ func (bt *BackendT) UpmSearch(query, expectName string) {
 	}
 }
 
-func (bt *BackendT) UpmWhichLanguage(expect string) {
+func (bt *BackendT) UpmWhichLanguage() {
 	out, err := bt.Exec("upm", "which-language")
 	if err != nil {
 		bt.Fail("upm failed to detect language: %v", err)
 	}
 
 	detected := strings.TrimSpace(out.Stdout)
-	if detected != expect {
-		bt.Fail("expected %s, got %s", expect, detected)
+	if detected != bt.Backend.Name {
+		bt.Fail("expected %s, got %s", bt.Backend.Name, detected)
 	}
 }

@@ -8,9 +8,7 @@ import (
 
 	"github.com/rakyll/statik/fs"
 	"github.com/replit/upm/internal/backends"
-	"github.com/replit/upm/test-suite/backends/bun"
 	"github.com/replit/upm/test-suite/backends/npm"
-	"github.com/replit/upm/test-suite/backends/yarn"
 	_ "github.com/replit/upm/test-suite/statik"
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
@@ -36,21 +34,41 @@ func init() {
 }
 
 func TestWhichLanguage(t *testing.T) {
+	defaults := map[string]bool{
+		"bun": true,
+	}
+
+	templates := map[string]string{
+		"bun":         "javascript/no-deps",
+		"nodejs-npm":  "javascript/no-deps",
+		"nodejs-pnpm": "javascript/no-deps",
+		"nodejs-yarn": "javascript/no-deps",
+	}
+
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		switch bt.Backend.Name {
-		case "bun":
-			bt.Subtest("bun", bun.TestWhichLanguage)
+		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
+			template, ok := templates[bt.Backend.Name]
+			if !ok {
+				// TODO: skips
+				return
+			}
 
-		case "nodejs-npm":
-			bt.Subtest("nodejs-npm", npm.TestWhichLanguage)
+			bt.AddTestFile("/"+template+bt.Backend.Specfile, bt.Backend.Specfile)
+			bt.AddTestFile("/"+template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 
-		case "nodejs-pnpm":
-			bt.Subtest("nodejs-pnpm", npm.TestWhichLanguage)
+			bt.UpmWhichLanguage()
+		})
 
-		case "nodejs-yarn":
-			bt.Subtest("nodejs-yarn", yarn.TestWhichLanguage)
+		if defaults[bt.Backend.Name] {
+			bt.Subtest(bt.Backend.Name+" by default", func(bt testUtils.BackendT) {
+				template := templates[bt.Backend.Name]
+
+				bt.AddTestFile("/"+template+bt.Backend.Specfile, bt.Backend.Specfile)
+
+				bt.UpmWhichLanguage()
+			})
 		}
 	}
 }
@@ -157,9 +175,37 @@ func Test_Lock(t *testing.T) {
 }
 
 func Test_Install(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+		case "nodejs-npm":
+			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+		case "nodejs-pnpm":
+			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+		}
+	}
 }
 
 func Test_List(t *testing.T) {
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestList)
+		}
+	}
 }
 
 func Test_Guess(t *testing.T) {

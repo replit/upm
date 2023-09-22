@@ -19,6 +19,19 @@ func TestAdd(t testUtils.BackendT) {
 	})
 }
 
+func TestInstall(t testUtils.BackendT) {
+	t.Subtest(genInstallTest("one-dep"))
+	t.Subtest(genInstallTest("many-deps"))
+}
+
+func TestList(t testUtils.BackendT) {
+	t.Subtest("unlocked", func(bt testUtils.BackendT) {
+		t.Subtest(genListTest(false, "no-deps"))
+		t.Subtest(genListTest(false, "one-dep", "express"))
+		t.Subtest(genListTest(false, "many-deps", "express", "eslint", "svelte", "vite", "enquirer"))
+	})
+}
+
 func TestLock(t testUtils.BackendT) {
 	t.Subtest(genLockTest("no-deps"))
 	t.Subtest(genLockTest("one-dep"))
@@ -35,10 +48,4 @@ func TestRemove(t testUtils.BackendT) {
 		bt.Subtest(genRemoveTest(true, "one-dep", "express"))
 		bt.Subtest(genRemoveTest(true, "many-deps", "express", "eslint", "svelte"))
 	})
-}
-
-func TestWhichLanguage(t testUtils.BackendT) {
-	t.AddTestFile("/javascript/no-deps/package.json", "package.json")
-	t.AddTestFile("/javascript/no-deps/package-lock.json", "package-lock.json")
-	t.UpmWhichLanguage("nodejs-npm")
 }

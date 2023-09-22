@@ -19,7 +19,10 @@
           devShells.default = pkgs.mkShell {
             inputsFrom = [ upm ];
             packages = with pkgs; [
+              bun
               nodejs
+              nodePackages.pnpm
+              nodePackages.yarn
             ];
           };
 
