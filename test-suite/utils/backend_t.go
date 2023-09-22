@@ -14,9 +14,15 @@ import (
 
 type BackendT struct {
 	Backend   api.LanguageBackend
-	T         *testing.T
+	t         *testing.T
 	templates *http.FileSystem
 	testDir   string
+}
+
+func (bt BackendT) assertT() {
+	if bt.t == nil {
+		panic("BackendT not started")
+	}
 }
 
 func InitBackendT(
@@ -29,35 +35,51 @@ func InitBackendT(
 	}
 }
 
+func (bt *BackendT) Start(t *testing.T) {
+	bt.t = t
+}
+
+func (bt BackendT) Subtest(name string, test func(bt BackendT)) {
+	bt.assertT()
+	bt.t.Run(name, func(t *testing.T) {
+		inner := InitBackendT(bt.Backend, bt.templates)
+		inner.t = t
+		test(inner)
+	})
+}
+
 func (bt *BackendT) TestDir() string {
 	if bt.testDir == "" {
-		bt.testDir = bt.T.TempDir()
+		bt.assertT()
+		bt.testDir = bt.t.TempDir()
 	}
 
 	return bt.testDir
 }
 
 func (bt *BackendT) AddTestFile(template, as string) {
-	f, err := (*bt.templates).Open(template)
+	templates := *bt.templates
+
+	f, err := templates.Open(template)
 	if err != nil {
-		bt.T.Fatalf("failed to get template %s: %v", template, err)
+		bt.t.Fatalf("failed to get template %s: %v", template, err)
 	}
 
 	dstPath := path.Join(bt.TestDir(), as)
 	dst, err := os.OpenFile(dstPath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
 	if err != nil {
-		bt.T.Fatalf("failed to open or create test file %s: %v", dstPath, err)
+		bt.t.Fatalf("failed to open or create test file %s: %v", dstPath, err)
 	}
 
 	_, err = io.Copy(dst, f)
 	if err != nil {
-		bt.T.Fatalf("failed to read template %s: %v", template, err)
+		bt.t.Fatalf("failed to read template %s: %v", template, err)
 	}
 }
 
 func (bt *BackendT) Exec(command string, args ...string) (struct{ Stdout, Stderr string }, error) {
 	cmd := exec.Command(command, args...)
-	cmd.Dir = bt.testDir
+	cmd.Dir = bt.TestDir()
 
 	stdout := strings.Builder{}
 	cmd.Stdout = &stdout
@@ -73,11 +95,14 @@ func (bt *BackendT) Exec(command string, args ...string) (struct{ Stdout, Stderr
 	}, err
 }
 
-func (bt *BackendT) UpmWhichLanguage() (string, error) {
+func (bt *BackendT) UpmWhichLanguage(expect string) {
 	out, err := bt.Exec("upm", "which-language")
 	if err != nil {
-		return "", err
+		bt.t.Fatalf("upm failed to detect language: %v", err)
 	}
 
-	return strings.TrimSpace(out.Stdout), nil
+	detected := strings.TrimSpace(out.Stdout)
+	if detected != expect {
+		bt.t.Fatalf("expected %s, got %s", expect, detected)
+	}
 }

@@ -8,7 +8,9 @@ import (
 
 	"github.com/rakyll/statik/fs"
 	"github.com/replit/upm/internal/backends"
+	"github.com/replit/upm/test-suite/backends/bun"
 	"github.com/replit/upm/test-suite/backends/npm"
+	"github.com/replit/upm/test-suite/backends/yarn"
 	_ "github.com/replit/upm/test-suite/statik"
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
@@ -35,18 +37,21 @@ func init() {
 
 func TestWhichLanguage(t *testing.T) {
 	for _, bt := range languageBackends {
-		t.Run(bt.Backend.Name, func(t *testing.T) {
-			bt.T = t
-			t.Helper()
+		bt.Start(t)
 
-			switch bt.Backend.Name {
-			case "nodejs-npm":
-				npm.TestWhichLanguage(bt)
+		switch bt.Backend.Name {
+		case "bun":
+			bt.Subtest("bun", bun.TestWhichLanguage)
 
-			case "nodejs-yarn":
-				t.Fail()
-			}
-		})
+		case "nodejs-npm":
+			bt.Subtest("nodejs-npm", npm.TestWhichLanguage)
+
+		case "nodejs-pnpm":
+			bt.Subtest("nodejs-pnpm", npm.TestWhichLanguage)
+
+		case "nodejs-yarn":
+			bt.Subtest("nodejs-yarn", yarn.TestWhichLanguage)
+		}
 	}
 }
 
