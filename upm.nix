@@ -11,7 +11,12 @@ buildGo117Module {
     pname = "upm";
     version = rev;
 
-    src = ./.;
+    src = builtins.path {
+      name = "upm-${rev}-src";
+      path = ./.;
+      filter = path: type: type != "directory" ||
+        builtins.baseNameOf path != "test-suite";
+    };
 
     vendorSha256 = "sha256-RXpw5JGKUPBkjSO7ZNnXO6XtOwF+y3Gd9bXPP2bBDj4=";
 

@@ -1,6 +1,6 @@
 /cmd/upm/upm
 /dist/
-/internal/statik/
+statik/
 /packaging/aur/*.tar.gz
 /packaging/aur/*.tar.xz
 /packaging/aur/pkg/

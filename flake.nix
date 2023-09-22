@@ -16,6 +16,13 @@
           };
         in
         {
+          devShells.default = pkgs.mkShell {
+            inputsFrom = [ upm ];
+            packages = with pkgs; [
+              nodejs
+            ];
+          };
+
           packages = {
             default = upm;
             inherit upm;
