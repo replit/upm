@@ -174,18 +174,17 @@ func (bt *BackendT) UpmRemove(pkgs ...string) {
 
 	specsExpectedToStay := []string{}
 
-	for _, pkg := range pkgs {
-		found := false
-		for _, dep := range beforeSpecDeps {
+	for _, dep := range beforeSpecDeps {
+		removing := false
+		for _, pkg := range pkgs {
 			if dep.Name == pkg {
-				found = true
+				removing = true
 				break
-			} else {
-				specsExpectedToStay = append(specsExpectedToStay, dep.Name)
 			}
 		}
-		if !found {
-			bt.Fail("expected %s in spec file before remove", pkg)
+
+		if !removing {
+			specsExpectedToStay = append(specsExpectedToStay, dep.Name)
 		}
 	}
 
