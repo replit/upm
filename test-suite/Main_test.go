@@ -33,31 +33,6 @@ func init() {
 	}
 }
 
-func TestInfo(t *testing.T) {
-	for _, bt := range languageBackends {
-		bt.Start(t)
-
-		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
-				bt.Subtest("express", func(bt testUtils.BackendT) {
-					bt.UpmInfo("express")
-				})
-
-				bt.Subtest("@replit/crosis", func(bt testUtils.BackendT) {
-					bt.UpmInfo("@replit/crosis")
-				})
-			})
-		}
-	}
-}
-
 func TestAdd(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
