@@ -19,6 +19,25 @@ func TestAdd(t testUtils.BackendT) {
 	})
 }
 
+func TestGuess(t testUtils.BackendT) {
+	for _, lang := range []string{"js", "jsx"} {
+		t.Subtest(lang, func(bt testUtils.BackendT) {
+			bt.Subtest(genGuessTest("basic", lang, "express", "prosemirror-commands", "prosemirror-model", "@tailwindcss/forms", "@sveltejs/adapter-auto"))
+			bt.Subtest(genGuessTest("dedup", lang, "express"))
+			bt.Subtest(genGuessTest("nested", lang, "@sveltejs/kit", "ws"))
+		})
+	}
+
+	for _, lang := range []string{"ts", "tsx"} {
+		t.Subtest(lang, func(bt testUtils.BackendT) {
+			bt.Subtest(genGuessTest("basic", lang, "express", "prosemirror-commands", "prosemirror-model", "@tailwindcss/forms", "@sveltejs/adapter-auto"))
+			bt.Subtest(genGuessTest("dedup", lang, "express"))
+			bt.Subtest(genGuessTest("nested", lang, "@sveltejs/kit", "ws"))
+			bt.Subtest(genGuessTest("typeImports", lang, "express", "prosemirror-model", "@skeletonlabs/tw-plugin"))
+		})
+	}
+}
+
 func TestInstall(t testUtils.BackendT) {
 	t.Subtest(genInstallTest("one-dep"))
 	t.Subtest(genInstallTest("many-deps"))

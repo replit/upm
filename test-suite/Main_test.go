@@ -180,11 +180,11 @@ func TestInstall(t *testing.T) {
 
 		switch bt.Backend.Name {
 		case "bun":
-			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+			fallthrough
 		case "nodejs-npm":
-			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+			fallthrough
 		case "nodejs-pnpm":
-			bt.Subtest(bt.Backend.Name, npm.TestInstall)
+			fallthrough
 		case "nodejs-yarn":
 			bt.Subtest(bt.Backend.Name, npm.TestInstall)
 		}
@@ -209,5 +209,18 @@ func TestList(t *testing.T) {
 }
 
 func TestGuess(t *testing.T) {
-	// TODO: test guessing
+	for _, bt := range languageBackends {
+		bt.Start(t)
+
+		switch bt.Backend.Name {
+		case "bun":
+			fallthrough
+		case "nodejs-npm":
+			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			bt.Subtest(bt.Backend.Name, npm.TestGuess)
+		}
+	}
 }

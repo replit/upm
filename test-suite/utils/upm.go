@@ -60,6 +60,46 @@ func (bt *BackendT) UpmAdd(pkgs ...string) {
 	}
 }
 
+func (bt *BackendT) UpmGuess(expect ...string) {
+	out, err := bt.Exec(
+		"upm",
+		"--lang",
+		bt.Backend.Name,
+		"guess",
+	)
+
+	if err != nil {
+		bt.Fail("upm failed to guess: %v", err)
+	}
+
+	guesses := strings.Split(strings.TrimSpace(out.Stdout), "\n")
+	if len(guesses) != len(expect) {
+		bt.Fail("expected %d guesses, got %d", len(expect), len(guesses))
+	}
+
+	for len(guesses) > 0 {
+		guess := guesses[0]
+		guesses = guesses[1:]
+
+		found := false
+		for ii, expected := range expect {
+			if guess == expected {
+				found = true
+				expect = append(expect[:ii], expect[ii+1:]...)
+				break
+			}
+		}
+
+		if !found {
+			bt.Fail("unexpected guess %s", guess)
+		}
+	}
+
+	if len(expect) != 0 {
+		bt.Fail("expected guesses %v", expect)
+	}
+}
+
 func (bt *BackendT) UpmInfo(pkg string) {
 	out, err := bt.Exec(
 		"upm",

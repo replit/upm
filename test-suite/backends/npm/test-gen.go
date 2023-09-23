@@ -35,6 +35,15 @@ func genAddTest(locked bool, templateName string) (string, func(t testUtils.Back
 	}
 }
 
+func genGuessTest(guessFile, ext string, expect ...string) (string, func(testUtils.BackendT)) {
+	return guessFile, func(bt testUtils.BackendT) {
+		bt.AddTestFile("/npm/no-deps/package.json", "package.json")
+		bt.AddTestFile("/guess/js/"+guessFile, "index."+ext)
+		bt.UpmGuess(expect...)
+		bt.Fail("oops")
+	}
+}
+
 func genInstallTest(templateName string) (string, func(t testUtils.BackendT)) {
 	template := "/npm/" + templateName + "/"
 
