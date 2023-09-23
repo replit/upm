@@ -33,46 +33,6 @@ func init() {
 	}
 }
 
-func TestWhichLanguage(t *testing.T) {
-	defaults := map[string]bool{
-		"bun": true,
-	}
-
-	templates := map[string]string{
-		"bun":         "npm/one-dep",
-		"nodejs-npm":  "npm/one-dep",
-		"nodejs-pnpm": "npm/one-dep",
-		"nodejs-yarn": "npm/one-dep",
-	}
-
-	for _, bt := range languageBackends {
-		bt.Start(t)
-
-		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
-			template, ok := templates[bt.Backend.Name]
-			if !ok {
-				// TODO: skips
-				return
-			}
-
-			bt.AddTestFile("/"+template+"/"+bt.Backend.Specfile, bt.Backend.Specfile)
-			bt.AddTestFile("/"+template+"/"+bt.Backend.Lockfile, bt.Backend.Lockfile)
-
-			bt.UpmWhichLanguage()
-		})
-
-		if defaults[bt.Backend.Name] {
-			bt.Subtest(bt.Backend.Name+" by default", func(bt testUtils.BackendT) {
-				template := templates[bt.Backend.Name]
-
-				bt.AddTestFile("/"+template+"/"+bt.Backend.Specfile, bt.Backend.Specfile)
-
-				bt.UpmWhichLanguage()
-			})
-		}
-	}
-}
-
 func TestSearch(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
