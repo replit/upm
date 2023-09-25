@@ -17,6 +17,12 @@ var languageBackends []testUtils.BackendT
 
 var statikFS http.FileSystem
 
+var standardTemplates = []string{
+	"no-deps",
+	"one-dep",
+	"many-deps",
+}
+
 func init() {
 	var err error
 	statikFS, err = fs.New()
@@ -30,23 +36,6 @@ func init() {
 	for _, bn := range backends.GetBackendNames() {
 		bt := testUtils.InitBackendT(backends.GetBackend(bn), &statikFS)
 		languageBackends = append(languageBackends, bt)
-	}
-}
-
-func TestAdd(t *testing.T) {
-	for _, bt := range languageBackends {
-		bt.Start(t)
-
-		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			bt.Subtest(bt.Backend.Name, npm.TestAdd)
-		}
 	}
 }
 

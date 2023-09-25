@@ -7,34 +7,6 @@ import (
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
 
-func genAddTest(locked bool, templateName string) (string, func(t testUtils.BackendT)) {
-	template := "/npm/" + templateName + "/"
-
-	return templateName, func(t testUtils.BackendT) {
-		t.Subtest("each", func(t testUtils.BackendT) {
-			t.AddTestFile(template+"package.json", "package.json")
-
-			if locked {
-				t.AddTestFile(template+t.Backend.Lockfile, t.Backend.Lockfile)
-			}
-
-			t.UpmAdd("lodash")
-			t.UpmAdd("react")
-			t.UpmAdd("@replit/protocol")
-		})
-
-		t.Subtest("all", func(t testUtils.BackendT) {
-			t.AddTestFile(template+"package.json", "package.json")
-
-			if locked {
-				t.AddTestFile(template+t.Backend.Lockfile, t.Backend.Lockfile)
-			}
-
-			t.UpmAdd("lodash", "react", "@replit/protocol")
-		})
-	}
-}
-
 func genGuessTest(guessFile, ext string, expect ...string) (string, func(testUtils.BackendT)) {
 	return guessFile, func(bt testUtils.BackendT) {
 		bt.AddTestFile("/npm/no-deps/package.json", "package.json")

@@ -99,11 +99,8 @@ func (bt *BackendT) Exec(command string, args ...string) (struct{ Stdout, Stderr
 	Stdout := stdout.String()
 	Stderr := stderr.String()
 
-	bt.Log("=== STDOUT ===")
-	bt.Log(Stdout)
-	bt.Log("")
-	bt.Log("=== STDERR ===")
-	bt.Log(Stderr)
+	bt.Log("=== STDOUT ===\n%s", Stdout)
+	bt.Log("=== STDERR ===\n%s", Stderr)
 
 	return struct{ Stdout, Stderr string }{
 		Stdout,
