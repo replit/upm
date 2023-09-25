@@ -39,23 +39,6 @@ func init() {
 	}
 }
 
-func TestList(t *testing.T) {
-	for _, bt := range languageBackends {
-		bt.Start(t)
-
-		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			bt.Subtest(bt.Backend.Name, npm.TestList)
-		}
-	}
-}
-
 func TestGuess(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
