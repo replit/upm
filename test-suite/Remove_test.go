@@ -6,11 +6,11 @@ import (
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
 
-func TestAdd(t *testing.T) {
+func TestRemove(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		var pkgs []string
+		var pkgsToRemove map[string][]string
 		switch bt.Backend.Name {
 		case "bun":
 			fallthrough
@@ -19,50 +19,40 @@ func TestAdd(t *testing.T) {
 		case "nodejs-pnpm":
 			fallthrough
 		case "nodejs-yarn":
-			pkgs = []string{"lodash", "react", "@replit/protocol"}
+			pkgsToRemove = map[string][]string{
+				"one-dep":   {"express"},
+				"many-deps": {"express", "eslint", "svelte"},
+			}
 		}
 
 		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
-			doAdd(bt, pkgs...)
+			doRemove(bt, pkgsToRemove)
 		})
 	}
 }
 
-func doAdd(bt testUtils.BackendT, pkgs ...string) {
-	for _, tmpl := range standardTemplates {
+func doRemove(bt testUtils.BackendT, templatesToPkgsToRemove map[string][]string) {
+	for tmpl, pkgsToRemove := range templatesToPkgsToRemove {
 		template := "/" + bt.Backend.Name + "/" + tmpl + "/"
-		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			if tmpl != "no-deps" {
+
+		if tmpl != "no-deps" {
+			bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 				bt.Subtest("locked", func(bt testUtils.BackendT) {
 					bt.Subtest("each", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
 						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
-						for _, pkg := range pkgs {
-							bt.UpmAdd(pkg)
+						for _, pkg := range pkgsToRemove {
+							bt.UpmRemove(pkg)
 						}
 					})
 
 					bt.Subtest("all", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
 						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
-						bt.UpmAdd(pkgs...)
+						bt.UpmRemove(pkgsToRemove...)
 					})
 				})
-			}
-
-			bt.Subtest("unlocked", func(bt testUtils.BackendT) {
-				bt.Subtest("each", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					for _, pkg := range pkgs {
-						bt.UpmAdd(pkg)
-					}
-				})
-
-				bt.Subtest("all", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					bt.UpmAdd(pkgs...)
-				})
 			})
-		})
+		}
 	}
 }
