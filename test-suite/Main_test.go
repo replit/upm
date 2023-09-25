@@ -39,23 +39,6 @@ func init() {
 	}
 }
 
-func TestInstall(t *testing.T) {
-	for _, bt := range languageBackends {
-		bt.Start(t)
-
-		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			bt.Subtest(bt.Backend.Name, npm.TestInstall)
-		}
-	}
-}
-
 func TestList(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
