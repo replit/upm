@@ -26,7 +26,7 @@ package java
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/url"
 	"strings"
 
@@ -58,7 +58,7 @@ func mavenSearch(searchURL string) ([]SearchDoc, error) {
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		fmt.Printf("Could not read response\n")
 		return []SearchDoc{}, err

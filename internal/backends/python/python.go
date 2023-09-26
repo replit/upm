@@ -4,7 +4,7 @@ package python
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -117,7 +117,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			util.Die("Received status code: %d", res.StatusCode)
 		}
 
-		body, err := ioutil.ReadAll(res.Body)
+		body, err := io.ReadAll(res.Body)
 		if err != nil {
 			util.Die("Res body read failed with error: %s", err)
 		}

@@ -1,7 +1,7 @@
 package php
 
 import (
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/replit/upm/internal/api"
@@ -36,7 +36,7 @@ func TestListSpecFile(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		contents, err := ioutil.ReadFile("testdata/" + test.testFilename)
+		contents, err := os.ReadFile("testdata/" + test.testFilename)
 		require.NoError(t, err)
 		require.Equal(t, test.expectedOutput, listSpecfileWithContents(contents))
 	}
@@ -57,7 +57,7 @@ func TestListLockFile(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		contents, err := ioutil.ReadFile("testdata/" + test.testFilename)
+		contents, err := os.ReadFile("testdata/" + test.testFilename)
 		require.NoError(t, err)
 		require.Equal(t, test.expectedOutput, listLockfileWithContents(contents))
 	}
@@ -88,7 +88,7 @@ func TestSearchParsing(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		contents, err := ioutil.ReadFile("testdata/" + test.testFilename)
+		contents, err := os.ReadFile("testdata/" + test.testFilename)
 		require.NoError(t, err)
 
 		resp, err := parseSearch(contents)
@@ -145,7 +145,7 @@ func TestInfoParsing(t *testing.T) {
 	}
 
 	for _, test := range testcases {
-		contents, err := ioutil.ReadFile("testdata/" + test.testFilename)
+		contents, err := os.ReadFile("testdata/" + test.testFilename)
 		require.NoError(t, err)
 		resp, err := parseInfo(contents, test.testPackageName)
 

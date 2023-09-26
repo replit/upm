@@ -3,7 +3,7 @@ package nodejs
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/url"
 	"os"
 	"os/exec"
@@ -105,7 +105,7 @@ func nodejsSearch(query string) []api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}
@@ -154,7 +154,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 		util.Die("NPM registry: HTTP status %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("NPM registry: could not read response: %s", err)
 	}
@@ -205,7 +205,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 // nodejsListSpecfile implements ListSpecfile for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
 func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
-	contentsB, err := ioutil.ReadFile("package.json")
+	contentsB, err := os.ReadFile("package.json")
 	if err != nil {
 		util.Die("package.json: %s", err)
 	}
@@ -289,7 +289,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("yarn.lock")
+		contentsB, err := os.ReadFile("yarn.lock")
 		if err != nil {
 			util.Die("yarn.lock: %s", err)
 		}
@@ -432,7 +432,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("package-lock.json")
+		contentsB, err := os.ReadFile("package-lock.json")
 		if err != nil {
 			util.Die("package-lock.json: %s", err)
 		}

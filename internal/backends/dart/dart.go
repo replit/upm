@@ -5,7 +5,7 @@ package dart
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -89,7 +89,7 @@ type dartPubspecLock struct {
 
 // dartListPubspecLock lists all deps in a pubspec.lock file
 func dartListPubspecLock() map[api.PkgName]api.PkgVersion {
-	contentsB, err := ioutil.ReadFile("pubspec.lock")
+	contentsB, err := os.ReadFile("pubspec.lock")
 	if err != nil {
 		util.Die("pubspec.lock: %s", err)
 	}
@@ -131,7 +131,7 @@ func dartSearch(query string) []api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -184,7 +184,7 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("Pub.dev: %s", err)
 	}
@@ -228,14 +228,14 @@ func writeSpecFile(specs dartPubspecYaml) {
 		fmt.Println("Marshal Error")
 	}
 
-	err = ioutil.WriteFile("pubspec.yaml", data, 0666)
+	err = os.WriteFile("pubspec.yaml", data, 0666)
 	if err != nil {
 		panic(err)
 	}
 }
 
 func readSpecFile() dartPubspecYaml {
-	contentsB, err := ioutil.ReadFile("pubspec.yaml")
+	contentsB, err := os.ReadFile("pubspec.yaml")
 	if err != nil {
 		util.Die("pubspec.yaml: %s", err)
 	}

@@ -4,7 +4,6 @@ package java
 import (
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"regexp"
 
@@ -97,7 +96,7 @@ func readProjectOrMakeEmpty(path string) Project {
 	var xmlbytes []byte
 	if util.Exists("pom.xml") {
 		var err error
-		xmlbytes, err = ioutil.ReadFile("pom.xml")
+		xmlbytes, err = os.ReadFile("pom.xml")
 		if err != nil {
 			util.Die("error reading pom.xml: %s", err)
 		}

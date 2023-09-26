@@ -1,12 +1,13 @@
 module github.com/replit/upm
 
-go 1.17
+go 1.20
 
 require (
 	cloud.google.com/go/bigquery v1.44.0
 	github.com/BurntSushi/toml v0.3.1
 	github.com/hashicorp/go-version v1.2.0
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
+	github.com/mattn/go-sqlite3 v1.14.17
 	github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc
 	github.com/rakyll/statik v0.1.6
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
@@ -31,7 +32,6 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.2.0 // indirect
 	github.com/googleapis/gax-go/v2 v2.7.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
-	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
 	go.opencensus.io v0.24.0 // indirect

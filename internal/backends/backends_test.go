@@ -1,7 +1,6 @@
 package backends
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -18,7 +17,7 @@ func TestGetBackends(t *testing.T) {
 		"Cargo.toml":     "rust",
 	}
 
-	dir, err := ioutil.TempDir("", "TestGetBackends")
+	dir, err := os.MkdirTemp("", "TestGetBackends")
 	if err != nil {
 		t.Errorf("failed to create a temp directory %v", err)
 	}
@@ -27,7 +26,7 @@ func TestGetBackends(t *testing.T) {
 	for file, backend := range fileToBackend {
 		tmpfile := filepath.Join(dir, file)
 
-		if err := ioutil.WriteFile(tmpfile, []byte{}, 0666); err != nil {
+		if err := os.WriteFile(tmpfile, []byte{}, 0666); err != nil {
 			t.Errorf("failed to create empty file: %s err: %v", tmpfile, err)
 		}
 

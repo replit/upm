@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/url"
+	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -69,7 +70,7 @@ func search(query string) []api.PkgInfo {
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("packagist err: %s", err)
 	}
@@ -113,7 +114,7 @@ func info(name api.PkgName) api.PkgInfo {
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("packagist err: %s", err)
 	}
@@ -164,7 +165,7 @@ func parseInfo(body []byte, packageName api.PkgName) (api.PkgInfo, error) {
 }
 
 func listSpecfile() map[api.PkgName]api.PkgSpec {
-	contents, err := ioutil.ReadFile("composer.json")
+	contents, err := os.ReadFile("composer.json")
 
 	if err != nil {
 		util.Die("composer.json: %s", err)
@@ -197,7 +198,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 }
 
 func listLockfile() map[api.PkgName]api.PkgVersion {
-	contents, err := ioutil.ReadFile("composer.lock")
+	contents, err := os.ReadFile("composer.lock")
 	if err != nil {
 		util.Die("composer.lock failure: %s", err)
 	}

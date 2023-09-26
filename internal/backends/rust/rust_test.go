@@ -1,7 +1,7 @@
 package rust
 
 import (
-	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -22,7 +22,7 @@ func TestCrateSearch(t *testing.T) {
 }
 
 func TestListSpecfile(t *testing.T) {
-	contents, err := ioutil.ReadFile("testdata/Cargo.toml")
+	contents, err := os.ReadFile("testdata/Cargo.toml")
 	require.NoError(t, err)
 
 	pkgs := listSpecfileWithContents(contents)
@@ -38,7 +38,7 @@ func TestListSpecfile(t *testing.T) {
 }
 
 func TestListLockfile(t *testing.T) {
-	contents, err := ioutil.ReadFile("testdata/Cargo.lock")
+	contents, err := os.ReadFile("testdata/Cargo.lock")
 	require.NoError(t, err)
 
 	pkgs := listLockfileWithContents(contents)
