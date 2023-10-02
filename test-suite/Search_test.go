@@ -23,6 +23,12 @@ func TestSearch(t *testing.T) {
 				{"@replit/crosis", "@replit/crosis"},
 				{"@replit", "@replit/crosis"},
 			})
+
+		default:
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
 		}
 	}
 }

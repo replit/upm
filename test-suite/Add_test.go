@@ -20,6 +20,12 @@ func TestAdd(t *testing.T) {
 			fallthrough
 		case "nodejs-yarn":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
+
+		default:
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
 		}
 
 		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {

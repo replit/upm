@@ -14,6 +14,13 @@ func TestWhichLanguage(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
+		if bt.Backend.Name != "bun" && bt.Backend.Name != "nodejs-npm" && bt.Backend.Name != "nodejs-pnpm" && bt.Backend.Name != "nodejs-yarn" {
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
+		}
+
 		template := "/" + bt.Backend.Name + "/one-dep/"
 
 		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {

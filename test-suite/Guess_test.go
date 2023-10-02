@@ -33,6 +33,12 @@ func TestGuess(t *testing.T) {
 			for _, ext := range []string{"ts", "tsx"} {
 				tests[ext]["ts"] = ts
 			}
+
+		default:
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
 		}
 
 		for ext, guessSuites := range tests {

@@ -23,6 +23,12 @@ func TestRemove(t *testing.T) {
 				"one-dep":   {"express"},
 				"many-deps": {"express", "eslint", "svelte"},
 			}
+
+		default:
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
 		}
 
 		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {

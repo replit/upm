@@ -19,6 +19,12 @@ func TestInfo(t *testing.T) {
 			fallthrough
 		case "nodejs-yarn":
 			doInfo(bt, "express", "@replit/crosis")
+
+		default:
+			t.Run(bt.Backend.Name, func(t *testing.T) {
+				t.Skip("no test")
+			})
+			continue
 		}
 	}
 }
