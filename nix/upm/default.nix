@@ -4,11 +4,16 @@
   rev,
   makeWrapper,
 }:
-buildGoModule {
+buildGoModule rec {
   pname = "upm";
   version = rev;
 
-  src = ../../.;
+  src = builtins.path {
+    name = "${pname}-${version}-src";
+    path = ../../.;
+    filter = path: type: type != "directory" ||
+      builtins.baseNameOf path != "test-suite";
+  };
 
   vendorSha256 = "sha256-RXpw5JGKUPBkjSO7ZNnXO6XtOwF+y3Gd9bXPP2bBDj4=";
 
