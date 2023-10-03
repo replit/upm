@@ -80,7 +80,7 @@ blocks:
             - sudo /tmp/nix-installer install linux --no-confirm --logger compact
             - cache restore nix-store
             - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-            - nix develop -c make generated
+            - nix develop -c nix shell --inputs-from . nixpkgs#statik -c make generated
             - nix develop -c nix shell -c go test ./test-suite
 
   - name: lint
