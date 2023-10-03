@@ -71,15 +71,16 @@ blocks:
         #     - make light full
 
   - name: test
-    dependencies: [ setup ]
+    dependencies: [ build setup ]
     task:
       jobs:
         - name: test-suite
           commands:
             - cache restore nix-installer
             - sudo /tmp/nix-installer install linux --no-confirm --logger compact
+            - cache restore nix-store
             - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-            - go generate ./test-suite
+            - nix develop -c make generated
             - nix develop -c nix shell -c go test ./test-suite
 
   - name: lint
