@@ -24,7 +24,7 @@ build-release: $(SOURCES) $(RESOURCES) generated
 	goreleaser build
 
 internal/statik/statik.go: $(shell find resources -type f)
-	go run github.com/rakyll/statik -src resources -dest internal -f
+	statik -src resources -dest internal -f
 
 clean-gen:
 	rm -f $(GENERATED)
