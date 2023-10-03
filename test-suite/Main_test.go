@@ -1,4 +1,4 @@
-//go:generate go run -mod=readonly github.com/rakyll/statik -src=./templates
+//go:generate statik -src=./templates
 
 package testSuite
 
