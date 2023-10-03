@@ -12,12 +12,6 @@ func TestInfo(t *testing.T) {
 
 		switch bt.Backend.Name {
 		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
 			doInfo(bt, "express", "@replit/crosis")
 
 		default:

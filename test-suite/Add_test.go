@@ -13,12 +13,6 @@ func TestAdd(t *testing.T) {
 		var pkgs []string
 		switch bt.Backend.Name {
 		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 
 		default:
