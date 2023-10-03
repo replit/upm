@@ -69,7 +69,16 @@ blocks:
         # - name: docker
         #   commands:
         #     - make light full
-  
+
+  - name: test
+    dependencies: [ setup ]
+    task:
+      jobs:
+        - name: test-suite
+          commands:
+            - go generate ./test-suite
+            - nix develop -c nix shell -c go test ./test-suite
+
   - name: lint
     dependencies: [ setup ]
     task:
