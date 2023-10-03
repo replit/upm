@@ -76,6 +76,9 @@ blocks:
       jobs:
         - name: test-suite
           commands:
+            - cache restore nix-installer
+            - sudo /tmp/nix-installer install linux --no-confirm --logger compact
+            - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
             - go generate ./test-suite
             - nix develop -c nix shell -c go test ./test-suite
 
