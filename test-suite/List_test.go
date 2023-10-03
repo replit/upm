@@ -12,13 +12,7 @@ func TestList(t *testing.T) {
 
 		var templatesToPackages map[string][]string
 		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
 		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
 			templatesToPackages = map[string][]string{
 				"no-deps": {},
 				"one-dep": {"express"},
