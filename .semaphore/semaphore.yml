@@ -71,7 +71,7 @@ blocks:
         #     - make light full
 
   - name: test
-    dependencies: [ build setup ]
+    dependencies: [ build, setup ]
     task:
       jobs:
         - name: test-suite
