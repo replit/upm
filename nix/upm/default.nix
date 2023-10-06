@@ -1,6 +1,5 @@
 {
   buildGoModule,
-  statik,
   rev,
   makeWrapper,
 }:
@@ -17,7 +16,6 @@ buildGoModule {
   ];
 
   preBuild = ''
-    ${statik}/bin/statik -src resources -dest internal -f
     go generate ./internal/backends/python
   '';
 

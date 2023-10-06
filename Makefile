@@ -14,8 +14,7 @@ install: cmd/upm/upm
 internal/backends/python/pypi_map.sqlite: internal/backends/python/download_stats.json
 	cd internal/backends/python; go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.sqlite -cache cache -cmd gen
 
-.PHONY: generated
-generated: internal/statik/statik.go $(GENERATED)
+generated: $(GENERATED)
 
 cmd/upm/upm: $(SOURCES) $(RESOURCES) generated
 	cd cmd/upm && go build -ldflags $(LD_FLAGS)
@@ -23,12 +22,8 @@ cmd/upm/upm: $(SOURCES) $(RESOURCES) generated
 build-release: $(SOURCES) $(RESOURCES) generated
 	goreleaser build
 
-internal/statik/statik.go: $(shell find resources -type f)
-	go run github.com/rakyll/statik -src resources -dest internal -f
-
 clean-gen:
 	rm -f $(GENERATED)
-	rm -rf internal/statik
 
 .PHONY: dev
 dev: ## Run a shell with UPM source code and all package managers inside Docker
@@ -83,5 +78,5 @@ help: ## Show this message
 		column -t -s'|' >&2
 
 .PHONY: test
-test: internal/statik/statik.go ## Run the tests
+test:
 	go test ./... -v
