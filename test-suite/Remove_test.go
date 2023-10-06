@@ -39,7 +39,7 @@ func TestRemove(t *testing.T) {
 
 func doRemove(bt testUtils.BackendT, templatesToPkgsToRemove map[string][]string) {
 	for tmpl, pkgsToRemove := range templatesToPkgsToRemove {
-		template := "/" + bt.Backend.Name + "/" + tmpl + "/"
+		template := bt.Backend.Name + "/" + tmpl + "/"
 
 		if tmpl != "no-deps" {
 			bt.Subtest(tmpl, func(bt testUtils.BackendT) {

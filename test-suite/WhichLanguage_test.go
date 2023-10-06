@@ -21,7 +21,7 @@ func TestWhichLanguage(t *testing.T) {
 			continue
 		}
 
-		template := "/" + bt.Backend.Name + "/one-dep/"
+		template := bt.Backend.Name + "/one-dep/"
 
 		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
 			bt.Subtest("locked", func(bt testUtils.BackendT) {

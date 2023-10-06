@@ -23,7 +23,7 @@ func TestLock(t *testing.T) {
 
 func doLock(bt testUtils.BackendT) {
 	for _, tmpl := range standardTemplates {
-		template := "/" + bt.Backend.Name + "/" + tmpl + "/"
+		template := bt.Backend.Name + "/" + tmpl + "/"
 
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)

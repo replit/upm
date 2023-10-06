@@ -52,7 +52,7 @@ func TestGuess(t *testing.T) {
 								bt.AddTestFile("/"+testSrcFile, test+"."+ext)
 								bt.AddTestFile("/"+bt.Backend.Name+"/no-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
 
-								expectFile, err := statikFS.Open("/" + testSrcFile + ".expect")
+								expectFile, err := testData.Open(testSrcFile + ".expect")
 								if err != nil {
 									bt.Fail("No expect file found for %s: %v", testSrcFile, err)
 								}

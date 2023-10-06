@@ -36,7 +36,7 @@ func TestAdd(t *testing.T) {
 
 func doAdd(bt testUtils.BackendT, pkgs ...string) {
 	for _, tmpl := range standardTemplates {
-		template := "/" + bt.Backend.Name + "/" + tmpl + "/"
+		template := bt.Backend.Name + "/" + tmpl + "/"
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 			if tmpl != "no-deps" {
 				bt.Subtest("locked", func(bt testUtils.BackendT) {

@@ -1,8 +1,8 @@
 package testUtils
 
 import (
+	"embed"
 	"io"
-	"net/http"
 	"os"
 	"os/exec"
 	"path"
@@ -15,7 +15,7 @@ import (
 type BackendT struct {
 	Backend   api.LanguageBackend
 	t         *testing.T
-	templates *http.FileSystem
+	templates *embed.FS
 	testDir   string
 }
 
@@ -27,7 +27,7 @@ func (bt BackendT) assertT() {
 
 func InitBackendT(
 	backend api.LanguageBackend,
-	templates *http.FileSystem,
+	templates *embed.FS,
 ) BackendT {
 	return BackendT{
 		Backend:   backend,

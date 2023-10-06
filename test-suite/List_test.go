@@ -47,7 +47,7 @@ func TestList(t *testing.T) {
 
 func doList(bt testUtils.BackendT, templatesToPackages map[string][]string) {
 	for tmpl, expectPkgs := range templatesToPackages {
-		template := "/" + bt.Backend.Name + "/" + tmpl + "/"
+		template := bt.Backend.Name + "/" + tmpl + "/"
 
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
