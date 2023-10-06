@@ -170,9 +170,7 @@ func TempDir() string {
 
 // GetResourceBytes is like GetResource but returns a []byte.
 func GetResourceBytes(url string) []byte {
-	if strings.HasPrefix(url, "/") {
-		url = url[1:]
-	}
+	url = strings.TrimPrefix(url, "/")
 
 	res, err := resources.Resources.ReadFile(url)
 	if err != nil {
