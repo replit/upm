@@ -8,9 +8,10 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
+	"strings"
 
-	"github.com/replit/upm/resources"
 	"github.com/natefinch/atomic"
+	"github.com/replit/upm/resources"
 )
 
 // IgnoredPaths is a slice of file patterns that are totally ignored
@@ -169,6 +170,10 @@ func TempDir() string {
 
 // GetResourceBytes is like GetResource but returns a []byte.
 func GetResourceBytes(url string) []byte {
+	if strings.HasPrefix(url, "/") {
+		url = url[1:]
+	}
+
 	res, err := resources.Resources.ReadFile(url)
 	if err != nil {
 		panic(err)
