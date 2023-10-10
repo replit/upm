@@ -7,7 +7,7 @@ agent:
 
   containers:
     - name: main
-      image: marine-cycle-160323/nix
+      image: gcr.io/marine-cycle-160323/nix@sha256:98a129684f9a4a15f1148c51f9769a9208dc4f34b823396100c5f67610b7fe1f
 
   image_pull_secrets:
     - name: upm-gcr-pull-secrets
