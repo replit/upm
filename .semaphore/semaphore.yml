@@ -3,8 +3,8 @@ version: v1.0
 name: UPM
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
+    type: s1-goval
+    # os_image: ubuntu2004
 
 global_job_config:
   prologue:
@@ -80,7 +80,6 @@ blocks:
             - sudo /tmp/nix-installer install linux --no-confirm --logger compact
             - cache restore nix-store
             - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-            - nix develop -c go version
             - nix develop -c make generated
             - nix develop -c nix shell -c go test ./test-suite
 
