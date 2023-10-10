@@ -294,7 +294,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 			util.Die("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
-		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+		r := regexp.MustCompile(`(?m)^"?((?:@[^@ \n]+\/)?[^@ \n]+).+:\n  version "(.+)"$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := api.PkgName(match[1])
