@@ -53,8 +53,8 @@ blocks:
   - name: build
     dependencies: [ setup ]
     task:
-      prologue:
-        commands:
+      # prologue:
+      #   commands:
           # - cache restore nix-installer
           # - sudo /tmp/nix-installer install linux --no-confirm --logger compact
           # - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
