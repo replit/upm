@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/replit/upm/test-suite/templates"
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
 
@@ -49,10 +50,10 @@ func TestGuess(t *testing.T) {
 							testSrcFile := "guess/" + template + "/" + test
 
 							bt.Subtest(test, func(bt testUtils.BackendT) {
-								bt.AddTestFile("/"+testSrcFile, test+"."+ext)
-								bt.AddTestFile("/"+bt.Backend.Name+"/no-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
+								bt.AddTestFile(testSrcFile, test+"."+ext)
+								bt.AddTestFile(bt.Backend.Name+"/no-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
 
-								expectFile, err := testData.Open(testSrcFile + ".expect")
+								expectFile, err := templates.FS.Open(testSrcFile + ".expect")
 								if err != nil {
 									bt.Fail("No expect file found for %s: %v", testSrcFile, err)
 								}
