@@ -10,7 +10,7 @@ agent:
       image: marine-cycle-160323/nix
 
   image_pull_secrets:
-    - name: gcr-pull-secrets
+    - name: upm-gcr-pull-secrets
 
 global_job_config:
   prologue:
