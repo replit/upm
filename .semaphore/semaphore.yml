@@ -5,12 +5,12 @@ agent:
   machine:
     type: e1-standard-2
 
-    containers:
-      - name: main
-        image: marine-cycle-160323/nix
+  containers:
+    - name: main
+      image: marine-cycle-160323/nix
 
-    image_pull_secrets:
-      - name: gcr-pull-secrets
+  image_pull_secrets:
+    - name: gcr-pull-secrets
 
 global_job_config:
   prologue:
