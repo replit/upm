@@ -13,8 +13,8 @@ require (
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.8.1
-	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
-	golang.org/x/net v0.5.0
+	golang.org/x/crypto v0.14.0
+	golang.org/x/net v0.17.0
 	google.golang.org/api v0.103.0
 	gopkg.in/yaml.v2 v2.2.3
 )
@@ -36,8 +36,9 @@ require (
 	github.com/spf13/pflag v1.0.3 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/oauth2 v0.4.0 // indirect
-	golang.org/x/sys v0.4.0 // indirect
-	golang.org/x/text v0.6.0 // indirect
+	golang.org/x/sys v0.13.0 // indirect
+	golang.org/x/term v0.13.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
