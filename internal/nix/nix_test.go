@@ -35,7 +35,7 @@ func TestReplitNixAddToNixEditorCmds(t *testing.T) {
 	err := os.Setenv("REPL_HOME", "/tmp")
 	assert.NoError(t, err)
 
-	cmds := ReplitNixAddToNixEditorCmds(deps)
+	cmds := ReplitNixAddToNixEditorCmds(*deps)
 
 	expected := [][]string{
 		[]string{"nix-editor", "--path", "/tmp/replit.nix", "--add", "pkgs.pkg-config"},
