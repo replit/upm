@@ -3,14 +3,7 @@ version: v1.0
 name: UPM
 agent:
   machine:
-    type: e1-standard-2
-
-  containers:
-    - name: main
-      image: gcr.io/marine-cycle-160323/nix@sha256:98a129684f9a4a15f1148c51f9769a9208dc4f34b823396100c5f67610b7fe1f
-
-  image_pull_secrets:
-    - name: upm-gcr-pull-secrets
+    type: s1-goval
 
 global_job_config:
   prologue:
