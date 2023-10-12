@@ -20,7 +20,6 @@ blocks:
       jobs:
         - name: nix
           commands:
-            # - cache restore nix-store
             - nix build
             - ./result/bin/upm --version
 
