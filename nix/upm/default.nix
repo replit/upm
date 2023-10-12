@@ -10,8 +10,20 @@ buildGoModule rec {
   src = builtins.path {
     name = "${pname}-${version}-src";
     path = ../../.;
-    filter = path: type: type != "directory" ||
-      builtins.baseNameOf path != "test-suite";
+    filter = path: _: builtins.any (allow: builtins.baseNameOf path == allow) [
+      "cmd"
+      "internal"
+      "nix"
+      "resources"
+      ".gitignore"
+      "flake.lock"
+      "flake.nix"
+      "go.mod"
+      "go.sum"
+      "LICENSE.md"
+      "Makefile"
+      "README.md"
+    ];
   };
 
   vendorHash = "sha256-2F2/BcHUEpbYxmAW1SsIBbn6U2VWinWjdxMvsbzfKsc=";
