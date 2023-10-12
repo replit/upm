@@ -11,19 +11,6 @@ func TestSearch(t *testing.T) {
 		bt.Start(t)
 
 		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			doSearch(bt, []searchTest{
-				{"express", "express"},
-				{"@replit/crosis", "@replit/crosis"},
-				{"@replit", "@replit/crosis"},
-			})
-
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

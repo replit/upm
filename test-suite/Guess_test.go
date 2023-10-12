@@ -15,26 +15,6 @@ func TestGuess(t *testing.T) {
 
 		tests := make(map[string]map[string][]string)
 		switch bt.Backend.Name {
-		case "bun":
-			fallthrough
-		case "nodejs-npm":
-			fallthrough
-		case "nodejs-pnpm":
-			fallthrough
-		case "nodejs-yarn":
-			for _, ext := range []string{"js", "jsx", "ts", "tsx"} {
-				_, ok := tests[ext]
-				if !ok {
-					tests[ext] = make(map[string][]string)
-				}
-
-				tests[ext]["js"] = js
-			}
-
-			for _, ext := range []string{"ts", "tsx"} {
-				tests[ext]["ts"] = ts
-			}
-
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

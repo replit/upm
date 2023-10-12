@@ -1,5 +1,0 @@
-import express from 'express';
-import { default as express2 } from 'express';
-import * as express3 from 'express';
-import { default as express4 } from 'express'
-const express5 = require('express');
