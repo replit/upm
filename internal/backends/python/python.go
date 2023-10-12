@@ -11,6 +11,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -304,6 +305,27 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*)`,
 		}),
 		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
+		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+			for _, pkg := range pkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
+				for _, cmd := range cmds {
+					util.RunCmd(cmd)
+				}
+			}
+
+			specfilePkgs, err := listSpecfile()
+			if err != nil {
+				return
+			}
+			for pkg := range specfilePkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
+				for _, cmd := range cmds {
+					util.RunCmd(cmd)
+				}
+			}
+		},
 	}
 }
 
