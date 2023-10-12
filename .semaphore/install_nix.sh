@@ -19,3 +19,5 @@ if [ \
 	]; then
 	exec "$install_script"
 fi
+
+. ~/.nix-profile/etc/profile.d/nix.sh
