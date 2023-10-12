@@ -30,11 +30,7 @@ blocks:
       jobs:
         - name: test-suite
           commands:
-            - nix develop
-            - make generated
-            - nix shell
-            - go get gotest.tools/gotestsum
-            - go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
+            - nix develop -c nix shell -c make ci-test-suite
       epilogue:
         commands:
           - test-results publish junit.xml
