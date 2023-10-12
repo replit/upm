@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+set -e
+set -o xtrace
+
 install_script_cache_key="install-nix-2.16.1"
 install_script="/tmp/$install_script_cache_key"
 
@@ -13,3 +16,5 @@ if [ \
 fi
 
 . ~/.nix-profile/etc/profile.d/nix.sh
+
+set +e
