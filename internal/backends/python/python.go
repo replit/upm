@@ -309,9 +309,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			for _, pkg := range pkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
-				for _, cmd := range cmds {
-					util.RunCmd(cmd)
-				}
+				nix.RunNixEditorCmds(cmds)
 			}
 
 			specfilePkgs, err := listSpecfile()
@@ -321,9 +319,7 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
-				for _, cmd := range cmds {
-					util.RunCmd(cmd)
-				}
+				nix.RunNixEditorCmds(cmds)
 			}
 		},
 	}

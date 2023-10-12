@@ -68,3 +68,23 @@ func ReplitNixAddToNixEditorCmds(replitNixAdd ReplitNixAdd) [][]string {
 
 	return result
 }
+
+func RunNixEditorCmds(cmds [][]string) {
+	for _, cmd := range cmds {
+		output := util.GetCmdOutput(cmd)
+
+		var nixEditorStatus struct {
+			Status string
+			Data   string
+		}
+
+		if err := json.Unmarshal(output, &nixEditorStatus); err != nil {
+			util.Die("unexpected nix-editor output: %s", err)
+		}
+		if nixEditorStatus.Status != "success" {
+			util.Die("nix-editor error: %s", nixEditorStatus.Data)
+		}
+		// otherwise we have success and don't need to output
+		// anything
+	}
+}
