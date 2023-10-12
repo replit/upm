@@ -17,14 +17,10 @@ blocks:
   - name: build
     dependencies: [ ]
     task:
-      prologue:
-        commands:
-          - cache restore nix-installer
-          - sudo /tmp/nix-installer install linux --no-confirm --logger compact
-          - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       jobs:
         - name: nix
           commands:
+            # - cache restore nix-store
             - nix build
             - ./result/bin/upm --version
 
