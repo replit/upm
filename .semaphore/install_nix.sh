@@ -3,7 +3,7 @@
 install_script_cache_key="install-nix-2.16.1"
 install_script="/tmp/$install_script_cache_key"
 
-if [ cache has_key "$install_script_cache_key" ]; then
+if cache has_key "$install_script_cache_key"; then
 	cache restore "$install_script_cache_key"
 else
 	curl -L https://releases.nixos.org/nix/nix-2.16.1/install -o "$install_script"
