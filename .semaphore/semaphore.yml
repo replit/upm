@@ -46,4 +46,4 @@ blocks:
             - >-
               curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
               | sh -s -- -b /tmp v1.52.2
-            - golangci-lint run
+            - /tmp/golangci-lint run
