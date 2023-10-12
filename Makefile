@@ -80,3 +80,8 @@ help: ## Show this message
 .PHONY: test
 test:
 	go test ./... -v
+
+.PHONY: ci-test-suite
+ci-test-suite:
+	go get gotest.tools/gotestsum
+	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
