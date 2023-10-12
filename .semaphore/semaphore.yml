@@ -6,6 +6,9 @@ agent:
     type: s1-goval
 
 global_job_config:
+  env_vars:
+    - name: SEMAPHORE_CACHE_BACKEND
+      value: "gcs"
   prologue:
     commands:
       - checkout
