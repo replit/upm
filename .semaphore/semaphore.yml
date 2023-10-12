@@ -9,6 +9,8 @@ global_job_config:
   env_vars:
     - name: SEMAPHORE_CACHE_BACKEND
       value: "gcs"
+    - name: SEMAPHORE_CACHE_GCS_BUCKET
+      value: "upm-semaphore-cache"
   prologue:
     commands:
       - checkout
