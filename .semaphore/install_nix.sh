@@ -15,6 +15,6 @@ if [ \
 	curl -L https://releases.nixos.org/nix/nix-2.16.1/install | sh
 fi
 
-source ~/.nix-profile/etc/profile.d/nix.sh
+. ~/.nix-profile/etc/profile.d/nix.sh
 
 set +e
