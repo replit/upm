@@ -116,7 +116,10 @@ func (bt *BackendT) UpmInfo(pkg string) {
 	}
 
 	var info api.PkgInfo
-	json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&info)
+	err = json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&info)
+	if err != nil {
+		bt.Fail("failed to decode json: %v", err)
+	}
 
 	if info.Name != pkg {
 		bt.Fail("expected info for %s, got %s", pkg, info.Name)
@@ -152,7 +155,10 @@ func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 	}
 
 	var results []api.PkgInfo
-	json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	err = json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	if err != nil {
+		bt.Fail("failed to decode json: %v", err)
+	}
 
 	return results
 }
@@ -172,7 +178,10 @@ func (bt *BackendT) UpmListSpecFile() []api.PkgInfo {
 	}
 
 	var results []api.PkgInfo
-	json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	err = json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	if err != nil {
+		bt.Fail("failed to decode json: %v", err)
+	}
 
 	return results
 }
@@ -293,7 +302,10 @@ func (bt *BackendT) UpmSearch(query, expectName string) {
 	}
 
 	var results []api.PkgInfo
-	json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	err = json.NewDecoder(strings.NewReader(out.Stdout)).Decode(&results)
+	if err != nil {
+		bt.Fail("failed to decode json: %v", err)
+	}
 
 	found := false
 	for _, result := range results {
