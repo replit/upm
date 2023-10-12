@@ -11,6 +11,7 @@ global_job_config:
       - checkout
       - git switch --detach
       - export PATH="/tmp:$PATH"
+      - ./.semaphore/install_nix.sh
 
 blocks:
   - name: setup
