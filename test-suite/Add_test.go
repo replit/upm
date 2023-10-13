@@ -12,6 +12,9 @@ func TestAdd(t *testing.T) {
 
 		var pkgs []string
 		switch bt.Backend.Name {
+		case "bun":
+			pkgs = []string{"lodash", "react", "@replit/protocol"}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

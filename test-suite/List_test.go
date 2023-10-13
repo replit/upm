@@ -12,6 +12,20 @@ func TestList(t *testing.T) {
 
 		var templatesToPackages map[string][]string
 		switch bt.Backend.Name {
+		case "bun":
+			templatesToPackages = map[string][]string{
+				"no-deps": {},
+				"one-dep": {"express"},
+				"many-deps": {
+					"enquirer",
+					"eslint",
+					"express",
+					"svelte",
+					"vite",
+					"@codemirror/state",
+				},
+			}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

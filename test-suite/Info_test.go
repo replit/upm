@@ -11,6 +11,9 @@ func TestInfo(t *testing.T) {
 		bt.Start(t)
 
 		switch bt.Backend.Name {
+		case "bun":
+			doInfo(bt, "express", "@replit/crosis")
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

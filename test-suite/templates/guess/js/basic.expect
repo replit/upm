@@ -1,0 +1,5 @@
+express
+prosemirror-commands
+prosemirror-model
+@tailwindcss/forms
+@sveltejs/adapter-auto

@@ -12,7 +12,7 @@ func TestInstall(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		if true {
+		if bt.Backend.Name != "bun" {
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
 			})
