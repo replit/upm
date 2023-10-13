@@ -1,15 +1,32 @@
 package nix
 
 import (
+	"bytes"
 	_ "embed"
 	"encoding/json"
+	"errors"
+	"io"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 )
+
+type NixEditorDepType string
+
+const (
+	Regular NixEditorDepType = "regular"
+	Python  NixEditorDepType = "python"
+)
+
+type NixEditorOp struct {
+	Op      string           `json:"op"`
+	DepType NixEditorDepType `json:"dep_type"`
+	Dep     string           `json:"dep"`
+}
 
 type ReplitNixAdd struct {
 	Deps              []string `json:"deps,omitempty"`
@@ -50,41 +67,76 @@ func PythonNixDeps(pack string) ReplitNixAdd {
 	return val
 }
 
-func ReplitNixAddToNixEditorCmds(replitNixAdd ReplitNixAdd) [][]string {
-	result := [][]string{}
+func ReplitNixAddToNixEditorOps(replitNixAdd ReplitNixAdd) []NixEditorOp {
+	result := []NixEditorOp{}
+	for _, dep := range replitNixAdd.Deps {
+		result = append(result, NixEditorOp{Op: "add", Dep: dep, DepType: Regular})
+	}
+	for _, dep := range replitNixAdd.PythonLibraryDeps {
+		result = append(result, NixEditorOp{Op: "add", Dep: dep, DepType: Python})
+	}
+	return result
+}
+
+func RunNixEditorOps(ops []NixEditorOp) {
 	repl_home := os.Getenv("REPL_HOME")
 	if repl_home == "" {
 		util.Die("REPL_HOME was not set")
 	}
 	path := path.Join(repl_home, "replit.nix")
 
-	for _, dep := range replitNixAdd.Deps {
-		result = append(result, []string{"nix-editor", "--path", path, "--add", dep})
+	cmd := exec.Command("nix-editor", "--path", path)
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		util.Die("couldn't make stdin pipe to nix-editor")
+	}
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		util.Die("couldn't make stdout pipe to nix-editor")
 	}
 
-	for _, dep := range replitNixAdd.PythonLibraryDeps {
-		result = append(result, []string{"nix-editor", "--path", path, "--dep-type", "python", "--add", dep})
+	err = cmd.Start()
+	if err != nil {
+		util.Die("nix-editor error: %s", err)
 	}
 
-	return result
-}
-
-func RunNixEditorCmds(cmds [][]string) {
-	for _, cmd := range cmds {
-		output := util.GetCmdOutput(cmd)
-
-		var nixEditorStatus struct {
-			Status string
-			Data   string
+	in := &bytes.Buffer{}
+	encoder := json.NewEncoder(in)
+	for _, op := range ops {
+		err := encoder.Encode(op)
+		if err != nil {
+			util.Die("unable to turn op into json: %v error: %s", op, err)
 		}
+	}
+	_, err = stdin.Write(in.Bytes())
+	if err != nil {
+		util.Die("unable to write to nix-editor")
+	}
+	stdin.Close()
 
-		if err := json.Unmarshal(output, &nixEditorStatus); err != nil {
-			util.Die("unexpected nix-editor output: %s", err)
+	go func() {
+		decoder := json.NewDecoder(stdout)
+		for {
+			var nixEditorStatus struct {
+				Status string
+				Data   string
+			}
+			err := decoder.Decode(&nixEditorStatus)
+			if err != nil {
+				if errors.Is(err, io.EOF) {
+					break
+				}
+				util.Die("unexpected nix-editor output: %s", err)
+			}
+			if nixEditorStatus.Status != "success" {
+				util.Die("nix-editor error: %s", nixEditorStatus.Data)
+			}
 		}
-		if nixEditorStatus.Status != "success" {
-			util.Die("nix-editor error: %s", nixEditorStatus.Data)
-		}
-		// otherwise we have success and don't need to output
-		// anything
+		stdout.Close()
+	}()
+
+	err = cmd.Wait()
+	if err != nil {
+		util.Die("nix-editor error: %s", err)
 	}
 }

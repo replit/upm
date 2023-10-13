@@ -306,21 +306,20 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 		}),
 		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
 		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+			ops := []nix.NixEditorOp{}
 			for _, pkg := range pkgs {
 				deps := nix.PythonNixDeps(string(pkg))
-				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
-				nix.RunNixEditorCmds(cmds)
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
 			}
 
-			specfilePkgs, err := listSpecfile()
-			if err != nil {
-				return
-			}
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs, _ := listSpecfile()
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
-				cmds := nix.ReplitNixAddToNixEditorCmds(deps)
-				nix.RunNixEditorCmds(cmds)
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
 			}
+			nix.RunNixEditorOps(ops)
 		},
 	}
 }
