@@ -81,7 +81,12 @@ help: ## Show this message
 test:
 	go test ./... -v
 
-.PHONY: ci-test-suite
-ci-test-suite:
+.PHONY: test-suite
+ifdef UPM_CI
+test-suite:
 	go get gotest.tools/gotestsum
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
+else
+test-suite:
+	nix develop -c nix shell -c go test ./test-suite
+endif
