@@ -10,10 +10,6 @@ buildGoModule rec {
   src = builtins.path {
     name = "${pname}-${version}-src";
     path = ../../.;
-<<<<<<< HEAD
-    filter = path: type: type != "directory" ||
-      builtins.baseNameOf path != "test-suite";
-=======
     filter = path: _: builtins.all (block: (builtins.baseNameOf path) != block) [
       ".github"
       ".semaphore"
@@ -24,7 +20,6 @@ buildGoModule rec {
       ".replit"
       "replit.nix"
     ];
->>>>>>> 4b269225ade535c1d15e2821b1bff8fc799d55a8
   };
 
   vendorHash = "sha256-2F2/BcHUEpbYxmAW1SsIBbn6U2VWinWjdxMvsbzfKsc=";
