@@ -3,11 +3,24 @@
   rev,
   makeWrapper,
 }:
-buildGoModule {
+buildGoModule rec {
   pname = "upm";
   version = rev;
 
-  src = ../../.;
+  src = builtins.path {
+    name = "${pname}-${version}-src";
+    path = ../../.;
+    filter = path: _: builtins.all (block: (builtins.baseNameOf path) != block) [
+      ".github"
+      ".semaphore"
+      "packaging"
+      "scripts"
+      "test-suite"
+      ".goreleaser.yml"
+      ".replit"
+      "replit.nix"
+    ];
+  };
 
   vendorHash = "sha256-2F2/BcHUEpbYxmAW1SsIBbn6U2VWinWjdxMvsbzfKsc=";
 
