@@ -1,6 +1,6 @@
 run = "make && echo \"UPM is built, can be found here: ./cmd/upm/upm\""
 
-modules = ["go"]
+modules = ["go-1.20:v2-20230911-b5aa5df"]
 
 [nix]
 channel = "stable-23_05" # Only channel with go 1.17

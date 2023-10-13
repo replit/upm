@@ -3,7 +3,6 @@
     pkgs.golangci-lint
     pkgs.wget
     pkgs.gnumake
-    pkgs.go_1_20
     pkgs.gopls
     pkgs.gcc
     pkgs.curl
