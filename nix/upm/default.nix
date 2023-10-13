@@ -10,19 +10,15 @@ buildGoModule rec {
   src = builtins.path {
     name = "${pname}-${version}-src";
     path = ../../.;
-    filter = path: _: builtins.any (allow: builtins.baseNameOf path == allow) [
-      "cmd"
-      "internal"
-      "nix"
-      "resources"
-      ".gitignore"
-      "flake.lock"
-      "flake.nix"
-      "go.mod"
-      "go.sum"
-      "LICENSE.md"
-      "Makefile"
-      "README.md"
+    filter = path: _: builtins.all (block: (builtins.baseNameOf path) != block) [
+      ".github"
+      ".semaphore"
+      "packaging"
+      "scripts"
+      "test-suite"
+      ".goreleaser.yml"
+      ".replit"
+      "replit.nix"
     ];
   };
 
