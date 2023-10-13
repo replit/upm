@@ -1,5 +1,6 @@
 {pkgs}: {
   deps = [
+    pkgs.golangci-lint
     pkgs.wget
     pkgs.gnumake
     pkgs.go_1_20
@@ -11,12 +12,12 @@
     pkgs.maven
     pkgs.emacs-nox
     pkgs.cask
-    pkgs.nodejs-16_x
+    pkgs.nodejs-18_x
     pkgs.yarn
     pkgs.nodePackages.pnpm
-    pkgs.python39Full
-    pkgs.python39Packages.pip
-    pkgs.python39Packages.poetry
+    pkgs.python310Full
+    pkgs.python310Packages.pip
+    pkgs.poetry
     pkgs.R
     pkgs.ruby
     pkgs.sqlite
