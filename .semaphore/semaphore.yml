@@ -6,6 +6,9 @@ agent:
     type: s1-goval
 
 global_job_config:
+  env_vars:
+    - name: UPM_CI
+      value: 1
   prologue:
     commands:
       - checkout
@@ -29,7 +32,7 @@ blocks:
       jobs:
         - name: test-suite
           commands:
-            - nix develop -c nix shell -c make ci-test-suite
+            - nix develop -c nix shell -c make test-suite
       epilogue:
         commands:
           - test-results publish junit.xml
