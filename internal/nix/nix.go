@@ -1,7 +1,6 @@
 package nix
 
 import (
-	"bytes"
 	_ "embed"
 	"encoding/json"
 	"errors"
@@ -100,40 +99,36 @@ func RunNixEditorOps(ops []NixEditorOp) {
 		util.Die("nix-editor error: %s", err)
 	}
 
-	in := &bytes.Buffer{}
-	encoder := json.NewEncoder(in)
+	encoder := json.NewEncoder(stdin)
 	for _, op := range ops {
 		err := encoder.Encode(op)
 		if err != nil {
 			util.Die("unable to turn op into json: %v error: %s", op, err)
 		}
 	}
-	_, err = stdin.Write(in.Bytes())
+	err = stdin.Close()
 	if err != nil {
 		util.Die("unable to write to nix-editor")
 	}
-	stdin.Close()
 
-	go func() {
-		decoder := json.NewDecoder(stdout)
-		for {
-			var nixEditorStatus struct {
-				Status string
-				Data   string
-			}
-			err := decoder.Decode(&nixEditorStatus)
-			if err != nil {
-				if errors.Is(err, io.EOF) {
-					break
-				}
-				util.Die("unexpected nix-editor output: %s", err)
-			}
-			if nixEditorStatus.Status != "success" {
-				util.Die("nix-editor error: %s", nixEditorStatus.Data)
-			}
+	decoder := json.NewDecoder(stdout)
+	for {
+		var nixEditorStatus struct {
+			Status string
+			Data   string
 		}
-		stdout.Close()
-	}()
+		err := decoder.Decode(&nixEditorStatus)
+		if err != nil {
+			if errors.Is(err, io.EOF) {
+				break
+			}
+			util.Die("unexpected nix-editor output: %s", err)
+		}
+		if nixEditorStatus.Status != "success" {
+			util.Die("nix-editor error: %s", nixEditorStatus.Data)
+		}
+	}
+	stdout.Close()
 
 	err = cmd.Wait()
 	if err != nil {
