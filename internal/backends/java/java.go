@@ -8,6 +8,7 @@ import (
 	"regexp"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -309,7 +310,8 @@ var JavaBackend = api.LanguageBackend{
 			"dependency:copy-dependencies",
 		})
 	},
-	ListSpecfile: listSpecfile,
-	ListLockfile: listLockfile,
-	Lock:         func() {},
+	ListSpecfile:                       listSpecfile,
+	ListLockfile:                       listLockfile,
+	Lock:                               func() {},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -236,4 +237,5 @@ var ElispBackend = api.LanguageBackend{
 		}
 		return names, true
 	},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

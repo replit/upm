@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -243,4 +244,5 @@ var RubyBackend = api.LanguageBackend{
 		}
 		return results, true
 	},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

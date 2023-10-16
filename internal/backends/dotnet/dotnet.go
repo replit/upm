@@ -3,6 +3,7 @@ package dotnet
 
 import (
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -28,4 +29,5 @@ var DotNetBackend = api.LanguageBackend{
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
