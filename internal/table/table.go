@@ -12,7 +12,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/util"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 // New creates a new table with the given headers. The table has no
@@ -146,7 +146,7 @@ func (t *Table) SortBy(header string) {
 // a tty, the provided width is too wide for the tty, and 'less' is
 // actually installed.
 func printOrPage(text string, width int) {
-	termWidth, _, err := terminal.GetSize(1)
+	termWidth, _, err := term.GetSize(1)
 	if err != nil || width < termWidth {
 		fmt.Print(text)
 		return

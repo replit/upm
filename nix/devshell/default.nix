@@ -4,6 +4,7 @@
   mkShell,
   nodejs,
   nodePackages,
+  nix-editor,
 }:
 mkShell {
   name = "upm";
@@ -13,5 +14,6 @@ mkShell {
     nodejs
     nodePackages.pnpm
     nodePackages.yarn
+    nix-editor
   ];
 }

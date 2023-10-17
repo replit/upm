@@ -10,19 +10,20 @@ buildGoModule rec {
   src = builtins.path {
     name = "${pname}-${version}-src";
     path = ../../.;
-    filter = path: _: builtins.all (block: (builtins.baseNameOf path) != block) [
-      ".github"
-      ".semaphore"
-      "packaging"
-      "scripts"
-      "test-suite"
-      ".goreleaser.yml"
-      ".replit"
-      "replit.nix"
-    ];
+    filter = path: _:
+      builtins.all (block: (builtins.baseNameOf path) != block) [
+        ".github"
+        ".semaphore"
+        "packaging"
+        "scripts"
+        "test-suite"
+        ".goreleaser.yml"
+        ".replit"
+        "replit.nix"
+      ];
   };
 
-  vendorHash = "sha256-2F2/BcHUEpbYxmAW1SsIBbn6U2VWinWjdxMvsbzfKsc=";
+  vendorHash = "sha256-5cOkreCEBctEu0OJ2BMfXtBJBm4C2Bi3D1RnNxsn8kQ=";
 
   ldflags = [
     "-X github.com/replit/upm/internal/cli.version=${rev}"

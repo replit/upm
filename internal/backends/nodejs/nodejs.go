@@ -11,6 +11,7 @@ import (
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -510,6 +511,7 @@ var BunBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

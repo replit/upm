@@ -11,6 +11,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -304,6 +305,22 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*)`,
 		}),
 		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
+		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+			ops := []nix.NixEditorOp{}
+			for _, pkg := range pkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs, _ := listSpecfile()
+			for pkg := range specfilePkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+			nix.RunNixEditorOps(ops)
+		},
 	}
 }
 
