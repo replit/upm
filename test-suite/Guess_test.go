@@ -16,6 +16,8 @@ func TestGuess(t *testing.T) {
 		tests := make(map[string]map[string][]string)
 		switch bt.Backend.Name {
 		case "nodejs-npm":
+			fallthrough
+		case "bun":
 			for _, ext := range []string{"js", "jsx", "ts", "tsx"} {
 				_, ok := tests[ext]
 				if !ok {

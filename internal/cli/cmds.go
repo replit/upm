@@ -210,16 +210,9 @@ type pkgNameAndSpec struct {
 	spec api.PkgSpec
 }
 
-// runAdd implements 'upm add'.
-func runAdd(
-	language string, args []string, upgrade bool,
-	guess bool, forceGuess bool, ignoredPackages []string,
-	forceLock bool, forceInstall bool, name string) {
-
-	b := backends.GetBackend(language)
-
-	// Map from normalized package names to the corresponding
-	// original package names and specs.
+// Map from normalized package names to the corresponding
+// original package names and specs.
+func normalizePackageArgs(b api.LanguageBackend, args []string) map[api.PkgName]pkgNameAndSpec {
 	normPkgs := map[api.PkgName]pkgNameAndSpec{}
 	for _, arg := range args {
 		fields := strings.SplitN(arg, " ", 2)
@@ -234,6 +227,18 @@ func runAdd(
 			spec: spec,
 		}
 	}
+	return normPkgs
+}
+
+// runAdd implements 'upm add'.
+func runAdd(
+	language string, args []string, upgrade bool,
+	guess bool, forceGuess bool, ignoredPackages []string,
+	forceLock bool, forceInstall bool, name string) {
+
+	b := backends.GetBackend(language)
+
+	normPkgs := normalizePackageArgs(b, args)
 
 	if guess {
 		guessed := store.GuessWithCache(b, forceGuess)
@@ -533,4 +538,15 @@ func runShowPackageDir(language string) {
 	b := backends.GetBackend(language)
 	dir := b.GetPackageDir()
 	fmt.Println(dir)
+}
+
+// runInstallReplitNixSystemDependencies implements 'upm install-replit-nix-system-dependencies'.
+func runInstallReplitNixSystemDependencies(language string, args []string) {
+	b := backends.GetBackend(language)
+	normPkgs := normalizePackageArgs(b, args)
+	pkgs := []api.PkgName{}
+	for p := range normPkgs {
+		pkgs = append(pkgs, p)
+	}
+	b.InstallReplitNixSystemDependencies(pkgs)
 }

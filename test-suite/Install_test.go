@@ -12,7 +12,7 @@ func TestInstall(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		if bt.Backend.Name != "nodejs-npm" {
+		if bt.Backend.Name != "bun" && bt.Backend.Name != "nodejs-npm" {
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
 			})

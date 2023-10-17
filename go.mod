@@ -12,8 +12,8 @@ require (
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.8.1
-	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 	golang.org/x/net v0.5.0
+	golang.org/x/term v0.4.0
 	google.golang.org/api v0.103.0
 	gopkg.in/yaml.v2 v2.2.3
 )
