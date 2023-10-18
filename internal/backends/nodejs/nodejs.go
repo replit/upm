@@ -305,8 +305,9 @@ var NodejsYarnBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 var NodejsPNPMBackend = api.LanguageBackend{
@@ -386,8 +387,9 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // NodejsNPMBackend is a UPM backend for Node.js that uses NPM.
@@ -448,8 +450,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // BunBackend is a UPM backend for Node.js that uses Yarn.
