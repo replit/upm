@@ -300,7 +300,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 			util.Die("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
-		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+		r := regexp.MustCompile(`(?m)^"?((?:@[^@ \n]+\/)?[^@ \n]+).+:\n  version "(.+)"$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := api.PkgName(match[1])
@@ -310,8 +310,9 @@ var NodejsYarnBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 var NodejsPNPMBackend = api.LanguageBackend{
@@ -391,8 +392,9 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // NodejsNPMBackend is a UPM backend for Node.js that uses NPM.
@@ -460,8 +462,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // BunBackend is a UPM backend for Node.js that uses Yarn.

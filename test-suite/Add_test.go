@@ -14,6 +14,8 @@ func TestAdd(t *testing.T) {
 		switch bt.Backend.Name {
 		case "nodejs-npm":
 			fallthrough
+		case "nodejs-yarn":
+			fallthrough
 		case "bun":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 

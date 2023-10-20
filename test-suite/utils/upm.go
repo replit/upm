@@ -331,3 +331,16 @@ func (bt *BackendT) UpmWhichLanguage() {
 		bt.Fail("expected %s, got %s", bt.Backend.Name, detected)
 	}
 }
+
+func (bt *BackendT) UpmInstallReplitNixSystemDependencies() {
+	_, err := bt.Exec(
+		"upm",
+		"--lang",
+		bt.Backend.Name,
+		"install-replit-nix-system-dependencies",
+	)
+
+	if err != nil {
+		bt.Fail("upm failed to install-replit-nix-system-dependencies: %v", err)
+	}
+}
