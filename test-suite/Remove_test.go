@@ -13,6 +13,10 @@ func TestRemove(t *testing.T) {
 		var pkgsToRemove map[string][]string
 		switch bt.Backend.Name {
 		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			fallthrough
+		case "bun":
 			pkgsToRemove = map[string][]string{
 				"one-dep":   {"express"},
 				"many-deps": {"express", "eslint", "svelte"},

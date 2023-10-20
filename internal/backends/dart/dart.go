@@ -13,6 +13,7 @@ import (
 	"runtime"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/yaml.v2"
 )
@@ -302,8 +303,9 @@ var DartPubBackend = api.LanguageBackend{
 	Install: func() {
 		util.RunCmd([]string{"pub", "get"})
 	},
-	ListSpecfile: dartListPubspecYaml,
-	ListLockfile: dartListPubspecLock,
-	GuessRegexps: nil,
-	Guess:        dartGuess,
+	ListSpecfile:                       dartListPubspecYaml,
+	ListLockfile:                       dartListPubspecLock,
+	GuessRegexps:                       nil,
+	Guess:                              dartGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

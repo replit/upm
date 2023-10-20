@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -262,4 +263,5 @@ var PhpComposerBackend = api.LanguageBackend{
 		util.NotImplemented()
 		return nil, false
 	},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

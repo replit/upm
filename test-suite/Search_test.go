@@ -12,6 +12,10 @@ func TestSearch(t *testing.T) {
 
 		switch bt.Backend.Name {
 		case "nodejs-pnpm":
+			fallthrough
+		case "nodejs-yarn":
+			fallthrough
+		case "bun":
 			doSearch(bt, []searchTest{
 				{"express", "express"},
 				{"@replit/crosis", "@replit/crosis"},

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -172,4 +173,5 @@ var RlangBackend = api.LanguageBackend{
 
 		return nil, false
 	},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
