@@ -1,5 +1,7 @@
 {
-  "pycairo": {"deps": [ "pkgs.pkg-config", "pkgs.cairo" ]},
   "moviepy": {"deps": [ "pkgs.ffmpeg", "pkgs.imagemagickBig" ]},
-  "psycopg2": {"deps": [ "pkgs.postgresql" ], "libdeps": ["pkgs.postgresql"]}
+  "mysqlclient": {"deps": [ "pkgs.pkg-config", "pkgs.libmysqlclient" ]},
+  "psycopg2": {"deps": [ "pkgs.postgresql" ], "libdeps": ["pkgs.postgresql"]},
+  "pycairo": {"deps": [ "pkgs.pkg-config", "pkgs.cairo" ]},
+  "pyzbar": {"libdeps": ["pkgs.zbar"]}
 }
