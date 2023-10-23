@@ -12,6 +12,8 @@ func TestList(t *testing.T) {
 
 		var templatesToPackages map[string][]string
 		switch bt.Backend.Name {
+		case "nodejs-npm":
+			fallthrough
 		case "nodejs-yarn":
 			fallthrough
 		case "bun":

@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"strings"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -73,9 +74,13 @@ type packageJSON struct {
 // packageLockJSON represents the relevant data in a package-lock.json
 // file.
 type packageLockJSON struct {
-	Dependencies map[string]struct {
+	LockfileVersion int `json:"lockfileVersion"`
+	Dependencies    map[string]struct {
 		Version string `json:"version"`
 	} `json:"dependencies"`
+	Packages map[string]struct {
+		Version string `json:"version"`
+	} `json:"packages"`
 }
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
@@ -444,8 +449,15 @@ var NodejsNPMBackend = api.LanguageBackend{
 			util.Die("package-lock.json: %s", err)
 		}
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		for nameStr, data := range cfg.Dependencies {
-			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+		if cfg.LockfileVersion <= 2 {
+			for nameStr, data := range cfg.Dependencies {
+				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+			}
+		} else {
+			for pathStr, data := range cfg.Packages {
+				nameStr := strings.TrimPrefix(pathStr, "node_modules/")
+				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+			}
 		}
 		return pkgs
 	},

@@ -11,6 +11,8 @@ func TestInfo(t *testing.T) {
 		bt.Start(t)
 
 		switch bt.Backend.Name {
+		case "nodejs-npm":
+			fallthrough
 		case "nodejs-yarn":
 			fallthrough
 		case "bun":
