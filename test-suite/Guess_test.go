@@ -28,11 +28,29 @@ func TestGuess(t *testing.T) {
 					tests[ext] = make(map[string][]string)
 				}
 
-				tests[ext]["js"] = js
+				tests[ext]["js"] = []string{
+					"basic",
+					"dedup",
+					"nested",
+				}
 			}
 
 			for _, ext := range []string{"ts", "tsx"} {
-				tests[ext]["ts"] = ts
+				tests[ext]["ts"] = []string{
+					"typeImports",
+				}
+			}
+
+		case "python3-poetry":
+			for _, ext := range []string{"py"} {
+				_, ok := tests[ext]
+				if !ok {
+					tests[ext] = make(map[string][]string)
+				}
+
+				tests[ext]["py"] = []string{
+					"basic",
+				}
 			}
 
 		default:
@@ -74,14 +92,4 @@ func TestGuess(t *testing.T) {
 			})
 		}
 	}
-}
-
-var js = []string{
-	"basic",
-	"dedup",
-	"nested",
-}
-
-var ts = []string{
-	"typeImports",
 }
