@@ -32,6 +32,7 @@ func TestGuess(t *testing.T) {
 					"basic",
 					"dedup",
 					"nested",
+					"esparse-fail",
 				}
 			}
 
@@ -50,6 +51,8 @@ func TestGuess(t *testing.T) {
 
 				tests[ext]["py"] = []string{
 					"basic",
+					"dedup",
+					"replit-packages",
 				}
 			}
 

@@ -1,0 +1,7 @@
+import express from 'express';
+
+const foo = ({
+	// esparse fails to parse the default argument here,
+	// resulting in the full guess failing
+	bar = () => { },
+}) => { };
