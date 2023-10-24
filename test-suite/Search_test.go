@@ -24,6 +24,13 @@ func TestSearch(t *testing.T) {
 				{"@replit", "@replit/crosis"},
 			})
 
+		case "python3-poetry":
+			doSearch(bt, []searchTest{
+				{"flask", "flask"},
+				{"replit-ai", "replit-ai"},
+				{"replit", "replit-ai"},
+			})
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

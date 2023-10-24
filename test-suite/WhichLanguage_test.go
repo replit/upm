@@ -14,7 +14,7 @@ func TestWhichLanguage(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		if bt.Backend.Name != "bun" && bt.Backend.Name != "nodejs-npm" && bt.Backend.Name != "nodejs-pnpm" && bt.Backend.Name != "nodejs-yarn" {
+		if bt.Backend.Name != "bun" && bt.Backend.Name != "nodejs-npm" && bt.Backend.Name != "nodejs-pnpm" && bt.Backend.Name != "nodejs-yarn" && bt.Backend.Name != "python3-poetry" {
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
 			})

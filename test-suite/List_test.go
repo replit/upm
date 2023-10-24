@@ -32,6 +32,17 @@ func TestList(t *testing.T) {
 				},
 			}
 
+		case "python3-poetry":
+			templatesToPackages = map[string][]string{
+				"no-deps": {},
+				"one-dep": {"django"},
+				"many-deps": {
+					"django",
+					"boatman",
+					"ws4py",
+				},
+			}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
