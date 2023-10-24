@@ -15,6 +15,8 @@ func TestGuess(t *testing.T) {
 
 		tests := make(map[string]map[string][]string)
 		switch bt.Backend.Name {
+		case "nodejs-npm":
+			fallthrough
 		case "nodejs-pnpm":
 			fallthrough
 		case "nodejs-yarn":
