@@ -14,6 +14,8 @@ func TestList(t *testing.T) {
 		switch bt.Backend.Name {
 		case "nodejs-npm":
 			fallthrough
+		case "nodejs-pnpm":
+			fallthrough
 		case "nodejs-yarn":
 			fallthrough
 		case "bun":

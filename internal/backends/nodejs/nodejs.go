@@ -14,6 +14,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/yaml.v2"
 )
 
 // npmSearchResults represents the data we get from the NPM API when
@@ -357,36 +358,34 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		// In Replit front end repo, `--depth Infinity` refuses to run due to Node refusing to make
-		// a string with such size. `--depth 10` works in shell, but crashes with a 0 exit code when
-		// writing to a file (eg `pnpm list --json --depth 10 >file.json`). Instead of trying to get
-		// the full dependency tree, instead we'll just get the top-level dependencies.
-		workspaceSpecContents, err := exec.Command("pnpm", "list", "--json", "--depth", "0").Output()
+		lockfileBytes, err := os.ReadFile("pnpm-lock.yaml")
 		if err != nil {
-			util.Die("pnpm list: %s", err)
+			util.Die("pnpm-lock.yaml: %s", err)
 		}
 
-		workspaceSpec := []map[string]interface{}{}
-		err = json.Unmarshal(workspaceSpecContents, &workspaceSpec)
+		lockfile := map[string]interface{}{}
+		err = yaml.Unmarshal(lockfileBytes, &lockfile)
 		if err != nil {
-			util.Die("pnpm list: %s", err)
+			util.Die("pnpm-lock.yaml: %s", err)
 		}
+
+		lockfileVersion := strings.Split(lockfile["lockfileVersion"].(string), ".")
+		lvMajor := lockfileVersion[0]
 
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		for _, pkgSpec := range workspaceSpec {
-			for depName, depInfo := range pkgSpec["dependencies"].(map[string]interface{}) {
-				pkgName := api.PkgName(depName)
-				if _, ok := pkgs[pkgName]; ok {
-					continue
-				}
-
-				depVersion, ok := depInfo.(map[string]interface{})["version"].(string)
-				if !ok {
-					util.Die("pnpm list: %s", err)
-				}
-
-				pkgs[pkgName] = api.PkgVersion(depVersion)
+		switch lvMajor {
+		case "6":
+			dependencies, ok := lockfile["dependencies"]
+			if !ok {
+				return pkgs
 			}
+
+			for pkgName, pkgInfo := range dependencies.(map[interface{}]interface{}) {
+				pkgs[api.PkgName(pkgName.(string))] = api.PkgVersion(pkgInfo.(map[interface{}]interface{})["version"].(string))
+			}
+
+		default:
+			util.Die("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
 		}
 
 		return pkgs
