@@ -381,7 +381,6 @@ var NodejsPNPMBackend = api.LanguageBackend{
 			}
 
 			for pkgName, pkgInfo := range dependencies.(map[interface{}]interface{}) {
-				// i love golang
 				pkgs[api.PkgName(pkgName.(string))] = api.PkgVersion(pkgInfo.(map[interface{}]interface{})["version"].(string))
 			}
 
