@@ -24,6 +24,12 @@ func TestRemove(t *testing.T) {
 				"many-deps": {"express", "eslint", "svelte"},
 			}
 
+		case "python3-poetry":
+			pkgsToRemove = map[string][]string{
+				"one-dep":   {"django"},
+				"many-deps": {"django", "boatman", "ws4py"},
+			}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

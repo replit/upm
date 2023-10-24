@@ -20,6 +20,9 @@ func TestInfo(t *testing.T) {
 		case "bun":
 			doInfo(bt, "express", "@replit/crosis")
 
+		case "python3-poetry":
+			doInfo(bt, "flask", "replit-ai")
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")

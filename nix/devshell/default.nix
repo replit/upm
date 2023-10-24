@@ -5,6 +5,7 @@
   nodejs,
   nodePackages,
   nix-editor,
+  poetry,
 }:
 mkShell {
   name = "upm";
@@ -15,5 +16,6 @@ mkShell {
     nodePackages.pnpm
     nodePackages.yarn
     nix-editor
+    poetry
   ];
 }

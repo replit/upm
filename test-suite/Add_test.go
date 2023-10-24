@@ -21,6 +21,9 @@ func TestAdd(t *testing.T) {
 		case "bun":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 
+		case "python3-poetry":
+			pkgs = []string{"replit-ai", "flask", "pyyaml"}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
