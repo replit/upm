@@ -21,7 +21,7 @@ func TestInfo(t *testing.T) {
 			doInfo(bt, "express", "@replit/crosis")
 
 		case "python3-poetry":
-			doInfo(bt, "flask", "replit-ai")
+			doInfo(bt, "Flask", "replit-ai")
 
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
