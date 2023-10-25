@@ -12,10 +12,14 @@ func TestNixPythonMap(t *testing.T) {
 	assert.Equal(t,
 		ReplitNixAdd{
 			Deps: []string{
-				"pkgs.pkg-config",
 				"pkgs.cairo",
+				"pkgs.libxcrypt",
+				"pkgs.pkg-config",
 			},
-			PythonLibraryDeps: nil,
+			PythonLibraryDeps: []string{
+				"pkgs.cairo",
+				"pkgs.libxcrypt",
+			},
 		},
 		deps)
 }
