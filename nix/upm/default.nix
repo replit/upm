@@ -23,7 +23,7 @@ buildGoModule rec {
       ];
   };
 
-  vendorHash = "sha256-5cOkreCEBctEu0OJ2BMfXtBJBm4C2Bi3D1RnNxsn8kQ=";
+  vendorHash = "sha256-0gxWP7qBheFjZoHi+EhPNHAkg1Y8LEwG+uc1VyR6v+4=";
 
   ldflags = [
     "-X github.com/replit/upm/internal/cli.version=${rev}"
