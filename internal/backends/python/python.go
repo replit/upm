@@ -180,11 +180,8 @@ func add(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	util.RunCmd(cmd)
 }
 
-// makePythonPoetryBackend returns a language backend for a given version of
-// Python. name is either "python2" or "python3", and python is the
-// name of an executable (either a full path or just a name like
-// "python3") to use when invoking Python. (This is used to implement
-// UPM_PYTHON2 and UPM_PYTHON3.)
+// makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
+// (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPoetryBackend(python string) api.LanguageBackend {
 	return api.LanguageBackend{
 		Name:             "python3-poetry",
