@@ -33,6 +33,7 @@ func TestGuess(t *testing.T) {
 					"dedup",
 					"nested",
 					"esparse-fail",
+					"require",
 				}
 			}
 
