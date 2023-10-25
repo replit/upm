@@ -26,7 +26,6 @@ import (
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
 	python.Python3Backend,
-	python.Python2Backend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
 	nodejs.NodejsPNPMBackend,
