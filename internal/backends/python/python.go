@@ -214,10 +214,15 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			// be a pretty easy fix, though. (Why is this
 			// so complicated??)
 
-			outputB := util.GetCmdOutput([]string{
+			outputB, err := util.GetCmdOutputFallible([]string{
 				"poetry",
 				"config", "settings.virtualenvs.path",
 			})
+			if err != nil {
+				// there's no virtualenv configured, so no package directory
+				return ""
+			}
+
 			var path string
 			if err := json.Unmarshal(outputB, &path); err != nil {
 				util.Die("parsing output from Poetry: %s", err)
