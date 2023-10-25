@@ -26,7 +26,7 @@ func TestSearch(t *testing.T) {
 
 		case "python3-poetry":
 			doSearch(bt, []searchTest{
-				{"flask", "flask"},
+				{"flask", "Flask"},
 				{"replit-ai", "replit-ai"},
 				{"replit", "replit-ai"},
 			})
