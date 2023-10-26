@@ -70,7 +70,7 @@ func initLanguage(language, languageAlias string) {
 	if st.Languages == nil {
 		st.Languages = map[string]*storeLanguage{}
 	}
-	if st.Languages[language] == nil && (languageAlias != "" || st.Languages[languageAlias] == nil) {
+	if st.Languages[language] == nil && (languageAlias == "" || st.Languages[languageAlias] == nil) {
 		st.Languages[language] = &storeLanguage{}
 	}
 }
