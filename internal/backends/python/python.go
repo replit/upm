@@ -185,6 +185,7 @@ func add(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 func makePythonPoetryBackend(python string) api.LanguageBackend {
 	return api.LanguageBackend{
 		Name:             "python3-poetry",
+		Alias:            "python-python3-poetry",
 		Specfile:         "pyproject.toml",
 		Lockfile:         "poetry.lock",
 		FilenamePatterns: []string{"*.py"},

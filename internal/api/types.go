@@ -143,6 +143,10 @@ type LanguageBackend struct {
 	// This field is mandatory.
 	Name string
 
+	// An alias for the backend, useful for backwards compatibility
+	// when renaming backends.
+	Alias string
+
 	// The filename of the specfile, e.g. "pyproject.toml" for
 	// Poetry.
 	//
