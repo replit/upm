@@ -54,6 +54,7 @@ func matchesLanguage(b api.LanguageBackend, language string) bool {
 	for _, lPart := range strings.Split(language, "-") {
 		if !bParts[lPart] {
 			checkAlias = true
+			break
 		}
 	}
 	if checkAlias {
