@@ -1,0 +1,3 @@
+const express = await import("express")
+const adapter = import("@sveltejs/adapter-node")
+const foobar = await import("foo", "bar")
