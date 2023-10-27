@@ -73,13 +73,12 @@ func (bt *BackendT) UpmGuess(expect ...string) {
 	}
 
 	guesses := strings.Split(strings.TrimSpace(out.Stdout), "\n")
-	if len(guesses) != len(expect) {
-		bt.Fail("expected %d guesses, got %d", len(expect), len(guesses))
-	}
-
 	for len(guesses) > 0 {
 		guess := guesses[0]
 		guesses = guesses[1:]
+		if guess == "" {
+			continue
+		}
 
 		found := false
 		for ii, expected := range expect {
