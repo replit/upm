@@ -1,17 +1,15 @@
 package nodejs
 
 import (
-	"context"
-	"log"
+	"fmt"
 	"os"
-	"path"
-	"path/filepath"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
-	sitter "github.com/smacker/go-tree-sitter"
 	"github.com/smacker/go-tree-sitter/javascript"
+	"github.com/smacker/go-tree-sitter/typescript/tsx"
+	"github.com/smacker/go-tree-sitter/typescript/typescript"
 )
 
 var internalModules = []string{
@@ -57,15 +55,17 @@ var internalModules = []string{
 	"zlib",
 }
 
-type parseResult struct {
-	importPaths []string
-	ok          bool
-}
+// nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
+func nodejsGuess() (map[api.PkgName]bool, bool) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		util.Die("couldn't get working directory: %s", err)
+	}
 
-func parseFile(contents []byte, results chan parseResult) {
-	language := javascript.GetLanguage()
+	fmt.Println("cwd:", cwd)
 
-	// NOTE: only `@import` tags are handled.
+	dir := os.DirFS(cwd)
+
 	importsQuery := `
 (import_statement
   source: (string) @import)
@@ -77,168 +77,108 @@ func parseFile(contents []byte, results chan parseResult) {
  (#eq? @function "require"))
 `
 
-	query, err := sitter.NewQuery([]byte(importsQuery), language)
+	js := javascript.GetLanguage()
+	jsPkgs, err := util.GuessWithTreeSitter(dir, js, importsQuery, jsPathGlobs, []string{})
 	if err != nil {
-		// This should never happen - the query is hardcoded
-		log.Fatalln(err, importsQuery)
+		util.Die("couldn't guess imports: %s", err)
 	}
 
-	qc := sitter.NewQueryCursor()
+	fmt.Println("jsPkgs:", jsPkgs)
 
-	node, err := sitter.ParseCtx(context.Background(), contents, language)
+	ts := typescript.GetLanguage()
+	tsPkgs, err := util.GuessWithTreeSitter(dir, ts, importsQuery, tsPathGlobs, []string{})
 	if err != nil {
-		results <- parseResult{nil, false}
-		return
+		util.Die("couldn't guess imports: %s", err)
 	}
 
-	qc.Exec(query, node)
+	fmt.Println("tsPkgs:", tsPkgs)
 
-	importPaths := []string{}
-	for {
-		match, ok := qc.NextMatch()
-		if !ok {
-			break
-		}
-
-		match = qc.FilterPredicates(match, contents)
-		if len(match.Captures) == 0 {
-			continue
-		}
-
-		var importPath string
-		for _, capture := range match.Captures {
-			if query.CaptureNameForId(capture.Index) == "import" {
-				importPath = capture.Node.Content(contents)
-				break
-			}
-		}
-
-		if importPath == "" {
-			// shouldn't happen, with the way the query is written and handled.
-			util.Die("Failed to parse import path")
-		}
-
-		importPaths = append(importPaths, strings.Trim(importPath, "'\"`"))
+	tsx := tsx.GetLanguage()
+	tsxPkgs, err := util.GuessWithTreeSitter(dir, tsx, importsQuery, tsxPathGlobs, []string{})
+	if err != nil {
+		util.Die("couldn't guess imports: %s", err)
 	}
 
-	results <- parseResult{importPaths, true}
+	fmt.Println("tsxPkgs:", tsPkgs)
+
+	modules := append([]string{}, jsPkgs...)
+	modules = append(modules, tsPkgs...)
+	modules = append(modules, tsxPkgs...)
+
+	return findImports(modules), true
 }
 
-func guessBareImports() map[api.PkgName]bool {
+func findImports(names []string) map[api.PkgName]bool {
 	pkgs := map[api.PkgName]bool{}
-	results := make(chan parseResult)
-	numParsedFiles := 0
-	var visitDir func(dirName string)
 
-	visitDir = func(dirName string) {
-		for _, ignoredPath := range util.IgnoredPaths {
-			if ignoredPath == filepath.Base(dirName) {
-				return
-			}
-		}
-
-		files, err := os.ReadDir(dirName)
-		if err != nil {
-			log.Fatalln(err)
-		}
-
-		for _, file := range files {
-			absPath := filepath.Join(dirName, file.Name())
-			if file.IsDir() {
-				visitDir(absPath)
-				continue
-			}
-
-			extension := path.Ext(absPath)
-			if extension != ".js" &&
-				extension != ".jsx" &&
-				extension != ".tsx" &&
-				extension != ".ts" &&
-				extension != ".mjs" &&
-				extension != ".cjs" {
-				continue
-			}
-
-			contents, err := os.ReadFile(absPath)
-			if err != nil {
-				log.Fatalln(err)
-			}
-
-			numParsedFiles++
-			go parseFile(contents, results)
-		}
-	}
-
-	dir, err := filepath.Abs(".")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	visitDir(dir)
-
-	for i := 0; i < numParsedFiles; i++ {
-		result := <-results
-		if !result.ok {
+	for _, mod := range names {
+		if mod == "" {
 			continue
 		}
 
-		for _, mod := range result.importPaths {
-			// Since Node.js 16, you can prefix the import path with `node:` to denote that the
-			// module is a core module.
-			if strings.HasPrefix(mod, "node:") {
-				continue
-			}
-
-			// Skip empty imports
-			if mod == "" {
-				continue
-			}
-
-			// Skip absolute imports
-			if mod[0] == '/' {
-				continue
-			}
-
-			// Skip relative imports
-			if mod[0] == '.' {
-				continue
-			}
-
-			// Skip external files, don't import from http or https
-			if strings.HasPrefix(mod, "http:") || strings.HasPrefix(mod, "https:") {
-				continue
-			}
-
-			// Skip script loaders
-			if strings.Contains(mod, "!") {
-				continue
-			}
-
-			// Handle scoped modules or internal modules
-			if mod[0] == '@' {
-				parts := strings.Split(mod, "/")
-				if len(parts) < 2 {
-					continue
-				}
-				mod = strings.Join(parts[:2], "/")
-			} else {
-				parts := strings.Split(mod, "/")
-				mod = parts[0]
-
-				isInternalMod := false
-				for _, internal := range internalModules {
-					if internal == mod {
-						isInternalMod = true
-						break
-					}
-				}
-				if isInternalMod {
-					continue
-				}
-			}
-
-			pkgs[api.PkgName(mod)] = true
+		if pkgs[api.PkgName(mod)] {
+			continue
 		}
+
+		// Since Node.js 16, you can prefix the import path with `node:` to denote that the
+		// module is a core module.
+		if strings.HasPrefix(mod, "node:") {
+			continue
+		}
+
+		if strings.HasPrefix(mod, "bun:") {
+			continue
+		}
+
+		// Skip empty imports
+		if mod == "" {
+			continue
+		}
+
+		// Skip absolute imports
+		if mod[0] == '/' {
+			continue
+		}
+
+		// Skip relative imports
+		if mod[0] == '.' {
+			continue
+		}
+
+		// Skip external files, don't import from http or https
+		if strings.HasPrefix(mod, "http:") || strings.HasPrefix(mod, "https:") {
+			continue
+		}
+
+		// Skip script loaders
+		if strings.Contains(mod, "!") {
+			continue
+		}
+
+		// Handle scoped modules or internal modules
+		if mod[0] == '@' {
+			parts := strings.Split(mod, "/")
+			if len(parts) < 2 {
+				continue
+			}
+			mod = strings.Join(parts[:2], "/")
+		} else {
+			parts := strings.Split(mod, "/")
+			mod = parts[0]
+
+			isInternalMod := false
+			for _, internal := range internalModules {
+				if internal == mod {
+					isInternalMod = true
+					break
+				}
+			}
+			if isInternalMod {
+				continue
+			}
+		}
+
+		pkgs[api.PkgName(mod)] = true
 	}
 
 	return pkgs

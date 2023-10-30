@@ -244,13 +244,19 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 })
 
-// nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
-func nodejsGuess() (map[api.PkgName]bool, bool) {
-	tempdir := util.TempDir()
-	defer os.RemoveAll(tempdir)
-	pkgs := guessBareImports()
+var jsPathGlobs = []string{
+	"*.js",
+	"*.jsx",
+	"*.mjs",
+	"*.cjs",
+}
 
-	return pkgs, true
+var tsPathGlobs = []string{
+	"*.ts",
+}
+
+var tsxPathGlobs = []string{
+	"*.tsx",
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
