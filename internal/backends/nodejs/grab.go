@@ -1,7 +1,6 @@
 package nodejs
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -62,8 +61,6 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 		util.Die("couldn't get working directory: %s", err)
 	}
 
-	fmt.Println("cwd:", cwd)
-
 	dir := os.DirFS(cwd)
 
 	importsQuery := `
@@ -83,23 +80,17 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 		util.Die("couldn't guess imports: %s", err)
 	}
 
-	fmt.Println("jsPkgs:", jsPkgs)
-
 	ts := typescript.GetLanguage()
 	tsPkgs, err := util.GuessWithTreeSitter(dir, ts, importsQuery, tsPathGlobs, []string{})
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
 
-	fmt.Println("tsPkgs:", tsPkgs)
-
 	tsx := tsx.GetLanguage()
 	tsxPkgs, err := util.GuessWithTreeSitter(dir, tsx, importsQuery, tsxPathGlobs, []string{})
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
-
-	fmt.Println("tsxPkgs:", tsPkgs)
 
 	modules := append([]string{}, jsPkgs...)
 	modules = append(modules, tsPkgs...)

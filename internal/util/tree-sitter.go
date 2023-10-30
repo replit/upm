@@ -42,8 +42,6 @@ func GuessWithTreeSitter(dir fs.FS, lang *sitter.Language, queryImports string, 
 		}
 	}
 
-	fmt.Println("pathsToSearch:", pathsToSearch)
-
 	query, err := sitter.NewQuery([]byte(queryImports), lang)
 	if err != nil {
 		return nil, err
@@ -96,7 +94,7 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 	for {
 		match, ok := qc.NextMatch()
 		if !ok {
-			if match == nil {
+			if match != nil {
 				err = fmt.Errorf("error querying %s for import paths", file)
 			}
 			break
