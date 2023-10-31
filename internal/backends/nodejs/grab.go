@@ -63,6 +63,7 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 
 	dir := os.DirFS(cwd)
 
+	// NOTE: only `@import` tags are handled.
 	importsQuery := `
 (import_statement
   source: (string) @import)

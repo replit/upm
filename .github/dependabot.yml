@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
+  # TODO: https://github.com/dependabot/dependabot-core/issues/4364
+  - directory: "/test-suite"
+    package-ecosystem: "npm"
+    ignore: "*"
+  - directory: "/test-suite"
+    package-ecosystem: "pnpm"
+    ignore: "*"
+  - directory: "/test-suite"
+    package-ecosystem: "poetry"
+    ignore: "*"
+  - directory: "/test-suite"
+    package-ecosystem: "yarn"
+    ignore: "*"
