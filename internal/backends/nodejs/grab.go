@@ -71,7 +71,7 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 ((call_expression
      function: [(identifier) @function
 		            (import)]
-     arguments: (arguments . (string) @import .))
+     arguments: (arguments . [(string) @import (template_string) @import] .))
  (#eq? @function "require"))
 `
 
