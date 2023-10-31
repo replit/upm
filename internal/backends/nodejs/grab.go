@@ -65,15 +65,16 @@ type parseResult struct {
 func parseFile(contents []byte, results chan parseResult) {
 	language := javascript.GetLanguage()
 
+	// NOTE: only `@import` tags are handled.
 	importsQuery := `
 (import_statement
-	source: (string) @import)
+  source: (string) @import)
 
-(
-	(call_expression
-		function: (identifier) @function
-		arguments: (arguments ((_) @other-imports)? ((string) @import) .))
-	(#eq? @function "require"))
+((call_expression
+     function: [(identifier) @function
+		            (import)]
+     arguments: (arguments . (string) @import .))
+ (#eq? @function "require"))
 `
 
 	query, err := sitter.NewQuery([]byte(importsQuery), language)
@@ -105,24 +106,18 @@ func parseFile(contents []byte, results chan parseResult) {
 		}
 
 		var importPath string
-
-		if match.PatternIndex == 0 {
-			importPath = match.Captures[0].Node.Content(contents)
-		} else if match.PatternIndex == 1 {
-			// TODO: https://github.com/smacker/go-tree-sitter/issues/110
-			// once the above issue is resolved, uncomment the `@other-imports` predicate
-			// and remove this check
-			if len(match.Captures) != 2 {
-				continue
+		for _, capture := range match.Captures {
+			if query.CaptureNameForId(capture.Index) == "import" {
+				importPath = capture.Node.Content(contents)
+				break
 			}
-
-			importPath = match.Captures[1].Node.Content(contents)
 		}
 
-		// TODO: https://github.com/smacker/go-tree-sitter/issues/111
-		// once the above issue is resolved, use the string destructuring used in the
-		// `import_statement` pattern above in the `call_expression` pattern instead
-		// of using this hacky trim
+		if importPath == "" {
+			// shouldn't happen, with the way the query is written and handled.
+			util.Die("Failed to parse import path")
+		}
+
 		importPaths = append(importPaths, strings.Trim(importPath, "'\"`"))
 	}
 
