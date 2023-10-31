@@ -103,6 +103,8 @@ func findImports(names []string) map[api.PkgName]bool {
 	pkgs := map[api.PkgName]bool{}
 
 	for _, mod := range names {
+		mod = strings.Trim(mod, "\"'`")
+
 		if mod == "" {
 			continue
 		}
