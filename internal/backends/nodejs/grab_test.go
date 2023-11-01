@@ -8,14 +8,14 @@ import (
 
 func TestParseFile(t *testing.T) {
 	expected := map[string]bool{
-		"'fs'": true,
-		"'assert'": true,
-		"'path'": true,
-		"\"nan\"": true,
-		"'buffer'": true,
-		"\"console\"": true,
-		"'dns'": true,
-		"`child_process`": true,
+		"fs": true,
+		"assert": true,
+		"path": true,
+		"nan": true,
+		"buffer": true,
+		"console": true,
+		"dns": true,
+		"child_process": true,
 	}
 
 	content := `

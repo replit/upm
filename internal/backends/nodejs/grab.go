@@ -89,6 +89,7 @@ func findImports(dir string) (map[string]bool, error) {
 		return nil, err
 	}
 	for _, pkg := range jsPkgs {
+		pkg = strings.Trim(pkg, "\"'`")
 		foundImportPaths[pkg] = true
 	}
 
@@ -98,6 +99,7 @@ func findImports(dir string) (map[string]bool, error) {
 		return nil, err
 	}
 	for _, pkg := range tsPkgs {
+		pkg = strings.Trim(pkg, "\"'`")
 		foundImportPaths[pkg] = true
 	}
 
@@ -107,6 +109,7 @@ func findImports(dir string) (map[string]bool, error) {
 		return nil, err
 	}
 	for _, pkg := range tsxPkgs {
+		pkg = strings.Trim(pkg, "\"'`")
 		foundImportPaths[pkg] = true
 	}
 
@@ -117,8 +120,6 @@ func filterImports(foundPaths map[string]bool) map[api.PkgName]bool {
 	pkgs := map[api.PkgName]bool{}
 
 	for mod := range foundPaths {
-		mod = strings.Trim(mod, "\"'`")
-
 		if mod == "" {
 			continue
 		}
