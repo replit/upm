@@ -75,10 +75,15 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
  (#eq? @function "require"))
 `
 
+	foundImportPaths := map[string]bool{}
+
 	js := javascript.GetLanguage()
 	jsPkgs, err := util.GuessWithTreeSitter(dir, js, importsQuery, jsPathGlobs, []string{})
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
+	}
+	for _, pkg := range jsPkgs {
+		foundImportPaths[pkg] = true
 	}
 
 	ts := typescript.GetLanguage()
@@ -86,24 +91,26 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
+	for _, pkg := range tsPkgs {
+		foundImportPaths[pkg] = true
+	}
 
 	tsx := tsx.GetLanguage()
 	tsxPkgs, err := util.GuessWithTreeSitter(dir, tsx, importsQuery, tsxPathGlobs, []string{})
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
+	for _, pkg := range tsxPkgs {
+		foundImportPaths[pkg] = true
+	}
 
-	modules := append([]string{}, jsPkgs...)
-	modules = append(modules, tsPkgs...)
-	modules = append(modules, tsxPkgs...)
-
-	return findImports(modules), true
+	return findImports(foundImportPaths), true
 }
 
-func findImports(names []string) map[api.PkgName]bool {
+func findImports(foundPaths map[string]bool) map[api.PkgName]bool {
 	pkgs := map[api.PkgName]bool{}
 
-	for _, mod := range names {
+	for mod := range foundPaths {
 		mod = strings.Trim(mod, "\"'`")
 
 		if mod == "" {
