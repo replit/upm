@@ -18,6 +18,12 @@ func MaybeTrace() {
 		return
 	}
 
+	ddHost := os.Getenv("DD_AGENT_HOST")
+	ddPort := os.Getenv("DD_AGENT_PORT")
+
+	fmt.Println("replid: ", replid)
+	fmt.Println("ddHost: ", ddHost)
+	fmt.Println("ddPort: ", ddPort)
 	fmt.Println("UPM.starting trace")
 	tracer.Start(
 		tracer.WithService("upm"),
