@@ -2,6 +2,7 @@
 package python
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // this generates a mapping of pypi packages <-> modules
@@ -362,12 +364,15 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	guessSpan, ctx := tracer.StartSpanFromContext(context.Background(), "guess")
+	defer guessSpan.Finish()
 	pypiMap, err := NewPypiMap()
 	if err != nil {
 		util.Die(err.Error())
 	}
 	defer pypiMap.Close()
 
+	pipreqsSpan, ctx := tracer.StartSpanFromContext(ctx, "guess")
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
@@ -386,6 +391,8 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 	if err := json.Unmarshal(outputB, &output); err != nil {
 		util.Die("pipreqs: %s", err)
 	}
+
+	pipreqsSpan.Finish()
 
 	availMods := map[string]bool{}
 
