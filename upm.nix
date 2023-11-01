@@ -1,19 +1,16 @@
-{ buildGoModule, statik, rev, go_1_17, makeWrapper } :
+{ buildGoModule, statik, rev, go_1_20, makeWrapper } :
 
 let
-
-  # TODO: buildGo117Module is not available in nixpkgs right now because it doesn't work
-  # on darwin yet. Once that has been fixed, we won't need this override anymore.
-  buildGo117Module = buildGoModule.override { go = go_1_17; };
+  buildGo120Module = buildGoModule.override { go = go_1_20; };
 
 in
-buildGo117Module {
+buildGo120Module {
     pname = "upm";
     version = rev;
 
     src = ./.;
 
-    vendorSha256 = "sha256-pwvBk9i3mzhWCbV+eHmCxrYGmo4kX9ozm567dS5vjFI=";
+    vendorSha256 = "sha256-HJ17fDWI7NY1HR6zyLre6jaYDxXf2oMICSwwhIzIThg=";
 
     ldflags = [
       "-X github.com/replit/upm/internal/cli.version=${rev}"
