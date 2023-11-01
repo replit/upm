@@ -1,6 +1,7 @@
 package python
 
 import (
+	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -236,72 +237,17 @@ var internalModules = []string{
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
-	pypiMap, err := NewPypiMap()
+	cwd, err := os.Getwd()
 	if err != nil {
-		util.Die(err.Error())
-	}
-	defer pypiMap.Close()
-
-	availMods := map[string]bool{}
-
-	if knownPkgs, err := listSpecfile(); err == nil {
-		for pkgName := range knownPkgs {
-			mods, ok := pypiMap.PackageToModules(string(pkgName))
-			if ok {
-				for _, mod := range mods {
-					availMods[mod] = true
-				}
-			}
-		}
+		util.Die("couldn't get working directory: %s", err)
 	}
 
-	pkgs := map[api.PkgName]bool{}
-
-	for fullModname, pragmas := range output.Imports {
-		modname := getTopLevelModuleName(fullModname)
-		// provided by an existing package or perhaps by the system
-		if availMods[modname] {
-			continue
-		}
-
-		// If this module has a package pragma, use that
-		if pragmas.Package != "" {
-			name := api.PkgName(pragmas.Package)
-			pkgs[normalizePackageName(name)] = true
-
-		} else {
-			// Otherwise, try and look it up in Pypi
-			var pkg string
-			var ok bool
-
-			modNameParts := strings.Split(fullModname, ".")
-			for len(modNameParts) > 0 {
-				testModName := strings.Join(modNameParts, ".")
-
-				// test overrides
-				pkg, ok = moduleToPypiPackageOverride[testModName]
-				if ok {
-					break
-				}
-
-				// test pypi
-				pkg, ok = pypiMap.ModuleToPackage(testModName)
-				if ok {
-					break
-				}
-
-				// loop with everything except the deepest submodule
-				modNameParts = modNameParts[:len(modNameParts)-1]
-			}
-
-			if ok {
-				name := api.PkgName(pkg)
-				pkgs[normalizePackageName(name)] = true
-			}
-		}
+	foundImportPaths, err := findImports(cwd)
+	if err != nil {
+		util.Die("couldn't guess imports: %s", err)
 	}
 
-	return pkgs, output.Success
+	return filterImports(foundImportPaths)
 }
 
 func findImports(dir string) (map[string]bool, error) {
@@ -320,9 +266,21 @@ func findImports(dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(found map[string]bool) (map[api.PkgName]bool, bool) {
-	for pkg := range found {
-		mod := strings.Split(pkg, ".")[0]
+func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+	// filter out internal modules
+	for pkg := range foundPkgs {
+		mod := getTopLevelModuleName(pkg)
+		found := false
+		for _, internalMod := range internalModules {
+			if internalMod == mod {
+				found = true
+				break
+			}
+		}
+
+		if found {
+			delete(foundPkgs, pkg)
+		}
 	}
 
 	pypiMap, err := NewPypiMap()
@@ -333,14 +291,8 @@ func filterImports(found map[string]bool) (map[api.PkgName]bool, bool) {
 
 	pkgs := map[api.PkgName]bool{}
 
-	for fullModname := range found {
-		modname := getTopLevelModuleName(fullModname)
-		// provided by an existing package or perhaps by the system
-		if pypiMap.ModuleExists(modname) {
-			continue
-		}
-
-		// Otherwise, try and look it up in Pypi
+	for fullModname := range foundPkgs {
+		// try and look it up in Pypi
 		var pkg string
 		var ok bool
 
