@@ -13,7 +13,7 @@ buildGo117Module {
 
     src = ./.;
 
-    vendorSha256 = "sha256-adPAwVN/2dbTBr1kt29rrfy+5dDEpCuZ5v5mPnv8sFk=";
+    vendorSha256 = "sha256-pwvBk9i3mzhWCbV+eHmCxrYGmo4kX9ozm567dS5vjFI=";
 
     ldflags = [
       "-X github.com/replit/upm/internal/cli.version=${rev}"
