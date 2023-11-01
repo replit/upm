@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -78,7 +78,7 @@ func search(query string) []api.PkgInfo {
 		return pkgs
 	}
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		util.Die("Could not read response: %s", err)
 	}
@@ -111,7 +111,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 		util.Die("failed to get the versions: %s", err)
 	}
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		util.Die("could not read response: %s", err)
 	}
@@ -129,7 +129,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 		util.Die("failed to get the spec: %s", err)
 	}
 	defer res.Body.Close()
-	body, err = ioutil.ReadAll(res.Body)
+	body, err = io.ReadAll(res.Body)
 	if err != nil {
 		util.Die("could not read response: %s", err)
 	}

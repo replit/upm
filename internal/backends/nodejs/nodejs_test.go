@@ -1,7 +1,6 @@
 package nodejs
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -171,13 +170,13 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 }
 
 func verify(t *testing.T, tc TestCase, extension string) {
-	dir, err := ioutil.TempDir(".", "temp")
+	dir, err := os.MkdirTemp(".", "temp")
 	if err != nil {
 		t.Error(err)
 	}
 	defer os.RemoveAll(dir)
 
-	file, err := ioutil.TempFile(dir, "*."+extension)
+	file, err := os.CreateTemp(dir, "*."+extension)
 	if err != nil {
 		t.Error(err)
 	}

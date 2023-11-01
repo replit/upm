@@ -1,6 +1,5 @@
 /cmd/upm/upm
 /dist/
-/internal/statik/
 /packaging/aur/*.tar.gz
 /packaging/aur/*.tar.xz
 /packaging/aur/pkg/
@@ -16,3 +15,9 @@ internal/backends/python/regression_tests/test
 result
 internal/backends/python/pypi_map.sqlite
 play
+
+/vendor
+
+/.direnv
+/.envrc
+/upm

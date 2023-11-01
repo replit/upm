@@ -1,17 +1,21 @@
 package nodejs
 
-import "testing"
+import (
+	"fmt"
+	"os"
+	"testing"
+)
 
 func TestParseFile(t *testing.T) {
-	expected := []string{
-		"fs",
-		"assert",
-		"path",
-		"nan",
-		"buffer",
-		"console",
-		"dns",
-		"child_process",
+	expected := map[string]bool{
+		"fs": true,
+		"assert": true,
+		"path": true,
+		"nan": true,
+		"buffer": true,
+		"console": true,
+		"dns": true,
+		"child_process": true,
 	}
 
 	content := `
@@ -38,23 +42,33 @@ const foo = ({
 process.exit(1);
 `
 
-	results := make(chan parseResult)
-	go parseFile([]byte(content), results)
-	result := <-results
-
-	if !result.ok {
-		t.Errorf("Parse failed")
+	testDir := t.TempDir()
+	testFile := testDir + "/index.js"
+	err := os.WriteFile(testFile, []byte(content), 0644)
+	fmt.Println("wrote to", testFile)
+	if err != nil {
+		t.Fatal("failed to write test file", err)
 	}
 
-	if len(result.importPaths) != len(expected) {
-		t.Errorf("Expected %d imports, got %d", len(expected), len(result.importPaths))
+	found, err := findImports(testDir)
+
+	if err != nil {
+		t.Fatal("Parse failed", err)
 	}
 
-	for i, path := range result.importPaths {
-		if i >= len(expected) {
+	if len(found) != len(expected) {
+		t.Errorf("Expected %d imports, got %d", len(expected), len(found))
+	}
+
+	for path := range found {
+		if _, ok := expected[path]; ok {
+			delete(expected, path)
+		} else {
 			t.Errorf("Unexpected import %s", path)
-		} else if path != expected[i] {
-			t.Errorf("Expected %s, got %s", expected[i], path)
 		}
+	}
+
+	if len(expected) > 0 {
+		t.Errorf("Missing imports: %v", expected)
 	}
 }

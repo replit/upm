@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -31,7 +30,7 @@ type project struct {
 
 // looks for the .NET project files file in the current directory
 func findSpecFile() string {
-	files, err := ioutil.ReadDir("./")
+	files, err := os.ReadDir("./")
 	if err != nil {
 		util.Die("can't read current directory: %s", err)
 	}
@@ -68,7 +67,7 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 
 // ReadSpec reads the spec and builds up packages.
 func ReadSpec(specReader io.Reader) (map[api.PkgName]api.PkgSpec, error) {
-	xmlbytes, err := ioutil.ReadAll(specReader)
+	xmlbytes, err := io.ReadAll(specReader)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +122,7 @@ type lockFile struct {
 
 // ReadLock reads the lock file and buils up packages.
 func ReadLock(lockFileReader io.Reader) (map[api.PkgName]api.PkgVersion, error) {
-	jsonBytes, err := ioutil.ReadAll(lockFileReader)
+	jsonBytes, err := io.ReadAll(lockFileReader)
 	if err != nil {
 		return nil, err
 	}

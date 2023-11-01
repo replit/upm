@@ -4,11 +4,11 @@ package java
 import (
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"regexp"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -97,7 +97,7 @@ func readProjectOrMakeEmpty(path string) Project {
 	var xmlbytes []byte
 	if util.Exists("pom.xml") {
 		var err error
-		xmlbytes, err = ioutil.ReadFile("pom.xml")
+		xmlbytes, err = os.ReadFile("pom.xml")
 		if err != nil {
 			util.Die("error reading pom.xml: %s", err)
 		}
@@ -310,7 +310,8 @@ var JavaBackend = api.LanguageBackend{
 			"dependency:copy-dependencies",
 		})
 	},
-	ListSpecfile: listSpecfile,
-	ListLockfile: listLockfile,
-	Lock:         func() {},
+	ListSpecfile:                       listSpecfile,
+	ListLockfile:                       listLockfile,
+	Lock:                               func() {},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

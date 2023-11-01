@@ -3,15 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 )
 
 type DistPackageMetadata struct {
-	Packages        []string  `json:"packages"`
-	InstallRequires []string  `json:"install_requires"`
-	Error           string    `json:"error"`
+	Packages        []string `json:"packages"`
+	InstallRequires []string `json:"install_requires"`
+	Error           string   `json:"error"`
 }
 
 func dumpSetupPy(path string) (DistPackageMetadata, error) {
@@ -49,14 +48,14 @@ func dumpSetupPy(path string) (DistPackageMetadata, error) {
 }
 
 func ExtractSdist(reader ArchiveReader) ([]string, error) {
-	tempDir, _ := ioutil.TempDir(os.TempDir(), "sdist-")
+	tempDir, _ := os.MkdirTemp(os.TempDir(), "sdist-")
 	defer os.RemoveAll(tempDir)
 	err := reader.Dump(tempDir)
 	if err != nil {
 		return nil, err
 	}
 
-	contents, err := ioutil.ReadDir(tempDir)
+	contents, err := os.ReadDir(tempDir)
 	if err != nil {
 		return nil, err
 	}
@@ -68,4 +67,3 @@ func ExtractSdist(reader ArchiveReader) ([]string, error) {
 	metadata, err := dumpSetupPy(tempDir + "/" + contents[0].Name() + "/setup.py")
 	return metadata.Packages, err
 }
-

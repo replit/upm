@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"sort"
 	"strings"
@@ -71,7 +70,7 @@ func LoadAllPackageInfo(cacheDir string, cacheFilePath string) map[string]Packag
 		file.Close()
 	}
 
-	entries, err := ioutil.ReadDir(cacheDir)
+	entries, err := os.ReadDir(cacheDir)
 
 	if err != nil {
 		return registry

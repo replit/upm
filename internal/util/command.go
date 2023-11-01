@@ -33,14 +33,22 @@ func RunCmd(cmd []string) {
 	}
 }
 
+// GetCmdOutputFallible prints and runs the given command, returning its
+// stdout as a string. Stderr goes to the terminal. GetCmdOutputFallible
+// does not exit the process on error or command failure, but instead
+// returns an error.
+func GetCmdOutputFallible(cmd []string) ([]byte, error) {
+	ProgressMsg(quoteCmd(cmd))
+	command := exec.Command(cmd[0], cmd[1:]...)
+	command.Stderr = os.Stderr
+	return command.Output()
+}
+
 // GetCmdOutput prints and runs the given command, returning its
 // stdout as a string. Stderr goes to the terminal. GetCmdOutput exits
 // the process on error or command failure.
 func GetCmdOutput(cmd []string) []byte {
-	ProgressMsg(quoteCmd(cmd))
-	command := exec.Command(cmd[0], cmd[1:]...)
-	command.Stderr = os.Stderr
-	output, err := command.Output()
+	output, err := GetCmdOutputFallible(cmd)
 	if err != nil {
 		Die("%s", err)
 	}

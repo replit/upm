@@ -3,121 +3,49 @@ version: v1.0
 name: UPM
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
+    type: s1-goval
 
 global_job_config:
+  env_vars:
+    - name: UPM_CI
+      value: "1"
   prologue:
     commands:
       - checkout
       - git switch --detach
       - export PATH="/tmp:$PATH"
+      - source ./.semaphore/install_nix.sh
 
 blocks:
-  - name: setup
-    dependencies: []
-    task:
-      jobs:
-        - name: cache nix installer
-          commands:
-            - >-
-              cache has_key nix-installer || (
-              curl
-              --proto '=https'
-              -o /tmp/nix-installer
-              --tlsv1.2 -sSf -L
-              https://github.com/DeterminateSystems/nix-installer/releases/download/v0.7.0/nix-installer-x86_64-linux
-              && chmod +x /tmp/nix-installer
-              && cache store nix-installer /tmp/nix-installer
-              )
-            # TODO: cache the dependencies of the nix package
-            # this might be possible based on exploratory:
-            # ```
-            # $ DERIVATION="$(nix path-info --derivation .)"
-            # $ declare -p DERIVATION
-            # $ nix-store --query --references "${DERIVATION}"
-            # ```
-            # The above spits out the deps of the derivation
-            # just have to filter out the `-source`
-        - name: cache golint-ci
-          commands:
-            - >-
-              cache has_key golangci-lint || (
-              mkdir -p bin &&
-              curl
-              -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
-              | sh -s -- -b /tmp v1.52.2
-              && cache store golangci-lint /tmp/golangci-lint
-              )
-
   - name: build
-    dependencies: [ setup ]
+    dependencies: [ ]
     task:
-      prologue:
-        commands:
-          - cache restore nix-installer
-          - sudo /tmp/nix-installer install linux --no-confirm --logger compact
-          - . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       jobs:
         - name: nix
           commands:
-            - cache restore nix-store
             - nix build
             - ./result/bin/upm --version
-            - cache store nix-store /nix
-        # TODO: get this working again
-        # - name: docker
-        #   commands:
-        #     - make light full
-  
+
+  - name: test
+    dependencies: [ build ]
+    task:
+      jobs:
+        - name: test-suite
+          commands:
+            - nix develop -c nix shell -c make test-suite
+      epilogue:
+        commands:
+          - test-results publish junit.xml
+
   - name: lint
-    dependencies: [ setup ]
+    dependencies: [ ]
     task:
       jobs:
         - name: golang lint
           commands:
             - make generated
             - cache restore golangci-lint
-            - golangci-lint run
-
-  - name: release
-    dependencies: [ build, lint ]
-    run:
-      # git tag can be eg 'v1.0', 'v1.0.1', 'v1.0-alpha', or 'v1.0-alpha-4'
-      when: "tag =~ 'v[0-9]+\.[0-9]+(\.[0-9]+)?(-.*)*'"
-    task:
-      prologue:
-        commands:
-          - cache restore dist
-      jobs:
-        - name: goreleaser
-          commands:
             - >-
-              cache has_key goreleaser || (
-              curl
-              --proto '=https'
-              -o /tmp/goreleaser
-              -sL https://git.io/goreleaser
-              && chmod +x /tmp/goreleaser
-              && cache store goreleaser /tmp/goreleaser
-              )
-            - cache restore goreleaser
-            - goreleaser --release-notes=<(scripts/extract-changelog.py)
-        # - name: snapcraft
-        #   commands:
-        #     - >-
-        #       snapcraft login --with <(
-        #         echo "$SNAPCRAFT_LOGIN_FILE" |
-        #         base64 --decode --ignore-garbage
-        #       )
-        #     - scripts/upload-snap.bash
-        # - name: deploy
-        #   commands:
-        #     - >-
-        #       echo "$DOCKER_PASSWORD" |
-        #         docker login
-        #         --username "$DOCKER_USERNAME"
-        #         --password-stdin
-        #     - make deploy
-        #     - |
-        #       git tag "semaphoreci_pipeline_"
+              curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
+              | sh -s -- -b /tmp v1.52.2
+            - /tmp/golangci-lint run

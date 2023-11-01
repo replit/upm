@@ -6,7 +6,6 @@ import (
 	"compress/gzip"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 )
@@ -21,7 +20,7 @@ type ArchiveReader struct {
 }
 
 func MakeZipReader(reader io.Reader, size int64) (ArchiveReader, error) {
-	cacheFile, err := ioutil.TempFile(os.TempDir(), "pypi-")
+	cacheFile, err := os.CreateTemp(os.TempDir(), "pypi-")
 	if err != nil {
 		return ArchiveReader{}, fmt.Errorf("Cannot open cache for zip: %v", err)
 	}

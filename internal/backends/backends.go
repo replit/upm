@@ -26,10 +26,9 @@ import (
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
 	python.Python3Backend,
-	python.Python2Backend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
-    nodejs.NodejsPNPMBackend,
+	nodejs.NodejsPNPMBackend,
 	nodejs.NodejsYarnBackend,
 	ruby.RubyBackend,
 	elisp.ElispBackend,
@@ -51,9 +50,22 @@ func matchesLanguage(b api.LanguageBackend, language string) bool {
 	for _, bPart := range strings.Split(b.Name, "-") {
 		bParts[bPart] = true
 	}
+	checkAlias := false
 	for _, lPart := range strings.Split(language, "-") {
 		if !bParts[lPart] {
-			return false
+			checkAlias = true
+			break
+		}
+	}
+	if checkAlias {
+		bParts = map[string]bool{}
+		for _, bPart := range strings.Split(b.Alias, "-") {
+			bParts[bPart] = true
+		}
+		for _, lPart := range strings.Split(language, "-") {
+			if !bParts[lPart] {
+				return false
+			}
 		}
 	}
 	return true

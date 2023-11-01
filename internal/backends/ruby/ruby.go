@@ -3,12 +3,13 @@ package ruby
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/url"
 	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -87,7 +88,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 		defer resp.Body.Close()
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			util.Die("RubyGems: %s", err)
 		}
@@ -139,7 +140,7 @@ var RubyBackend = api.LanguageBackend{
 			util.Die("RubyGems: HTTP status %d", resp.StatusCode)
 		}
 
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			util.Die("RubyGems: %s", err)
 		}
@@ -243,4 +244,5 @@ var RubyBackend = api.LanguageBackend{
 		}
 		return results, true
 	},
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

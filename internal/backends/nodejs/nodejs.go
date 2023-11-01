@@ -3,15 +3,18 @@ package nodejs
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/url"
 	"os"
 	"os/exec"
 	"regexp"
+	"strings"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/yaml.v2"
 )
 
 // npmSearchResults represents the data we get from the NPM API when
@@ -72,9 +75,13 @@ type packageJSON struct {
 // packageLockJSON represents the relevant data in a package-lock.json
 // file.
 type packageLockJSON struct {
-	Dependencies map[string]struct {
+	LockfileVersion int `json:"lockfileVersion"`
+	Dependencies    map[string]struct {
 		Version string `json:"version"`
 	} `json:"dependencies"`
+	Packages map[string]struct {
+		Version string `json:"version"`
+	} `json:"packages"`
 }
 
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
@@ -105,7 +112,7 @@ func nodejsSearch(query string) []api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("NPM registry: %s", err)
 	}
@@ -154,7 +161,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 		util.Die("NPM registry: HTTP status %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.Die("NPM registry: could not read response: %s", err)
 	}
@@ -205,7 +212,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 // nodejsListSpecfile implements ListSpecfile for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
 func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
-	contentsB, err := ioutil.ReadFile("package.json")
+	contentsB, err := os.ReadFile("package.json")
 	if err != nil {
 		util.Die("package.json: %s", err)
 	}
@@ -237,13 +244,19 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 })
 
-// nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
-func nodejsGuess() (map[api.PkgName]bool, bool) {
-	tempdir := util.TempDir()
-	defer os.RemoveAll(tempdir)
-	pkgs := guessBareImports()
+var jsPathGlobs = []string{
+	"*.js",
+	"*.jsx",
+	"*.mjs",
+	"*.cjs",
+}
 
-	return pkgs, true
+var tsPathGlobs = []string{
+	"*.ts",
+}
+
+var tsxPathGlobs = []string{
+	"*.tsx",
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
@@ -289,12 +302,12 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("yarn.lock")
+		contentsB, err := os.ReadFile("yarn.lock")
 		if err != nil {
 			util.Die("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
-		r := regexp.MustCompile(`(?m)^"?([^@ \n]+).+:\n  version "(.+)"$`)
+		r := regexp.MustCompile(`(?m)^"?((?:@[^@ \n]+\/)?[^@ \n]+).+:\n  version "(.+)"$`)
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		for _, match := range r.FindAllStringSubmatch(contents, -1) {
 			name := api.PkgName(match[1])
@@ -304,8 +317,9 @@ var NodejsYarnBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 var NodejsPNPMBackend = api.LanguageBackend{
@@ -350,43 +364,42 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		// In Replit front end repo, `--depth Infinity` refuses to run due to Node refusing to make
-		// a string with such size. `--depth 10` works in shell, but crashes with a 0 exit code when
-		// writing to a file (eg `pnpm list --json --depth 10 >file.json`). Instead of trying to get
-		// the full dependency tree, instead we'll just get the top-level dependencies.
-		workspaceSpecContents, err := exec.Command("pnpm", "list", "--json", "--depth", "0").Output()
+		lockfileBytes, err := os.ReadFile("pnpm-lock.yaml")
 		if err != nil {
-			util.Die("pnpm list: %s", err)
+			util.Die("pnpm-lock.yaml: %s", err)
 		}
 
-		workspaceSpec := []map[string]interface{}{}
-		err = json.Unmarshal(workspaceSpecContents, &workspaceSpec)
+		lockfile := map[string]interface{}{}
+		err = yaml.Unmarshal(lockfileBytes, &lockfile)
 		if err != nil {
-			util.Die("pnpm list: %s", err)
+			util.Die("pnpm-lock.yaml: %s", err)
 		}
+
+		lockfileVersion := strings.Split(lockfile["lockfileVersion"].(string), ".")
+		lvMajor := lockfileVersion[0]
 
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		for _, pkgSpec := range workspaceSpec {
-			for depName, depInfo := range pkgSpec["dependencies"].(map[string]interface{}) {
-				pkgName := api.PkgName(depName)
-				if _, ok := pkgs[pkgName]; ok {
-					continue
-				}
-
-				depVersion, ok := depInfo.(map[string]interface{})["version"].(string)
-				if !ok {
-					util.Die("pnpm list: %s", err)
-				}
-
-				pkgs[pkgName] = api.PkgVersion(depVersion)
+		switch lvMajor {
+		case "6":
+			dependencies, ok := lockfile["dependencies"]
+			if !ok {
+				return pkgs
 			}
+
+			for pkgName, pkgInfo := range dependencies.(map[interface{}]interface{}) {
+				pkgs[api.PkgName(pkgName.(string))] = api.PkgVersion(pkgInfo.(map[interface{}]interface{})["version"].(string))
+			}
+
+		default:
+			util.Die("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
 		}
 
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // NodejsNPMBackend is a UPM backend for Node.js that uses NPM.
@@ -432,7 +445,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		contentsB, err := ioutil.ReadFile("package-lock.json")
+		contentsB, err := os.ReadFile("package-lock.json")
 		if err != nil {
 			util.Die("package-lock.json: %s", err)
 		}
@@ -441,14 +454,22 @@ var NodejsNPMBackend = api.LanguageBackend{
 			util.Die("package-lock.json: %s", err)
 		}
 		pkgs := map[api.PkgName]api.PkgVersion{}
-		for nameStr, data := range cfg.Dependencies {
-			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+		if cfg.LockfileVersion <= 2 {
+			for nameStr, data := range cfg.Dependencies {
+				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+			}
+		} else {
+			for pathStr, data := range cfg.Packages {
+				nameStr := strings.TrimPrefix(pathStr, "node_modules/")
+				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+			}
 		}
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
 // BunBackend is a UPM backend for Node.js that uses Yarn.
@@ -510,6 +531,7 @@ var BunBackend = api.LanguageBackend{
 		return pkgs
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps: nodejsGuessRegexps,
-	Guess:        nodejsGuess,
+	GuessRegexps:                       nodejsGuessRegexps,
+	Guess:                              nodejsGuess,
+	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

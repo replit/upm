@@ -3,16 +3,15 @@ package util
 import (
 	"bytes"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
+	"strings"
 
 	"github.com/natefinch/atomic"
-	sfs "github.com/rakyll/statik/fs"
-	_ "github.com/replit/upm/internal/statik"
+	"github.com/replit/upm/resources"
 )
 
 // IgnoredPaths is a slice of file patterns that are totally ignored
@@ -56,7 +55,7 @@ func AddIngoredPaths(paths []string) {
 // TryWriteAtomic terminates the process.
 func TryWriteAtomic(filename string, contents []byte) {
 	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
-		if err2 := ioutil.WriteFile(filename, contents, 0666); err2 != nil {
+		if err2 := os.WriteFile(filename, contents, 0666); err2 != nil {
 			Die("%s: %s; on non-atomic retry: %s", filename, err1, err2)
 		}
 	}
@@ -117,7 +116,7 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 			return nil
 		}
 		if info.Mode().IsRegular() {
-			contentsB, err := ioutil.ReadFile(path)
+			contentsB, err := os.ReadFile(path)
 			if err != nil {
 				Die("%s: %s", path, err)
 			}
@@ -161,7 +160,7 @@ func DownloadFile(filepath string, url string) {
 // creation fails, it terminates the process. The caller is
 // responsible for cleaning up the temporary directory afterwards.
 func TempDir() string {
-	if tempdir, err := ioutil.TempDir("", "upm"); err != nil {
+	if tempdir, err := os.MkdirTemp("", "upm"); err != nil {
 		Die("%s", err)
 		return ""
 	} else {
@@ -169,26 +168,19 @@ func TempDir() string {
 	}
 }
 
-// hfs is the statik http.FileSystem, once initialized.
-var statikFS *http.FileSystem
-
 // GetResourceBytes is like GetResource but returns a []byte.
 func GetResourceBytes(url string) []byte {
-	if statikFS == nil {
-		if hfs, err := sfs.New(); err != nil {
-			panic(err)
-		} else {
-			statikFS = &hfs
-		}
-	}
-	if bytes, err := sfs.ReadFile(*statikFS, url); err != nil {
+	url = strings.TrimPrefix(url, "/")
+
+	res, err := resources.Resources.ReadFile(url)
+	if err != nil {
 		panic(err)
-	} else {
-		return bytes
 	}
+
+	return res
 }
 
-// GetResource returns a statik resource as a string. Resources are
+// GetResource returns a static resource as a string. Resources are
 // inside the resources/ directory of the UPM source repository. url
 // is HTTP-style, e.g. "/nodejs/bare-imports.js". The return value is
 // the file contents. If the resource does not exist, GetResource
@@ -197,7 +189,7 @@ func GetResource(url string) string {
 	return string(GetResourceBytes(url))
 }
 
-// WriteResource writes a statik resource to a temporary directory.
+// WriteResource writes a static resource to a temporary directory.
 // url is as in GetResource. The file is put inside tempdir, with the
 // same basename as from url. If the resource does not exist,
 // WriteResource panics. If the write fails, it terminates the
@@ -206,7 +198,7 @@ func WriteResource(url string, tempdir string) string {
 	contents := GetResource(url)
 	basename := path.Base(url)
 	filename := filepath.Join(tempdir, basename)
-	if err := ioutil.WriteFile(filename, []byte(contents), 0666); err != nil {
+	if err := os.WriteFile(filename, []byte(contents), 0666); err != nil {
 		Die("%s", err)
 	}
 	return filename

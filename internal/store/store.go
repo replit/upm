@@ -5,7 +5,6 @@ package store
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -40,7 +39,7 @@ func read() {
 	}()
 
 	filename := getStoreLocation()
-	bytes, err := ioutil.ReadFile(filename)
+	bytes, err := os.ReadFile(filename)
 
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -67,13 +66,26 @@ func readMaybe() {
 
 // initLanguage creates an entry in the store for the given language,
 // if necessary. (A language is just the name of a backend.)
-func initLanguage(language string) {
+func initLanguage(language, languageAlias string) {
 	if st.Languages == nil {
 		st.Languages = map[string]*storeLanguage{}
 	}
-	if st.Languages[language] == nil {
+	if st.Languages[language] == nil && (languageAlias == "" || st.Languages[languageAlias] == nil) {
 		st.Languages[language] = &storeLanguage{}
 	}
+}
+
+func getLanguageCache(language, languageAlias string) *storeLanguage {
+	if st.Languages == nil {
+		return nil
+	}
+	if st.Languages[language] != nil {
+		return st.Languages[language]
+	}
+	if languageAlias != "" && st.Languages[languageAlias] != nil {
+		return st.Languages[languageAlias]
+	}
+	return nil
 }
 
 // Write writes the current contents of the store from memory back to
@@ -106,8 +118,8 @@ func Write() {
 // returns true.
 func HasSpecfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	initLanguage(b.Name)
-	return hashFile(b.Specfile) != st.Languages[b.Name].SpecfileHash
+	initLanguage(b.Name, b.Alias)
+	return hashFile(b.Specfile) != getLanguageCache(b.Name, b.Alias).SpecfileHash
 }
 
 // HasLockfileChanged returns false if the lockfile exists and has not
@@ -116,8 +128,8 @@ func HasSpecfileChanged(b api.LanguageBackend) bool {
 // returns true.
 func HasLockfileChanged(b api.LanguageBackend) bool {
 	readMaybe()
-	initLanguage(b.Name)
-	return hashFile(b.Lockfile) != st.Languages[b.Name].LockfileHash
+	initLanguage(b.Name, b.Alias)
+	return hashFile(b.Lockfile) != getLanguageCache(b.Name, b.Alias).LockfileHash
 }
 
 // GuessWithCache returns b.Guess(), but re-uses a cached return value
@@ -130,14 +142,15 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // not read from the cache.
 func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
 	readMaybe()
-	initLanguage(b.Name)
-	old := st.Languages[b.Name].GuessedImportsHash
+	initLanguage(b.Name, b.Alias)
+	cache := getLanguageCache(b.Name, b.Alias)
+	old := cache.GuessedImportsHash
 	var new hash = "n/a"
 	// If no regexps, then we can't hash imports. Skip reading and
 	// writing the hash.
 	if len(b.GuessRegexps) > 0 {
 		new = hashImports(b)
-		st.Languages[b.Name].GuessedImportsHash = new
+		cache.GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
 		var pkgs map[api.PkgName]bool
@@ -158,7 +171,7 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 			// e.g. due to syntax error, then don't update
 			// the hash. This will force the search to be
 			// redone next time.
-			st.Languages[b.Name].GuessedImportsHash = old
+			cache.GuessedImportsHash = old
 		}
 		// Only cache result if we are going to use the cache,
 		// and skip caching if bare imports search was not
@@ -173,12 +186,12 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 			for name := range pkgs {
 				guessed = append(guessed, string(name))
 			}
-			st.Languages[b.Name].GuessedImports = guessed
+			cache.GuessedImports = guessed
 		}
 		return pkgs
 	} else {
 		pkgs := map[api.PkgName]bool{}
-		for _, name := range st.Languages[b.Name].GuessedImports {
+		for _, name := range cache.GuessedImports {
 			pkgs[api.PkgName(name)] = true
 		}
 		return pkgs
@@ -189,7 +202,8 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 // lockfile. Neither file need exist.
 func UpdateFileHashes(b api.LanguageBackend) {
 	readMaybe()
-	initLanguage(b.Name)
-	st.Languages[b.Name].SpecfileHash = hashFile(b.Specfile)
-	st.Languages[b.Name].LockfileHash = hashFile(b.Lockfile)
+	initLanguage(b.Name, b.Alias)
+	cache := getLanguageCache(b.Name, b.Alias)
+	cache.SpecfileHash = hashFile(b.Specfile)
+	cache.LockfileHash = hashFile(b.Lockfile)
 }

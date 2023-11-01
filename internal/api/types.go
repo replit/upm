@@ -143,6 +143,10 @@ type LanguageBackend struct {
 	// This field is mandatory.
 	Name string
 
+	// An alias for the backend, useful for backwards compatibility
+	// when renaming backends.
+	Alias string
+
 	// The filename of the specfile, e.g. "pyproject.toml" for
 	// Poetry.
 	//
@@ -308,6 +312,10 @@ type LanguageBackend struct {
 	//
 	// This field is mandatory.
 	Guess func() (map[PkgName]bool, bool)
+
+	// Installs system dependencies into replit.nix for supported
+	// languages.
+	InstallReplitNixSystemDependencies func([]PkgName)
 }
 
 // Setup panics if the given language backend does not specify all of

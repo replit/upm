@@ -5,13 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -96,68 +97,97 @@ func normalizePackageName(name api.PkgName) api.PkgName {
 	return api.PkgName(nameStr)
 }
 
-// pythonMakeBackend returns a language backend for a given version of
-// Python. name is either "python2" or "python3", and python is the
-// name of an executable (either a full path or just a name like
-// "python3") to use when invoking Python. (This is used to implement
-// UPM_PYTHON2 and UPM_PYTHON3.)
-func pythonMakeBackend(name string, python string) api.LanguageBackend {
-	info_func := func(name api.PkgName) api.PkgInfo {
-		res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
+func info(name api.PkgName) api.PkgInfo {
+	res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
 
-		if err != nil {
-			util.Die("HTTP Request failed with error: %s", err)
-		}
-
-		defer res.Body.Close()
-
-		if res.StatusCode == 404 {
-			return api.PkgInfo{}
-		}
-
-		if res.StatusCode != 200 {
-			util.Die("Received status code: %d", res.StatusCode)
-		}
-
-		body, err := ioutil.ReadAll(res.Body)
-		if err != nil {
-			util.Die("Res body read failed with error: %s", err)
-		}
-
-		var output pypiEntryInfoResponse
-		if err := json.Unmarshal(body, &output); err != nil {
-			util.Die("PyPI response: %s", err)
-		}
-
-		info := api.PkgInfo{
-			Name:             output.Info.Name,
-			Description:      output.Info.Summary,
-			Version:          output.Info.Version,
-			HomepageURL:      output.Info.HomePage,
-			DocumentationURL: output.Info.DocsURL,
-			BugTrackerURL:    output.Info.BugTrackerURL,
-			Author: util.AuthorInfo{
-				Name:  output.Info.Author,
-				Email: output.Info.AuthorEmail,
-			}.String(),
-			License: output.Info.License,
-		}
-
-		deps := []string{}
-		for _, line := range output.Info.RequiresDist {
-			if strings.Contains(line, "extra ==") {
-				continue
-			}
-
-			deps = append(deps, strings.Fields(line)[0])
-		}
-		info.Dependencies = deps
-
-		return info
+	if err != nil {
+		util.Die("HTTP Request failed with error: %s", err)
 	}
 
+	defer res.Body.Close()
+
+	if res.StatusCode == 404 {
+		return api.PkgInfo{}
+	}
+
+	if res.StatusCode != 200 {
+		util.Die("Received status code: %d", res.StatusCode)
+	}
+
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		util.Die("Res body read failed with error: %s", err)
+	}
+
+	var output pypiEntryInfoResponse
+	if err := json.Unmarshal(body, &output); err != nil {
+		util.Die("PyPI response: %s", err)
+	}
+
+	info := api.PkgInfo{
+		Name:             output.Info.Name,
+		Description:      output.Info.Summary,
+		Version:          output.Info.Version,
+		HomepageURL:      output.Info.HomePage,
+		DocumentationURL: output.Info.DocsURL,
+		BugTrackerURL:    output.Info.BugTrackerURL,
+		Author: util.AuthorInfo{
+			Name:  output.Info.Author,
+			Email: output.Info.AuthorEmail,
+		}.String(),
+		License: output.Info.License,
+	}
+
+	deps := []string{}
+	for _, line := range output.Info.RequiresDist {
+		if strings.Contains(line, "extra ==") {
+			continue
+		}
+
+		deps = append(deps, strings.Fields(line)[0])
+	}
+	info.Dependencies = deps
+
+	return info
+}
+
+func add(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	// Initalize the specfile if it doesnt exist
+	if !util.Exists("pyproject.toml") {
+		cmd := []string{"poetry", "init", "--no-interaction"}
+
+		if projectName != "" {
+			cmd = append(cmd, "--name", projectName)
+		}
+
+		util.RunCmd(cmd)
+	}
+
+	cmd := []string{"poetry", "add"}
+	for name, spec := range pkgs {
+		name := string(name)
+		spec := string(spec)
+
+		// NB: this doesn't work if spec has
+		// spaces in it, because of a bug in
+		// Poetry that can't be worked around.
+		// It looks like that bug might be
+		// fixed in the 1.0 release though :/
+		if spec != "" {
+			cmd = append(cmd, name+" "+spec)
+		} else {
+			cmd = append(cmd, name)
+		}
+	}
+	util.RunCmd(cmd)
+}
+
+// makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
+// (either a full path or just a name like "python3") to use when invoking Python.
+func makePythonPoetryBackend(python string) api.LanguageBackend {
 	return api.LanguageBackend{
-		Name:             "python-" + name + "-poetry",
+		Name:             "python3-poetry",
+		Alias:            "python-python3-poetry",
 		Specfile:         "pyproject.toml",
 		Lockfile:         "poetry.lock",
 		FilenamePatterns: []string{"*.py"},
@@ -187,10 +217,15 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			// be a pretty easy fix, though. (Why is this
 			// so complicated??)
 
-			outputB := util.GetCmdOutput([]string{
+			outputB, err := util.GetCmdOutputFallible([]string{
 				"poetry",
 				"config", "settings.virtualenvs.path",
 			})
+			if err != nil {
+				// there's no virtualenv configured, so no package directory
+				return ""
+			}
+
 			var path string
 			if err := json.Unmarshal(outputB, &path); err != nil {
 				util.Die("parsing output from Poetry: %s", err)
@@ -227,37 +262,8 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			}
 			return results
 		},
-		Info: info_func,
-		Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-			// Initalize the specfile if it doesnt exist
-			if !util.Exists("pyproject.toml") {
-				cmd := []string{"poetry", "init", "--no-interaction"}
-
-				if projectName != "" {
-					cmd = append(cmd, "--name", projectName)
-				}
-
-				util.RunCmd(cmd)
-			}
-
-			cmd := []string{"poetry", "add"}
-			for name, spec := range pkgs {
-				name := string(name)
-				spec := string(spec)
-
-				// NB: this doesn't work if spec has
-				// spaces in it, because of a bug in
-				// Poetry that can't be worked around.
-				// It looks like that bug might be
-				// fixed in the 1.0 release though :/
-				if spec != "" {
-					cmd = append(cmd, name+" "+spec)
-				} else {
-					cmd = append(cmd, name)
-				}
-			}
-			util.RunCmd(cmd)
-		},
+		Info: info,
+		Add:  add,
 		Remove: func(pkgs map[api.PkgName]bool) {
 			cmd := []string{"poetry", "remove"}
 			for name := range pkgs {
@@ -306,6 +312,22 @@ func pythonMakeBackend(name string, python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*)`,
 		}),
 		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
+		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+			ops := []nix.NixEditorOp{}
+			for _, pkg := range pkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs, _ := listSpecfile()
+			for pkg := range specfilePkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+			nix.RunNixEditorOps(ops)
+		},
 	}
 }
 
@@ -403,13 +425,27 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			// Otherwise, try and look it up in Pypi
 			var pkg string
 			var ok bool
-			pkg, ok = moduleToPypiPackageOverride[fullModname]
-			if !ok {
-				pkg, ok = moduleToPypiPackageOverride[modname]
+
+			modNameParts := strings.Split(fullModname, ".")
+			for len(modNameParts) > 0 {
+				testModName := strings.Join(modNameParts, ".")
+
+				// test overrides
+				pkg, ok = moduleToPypiPackageOverride[testModName]
+				if ok {
+					break
+				}
+
+				// test pypi
+				pkg, ok = pypiMap.ModuleToPackage(testModName)
+				if ok {
+					break
+				}
+
+				// loop with everything except the deepest submodule
+				modNameParts = modNameParts[:len(modNameParts)-1]
 			}
-			if !ok {
-				pkg, ok = pypiMap.ModuleToPackage(modname)
-			}
+
 			if ok {
 				name := api.PkgName(pkg)
 				pkgs[normalizePackageName(name)] = true
@@ -424,17 +460,6 @@ func getTopLevelModuleName(fullModname string) string {
 	return strings.Split(fullModname, ".")[0]
 }
 
-// getPython2 returns either "python2" or the value of the UPM_PYTHON2
-// environment variable.
-func getPython2() string {
-	python2 := os.Getenv("UPM_PYTHON2")
-	if python2 != "" {
-		return python2
-	} else {
-		return "python2"
-	}
-}
-
 // getPython3 returns either "python3" or the value of the UPM_PYTHON3
 // environment variable.
 func getPython3() string {
@@ -446,8 +471,5 @@ func getPython3() string {
 	}
 }
 
-// Python2Backend is a UPM backend for Python 2 that uses Poetry.
-var Python2Backend = pythonMakeBackend("python2", getPython2())
-
 // Python3Backend is a UPM backend for Python 3 that uses Poetry.
-var Python3Backend = pythonMakeBackend("python3", getPython3())
+var Python3Backend = makePythonPoetryBackend(getPython3())

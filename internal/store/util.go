@@ -3,7 +3,6 @@ package store
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"io/ioutil"
 	"os"
 
 	"github.com/replit/upm/internal/api"
@@ -13,7 +12,7 @@ import (
 // hashFile computes the MD5 hash of the contents of the given file.
 // It returns the empty string if the file does not exist.
 func hashFile(filename string) hash {
-	bytes, err := ioutil.ReadFile(filename)
+	bytes, err := os.ReadFile(filename)
 	if os.IsNotExist(err) {
 		return ""
 	} else if err != nil {
