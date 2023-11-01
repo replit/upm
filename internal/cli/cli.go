@@ -38,6 +38,7 @@ func getVersion() string {
 // DoCLI reads the command-line arguments and runs the appropriate
 // code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
+	MaybeTrace()
 	backends.SetupAll()
 
 	var language string

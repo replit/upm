@@ -2,6 +2,7 @@
 package python
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -12,6 +13,7 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // this generates a mapping of pypi packages <-> modules
@@ -340,6 +342,7 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	span, ctx := tracer.StartSpanFromContext(context.Background(), "guess")
 	pypiMap, err := NewPypiMap()
 	if err != nil {
 		util.Die(err.Error())
