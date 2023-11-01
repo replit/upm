@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"path"
 
 	sitter "github.com/smacker/go-tree-sitter"
 )
@@ -15,10 +16,12 @@ type queryImportsResult struct {
 	err     error
 }
 
-func GuessWithTreeSitter(dir fs.FS, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+	dirFS := os.DirFS(dir)
+
 	ignoredPaths := map[string]bool{}
 	for _, pattern := range ignoreGlobPatterns {
-		globIgnorePaths, err := fs.Glob(dir, pattern)
+		globIgnorePaths, err := fs.Glob(dirFS, pattern)
 		if err != nil {
 			return nil, err
 		}
@@ -30,14 +33,14 @@ func GuessWithTreeSitter(dir fs.FS, lang *sitter.Language, queryImports string, 
 
 	pathsToSearch := []string{}
 	for _, pattern := range searchGlobPatterns {
-		globSearchPaths, err := fs.Glob(dir, pattern)
+		globSearchPaths, err := fs.Glob(dirFS, pattern)
 		if err != nil {
 			return nil, err
 		}
 
 		for _, gPath := range globSearchPaths {
 			if !ignoredPaths[gPath] {
-				pathsToSearch = append(pathsToSearch, gPath)
+				pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
 			}
 		}
 	}
