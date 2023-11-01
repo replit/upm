@@ -342,13 +342,15 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
-	span, ctx := tracer.StartSpanFromContext(context.Background(), "guess")
+	guessSpan, ctx := tracer.StartSpanFromContext(context.Background(), "guess")
+	defer guessSpan.Finish()
 	pypiMap, err := NewPypiMap()
 	if err != nil {
 		util.Die(err.Error())
 	}
 	defer pypiMap.Close()
 
+	pipreqsSpan, ctx := tracer.StartSpanFromContext(ctx, "guess")
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
 
@@ -367,6 +369,8 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 	if err := json.Unmarshal(outputB, &output); err != nil {
 		util.Die("pipreqs: %s", err)
 	}
+
+	pipreqsSpan.Finish()
 
 	availMods := map[string]bool{}
 
