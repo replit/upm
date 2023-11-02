@@ -5,3 +5,4 @@ import base62
 import faiss
 import graphics
 import replit.ai
+import foo #upm package(bar)
