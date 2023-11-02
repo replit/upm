@@ -8,11 +8,13 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	log "github.com/sirupsen/logrus"
 )
 
 // this generates a mapping of pypi packages <-> modules
@@ -362,11 +364,14 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 }
 
 func guess(python string) (map[api.PkgName]bool, bool) {
+	start := time.Now()
 	pypiMap, err := NewPypiMap()
 	if err != nil {
 		util.Die(err.Error())
 	}
 	defer pypiMap.Close()
+	openDBDuration := time.Since(start)
+	start = time.Now()
 
 	tempdir := util.TempDir()
 	defer os.RemoveAll(tempdir)
@@ -387,6 +392,9 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 		util.Die("pipreqs: %s", err)
 	}
 
+	pipreqsDuration := time.Since(start)
+	start = time.Now()
+
 	availMods := map[string]bool{}
 
 	if knownPkgs, err := listSpecfile(); err == nil {
@@ -399,6 +407,9 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			}
 		}
 	}
+
+	loadSpecfileDuration := time.Since(start)
+	start = time.Now()
 
 	pkgs := map[api.PkgName]bool{}
 
@@ -445,6 +456,14 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 			}
 		}
 	}
+
+	guessDuration := time.Since(start)
+	log.WithFields(log.Fields{
+		"openDBDurationMs":       openDBDuration.Milliseconds(),
+		"pipreqsDurationMs":      pipreqsDuration.Milliseconds(),
+		"loadSpecfileDurationMs": loadSpecfileDuration.Milliseconds(),
+		"guessDurationMs":        guessDuration.Milliseconds(),
+	}).Info("UPM: Python guess finished")
 
 	return pkgs, output.Success
 }

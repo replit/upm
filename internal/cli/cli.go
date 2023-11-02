@@ -3,11 +3,13 @@ package cli
 
 import (
 	"fmt"
+	"io"
 	"os"
 
 	"github.com/replit/upm/internal/backends"
 	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/util"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -35,9 +37,26 @@ func getVersion() string {
 	return "upm " + version
 }
 
+var logFilePath = "/tmp/upm.log"
+
 // DoCLI reads the command-line arguments and runs the appropriate
 // code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
+
+	// Setup logging
+	log.SetFormatter(&log.JSONFormatter{})
+	if os.Getenv("UPM_TRACE") == "1" {
+		logFile, err := os.Create(logFilePath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to create %s\n", logFilePath)
+			return
+		}
+		defer logFile.Close()
+		log.SetOutput(logFile)
+	} else {
+		log.SetOutput(io.Discard)
+	}
+
 	backends.SetupAll()
 
 	var language string

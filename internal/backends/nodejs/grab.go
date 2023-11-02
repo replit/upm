@@ -3,9 +3,11 @@ package nodejs
 import (
 	"os"
 	"strings"
+	"time"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
+	log "github.com/sirupsen/logrus"
 	"github.com/smacker/go-tree-sitter/javascript"
 	"github.com/smacker/go-tree-sitter/typescript/tsx"
 	"github.com/smacker/go-tree-sitter/typescript/typescript"
@@ -56,6 +58,7 @@ var internalModules = []string{
 
 // nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsGuess() (map[api.PkgName]bool, bool) {
+	start := time.Now()
 	cwd, err := os.Getwd()
 	if err != nil {
 		util.Die("couldn't get working directory: %s", err)
@@ -65,8 +68,17 @@ func nodejsGuess() (map[api.PkgName]bool, bool) {
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
+	findImportsDuration := time.Since(start)
+	start = time.Now()
 
-	return filterImports(foundImportPaths), true
+	imports := filterImports(foundImportPaths)
+	filterImpotsDuration := time.Since(start)
+
+	log.WithFields(log.Fields{
+		"findImportsDurationMs":  findImportsDuration.Milliseconds(),
+		"filterImpotsDurationMs": filterImpotsDuration.Milliseconds(),
+	}).Info("UPM: Nodejs guess finished")
+	return imports, true
 }
 
 func findImports(dir string) (map[string]bool, error) {

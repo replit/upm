@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/backends"
@@ -14,6 +15,7 @@ import (
 	"github.com/replit/upm/internal/store"
 	"github.com/replit/upm/internal/table"
 	"github.com/replit/upm/internal/util"
+	log "github.com/sirupsen/logrus"
 )
 
 // subroutineSilencer is used to easily enable and restore
@@ -358,20 +360,40 @@ func runRemove(language string, args []string, upgrade bool,
 
 // runLock implements 'upm lock'.
 func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
+	start := time.Now()
+	totalStart := start
 	b := backends.GetBackend(language)
+	getBackendDuration := time.Since(start)
+	start = time.Now()
 
 	if upgrade {
 		deleteLockfile(b)
 	}
 
 	didLock := maybeLock(b, forceLock)
+	lockDuration := time.Since(start)
+	start = time.Now()
 
 	if !(didLock && b.QuirksDoesLockAlsoInstall()) {
 		maybeInstall(b, forceInstall)
 	}
+	installDuration := time.Since(start)
+	start = time.Now()
 
 	store.UpdateFileHashes(b)
+	updateFileHashesDuration := time.Since(start)
+	start = time.Now()
 	store.Write()
+	storeDuration := time.Since(start)
+	log.WithFields(log.Fields{
+		"language":                   language,
+		"getBackendDurationMs":       getBackendDuration.Milliseconds(),
+		"lockDurationMs":             lockDuration.Milliseconds(),
+		"installDurationMs":          installDuration.Milliseconds(),
+		"updateFileHashesDurationMs": updateFileHashesDuration.Milliseconds(),
+		"storeDurationMs":            storeDuration.Milliseconds(),
+		"totalDurationMs":            time.Since(totalStart).Milliseconds(),
+	}).Info("UPM: runLock finished")
 }
 
 // runInstall implements 'upm install'.
@@ -488,9 +510,14 @@ func runList(language string, all bool, outputFormat outputFormat) {
 func runGuess(
 	language string, all bool,
 	forceGuess bool, ignoredPackages []string) {
-
+	start := time.Now()
+	totalStart := start
 	b := backends.GetBackend(language)
+	getBackendDuration := time.Since(start)
+	start = time.Now()
 	pkgs := store.GuessWithCache(b, forceGuess)
+	guessDuration := time.Since(start)
+	start = time.Now()
 
 	// Map from normalized to original names.
 	normPkgs := map[api.PkgName]api.PkgName{}
@@ -509,18 +536,35 @@ func runGuess(
 	for _, pkg := range ignoredPackages {
 		delete(normPkgs, b.NormalizePackageName(api.PkgName(pkg)))
 	}
-
 	lines := []string{}
 	for _, pkg := range normPkgs {
 		lines = append(lines, string(pkg))
 	}
 	sort.Strings(lines)
 
+	fixupDuration := time.Since(start)
+	start = time.Now()
+
 	for _, line := range lines {
 		fmt.Println(line)
 	}
 
+	displayDuration := time.Since(start)
+	start = time.Now()
 	store.Write()
+	storeDuration := time.Since(start)
+
+	log.WithFields(log.Fields{
+		"language":             language,
+		"getBackendDurationMs": getBackendDuration.Milliseconds(),
+		"guessDurationMs":      guessDuration.Milliseconds(),
+		"fixupDuration":        fixupDuration.Milliseconds(),
+		"displayDuration":      displayDuration.Milliseconds(),
+		"storeDuration":        storeDuration.Milliseconds(),
+		"guessedPkgsCount":     len(pkgs),
+		"guessedAnyPkgs":       len(pkgs) > 0,
+		"totalDuration":        time.Since(totalStart).Milliseconds(),
+	}).Info("UPM: runGuess finished")
 }
 
 // runShowSpecfile implements 'upm show-specfile'.
