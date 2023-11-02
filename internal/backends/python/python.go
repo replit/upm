@@ -63,12 +63,6 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
-// moduleMetadata represents the information that could be associated with
-// a module using a #upm pragma
-type modulePragmas struct {
-	Package string `json:"package"`
-}
-
 // normalizeSpec returns the version string from a Poetry spec, or the
 // empty string. The Poetry spec may be either a string or a
 // map[string]interface{} with a "version" key that is a string. If
