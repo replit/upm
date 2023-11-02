@@ -1,7 +1,6 @@
 package nodejs
 
 import (
-	"fmt"
 	"os"
 	"testing"
 )
@@ -45,7 +44,6 @@ process.exit(1);
 	testDir := t.TempDir()
 	testFile := testDir + "/index.js"
 	err := os.WriteFile(testFile, []byte(content), 0644)
-	fmt.Println("wrote to", testFile)
 	if err != nil {
 		t.Fatal("failed to write test file", err)
 	}
