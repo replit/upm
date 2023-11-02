@@ -20,7 +20,7 @@ var importsQuery = `
   module_name: (dotted_name) @import)
 `
 
-var pyPathGlobs = []string{"**/*.py"}
+var pyPathGlobs = []string{"*.py"}
 
 var pyIgnoreGlobs = []string{
 	"**/__pycache__/**",
