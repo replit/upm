@@ -13,6 +13,7 @@ func TestParseFile(t *testing.T) {
 		"Flask":     true,
 		"replit":    true,
 		"replit.ai": true,
+		"bar":       true,
 	}
 
 	content := `
@@ -22,6 +23,7 @@ from Django import forms
 from Flask import Flask
 import replit
 import replit.ai
+import foo #upm package(bar)
 `
 
 	testDir := t.TempDir()
