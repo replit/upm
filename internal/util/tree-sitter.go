@@ -7,16 +7,12 @@ import (
 	"io/fs"
 	"os"
 	"path"
-<<<<<<< HEAD
 	"regexp"
-=======
->>>>>>> 31d860bcd8859e93e12c3cc8afcc2ceff18f04bf
 
 	sitter "github.com/smacker/go-tree-sitter"
 )
 
 type queryImportsResult struct {
-<<<<<<< HEAD
 	path    string
 	imports map[string]importPragma
 	err     error
@@ -32,12 +28,6 @@ type importPragma struct {
 // When there's a capture tagged as `@import`, it reports the capture as an import.
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
-=======
-	imports []string
-	err     error
-}
-
->>>>>>> 31d860bcd8859e93e12c3cc8afcc2ceff18f04bf
 func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
 	dirFS := os.DirFS(dir)
 
