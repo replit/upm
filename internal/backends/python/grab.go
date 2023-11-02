@@ -1,7 +1,6 @@
 package python
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -254,7 +253,6 @@ func guess(python string) (map[api.PkgName]bool, bool) {
 func findImports(dir string) (map[string]bool, error) {
 	py := python.GetLanguage()
 	pkgs, err := util.GuessWithTreeSitter(dir, py, importsQuery, pyPathGlobs, pyIgnoreGlobs)
-	fmt.Println("found packages from tree-sitter:", pkgs)
 
 	if err != nil {
 		return nil, err
@@ -275,7 +273,6 @@ func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
 		found := false
 		for _, internalMod := range internalModules {
 			if internalMod == mod {
-				fmt.Println(pkg, "is an internal module")
 				found = true
 				break
 			}
@@ -302,12 +299,10 @@ func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
 		modNameParts := strings.Split(fullModname, ".")
 		for len(modNameParts) > 0 {
 			testModName := strings.Join(modNameParts, ".")
-			fmt.Println("testing", testModName)
 
 			// test overrides
 			pkg, ok = moduleToPypiPackageOverride[testModName]
 			if ok {
-				fmt.Println("found override", pkg)
 				pkgs[api.PkgName(pkg)] = true
 				break
 			}
@@ -315,7 +310,6 @@ func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
 			// test pypi
 			pkg, ok = pypiMap.ModuleToPackage(testModName)
 			if ok {
-				fmt.Println("found pypi", pkg)
 				pkgs[api.PkgName(pkg)] = true
 				break
 			}

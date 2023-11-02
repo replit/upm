@@ -12,6 +12,7 @@ import (
 )
 
 type queryImportsResult struct {
+	path    string
 	imports []string
 	err     error
 }
@@ -64,7 +65,7 @@ func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string,
 		result := <-results
 
 		if result.err != nil {
-			fmt.Println("error parsing file:", result.err)
+			fmt.Printf("error parsing file %s: %v\n", result.path, result.err)
 			failed = true
 		}
 
@@ -83,12 +84,12 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 
 	contents, err := os.ReadFile(file)
 	if err != nil {
-		return queryImportsResult{nil, err}
+		return queryImportsResult{file, nil, err}
 	}
 
 	node, err := sitter.ParseCtx(context.Background(), contents, lang)
 	if err != nil {
-		return queryImportsResult{nil, err}
+		return queryImportsResult{file, nil, err}
 	}
 
 	qc.Exec(query, node)
@@ -125,5 +126,5 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 		importPaths = append(importPaths, importPath)
 	}
 
-	return queryImportsResult{importPaths, err}
+	return queryImportsResult{file, importPaths, err}
 }
