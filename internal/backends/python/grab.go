@@ -308,14 +308,12 @@ func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
 			// test overrides
 			pkg, ok = moduleToPypiPackageOverride[testModName]
 			if ok {
-				pkgs[api.PkgName(pkg)] = true
 				break
 			}
 
 			// test pypi
 			pkg, ok = pypiMap.ModuleToPackage(testModName)
 			if ok {
-				pkgs[api.PkgName(pkg)] = true
 				break
 			}
 

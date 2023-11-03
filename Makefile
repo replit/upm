@@ -81,6 +81,12 @@ help: ## Show this message
 test:
 	go test ./... -v
 
+ifdef TEST_SUITE
+GO_TEST_RUN_OPTS=$(TEST_SUITE)
+else
+GO_TEST_RUN_OPTS=.
+endif
+
 .PHONY: test-suite
 ifdef UPM_CI
 test-suite:
@@ -88,5 +94,5 @@ test-suite:
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
 else
 test-suite:
-	nix develop -c nix shell -c go test ./test-suite
+	nix develop -c nix shell -c go test -run $(GO_TEST_RUN_OPTS) ./test-suite
 endif
