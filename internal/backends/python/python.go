@@ -63,12 +63,6 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
-// moduleMetadata represents the information that could be associated with
-// a module using a #upm pragma
-type modulePragmas struct {
-	Package string `json:"package"`
-}
-
 // normalizeSpec returns the version string from a Poetry spec, or the
 // empty string. The Poetry spec may be either a string or a
 // map[string]interface{} with a "version" key that is a string. If
@@ -359,94 +353,6 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	}
 
 	return pkgs, nil
-}
-
-func guess(python string) (map[api.PkgName]bool, bool) {
-	pypiMap, err := NewPypiMap()
-	if err != nil {
-		util.Die(err.Error())
-	}
-	defer pypiMap.Close()
-
-	tempdir := util.TempDir()
-	defer os.RemoveAll(tempdir)
-
-	util.WriteResource("/python/pipreqs.py", tempdir)
-	script := util.WriteResource("/python/bare-imports.py", tempdir)
-
-	outputB := util.GetCmdOutput([]string{
-		python, script, strings.Join(util.IgnoredPaths, " "),
-	})
-
-	var output struct {
-		Imports map[string]modulePragmas `json:"imports"`
-		Success bool                     `json:"success"`
-	}
-
-	if err := json.Unmarshal(outputB, &output); err != nil {
-		util.Die("pipreqs: %s", err)
-	}
-
-	availMods := map[string]bool{}
-
-	if knownPkgs, err := listSpecfile(); err == nil {
-		for pkgName := range knownPkgs {
-			mods, ok := pypiMap.PackageToModules(string(pkgName))
-			if ok {
-				for _, mod := range mods {
-					availMods[mod] = true
-				}
-			}
-		}
-	}
-
-	pkgs := map[api.PkgName]bool{}
-
-	for fullModname, pragmas := range output.Imports {
-		modname := getTopLevelModuleName(fullModname)
-		// provided by an existing package or perhaps by the system
-		if availMods[modname] {
-			continue
-		}
-
-		// If this module has a package pragma, use that
-		if pragmas.Package != "" {
-			name := api.PkgName(pragmas.Package)
-			pkgs[normalizePackageName(name)] = true
-
-		} else {
-			// Otherwise, try and look it up in Pypi
-			var pkg string
-			var ok bool
-
-			modNameParts := strings.Split(fullModname, ".")
-			for len(modNameParts) > 0 {
-				testModName := strings.Join(modNameParts, ".")
-
-				// test overrides
-				pkg, ok = moduleToPypiPackageOverride[testModName]
-				if ok {
-					break
-				}
-
-				// test pypi
-				pkg, ok = pypiMap.ModuleToPackage(testModName)
-				if ok {
-					break
-				}
-
-				// loop with everything except the deepest submodule
-				modNameParts = modNameParts[:len(modNameParts)-1]
-			}
-
-			if ok {
-				name := api.PkgName(pkg)
-				pkgs[normalizePackageName(name)] = true
-			}
-		}
-	}
-
-	return pkgs, output.Success
 }
 
 func getTopLevelModuleName(fullModname string) string {

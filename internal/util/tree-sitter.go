@@ -7,15 +7,27 @@ import (
 	"io/fs"
 	"os"
 	"path"
+	"regexp"
 
 	sitter "github.com/smacker/go-tree-sitter"
 )
 
 type queryImportsResult struct {
-	imports []string
+	path    string
+	imports map[string]importPragma
 	err     error
 }
 
+type importPragma struct {
+	Package string
+}
+
+// GuessWithTreeSitter guesses the imports of a directory using tree-sitter.
+// For every file in dir that matches a pattern in searchGlobPatterns, but
+// not in ignoreGlobPatterns, it will parse the file using lang and queryImports.
+// When there's a capture tagged as `@import`, it reports the capture as an import.
+// If there's a capture tagged as `@pragma` that's on the same line as an import,
+// it will include the pragma in the results.
 func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
 	dirFS := os.DirFS(dir)
 
@@ -64,11 +76,17 @@ func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string,
 		result := <-results
 
 		if result.err != nil {
-			fmt.Println("error parsing file:", result.err)
+			fmt.Printf("error parsing file %s: %v\n", result.path, result.err)
 			failed = true
 		}
 
-		imports = append(imports, result.imports...)
+		for importPath, pragma := range result.imports {
+			if pragma.Package != "" {
+				imports = append(imports, pragma.Package)
+			} else {
+				imports = append(imports, importPath)
+			}
+		}
 	}
 
 	if failed {
@@ -83,17 +101,17 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 
 	contents, err := os.ReadFile(file)
 	if err != nil {
-		return queryImportsResult{nil, err}
+		return queryImportsResult{file, nil, err}
 	}
 
 	node, err := sitter.ParseCtx(context.Background(), contents, lang)
 	if err != nil {
-		return queryImportsResult{nil, err}
+		return queryImportsResult{file, nil, err}
 	}
 
 	qc.Exec(query, node)
 
-	importPaths := []string{}
+	importPaths := map[string]importPragma{}
 	for {
 		match, ok := qc.NextMatch()
 		if !ok {
@@ -109,10 +127,19 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 		}
 
 		var importPath string
+		var importPathLine uint32
+		pragma := importPragma{}
 		for _, capture := range match.Captures {
-			if query.CaptureNameForId(capture.Index) == "import" {
+			switch query.CaptureNameForId(capture.Index) {
+			case "import":
 				importPath = capture.Node.Content(contents)
-				break
+				importPathLine = capture.Node.EndPoint().Row
+
+			case "pragma":
+				// only capture pragma at the end of the line with the import path
+				if capture.Node.StartPoint().Row == importPathLine {
+					pragma = parsePragma(capture.Node.Content(contents))
+				}
 			}
 		}
 
@@ -122,8 +149,18 @@ func queryFile(lang *sitter.Language, query *sitter.Query, file string) queryImp
 			break
 		}
 
-		importPaths = append(importPaths, importPath)
+		importPaths[importPath] = pragma
 	}
 
-	return queryImportsResult{importPaths, err}
+	return queryImportsResult{file, importPaths, err}
+}
+
+var pragmaRegex = regexp.MustCompile(`upm (?:package\((?P<package>.*)\))`)
+
+func parsePragma(pragma string) importPragma {
+	caps := pragmaRegex.FindStringSubmatch(pragma)
+
+	return importPragma{
+		Package: caps[pragmaRegex.SubexpIndex("package")],
+	}
 }

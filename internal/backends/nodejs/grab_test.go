@@ -1,20 +1,19 @@
 package nodejs
 
 import (
-	"fmt"
 	"os"
 	"testing"
 )
 
 func TestParseFile(t *testing.T) {
 	expected := map[string]bool{
-		"fs": true,
-		"assert": true,
-		"path": true,
-		"nan": true,
-		"buffer": true,
-		"console": true,
-		"dns": true,
+		"fs":            true,
+		"assert":        true,
+		"path":          true,
+		"nan":           true,
+		"buffer":        true,
+		"console":       true,
+		"dns":           true,
 		"child_process": true,
 	}
 
@@ -45,7 +44,6 @@ process.exit(1);
 	testDir := t.TempDir()
 	testFile := testDir + "/index.js"
 	err := os.WriteFile(testFile, []byte(content), 0644)
-	fmt.Println("wrote to", testFile)
 	if err != nil {
 		t.Fatal("failed to write test file", err)
 	}
