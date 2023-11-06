@@ -76,6 +76,7 @@ func matchesLanguage(b api.LanguageBackend, language string) bool {
 // GetBackend returns the language backend for a given --lang argument
 // value. If none is applicable, it exits the process.
 func GetBackend(ctx context.Context, language string) api.LanguageBackend {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "GetBackend")
 	defer span.Finish()
 	backends := languageBackends

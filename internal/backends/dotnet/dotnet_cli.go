@@ -20,6 +20,7 @@ func removePackages(ctx context.Context, pkgs map[api.PkgName]bool, specFileName
 
 // adds packages using dotnet command which automatically updates lock files
 func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string, cmdRunner func([]string)) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet add package")
 	defer span.Finish()
 	for packageName, spec := range pkgs {
@@ -33,6 +34,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 
 // installs all packages using dotnet command
 func install(ctx context.Context, cmdRunner func([]string)) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet restore")
 	defer span.Finish()
 	cmdRunner([]string{"dotnet", "restore"})
@@ -40,6 +42,7 @@ func install(ctx context.Context, cmdRunner func([]string)) {
 
 // generates or updates the lock file using dotnet command
 func lock(ctx context.Context, cmdRunner func([]string)) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet restore --use-lock-file")
 	defer span.Finish()
 	cmdRunner([]string{"dotnet", "restore", "--use-lock-file"})

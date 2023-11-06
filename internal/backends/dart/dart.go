@@ -306,11 +306,13 @@ var DartPubBackend = api.LanguageBackend{
 	Add:              dartAdd,
 	Remove:           dartRemove,
 	Lock: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})
 	},
 	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})

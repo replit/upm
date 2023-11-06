@@ -146,6 +146,7 @@ func info(name api.PkgName) api.PkgInfo {
 }
 
 func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
 	defer span.Finish()
 	// Initalize the specfile if it doesnt exist
@@ -261,6 +262,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		Info: info,
 		Add:  add,
 		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry remove")
 			defer span.Finish()
 			cmd := []string{"poetry", "remove"}
@@ -270,11 +272,13 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
 			defer span.Finish()
 			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
 		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry install")
 			defer span.Finish()
 			// Unfortunately, this doesn't necessarily uninstall
@@ -315,6 +319,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		}),
 		Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
 			defer span.Finish()
 			ops := []nix.NixEditorOp{}

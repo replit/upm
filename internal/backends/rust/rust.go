@@ -231,6 +231,7 @@ var RustBackend = api.LanguageBackend{
 	Search: search,
 	Info:   info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "cargo add")
 		defer span.Finish()
 		if !util.Exists("Cargo.toml") {
@@ -247,6 +248,7 @@ var RustBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "cargo rm")
 		defer span.Finish()
 		cmd := []string{"cargo", "rm"}

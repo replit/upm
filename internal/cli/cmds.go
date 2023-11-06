@@ -161,6 +161,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 
 // deleteLockfile deletes the project's lockfile, if one exists.
 func deleteLockfile(ctx context.Context, b api.LanguageBackend) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "deleteLockfile")
 	defer span.Finish()
 	if util.Exists(b.Lockfile) {

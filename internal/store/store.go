@@ -93,6 +93,7 @@ func getLanguageCache(language, languageAlias string) *storeLanguage {
 // Write writes the current contents of the store from memory back to
 // disk. If there is an error, it terminates the process.
 func Write(ctx context.Context) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "store.Write")
 	defer span.Finish()
 	filename := getStoreLocation()
@@ -207,6 +208,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 // UpdateFileHashes caches the current states of the specfile and
 // lockfile. Neither file need exist.
 func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
 	defer span.Finish()
 	readMaybe()

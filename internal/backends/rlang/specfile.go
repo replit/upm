@@ -86,6 +86,7 @@ func RAdd(ctx context.Context, pkg RPackage) {
 
 // RRemove removes an extenal package dependency
 func RRemove(ctx context.Context, pkg RPackage) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "RRemove")
 	defer span.Finish()
 	file, err := os.Open("./Rconfig.json")
@@ -134,6 +135,7 @@ func RRemove(ctx context.Context, pkg RPackage) {
 
 // RLock backs up the contents of the spec file to the lock file
 func RLock(ctx context.Context) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "RLock")
 	defer span.Finish()
 	lock, err := os.Create("./Rconfig.lock.json")

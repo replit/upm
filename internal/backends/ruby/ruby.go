@@ -171,6 +171,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle (init) add")
 		defer span.Finish()
 		if !util.Exists("Gemfile") {
@@ -198,6 +199,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle remove")
 		defer span.Finish()
 		cmd := []string{"bundle", "remove", "--skip-install"}
@@ -207,11 +209,13 @@ var RubyBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle lock")
 		defer span.Finish()
 		util.RunCmd([]string{"bundle", "lock"})
 	},
 	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle install")
 		defer span.Finish()
 		// We need --clean to handle uninstalls.
@@ -245,6 +249,7 @@ var RubyBackend = api.LanguageBackend{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
 	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
 		defer span.Finish()
 		guessedGems := util.GetCmdOutput([]string{

@@ -235,6 +235,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	Search: search,
 	Info:   info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer require")
 		defer span.Finish()
 		cmd := []string{"composer", "require"}
@@ -249,6 +250,7 @@ var PhpComposerBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer remove")
 		defer span.Finish()
 		cmd := []string{"composer", "remove"}
@@ -258,11 +260,13 @@ var PhpComposerBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer update")
 		defer span.Finish()
 		util.RunCmd([]string{"composer", "update"})
 	},
 	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer install")
 		defer span.Finish()
 		util.RunCmd([]string{"composer", "install"})

@@ -278,6 +278,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 }
 
 func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
 	// filter out internal modules

@@ -78,6 +78,7 @@ var ElispBackend = api.LanguageBackend{
 		return info
 	},
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp add")
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
@@ -112,6 +113,7 @@ var ElispBackend = api.LanguageBackend{
 		util.TryWriteAtomic("Cask", contentsB)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp remove")
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
@@ -134,6 +136,7 @@ var ElispBackend = api.LanguageBackend{
 		util.TryWriteAtomic("Cask", contentsB)
 	},
 	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "cask install")
 		defer span.Finish()
 		util.RunCmd([]string{"cask", "install"})
@@ -185,6 +188,7 @@ var ElispBackend = api.LanguageBackend{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
 	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
 		defer span.Finish()
 		r := regexp.MustCompile(
