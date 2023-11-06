@@ -8,6 +8,11 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
+var (
+	globalDDTraceID string
+	globalDDSpanID  string
+)
+
 func MaybeTrace(serviceVersion string) bool {
 	if os.Getenv("UPM_TRACE") != "1" {
 		return false
@@ -17,6 +22,11 @@ func MaybeTrace(serviceVersion string) bool {
 	if replid == "" {
 		return false
 	}
+
+	globalDDTraceID = os.Getenv("DD_TRACE_ID")
+	globalDDSpanID = os.Getenv("DD_SPAN_ID")
+	os.Unsetenv("DD_TRACE_ID")
+	os.Unsetenv("DD_SPAN_ID")
 
 	tracer.Start(
 		tracer.WithService("upm"),
@@ -36,8 +46,8 @@ func StartSpanFromExistingContext(name string) (ddtrace.Span, context.Context) {
 }
 
 func GetParentContext() (*SpanContext, error) {
-	traceID := os.Getenv("DD_TRACE_ID")
-	spanID := os.Getenv("DD_SPAN_ID")
+	traceID := globalDDTraceID
+	spanID := globalDDSpanID
 	if traceID == "" || spanID == "" {
 		return nil, nil
 	}
