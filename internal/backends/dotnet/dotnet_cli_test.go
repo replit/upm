@@ -1,6 +1,7 @@
 package dotnet
 
 import (
+	"context"
 	"strings"
 	"testing"
 
@@ -13,7 +14,7 @@ func TestAddPackages(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	addPackages(map[api.PkgName]api.PkgSpec{"package": "1.0"}, "", cmdRunner)
+	addPackages(context.Background(), map[api.PkgName]api.PkgSpec{"package": "1.0"}, "", cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))
@@ -30,7 +31,7 @@ func TestAddPackagesWithoutVersion(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	addPackages(map[api.PkgName]api.PkgSpec{"package": ""}, "", cmdRunner)
+	addPackages(context.Background(), map[api.PkgName]api.PkgSpec{"package": ""}, "", cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))
@@ -47,7 +48,7 @@ func TestRemovePackages(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	removePackages(map[api.PkgName]bool{"package": true}, "specFile.csproj", cmdRunner)
+	removePackages(context.Background(), map[api.PkgName]bool{"package": true}, "specFile.csproj", cmdRunner)
 
 	if len(cmds) != 2 {
 		t.Errorf("Expected two command but got %q", len(cmds))
@@ -68,7 +69,7 @@ func TestLock(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	lock(cmdRunner)
+	lock(context.Background(), cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))
@@ -85,7 +86,7 @@ func TestInstall(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	install(cmdRunner)
+	install(context.Background(), cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))

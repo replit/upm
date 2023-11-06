@@ -1,6 +1,7 @@
 package nodejs
 
 import (
+	"context"
 	"os"
 	"testing"
 
@@ -186,7 +187,7 @@ func verify(t *testing.T, tc TestCase, extension string) {
 		t.Error(err)
 	}
 
-	result, ok := tc.backend.Guess()
+	result, ok := tc.backend.Guess(context.Background())
 	if !ok {
 		t.Errorf("Guess return a non true value")
 	}

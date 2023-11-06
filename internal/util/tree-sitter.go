@@ -30,6 +30,7 @@ type importPragma struct {
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
 func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithTreeSitter")
 	defer span.Finish()
 	dirFS := os.DirFS(dir)

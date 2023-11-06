@@ -68,6 +68,7 @@ func (c *SpanContext) ParseTraceID(v string) error {
 		c.traceID.SetLower(tid)
 	} else { // 128-bit trace id
 		idUpper := v[:len(v)-16]
+		//nolint:ineffassign
 		c.traceID.SetUpperFromHex(idUpper)
 		var l uint64
 		l, err = strconv.ParseUint(v[len(idUpper):], 16, 64)
