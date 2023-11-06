@@ -1,8 +1,10 @@
 /*
-This SpanContext is implements
+This SpanContext implements
 [ddtrace.SpanContextW3C](https://github.com/DataDog/dd-trace-go/blob/49273dfcc871f3329614c40cd98116b6d44cdb12/ddtrace/ddtrace.go#L25)
 , implementation is mostly based on
 https://github.com/DataDog/dd-trace-go/blob/49273dfcc871f3329614c40cd98116b6d44cdb12/ddtrace/tracer/spancontext.go#L85
+
+We have our own version because that one was made private.
 */
 
 package trace
