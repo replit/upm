@@ -161,7 +161,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 
 // deleteLockfile deletes the project's lockfile, if one exists.
 func deleteLockfile(ctx context.Context, b api.LanguageBackend) {
-	span, _ := tracer.StartSpanFromContext(ctx, "deleteLockfile")
+	span, ctx := tracer.StartSpanFromContext(ctx, "deleteLockfile")
 	defer span.Finish()
 	if util.Exists(b.Lockfile) {
 		util.ProgressMsg("delete " + b.Lockfile)
@@ -172,7 +172,7 @@ func deleteLockfile(ctx context.Context, b api.LanguageBackend) {
 // maybeLock either runs lock or not, depending on the backend, store,
 // and command-line options. It returns true if it actually ran lock.
 func maybeLock(ctx context.Context, b api.LanguageBackend, forceLock bool) bool {
-	span, _ := tracer.StartSpanFromContext(ctx, "maybeLock")
+	span, ctx := tracer.StartSpanFromContext(ctx, "maybeLock")
 	defer span.Finish()
 	if b.QuirksIsNotReproducible() {
 		return false

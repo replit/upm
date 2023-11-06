@@ -235,7 +235,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	Search: search,
 	Info:   info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "composer require")
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer require")
 		defer span.Finish()
 		cmd := []string{"composer", "require"}
 
@@ -249,7 +249,7 @@ var PhpComposerBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "composer remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer remove")
 		defer span.Finish()
 		cmd := []string{"composer", "remove"}
 		for name := range pkgs {
@@ -258,12 +258,12 @@ var PhpComposerBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "composer update")
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer update")
 		defer span.Finish()
 		util.RunCmd([]string{"composer", "update"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "composer install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer install")
 		defer span.Finish()
 		util.RunCmd([]string{"composer", "install"})
 	},

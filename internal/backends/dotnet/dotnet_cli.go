@@ -33,14 +33,14 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 
 // installs all packages using dotnet command
 func install(ctx context.Context, cmdRunner func([]string)) {
-	span, _ := tracer.StartSpanFromContext(ctx, "dotnet restore")
+	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet restore")
 	defer span.Finish()
 	cmdRunner([]string{"dotnet", "restore"})
 }
 
 // generates or updates the lock file using dotnet command
 func lock(ctx context.Context, cmdRunner func([]string)) {
-	span, _ := tracer.StartSpanFromContext(ctx, "dotnet restore --use-lock-file")
+	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet restore --use-lock-file")
 	defer span.Finish()
 	cmdRunner([]string{"dotnet", "restore", "--use-lock-file"})
 }

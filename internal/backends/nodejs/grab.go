@@ -123,7 +123,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 }
 
 func filterImports(ctx context.Context, foundPaths map[string]bool) map[api.PkgName]bool {
-	span, _ := tracer.StartSpanFromContext(ctx, "nodejs.grab.filterImports")
+	span, ctx := tracer.StartSpanFromContext(ctx, "nodejs.grab.filterImports")
 	defer span.Finish()
 	pkgs := map[api.PkgName]bool{}
 

@@ -78,7 +78,7 @@ var ElispBackend = api.LanguageBackend{
 		return info
 	},
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "elisp add")
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp add")
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		var contents string
@@ -112,7 +112,7 @@ var ElispBackend = api.LanguageBackend{
 		util.TryWriteAtomic("Cask", contentsB)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "elisp remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp remove")
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		if err != nil {
@@ -134,7 +134,7 @@ var ElispBackend = api.LanguageBackend{
 		util.TryWriteAtomic("Cask", contentsB)
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "cask install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "cask install")
 		defer span.Finish()
 		util.RunCmd([]string{"cask", "install"})
 		outputB := util.GetCmdOutput(
@@ -185,7 +185,7 @@ var ElispBackend = api.LanguageBackend{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
 	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "elisp guess")
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
 		defer span.Finish()
 		r := regexp.MustCompile(
 			`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,

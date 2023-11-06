@@ -276,7 +276,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "yarn (init) add")
+		span, ctx := tracer.StartSpanFromContext(ctx, "yarn (init) add")
 		defer span.Finish()
 		if !util.Exists("package.json") {
 			util.RunCmd([]string{"yarn", "init", "-y"})
@@ -292,7 +292,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "yarn remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "yarn remove")
 		defer span.Finish()
 
 		cmd := []string{"yarn", "remove"}
@@ -302,12 +302,12 @@ var NodejsYarnBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "yarn install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "yarn install")
 		defer span.Finish()
 		util.RunCmd([]string{"yarn", "install"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "yarn install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "yarn install")
 		defer span.Finish()
 		util.RunCmd([]string{"yarn", "install"})
 	},
@@ -347,7 +347,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pnpm (init) add")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm (init) add")
 		defer span.Finish()
 		if !util.Exists("package.json") {
 			util.RunCmd([]string{"pnpm", "init"})
@@ -363,7 +363,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pnpm remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm remove")
 		defer span.Finish()
 		cmd := []string{"pnpm", "remove"}
 		for name := range pkgs {
@@ -372,12 +372,12 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pnpm install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm install")
 		defer span.Finish()
 		util.RunCmd([]string{"pnpm", "install"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pnpm install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm install")
 		defer span.Finish()
 		util.RunCmd([]string{"pnpm", "install"})
 	},
@@ -436,7 +436,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "npm (init) install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "npm (init) install")
 		defer span.Finish()
 		if !util.Exists("package.json") {
 			util.RunCmd([]string{"npm", "init", "-y"})
@@ -452,7 +452,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "npm uninstall")
+		span, ctx := tracer.StartSpanFromContext(ctx, "npm uninstall")
 		defer span.Finish()
 		cmd := []string{"npm", "uninstall"}
 		for name := range pkgs {
@@ -461,12 +461,12 @@ var NodejsNPMBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "npm install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "npm install")
 		defer span.Finish()
 		util.RunCmd([]string{"npm", "install"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "npm ci")
+		span, ctx := tracer.StartSpanFromContext(ctx, "npm ci")
 		defer span.Finish()
 		util.RunCmd([]string{"npm", "ci"})
 	},
@@ -514,7 +514,7 @@ var BunBackend = api.LanguageBackend{
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bun (init) add")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
 		defer span.Finish()
 
 		if !util.Exists("package.json") {
@@ -531,7 +531,7 @@ var BunBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bun remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bun remove")
 		defer span.Finish()
 
 		cmd := []string{"bun", "remove"}
@@ -541,12 +541,12 @@ var BunBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bun install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
 		defer span.Finish()
 		util.RunCmd([]string{"bun", "install"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bun install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
 		defer span.Finish()
 		util.RunCmd([]string{"bun", "install"})
 	},

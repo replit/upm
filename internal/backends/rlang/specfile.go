@@ -32,7 +32,7 @@ func (config RConfig) hasPackage(pkg RPackage) bool {
 
 // RAdd adds an external package dependency
 func RAdd(ctx context.Context, pkg RPackage) {
-	span, _ := tracer.StartSpanFromContext(ctx, "RAdd")
+	span, ctx := tracer.StartSpanFromContext(ctx, "RAdd")
 	defer span.Finish()
 	if file, err := os.Open("./Rconfig.json"); err == nil {
 		var config RConfig
@@ -86,7 +86,7 @@ func RAdd(ctx context.Context, pkg RPackage) {
 
 // RRemove removes an extenal package dependency
 func RRemove(ctx context.Context, pkg RPackage) {
-	span, _ := tracer.StartSpanFromContext(ctx, "RRemove")
+	span, ctx := tracer.StartSpanFromContext(ctx, "RRemove")
 	defer span.Finish()
 	file, err := os.Open("./Rconfig.json")
 	if err != nil {
@@ -134,7 +134,7 @@ func RRemove(ctx context.Context, pkg RPackage) {
 
 // RLock backs up the contents of the spec file to the lock file
 func RLock(ctx context.Context) {
-	span, _ := tracer.StartSpanFromContext(ctx, "RLock")
+	span, ctx := tracer.StartSpanFromContext(ctx, "RLock")
 	defer span.Finish()
 	lock, err := os.Create("./Rconfig.lock.json")
 	if err != nil {

@@ -171,7 +171,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bundle (init) add")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle (init) add")
 		defer span.Finish()
 		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
@@ -198,7 +198,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 	},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bundle remove")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle remove")
 		defer span.Finish()
 		cmd := []string{"bundle", "remove", "--skip-install"}
 		for name := range pkgs {
@@ -207,12 +207,12 @@ var RubyBackend = api.LanguageBackend{
 		util.RunCmd(cmd)
 	},
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bundle lock")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle lock")
 		defer span.Finish()
 		util.RunCmd([]string{"bundle", "lock"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "bundle install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle install")
 		defer span.Finish()
 		// We need --clean to handle uninstalls.
 		args := []string{"bundle", "install", "--clean"}
@@ -245,7 +245,7 @@ var RubyBackend = api.LanguageBackend{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
 	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
-		span, _ := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
+		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
 		defer span.Finish()
 		guessedGems := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),

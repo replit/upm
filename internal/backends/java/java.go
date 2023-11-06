@@ -116,7 +116,7 @@ func readProjectOrMakeEmpty(path string) Project {
 const pomdotxml = "pom.xml"
 
 func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-	span, _ := tracer.StartSpanFromContext(ctx, "Java add package")
+	span, ctx := tracer.StartSpanFromContext(ctx, "Java add package")
 	defer span.Finish()
 	project := readProjectOrMakeEmpty(pomdotxml)
 	existingDependencies := map[api.PkgName]api.PkgVersion{}
@@ -205,7 +205,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 }
 
 func removePackages(ctx context.Context, pkgs map[api.PkgName]bool) {
-	span, _ := tracer.StartSpanFromContext(ctx, "Java remove package")
+	span, ctx := tracer.StartSpanFromContext(ctx, "Java remove package")
 	defer span.Finish()
 	project := readProjectOrMakeEmpty(pomdotxml)
 
@@ -310,7 +310,7 @@ var JavaBackend = api.LanguageBackend{
 	Add:    addPackages,
 	Remove: removePackages,
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "Maven install")
+		span, ctx := tracer.StartSpanFromContext(ctx, "Maven install")
 		defer span.Finish()
 		util.RunCmd([]string{
 			"mvn",

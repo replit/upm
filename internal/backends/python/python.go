@@ -146,7 +146,7 @@ func info(name api.PkgName) api.PkgInfo {
 }
 
 func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-	span, _ := tracer.StartSpanFromContext(ctx, "poetry (init) add")
+	span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
 	defer span.Finish()
 	// Initalize the specfile if it doesnt exist
 	if !util.Exists("pyproject.toml") {
@@ -261,7 +261,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		Info: info,
 		Add:  add,
 		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-			span, _ := tracer.StartSpanFromContext(ctx, "poetry remove")
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry remove")
 			defer span.Finish()
 			cmd := []string{"poetry", "remove"}
 			for name := range pkgs {
@@ -270,12 +270,12 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
-			span, _ := tracer.StartSpanFromContext(ctx, "poetry lock")
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
 			defer span.Finish()
 			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
 		Install: func(ctx context.Context) {
-			span, _ := tracer.StartSpanFromContext(ctx, "poetry install")
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry install")
 			defer span.Finish()
 			// Unfortunately, this doesn't necessarily uninstall
 			// packages that have been removed from the lockfile,

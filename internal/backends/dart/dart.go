@@ -252,7 +252,7 @@ func readSpecFile() dartPubspecYaml {
 }
 
 func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-	span, _ := tracer.StartSpanFromContext(ctx, "dartAdd")
+	span, ctx := tracer.StartSpanFromContext(ctx, "dartAdd")
 	defer span.Finish()
 	if !util.Exists("pubspec.yaml") {
 		createSpecFile()
@@ -273,7 +273,7 @@ func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName 
 }
 
 func dartRemove(ctx context.Context, pkgs map[api.PkgName]bool) {
-	span, _ := tracer.StartSpanFromContext(ctx, "dartAdd")
+	span, ctx := tracer.StartSpanFromContext(ctx, "dartAdd")
 	defer span.Finish()
 	specs := readSpecFile()
 
@@ -304,12 +304,12 @@ var DartPubBackend = api.LanguageBackend{
 	Add:              dartAdd,
 	Remove:           dartRemove,
 	Lock: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pub get")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})
 	},
 	Install: func(ctx context.Context) {
-		span, _ := tracer.StartSpanFromContext(ctx, "pub get")
+		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})
 	},
