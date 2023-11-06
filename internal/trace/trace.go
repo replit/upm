@@ -27,6 +27,7 @@ func MaybeTrace(serviceVersion string) bool {
 	globalDDSpanID = os.Getenv("DD_SPAN_ID")
 	os.Unsetenv("DD_TRACE_ID")
 	os.Unsetenv("DD_SPAN_ID")
+	os.Setenv("DD_TRACE_STARTUP_LOGS", "0")
 
 	tracer.Start(
 		tracer.WithService("upm"),
