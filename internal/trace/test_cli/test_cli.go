@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	// os.Setenv("DD_TRACE_STARTUP_LOGS", "0")
 	tracer.Start(
 		tracer.WithService("upm_wrapper"),
 	)
