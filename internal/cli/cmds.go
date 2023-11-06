@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -13,7 +14,9 @@ import (
 	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/store"
 	"github.com/replit/upm/internal/table"
+	"github.com/replit/upm/internal/trace"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // subroutineSilencer is used to easily enable and restore
@@ -40,7 +43,7 @@ func (s *subroutineSilencer) restore() {
 
 // runWhichLanguage implements 'upm which-language'.
 func runWhichLanguage(language string) {
-	b := backends.GetBackend(language)
+	b := backends.GetBackend(context.Background(), language)
 	fmt.Println(b.Name)
 }
 
@@ -54,7 +57,7 @@ func runListLanguages() {
 // runSearch implements 'upm search'.
 func runSearch(language string, args []string, outputFormat outputFormat) {
 	query := strings.Join(args, " ")
-	b := backends.GetBackend(language)
+	b := backends.GetBackend(context.Background(), language)
 
 	var results []api.PkgInfo
 	if strings.TrimSpace(query) == "" {
@@ -94,7 +97,7 @@ type infoLine struct {
 
 // runInfo implements 'upm info'.
 func runInfo(language string, pkg string, outputFormat outputFormat) {
-	b := backends.GetBackend(language)
+	b := backends.GetBackend(context.Background(), language)
 	info := b.Info(api.PkgName(pkg))
 	if info.Name == "" {
 		util.Die("no such package: %s", pkg)
@@ -157,7 +160,10 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 }
 
 // deleteLockfile deletes the project's lockfile, if one exists.
-func deleteLockfile(b api.LanguageBackend) {
+func deleteLockfile(ctx context.Context, b api.LanguageBackend) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "deleteLockfile")
+	defer span.Finish()
 	if util.Exists(b.Lockfile) {
 		util.ProgressMsg("delete " + b.Lockfile)
 		os.Remove(b.Lockfile)
@@ -166,7 +172,9 @@ func deleteLockfile(b api.LanguageBackend) {
 
 // maybeLock either runs lock or not, depending on the backend, store,
 // and command-line options. It returns true if it actually ran lock.
-func maybeLock(b api.LanguageBackend, forceLock bool) bool {
+func maybeLock(ctx context.Context, b api.LanguageBackend, forceLock bool) bool {
+	span, ctx := tracer.StartSpanFromContext(ctx, "maybeLock")
+	defer span.Finish()
 	if b.QuirksIsNotReproducible() {
 		return false
 	}
@@ -176,7 +184,7 @@ func maybeLock(b api.LanguageBackend, forceLock bool) bool {
 	}
 
 	if forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b) {
-		b.Lock()
+		b.Lock(ctx)
 		return true
 	}
 
@@ -185,20 +193,22 @@ func maybeLock(b api.LanguageBackend, forceLock bool) bool {
 
 // maybeInstall either runs install or not, depending on the backend,
 // store, and command-line options.
-func maybeInstall(b api.LanguageBackend, forceInstall bool) {
+func maybeInstall(ctx context.Context, b api.LanguageBackend, forceInstall bool) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "maybeInstall")
+	defer span.Finish()
 	if b.QuirksIsReproducible() {
 		if !util.Exists(b.Lockfile) {
 			return
 		}
 		if forceInstall || store.HasLockfileChanged(b) {
-			b.Install()
+			b.Install(ctx)
 		}
 	} else {
 		if !util.Exists(b.Specfile) {
 			return
 		}
 		if forceInstall || store.HasSpecfileChanged(b) {
-			b.Install()
+			b.Install(ctx)
 		}
 	}
 }
@@ -235,13 +245,14 @@ func runAdd(
 	language string, args []string, upgrade bool,
 	guess bool, forceGuess bool, ignoredPackages []string,
 	forceLock bool, forceInstall bool, name string) {
-
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runAdd")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 
 	normPkgs := normalizePackageArgs(b, args)
 
 	if guess {
-		guessed := store.GuessWithCache(b, forceGuess)
+		guessed := store.GuessWithCache(ctx, b, forceGuess)
 
 		// Map from normalized package names to original
 		// names.
@@ -273,7 +284,7 @@ func runAdd(
 	}
 
 	if upgrade {
-		deleteLockfile(b)
+		deleteLockfile(ctx, b)
 	}
 
 	if len(normPkgs) >= 1 {
@@ -282,28 +293,29 @@ func runAdd(
 			pkgs[nameAndSpec.name] = nameAndSpec.spec
 		}
 
-		b.Add(pkgs, name)
+		b.Add(ctx, pkgs, name)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
-		didLock := maybeLock(b, forceLock)
+		didLock := maybeLock(ctx, b, forceLock)
 
 		if !(didLock && b.QuirksDoesLockAlsoInstall()) {
-			maybeInstall(b, forceInstall)
+			maybeInstall(ctx, b, forceInstall)
 		}
 	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
-		maybeInstall(b, forceInstall)
+		maybeInstall(ctx, b, forceInstall)
 	}
 
-	store.UpdateFileHashes(b)
-	store.Write()
+	store.UpdateFileHashes(ctx, b)
+	store.Write(ctx)
 }
 
 // runRemove implements 'upm remove'.
 func runRemove(language string, args []string, upgrade bool,
 	forceLock bool, forceInstall bool) {
-
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runRemove")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 
 	if !util.Exists(b.Specfile) {
 		return
@@ -331,7 +343,7 @@ func runRemove(language string, args []string, upgrade bool,
 	}
 
 	if upgrade {
-		deleteLockfile(b)
+		deleteLockfile(ctx, b)
 	}
 
 	if len(normPkgs) >= 1 {
@@ -339,49 +351,53 @@ func runRemove(language string, args []string, upgrade bool,
 		for _, name := range normPkgs {
 			pkgs[name] = true
 		}
-		b.Remove(pkgs)
+		b.Remove(ctx, pkgs)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
-		didLock := maybeLock(b, forceLock)
+		didLock := maybeLock(ctx, b, forceLock)
 
 		if !(didLock && b.QuirksDoesLockAlsoInstall()) {
-			maybeInstall(b, forceInstall)
+			maybeInstall(ctx, b, forceInstall)
 		}
 	} else if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoInstall() {
-		maybeInstall(b, forceInstall)
+		maybeInstall(ctx, b, forceInstall)
 	}
 
-	store.UpdateFileHashes(b)
-	store.Write()
+	store.UpdateFileHashes(ctx, b)
+	store.Write(ctx)
 }
 
 // runLock implements 'upm lock'.
 func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runLock")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 
 	if upgrade {
-		deleteLockfile(b)
+		deleteLockfile(ctx, b)
 	}
 
-	didLock := maybeLock(b, forceLock)
+	didLock := maybeLock(ctx, b, forceLock)
 
 	if !(didLock && b.QuirksDoesLockAlsoInstall()) {
-		maybeInstall(b, forceInstall)
+		maybeInstall(ctx, b, forceInstall)
 	}
 
-	store.UpdateFileHashes(b)
-	store.Write()
+	store.UpdateFileHashes(ctx, b)
+	store.Write(ctx)
 }
 
 // runInstall implements 'upm install'.
 func runInstall(language string, force bool) {
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runInstall")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 
-	maybeInstall(b, force)
+	maybeInstall(ctx, b, force)
 
-	store.UpdateFileHashes(b)
-	store.Write()
+	store.UpdateFileHashes(ctx, b)
+	store.Write(ctx)
 }
 
 // listSpecfileJSONEntry represents one entry in the JSON list emitted
@@ -400,7 +416,9 @@ type listLockfileJSONEntry struct {
 
 // runList implements 'upm list'.
 func runList(language string, all bool, outputFormat outputFormat) {
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runList")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 	if !all {
 		var results map[api.PkgName]api.PkgSpec = nil
 		fileExists := util.Exists(b.Specfile)
@@ -488,9 +506,10 @@ func runList(language string, all bool, outputFormat outputFormat) {
 func runGuess(
 	language string, all bool,
 	forceGuess bool, ignoredPackages []string) {
-
-	b := backends.GetBackend(language)
-	pkgs := store.GuessWithCache(b, forceGuess)
+	span, ctx := trace.StartSpanFromExistingContext("runGuess")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
+	pkgs := store.GuessWithCache(ctx, b, forceGuess)
 
 	// Map from normalized to original names.
 	normPkgs := map[api.PkgName]api.PkgName{}
@@ -520,33 +539,35 @@ func runGuess(
 		fmt.Println(line)
 	}
 
-	store.Write()
+	store.Write(ctx)
 }
 
 // runShowSpecfile implements 'upm show-specfile'.
 func runShowSpecfile(language string) {
-	fmt.Println(backends.GetBackend(language).Specfile)
+	fmt.Println(backends.GetBackend(context.Background(), language).Specfile)
 }
 
 // runShowLockfile implements 'upm show-lockfile'.
 func runShowLockfile(language string) {
-	fmt.Println(backends.GetBackend(language).Lockfile)
+	fmt.Println(backends.GetBackend(context.Background(), language).Lockfile)
 }
 
 // runShowPackageDir implements 'upm show-package-dir'.
 func runShowPackageDir(language string) {
-	b := backends.GetBackend(language)
+	b := backends.GetBackend(context.Background(), language)
 	dir := b.GetPackageDir()
 	fmt.Println(dir)
 }
 
 // runInstallReplitNixSystemDependencies implements 'upm install-replit-nix-system-dependencies'.
 func runInstallReplitNixSystemDependencies(language string, args []string) {
-	b := backends.GetBackend(language)
+	span, ctx := trace.StartSpanFromExistingContext("runInstallReplitNixSystemDependencies")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
 	normPkgs := normalizePackageArgs(b, args)
 	pkgs := []api.PkgName{}
 	for p := range normPkgs {
 		pkgs = append(pkgs, p)
 	}
-	b.InstallReplitNixSystemDependencies(pkgs)
+	b.InstallReplitNixSystemDependencies(ctx, pkgs)
 }

@@ -1,12 +1,14 @@
 package python
 
 import (
+	"context"
 	"os"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
 	"github.com/smacker/go-tree-sitter/python"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 var importsQuery = `
@@ -241,23 +243,27 @@ var internalModules = []string{
 	"zoneinfo",
 }
 
-func guess(python string) (map[api.PkgName]bool, bool) {
+func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
+	defer span.Finish()
 	cwd, err := os.Getwd()
 	if err != nil {
 		util.Die("couldn't get working directory: %s", err)
 	}
 
-	foundImportPaths, err := findImports(cwd)
+	foundImportPaths, err := findImports(ctx, cwd)
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
 
-	return filterImports(foundImportPaths)
+	return filterImports(ctx, foundImportPaths)
 }
 
-func findImports(dir string) (map[string]bool, error) {
+func findImports(ctx context.Context, dir string) (map[string]bool, error) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.findImports")
+	defer span.Finish()
 	py := python.GetLanguage()
-	pkgs, err := util.GuessWithTreeSitter(dir, py, importsQuery, pyPathGlobs, pyIgnoreGlobs)
+	pkgs, err := util.GuessWithTreeSitter(ctx, dir, py, importsQuery, pyPathGlobs, pyIgnoreGlobs)
 
 	if err != nil {
 		return nil, err
@@ -271,7 +277,10 @@ func findImports(dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
+	defer span.Finish()
 	// filter out internal modules
 	for pkg := range foundPkgs {
 		mod := getTopLevelModuleName(pkg)

@@ -2,6 +2,7 @@
 package python
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // this generates a mapping of pypi packages <-> modules
@@ -143,7 +145,10 @@ func info(name api.PkgName) api.PkgInfo {
 	return info
 }
 
-func add(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
+	defer span.Finish()
 	// Initalize the specfile if it doesnt exist
 	if !util.Exists("pyproject.toml") {
 		cmd := []string{"poetry", "init", "--no-interaction"}
@@ -256,17 +261,26 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		},
 		Info: info,
 		Add:  add,
-		Remove: func(pkgs map[api.PkgName]bool) {
+		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry remove")
+			defer span.Finish()
 			cmd := []string{"poetry", "remove"}
 			for name := range pkgs {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
 		},
-		Lock: func() {
+		Lock: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
+			defer span.Finish()
 			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
-		Install: func() {
+		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry install")
+			defer span.Finish()
 			// Unfortunately, this doesn't necessarily uninstall
 			// packages that have been removed from the lockfile,
 			// which happens for example if 'poetry remove' is
@@ -303,8 +317,11 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*) as`,
 			`import ((?:.|\\\n)*)`,
 		}),
-		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
-		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+		Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
+			defer span.Finish()
 			ops := []nix.NixEditorOp{}
 			for _, pkg := range pkgs {
 				deps := nix.PythonNixDeps(string(pkg))

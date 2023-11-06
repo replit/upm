@@ -2,6 +2,7 @@
 package elisp
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -12,6 +13,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // elispPatterns is the FilenamePatterns value for ElispBackend.
@@ -75,7 +77,10 @@ var ElispBackend = api.LanguageBackend{
 		}
 		return info
 	},
-	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp add")
+		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		var contents string
 		if os.IsNotExist(err) {
@@ -107,7 +112,10 @@ var ElispBackend = api.LanguageBackend{
 		util.ProgressMsg("write Cask")
 		util.TryWriteAtomic("Cask", contentsB)
 	},
-	Remove: func(pkgs map[api.PkgName]bool) {
+	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp remove")
+		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		if err != nil {
 			util.Die("Cask: %s", err)
@@ -127,7 +135,10 @@ var ElispBackend = api.LanguageBackend{
 		util.ProgressMsg("write Cask")
 		util.TryWriteAtomic("Cask", contentsB)
 	},
-	Install: func() {
+	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "cask install")
+		defer span.Finish()
 		util.RunCmd([]string{"cask", "install"})
 		outputB := util.GetCmdOutput(
 			[]string{"cask", "eval", util.GetResource(
@@ -176,7 +187,10 @@ var ElispBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
-	Guess: func() (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
+		defer span.Finish()
 		r := regexp.MustCompile(
 			`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 		)

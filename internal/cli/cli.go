@@ -7,8 +7,10 @@ import (
 
 	"github.com/replit/upm/internal/backends"
 	"github.com/replit/upm/internal/config"
+	"github.com/replit/upm/internal/trace"
 	"github.com/replit/upm/internal/util"
 	"github.com/spf13/cobra"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // parseOutputFormat takes "table" or "json" and returns an
@@ -38,6 +40,9 @@ func getVersion() string {
 // DoCLI reads the command-line arguments and runs the appropriate
 // code, then exits the process (or returns to indicate normal exit).
 func DoCLI() {
+	if trace.MaybeTrace(getVersion()) {
+		defer tracer.Stop()
+	}
 	backends.SetupAll()
 
 	var language string

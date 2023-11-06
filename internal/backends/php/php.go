@@ -1,6 +1,7 @@
 package php
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -12,6 +13,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 /*
@@ -232,7 +234,10 @@ var PhpComposerBackend = api.LanguageBackend{
 	},
 	Search: search,
 	Info:   info,
-	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer require")
+		defer span.Finish()
 		cmd := []string{"composer", "require"}
 
 		for name, spec := range pkgs {
@@ -244,22 +249,31 @@ var PhpComposerBackend = api.LanguageBackend{
 		}
 		util.RunCmd(cmd)
 	},
-	Remove: func(pkgs map[api.PkgName]bool) {
+	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer remove")
+		defer span.Finish()
 		cmd := []string{"composer", "remove"}
 		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
 	},
-	Lock: func() {
+	Lock: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer update")
+		defer span.Finish()
 		util.RunCmd([]string{"composer", "update"})
 	},
-	Install: func() {
+	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "composer install")
+		defer span.Finish()
 		util.RunCmd([]string{"composer", "install"})
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func() (map[api.PkgName]bool, bool) {
+	Guess: func(context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 		return nil, false
 	},

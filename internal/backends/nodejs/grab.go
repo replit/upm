@@ -1,6 +1,7 @@
 package nodejs
 
 import (
+	"context"
 	"os"
 	"strings"
 
@@ -9,6 +10,7 @@ import (
 	"github.com/smacker/go-tree-sitter/javascript"
 	"github.com/smacker/go-tree-sitter/typescript/tsx"
 	"github.com/smacker/go-tree-sitter/typescript/typescript"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 var internalModules = []string{
@@ -55,21 +57,25 @@ var internalModules = []string{
 }
 
 // nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
-func nodejsGuess() (map[api.PkgName]bool, bool) {
+func nodejsGuess(ctx context.Context) (map[api.PkgName]bool, bool) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "nodejsGuess")
+	defer span.Finish()
 	cwd, err := os.Getwd()
 	if err != nil {
 		util.Die("couldn't get working directory: %s", err)
 	}
 
-	foundImportPaths, err := findImports(cwd)
+	foundImportPaths, err := findImports(ctx, cwd)
 	if err != nil {
 		util.Die("couldn't guess imports: %s", err)
 	}
 
-	return filterImports(foundImportPaths), true
+	return filterImports(ctx, foundImportPaths), true
 }
 
-func findImports(dir string) (map[string]bool, error) {
+func findImports(ctx context.Context, dir string) (map[string]bool, error) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "nodejs.grab.findImports")
+	defer span.Finish()
 	importsQuery := `
 (import_statement
   source: (string) @import)
@@ -84,7 +90,7 @@ func findImports(dir string) (map[string]bool, error) {
 	foundImportPaths := map[string]bool{}
 
 	js := javascript.GetLanguage()
-	jsPkgs, err := util.GuessWithTreeSitter(dir, js, importsQuery, jsPathGlobs, []string{})
+	jsPkgs, err := util.GuessWithTreeSitter(ctx, dir, js, importsQuery, jsPathGlobs, []string{})
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +100,7 @@ func findImports(dir string) (map[string]bool, error) {
 	}
 
 	ts := typescript.GetLanguage()
-	tsPkgs, err := util.GuessWithTreeSitter(dir, ts, importsQuery, tsPathGlobs, []string{})
+	tsPkgs, err := util.GuessWithTreeSitter(ctx, dir, ts, importsQuery, tsPathGlobs, []string{})
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +110,7 @@ func findImports(dir string) (map[string]bool, error) {
 	}
 
 	tsx := tsx.GetLanguage()
-	tsxPkgs, err := util.GuessWithTreeSitter(dir, tsx, importsQuery, tsxPathGlobs, []string{})
+	tsxPkgs, err := util.GuessWithTreeSitter(ctx, dir, tsx, importsQuery, tsxPathGlobs, []string{})
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +122,10 @@ func findImports(dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(foundPaths map[string]bool) map[api.PkgName]bool {
+func filterImports(ctx context.Context, foundPaths map[string]bool) map[api.PkgName]bool {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "nodejs.grab.filterImports")
+	defer span.Finish()
 	pkgs := map[api.PkgName]bool{}
 
 	for mod := range foundPaths {

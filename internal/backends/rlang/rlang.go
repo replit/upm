@@ -1,6 +1,7 @@
 package rlang
 
 import (
+	"context"
 	"os"
 	"path"
 	"regexp"
@@ -122,17 +123,17 @@ var RlangBackend = api.LanguageBackend{
 
 		return api.PkgInfo{}
 	},
-	Add: func(packages map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, packages map[api.PkgName]api.PkgSpec, projectName string) {
 		for name, info := range packages {
-			RAdd(RPackage{
+			RAdd(ctx, RPackage{
 				Name:    string(name),
 				Version: string(info),
 			})
 		}
 	},
-	Remove: func(packages map[api.PkgName]bool) {
+	Remove: func(ctx context.Context, packages map[api.PkgName]bool) {
 		for name := range packages {
-			RRemove(RPackage{Name: string(name)})
+			RRemove(ctx, RPackage{Name: string(name)})
 
 			_ = util.GetExitCode([]string{
 				"R",
@@ -143,13 +144,13 @@ var RlangBackend = api.LanguageBackend{
 		}
 	},
 	Lock: RLock,
-	Install: func() {
+	Install: func(ctx context.Context) {
 		createRPkgDir()
 
 		for _, pkg := range RGetSpecFile().Packages {
 			if !installRPkg(pkg.Name) {
-				RRemove(pkg)
-				RLock()
+				RRemove(ctx, pkg)
+				RLock(ctx)
 			}
 		}
 	},
@@ -168,7 +169,7 @@ var RlangBackend = api.LanguageBackend{
 		return pkgs
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
-	Guess: func() (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 
 		return nil, false

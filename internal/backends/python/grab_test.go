@@ -1,6 +1,7 @@
 package python
 
 import (
+	"context"
 	"os"
 	"testing"
 )
@@ -33,7 +34,7 @@ import foo #upm package(bar)
 		t.Fatal("failed to write test file", err)
 	}
 
-	found, err := findImports(testDir)
+	found, err := findImports(context.Background(), testDir)
 	if err != nil {
 		t.Fatal("Parse failed", err)
 	}

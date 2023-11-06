@@ -1,6 +1,7 @@
 package nodejs
 
 import (
+	"context"
 	"os"
 	"testing"
 )
@@ -48,7 +49,7 @@ process.exit(1);
 		t.Fatal("failed to write test file", err)
 	}
 
-	found, err := findImports(testDir)
+	found, err := findImports(context.Background(), testDir)
 
 	if err != nil {
 		t.Fatal("Parse failed", err)

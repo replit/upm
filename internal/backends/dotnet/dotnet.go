@@ -2,6 +2,8 @@
 package dotnet
 
 import (
+	"context"
+
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
@@ -13,14 +15,16 @@ var DotNetBackend = api.LanguageBackend{
 	Specfile:         findSpecFile(),
 	Lockfile:         lockFileName,
 	FilenamePatterns: []string{"*.cs", "*.csproj", "*.fs", "*.fsproj"},
-	Remove:           func(pkgs map[api.PkgName]bool) { removePackages(pkgs, findSpecFile(), util.RunCmd) },
-	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-		addPackages(pkgs, projectName, util.RunCmd)
+	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		removePackages(ctx, pkgs, findSpecFile(), util.RunCmd)
+	},
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		addPackages(ctx, pkgs, projectName, util.RunCmd)
 	},
 	Search:       search,
 	Info:         info,
-	Install:      func() { install(util.RunCmd) },
-	Lock:         func() { lock(util.RunCmd) },
+	Install:      func(ctx context.Context) { install(ctx, util.RunCmd) },
+	Lock:         func(ctx context.Context) { lock(ctx, util.RunCmd) },
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
 	GetPackageDir: func() string {

@@ -3,6 +3,7 @@
 package backends
 
 import (
+	"context"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -17,6 +18,7 @@ import (
 	"github.com/replit/upm/internal/backends/ruby"
 	"github.com/replit/upm/internal/backends/rust"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // languageBackends is a slice of language backends which may be used
@@ -73,7 +75,10 @@ func matchesLanguage(b api.LanguageBackend, language string) bool {
 
 // GetBackend returns the language backend for a given --lang argument
 // value. If none is applicable, it exits the process.
-func GetBackend(language string) api.LanguageBackend {
+func GetBackend(ctx context.Context, language string) api.LanguageBackend {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "GetBackend")
+	defer span.Finish()
 	backends := languageBackends
 	if language != "" {
 		filteredBackends := []api.LanguageBackend{}
