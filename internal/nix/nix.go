@@ -1,6 +1,7 @@
 package nix
 
 import (
+	"context"
 	_ "embed"
 	"encoding/json"
 	"errors"
@@ -41,7 +42,7 @@ var (
 	python_map_json []byte
 )
 
-func DefaultInstallReplitNixSystemDependencies([]api.PkgName) {
+func DefaultInstallReplitNixSystemDependencies(context.Context, []api.PkgName) {
 	// do nothing by default, if the language doesn't implement a system
 	// dependency mapping, there is no work to be done.
 }

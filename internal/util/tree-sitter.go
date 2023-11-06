@@ -10,6 +10,7 @@ import (
 	"regexp"
 
 	sitter "github.com/smacker/go-tree-sitter"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 type queryImportsResult struct {
@@ -28,7 +29,9 @@ type importPragma struct {
 // When there's a capture tagged as `@import`, it reports the capture as an import.
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
-func GuessWithTreeSitter(dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+	span, _ := tracer.StartSpanFromContext(ctx, "GuessWithTreeSitter")
+	defer span.Finish()
 	dirFS := os.DirFS(dir)
 
 	ignoredPaths := map[string]bool{}

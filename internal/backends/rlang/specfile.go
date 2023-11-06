@@ -1,9 +1,12 @@
 package rlang
 
 import (
+	"context"
 	"encoding/json"
 	"io"
 	"os"
+
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // RConfig represents the JSON structure of the package manager file
@@ -28,7 +31,9 @@ func (config RConfig) hasPackage(pkg RPackage) bool {
 }
 
 // RAdd adds an external package dependency
-func RAdd(pkg RPackage) {
+func RAdd(ctx context.Context, pkg RPackage) {
+	span, _ := tracer.StartSpanFromContext(ctx, "RAdd")
+	defer span.Finish()
 	if file, err := os.Open("./Rconfig.json"); err == nil {
 		var config RConfig
 
@@ -73,14 +78,16 @@ func RAdd(pkg RPackage) {
 
 		file.Close()
 
-		RAdd(pkg)
+		RAdd(ctx, pkg)
 	} else {
 		panic(err)
 	}
 }
 
 // RRemove removes an extenal package dependency
-func RRemove(pkg RPackage) {
+func RRemove(ctx context.Context, pkg RPackage) {
+	span, _ := tracer.StartSpanFromContext(ctx, "RRemove")
+	defer span.Finish()
 	file, err := os.Open("./Rconfig.json")
 	if err != nil {
 		panic(err)
@@ -126,7 +133,9 @@ func RRemove(pkg RPackage) {
 }
 
 // RLock backs up the contents of the spec file to the lock file
-func RLock() {
+func RLock(ctx context.Context) {
+	span, _ := tracer.StartSpanFromContext(ctx, "RLock")
+	defer span.Finish()
 	lock, err := os.Create("./Rconfig.lock.json")
 	if err != nil {
 		panic(err)

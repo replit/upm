@@ -4,12 +4,14 @@
 package store
 
 import (
+	"context"
 	"encoding/json"
 	"os"
 	"path/filepath"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // st is a global object representing the store data. All functions in
@@ -90,7 +92,9 @@ func getLanguageCache(language, languageAlias string) *storeLanguage {
 
 // Write writes the current contents of the store from memory back to
 // disk. If there is an error, it terminates the process.
-func Write() {
+func Write(ctx context.Context) {
+	span, _ := tracer.StartSpanFromContext(ctx, "store.Write")
+	defer span.Finish()
 	filename := getStoreLocation()
 
 	filename, err := filepath.Abs(filename)
@@ -140,7 +144,9 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // backend does specify b.GuessRegexps, then the return value of this
 // function is cached.) If forceGuess is true, then write to but do
 // not read from the cache.
-func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
+func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
+	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithCache")
+	defer span.Finish()
 	readMaybe()
 	initLanguage(b.Name, b.Alias)
 	cache := getLanguageCache(b.Name, b.Alias)
@@ -156,7 +162,7 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 		var pkgs map[api.PkgName]bool
 		success := true
 		if new != "" {
-			pkgs, success = b.Guess()
+			pkgs, success = b.Guess(ctx)
 		} else {
 			// If new is the empty string, that means
 			// (according to the interface of hashImports)
@@ -200,7 +206,9 @@ func GuessWithCache(b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool
 
 // UpdateFileHashes caches the current states of the specfile and
 // lockfile. Neither file need exist.
-func UpdateFileHashes(b api.LanguageBackend) {
+func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+	span, _ := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
+	defer span.Finish()
 	readMaybe()
 	initLanguage(b.Name, b.Alias)
 	cache := getLanguageCache(b.Name, b.Alias)

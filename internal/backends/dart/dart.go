@@ -3,6 +3,7 @@
 package dart
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -15,6 +16,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/yaml.v2"
 )
 
@@ -249,7 +251,9 @@ func readSpecFile() dartPubspecYaml {
 	return specs
 }
 
-func dartAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	span, _ := tracer.StartSpanFromContext(ctx, "dartAdd")
+	defer span.Finish()
 	if !util.Exists("pubspec.yaml") {
 		createSpecFile()
 	}
@@ -268,7 +272,9 @@ func dartAdd(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	writeSpecFile(specs)
 }
 
-func dartRemove(pkgs map[api.PkgName]bool) {
+func dartRemove(ctx context.Context, pkgs map[api.PkgName]bool) {
+	span, _ := tracer.StartSpanFromContext(ctx, "dartAdd")
+	defer span.Finish()
 	specs := readSpecFile()
 
 	for name := range pkgs {
@@ -279,7 +285,7 @@ func dartRemove(pkgs map[api.PkgName]bool) {
 }
 
 // dartGuess stub.
-func dartGuess() (map[api.PkgName]bool, bool) {
+func dartGuess(context.Context) (map[api.PkgName]bool, bool) {
 	util.Die("Guess not implemented!")
 
 	return nil, false
@@ -297,10 +303,14 @@ var DartPubBackend = api.LanguageBackend{
 	Info:             dartInfo,
 	Add:              dartAdd,
 	Remove:           dartRemove,
-	Lock: func() {
+	Lock: func(ctx context.Context) {
+		span, _ := tracer.StartSpanFromContext(ctx, "pub get")
+		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})
 	},
-	Install: func() {
+	Install: func(ctx context.Context) {
+		span, _ := tracer.StartSpanFromContext(ctx, "pub get")
+		defer span.Finish()
 		util.RunCmd([]string{"pub", "get"})
 	},
 	ListSpecfile:                       dartListPubspecYaml,

@@ -2,6 +2,7 @@
 package rust
 
 import (
+	"context"
 	"encoding/json"
 	"io"
 	"net/url"
@@ -11,6 +12,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 type cargoToml struct {
@@ -228,7 +230,9 @@ var RustBackend = api.LanguageBackend{
 	},
 	Search: search,
 	Info:   info,
-	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		span, _ := tracer.StartSpanFromContext(ctx, "cargo add")
+		defer span.Finish()
 		if !util.Exists("Cargo.toml") {
 			util.RunCmd([]string{"cargo", "init", "."})
 		}
@@ -242,22 +246,24 @@ var RustBackend = api.LanguageBackend{
 		}
 		util.RunCmd(cmd)
 	},
-	Remove: func(pkgs map[api.PkgName]bool) {
+	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		span, _ := tracer.StartSpanFromContext(ctx, "cargo rm")
+		defer span.Finish()
 		cmd := []string{"cargo", "rm"}
 		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
 	},
-	Lock: func() {
+	Lock: func(ctx context.Context) {
 		// Lock file is updated at build time
 	},
-	Install: func() {
+	Install: func(ctx context.Context) {
 		// Dependencies are installed at build time
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func() (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 		return nil, false
 	},

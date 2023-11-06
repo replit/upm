@@ -1,6 +1,8 @@
 package testSuite
 
 import (
+	"context"
+
 	"github.com/replit/upm/internal/backends"
 	"github.com/replit/upm/test-suite/templates"
 	testUtils "github.com/replit/upm/test-suite/utils"
@@ -18,7 +20,7 @@ func init() {
 	backends.SetupAll()
 
 	for _, bn := range backends.GetBackendNames() {
-		bt := testUtils.InitBackendT(backends.GetBackend(bn), &templates.FS)
+		bt := testUtils.InitBackendT(backends.GetBackend(context.Background(), bn), &templates.FS)
 		languageBackends = append(languageBackends, bt)
 	}
 }
