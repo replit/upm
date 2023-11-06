@@ -273,7 +273,7 @@ func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName 
 }
 
 func dartRemove(ctx context.Context, pkgs map[api.PkgName]bool) {
-	span, ctx := tracer.StartSpanFromContext(ctx, "dartAdd")
+	span, ctx := tracer.StartSpanFromContext(ctx, "dartRemove")
 	defer span.Finish()
 	specs := readSpecFile()
 
