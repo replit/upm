@@ -13,29 +13,36 @@ var (
 	globalDDSpanID  string
 )
 
-func MaybeTrace(serviceVersion string) bool {
+func MaybeTrace(serviceVersion string) func() {
 	if os.Getenv("UPM_TRACE") != "1" {
-		return false
+		return nil
 	}
 
 	replid := os.Getenv("REPL_ID")
 	if replid == "" {
-		return false
+		return nil
 	}
-
-	os.Setenv("DD_TRACE_STARTUP_LOGS", "0")
 
 	globalDDTraceID = os.Getenv("DD_TRACE_ID")
 	globalDDSpanID = os.Getenv("DD_SPAN_ID")
 	os.Unsetenv("DD_TRACE_ID")
 	os.Unsetenv("DD_SPAN_ID")
 
+	logger, err := NewDatadogLogger()
+	if err != nil {
+		return nil
+	}
+
 	tracer.Start(
 		tracer.WithService("upm"),
 		tracer.WithGlobalTag("replid", replid),
 		tracer.WithServiceVersion(serviceVersion),
+		tracer.WithLogger(logger),
 	)
-	return true
+	return func() {
+		tracer.Stop()
+		logger.Close()
+	}
 }
 
 func StartSpanFromExistingContext(name string) (ddtrace.Span, context.Context) {
