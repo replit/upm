@@ -18,8 +18,7 @@ func NewDatadogLogger() (*DatadogLogger, error) {
 }
 
 func (l *DatadogLogger) Log(msg string) {
-	l.file.WriteString(msg)
-	l.file.WriteString("\n")
+	_, _ = l.file.WriteString(msg + "\n")
 }
 
 func (l *DatadogLogger) Close() {
