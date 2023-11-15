@@ -35,7 +35,7 @@ func MaybeTrace(serviceVersion string) func() {
 
 	rules := []tracer.SamplingRule{
 		// send 100.00% of traces
-		tracer.ServiceRule("upm", 1.0000),
+		tracer.ServiceRule("upm", 1.0),
 	}
 	tracer.Start()
 
