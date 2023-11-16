@@ -597,6 +597,7 @@
   "ray":{"deps":["pkgs.py-spy"]},
   "rchitect":{"deps":["pkgs.R"],"libdeps":["pkgs.R"]},
   "rdkit":{"deps":["pkgs.cairo","pkgs.catch2","pkgs.comic-neue","pkgs.coordgenlibs","pkgs.eigen","pkgs.inchi","pkgs.maeparser","pkgs.rapidjson"],"libdeps":["pkgs.cairo","pkgs.catch2","pkgs.coordgenlibs","pkgs.inchi","pkgs.maeparser","pkgs.rapidjson"]},
+  "reflex":{"deps":["pkgs.unzip"]},
   "reportengine":{"deps":["pkgs.pandoc"]},
   "reportlab":{"deps":["pkgs.freetype","pkgs.glibcLocales"],"libdeps":["pkgs.freetype","pkgs.glibcLocales"]},
   "requests-credssp":{"deps":["pkgs.krb5"],"libdeps":["pkgs.krb5"]},
