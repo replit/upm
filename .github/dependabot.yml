@@ -4,13 +4,13 @@ updates:
   # TODO: https://github.com/dependabot/dependabot-core/issues/4364
   - directory: "/test-suite"
     package-ecosystem: "npm"
-    ignore: "*"
+    schedule:
+      interval: "monthly"
+    ignore:
+    - dependency-name: "*"
   - directory: "/test-suite"
-    package-ecosystem: "pnpm"
-    ignore: "*"
-  - directory: "/test-suite"
-    package-ecosystem: "poetry"
-    ignore: "*"
-  - directory: "/test-suite"
-    package-ecosystem: "yarn"
-    ignore: "*"
+    package-ecosystem: "pip"
+    schedule:
+      interval: "monthly"
+    ignore:
+    - dependency-name: "*"

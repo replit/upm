@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"regexp"
 
 	"github.com/replit/upm/internal/util"
@@ -227,7 +228,7 @@ type LanguageBackend struct {
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Add func(map[PkgName]PkgSpec, string)
+	Add func(context.Context, map[PkgName]PkgSpec, string)
 
 	// Remove packages from the specfile. The map is guaranteed to
 	// have at least one package, and all of the packages are
@@ -240,7 +241,7 @@ type LanguageBackend struct {
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Remove func(map[PkgName]bool)
+	Remove func(context.Context, map[PkgName]bool)
 
 	// Generate the lockfile from the specfile. The specfile is
 	// guaranteed to already exist. This method must create the
@@ -250,7 +251,7 @@ type LanguageBackend struct {
 	//
 	// This field is mandatory, unless QuirksNotReproducible in
 	// which case this field *may* not be specified.
-	Lock func()
+	Lock func(context.Context)
 
 	// Install packages from the lockfile. The specfile and
 	// lockfile are guaranteed to already exist, unless
@@ -258,7 +259,7 @@ type LanguageBackend struct {
 	// guaranteed to exist.
 	//
 	// This field is mandatory.
-	Install func()
+	Install func(context.Context)
 
 	// List the packages in the specfile. Names and specs should
 	// be returned in a format suitable for the Add method. The
@@ -311,11 +312,11 @@ type LanguageBackend struct {
 	// (which is now wrong).
 	//
 	// This field is mandatory.
-	Guess func() (map[PkgName]bool, bool)
+	Guess func(ctx context.Context) (map[PkgName]bool, bool)
 
 	// Installs system dependencies into replit.nix for supported
 	// languages.
-	InstallReplitNixSystemDependencies func([]PkgName)
+	InstallReplitNixSystemDependencies func(context.Context, []PkgName)
 }
 
 // Setup panics if the given language backend does not specify all of

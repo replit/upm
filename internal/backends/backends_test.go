@@ -1,6 +1,7 @@
 package backends
 
 import (
+	"context"
 	"os"
 	"path/filepath"
 	"testing"
@@ -34,7 +35,7 @@ func TestGetBackends(t *testing.T) {
 			t.Errorf("failed to change to directory: %s err: %v", dir, err)
 		}
 
-		actualBackend := GetBackend("")
+		actualBackend := GetBackend(context.Background(), "")
 		if backend != actualBackend.Name {
 			t.Errorf("expected backend: %s but got backend %s", backend, actualBackend.Name)
 		}

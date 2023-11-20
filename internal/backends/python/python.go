@@ -2,6 +2,7 @@
 package python
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // this generates a mapping of pypi packages <-> modules
@@ -61,12 +63,6 @@ type poetryLock struct {
 		Name    string `json:"name"`
 		Version string `json:"version"`
 	} `json:"package"`
-}
-
-// moduleMetadata represents the information that could be associated with
-// a module using a #upm pragma
-type modulePragmas struct {
-	Package string `json:"package"`
 }
 
 // normalizeSpec returns the version string from a Poetry spec, or the
@@ -149,7 +145,10 @@ func info(name api.PkgName) api.PkgInfo {
 	return info
 }
 
-func add(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
+	defer span.Finish()
 	// Initalize the specfile if it doesnt exist
 	if !util.Exists("pyproject.toml") {
 		cmd := []string{"poetry", "init", "--no-interaction"}
@@ -262,17 +261,26 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		},
 		Info: info,
 		Add:  add,
-		Remove: func(pkgs map[api.PkgName]bool) {
+		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry remove")
+			defer span.Finish()
 			cmd := []string{"poetry", "remove"}
 			for name := range pkgs {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
 		},
-		Lock: func() {
+		Lock: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
+			defer span.Finish()
 			util.RunCmd([]string{"poetry", "lock", "--no-update"})
 		},
-		Install: func() {
+		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry install")
+			defer span.Finish()
 			// Unfortunately, this doesn't necessarily uninstall
 			// packages that have been removed from the lockfile,
 			// which happens for example if 'poetry remove' is
@@ -309,8 +317,11 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			`import ((?:.|\\\n)*) as`,
 			`import ((?:.|\\\n)*)`,
 		}),
-		Guess: func() (map[api.PkgName]bool, bool) { return guess(python) },
-		InstallReplitNixSystemDependencies: func(pkgs []api.PkgName) {
+		Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
+			defer span.Finish()
 			ops := []nix.NixEditorOp{}
 			for _, pkg := range pkgs {
 				deps := nix.PythonNixDeps(string(pkg))
@@ -359,94 +370,6 @@ func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	}
 
 	return pkgs, nil
-}
-
-func guess(python string) (map[api.PkgName]bool, bool) {
-	pypiMap, err := NewPypiMap()
-	if err != nil {
-		util.Die(err.Error())
-	}
-	defer pypiMap.Close()
-
-	tempdir := util.TempDir()
-	defer os.RemoveAll(tempdir)
-
-	util.WriteResource("/python/pipreqs.py", tempdir)
-	script := util.WriteResource("/python/bare-imports.py", tempdir)
-
-	outputB := util.GetCmdOutput([]string{
-		python, script, strings.Join(util.IgnoredPaths, " "),
-	})
-
-	var output struct {
-		Imports map[string]modulePragmas `json:"imports"`
-		Success bool                     `json:"success"`
-	}
-
-	if err := json.Unmarshal(outputB, &output); err != nil {
-		util.Die("pipreqs: %s", err)
-	}
-
-	availMods := map[string]bool{}
-
-	if knownPkgs, err := listSpecfile(); err == nil {
-		for pkgName := range knownPkgs {
-			mods, ok := pypiMap.PackageToModules(string(pkgName))
-			if ok {
-				for _, mod := range mods {
-					availMods[mod] = true
-				}
-			}
-		}
-	}
-
-	pkgs := map[api.PkgName]bool{}
-
-	for fullModname, pragmas := range output.Imports {
-		modname := getTopLevelModuleName(fullModname)
-		// provided by an existing package or perhaps by the system
-		if availMods[modname] {
-			continue
-		}
-
-		// If this module has a package pragma, use that
-		if pragmas.Package != "" {
-			name := api.PkgName(pragmas.Package)
-			pkgs[normalizePackageName(name)] = true
-
-		} else {
-			// Otherwise, try and look it up in Pypi
-			var pkg string
-			var ok bool
-
-			modNameParts := strings.Split(fullModname, ".")
-			for len(modNameParts) > 0 {
-				testModName := strings.Join(modNameParts, ".")
-
-				// test overrides
-				pkg, ok = moduleToPypiPackageOverride[testModName]
-				if ok {
-					break
-				}
-
-				// test pypi
-				pkg, ok = pypiMap.ModuleToPackage(testModName)
-				if ok {
-					break
-				}
-
-				// loop with everything except the deepest submodule
-				modNameParts = modNameParts[:len(modNameParts)-1]
-			}
-
-			if ok {
-				name := api.PkgName(pkg)
-				pkgs[normalizePackageName(name)] = true
-			}
-		}
-	}
-
-	return pkgs, output.Success
 }
 
 func getTopLevelModuleName(fullModname string) string {

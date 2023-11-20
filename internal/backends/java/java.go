@@ -2,6 +2,7 @@
 package java
 
 import (
+	"context"
 	"encoding/xml"
 	"fmt"
 	"os"
@@ -10,6 +11,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 type Dependency struct {
@@ -113,7 +115,10 @@ func readProjectOrMakeEmpty(path string) Project {
 
 const pomdotxml = "pom.xml"
 
-func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "Java add package")
+	defer span.Finish()
 	project := readProjectOrMakeEmpty(pomdotxml)
 	existingDependencies := map[api.PkgName]api.PkgVersion{}
 	for _, dependency := range project.Dependencies {
@@ -200,7 +205,10 @@ func addPackages(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	util.TryWriteAtomic("pom.xml", contentsB)
 }
 
-func removePackages(pkgs map[api.PkgName]bool) {
+func removePackages(ctx context.Context, pkgs map[api.PkgName]bool) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "Java remove package")
+	defer span.Finish()
 	project := readProjectOrMakeEmpty(pomdotxml)
 
 	dependenciesToKeep := []Dependency{}
@@ -303,7 +311,10 @@ var JavaBackend = api.LanguageBackend{
 	Info:   info,
 	Add:    addPackages,
 	Remove: removePackages,
-	Install: func() {
+	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "Maven install")
+		defer span.Finish()
 		util.RunCmd([]string{
 			"mvn",
 			"de.qaware.maven:go-offline-maven-plugin:resolve-dependencies",
@@ -312,6 +323,6 @@ var JavaBackend = api.LanguageBackend{
 	},
 	ListSpecfile:                       listSpecfile,
 	ListLockfile:                       listLockfile,
-	Lock:                               func() {},
+	Lock:                               func(ctx context.Context) {},
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

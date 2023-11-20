@@ -2,6 +2,7 @@
 package ruby
 
 import (
+	"context"
 	"encoding/json"
 	"io"
 	"net/url"
@@ -11,6 +12,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // rubygemsInfo represents the information we get from Gems.search (a
@@ -168,7 +170,10 @@ var RubyBackend = api.LanguageBackend{
 			Dependencies:     deps,
 		}
 	},
-	Add: func(pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle (init) add")
+		defer span.Finish()
 		if !util.Exists("Gemfile") {
 			util.RunCmd([]string{"bundle", "init"})
 		}
@@ -193,17 +198,26 @@ var RubyBackend = api.LanguageBackend{
 			}
 		}
 	},
-	Remove: func(pkgs map[api.PkgName]bool) {
+	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle remove")
+		defer span.Finish()
 		cmd := []string{"bundle", "remove", "--skip-install"}
 		for name := range pkgs {
 			cmd = append(cmd, string(name))
 		}
 		util.RunCmd(cmd)
 	},
-	Lock: func() {
+	Lock: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle lock")
+		defer span.Finish()
 		util.RunCmd([]string{"bundle", "lock"})
 	},
-	Install: func() {
+	Install: func(ctx context.Context) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "bundle install")
+		defer span.Finish()
 		// We need --clean to handle uninstalls.
 		args := []string{"bundle", "install", "--clean"}
 		if path := getPath(); path != "" {
@@ -234,7 +248,10 @@ var RubyBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
-	Guess: func() (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
+		defer span.Finish()
 		guessedGems := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),
 		})
