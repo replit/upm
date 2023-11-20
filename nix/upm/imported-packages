@@ -8,6 +8,7 @@ context
 crypto/md5
 database/sql
 embed
+encoding/binary
 encoding/hex
 encoding/json
 encoding/xml
@@ -21,13 +22,19 @@ github.com/mattn/go-sqlite3
 github.com/natefinch/atomic
 github.com/smacker/go-tree-sitter
 github.com/smacker/go-tree-sitter/javascript
+github.com/smacker/go-tree-sitter/python
+github.com/smacker/go-tree-sitter/typescript/tsx
+github.com/smacker/go-tree-sitter/typescript/typescript
 github.com/spf13/cobra
 golang.org/x/net/context
 golang.org/x/net/html
 golang.org/x/term
 google.golang.org/api/iterator
+gopkg.in/DataDog/dd-trace-go.v1/ddtrace
+gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer
 gopkg.in/yaml.v2
 io
+io/fs
 log
 net/http
 net/url
