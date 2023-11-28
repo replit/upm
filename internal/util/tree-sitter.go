@@ -164,6 +164,10 @@ var pragmaRegex = regexp.MustCompile(`upm (?:package\((?P<package>.*)\))`)
 func parsePragma(pragma string) importPragma {
 	caps := pragmaRegex.FindStringSubmatch(pragma)
 
+	if len(caps) == 0 {
+		return importPragma{}
+	}
+
 	return importPragma{
 		Package: caps[pragmaRegex.SubexpIndex("package")],
 	}
