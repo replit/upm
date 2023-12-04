@@ -66,6 +66,14 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 		results = b.Search(query)
 	}
 
+	// If we have an exact package match, ensure it comes first.
+	for idx, pkg := range results {
+		if pkg.Name == query {
+			results = append([]api.PkgInfo{pkg}, append(results[:idx], results[idx+1:]...)...)
+			break
+		}
+	}
+
 	// Output a reasonable number of results.
 	if len(results) > 20 {
 		results = results[:20]
