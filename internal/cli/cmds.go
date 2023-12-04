@@ -12,6 +12,7 @@ import (
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/backends"
 	"github.com/replit/upm/internal/config"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/store"
 	"github.com/replit/upm/internal/table"
 	"github.com/replit/upm/internal/trace"
@@ -66,13 +67,8 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 		results = b.Search(query)
 	}
 
-	// If we have an exact package match, ensure it comes first.
-	for idx, pkg := range results {
-		if pkg.Name == query {
-			results = append([]api.PkgInfo{pkg}, append(results[:idx], results[idx+1:]...)...)
-			break
-		}
-	}
+	// Apply some heuristics to give results that more closely resemble the user's query
+	results = pkg.SortPackages(query, results)
 
 	// Output a reasonable number of results.
 	if len(results) > 20 {
