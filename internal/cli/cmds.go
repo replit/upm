@@ -68,7 +68,7 @@ func runSearch(language string, args []string, outputFormat outputFormat, ignore
 	}
 
 	// Apply some heuristics to give results that more closely resemble the user's query
-	results = pkg.SortPackages(query, ignoredPackages, results)
+	results = pkg.SortPrefixSuffix(b.NormalizePackageName, query, ignoredPackages, results)
 
 	// Output a reasonable number of results.
 	if len(results) > 20 {

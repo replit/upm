@@ -1,12 +1,17 @@
 package pkg
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/replit/upm/internal/api"
 )
 
-func TestSortPackages(t *testing.T) {
+func simpleNormalizePackageName(name api.PkgName) api.PkgName {
+	return api.PkgName(strings.ToLower(string(name)))
+}
+
+func TestSortPrefixSuffix(t *testing.T) {
 	names := []string{
 		"borp-foo",
 		"beep-foo",
@@ -31,7 +36,7 @@ func TestSortPackages(t *testing.T) {
 
 	ignoredPackages := []string{"foo2"}
 
-	sorted := SortPackages("foo", ignoredPackages, pkgs)
+	sorted := SortPrefixSuffix(simpleNormalizePackageName, "foo", ignoredPackages, pkgs)
 
 	expected := []string{
 		"foo",
