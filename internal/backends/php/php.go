@@ -12,6 +12,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -232,8 +233,9 @@ var PhpComposerBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "vendor"
 	},
-	Search: search,
-	Info:   info,
+	SortPackages: pkg.SortNoop,
+	Search:       search,
+	Info:         info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer require")

@@ -203,6 +203,10 @@ type LanguageBackend struct {
 	// which packages are installed. The path need not exist.
 	GetPackageDir func() string
 
+	// Apply a sensible heuristic for sorting search results
+	// if we know we want to surface some packages over others.
+	SortPackages func(query string, ignoredPackages []string, packages []PkgInfo) []PkgInfo
+
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
 	// of search results, which can be of any length. (It will be

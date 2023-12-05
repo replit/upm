@@ -14,6 +14,7 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -256,6 +257,10 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			return filepath.Join(path, base+"-py"+version)
 		},
+		SortPackages: func(query string, ignoredPackages []string, packages []api.PkgInfo) []api.PkgInfo {
+			return pkg.SortPrefixSuffix(normalizePackageName, query, ignoredPackages, packages)
+		},
+
 		Search: func(query string) []api.PkgInfo {
 			results, err := SearchPypi(query)
 			if err != nil {

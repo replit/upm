@@ -9,6 +9,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -84,6 +85,7 @@ var RlangBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksNone,
 	GetPackageDir:    getRPkgDir,
+	SortPackages:     pkg.SortNoop,
 	Search: func(query string) []api.PkgInfo {
 		pkgs := []api.PkgInfo{}
 		for _, hit := range SearchPackages(query) {

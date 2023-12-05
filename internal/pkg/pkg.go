@@ -5,6 +5,10 @@ import (
 	"github.com/replit/upm/internal/api"
 )
 
+func SortNoop(query string, ignoredPackages []string, packages []api.PkgInfo) []api.PkgInfo {
+	return packages
+}
+
 func makeLoweredHM(normalizePackageName func(api.PkgName) api.PkgName, names []string) map[api.PkgName]bool {
 	// Build a hashset. struct{}{} purportedly is of size 0, so this is as good as we get
 	set := make(map[api.PkgName]bool)
