@@ -10,6 +10,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -307,10 +308,11 @@ var JavaBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "target/dependency"
 	},
-	Search: search,
-	Info:   info,
-	Add:    addPackages,
-	Remove: removePackages,
+	SortPackages: pkg.SortNoop,
+	Search:       search,
+	Info:         info,
+	Add:          addPackages,
+	Remove:       removePackages,
 	Install: func(ctx context.Context) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "Maven install")

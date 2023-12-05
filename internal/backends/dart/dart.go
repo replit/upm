@@ -15,6 +15,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/yaml.v2"
@@ -301,6 +302,7 @@ var DartPubBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.dart"},
 	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir:    dartGetPackageDir,
+	SortPackages:     pkg.SortNoop,
 	Search:           dartSearch,
 	Info:             dartInfo,
 	Add:              dartAdd,

@@ -6,4 +6,3 @@ import (
 
 //go:embed *
 var Resources embed.FS
-

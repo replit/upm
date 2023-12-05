@@ -6,6 +6,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 )
 
@@ -21,6 +22,7 @@ var DotNetBackend = api.LanguageBackend{
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		addPackages(ctx, pkgs, projectName, util.RunCmd)
 	},
+	SortPackages: pkg.SortNoop,
 	Search:       search,
 	Info:         info,
 	Install:      func(ctx context.Context) { install(ctx, util.RunCmd) },

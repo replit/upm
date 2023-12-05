@@ -11,6 +11,7 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -80,6 +81,7 @@ var RubyBackend = api.LanguageBackend{
 			return path
 		}
 	},
+	SortPackages: pkg.SortNoop,
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://rubygems.org/api/v1/search.json"
 		queryParams := "?query=" + url.QueryEscape(query)

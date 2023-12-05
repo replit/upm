@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
+	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/yaml.v2"
@@ -273,8 +274,9 @@ var NodejsYarnBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	Search: nodejsSearch,
-	Info:   nodejsInfo,
+	SortPackages: pkg.SortNoop,
+	Search:       nodejsSearch,
+	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "yarn (init) add")
@@ -348,8 +350,9 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	Search: nodejsSearch,
-	Info:   nodejsInfo,
+	SortPackages: pkg.SortNoop,
+	Search:       nodejsSearch,
+	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm (init) add")
@@ -441,8 +444,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	Search: nodejsSearch,
-	Info:   nodejsInfo,
+	SortPackages: pkg.SortNoop,
+	Search:       nodejsSearch,
+	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "npm (init) install")
@@ -523,8 +527,9 @@ var BunBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	Search: nodejsSearch,
-	Info:   nodejsInfo,
+	SortPackages: pkg.SortNoop,
+	Search:       nodejsSearch,
+	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
