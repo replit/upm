@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -16,6 +17,8 @@ import (
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
+
+var normalizationPattern = regexp.MustCompile(`[-_.]+`)
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
@@ -84,10 +87,11 @@ func normalizeSpec(spec interface{}) string {
 
 // normalizePackageName implements NormalizePackageName for the Python
 // backends.
+// See https://packaging.python.org/en/latest/specifications/name-normalization/
 func normalizePackageName(name api.PkgName) api.PkgName {
 	nameStr := string(name)
 	nameStr = strings.ToLower(nameStr)
-	nameStr = strings.Replace(nameStr, "_", "-", -1)
+	nameStr = normalizationPattern.ReplaceAllString(nameStr, "-")
 	return api.PkgName(nameStr)
 }
 
