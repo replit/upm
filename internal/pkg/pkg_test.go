@@ -29,12 +29,13 @@ func TestSortPackages(t *testing.T) {
 		})
 	}
 
-	sorted := SortPackages("foo", pkgs)
+	ignoredPackages := []string{"foo2"}
+
+	sorted := SortPackages("foo", ignoredPackages, pkgs)
 
 	expected := []string{
 		"foo",
 		"foo-bar",
-		"foo2",
 		"foo-baz",
 		"foo-blix",
 		"borp-foo",

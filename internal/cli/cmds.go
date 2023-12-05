@@ -56,7 +56,7 @@ func runListLanguages() {
 }
 
 // runSearch implements 'upm search'.
-func runSearch(language string, args []string, outputFormat outputFormat) {
+func runSearch(language string, args []string, outputFormat outputFormat, ignoredPackages []string) {
 	query := strings.Join(args, " ")
 	b := backends.GetBackend(context.Background(), language)
 
@@ -68,7 +68,7 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 	}
 
 	// Apply some heuristics to give results that more closely resemble the user's query
-	results = pkg.SortPackages(query, results)
+	results = pkg.SortPackages(query, ignoredPackages, results)
 
 	// Output a reasonable number of results.
 	if len(results) > 20 {
