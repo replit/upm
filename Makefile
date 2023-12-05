@@ -96,3 +96,6 @@ else
 test-suite:
 	nix develop -c nix shell -c go test -run $(GO_TEST_RUN_OPTS) ./test-suite
 endif
+
+fmt:
+	go fmt github.com/replit/upm/...
