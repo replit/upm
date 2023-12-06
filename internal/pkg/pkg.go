@@ -5,20 +5,6 @@ import (
 	"github.com/replit/upm/internal/api"
 )
 
-func NormalizePackageNameNoop(name api.PkgName) api.PkgName {
-	return name
-}
-
-func SortNoop(normalizePackageName func(api.PkgName) api.PkgName) func(query string, packages []api.PkgInfo) []api.PkgInfo {
-	return func(query string, packages []api.PkgInfo) []api.PkgInfo {
-		return sortNoop(normalizePackageName, query, packages)
-	}
-}
-
-func sortNoop(normalizePackageName func(api.PkgName) api.PkgName, query string, packages []api.PkgInfo) []api.PkgInfo {
-	return packages
-}
-
 func SortPrefixSuffix(normalizePackageName func(api.PkgName) api.PkgName) func(query string, packages []api.PkgInfo) []api.PkgInfo {
 	return func(query string, packages []api.PkgInfo) []api.PkgInfo {
 		return sortPrefixSuffix(normalizePackageName, query, packages)

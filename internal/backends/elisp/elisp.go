@@ -12,7 +12,6 @@ import (
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
-	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -30,7 +29,6 @@ var ElispBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return ".cask"
 	},
-	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {

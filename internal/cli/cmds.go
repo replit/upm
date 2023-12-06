@@ -91,7 +91,9 @@ func runSearch(language string, args []string, outputFormat outputFormat, ignore
 	}
 
 	// Apply some heuristics to give results that more closely resemble the user's query
-	results = b.SortPackages(query, results)
+	if b.SortPackages != nil {
+		results = b.SortPackages(query, results)
+	}
 
 	// Output a reasonable number of results.
 	if len(results) > 20 {
