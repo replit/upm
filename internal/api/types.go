@@ -205,7 +205,7 @@ type LanguageBackend struct {
 
 	// Apply a sensible heuristic for sorting search results
 	// if we know we want to surface some packages over others.
-	SortPackages func(query string, ignoredPackages []string, packages []PkgInfo) []PkgInfo
+	SortPackages func(query string, packages []PkgInfo) []PkgInfo
 
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
