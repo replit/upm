@@ -274,7 +274,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       nodejsSearch,
 	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
@@ -350,7 +350,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       nodejsSearch,
 	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
@@ -444,7 +444,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       nodejsSearch,
 	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
@@ -527,7 +527,7 @@ var BunBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       nodejsSearch,
 	Info:         nodejsInfo,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {

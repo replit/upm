@@ -30,7 +30,7 @@ var ElispBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return ".cask"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {

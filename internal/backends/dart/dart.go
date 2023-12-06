@@ -302,7 +302,7 @@ var DartPubBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.dart"},
 	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir:    dartGetPackageDir,
-	SortPackages:     pkg.SortNoop,
+	SortPackages:     pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:           dartSearch,
 	Info:             dartInfo,
 	Add:              dartAdd,

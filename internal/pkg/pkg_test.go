@@ -30,7 +30,7 @@ func TestSortNoop(t *testing.T) {
 		})
 	}
 
-	sorted := SortNoop("foo", pkgs)
+	sorted := SortNoop(NormalizePackageNameNoop)("foo", pkgs)
 
 	expected := names
 
@@ -68,7 +68,7 @@ func TestSortPrefixSuffix(t *testing.T) {
 		})
 	}
 
-	sorted := SortPrefixSuffix(simpleNormalizePackageName, "foo", pkgs)
+	sorted := SortPrefixSuffix(simpleNormalizePackageName)("foo", pkgs)
 
 	expected := []string{
 		"foo",

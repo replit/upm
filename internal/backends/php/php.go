@@ -233,7 +233,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "vendor"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       search,
 	Info:         info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectVendorName string) {

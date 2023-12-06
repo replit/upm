@@ -22,7 +22,7 @@ var DotNetBackend = api.LanguageBackend{
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 		addPackages(ctx, pkgs, projectName, util.RunCmd)
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       search,
 	Info:         info,
 	Install:      func(ctx context.Context) { install(ctx, util.RunCmd) },

@@ -81,7 +81,7 @@ var RubyBackend = api.LanguageBackend{
 			return path
 		}
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search: func(query string) []api.PkgInfo {
 		endpoint := "https://rubygems.org/api/v1/search.json"
 		queryParams := "?query=" + url.QueryEscape(query)

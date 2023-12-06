@@ -308,7 +308,7 @@ var JavaBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "target/dependency"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       search,
 	Info:         info,
 	Add:          addPackages,

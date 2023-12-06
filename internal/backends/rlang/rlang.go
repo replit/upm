@@ -85,7 +85,7 @@ var RlangBackend = api.LanguageBackend{
 	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksNone,
 	GetPackageDir:    getRPkgDir,
-	SortPackages:     pkg.SortNoop,
+	SortPackages:     pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search: func(query string) []api.PkgInfo {
 		pkgs := []api.PkgInfo{}
 		for _, hit := range SearchPackages(query) {

@@ -229,7 +229,7 @@ var RustBackend = api.LanguageBackend{
 	GetPackageDir: func() string {
 		return "target"
 	},
-	SortPackages: pkg.SortNoop,
+	SortPackages: pkg.SortNoop(pkg.NormalizePackageNameNoop),
 	Search:       search,
 	Info:         info,
 	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
