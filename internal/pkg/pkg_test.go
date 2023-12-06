@@ -30,9 +30,7 @@ func TestSortNoop(t *testing.T) {
 		})
 	}
 
-	ignoredPackages := []string{"foo2"}
-
-	sorted := SortNoop("foo", ignoredPackages, pkgs)
+	sorted := SortNoop("foo", pkgs)
 
 	expected := names
 
@@ -70,13 +68,12 @@ func TestSortPrefixSuffix(t *testing.T) {
 		})
 	}
 
-	ignoredPackages := []string{"foo2"}
-
-	sorted := SortPrefixSuffix(simpleNormalizePackageName, "foo", ignoredPackages, pkgs)
+	sorted := SortPrefixSuffix(simpleNormalizePackageName, "foo", pkgs)
 
 	expected := []string{
 		"foo",
 		"foo-bar",
+		"foo2",
 		"foo-baz",
 		"foo-blix",
 		"borp-foo",

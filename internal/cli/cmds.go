@@ -54,6 +54,16 @@ func runListLanguages() {
 	}
 }
 
+func makeLoweredHM(normalizePackageName func(api.PkgName) api.PkgName, names []string) map[api.PkgName]bool {
+	// Build a hashset. struct{}{} purportedly is of size 0, so this is as good as we get
+	set := make(map[api.PkgName]bool)
+	for _, pkg := range names {
+		normal := normalizePackageName(api.PkgName(pkg))
+		set[normal] = true
+	}
+	return set
+}
+
 // runSearch implements 'upm search'.
 func runSearch(language string, args []string, outputFormat outputFormat, ignoredPackages []string) {
 	query := strings.Join(args, " ")
@@ -66,8 +76,22 @@ func runSearch(language string, args []string, outputFormat outputFormat, ignore
 		results = b.Search(query)
 	}
 
+	{ // Filter out ignored packages
+		ignoredPackageSet := makeLoweredHM(b.NormalizePackageName, ignoredPackages)
+		filtered := []api.PkgInfo{}
+		for _, pkg := range results {
+			lower := b.NormalizePackageName(api.PkgName(pkg.Name))
+			if ignoredPackageSet[lower] {
+				continue
+			}
+			filtered = append(filtered, pkg)
+		}
+
+		results = filtered
+	}
+
 	// Apply some heuristics to give results that more closely resemble the user's query
-	results = b.SortPackages(query, ignoredPackages, results)
+	results = b.SortPackages(query, results)
 
 	// Output a reasonable number of results.
 	if len(results) > 20 {

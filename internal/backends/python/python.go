@@ -257,8 +257,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			return filepath.Join(path, base+"-py"+version)
 		},
-		SortPackages: func(query string, ignoredPackages []string, packages []api.PkgInfo) []api.PkgInfo {
-			return pkg.SortPrefixSuffix(normalizePackageName, query, ignoredPackages, packages)
+		SortPackages: func(query string, packages []api.PkgInfo) []api.PkgInfo {
+			return pkg.SortPrefixSuffix(normalizePackageName, query, packages)
 		},
 
 		Search: func(query string) []api.PkgInfo {
