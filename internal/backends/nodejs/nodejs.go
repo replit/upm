@@ -4,6 +4,8 @@ package nodejs
 import (
 	"context"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io"
 	"net/url"
 	"os"
@@ -18,6 +20,61 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/yaml.v2"
 )
+
+type packageJsonPerson struct {
+	Name string
+	Email string
+	URL string
+}
+
+var packageJsonPersonStringRegexp *regexp.Regexp
+
+func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		if packageJsonPersonStringRegexp == nil {
+			packageJsonPersonStringRegexp = regexp.MustCompile("")
+		}
+
+		captures := packageJsonPersonStringRegexp.FindSubmatch([]byte(str))
+		if len(captures[0]) == 0 {
+			return fmt.Errorf("invalid package.json person: %s", str)
+		}
+
+		if names := captures[1]; len(names) > 0 {
+			person.Name = string(names[0])
+		}
+
+		if emails := captures[2]; len(emails) > 0 {
+			person.Email = string(emails[0])
+		}
+
+		if urls := captures[3]; len(urls) > 0 {
+			person.URL = string(urls[0])
+		}
+
+		return nil
+	}
+
+	var obj map[string]interface{}
+	if err := json.Unmarshal(data, &obj); err != nil {
+		if name, ok := obj["name"].(string); ok {
+			person.Name = name
+		}
+
+		if email, ok := obj["email"].(string); ok {
+			person.Email = email
+		}
+
+		if url, ok := obj["url"].(string); ok {
+			person.URL = url
+		}
+
+		return nil
+	}
+
+	return errors.New("expected person in package.json to be a string or an object")
+}
 
 // npmSearchResults represents the data we get from the NPM API when
 // doing a search.
@@ -51,11 +108,7 @@ type npmSearchResults struct {
 type npmInfoResult struct {
 	Name     string                 `json:"name"`
 	Versions map[string]interface{} `json:"versions"`
-	Author   struct {
-		Name  string `json:"name"`
-		Email string `json:"email"`
-		URL   string `json:"url"`
-	} `json:"author"`
+	Author   packageJsonPerson `json:"author"`
 	Bugs struct {
 		URL string `json:"url"`
 	} `json:"bugs"`
