@@ -60,14 +60,13 @@ type npmSearchResults struct {
 // which means that we have to deserialize the union of the type described in the document, and the
 // type of a package.json file: https://docs.npmjs.com/cli/v10/configuring-npm/package-json
 type npmInfoResult struct {
-	Name     string                 `json:"name"`
-	Versions map[string]interface{} `json:"versions"`
-	Author   packageJsonPerson `json:"author"`
-	Bugs struct {
-	} `json:"bugs"`
-	Description string `json:"description"`
-	Homepage    string `json:"homepage"`
-	License     string `json:"license"`
+	Name        string                 `json:"name"`
+	Versions    map[string]interface{} `json:"versions"`
+	Author      packageJsonPerson      `json:"author"`
+	Bugs        packageJsonBugs        `json:"bugs"`
+	Description string                 `json:"description"`
+	Homepage    string                 `json:"homepage"`
+	License     string                 `json:"license"`
 	Repository  struct {
 		Type string `json:"type"`
 		URL  string `json:"url"`
@@ -75,9 +74,9 @@ type npmInfoResult struct {
 }
 
 type packageJsonPerson struct {
-	Name string
+	Name  string
 	Email string
-	URL string
+	URL   string
 }
 
 var packageJsonPersonStringRegexp *regexp.Regexp
