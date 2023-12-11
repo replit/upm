@@ -67,10 +67,27 @@ type npmInfoResult struct {
 	Description string                 `json:"description"`
 	Homepage    string                 `json:"homepage"`
 	License     string                 `json:"license"`
-	Repository  struct {
-		Type string `json:"type"`
-		URL  string `json:"url"`
-	} `json:"repository"`
+	Repository  packageJsonRepository  `json:"repository"`
+}
+
+type packageJsonRepository struct {
+	URL string
+}
+
+func (repo *packageJsonRepository) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		var obj map[string]interface{}
+		if err := json.Unmarshal(data, &obj); err != nil {
+			if url, ok := obj["url"].(string); ok {
+				repo.URL = url
+			}
+			return nil
+		}
+		return errors.New("expected repository in package.json to be a string or an object")
+	}
+	repo.URL = str
+	return nil
 }
 
 type packageJsonPerson struct {
@@ -83,7 +100,7 @@ var packageJsonPersonStringRegexp *regexp.Regexp
 
 func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 	var str string
-	if err := json.Unmarshal(data, &str); err != nil {
+	if err := json.Unmarshal(data, &str); err == nil {
 		if packageJsonPersonStringRegexp == nil {
 			packageJsonPersonStringRegexp = regexp.MustCompile("")
 		}
@@ -109,7 +126,7 @@ func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 	}
 
 	var obj map[string]interface{}
-	if err := json.Unmarshal(data, &obj); err != nil {
+	if err := json.Unmarshal(data, &obj); err == nil {
 		if name, ok := obj["name"].(string); ok {
 			person.Name = name
 		}
@@ -134,13 +151,13 @@ type packageJsonBugs struct {
 
 func (bugs *packageJsonBugs) UnmarshalJSON(data []byte) error {
 	var str string
-	if err := json.Unmarshal(data, &str); err != nil {
+	if err := json.Unmarshal(data, &str); err == nil {
 		bugs.URL = str
 		return nil
 	}
 
 	var obj map[string]interface{}
-	if err := json.Unmarshal(data, &obj); err != nil {
+	if err := json.Unmarshal(data, &obj); err == nil {
 		if url, ok := obj["url"].(string); ok {
 			bugs.URL = url
 		}
