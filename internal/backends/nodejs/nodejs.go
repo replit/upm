@@ -76,18 +76,20 @@ type packageJsonRepository struct {
 
 func (repo *packageJsonRepository) UnmarshalJSON(data []byte) error {
 	var str string
-	if err := json.Unmarshal(data, &str); err != nil {
-		var obj map[string]interface{}
-		if err := json.Unmarshal(data, &obj); err != nil {
-			if url, ok := obj["url"].(string); ok {
-				repo.URL = url
-			}
-			return nil
-		}
-		return errors.New("expected repository in package.json to be a string or an object")
+	if err := json.Unmarshal(data, &str); err == nil {
+		repo.URL = str
+		return nil
 	}
-	repo.URL = str
-	return nil
+
+	var obj map[string]interface{}
+	if err := json.Unmarshal(data, &obj); err == nil {
+		if url, ok := obj["url"].(string); ok {
+			repo.URL = url
+		}
+		return nil
+	}
+
+	return fmt.Errorf("expected repository in package.json to be a string or an object")
 }
 
 type packageJsonPerson struct {
