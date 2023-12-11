@@ -19,7 +19,6 @@ type NixEditorDepType string
 
 const (
 	Regular NixEditorDepType = "regular"
-	Python  NixEditorDepType = "python"
 )
 
 type NixEditorOp struct {
@@ -29,8 +28,7 @@ type NixEditorOp struct {
 }
 
 type ReplitNixAdd struct {
-	Deps              []string `json:"deps,omitempty"`
-	PythonLibraryDeps []string `json:"libdeps,omitempty"`
+	Deps []string `json:"deps,omitempty"`
 }
 
 var (
@@ -71,9 +69,6 @@ func ReplitNixAddToNixEditorOps(replitNixAdd ReplitNixAdd) []NixEditorOp {
 	result := []NixEditorOp{}
 	for _, dep := range replitNixAdd.Deps {
 		result = append(result, NixEditorOp{Op: "add", Dep: dep, DepType: Regular})
-	}
-	for _, dep := range replitNixAdd.PythonLibraryDeps {
-		result = append(result, NixEditorOp{Op: "add", Dep: dep, DepType: Python})
 	}
 	return result
 }
