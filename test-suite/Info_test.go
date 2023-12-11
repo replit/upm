@@ -18,7 +18,7 @@ func TestInfo(t *testing.T) {
 		case "nodejs-yarn":
 			fallthrough
 		case "bun":
-			doInfo(bt, "express", "@replit/crosis")
+			doInfo(bt, "express", "@replit/crosis", "@distube/spotify")
 
 		case "python3-poetry":
 			doInfo(bt, "Flask", "replit-ai")
