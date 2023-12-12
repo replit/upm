@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -203,25 +202,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 				return venv
 			}
 
-			// Ideally Poetry would provide some way of
-			// actually checking where the virtualenv will
-			// go. But it doesn't. So we have to
-			// reimplement the logic ourselves, which is
-			// totally fragile and disgusting. (No, we
-			// can't use 'poetry run which python' because
-			// that will *create* a virtualenv if one
-			// doesn't exist, and there's no workaround
-			// for that without mutating the global config
-			// file.)
-			//
-			// Note, we don't yet support Poetry's
-			// settings.virtualenvs.in-project. That would
-			// be a pretty easy fix, though. (Why is this
-			// so complicated??)
-
 			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry",
-				"config", "virtualenvs.path",
+				"poetry", "env", "list", "--full-path",
 			})
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
@@ -229,31 +211,15 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			}
 
 			var path string
-			path = strings.TrimSpace(string(outputB))
-
-			base := ""
-			if util.Exists("pyproject.toml") {
-				var cfg pyprojectTOML
-				if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-					util.Die("%s", err.Error())
+			for _, line := range strings.Split(strings.TrimSpace(string(outputB)), "\n") {
+				var isActive bool
+				path, isActive = strings.CutSuffix(line, " (Activated)")
+				if isActive {
+					break
 				}
-				base = cfg.Tool.Poetry.Name
 			}
 
-			if base == "" {
-				cwd, err := os.Getwd()
-				if err != nil {
-					util.Die("%s", err)
-				}
-				base = strings.ToLower(filepath.Base(cwd))
-			}
-
-			version := strings.TrimSpace(string(util.GetCmdOutput([]string{
-				python, "-c",
-				`import sys; print(".".join(map(str, sys.version_info[:2])))`,
-			})))
-
-			return filepath.Join(path, base+"-py"+version)
+			return path
 		},
 		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
 
