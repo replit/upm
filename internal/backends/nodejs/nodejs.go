@@ -126,6 +126,10 @@ func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 
 			return nil
 		}
+
+		// in case the regex fails to parse
+		person.URL = str
+		return nil
 	}
 
 	var obj map[string]interface{}
