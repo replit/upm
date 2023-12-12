@@ -165,8 +165,6 @@ type LanguageBackend struct {
 
 	// The filename of the lockfile, e.g. "poetry.lock" for
 	// Poetry.
-	//
-	// This field is mandatory.
 	Lockfile string
 
 	// List of filename globs that match against files written in
@@ -284,8 +282,6 @@ type LanguageBackend struct {
 	// List the packages in the lockfile. Names should be returned
 	// in a format suitable for the Add method. The lockfile is
 	// guaranteed to exist already.
-	//
-	// This field is mandatory.
 	ListLockfile func() map[PkgName]PkgVersion
 
 	// Regexps used to determine if the Guess method really needs
@@ -343,7 +339,7 @@ func (b *LanguageBackend) Setup() {
 	condition2flag := map[string]bool{
 		"missing name":                     b.Name == "",
 		"missing specfile":                 b.Specfile == "",
-		"missing lockfile":                 b.Lockfile == "",
+		"missing lockfile":                 b.QuirksIsReproducible() && b.Lockfile == "",
 		"need at least 1 filename pattern": len(b.FilenamePatterns) == 0,
 		"missing package dir":              b.GetPackageDir == nil,
 		"missing Search":                   b.Search == nil,
@@ -355,7 +351,7 @@ func (b *LanguageBackend) Setup() {
 		"either implement Lock or mark QuirksIsNotReproducible": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
 		"missing install":      b.Install == nil,
 		"missing ListSpecfile": b.ListSpecfile == nil,
-		"missing ListLockfile": b.ListLockfile == nil,
+		"missing ListLockfile": b.QuirksIsReproducible() && b.ListLockfile == nil,
 		// If the backend isn't reproducible, then lock is
 		// unimplemented. So how could it also do
 		// installation?

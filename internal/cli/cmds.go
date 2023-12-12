@@ -578,7 +578,10 @@ func runShowSpecfile(language string) {
 
 // runShowLockfile implements 'upm show-lockfile'.
 func runShowLockfile(language string) {
-	fmt.Println(backends.GetBackend(context.Background(), language).Lockfile)
+	b := backends.GetBackend(context.Background(), language)
+	if b.Lockfile != "" {
+		fmt.Println(b.Lockfile)
+	}
 }
 
 // runShowPackageDir implements 'upm show-package-dir'.
