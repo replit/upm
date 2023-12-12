@@ -104,6 +104,9 @@ func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 	var str string
 	if err := json.Unmarshal(data, &str); err == nil {
 		if packageJsonPersonStringRegexp == nil {
+			// parses the form: name <email> (url)
+			// eg: John Doe <joe.dohn@example.zip> (ftp://C:\Nix\Store)
+			// any of the 3 are optional
 			packageJsonPersonStringRegexp = regexp.MustCompile(`([^\<\(]*)?\s*(\<.*\>)?\s*(\(.*\))?`)
 		}
 
