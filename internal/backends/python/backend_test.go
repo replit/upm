@@ -9,7 +9,7 @@ import (
 func TestNormalizePackageName(t *testing.T) {
 	// Take test cases for package normalization from official docs
 	// https://packaging.python.org/en/latest/specifications/name-normalization/#normalization
-	b := Python3Backend
+	b := PythonPoetryBackend
 
 	normalizedForm := api.PkgName("friendly-bard")
 

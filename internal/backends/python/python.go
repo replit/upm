@@ -296,7 +296,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			pkgs, err := listSpecfile()
+			pkgs, err := listPoetrySpecfile()
 			if err != nil {
 				util.Die("%s", err.Error())
 			}
@@ -337,7 +337,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			specfilePkgs, _ := listSpecfile()
+			specfilePkgs, _ := listPoetrySpecfile()
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
@@ -347,7 +347,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 	}
 }
 
-func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
 		return nil, err
@@ -394,5 +394,5 @@ func getPython3() string {
 	}
 }
 
-// Python3Backend is a UPM backend for Python 3 that uses Poetry.
-var Python3Backend = makePythonPoetryBackend(getPython3())
+// PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
+var PythonPoetryBackend = makePythonPoetryBackend(getPython3())
