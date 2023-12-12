@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/util"
@@ -50,8 +51,10 @@ func read() {
 		util.Die("%s: %s", filename, err)
 	}
 
-	if err = json.Unmarshal(bytes, st); err != nil {
-		util.Die("%s: %s", filename, err)
+	if len(strings.TrimSpace(string(bytes))) > 0 {
+		if err = json.Unmarshal(bytes, st); err != nil {
+			util.Die("%s: %s", filename, err)
+		}
 	}
 
 	if st.Version != currentVersion {
