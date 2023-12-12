@@ -104,27 +104,25 @@ func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 	var str string
 	if err := json.Unmarshal(data, &str); err == nil {
 		if packageJsonPersonStringRegexp == nil {
-			packageJsonPersonStringRegexp = regexp.MustCompile("")
+			packageJsonPersonStringRegexp = regexp.MustCompile(`([^\<\(]*)?\s*(\<.*\>)?\s*(\(.*\))?`)
 		}
 
-		captures := packageJsonPersonStringRegexp.FindSubmatch([]byte(str))
-		if len(captures[0]) == 0 {
-			return fmt.Errorf("invalid package.json person: %s", str)
-		}
+		captures := packageJsonPersonStringRegexp.FindStringSubmatch(str)
+		if len(captures) == 4 {
+			if name := captures[1]; name != "" {
+				person.Name = name
+			}
 
-		if names := captures[1]; len(names) > 0 {
-			person.Name = string(names[0])
-		}
+			if email := captures[2]; email != "" {
+				person.Email = email
+			}
 
-		if emails := captures[2]; len(emails) > 0 {
-			person.Email = string(emails[0])
-		}
+			if url := captures[3]; url != "" {
+				person.URL = url
+			}
 
-		if urls := captures[3]; len(urls) > 0 {
-			person.URL = string(urls[0])
+			return nil
 		}
-
-		return nil
 	}
 
 	var obj map[string]interface{}
