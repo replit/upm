@@ -221,7 +221,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			outputB, err := util.GetCmdOutputFallible([]string{
 				"poetry",
-				"config", "settings.virtualenvs.path",
+				"config", "virtualenvs.path",
 			})
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
@@ -229,9 +229,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			}
 
 			var path string
-			if err := json.Unmarshal(outputB, &path); err != nil {
-				util.Die("parsing output from Poetry: %s", err)
-			}
+			path = strings.TrimSpace(string(outputB))
 
 			base := ""
 			if util.Exists("pyproject.toml") {
