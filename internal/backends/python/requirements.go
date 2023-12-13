@@ -42,11 +42,13 @@ func findPackage(line string) (*api.PkgName, *api.PkgSpec, bool) {
 	return name, spec, found
 }
 
-func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.PkgSpec, constraints Constraints) (map[api.PkgName]api.PkgSpec, Constraints) {
+func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.PkgSpec, constraints Constraints) ([]PipFlag, map[api.PkgName]api.PkgSpec, Constraints) {
 	// Perhaps this can be lifted, but sensibly attempt to protect ourselves
 	if depth > 10 {
 		util.Die("Too many -r redirects in %s", path)
 	}
+
+	var flags []PipFlag
 
 	handle, err := os.Open(path)
 	if err != nil {
@@ -83,11 +85,10 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 		}
 	}
 
-	return sofar, constraints
+	return flags, sofar, constraints
 }
 
-func ListRequirementsTxt(path string) map[api.PkgName]api.PkgSpec {
-	result := map[api.PkgName]api.PkgSpec{}
-	result, _ = recurseRequirementsTxt(0, path, result, make(Constraints))
-	return result
+func ListRequirementsTxt(path string) ([]PipFlag, map[api.PkgName]api.PkgSpec) {
+	flags, result, _ := recurseRequirementsTxt(0, path, make(map[api.PkgName]api.PkgSpec), make(Constraints))
+	return flags, result
 }
