@@ -347,6 +347,23 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
+			defer span.Finish()
+
+			cmd := []string{"pip", "install"}
+			for _, flag := range pipFlags {
+				cmd = append(cmd, string(flag))
+			}
+			for name, spec := range pkgs {
+				name := string(name)
+				spec := string(spec)
+
+				cmd = append(cmd, name+spec)
+			}
+			util.RunCmd(cmd)
+		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
