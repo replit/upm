@@ -401,6 +401,18 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				}
 			}
 		},
+		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "pip uninstall")
+			defer span.Finish()
+
+			cmd := []string{"pip", "uninstall", "--yes"}
+			for name := range pkgs {
+				cmd = append(cmd, string(name))
+			}
+			util.RunCmd(cmd)
+			RemoveFromRequirementsTxt("requirements.txt", pkgs)
+		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
