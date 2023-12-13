@@ -366,7 +366,7 @@ func runRemove(language string, args []string, upgrade bool,
 	for _, arg := range args {
 		name := api.PkgName(arg)
 		norm := b.NormalizePackageName(name)
-		if _, ok := normSpecfilePkgs[norm]; ok {
+		if normSpecfilePkgs[norm] {
 			normPkgs[norm] = name
 		}
 	}
