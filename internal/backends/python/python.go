@@ -362,7 +362,40 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 				cmd = append(cmd, name+spec)
 			}
+			// Run install
 			util.RunCmd(cmd)
+			// Determine what was actually installed
+			{
+				outputB, err := util.GetCmdOutputFallible([]string{
+					"pip", "freeze",
+				})
+				if err != nil {
+					util.Die("failed to run freeze: %s", err.Error())
+				}
+
+				var toAppend []string
+				for _, line := range strings.Split(string(outputB), "\n") {
+					var name api.PkgName
+					matches := matchPackageAndSpec.FindSubmatch(([]byte)(line))
+					if len(matches) > 0 {
+						name = normalizePackageName(api.PkgName(string(matches[1])))
+					}
+					if _, exists := pkgs[name]; exists {
+						toAppend = append(toAppend, line)
+					}
+				}
+
+				handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+				if err != nil {
+					util.Die("Unable to open requirements.txt for writing: %s", err)
+				}
+				defer handle.Close()
+				for _, line := range toAppend {
+					if _, err := handle.WriteString(line + "\n"); err != nil {
+						util.Die("Error writing to requirements.txt: %s", err)
+					}
+				}
+			}
 		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
