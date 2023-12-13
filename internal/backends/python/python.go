@@ -318,6 +318,8 @@ var pythonGuessRegexps = util.Regexps([]string{
 // makePythonPipBackend returns a backend for invoking poetry, given an arg0 for invoking Python
 // (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPipBackend(python string) api.LanguageBackend {
+	var pipFlags []PipFlag
+
 	b := api.LanguageBackend{
 		Name:                 "python3-pip",
 		Specfile:             "requirements.txt",
@@ -353,12 +355,15 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			_, _result := ListRequirementsTxt("requirements.txt")
+			flags, _result := ListRequirementsTxt("requirements.txt")
 
 			result := make(map[api.PkgName]api.PkgSpec)
 			for name, spec := range _result {
 				result[normalizePackageName(name)] = spec
 			}
+
+			// Stash the seen flags into a module global
+			pipFlags = flags
 
 			return result
 		},
