@@ -443,7 +443,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			specfilePkgs := make(map[api.PkgName]api.PkgSpec)
+			_, specfilePkgs := ListRequirementsTxt("requirements.txt")
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
