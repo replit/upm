@@ -67,7 +67,7 @@ func doRemove(bt testUtils.BackendT, templatesToPkgsToRemove map[string][]string
 					})
 				}
 
-				if ! bt.Backend.QuirkRemoveNeedsLockfile() {
+				if !bt.Backend.QuirkRemoveNeedsLockfile() {
 					bt.Subtest("unlocked", func(bt testUtils.BackendT) {
 						bt.Subtest("each", func(bt testUtils.BackendT) {
 							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
