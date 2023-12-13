@@ -313,6 +313,85 @@ var pythonGuessRegexps = util.Regexps([]string{
 	`import ((?:.|\\\n)*)`,
 })
 
+// makePythonPipBackend returns a backend for invoking poetry, given an arg0 for invoking Python
+// (either a full path or just a name like "python3") to use when invoking Python.
+func makePythonPipBackend(python string) api.LanguageBackend {
+	b := api.LanguageBackend{
+		Name:                 "python3-pip",
+		Specfile:             "requirements.txt",
+		Alias:                "python-python3-pip",
+		FilenamePatterns:     []string{"*.py"},
+		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
+		NormalizePackageName: normalizePackageName,
+		GetPackageDir: func() string {
+			// Check if we're already inside an activated
+			// virtualenv. If so, just use it.
+			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
+				return venv
+			}
+
+			if outputB, err := util.GetCmdOutputFallible([]string{
+				"python",
+				"-c", "import site; print(site.USER_SITE)",
+			}); err == nil {
+				return string(outputB)
+			}
+
+			return ""
+		},
+		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
+
+		Search: func(query string) []api.PkgInfo {
+			results, err := SearchPypi(query)
+			if err != nil {
+				util.Die("failed to search pypi: %s", err.Error())
+			}
+			return results
+		},
+		Info: info,
+		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
+			defer span.Finish()
+
+			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
+		},
+		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+			_, _result := ListRequirementsTxt("requirements.txt")
+
+			result := make(map[api.PkgName]api.PkgSpec)
+			for name, spec := range _result {
+				result[normalizePackageName(name)] = spec
+			}
+
+			return result
+		},
+		GuessRegexps: pythonGuessRegexps,
+		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, getPython3()) },
+		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
+			defer span.Finish()
+			ops := []nix.NixEditorOp{}
+			for _, pkg := range pkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs := make(map[api.PkgName]api.PkgSpec)
+			for pkg := range specfilePkgs {
+				deps := nix.PythonNixDeps(string(pkg))
+				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+			}
+			nix.RunNixEditorOps(ops)
+		},
+	}
+
+	return b
+}
+
 func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
@@ -362,3 +441,4 @@ func getPython3() string {
 
 // PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
 var PythonPoetryBackend = makePythonPoetryBackend(getPython3())
+var PythonPipBackend = makePythonPipBackend(getPython3())
