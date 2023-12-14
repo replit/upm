@@ -280,15 +280,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			}
 			return pkgs
 		},
-		GuessRegexps: util.Regexps([]string{
-			// The (?:.|\\\n) subexpression allows us to
-			// match match multiple lines if
-			// backslash-escapes are used on the newlines.
-			`from (?:.|\\\n) import`,
-			`import ((?:.|\\\n)*) as`,
-			`import ((?:.|\\\n)*)`,
-		}),
-		Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		GuessRegexps: pythonGuessRegexps,
+		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
@@ -310,6 +303,15 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		},
 	}
 }
+
+var pythonGuessRegexps = util.Regexps([]string{
+	// The (?:.|\\\n) subexpression allows us to
+	// match match multiple lines if
+	// backslash-escapes are used on the newlines.
+	`from (?:.|\\\n) import`,
+	`import ((?:.|\\\n)*) as`,
+	`import ((?:.|\\\n)*)`,
+})
 
 func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
