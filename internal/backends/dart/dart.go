@@ -231,7 +231,7 @@ func writeSpecFile(specs dartPubspecYaml) {
 		fmt.Println("Marshal Error")
 	}
 
-	err = os.WriteFile("pubspec.yaml", data, 0666)
+	err = os.WriteFile("pubspec.yaml", data, 0o666)
 	if err != nil {
 		panic(err)
 	}

@@ -28,7 +28,7 @@ func LoadPackageInfoFile(filePath string, cached *PackageInfo) error {
 }
 
 func SavePackageInfo(packageName string, cacheDir string, info *PackageInfo) error {
-	err := os.MkdirAll(cacheDir, 0774)
+	err := os.MkdirAll(cacheDir, 0o774)
 
 	if err != nil {
 		return err
