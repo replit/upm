@@ -389,7 +389,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 					}
 				}
 
-				handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+				handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 				if err != nil {
 					util.Die("Unable to open requirements.txt for writing: %s", err)
 				}
