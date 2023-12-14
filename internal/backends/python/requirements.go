@@ -144,7 +144,7 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 
 	var lines []string
 
-	handle, err := os.OpenFile(path, os.O_RDWR, 0644)
+	handle, err := os.OpenFile(path, os.O_RDWR, 0o644)
 	if err != nil {
 		return err
 	}

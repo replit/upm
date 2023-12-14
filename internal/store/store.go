@@ -107,7 +107,7 @@ func Write(ctx context.Context) {
 	}
 
 	directory, _ := filepath.Split(filename)
-	if err := os.MkdirAll(directory, 0777); err != nil {
+	if err := os.MkdirAll(directory, 0o777); err != nil {
 		util.Die("%s: %s", directory, err)
 	}
 
