@@ -21,6 +21,7 @@ var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionSpec = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)+`
 var extrasSpec = `\[(` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*)\]`
 var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
+var matchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
 
 // Global options:
 //
@@ -111,6 +112,16 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 			// TODO: Accumulate constraints to pass to underlyling pip
 		} else if parts := strings.SplitN(line, " ", 2); len(parts) > 1 && knownFlags[parts[0]] {
 			flags = append(flags, PipFlag(strings.Join(parts, " ")))
+			// If we find an editable package, try to extract the package name out of the URI
+			// This both shows that package in the `upm list` output, as well as prevents upm
+			// from inserting it into requirements.txt, which would then cause a conflict
+			// on the next run.
+			if parts[0] == "-e" || parts[0] == "--editable" {
+				matches := matchEggComponent.FindSubmatch([]byte(line))
+				if len(matches) > 1 {
+					sofar[api.PkgName(string(matches[1]))] = ""
+				}
+			}
 		}
 	}
 
