@@ -357,7 +357,7 @@ func (b *LanguageBackend) Setup() {
 		// installation?
 		"Lock installs, but is not implemented": b.QuirksDoesLockAlsoInstall() && b.QuirksIsNotReproducible(),
 		// If you install, then you have to lock.
-		"Add and Remove install, so they must also Lock": b.QuirksDoesAddRemoveAlsoInstall() && !b.QuirksDoesAddRemoveAlsoLock(),
+		"Add and Remove install, so they must also Lock": b.QuirksIsReproducible() && b.QuirksDoesAddRemoveAlsoInstall() && b.QuirksDoesAddRemoveNotAlsoLock(),
 	}
 
 	reasons := []string{}
