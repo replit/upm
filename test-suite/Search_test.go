@@ -24,7 +24,7 @@ func TestSearch(t *testing.T) {
 				{"@replit", "@replit/crosis"},
 			})
 
-		case "python3-poetry":
+		case "python3-poetry", "python3-pip":
 			doSearch(bt, []searchTest{
 				{"flask", "Flask"},
 				{"replit-ai", "replit-ai"},

@@ -6,6 +6,15 @@ import (
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
 
+var testWhichLanguage = map[string]bool{
+	"bun":            true,
+	"nodejs-npm":     true,
+	"nodejs-pnpm":    true,
+	"nodejs-yarn":    true,
+	"python3-poetry": true,
+	"python3-pip":    true,
+}
+
 func TestWhichLanguage(t *testing.T) {
 	defaults := map[string]bool{
 		"bun": true,
@@ -14,7 +23,7 @@ func TestWhichLanguage(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		if bt.Backend.Name != "bun" && bt.Backend.Name != "nodejs-npm" && bt.Backend.Name != "nodejs-pnpm" && bt.Backend.Name != "nodejs-yarn" && bt.Backend.Name != "python3-poetry" {
+		if !testWhichLanguage[bt.Backend.Name] {
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
 			})
