@@ -7,6 +7,7 @@
   nix-editor,
   poetry,
   python311Full,
+  python311Packages,
   golangci-lint,
 }:
 mkShell {
@@ -19,6 +20,7 @@ mkShell {
     nodejs
     nodePackages.pnpm
     nodePackages.yarn
+    python311Packages.pip
     poetry
     python311Full
   ];
