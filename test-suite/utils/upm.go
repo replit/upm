@@ -279,9 +279,11 @@ func (bt *BackendT) UpmRemove(pkgs ...string) {
 	}
 
 	for _, pkg := range pkgs {
-		for _, dep := range afterLockDeps {
-			if dep.Name == pkg {
-				bt.Fail("expected %s not in lock file after remove", pkg)
+		if bt.Backend.QuirksIsReproducible() {
+			for _, dep := range afterLockDeps {
+				if dep.Name == pkg {
+					bt.Fail("expected %s not in lock file after remove", pkg)
+				}
 			}
 		}
 

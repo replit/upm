@@ -41,7 +41,7 @@ func doAdd(bt testUtils.BackendT, pkgs ...string) {
 	for _, tmpl := range standardTemplates {
 		template := bt.Backend.Name + "/" + tmpl + "/"
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			if tmpl != "no-deps" {
+			if tmpl != "no-deps" && bt.Backend.QuirksIsReproducible() {
 				bt.Subtest("locked", func(bt testUtils.BackendT) {
 					bt.Subtest("each", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
