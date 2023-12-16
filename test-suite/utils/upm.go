@@ -148,6 +148,17 @@ func (bt *BackendT) UpmInstall() {
 	}
 }
 
+func normalizePackageNames(bt *BackendT, pkgs []api.PkgInfo) []api.PkgInfo {
+	for idx, pkg := range pkgs {
+		out := (string)(bt.Backend.NormalizePackageName(api.PkgName(pkg.Name)))
+		if pkgs[idx].Name != out {
+			bt.t.Log("Inconsistently normalized package name in results: ", pkgs[idx].Name, "did not equal", out)
+		}
+		pkgs[idx].Name = out
+	}
+	return pkgs
+}
+
 func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 	out, err := bt.Exec(
 		"upm",
@@ -169,7 +180,7 @@ func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 		bt.Fail("failed to decode json: %v", err)
 	}
 
-	return results
+	return normalizePackageNames(bt, results)
 }
 
 func (bt *BackendT) UpmListSpecFile() []api.PkgInfo {
@@ -192,7 +203,7 @@ func (bt *BackendT) UpmListSpecFile() []api.PkgInfo {
 		bt.Fail("failed to decode json: %v", err)
 	}
 
-	return results
+	return normalizePackageNames(bt, results)
 }
 
 func (bt *BackendT) UpmLock() {
