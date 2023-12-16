@@ -32,7 +32,7 @@ func (bt *BackendT) UpmAdd(pkgs ...string) {
 		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeLockDeps), len(afterLockDeps))
 	}
 	if len(beforeSpecDeps) >= len(afterSpecDeps) {
-		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeLockDeps), len(afterLockDeps))
+		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeSpecDeps), len(afterSpecDeps))
 	}
 
 	for _, pkg := range pkgs {
