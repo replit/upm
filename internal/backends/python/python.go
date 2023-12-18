@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -203,25 +202,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 				return venv
 			}
 
-			// Ideally Poetry would provide some way of
-			// actually checking where the virtualenv will
-			// go. But it doesn't. So we have to
-			// reimplement the logic ourselves, which is
-			// totally fragile and disgusting. (No, we
-			// can't use 'poetry run which python' because
-			// that will *create* a virtualenv if one
-			// doesn't exist, and there's no workaround
-			// for that without mutating the global config
-			// file.)
-			//
-			// Note, we don't yet support Poetry's
-			// settings.virtualenvs.in-project. That would
-			// be a pretty easy fix, though. (Why is this
-			// so complicated??)
-
 			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry",
-				"config", "settings.virtualenvs.path",
+				"poetry", "env", "list", "--full-path",
 			})
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
@@ -229,33 +211,15 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			}
 
 			var path string
-			if err := json.Unmarshal(outputB, &path); err != nil {
-				util.Die("parsing output from Poetry: %s", err)
-			}
-
-			base := ""
-			if util.Exists("pyproject.toml") {
-				var cfg pyprojectTOML
-				if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-					util.Die("%s", err.Error())
+			for _, line := range strings.Split(strings.TrimSpace(string(outputB)), "\n") {
+				var isActive bool
+				path, isActive = strings.CutSuffix(line, " (Activated)")
+				if isActive {
+					break
 				}
-				base = cfg.Tool.Poetry.Name
 			}
 
-			if base == "" {
-				cwd, err := os.Getwd()
-				if err != nil {
-					util.Die("%s", err)
-				}
-				base = strings.ToLower(filepath.Base(cwd))
-			}
-
-			version := strings.TrimSpace(string(util.GetCmdOutput([]string{
-				python, "-c",
-				`import sys; print(".".join(map(str, sys.version_info[:2])))`,
-			})))
-
-			return filepath.Join(path, base+"-py"+version)
+			return path
 		},
 		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
 
@@ -296,7 +260,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			pkgs, err := listSpecfile()
+			pkgs, err := listPoetrySpecfile()
 			if err != nil {
 				util.Die("%s", err.Error())
 			}
@@ -337,7 +301,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			specfilePkgs, _ := listSpecfile()
+			specfilePkgs, _ := listPoetrySpecfile()
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
@@ -347,7 +311,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 	}
 }
 
-func listSpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
 		return nil, err
@@ -394,5 +358,5 @@ func getPython3() string {
 	}
 }
 
-// Python3Backend is a UPM backend for Python 3 that uses Poetry.
-var Python3Backend = makePythonPoetryBackend(getPython3())
+// PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
+var PythonPoetryBackend = makePythonPoetryBackend(getPython3())

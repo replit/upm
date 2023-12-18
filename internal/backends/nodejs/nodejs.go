@@ -367,7 +367,7 @@ var tsxPathGlobs = []string{
 	"*.tsx",
 }
 
-// NodejsYarnBackend is a UPM backend for Node.js that uses Yarn.
+// NodejsYarnBackend is a UPM backend for Node.js that uses [Yarn](https://yarnpkg.com/).
 var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
@@ -443,6 +443,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
+// NodejsPNPMBackend is a UPM backend for Node.js that uses [pnpm](https://pnpm.io/).
 var NodejsPNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-pnpm",
 	Specfile:         "package.json",
@@ -535,7 +536,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
-// NodejsNPMBackend is a UPM backend for Node.js that uses NPM.
+// NodejsNPMBackend is a UPM backend for Node.js that uses [NPM](https://npmjs.com/).
 var NodejsNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-npm",
 	Specfile:         "package.json",
@@ -617,7 +618,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
-// BunBackend is a UPM backend for Node.js that uses Yarn.
+// BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
 var BunBackend = api.LanguageBackend{
 	Name:             "bun",
 	Specfile:         "package.json",

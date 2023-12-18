@@ -366,7 +366,7 @@ func runRemove(language string, args []string, upgrade bool,
 	for _, arg := range args {
 		name := api.PkgName(arg)
 		norm := b.NormalizePackageName(name)
-		if _, ok := normSpecfilePkgs[norm]; ok {
+		if normSpecfilePkgs[norm] {
 			normPkgs[norm] = name
 		}
 	}
@@ -585,7 +585,9 @@ func runShowLockfile(language string) {
 func runShowPackageDir(language string) {
 	b := backends.GetBackend(context.Background(), language)
 	dir := b.GetPackageDir()
-	fmt.Println(dir)
+	if dir != "" {
+		fmt.Println(dir)
+	}
 }
 
 // runInstallReplitNixSystemDependencies implements 'upm install-replit-nix-system-dependencies'.
