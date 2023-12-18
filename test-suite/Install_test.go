@@ -38,7 +38,10 @@ func doInstall(bt testUtils.BackendT) {
 
 			packageDirPath := bt.UpmPackageDir()
 
-			_, err := os.Stat(path.Join(bt.TestDir(), packageDirPath))
+			if !path.IsAbs(packageDirPath) {
+				packageDirPath = path.Join(bt.TestDir(), packageDirPath)
+			}
+			_, err := os.Stat(packageDirPath)
 			if err != nil {
 				bt.Fail("expected package dir to exist: %v", err)
 			}

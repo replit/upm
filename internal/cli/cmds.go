@@ -54,8 +54,18 @@ func runListLanguages() {
 	}
 }
 
+func makeLoweredHM(normalizePackageName func(api.PkgName) api.PkgName, names []string) map[api.PkgName]bool {
+	// Build a hashset. struct{}{} purportedly is of size 0, so this is as good as we get
+	set := make(map[api.PkgName]bool)
+	for _, pkg := range names {
+		normal := normalizePackageName(api.PkgName(pkg))
+		set[normal] = true
+	}
+	return set
+}
+
 // runSearch implements 'upm search'.
-func runSearch(language string, args []string, outputFormat outputFormat) {
+func runSearch(language string, args []string, outputFormat outputFormat, ignoredPackages []string) {
 	query := strings.Join(args, " ")
 	b := backends.GetBackend(context.Background(), language)
 
@@ -64,6 +74,25 @@ func runSearch(language string, args []string, outputFormat outputFormat) {
 		results = []api.PkgInfo{}
 	} else {
 		results = b.Search(query)
+	}
+
+	{ // Filter out ignored packages
+		ignoredPackageSet := makeLoweredHM(b.NormalizePackageName, ignoredPackages)
+		filtered := []api.PkgInfo{}
+		for _, pkg := range results {
+			lower := b.NormalizePackageName(api.PkgName(pkg.Name))
+			if ignoredPackageSet[lower] {
+				continue
+			}
+			filtered = append(filtered, pkg)
+		}
+
+		results = filtered
+	}
+
+	// Apply some heuristics to give results that more closely resemble the user's query
+	if b.SortPackages != nil {
+		results = b.SortPackages(query, results)
 	}
 
 	// Output a reasonable number of results.
@@ -337,7 +366,7 @@ func runRemove(language string, args []string, upgrade bool,
 	for _, arg := range args {
 		name := api.PkgName(arg)
 		norm := b.NormalizePackageName(name)
-		if _, ok := normSpecfilePkgs[norm]; ok {
+		if normSpecfilePkgs[norm] {
 			normPkgs[norm] = name
 		}
 	}
@@ -556,7 +585,9 @@ func runShowLockfile(language string) {
 func runShowPackageDir(language string) {
 	b := backends.GetBackend(context.Background(), language)
 	dir := b.GetPackageDir()
-	fmt.Println(dir)
+	if dir != "" {
+		fmt.Println(dir)
+	}
 }
 
 // runInstallReplitNixSystemDependencies implements 'upm install-replit-nix-system-dependencies'.

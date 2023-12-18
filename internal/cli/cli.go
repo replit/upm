@@ -77,7 +77,7 @@ func DoCLI() {
 	)
 	rootCmd.PersistentFlags().StringSliceVar(
 		&ignoredPackages, "ignored-packages", []string{},
-		"packages to ignore when guessing or adding (comma-separated)",
+		"packages to ignore when searching, guessing, or adding (comma-separated)",
 	)
 	rootCmd.PersistentFlags().StringSliceVar(
 		&ignoredPaths, "ignored-paths", []string{},
@@ -118,7 +118,7 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			queries := args
 			outputFormat := parseOutputFormat(formatStr)
-			runSearch(language, queries, outputFormat)
+			runSearch(language, queries, outputFormat, ignoredPackages)
 		},
 	}
 	cmdSearch.Flags().SortFlags = false

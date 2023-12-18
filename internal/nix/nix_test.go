@@ -16,10 +16,6 @@ func TestNixPythonMap(t *testing.T) {
 				"pkgs.libxcrypt",
 				"pkgs.pkg-config",
 			},
-			PythonLibraryDeps: []string{
-				"pkgs.cairo",
-				"pkgs.libxcrypt",
-			},
 		},
 		deps)
 }
@@ -30,9 +26,6 @@ func TestReplitNixAddToNixEditorCmds(t *testing.T) {
 			"pkgs.pkg-config",
 			"pkgs.cairo",
 		},
-		PythonLibraryDeps: []string{
-			"pkgs.lib",
-		},
 	}
 
 	cmds := ReplitNixAddToNixEditorOps(*deps)
@@ -40,7 +33,6 @@ func TestReplitNixAddToNixEditorCmds(t *testing.T) {
 	expected := []NixEditorOp{
 		{Op: "add", DepType: Regular, Dep: "pkgs.pkg-config"},
 		{Op: "add", DepType: Regular, Dep: "pkgs.cairo"},
-		{Op: "add", DepType: Python, Dep: "pkgs.lib"},
 	}
 
 	assert.Equal(t, expected, cmds)

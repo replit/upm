@@ -3,12 +3,21 @@ package api
 import (
 	"context"
 	"regexp"
+	"strings"
 
 	"github.com/replit/upm/internal/util"
 )
 
 // PkgName represents the name of a package, e.g. "flask" for Python.
 type PkgName string
+
+func (n PkgName) Contains(other PkgName) bool {
+	return strings.Contains(string(n), string(other))
+}
+
+func (n PkgName) HasPrefix(other PkgName) bool {
+	return strings.HasPrefix(string(n), string(other))
+}
 
 // PkgSpec represents a package version constraint, e.g. "^1.1" or ">=
 // 1.1, <2.0" for Python.
@@ -193,6 +202,10 @@ type LanguageBackend struct {
 	// Return the path (relative to the project directory) in
 	// which packages are installed. The path need not exist.
 	GetPackageDir func() string
+
+	// Apply a sensible heuristic for sorting search results
+	// if we know we want to surface some packages over others.
+	SortPackages func(query string, packages []PkgInfo) []PkgInfo
 
 	// Search for packages using an online index. The query may
 	// contain any characters, including whitespace. Return a list
