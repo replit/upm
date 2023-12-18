@@ -95,6 +95,15 @@ test-suite:
 else
 test-suite:
 	nix develop -c nix shell -c go test -run $(GO_TEST_RUN_OPTS) ./test-suite
+
+test-%:
+	nix develop -c nix shell -c make wrapped-$@
+
+wrapped-test-%:
+	suite_prefix="$$(echo "$@" | cut -d- -f 3-)"; \
+	echo "Running $$suite_prefix"; \
+	cd test-suite; \
+	UPM_SUITE_PREFIX="$$suite_prefix" go test
 endif
 
 fmt:
