@@ -97,7 +97,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			import React from 'react';
 			import { Button } from '@material-ui/core';
-			
+
 			export const App = () => React.createElement(Button, { color: "primary" }, "Hello, World!");
 		`,
 			expected: map[api.PkgName]bool{
@@ -109,7 +109,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			scenario: "Conditional require",
 			backend:  NodejsNPMBackend,
 			fileContent: `
-			if (process.env.NODE_ENV === "production") { 
+			if (process.env.NODE_ENV === "production") {
 				require("node-fetch");
 			}
 		`,
@@ -123,7 +123,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			type Field<T> = { field: string; };
 
-			if (process.env.NODE_ENV === "production") { 
+			if (process.env.NODE_ENV === "production") {
 				require("node-fetch");
 			}
 		`,
@@ -134,7 +134,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			backend:  NodejsNPMBackend,
 			fileContent: `
 
-			if (process.env.NODE_ENV === "production") { 
+			if (process.env.NODE_ENV === "production") {
 				import("node-fetch");
 			}
 		`,
@@ -148,7 +148,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			type Field<T> = { field: string; };
 
-			if (process.env.NODE_ENV === "production") { 
+			if (process.env.NODE_ENV === "production") {
 				import("node-fetch");
 			}
 		`,
