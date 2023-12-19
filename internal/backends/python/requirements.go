@@ -69,7 +69,7 @@ func findPackage(line string) (*api.PkgName, *api.PkgSpec, bool) {
 	return name, spec, found
 }
 
-func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.PkgSpec, constraints Constraints) ([]PipFlag, map[api.PkgName]api.PkgSpec, Constraints) {
+func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.PkgSpec, constraints Constraints) ([]PipFlag, map[api.PkgName]api.PkgSpec, Constraints, error) {
 	// Perhaps this can be lifted, but sensibly attempt to protect ourselves
 	if depth > 10 {
 		util.Die("Too many -r redirects in %s", path)
@@ -79,7 +79,7 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 
 	handle, err := os.Open(path)
 	if err != nil {
-		util.Die("%s", err.Error())
+		return []PipFlag{}, sofar, constraints, err
 	}
 	defer handle.Close()
 
@@ -104,7 +104,10 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 			// -r other-requirements.txt
 			nextfile = filepath.Join(filepath.Dir(path), strings.TrimSpace(nextfile))
 			var newFlags []PipFlag
-			newFlags, sofar, constraints = recurseRequirementsTxt(depth+1, nextfile, sofar, constraints)
+			newFlags, sofar, constraints, err = recurseRequirementsTxt(depth+1, nextfile, sofar, constraints)
+			if err != nil {
+				return []PipFlag{}, sofar, constraints, err
+			}
 			flags = append(flags, newFlags...)
 		} else if _, found := strings.CutPrefix(line, "-c "); found {
 			// ... or constraints files.
@@ -126,15 +129,15 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 		}
 	}
 
-	return flags, sofar, constraints
+	return flags, sofar, constraints, nil
 }
 
-func ListRequirementsTxt(path string) ([]PipFlag, map[api.PkgName]api.PkgSpec) {
-	flags, result, _ := recurseRequirementsTxt(0, path, make(map[api.PkgName]api.PkgSpec), make(Constraints))
-	return flags, result
+func ListRequirementsTxt(path string) ([]PipFlag, map[api.PkgName]api.PkgSpec, error) {
+	flags, result, _, err := recurseRequirementsTxt(0, path, make(map[api.PkgName]api.PkgSpec), make(Constraints))
+	return flags, result, err
 }
 
-func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgName]bool) {
+func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgName]bool) error {
 	if depth > 10 {
 		util.Die("Too many -r redirects in %s", path)
 	}
@@ -143,7 +146,7 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 
 	handle, err := os.OpenFile(path, os.O_RDWR, 0644)
 	if err != nil {
-		util.Die("%s", err.Error())
+		return err
 	}
 	defer handle.Close()
 
@@ -155,7 +158,10 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 			if name, _, found := findPackage(line); found && pkgs[normalizePackageName(*name)] {
 				continue
 			} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
-				recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
+				err := recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
+				if err != nil {
+					return err
+				}
 				lines = append(lines, line)
 			} else {
 				lines = append(lines, line)
@@ -165,23 +171,24 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 
 	err = handle.Truncate(0)
 	if err != nil {
-		util.Die("%s", err.Error())
+		return err
 	}
 
 	// Truncate does not reset the cursor position
 	_, err = handle.Seek(0, 0)
 	if err != nil {
-		util.Die("%s", err.Error())
+		return err
 	}
 
 	for _, line := range lines {
 		_, err := handle.WriteString(line + "\n")
 		if err != nil {
-			util.Die("%s", err.Error())
+			return err
 		}
 	}
+	return nil
 }
 
-func RemoveFromRequirementsTxt(path string, pkgs map[api.PkgName]bool) {
-	recurseRemoveFromRequirementsTxt(0, path, pkgs)
+func RemoveFromRequirementsTxt(path string, pkgs map[api.PkgName]bool) error {
+	return recurseRemoveFromRequirementsTxt(0, path, pkgs)
 }
