@@ -91,6 +91,11 @@ endif
 ifdef UPM_CI
 test-suite:
 	go get gotest.tools/gotestsum
+	# TODO: Move the following setup out into before/after or a separate
+	# environment-specific runner
+	venv="$$(mktemp -d)"; \
+	python -m venv "$$venv"; \
+	source "$$venv/bin/activate"; \
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
 else
 test-suite:
