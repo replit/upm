@@ -309,13 +309,13 @@ var DartPubBackend = api.LanguageBackend{
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
-		util.RunCmd([]string{"pub", "get"})
+		util.RunCmd([]string{"dart", "pub", "get"})
 	},
 	Install: func(ctx context.Context) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
-		util.RunCmd([]string{"pub", "get"})
+		util.RunCmd([]string{"dart", "pub", "get"})
 	},
 	ListSpecfile:                       dartListPubspecYaml,
 	ListLockfile:                       dartListPubspecLock,
