@@ -123,13 +123,18 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 	return backends[0]
 }
 
+type BackendInfo struct {
+	Name      string
+	Available bool
+}
+
 // GetBackendNames returns a slice of the canonical names (e.g.
 // python-python3-poetry, not just python3) for all the backends
 // listed in languageBackends.
-func GetBackendNames() []string {
-	backendNames := []string{}
+func GetBackendNames() []BackendInfo {
+	var backendNames []BackendInfo
 	for _, b := range languageBackends {
-		backendNames = append(backendNames, b.Name)
+		backendNames = append(backendNames, BackendInfo{Name: b.Name, Available: b.IsAvailable()})
 	}
 	return backendNames
 }
