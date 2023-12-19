@@ -195,6 +195,26 @@ type packageLockJSON struct {
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"}
 
+func bunIsAvailable() bool {
+	_, err := exec.LookPath("bun")
+	return err == nil
+}
+
+func pnpmIsAvailable() bool {
+	_, err := exec.LookPath("pnpm")
+	return err == nil
+}
+
+func yarnIsAvailable() bool {
+	_, err := exec.LookPath("yarn")
+	return err == nil
+}
+
+func npmIsAvailable() bool {
+	_, err := exec.LookPath("npm")
+	return err == nil
+}
+
 // nodejsSearch implements Search for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsSearch(query string) []api.PkgInfo {
 	// Special case: if search query is only one character, the
@@ -372,6 +392,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
+	IsAvailable:      yarnIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -449,6 +470,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-pnpm",
 	Specfile:         "package.json",
 	Lockfile:         "pnpm-lock.yaml",
+	IsAvailable:      pnpmIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -542,6 +564,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-npm",
 	Specfile:         "package.json",
 	Lockfile:         "package-lock.json",
+	IsAvailable:      npmIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -624,6 +647,7 @@ var BunBackend = api.LanguageBackend{
 	Name:             "bun",
 	Specfile:         "package.json",
 	Lockfile:         "bun.lockb",
+	IsAvailable:      bunIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |

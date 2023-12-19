@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -19,11 +20,20 @@ import (
 // elispPatterns is the FilenamePatterns value for ElispBackend.
 var elispPatterns = []string{"*.el"}
 
+func elispCaskIsAvailable() bool {
+	_, err := exec.LookPath("emacs")
+	if err == nil {
+		_, err = exec.LookPath("cask")
+	}
+	return err == nil
+}
+
 // ElispBackend is the UPM language backend for Emacs Lisp using Cask.
 var ElispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
 	Specfile:         "Cask",
 	Lockfile:         "packages.txt",
+	IsAvailable:      elispCaskIsAvailable,
 	FilenamePatterns: elispPatterns,
 	Quirks:           api.QuirksNotReproducible,
 	GetPackageDir: func() string {

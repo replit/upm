@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"path"
 	"runtime"
 
@@ -19,6 +20,11 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"gopkg.in/yaml.v2"
 )
+
+func dartIsAvailable() bool {
+	_, err := exec.LookPath("dart")
+	return err == nil
+}
 
 // getPubBaseUrl returns pub.dartlang.org (the primary API endpoint for pub.dev)
 // or a local override if set.
@@ -298,6 +304,7 @@ var DartPubBackend = api.LanguageBackend{
 	Name:             "dart-pub",
 	Specfile:         "pubspec.yaml",
 	Lockfile:         "pubspec.lock",
+	IsAvailable:      dartIsAvailable,
 	FilenamePatterns: []string{"*.dart"},
 	Quirks:           api.QuirksLockAlsoInstalls,
 	GetPackageDir:    dartGetPackageDir,
@@ -309,13 +316,13 @@ var DartPubBackend = api.LanguageBackend{
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
-		util.RunCmd([]string{"pub", "get"})
+		util.RunCmd([]string{"dart", "pub", "get"})
 	},
 	Install: func(ctx context.Context) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pub get")
 		defer span.Finish()
-		util.RunCmd([]string{"pub", "get"})
+		util.RunCmd([]string{"dart", "pub", "get"})
 	},
 	ListSpecfile:                       dartListPubspecYaml,
 	ListLockfile:                       dartListPubspecLock,

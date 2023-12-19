@@ -3,17 +3,24 @@ package dotnet
 
 import (
 	"context"
+	"os/exec"
 
 	"github.com/replit/upm/internal/api"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
 
+func dotnetIsAvailable() bool {
+	_, err := exec.LookPath("dotnet")
+	return err == nil
+}
+
 // DotNetBackend is the UPM language backend .NET languages with support for C#
 var DotNetBackend = api.LanguageBackend{
 	Name:             "dotnet",
 	Specfile:         findSpecFile(),
 	Lockfile:         lockFileName,
+	IsAvailable:      dotnetIsAvailable,
 	FilenamePatterns: []string{"*.cs", "*.csproj", "*.fs", "*.fsproj"},
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
 		removePackages(ctx, pkgs, findSpecFile(), util.RunCmd)
