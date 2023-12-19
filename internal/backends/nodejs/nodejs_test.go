@@ -197,7 +197,7 @@ func verify(t *testing.T, tc TestCase, extension string) {
 	}
 
 	for key := range tc.expected {
-		if _, ok := result[key]; !ok {
+		if !result[key] {
 			t.Errorf("Key %s not found in result map", key)
 		}
 	}
