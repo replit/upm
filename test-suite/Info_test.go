@@ -20,7 +20,7 @@ func TestInfo(t *testing.T) {
 		case "bun":
 			doInfo(bt, "express", "@replit/crosis", "@distube/spotify")
 
-		case "python3-poetry":
+		case "python3-poetry", "python3-pip":
 			doInfo(bt, "Flask", "replit-ai")
 
 		default:

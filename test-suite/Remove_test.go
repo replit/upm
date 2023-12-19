@@ -30,6 +30,12 @@ func TestRemove(t *testing.T) {
 				"many-deps": {"django", "boatman", "ws4py"},
 			}
 
+		case "python3-pip":
+			pkgsToRemove = map[string][]string{
+				"one-dep":   {"django"},
+				"many-deps": {"django", "boatman", "ws4py"},
+			}
+
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
 				t.Skip("no test")
