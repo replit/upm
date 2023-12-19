@@ -21,6 +21,30 @@ var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionSpec = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)+`
 var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*(` + pep440VersionSpec + `)?\s*$`)
 
+// Global options:
+//
+//	https://pip.pypa.io/en/stable/reference/requirements-file-format/#global-options
+//
+// NB: We explicitly ignore -r/--requirement and -c/--constraint here, since we handle them separately
+var knownFlags = map[string]bool{
+	`-i`:                true,
+	`--index-url`:       true,
+	`--extra-index-url`: true,
+	`--no-index`:        true,
+	`-e`:                true,
+	`--editable`:        true,
+	`-f`:                true,
+	`--find-links`:      true,
+	`--no-binary`:       true,
+	`--only-binary`:     true,
+	`--prefer-binary`:   true,
+	`--require-hashes`:  true,
+	`--pre`:             true,
+	`--trusted-host`:    true,
+	`--use-feature`:     true,
+}
+
+type PipFlag string
 type Constraints map[api.PkgName]api.PkgSpec
 
 func findPackage(line string) (*api.PkgName, *api.PkgSpec, bool) {
@@ -76,12 +100,16 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 			// # It is possible to refer to other requirement files...
 			// -r other-requirements.txt
 			nextfile = filepath.Join(filepath.Dir(path), strings.TrimSpace(nextfile))
-			sofar, constraints = recurseRequirementsTxt(depth+1, nextfile, sofar, constraints)
+			var newFlags []PipFlag
+			newFlags, sofar, constraints = recurseRequirementsTxt(depth+1, nextfile, sofar, constraints)
+			flags = append(flags, newFlags...)
 		} else if _, found := strings.CutPrefix(line, "-c "); found {
 			// ... or constraints files.
 			// -c constraints.txt
 			//
 			// TODO: Accumulate constraints to pass to underlyling pip
+		} else if parts := strings.SplitN(line, " ", 2); len(parts) > 1 && knownFlags[parts[0]] {
+			flags = append(flags, PipFlag(strings.Join(parts, " ")))
 		}
 	}
 
