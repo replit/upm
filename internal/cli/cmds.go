@@ -362,10 +362,10 @@ func runRemove(language string, args []string, upgrade bool,
 
 	// Map from normalized package names to original package
 	// names.
-	normPkgs := map[api.PkgName]api.PkgName{}
+	normPkgs := map[api.PkgName]string{}
 	for _, arg := range args {
-		name := api.PkgName(arg)
-		norm := b.NormalizePackageName(name)
+		name := arg
+		norm := b.NormalizePackageName(api.PkgName(arg))
 		if normSpecfilePkgs[norm] {
 			normPkgs[norm] = name
 		}
@@ -377,7 +377,7 @@ func runRemove(language string, args []string, upgrade bool,
 
 	if len(normPkgs) >= 1 {
 		pkgs := map[api.PkgName]bool{}
-		for _, name := range normPkgs {
+		for name := range normPkgs {
 			pkgs[name] = true
 		}
 		b.Remove(ctx, pkgs)
@@ -578,7 +578,10 @@ func runShowSpecfile(language string) {
 
 // runShowLockfile implements 'upm show-lockfile'.
 func runShowLockfile(language string) {
-	fmt.Println(backends.GetBackend(context.Background(), language).Lockfile)
+	b := backends.GetBackend(context.Background(), language)
+	if b.Lockfile != "" {
+		fmt.Println(b.Lockfile)
+	}
 }
 
 // runShowPackageDir implements 'upm show-package-dir'.

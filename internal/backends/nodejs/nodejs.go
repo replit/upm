@@ -375,7 +375,8 @@ var NodejsYarnBackend = api.LanguageBackend{
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
-		api.QuirksLockAlsoInstalls,
+		api.QuirksLockAlsoInstalls |
+		api.QuirkRemoveNeedsLockfile,
 	GetPackageDir: func() string {
 		return "node_modules"
 	},

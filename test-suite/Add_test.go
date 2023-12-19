@@ -40,12 +40,30 @@ func TestAdd(t *testing.T) {
 func doAdd(bt testUtils.BackendT, pkgs ...string) {
 	for _, tmpl := range standardTemplates {
 		template := bt.Backend.Name + "/" + tmpl + "/"
-		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			if tmpl != "no-deps" {
-				bt.Subtest("locked", func(bt testUtils.BackendT) {
+
+		if tmpl != "no-deps" {
+			bt.Subtest(tmpl, func(bt testUtils.BackendT) {
+				if bt.Backend.QuirksIsReproducible() {
+					bt.Subtest("locked", func(bt testUtils.BackendT) {
+						bt.Subtest("each", func(bt testUtils.BackendT) {
+							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							for _, pkg := range pkgs {
+								bt.UpmAdd(pkg)
+							}
+						})
+
+						bt.Subtest("all", func(bt testUtils.BackendT) {
+							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							bt.UpmAdd(pkgs...)
+						})
+					})
+				}
+
+				bt.Subtest("unlocked", func(bt testUtils.BackendT) {
 					bt.Subtest("each", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 						for _, pkg := range pkgs {
 							bt.UpmAdd(pkg)
 						}
@@ -53,25 +71,10 @@ func doAdd(bt testUtils.BackendT, pkgs ...string) {
 
 					bt.Subtest("all", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 						bt.UpmAdd(pkgs...)
 					})
 				})
-			}
-
-			bt.Subtest("unlocked", func(bt testUtils.BackendT) {
-				bt.Subtest("each", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					for _, pkg := range pkgs {
-						bt.UpmAdd(pkg)
-					}
-				})
-
-				bt.Subtest("all", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					bt.UpmAdd(pkgs...)
-				})
 			})
-		})
+		}
 	}
 }

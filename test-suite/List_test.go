@@ -3,6 +3,7 @@ package testSuite
 import (
 	"testing"
 
+	"github.com/replit/upm/internal/api"
 	testUtils "github.com/replit/upm/test-suite/utils"
 )
 
@@ -62,7 +63,7 @@ func doList(bt testUtils.BackendT, templatesToPackages map[string][]string) {
 
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-			if tmpl != "no-deps" {
+			if tmpl != "no-deps" && bt.Backend.QuirksIsReproducible() {
 				bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 			}
 
@@ -71,9 +72,12 @@ func doList(bt testUtils.BackendT, templatesToPackages map[string][]string) {
 				bt.Fail("Expected %v packages, got %v", len(expectPkgs), len(specs))
 			}
 
-			locks := bt.UpmListLockFile()
-			if len(locks) < len(expectPkgs) {
-				bt.Fail("Expected %v packages, got %v", len(expectPkgs), len(locks))
+			var locks []api.PkgInfo
+			if bt.Backend.QuirksIsReproducible() {
+				locks = bt.UpmListLockFile()
+				if len(locks) < len(expectPkgs) {
+					bt.Fail("Expected %v packages, got %v", len(expectPkgs), len(locks))
+				}
 			}
 
 			for _, pkg := range expectPkgs {
@@ -89,16 +93,18 @@ func doList(bt testUtils.BackendT, templatesToPackages map[string][]string) {
 					bt.Fail("package %v not found in spec list", pkg)
 				}
 
-				found = false
-				for _, lock := range locks {
-					if pkg == lock.Name {
-						found = true
-						break
+				if bt.Backend.QuirksIsReproducible() {
+					found = false
+					for _, lock := range locks {
+						if pkg == lock.Name {
+							found = true
+							break
+						}
 					}
-				}
 
-				if !found {
-					bt.Fail("package %v not found in lock list", pkg)
+					if !found {
+						bt.Fail("package %v not found in lock list", pkg)
+					}
 				}
 			}
 		})
