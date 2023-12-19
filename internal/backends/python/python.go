@@ -183,6 +183,14 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 	util.RunCmd(cmd)
 }
 
+func searchPypi(query string) []api.PkgInfo {
+	results, err := SearchPypi(query)
+	if err != nil {
+		util.Die("failed to search pypi: %s", err.Error())
+	}
+	return results
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
 // (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPoetryBackend(python string) api.LanguageBackend {
@@ -223,13 +231,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		},
 		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
 
-		Search: func(query string) []api.PkgInfo {
-			results, err := SearchPypi(query)
-			if err != nil {
-				util.Die("failed to search pypi: %s", err.Error())
-			}
-			return results
-		},
+		Search: searchPypi,
 		Info: info,
 		Add:  add,
 		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
