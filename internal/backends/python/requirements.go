@@ -19,7 +19,8 @@ import (
 
 var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionSpec = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)+`
-var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*(` + pep440VersionSpec + `)?\s*$`)
+var extrasSpec = `\[(` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*)\]`
+var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
 
 // Global options:
 //
