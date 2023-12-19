@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -31,6 +32,11 @@ type rubygemsInfo struct {
 	Name             string   `json:"name"`
 	SourceCodeURI    string   `json:"source_code_uri"`
 	Version          string   `json:"version"`
+}
+
+func bundlerIsAvailable() bool {
+	_, err := exec.LookPath("bundle")
+	return err == nil
 }
 
 // getPath returns the appropriate --path for 'bundle install'. This
@@ -67,6 +73,7 @@ var RubyBackend = api.LanguageBackend{
 	Name:             "ruby-bundler",
 	Specfile:         "Gemfile",
 	Lockfile:         "Gemfile.lock",
+	IsAvailable:      bundlerIsAvailable,
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	GetPackageDir: func() string {

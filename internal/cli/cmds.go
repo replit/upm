@@ -49,8 +49,12 @@ func runWhichLanguage(language string) {
 
 // runListLanguages implements 'upm list-languages'.
 func runListLanguages() {
-	for _, backendName := range backends.GetBackendNames() {
-		fmt.Println(backendName)
+	for _, info := range backends.GetBackendNames() {
+		if info.Available {
+			fmt.Println(info.Name)
+		} else {
+			fmt.Println(info.Name + "  (unavailable)")
+		}
 	}
 }
 
