@@ -29,7 +29,7 @@ import foo #upm package(bar)
 
 	testDir := t.TempDir()
 	testFile := testDir + "/index.py"
-	err := os.WriteFile(testFile, []byte(content), 0644)
+	err := os.WriteFile(testFile, []byte(content), 0o644)
 	if err != nil {
 		t.Fatal("failed to write test file", err)
 	}
