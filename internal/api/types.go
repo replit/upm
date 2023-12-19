@@ -171,6 +171,9 @@ type LanguageBackend struct {
 	// Poetry.
 	Lockfile string
 
+	// Check to see if we think we can run at all
+	IsAvailable func() bool
+
 	// List of filename globs that match against files written in
 	// this programming language, e.g. "*.py" for Python. These
 	// should not include any slashes, because they may be matched
@@ -350,6 +353,7 @@ func (b *LanguageBackend) Setup() {
 		"missing Info":                     b.Info == nil,
 		"missing Add":                      b.Add == nil,
 		"missing Remove":                   b.Remove == nil,
+		"missing IsAvailable":              b.IsAvailable == nil,
 		// The lock method should be unimplemented if
 		// and only if builds are not reproducible.
 		"either implement Lock or mark QuirksIsNotReproducible": ((b.Lock == nil) != b.QuirksIsNotReproducible()),
