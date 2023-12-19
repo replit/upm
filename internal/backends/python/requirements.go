@@ -83,8 +83,7 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 	}
 	defer handle.Close()
 
-	scanner := bufio.NewScanner(handle)
-	for scanner.Scan() {
+	for scanner := bufio.NewScanner(handle); scanner.Scan(); {
 		line := strings.TrimSpace(scanner.Text())
 
 		// Separate out comments
@@ -150,22 +149,19 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 	}
 	defer handle.Close()
 
-	{
-		scanner := bufio.NewScanner(handle)
-		for scanner.Scan() {
-			line := strings.TrimSpace(scanner.Text())
+	for scanner := bufio.NewScanner(handle); scanner.Scan(); {
+		line := strings.TrimSpace(scanner.Text())
 
-			if name, _, found := findPackage(line); found && pkgs[normalizePackageName(*name)] {
-				continue
-			} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
-				err := recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
-				if err != nil {
-					return err
-				}
-				lines = append(lines, line)
-			} else {
-				lines = append(lines, line)
+		if name, _, found := findPackage(line); found && pkgs[normalizePackageName(*name)] {
+			continue
+		} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
+			err := recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
+			if err != nil {
+				return err
 			}
+			lines = append(lines, line)
+		} else {
+			lines = append(lines, line)
 		}
 	}
 
