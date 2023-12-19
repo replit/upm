@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"os/exec"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
@@ -79,6 +80,11 @@ func (c *crateInfoResult) toPkgInfo() api.PkgInfo {
 		Author:           author,
 		License:          license,
 	}
+}
+
+func cargoIsAvailable() bool {
+	_, err := exec.LookPath("cargo")
+	return err == nil
 }
 
 func search(query string) []api.PkgInfo {
@@ -224,6 +230,7 @@ var RustBackend = api.LanguageBackend{
 	Name:             "rust",
 	Specfile:         "Cargo.toml",
 	Lockfile:         "Cargo.lock",
+	IsAvailable:      cargoIsAvailable,
 	FilenamePatterns: []string{"*.rs"},
 	GetPackageDir: func() string {
 		return "target"

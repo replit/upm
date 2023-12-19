@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"regexp"
 	"strings"
 
@@ -66,6 +67,16 @@ type poetryLock struct {
 		Name    string `json:"name"`
 		Version string `json:"version"`
 	} `json:"package"`
+}
+
+func pipIsAvailable() bool {
+	_, err := exec.LookPath("pip")
+	return err == nil
+}
+
+func poetryIsAvailable() bool {
+	_, err := exec.LookPath("poetry")
+	return err == nil
 }
 
 // normalizeSpec returns the version string from a Poetry spec, or the
@@ -199,6 +210,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		Alias:            "python-python3-poetry",
 		Specfile:         "pyproject.toml",
 		Lockfile:         "poetry.lock",
+		IsAvailable:      poetryIsAvailable,
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
@@ -323,6 +335,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 	b := api.LanguageBackend{
 		Name:                 "python3-pip",
 		Specfile:             "requirements.txt",
+		IsAvailable:          pipIsAvailable,
 		Alias:                "python-python3-pip",
 		FilenamePatterns:     []string{"*.py"},
 		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
