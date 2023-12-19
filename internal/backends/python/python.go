@@ -407,7 +407,10 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				cmd = append(cmd, string(name))
 			}
 			util.RunCmd(cmd)
-			RemoveFromRequirementsTxt("requirements.txt", pkgs)
+			err := RemoveFromRequirementsTxt("requirements.txt", pkgs)
+			if err != nil {
+				util.Die("%s", err.Error())
+			}
 		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
@@ -417,7 +420,10 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			flags, _result := ListRequirementsTxt("requirements.txt")
+			flags, _result, err := ListRequirementsTxt("requirements.txt")
+			if err != nil {
+				util.Die("%s", err.Error())
+			}
 
 			result := make(map[api.PkgName]api.PkgSpec)
 			for name, spec := range _result {
@@ -443,7 +449,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			_, specfilePkgs := ListRequirementsTxt("requirements.txt")
+			_, specfilePkgs, _ := ListRequirementsTxt("requirements.txt")
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
