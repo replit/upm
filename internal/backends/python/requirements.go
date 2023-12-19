@@ -98,7 +98,7 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 		} else if name, spec, found := findPackage(line); found {
 			// Found a package!
 			sofar[*name] = *spec
-		} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
+		} else if nextfile, found := cutPrefixes(line, "-r ", "--requirement "); found {
 			// # It is possible to refer to other requirement files...
 			// -r other-requirements.txt
 			nextfile = filepath.Join(filepath.Dir(path), strings.TrimSpace(nextfile))
@@ -136,6 +136,17 @@ func ListRequirementsTxt(path string) ([]PipFlag, map[api.PkgName]api.PkgSpec, e
 	return flags, result, err
 }
 
+func cutPrefixes(line string, options ...string) (nextfile string, found bool) {
+	for _, choice := range options {
+		nextfile, found = strings.CutPrefix(line, choice)
+		if found {
+			break
+		}
+	}
+
+	return nextfile, found
+}
+
 func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgName]bool) error {
 	if depth > 10 {
 		util.Die("Too many -r redirects in %s", path)
@@ -154,7 +165,7 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 
 		if name, _, found := findPackage(line); found && pkgs[normalizePackageName(*name)] {
 			continue
-		} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
+		} else if nextfile, found := cutPrefixes(line, "-r ", "--requirement "); found {
 			err := recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
 			if err != nil {
 				return err
