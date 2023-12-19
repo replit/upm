@@ -57,36 +57,36 @@ type Project struct {
 
 const initialPomXml = `
 <project>
-<modelVersion>4.0.0</modelVersion>
-<groupId>mygroupid</groupId>
-<artifactId>myartifactid</artifactId>
-<version>0.0-SNAPSHOT</version>
-<build>
-<plugins>
-<plugin>
-    <groupId>de.qaware.maven</groupId>
-    <artifactId>go-offline-maven-plugin</artifactId>
-    <version>1.2.5</version>
-    <configuration>
-        <dynamicDependencies>
-            <DynamicDependency>
-                <groupId>org.apache.maven.surefire</groupId>
-                <artifactId>surefire-junit4</artifactId>
-                <version>2.20.1</version>
-                <repositoryType>PLUGIN</repositoryType>
-            </DynamicDependency>
-            <DynamicDependency>
-                <groupId>com.querydsl</groupId>
-                <artifactId>querydsl-apt</artifactId>
-                <version>4.2.1</version>
-                <classifier>jpa</classifier>
-                <repositoryType>MAIN</repositoryType>
-            </DynamicDependency>
-        </dynamicDependencies>
-    </configuration>
-</plugin>
-</plugins>
-</build>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mygroupid</groupId>
+  <artifactId>myartifactid</artifactId>
+  <version>0.0-SNAPSHOT</version>
+  <build>
+    <plugins>
+      <plugin>
+          <groupId>de.qaware.maven</groupId>
+          <artifactId>go-offline-maven-plugin</artifactId>
+          <version>1.2.5</version>
+          <configuration>
+              <dynamicDependencies>
+                  <DynamicDependency>
+                      <groupId>org.apache.maven.surefire</groupId>
+                      <artifactId>surefire-junit4</artifactId>
+                      <version>2.20.1</version>
+                      <repositoryType>PLUGIN</repositoryType>
+                  </DynamicDependency>
+                  <DynamicDependency>
+                      <groupId>com.querydsl</groupId>
+                      <artifactId>querydsl-apt</artifactId>
+                      <version>4.2.1</version>
+                      <classifier>jpa</classifier>
+                      <repositoryType>MAIN</repositoryType>
+                  </DynamicDependency>
+              </dynamicDependencies>
+          </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
 `
 
