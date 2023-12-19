@@ -121,6 +121,10 @@ const (
 	// This constant indicates that lock also executes install
 	// subsequently, so it doesn't need to be run afterwards.
 	QuirksLockAlsoInstalls
+
+	// This constant indicates that remove cannot be performed
+	// without a lockfile.
+	QuirkRemoveNeedsLockfile
 )
 
 // LanguageBackend is the core abstraction of UPM. It represents an

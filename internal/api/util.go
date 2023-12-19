@@ -56,3 +56,9 @@ func (b *LanguageBackend) QuirksDoesLockAlsoInstall() bool {
 func (b *LanguageBackend) QuirksDoesLockNotAlsoInstall() bool {
 	return (b.Quirks & QuirksLockAlsoInstalls) == 0
 }
+
+// QuirkRemoveNeedsLockfile returns true if the language backend
+// cannot run lock without a valid lockfile
+func (b *LanguageBackend) QuirkRemoveNeedsLockfile() bool {
+	return (b.Quirks & QuirkRemoveNeedsLockfile) != 0
+}
