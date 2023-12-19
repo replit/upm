@@ -6,6 +6,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"os"
+	"os/exec"
 	"regexp"
 
 	"github.com/replit/upm/internal/api"
@@ -114,6 +115,11 @@ func readProjectOrMakeEmpty(path string) Project {
 }
 
 const pomdotxml = "pom.xml"
+
+func isAvailable() bool {
+	_, err := exec.LookPath("mvn")
+	return err == nil
+}
 
 func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
 	//nolint:ineffassign,wastedassign,staticcheck
@@ -302,6 +308,7 @@ var JavaBackend = api.LanguageBackend{
 	Name:             "java-maven",
 	Specfile:         pomdotxml,
 	Lockfile:         pomdotxml,
+	IsAvailable:      isAvailable,
 	FilenamePatterns: javaPatterns,
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	GetPackageDir: func() string {

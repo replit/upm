@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -61,6 +62,11 @@ type packageDetail struct {
 type authors struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
+}
+
+func composerIsAvailable() bool {
+	_, err := exec.LookPath("composer")
+	return err == nil
 }
 
 func search(query string) []api.PkgInfo {
@@ -227,6 +233,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	Name:             "php-composer",
 	Specfile:         "composer.json",
 	Lockfile:         "composer.lock",
+	IsAvailable:      composerIsAvailable,
 	FilenamePatterns: []string{"*.php"},
 	Quirks:           api.QuirksAddRemoveAlsoLocks | api.QuirksAddRemoveAlsoInstalls,
 	GetPackageDir: func() string {
