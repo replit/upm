@@ -98,7 +98,7 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 		} else if name, spec, found := findPackage(line); found {
 			// Found a package!
 			sofar[*name] = *spec
-		} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
+		} else if nextfile, found := util.CutPrefixes(line, "-r ", "--requirement "); found {
 			// # It is possible to refer to other requirement files...
 			// -r other-requirements.txt
 			nextfile = filepath.Join(filepath.Dir(path), strings.TrimSpace(nextfile))
@@ -154,7 +154,7 @@ func recurseRemoveFromRequirementsTxt(depth int, path string, pkgs map[api.PkgNa
 
 		if name, _, found := findPackage(line); found && pkgs[normalizePackageName(*name)] {
 			continue
-		} else if nextfile, found := strings.CutPrefix(line, "-r "); found {
+		} else if nextfile, found := util.CutPrefixes(line, "-r ", "--requirement "); found {
 			err := recurseRemoveFromRequirementsTxt(depth+1, nextfile, pkgs)
 			if err != nil {
 				return err

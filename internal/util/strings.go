@@ -55,3 +55,15 @@ func Regexps(patterns []string) []*regexp.Regexp {
 	}
 	return regexps
 }
+
+// cutPrefixes offers strings.CutPrefix but for however many choices we may have
+func CutPrefixes(line string, options ...string) (nextfile string, found bool) {
+	for _, choice := range options {
+		nextfile, found = strings.CutPrefix(line, choice)
+		if found {
+			break
+		}
+	}
+
+	return nextfile, found
+}
