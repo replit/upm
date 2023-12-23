@@ -298,7 +298,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) }),
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
@@ -450,7 +450,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			return normalizedPkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) }),
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
