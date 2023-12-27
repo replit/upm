@@ -300,6 +300,7 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 	for fullModname := range foundPkgs {
 		// try and look it up in Pypi
 		var pkg string
+		var overrides []string
 		var ok bool
 
 		modNameParts := strings.Split((string)(fullModname), ".")
@@ -307,7 +308,7 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 			testModName := strings.Join(modNameParts, ".")
 
 			// test overrides
-			pkg, ok = moduleToPypiPackageOverride[testModName]
+			overrides, ok = moduleToPypiPackageOverride[testModName]
 			if ok {
 				break
 			}
@@ -323,8 +324,17 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 		}
 
 		if ok {
-			name := api.PkgName(pkg)
-			pkgs.AddOne(normalizePackageName(name))
+			if pkg != "" {
+				pkgs.AddOne(api.PkgName(pkg))
+			} else {
+				group := []api.PkgName{}
+				for _, pkg := range overrides {
+					name := api.PkgName(pkg)
+					group = append(group, normalizePackageName(name))
+				}
+
+				pkgs.Add(group)
+			}
 		}
 	}
 

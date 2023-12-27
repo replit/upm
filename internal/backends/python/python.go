@@ -196,7 +196,7 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 
 func searchPypi(query string) []api.PkgInfo {
 	if renamed, found := moduleToPypiPackageOverride[query]; found {
-		query = renamed
+		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
