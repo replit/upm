@@ -243,7 +243,7 @@ var internalModules = map[string]bool{
 	"zoneinfo":        true,
 }
 
-func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
+func guess(ctx context.Context, python string) (api.PkgSet, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
 	defer span.Finish()
 	cwd, err := os.Getwd()
@@ -259,7 +259,7 @@ func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
 	return filterImports(ctx, foundImportPaths)
 }
 
-func findImports(ctx context.Context, dir string) (map[string]bool, error) {
+func findImports(ctx context.Context, dir string) (api.PkgSet, error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.findImports")
 	defer span.Finish()
 	py := python.GetLanguage()
@@ -269,21 +269,21 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 		return nil, err
 	}
 
-	foundImportPaths := map[string]bool{}
+	foundImportPaths := api.NewPkgSet()
 	for _, pkg := range pkgs {
-		foundImportPaths[pkg] = true
+		foundImportPaths.AddOne(api.PkgName(pkg))
 	}
 
 	return foundImportPaths, nil
 }
 
-func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
 	// filter out internal modules
 	for pkg := range foundPkgs {
-		mod := getTopLevelModuleName(pkg)
+		mod := getTopLevelModuleName((string)(pkg))
 		if internalModules[mod] {
 			delete(foundPkgs, pkg)
 		}
@@ -295,14 +295,14 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 	}
 	defer pypiMap.Close()
 
-	pkgs := map[api.PkgName]bool{}
+	pkgs := api.NewPkgSet()
 
 	for fullModname := range foundPkgs {
 		// try and look it up in Pypi
 		var pkg string
 		var ok bool
 
-		modNameParts := strings.Split(fullModname, ".")
+		modNameParts := strings.Split((string)(fullModname), ".")
 		for len(modNameParts) > 0 {
 			testModName := strings.Join(modNameParts, ".")
 
@@ -324,7 +324,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 
 		if ok {
 			name := api.PkgName(pkg)
-			pkgs[normalizePackageName(name)] = true
+			pkgs.AddOne(normalizePackageName(name))
 		}
 	}
 
