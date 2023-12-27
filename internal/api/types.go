@@ -404,14 +404,31 @@ func AdaptLegacyGuess(oldGuess func(ctx context.Context) (map[PkgName]bool, bool
 	}
 }
 
+func (pkgs *PkgSet) NormalizePackageNames(normalizePkgName func(PkgName) PkgName) PkgSet {
+	res := NewPkgSet()
+	for pkg := range *pkgs {
+		res.AddOne(normalizePkgName(pkg))
+	}
+	return res
+}
+
 func (pkgs *PkgSet) AddOne(pkg PkgName) {
 	(*pkgs)[pkg] = true
 }
 
+func (pkgs *PkgSet) Remove(pkg PkgName) {
+	for name := range *pkgs {
+		if name == pkg {
+			delete(*pkgs, name)
+			break
+		}
+	}
+}
+
 func (pkgs *PkgSet) Pkgs() [][]PkgName {
 	var res [][]PkgName
-	for name := range *pkgs {
-		res = append(res, []PkgName{name})
+	for pkg := range *pkgs {
+		res = append(res, []PkgName{pkg})
 	}
 	return res
 }

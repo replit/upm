@@ -540,18 +540,20 @@ func runGuess(
 	b := backends.GetBackend(ctx, language)
 	guessed := store.GuessWithCache(ctx, b, forceGuess)
 
-	// Map from normalized to original names.
-	normPkgs := map[api.PkgName]api.PkgName{}
-	for _, pkgs := range guessed.Pkgs() {
-		normPkgs[b.NormalizePackageName(pkgs[0])] = pkgs[0]
-	}
+	guessed = guessed.NormalizePackageNames(b.NormalizePackageName)
 
 	if !all {
 		if util.Exists(b.Specfile) {
 			for name := range b.ListSpecfile() {
-				delete(normPkgs, b.NormalizePackageName(name))
+				guessed.Remove(b.NormalizePackageName(name))
 			}
 		}
+	}
+
+	// Map from normalized to original names.
+	normPkgs := map[api.PkgName]api.PkgName{}
+	for _, pkgs := range guessed.Pkgs() {
+		normPkgs[b.NormalizePackageName(pkgs[0])] = pkgs[0]
 	}
 
 	for _, pkg := range ignoredPackages {
