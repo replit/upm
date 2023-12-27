@@ -386,10 +386,10 @@ func (b *LanguageBackend) Setup() {
 	}
 }
 
-type PkgSet map[PkgName]bool
+type PkgSet map[PkgName][]PkgName
 
 func NewPkgSet() PkgSet {
-	adapted := (PkgSet)(make(map[PkgName]bool))
+	adapted := (PkgSet)(make(map[PkgName][]PkgName))
 	return adapted
 }
 
@@ -406,20 +406,36 @@ func AdaptLegacyGuess(oldGuess func(ctx context.Context) (map[PkgName]bool, bool
 
 func (pkgs *PkgSet) NormalizePackageNames(normalizePkgName func(PkgName) PkgName) PkgSet {
 	res := NewPkgSet()
-	for pkg := range *pkgs {
-		res.AddOne(normalizePkgName(pkg))
+	for _, group := range *pkgs {
+		normalized := []PkgName{}
+		for _, pkg := range group {
+			normalized = append(normalized, normalizePkgName(pkg))
+		}
+		res.Add([]PkgName{})
 	}
 	return res
 }
 
 func (pkgs *PkgSet) AddOne(pkg PkgName) {
-	(*pkgs)[pkg] = true
+	(*pkgs)[pkg] = []PkgName{pkg}
+}
+
+func (pkgs *PkgSet) Add(group []PkgName) {
+	pkg := group[0]
+	(*pkgs)[pkg] = group
 }
 
 func (pkgs *PkgSet) Remove(pkg PkgName) {
-	for name := range *pkgs {
-		if name == pkg {
-			delete(*pkgs, name)
+	for key, group := range *pkgs {
+		found := false
+		for _, name := range group {
+			if name == pkg {
+				found = true
+				break
+			}
+		}
+		if found {
+			delete(*pkgs, key)
 			break
 		}
 	}
@@ -427,8 +443,8 @@ func (pkgs *PkgSet) Remove(pkg PkgName) {
 
 func (pkgs *PkgSet) Pkgs() [][]PkgName {
 	var res [][]PkgName
-	for pkg := range *pkgs {
-		res = append(res, []PkgName{pkg})
+	for _, group := range *pkgs {
+		res = append(res, group)
 	}
 	return res
 }
