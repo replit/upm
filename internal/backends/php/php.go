@@ -280,9 +280,9 @@ var PhpComposerBackend = api.LanguageBackend{
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func(context.Context) (map[api.PkgName]bool, bool) {
+	Guess: api.AdaptLegacyGuess(func(context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 		return nil, false
-	},
+	}),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

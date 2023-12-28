@@ -272,9 +272,9 @@ var RustBackend = api.LanguageBackend{
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 		return nil, false
-	},
+	}),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
