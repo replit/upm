@@ -178,6 +178,11 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 	cmd := []string{"poetry", "add"}
 	for name, spec := range pkgs {
 		name := string(name)
+		if found, ok := moduleToPypiPackageAliases[name]; ok {
+			delete(pkgs, api.PkgName(name))
+			name = found[0]
+			pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+		}
 		spec := string(spec)
 
 		// NB: this doesn't work if spec has
@@ -375,6 +380,11 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
+				if found, ok := moduleToPypiPackageAliases[name]; ok {
+					delete(pkgs, api.PkgName(name))
+					name = found[0]
+					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				}
 
 				cmd = append(cmd, name+spec)
 			}
