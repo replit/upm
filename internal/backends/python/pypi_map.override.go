@@ -12,12 +12,14 @@ var moduleToPypiPackageOverride = map[string][]string{
 	"graphics":     {"graphics.py"},         // this package is popular, but the module doesn't match the package name https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/graphics.html#a-graphics-introduction
 	"replit.ai":    {"replit-ai"},           // Replit's AI package
 	"glm":          {"PyGLM", "glm"},        // Both of these packages are valid, but PyGLM is a library, glm is an executable.
-	"psycopg2":     {"psycopg2-binary"},     // psycopg2 is a source package, psycopg2-binary is the dist wheel
-	/* Proxy packages
-	 *
-	 * These are packages that provide helpful aliases, but otherwise provide no functionality.
-	 * We should prefer the real version.
-	 */
-	"discord": {"discord.py"},
-	"bs4":     {"beautifulsoup4"},
+}
+
+/*
+Proxy packages
+These are packages that provide helpful aliases, or otherwise should be preferred during guessing over the real base package.
+*/
+var moduleToPypiPackageAliases = map[string][]string{
+	"bs4":      {"beautifulsoup4"},
+	"discord":  {"discord.py"},
+	"psycopg2": {"psycopg2-binary"}, // psycopg2 is a source package, psycopg2-binary is the dist wheel
 }
