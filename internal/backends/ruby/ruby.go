@@ -255,14 +255,14 @@ var RubyBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
 		defer span.Finish()
 		guessedGems := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),
 		})
-		results := map[api.PkgName]bool{}
+		results := map[string][]api.PkgName{}
 		if err := json.Unmarshal(guessedGems, &results); err != nil {
 			util.Die("ruby: %s", err)
 		}

@@ -47,7 +47,7 @@ def process_require(req_str, guesses)
 
   gem = $allowed_gems[req_str]
   if gem
-    guesses[gem] = true
+    guesses[gem] = [gem]
   end
 end
 

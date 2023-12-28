@@ -57,7 +57,7 @@ var internalModules = []string{
 }
 
 // nodejsGuess implements Guess for nodejs-yarn, nodejs-pnpm and nodejs-npm.
-func nodejsGuess(ctx context.Context) (map[api.PkgName]bool, bool) {
+func nodejsGuess(ctx context.Context) (map[string][]api.PkgName, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "nodejsGuess")
 	defer span.Finish()
 	cwd, err := os.Getwd()
@@ -122,18 +122,18 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(ctx context.Context, foundPaths map[string]bool) map[api.PkgName]bool {
+func filterImports(ctx context.Context, foundPaths map[string]bool) map[string][]api.PkgName {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "nodejs.grab.filterImports")
 	defer span.Finish()
-	pkgs := map[api.PkgName]bool{}
+	pkgs := map[string][]api.PkgName{}
 
 	for mod := range foundPaths {
 		if mod == "" {
 			continue
 		}
 
-		if pkgs[api.PkgName(mod)] {
+		if _, ok := pkgs[mod]; ok {
 			continue
 		}
 
@@ -195,7 +195,7 @@ func filterImports(ctx context.Context, foundPaths map[string]bool) map[api.PkgN
 			}
 		}
 
-		pkgs[api.PkgName(mod)] = true
+		pkgs[mod] = []api.PkgName{api.PkgName(mod)}
 	}
 
 	return pkgs
