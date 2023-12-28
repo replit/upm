@@ -18,5 +18,5 @@ var moduleToPypiPackageOverride = map[string][]string{
 	 */
 	"discord": {"discord.py"},
 	"bs4":     {"beautifulsoup4"},
-	"glm":     {"PyGLM"},
+	"glm":     {"PyGLM", "glm"},
 }
