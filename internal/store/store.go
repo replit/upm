@@ -201,7 +201,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 	} else {
 		pkgs := api.NewPkgSet()
 		for _, name := range cache.GuessedImports {
-			pkgs.AddOne(api.PkgName(name))
+			pkgs.AddOne(name, api.PkgName(name))
 		}
 		return pkgs
 	}

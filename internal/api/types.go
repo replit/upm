@@ -386,10 +386,10 @@ func (b *LanguageBackend) Setup() {
 	}
 }
 
-type PkgSet map[PkgName][]PkgName
+type PkgSet map[string][]PkgName
 
 func NewPkgSet() PkgSet {
-	adapted := (PkgSet)(make(map[PkgName][]PkgName))
+	adapted := (PkgSet)(make(map[string][]PkgName))
 	return adapted
 }
 
@@ -398,7 +398,7 @@ func AdaptLegacyGuess(oldGuess func(ctx context.Context) (map[PkgName]bool, bool
 		res, err := oldGuess(ctx)
 		adapted := NewPkgSet()
 		for key := range res {
-			adapted.AddOne(key)
+			adapted.AddOne((string)(key), key)
 		}
 		return adapted, err
 	}
@@ -406,23 +406,24 @@ func AdaptLegacyGuess(oldGuess func(ctx context.Context) (map[PkgName]bool, bool
 
 func (pkgs *PkgSet) NormalizePackageNames(normalizePkgName func(PkgName) PkgName) PkgSet {
 	res := NewPkgSet()
-	for _, group := range *pkgs {
+	for moduleName, group := range *pkgs {
 		normalized := []PkgName{}
 		for _, pkg := range group {
 			normalized = append(normalized, normalizePkgName(pkg))
 		}
-		res.Add([]PkgName{})
+		res.Add(moduleName, normalized)
 	}
 	return res
 }
 
-func (pkgs *PkgSet) AddOne(pkg PkgName) {
-	(*pkgs)[pkg] = []PkgName{pkg}
+func (pkgs *PkgSet) AddOne(moduleName string, pkg PkgName) {
+	(*pkgs)[moduleName] = []PkgName{pkg}
 }
 
-func (pkgs *PkgSet) Add(group []PkgName) {
-	pkg := group[0]
-	(*pkgs)[pkg] = group
+func (pkgs *PkgSet) Add(moduleName string, group []PkgName) {
+	if len(group) > 0 {
+		(*pkgs)[moduleName] = group
+	}
 }
 
 func (pkgs *PkgSet) Remove(pkg PkgName) {
