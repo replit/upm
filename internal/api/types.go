@@ -328,7 +328,7 @@ type LanguageBackend struct {
 	// (which is now wrong).
 	//
 	// This field is mandatory.
-	Guess func(ctx context.Context) (map[PkgName]bool, bool)
+	Guess func(ctx context.Context) (map[string][]PkgName, bool)
 
 	// Installs system dependencies into replit.nix for supported
 	// languages.
