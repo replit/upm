@@ -314,6 +314,12 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 				break
 			}
 
+			// test aliases
+			overrides, ok = moduleToPypiPackageAliases[testModName]
+			if ok {
+				break
+			}
+
 			// test pypi
 			pkg, ok = pypiMap.ModuleToPackage(testModName)
 			if ok {
