@@ -328,7 +328,7 @@ type LanguageBackend struct {
 	// (which is now wrong).
 	//
 	// This field is mandatory.
-	Guess func(ctx context.Context) (map[PkgName]bool, bool)
+	Guess func(ctx context.Context) (PkgSet, bool)
 
 	// Installs system dependencies into replit.nix for supported
 	// languages.
@@ -384,4 +384,51 @@ func (b *LanguageBackend) Setup() {
 			return name
 		}
 	}
+}
+
+type PkgSet map[PkgName]bool
+
+func NewPkgSet() PkgSet {
+	adapted := (PkgSet)(make(map[PkgName]bool))
+	return adapted
+}
+
+func AdaptLegacyGuess(oldGuess func(ctx context.Context) (map[PkgName]bool, bool)) func(ctx context.Context) (PkgSet, bool) {
+	return func(ctx context.Context) (PkgSet, bool) {
+		res, err := oldGuess(ctx)
+		adapted := NewPkgSet()
+		for key := range res {
+			adapted.AddOne(key)
+		}
+		return adapted, err
+	}
+}
+
+func (pkgs *PkgSet) NormalizePackageNames(normalizePkgName func(PkgName) PkgName) PkgSet {
+	res := NewPkgSet()
+	for pkg := range *pkgs {
+		res.AddOne(normalizePkgName(pkg))
+	}
+	return res
+}
+
+func (pkgs *PkgSet) AddOne(pkg PkgName) {
+	(*pkgs)[pkg] = true
+}
+
+func (pkgs *PkgSet) Remove(pkg PkgName) {
+	for name := range *pkgs {
+		if name == pkg {
+			delete(*pkgs, name)
+			break
+		}
+	}
+}
+
+func (pkgs *PkgSet) Pkgs() [][]PkgName {
+	var res [][]PkgName
+	for pkg := range *pkgs {
+		res = append(res, []PkgName{pkg})
+	}
+	return res
 }
