@@ -48,17 +48,26 @@ func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language,
 	}
 
 	pathsToSearch := []string{}
-	for _, pattern := range searchGlobPatterns {
-		globSearchPaths, err := fs.Glob(dirFS, pattern)
+	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
 		if err != nil {
-			return nil, err
+			return err
 		}
+		for _, pattern := range searchGlobPatterns {
+			globSearchPaths, err := fs.Glob(os.DirFS(dir), pattern)
+			if err != nil {
+				return err
+			}
 
-		for _, gPath := range globSearchPaths {
-			if !ignoredPaths[gPath] {
-				pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
+			for _, gPath := range globSearchPaths {
+				if !ignoredPaths[gPath] {
+					pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
+				}
 			}
 		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
 	}
 
 	query, err := sitter.NewQuery([]byte(queryImports), lang)
