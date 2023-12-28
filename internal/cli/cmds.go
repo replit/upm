@@ -287,11 +287,39 @@ func runAdd(
 	if guess {
 		guessed := store.GuessWithCache(ctx, b, forceGuess)
 
-		for _, guesses := range guessed {
-			name := guesses[0]
-			if _, ok := normPkgs[b.NormalizePackageName(name)]; !ok {
-				normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
-					name: name,
+		// Map from normalized package names to original
+		// names.
+		guessedNorm := map[string][]api.PkgName{}
+		for key, guesses := range guessed {
+			normalized := []api.PkgName{}
+			for _, guess := range guesses {
+				normalized = append(normalized, b.NormalizePackageName(guess))
+			}
+			guessedNorm[key] = normalized
+		}
+
+		for _, pkg := range ignoredPackages {
+			pkg := b.NormalizePackageName(api.PkgName(pkg))
+			for key, guesses := range guessedNorm {
+				for _, guess := range guesses {
+					if pkg == guess {
+						delete(guessedNorm, key)
+					}
+				}
+			}
+		}
+
+		for _, guesses := range guessedNorm {
+			found := false
+			for _, guess := range guesses {
+				if _, ok := normPkgs[guess]; !ok {
+					found = true
+					break
+				}
+			}
+			if !found {
+				normPkgs[b.NormalizePackageName(guesses[0])] = pkgNameAndSpec{
+					name: guesses[0],
 					spec: "",
 				}
 			}
