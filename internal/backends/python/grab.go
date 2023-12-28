@@ -243,7 +243,7 @@ var internalModules = map[string]bool{
 	"zoneinfo":        true,
 }
 
-func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
+func guess(ctx context.Context, python string) (api.PkgSet, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
 	defer span.Finish()
 	cwd, err := os.Getwd()
@@ -259,7 +259,7 @@ func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
 	return filterImports(ctx, foundImportPaths)
 }
 
-func findImports(ctx context.Context, dir string) (map[string]bool, error) {
+func findImports(ctx context.Context, dir string) (api.PkgSet, error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.findImports")
 	defer span.Finish()
 	py := python.GetLanguage()
@@ -269,15 +269,15 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 		return nil, err
 	}
 
-	foundImportPaths := map[string]bool{}
+	foundImportPaths := api.NewPkgSet()
 	for _, pkg := range pkgs {
-		foundImportPaths[pkg] = true
+		foundImportPaths.AddOne(pkg, api.PkgName(pkg))
 	}
 
 	return foundImportPaths, nil
 }
 
-func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
@@ -295,19 +295,27 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 	}
 	defer pypiMap.Close()
 
-	pkgs := map[api.PkgName]bool{}
+	pkgs := api.NewPkgSet()
 
 	for fullModname := range foundPkgs {
 		// try and look it up in Pypi
 		var pkg string
+		var overrides []string
 		var ok bool
 
+		var testModName string
 		modNameParts := strings.Split(fullModname, ".")
 		for len(modNameParts) > 0 {
-			testModName := strings.Join(modNameParts, ".")
+			testModName = strings.Join(modNameParts, ".")
 
 			// test overrides
-			pkg, ok = moduleToPypiPackageOverride[testModName]
+			overrides, ok = moduleToPypiPackageOverride[testModName]
+			if ok {
+				break
+			}
+
+			// test aliases
+			overrides, ok = moduleToPypiPackageAliases[testModName]
 			if ok {
 				break
 			}
@@ -323,8 +331,17 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 		}
 
 		if ok {
-			name := api.PkgName(pkg)
-			pkgs[normalizePackageName(name)] = true
+			if pkg != "" {
+				pkgs.AddOne(testModName, api.PkgName(pkg))
+			} else {
+				group := []api.PkgName{}
+				for _, pkg := range overrides {
+					name := api.PkgName(pkg)
+					group = append(group, normalizePackageName(name))
+				}
+
+				pkgs.Add(testModName, group)
+			}
 		}
 	}
 
