@@ -461,7 +461,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps:                       nodejsGuessRegexps,
-	Guess:                              nodejsGuess,
+	Guess:                              api.AdaptLegacyGuess(nodejsGuess),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
@@ -555,7 +555,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps:                       nodejsGuessRegexps,
-	Guess:                              nodejsGuess,
+	Guess:                              api.AdaptLegacyGuess(nodejsGuess),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
@@ -638,7 +638,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps:                       nodejsGuessRegexps,
-	Guess:                              nodejsGuess,
+	Guess:                              api.AdaptLegacyGuess(nodejsGuess),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
 
@@ -717,6 +717,6 @@ var BunBackend = api.LanguageBackend{
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps:                       nodejsGuessRegexps,
-	Guess:                              nodejsGuess,
+	Guess:                              api.AdaptLegacyGuess(nodejsGuess),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
