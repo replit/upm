@@ -196,7 +196,7 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 
 func searchPypi(query string) []api.PkgInfo {
 	if renamed, found := moduleToPypiPackageOverride[query]; found {
-		query = renamed
+		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
@@ -298,7 +298,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        func(ctx context.Context) (map[string][]api.PkgName, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
@@ -459,7 +459,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        func(ctx context.Context) (map[string][]api.PkgName, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")

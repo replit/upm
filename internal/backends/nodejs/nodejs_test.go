@@ -12,7 +12,7 @@ type TestCase struct {
 	scenario    string
 	backend     api.LanguageBackend
 	fileContent string
-	expected    map[api.PkgName]bool
+	expected    map[string]bool
 }
 
 func TestNodejsYarnBackend_Guess(t *testing.T) {
@@ -25,7 +25,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 
 			export const App = () => null;
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"react": true,
 			},
 		},
@@ -35,7 +35,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			const request = require('request');
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"request": true,
 			},
 		},
@@ -45,7 +45,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			const http = require('http');
 		`,
-			expected: map[api.PkgName]bool{},
+			expected: map[string]bool{},
 		},
 		{
 			scenario: "Ignore internal submodules imports",
@@ -53,7 +53,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			fileContent: `
 			const dns = require('dns/promises');
 		`,
-			expected: map[api.PkgName]bool{},
+			expected: map[string]bool{},
 		},
 		{
 			scenario: "Returns both requires and imports in mixed file",
@@ -62,7 +62,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 			const request = require('request');
 			import yargs from 'yargs';
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"request": true,
 				"yargs":   true,
 			},
@@ -76,7 +76,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 
 			export const App = () => React.createElement(SomeComponent, {});
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"react": true,
 			},
 		},
@@ -89,7 +89,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 
 			export const App = () => React.createElement(SomeComponent, {});
 		`,
-			expected: map[api.PkgName]bool{},
+			expected: map[string]bool{},
 		},
 		{
 			scenario: "Will process packages in namespace",
@@ -100,7 +100,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 
 			export const App = () => React.createElement(Button, { color: "primary" }, "Hello, World!");
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"react":             true,
 				"@material-ui/core": true,
 			},
@@ -113,7 +113,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				require("node-fetch");
 			}
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"node-fetch": true,
 			},
 		},
@@ -127,7 +127,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				require("node-fetch");
 			}
 		`,
-			expected: map[api.PkgName]bool{},
+			expected: map[string]bool{},
 		},
 		{
 			scenario: "dynamic import",
@@ -138,7 +138,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				import("node-fetch");
 			}
 		`,
-			expected: map[api.PkgName]bool{
+			expected: map[string]bool{
 				"node-fetch": true,
 			},
 		},
@@ -152,7 +152,7 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				import("node-fetch");
 			}
 		`,
-			expected: map[api.PkgName]bool{},
+			expected: map[string]bool{},
 		},
 	}
 
@@ -197,7 +197,7 @@ func verify(t *testing.T, tc TestCase, extension string) {
 	}
 
 	for key := range tc.expected {
-		if !result[key] {
+		if _, ok := result[key]; !ok {
 			t.Errorf("Key %s not found in result map", key)
 		}
 	}

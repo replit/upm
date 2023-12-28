@@ -244,7 +244,7 @@ var internalModules = map[string]bool{
 	"zoneinfo":        true,
 }
 
-func guess(ctx context.Context, python string) (map[api.PkgName]bool, bool) {
+func guess(ctx context.Context, python string) (map[string][]api.PkgName, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
 	defer span.Finish()
 	cwd, err := os.Getwd()
@@ -278,7 +278,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgName]bool, bool) {
+func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][]api.PkgName, bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
@@ -296,11 +296,12 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 	}
 	defer pypiMap.Close()
 
-	pkgs := map[api.PkgName]bool{}
+	pkgs := map[string][]api.PkgName{}
 
 	for fullModname := range foundPkgs {
 		// try and look it up in Pypi
 		var pkg string
+		var overrides []string
 		var ok bool
 
 		modNameParts := strings.Split(fullModname, ".")
@@ -308,7 +309,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 			testModName := strings.Join(modNameParts, ".")
 
 			// test overrides
-			pkg, ok = moduleToPypiPackageOverride[testModName]
+			overrides, ok = moduleToPypiPackageOverride[testModName]
 			if ok {
 				break
 			}
@@ -324,8 +325,17 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[api.PkgN
 		}
 
 		if ok {
-			name := api.PkgName(pkg)
-			pkgs[normalizePackageName(name)] = true
+			if pkg != "" {
+				name := api.PkgName(pkg)
+				pkgs[pkg] = []api.PkgName{normalizePackageName(name)}
+			} else {
+				group := []api.PkgName{}
+				for _, name := range overrides {
+					name := api.PkgName(name)
+					group = append(group, normalizePackageName(name))
+				}
+				pkgs[overrides[0]] = group
+			}
 		}
 	}
 
