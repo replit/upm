@@ -327,6 +327,6 @@ var DartPubBackend = api.LanguageBackend{
 	ListSpecfile:                       dartListPubspecYaml,
 	ListLockfile:                       dartListPubspecLock,
 	GuessRegexps:                       nil,
-	Guess:                              dartGuess,
+	Guess:                              api.AdaptLegacyGuess(dartGuess),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

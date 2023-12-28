@@ -255,7 +255,7 @@ var RubyBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
 		defer span.Finish()
@@ -267,6 +267,6 @@ var RubyBackend = api.LanguageBackend{
 			util.Die("ruby: %s", err)
 		}
 		return results, true
-	},
+	}),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

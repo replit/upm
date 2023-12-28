@@ -176,10 +176,10 @@ var RlangBackend = api.LanguageBackend{
 		return pkgs
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		util.NotImplemented()
 
 		return nil, false
-	},
+	}),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }
