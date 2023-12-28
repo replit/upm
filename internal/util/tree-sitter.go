@@ -34,7 +34,7 @@ const (
 // When there's a capture tagged as `@import`, it reports the capture as an import.
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
-func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language, queryImports string, searchGlobPatterns []string, ignorePathSegments map[string]bool) ([]string, error) {
+func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language, queryImports string, pathSegmentPatterns []string, ignorePathSegments map[string]bool) ([]string, error) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithTreeSitter")
 	defer span.Finish()
@@ -58,14 +58,13 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 			return fs.SkipDir
 		}
 
-		for _, pattern := range searchGlobPatterns {
-			globSearchPaths, err := fs.Glob(os.DirFS(dir), pattern)
+		for _, pattern := range pathSegmentPatterns {
+			var ok bool
+			if ok, err = path.Match(pattern, d.Name()); ok {
+				pathsToSearch = append(pathsToSearch, dir)
+			}
 			if err != nil {
 				return err
-			}
-
-			for _, gPath := range globSearchPaths {
-				pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
 			}
 		}
 

@@ -26,7 +26,7 @@ var importsQuery = `
   (comment)? @pragma)
 `
 
-var pyPathGlobs = []string{"*.py"}
+var pyPathSegmentPatterns = []string{"*.py"}
 
 var pyIgnorePathSegments = map[string]bool{
 	"__pycache__": true,
@@ -264,7 +264,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.findImports")
 	defer span.Finish()
 	py := python.GetLanguage()
-	pkgs, err := util.GuessWithTreeSitter(ctx, dir, py, importsQuery, pyPathGlobs, pyIgnorePathSegments)
+	pkgs, err := util.GuessWithTreeSitter(ctx, dir, py, importsQuery, pyPathSegmentPatterns, pyIgnorePathSegments)
 
 	if err != nil {
 		return nil, err
