@@ -532,29 +532,47 @@ func runGuess(
 	span, ctx := trace.StartSpanFromExistingContext("runGuess")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
-	pkgs := store.GuessWithCache(ctx, b, forceGuess)
+	guessed := store.GuessWithCache(ctx, b, forceGuess)
 
 	// Map from normalized to original names.
-	normPkgs := map[api.PkgName]api.PkgName{}
-	for _, guesses := range pkgs {
-		normPkgs[b.NormalizePackageName(guesses[0])] = guesses[0]
+	normPkgs := map[string][]api.PkgName{}
+	for key, guesses := range guessed {
+		normalized := []api.PkgName{}
+		for _, guess := range guesses {
+			normalized = append(normalized, b.NormalizePackageName(guess))
+		}
+		normPkgs[key] = normalized
 	}
 
 	if !all {
 		if util.Exists(b.Specfile) {
 			for name := range b.ListSpecfile() {
-				delete(normPkgs, b.NormalizePackageName(name))
+				name := b.NormalizePackageName(name)
+				for key, pkgs := range normPkgs {
+					for _, pkg := range pkgs {
+						if pkg == name {
+							delete(normPkgs, key)
+						}
+					}
+				}
 			}
 		}
 	}
 
-	for _, pkg := range ignoredPackages {
-		delete(normPkgs, b.NormalizePackageName(api.PkgName(pkg)))
+	for _, ignored := range ignoredPackages {
+		ignored := b.NormalizePackageName(api.PkgName(ignored))
+		for key, pkgs := range normPkgs {
+			for _, pkg := range pkgs {
+				if pkg == ignored {
+					delete(normPkgs, key)
+				}
+			}
+		}
 	}
 
 	lines := []string{}
-	for _, pkg := range normPkgs {
-		lines = append(lines, string(pkg))
+	for _, pkgs := range normPkgs {
+		lines = append(lines, string(pkgs[0]))
 	}
 	sort.Strings(lines)
 
