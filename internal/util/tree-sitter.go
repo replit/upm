@@ -23,6 +23,11 @@ type importPragma struct {
 	Package string
 }
 
+const (
+	// Represents filesystem nodes, including directories.
+	MaximumVisits = 5000
+)
+
 // GuessWithTreeSitter guesses the imports of a directory using tree-sitter.
 // For every file in dir that matches a pattern in searchGlobPatterns, but
 // not in ignoreGlobPatterns, it will parse the file using lang and queryImports.
@@ -35,10 +40,18 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 	defer span.Finish()
 	dirFS := os.DirFS(root)
 
+	var visited int
 	pathsToSearch := []string{}
 	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
+		}
+
+		visited += 1
+
+		// Avoid locking up UPM on pathological project configurations
+		if visited > MaximumVisits {
+			return fs.SkipAll
 		}
 
 		if ignorePathSegments[d.Name()] {
