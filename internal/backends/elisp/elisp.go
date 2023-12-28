@@ -197,7 +197,7 @@ var ElispBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: api.AdaptLegacyGuess(func(ctx context.Context) (map[api.PkgName]bool, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
 		defer span.Finish()
@@ -260,6 +260,6 @@ var ElispBackend = api.LanguageBackend{
 			names[api.PkgName(match[1])] = true
 		}
 		return names, true
-	},
+	}),
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
 }

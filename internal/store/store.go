@@ -148,7 +148,7 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // backend does specify b.GuessRegexps, then the return value of this
 // function is cached.) If forceGuess is true, then write to but do
 // not read from the cache.
-func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
+func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) api.PkgSet {
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithCache")
 	defer span.Finish()
 	readMaybe()
@@ -163,7 +163,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		cache.GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
-		var pkgs map[api.PkgName]bool
+		pkgs := api.NewPkgSet()
 		success := true
 		if new != "" {
 			pkgs, success = b.Guess(ctx)
@@ -174,7 +174,6 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 			// case we shouldn't have any packages
 			// returned by the bare imports search. Might
 			// as well just skip the search, right?
-			pkgs = map[api.PkgName]bool{}
 		}
 		if !success {
 			// If bare imports search is not successful,
@@ -200,9 +199,9 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		}
 		return pkgs
 	} else {
-		pkgs := map[api.PkgName]bool{}
+		pkgs := api.NewPkgSet()
 		for _, name := range cache.GuessedImports {
-			pkgs[api.PkgName(name)] = true
+			pkgs.AddOne(api.PkgName(name))
 		}
 		return pkgs
 	}
