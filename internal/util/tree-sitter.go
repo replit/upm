@@ -29,29 +29,22 @@ type importPragma struct {
 // When there's a capture tagged as `@import`, it reports the capture as an import.
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
-func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language, queryImports string, searchGlobPatterns []string, ignorePathSegments map[string]bool) ([]string, error) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithTreeSitter")
 	defer span.Finish()
-	dirFS := os.DirFS(dir)
-
-	ignoredPaths := map[string]bool{}
-	for _, pattern := range ignoreGlobPatterns {
-		globIgnorePaths, err := fs.Glob(dirFS, pattern)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, gPath := range globIgnorePaths {
-			ignoredPaths[gPath] = true
-		}
-	}
+	dirFS := os.DirFS(root)
 
 	pathsToSearch := []string{}
 	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
+
+		if ignorePathSegments[d.Name()] {
+			return fs.SkipDir
+		}
+
 		for _, pattern := range searchGlobPatterns {
 			globSearchPaths, err := fs.Glob(os.DirFS(dir), pattern)
 			if err != nil {
@@ -59,11 +52,10 @@ func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language,
 			}
 
 			for _, gPath := range globSearchPaths {
-				if !ignoredPaths[gPath] {
-					pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
-				}
+				pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
 			}
 		}
+
 		return nil
 	})
 	if err != nil {
