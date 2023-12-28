@@ -44,8 +44,8 @@ import foo #upm package(bar)
 	}
 
 	for path := range found {
-		if _, ok := expected[path]; ok {
-			delete(expected, path)
+		if _, ok := expected[string(path)]; ok {
+			delete(expected, string(path))
 		} else {
 			t.Errorf("Unexpected import %s", path)
 		}

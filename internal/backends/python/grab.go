@@ -271,7 +271,7 @@ func findImports(ctx context.Context, dir string) (api.PkgSet, error) {
 
 	foundImportPaths := api.NewPkgSet()
 	for _, pkg := range pkgs {
-		foundImportPaths.AddOne(api.PkgName(pkg))
+		foundImportPaths.AddOne(pkg, api.PkgName(pkg))
 	}
 
 	return foundImportPaths, nil
@@ -283,7 +283,7 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 	defer span.Finish()
 	// filter out internal modules
 	for pkg := range foundPkgs {
-		mod := getTopLevelModuleName((string)(pkg))
+		mod := getTopLevelModuleName(pkg)
 		if internalModules[mod] {
 			delete(foundPkgs, pkg)
 		}
@@ -303,9 +303,10 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 		var overrides []string
 		var ok bool
 
-		modNameParts := strings.Split((string)(fullModname), ".")
+		var testModName string
+		modNameParts := strings.Split(fullModname, ".")
 		for len(modNameParts) > 0 {
-			testModName := strings.Join(modNameParts, ".")
+			testModName = strings.Join(modNameParts, ".")
 
 			// test overrides
 			overrides, ok = moduleToPypiPackageOverride[testModName]
@@ -325,7 +326,7 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 
 		if ok {
 			if pkg != "" {
-				pkgs.AddOne(api.PkgName(pkg))
+				pkgs.AddOne(testModName, api.PkgName(pkg))
 			} else {
 				group := []api.PkgName{}
 				for _, pkg := range overrides {
@@ -333,7 +334,7 @@ func filterImports(ctx context.Context, foundPkgs api.PkgSet) (api.PkgSet, bool)
 					group = append(group, normalizePackageName(name))
 				}
 
-				pkgs.Add(group)
+				pkgs.Add(testModName, group)
 			}
 		}
 	}
