@@ -303,7 +303,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 		var overrides []string
 		var ok bool
 
-		modNameParts := strings.Split(fullModname, ".")
+		modNameParts := strings.Split(strings.ToLower(fullModname), ".")
 		for len(modNameParts) > 0 {
 			testModName := strings.Join(modNameParts, ".")
 
