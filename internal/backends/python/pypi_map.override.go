@@ -11,6 +11,8 @@ var moduleToPypiPackageOverride = map[string][]string{
 	"faiss":        {"faiss-cpu"},           // faiss is offered as precompiled wheels, faiss-cpu and faiss-gpu.
 	"graphics":     {"graphics.py"},         // this package is popular, but the module doesn't match the package name https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/graphics.html#a-graphics-introduction
 	"replit.ai":    {"replit-ai"},           // Replit's AI package
+	"glm":          {"PyGLM", "glm"},        // Both of these packages are valid, but PyGLM is a library, glm is an executable.
+	"psycopg2":     {"psycopg2-binary"},     // psycopg2 is a source package, psycopg2-binary is the dist wheel
 	/* Proxy packages
 	 *
 	 * These are packages that provide helpful aliases, but otherwise provide no functionality.
@@ -18,5 +20,4 @@ var moduleToPypiPackageOverride = map[string][]string{
 	 */
 	"discord": {"discord.py"},
 	"bs4":     {"beautifulsoup4"},
-	"glm":     {"PyGLM"},
 }
