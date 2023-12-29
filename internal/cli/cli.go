@@ -341,6 +341,8 @@ func DoCLI() {
 	util.ChdirToUPM()
 	err := rootCmd.Execute()
 	if err != nil {
-		panic(err)
+		// We don't need to log anything here,
+		// cobra.Command does its own error logging.
+		os.Exit(1)
 	}
 }
