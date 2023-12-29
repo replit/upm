@@ -90,7 +90,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	foundImportPaths := map[string]bool{}
 
 	js := javascript.GetLanguage()
-	jsPkgs, err := util.GuessWithTreeSitter(ctx, dir, js, importsQuery, jsPathGlobs, []string{})
+	jsPkgs, err := util.GuessWithTreeSitter(ctx, dir, js, importsQuery, jsPathGlobs, nodeIgnorePathSegments)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	}
 
 	ts := typescript.GetLanguage()
-	tsPkgs, err := util.GuessWithTreeSitter(ctx, dir, ts, importsQuery, tsPathGlobs, []string{})
+	tsPkgs, err := util.GuessWithTreeSitter(ctx, dir, ts, importsQuery, tsPathGlobs, nodeIgnorePathSegments)
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	}
 
 	tsx := tsx.GetLanguage()
-	tsxPkgs, err := util.GuessWithTreeSitter(ctx, dir, tsx, importsQuery, tsxPathGlobs, []string{})
+	tsxPkgs, err := util.GuessWithTreeSitter(ctx, dir, tsx, importsQuery, tsxPathGlobs, nodeIgnorePathSegments)
 	if err != nil {
 		return nil, err
 	}

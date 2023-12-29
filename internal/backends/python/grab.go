@@ -26,12 +26,13 @@ var importsQuery = `
   (comment)? @pragma)
 `
 
-var pyPathGlobs = []string{"*.py"}
+var pyPathSegmentPatterns = []string{"*.py"}
 
-var pyIgnoreGlobs = []string{
-	"**/__pycache__/**",
-	"**/venv/**",
-	"**/.pythonlibs/**",
+var pyIgnorePathSegments = map[string]bool{
+	"__pycache__": true,
+	"venv":        true,
+	".pythonlibs": true,
+	".git":        true,
 }
 
 var internalModules = map[string]bool{
@@ -263,7 +264,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.findImports")
 	defer span.Finish()
 	py := python.GetLanguage()
-	pkgs, err := util.GuessWithTreeSitter(ctx, dir, py, importsQuery, pyPathGlobs, pyIgnoreGlobs)
+	pkgs, err := util.GuessWithTreeSitter(ctx, dir, py, importsQuery, pyPathSegmentPatterns, pyIgnorePathSegments)
 
 	if err != nil {
 		return nil, err
