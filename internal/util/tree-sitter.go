@@ -43,6 +43,7 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 	var visited int
 	pathsToSearch := []string{}
 	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
+		dir = path.Join(root, dir)
 		if err != nil {
 			return err
 		}
