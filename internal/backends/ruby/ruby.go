@@ -225,12 +225,12 @@ var RubyBackend = api.LanguageBackend{
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle install")
 		defer span.Finish()
-		// We need --clean to handle uninstalls.
-		args := []string{"bundle", "install", "--clean"}
+		// We need clean=true to handle uninstalls.
+		util.RunCmd([]string{"bundle", "config", "set", "--local", "clean", "true"})
 		if path := getPath(); path != "" {
-			args = append(args, "--path", path)
+			util.RunCmd([]string{"bundle", "config", "set", "--local", "path", path})
 		}
-		util.RunCmd(args)
+		util.RunCmd([]string{"bundle", "install"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
