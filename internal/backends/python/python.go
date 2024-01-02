@@ -388,15 +388,24 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				util.Die("failed to run freeze: %s", err.Error())
 			}
 
+			// As we walk through the output of pip freeze,
+			// compare the package metadata name to the normalized
+			// pkgs that we are trying to install, to see which we
+			// want to track in `requirements.txt`.
+			normalizedPkgs := make(map[api.PkgName]bool)
+			for name := range pkgs {
+				normalizedPkgs[normalizePackageName(name)] = true
+			}
+
 			var toAppend []string
-			for _, line := range strings.Split(string(outputB), "\n") {
+			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
 				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(line))
+				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
 				if len(matches) > 0 {
 					name = normalizePackageName(api.PkgName(string(matches[1])))
 				}
-				if _, exists := pkgs[name]; exists {
-					toAppend = append(toAppend, line)
+				if normalizedPkgs[name] {
+					toAppend = append(toAppend, canonicalSpec)
 				}
 			}
 
