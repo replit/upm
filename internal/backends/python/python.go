@@ -368,6 +368,12 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
 			defer span.Finish()
 
+			normalizedPkgs := make(map[api.PkgName]api.PkgName)
+			for name := range pkgs {
+				// Deleting this denormalizes the output of upm list, fixing Workspace bug, but breaks upm add --lang pip
+				normalizedPkgs[normalizePackageName(name)] = name
+			}
+
 			cmd := []string{"pip", "install"}
 			for _, flag := range pipFlags {
 				cmd = append(cmd, string(flag))
@@ -389,14 +395,14 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			}
 
 			var toAppend []string
-			for _, line := range strings.Split(string(outputB), "\n") {
+			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
 				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(line))
+				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
 				if len(matches) > 0 {
 					name = normalizePackageName(api.PkgName(string(matches[1])))
 				}
-				if _, exists := pkgs[name]; exists {
-					toAppend = append(toAppend, line)
+				if _, exists := normalizedPkgs[name]; exists {
+					toAppend = append(toAppend, canonicalSpec)
 				}
 			}
 
