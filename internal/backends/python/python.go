@@ -444,7 +444,9 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				normalizedPkgs[normalizePackageName(name)] = spec
 			}
 
-			// Stash the seen flags into a module global
+			// Stash the seen flags into a module global.
+			// This isn't great, but the expectation is that ListSpecfile
+			// is called before we run `Add`.
 			pipFlags = flags
 
 			return normalizedPkgs
