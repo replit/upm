@@ -388,15 +388,24 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				util.Die("failed to run freeze: %s", err.Error())
 			}
 
+			// As we walk through the output of pip freeze,
+			// compare the package metadata name to the normalized
+			// pkgs that we are trying to install, to see which we
+			// want to track in `requirements.txt`.
+			normalizedPkgs := make(map[api.PkgName]bool)
+			for name := range pkgs {
+				normalizedPkgs[normalizePackageName(name)] = true
+			}
+
 			var toAppend []string
-			for _, line := range strings.Split(string(outputB), "\n") {
+			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
 				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(line))
+				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
 				if len(matches) > 0 {
 					name = normalizePackageName(api.PkgName(string(matches[1])))
 				}
-				if _, exists := pkgs[name]; exists {
-					toAppend = append(toAppend, line)
+				if normalizedPkgs[name] {
+					toAppend = append(toAppend, canonicalSpec)
 				}
 			}
 
@@ -434,20 +443,20 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			flags, rawPkgs, err := ListRequirementsTxt("requirements.txt")
+			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
 				util.Die("%s", err.Error())
 			}
 
-			normalizedPkgs := make(map[api.PkgName]api.PkgSpec)
-			for name, spec := range rawPkgs {
-				normalizedPkgs[normalizePackageName(name)] = spec
-			}
-
-			// Stash the seen flags into a module global
+			// Stash the seen flags into a module global.
+			// This isn't great, but the expectation is that ListSpecfile
+			// is called before we run `Add`.
 			pipFlags = flags
 
-			return normalizedPkgs
+			// NB: We rely on requirements.txt being populated with the
+			// Python package _metadata_ name, not the PEP-503/PEP-508
+			// normalized version.
+			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
 		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
