@@ -180,7 +180,7 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 		name := string(name)
 		if found, ok := moduleToPypiPackageAliases[name]; ok {
 			delete(pkgs, api.PkgName(name))
-			name = found[0]
+			name = found
 			pkgs[api.PkgName(name)] = api.PkgSpec(spec)
 		}
 		spec := string(spec)
@@ -382,7 +382,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				spec := string(spec)
 				if found, ok := moduleToPypiPackageAliases[name]; ok {
 					delete(pkgs, api.PkgName(name))
-					name = found[0]
+					name = found
 					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
 				}
 

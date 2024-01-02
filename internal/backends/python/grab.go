@@ -315,7 +315,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 			}
 
 			// test aliases
-			overrides, ok = moduleToPypiPackageAliases[testModName]
+			pkg, ok = moduleToPypiPackageAliases[testModName]
 			if ok {
 				break
 			}
