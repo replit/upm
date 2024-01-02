@@ -372,6 +372,10 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 })
 
+var nodeIgnorePathSegments = map[string]bool{
+	"node_modules": true,
+}
+
 var jsPathGlobs = []string{
 	"*.js",
 	"*.jsx",
