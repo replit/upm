@@ -19,8 +19,8 @@ var moduleToPypiPackageOverride = map[string][]string{
  * These are packages that provide helpful aliases, but otherwise provide no functionality.
  * We should prefer the real version.
  */
-var moduleToPypiPackageAliases = map[string][]string{
-	"bs4":      {"beautifulsoup4"},
-	"discord":  {"discord.py"},
-	"psycopg2": {"psycopg2-binary"}, // psycopg2 is a source package, psycopg2-binary is the dist wheel
+var moduleToPypiPackageAliases = map[string]string{
+	"bs4":      "beautifulsoup4",
+	"discord":  "discord.py",
+	"psycopg2": "psycopg2-binary", // psycopg2 is a source package, psycopg2-binary is the dist wheel
 }
