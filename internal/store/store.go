@@ -208,6 +208,16 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 	}
 }
 
+func ClearGuesses(ctx context.Context, b api.LanguageBackend) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "ClearGuesses")
+	defer span.Finish()
+
+	cache := getLanguageCache(b.Name, b.Alias)
+
+	cache.GuessedImports = nil
+	cache.GuessedImportsHash = ""
+}
+
 // UpdateFileHashes caches the current states of the specfile and
 // lockfile. Neither file need exist.
 func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {

@@ -357,6 +357,7 @@ func runAdd(
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -415,6 +416,7 @@ func runRemove(language string, args []string, upgrade bool,
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
