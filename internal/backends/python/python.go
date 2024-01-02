@@ -440,20 +440,15 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			flags, rawPkgs, err := ListRequirementsTxt("requirements.txt")
+			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
 				util.Die("%s", err.Error())
-			}
-
-			normalizedPkgs := make(map[api.PkgName]api.PkgSpec)
-			for name, spec := range rawPkgs {
-				normalizedPkgs[normalizePackageName(name)] = spec
 			}
 
 			// Stash the seen flags into a module global
 			pipFlags = flags
 
-			return normalizedPkgs
+			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
 		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
