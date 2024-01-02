@@ -176,7 +176,7 @@ var RlangBackend = api.LanguageBackend{
 		return pkgs
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		util.NotImplemented()
 
 		return nil, false

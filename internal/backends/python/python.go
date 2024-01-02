@@ -178,6 +178,11 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 	cmd := []string{"poetry", "add"}
 	for name, spec := range pkgs {
 		name := string(name)
+		if found, ok := moduleToPypiPackageAliases[name]; ok {
+			delete(pkgs, api.PkgName(name))
+			name = found
+			pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+		}
 		spec := string(spec)
 
 		// NB: this doesn't work if spec has
@@ -196,7 +201,7 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 
 func searchPypi(query string) []api.PkgInfo {
 	if renamed, found := moduleToPypiPackageOverride[query]; found {
-		query = renamed
+		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
@@ -298,7 +303,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			return pkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        func(ctx context.Context) (map[string][]api.PkgName, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
@@ -375,6 +380,11 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			for name, spec := range pkgs {
 				name := string(name)
 				spec := string(spec)
+				if found, ok := moduleToPypiPackageAliases[name]; ok {
+					delete(pkgs, api.PkgName(name))
+					name = found
+					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				}
 
 				cmd = append(cmd, name+spec)
 			}
@@ -450,7 +460,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			return normalizedPkgs
 		},
 		GuessRegexps: pythonGuessRegexps,
-		Guess:        func(ctx context.Context) (map[api.PkgName]bool, bool) { return guess(ctx, python) },
+		Guess:        func(ctx context.Context) (map[string][]api.PkgName, bool) { return guess(ctx, python) },
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
