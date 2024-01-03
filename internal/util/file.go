@@ -56,7 +56,7 @@ func AddIngoredPaths(paths []string) {
 func TryWriteAtomic(filename string, contents []byte) {
 	if err1 := atomic.WriteFile(filename, bytes.NewReader(contents)); err1 != nil {
 		if err2 := os.WriteFile(filename, contents, 0o666); err2 != nil {
-			Die("%s: %s; on non-atomic retry: %s", filename, err1, err2)
+			DieIO("%s: %s; on non-atomic retry: %s", filename, err1, err2)
 		}
 	}
 }
@@ -67,7 +67,7 @@ func Exists(filename string) bool {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		return false
 	} else if err != nil {
-		Die("%s: %s", filename, err)
+		DieIO("%s: %s", filename, err)
 		return false
 	} else {
 		return true
@@ -94,7 +94,7 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 	matches := [][]string{}
 	err := filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			Die("%s: %s", path, err)
+			DieIO("%s: %s", path, err)
 		}
 		for _, name := range IgnoredPaths {
 			if filepath.Base(path) == name {
@@ -118,7 +118,7 @@ func SearchRecursive(r *regexp.Regexp, patterns []string) [][]string {
 		if info.Mode().IsRegular() {
 			contentsB, err := os.ReadFile(path)
 			if err != nil {
-				Die("%s: %s", path, err)
+				DieIO("%s: %s", path, err)
 			}
 			contents := string(contentsB)
 
@@ -147,12 +147,12 @@ func DownloadFile(filepath string, url string) {
 
 	out, err := os.Create(filepath)
 	if err != nil {
-		Die("%s: %s", filepath, err)
+		DieIO("%s: %s", filepath, err)
 	}
 	defer out.Close()
 
 	if _, err := io.Copy(out, resp.Body); err != nil {
-		Die("%s: %s", filepath, err)
+		DieIO("%s: %s", filepath, err)
 	}
 }
 
@@ -161,7 +161,7 @@ func DownloadFile(filepath string, url string) {
 // responsible for cleaning up the temporary directory afterwards.
 func TempDir() string {
 	if tempdir, err := os.MkdirTemp("", "upm"); err != nil {
-		Die("%s", err)
+		DieIO("%s", err)
 		return ""
 	} else {
 		return tempdir
@@ -199,7 +199,7 @@ func WriteResource(url string, tempdir string) string {
 	basename := path.Base(url)
 	filename := filepath.Join(tempdir, basename)
 	if err := os.WriteFile(filename, []byte(contents), 0o666); err != nil {
-		Die("%s", err)
+		DieIO("%s", err)
 	}
 	return filename
 }
@@ -212,19 +212,19 @@ func WriteResource(url string, tempdir string) string {
 func ChdirToUPM() {
 	if dir := os.Getenv("UPM_PROJECT"); dir != "" {
 		if err := os.Chdir(dir); err != nil {
-			Die("%s", err)
+			DieIO("%s", err)
 		}
 		return
 	}
 
 	cur, err := os.Getwd()
 	if err != nil {
-		Die("%s", err)
+		DieIO("%s", err)
 	}
 	for {
 		if Exists(filepath.Join(cur, ".upm")) {
 			if err := os.Chdir(cur); err != nil {
-				Die("%s", err)
+				DieIO("%s", err)
 			}
 			return
 		}

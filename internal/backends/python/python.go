@@ -284,7 +284,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			pkgs, err := listPoetrySpecfile()
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 
 			return pkgs
@@ -421,12 +421,12 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 			if err != nil {
-				util.Die("Unable to open requirements.txt for writing: %s", err)
+				util.DieIO("Unable to open requirements.txt for writing: %s", err)
 			}
 			defer handle.Close()
 			for _, line := range toAppend {
 				if _, err := handle.WriteString(line + "\n"); err != nil {
-					util.Die("Error writing to requirements.txt: %s", err)
+					util.DieIO("Error writing to requirements.txt: %s", err)
 				}
 			}
 		},
@@ -442,7 +442,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 			err := RemoveFromRequirementsTxt("requirements.txt", pkgs)
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 		},
 		Install: func(ctx context.Context) {
@@ -455,7 +455,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 
 			// Stash the seen flags into a module global.

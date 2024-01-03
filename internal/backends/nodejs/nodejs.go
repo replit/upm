@@ -342,7 +342,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
 	contentsB, err := os.ReadFile("package.json")
 	if err != nil {
-		util.Die("package.json: %s", err)
+		util.DieIO("package.json: %s", err)
 	}
 	var cfg packageJSON
 	if err := json.Unmarshal(contentsB, &cfg); err != nil {
@@ -451,7 +451,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("yarn.lock")
 		if err != nil {
-			util.Die("yarn.lock: %s", err)
+			util.DieIO("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
 		r := regexp.MustCompile(`(?m)^"?((?:@[^@ \n]+\/)?[^@ \n]+).+:\n  version "(.+)"$`)
@@ -527,7 +527,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		lockfileBytes, err := os.ReadFile("pnpm-lock.yaml")
 		if err != nil {
-			util.Die("pnpm-lock.yaml: %s", err)
+			util.DieIO("pnpm-lock.yaml: %s", err)
 		}
 
 		lockfile := map[string]interface{}{}
@@ -621,7 +621,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("package-lock.json")
 		if err != nil {
-			util.Die("package-lock.json: %s", err)
+			util.DieIO("package-lock.json: %s", err)
 		}
 		var cfg packageLockJSON
 		if err := json.Unmarshal(contentsB, &cfg); err != nil {

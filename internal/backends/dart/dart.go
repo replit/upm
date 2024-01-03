@@ -100,11 +100,11 @@ type dartPubspecLock struct {
 func dartListPubspecLock() map[api.PkgName]api.PkgVersion {
 	contentsB, err := os.ReadFile("pubspec.lock")
 	if err != nil {
-		util.Die("pubspec.lock: %s", err)
+		util.DieIO("pubspec.lock: %s", err)
 	}
 	var cfg dartPubspecLock
 	if err := yaml.Unmarshal(contentsB, &cfg); err != nil {
-		util.Die("pubspec.lock: %s", err)
+		util.DieIO("pubspec.lock: %s", err)
 	}
 	pkgs := map[api.PkgName]api.PkgVersion{}
 	for nameStr, data := range cfg.Packages {
@@ -246,12 +246,12 @@ func writeSpecFile(specs dartPubspecYaml) {
 func readSpecFile() dartPubspecYaml {
 	contentsB, err := os.ReadFile("pubspec.yaml")
 	if err != nil {
-		util.Die("pubspec.yaml: %s", err)
+		util.DieIO("pubspec.yaml: %s", err)
 	}
 
 	var specs dartPubspecYaml
 	if err := yaml.Unmarshal(contentsB, &specs); err != nil {
-		util.Die("pubspec.yaml: %s", err)
+		util.DieIO("pubspec.yaml: %s", err)
 	}
 
 	return specs

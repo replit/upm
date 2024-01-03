@@ -177,7 +177,7 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 	contents, err := os.ReadFile("composer.json")
 
 	if err != nil {
-		util.Die("composer.json: %s", err)
+		util.DieIO("composer.json: %s", err)
 	}
 
 	return listSpecfileWithContents(contents)
@@ -209,7 +209,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	contents, err := os.ReadFile("composer.lock")
 	if err != nil {
-		util.Die("composer.lock failure: %s", err)
+		util.DieIO("composer.lock failure: %s", err)
 	}
 	return listLockfileWithContents(contents)
 }

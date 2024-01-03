@@ -102,7 +102,7 @@ func readProjectOrMakeEmpty(path string) Project {
 		var err error
 		xmlbytes, err = os.ReadFile("pom.xml")
 		if err != nil {
-			util.Die("error reading pom.xml: %s", err)
+			util.DieIO("error reading pom.xml: %s", err)
 		}
 	} else {
 		xmlbytes = []byte(initialPomXml)

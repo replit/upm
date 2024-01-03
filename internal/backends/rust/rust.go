@@ -153,7 +153,7 @@ func info(name api.PkgName) api.PkgInfo {
 func listSpecfile() map[api.PkgName]api.PkgSpec {
 	contents, err := os.ReadFile("Cargo.toml")
 	if err != nil {
-		util.Die("Cargo.toml: %s", err)
+		util.DieIO("Cargo.toml: %s", err)
 	}
 
 	return listSpecfileWithContents(contents)
@@ -204,7 +204,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	contents, err := os.ReadFile("Cargo.lock")
 	if err != nil {
-		util.Die("Cargo.lock: %s", err)
+		util.DieIO("Cargo.lock: %s", err)
 	}
 
 	return listLockfileWithContents(contents)
@@ -214,7 +214,7 @@ func listLockfileWithContents(contents []byte) map[api.PkgName]api.PkgVersion {
 	var lockfile cargoLock
 	err := toml.Unmarshal(contents, &lockfile)
 	if err != nil {
-		util.Die("Cargo.lock: %s", err)
+		util.DieIO("Cargo.lock: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgVersion)

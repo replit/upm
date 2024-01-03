@@ -42,7 +42,7 @@ var ElispBackend = api.LanguageBackend{
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tmpdir)
 
@@ -66,7 +66,7 @@ var ElispBackend = api.LanguageBackend{
 	Info: func(name api.PkgName) api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tmpdir)
 
@@ -99,7 +99,7 @@ var ElispBackend = api.LanguageBackend{
 (source org)
 `
 		} else if err != nil {
-			util.Die("Cask: %s", err)
+			util.DieIO("Cask: %s", err)
 		} else {
 			contents = string(contentsB)
 		}
@@ -128,7 +128,7 @@ var ElispBackend = api.LanguageBackend{
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		if err != nil {
-			util.Die("Cask: %s", err)
+			util.DieIO("Cask: %s", err)
 		}
 		contents := string(contentsB)
 
@@ -182,7 +182,7 @@ var ElispBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("packages.txt")
 		if err != nil {
-			util.Die("packages.txt: %s", err)
+			util.DieIO("packages.txt: %s", err)
 		}
 		contents := string(contentsB)
 		r := regexp.MustCompile(`(.+)=(.+)`)
@@ -223,7 +223,7 @@ var ElispBackend = api.LanguageBackend{
 
 		tempdir, err := os.MkdirTemp("", "epkgs")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tempdir)
 
