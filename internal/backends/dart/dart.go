@@ -220,7 +220,7 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 
 func createSpecFile() {
 	if util.Exists("pubspec.yaml") {
-		util.Die("pubspec.yaml already exists")
+		util.DieOverwrite("pubspec.yaml already exists")
 	}
 
 	pubspec := dartPubspecYaml{
