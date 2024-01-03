@@ -90,7 +90,7 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 		}
 		switch len(filteredBackends) {
 		case 0:
-			util.Die("no such language: %s", language)
+			util.DieConsistency("no such language: %s", language)
 		case 1:
 			return filteredBackends[0]
 		default:

@@ -139,7 +139,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 	for pkgName, pkgSpec := range pkgs {
 		submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
 		if nil == submatches {
-			util.Die(
+			util.DieConsistency(
 				"package name %s does not match groupid:artifactid pattern",
 				pkgName,
 			)
@@ -169,9 +169,9 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 		}
 		if len(searchDocs) == 0 {
 			if pkgSpec == "" {
-				util.Die("did not find a package %s:%s", groupId, artifactId)
+				util.DieConsistency("did not find a package %s:%s", groupId, artifactId)
 			} else {
-				util.Die("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
+				util.DieConsistency("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
 			}
 		}
 		searchDoc := searchDocs[0]

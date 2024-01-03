@@ -187,7 +187,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 			}
 
 			if !found {
-				util.Die("Cargo.toml: could not determine spec for dependecy %q", name)
+				util.DieConsistency("Cargo.toml: could not determine spec for dependecy %q", name)
 			}
 
 		default:
