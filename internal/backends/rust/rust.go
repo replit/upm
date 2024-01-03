@@ -272,7 +272,7 @@ var RustBackend = api.LanguageBackend{
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		util.NotImplemented()
 		return nil, false
 	},
