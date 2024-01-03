@@ -294,7 +294,7 @@ func dartRemove(ctx context.Context, pkgs map[api.PkgName]bool) {
 
 // dartGuess stub.
 func dartGuess(context.Context) (map[string][]api.PkgName, bool) {
-	util.Die("Guess not implemented!")
+	util.DieUnimplemented("Guess not implemented!")
 
 	return nil, false
 }

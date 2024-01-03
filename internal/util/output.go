@@ -74,5 +74,5 @@ func Panicf(format string, a ...interface{}) {
 // operation is not implemented. This should be used in language
 // backends that do not implement all of UPM's API.
 func NotImplemented() {
-	Die("not yet implemented")
+	DieUnimplemented("not yet implemented")
 }
