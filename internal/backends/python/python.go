@@ -110,7 +110,7 @@ func info(name api.PkgName) api.PkgInfo {
 	res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
 
 	if err != nil {
-		util.Die("HTTP Request failed with error: %s", err)
+		util.DieNetwork("HTTP Request failed with error: %s", err)
 	}
 
 	defer res.Body.Close()
@@ -120,17 +120,17 @@ func info(name api.PkgName) api.PkgInfo {
 	}
 
 	if res.StatusCode != 200 {
-		util.Die("Received status code: %d", res.StatusCode)
+		util.DieNetwork("Received status code: %d", res.StatusCode)
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		util.Die("Res body read failed with error: %s", err)
+		util.DieProtocol("Res body read failed with error: %s", err)
 	}
 
 	var output pypiEntryInfoResponse
 	if err := json.Unmarshal(body, &output); err != nil {
-		util.Die("PyPI response: %s", err)
+		util.DieProtocol("PyPI response: %s", err)
 	}
 
 	info := api.PkgInfo{
@@ -205,7 +205,7 @@ func searchPypi(query string) []api.PkgInfo {
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
-		util.Die("failed to search pypi: %s", err.Error())
+		util.DieNetwork("failed to search pypi: %s", err.Error())
 	}
 	return results
 }
@@ -284,7 +284,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			pkgs, err := listPoetrySpecfile()
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 
 			return pkgs
@@ -292,7 +292,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		ListLockfile: func() map[api.PkgName]api.PkgVersion {
 			var cfg poetryLock
 			if _, err := toml.DecodeFile("poetry.lock", &cfg); err != nil {
-				util.Die("%s", err.Error())
+				util.DieProtocol("%s", err.Error())
 			}
 			pkgs := map[api.PkgName]api.PkgVersion{}
 			for _, pkgObj := range cfg.Package {
@@ -395,7 +395,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				"pip", "freeze",
 			})
 			if err != nil {
-				util.Die("failed to run freeze: %s", err.Error())
+				util.DieSubprocess("failed to run freeze: %s", err.Error())
 			}
 
 			// As we walk through the output of pip freeze,
@@ -421,12 +421,12 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 			if err != nil {
-				util.Die("Unable to open requirements.txt for writing: %s", err)
+				util.DieIO("Unable to open requirements.txt for writing: %s", err)
 			}
 			defer handle.Close()
 			for _, line := range toAppend {
 				if _, err := handle.WriteString(line + "\n"); err != nil {
-					util.Die("Error writing to requirements.txt: %s", err)
+					util.DieIO("Error writing to requirements.txt: %s", err)
 				}
 			}
 		},
@@ -442,7 +442,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			util.RunCmd(cmd)
 			err := RemoveFromRequirementsTxt("requirements.txt", pkgs)
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 		},
 		Install: func(ctx context.Context) {
@@ -455,7 +455,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
-				util.Die("%s", err.Error())
+				util.DieIO("%s", err.Error())
 			}
 
 			// Stash the seen flags into a module global.

@@ -21,7 +21,7 @@ func parseOutputFormat(formatStr string) outputFormat {
 	case "json":
 		return outputFormatJSON
 	default:
-		util.Die(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
+		util.DieConsistency(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
 		return 0
 	}
 }

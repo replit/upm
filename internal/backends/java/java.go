@@ -102,14 +102,14 @@ func readProjectOrMakeEmpty(path string) Project {
 		var err error
 		xmlbytes, err = os.ReadFile("pom.xml")
 		if err != nil {
-			util.Die("error reading pom.xml: %s", err)
+			util.DieIO("error reading pom.xml: %s", err)
 		}
 	} else {
 		xmlbytes = []byte(initialPomXml)
 	}
 	err := xml.Unmarshal(xmlbytes, &project)
 	if err != nil {
-		util.Die("error unmarshalling pom.xml: %s", err)
+		util.DieProtocol("error unmarshalling pom.xml: %s", err)
 	}
 	return project
 }
@@ -139,7 +139,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 	for pkgName, pkgSpec := range pkgs {
 		submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
 		if nil == submatches {
-			util.Die(
+			util.DieConsistency(
 				"package name %s does not match groupid:artifactid pattern",
 				pkgName,
 			)
@@ -160,7 +160,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 		}
 		searchDocs, err := Search(query)
 		if err != nil {
-			util.Die(
+			util.DieNetwork(
 				"error searching maven for latest version of %s:%s: %s",
 				groupId,
 				artifactId,
@@ -169,9 +169,9 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 		}
 		if len(searchDocs) == 0 {
 			if pkgSpec == "" {
-				util.Die("did not find a package %s:%s", groupId, artifactId)
+				util.DieConsistency("did not find a package %s:%s", groupId, artifactId)
 			} else {
-				util.Die("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
+				util.DieConsistency("did not find a package %s:%s:%s", groupId, artifactId, pkgSpec)
 			}
 		}
 		searchDoc := searchDocs[0]
@@ -203,7 +203,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 	project.Dependencies = append(project.Dependencies, newDependencies...)
 	marshalled, err := xml.MarshalIndent(project, "", "  ")
 	if err != nil {
-		util.Die("could not marshal pom: %s", err)
+		util.DieProtocol("could not marshal pom: %s", err)
 	}
 
 	contentsB := []byte(marshalled)
@@ -234,7 +234,7 @@ func removePackages(ctx context.Context, pkgs map[api.PkgName]bool) {
 
 	marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
 	if err != nil {
-		util.Die("error marshalling pom.xml: %s", err)
+		util.DieProtocol("error marshalling pom.xml: %s", err)
 	}
 	contentsB := []byte(marshalled)
 	util.ProgressMsg("write pom.xml")
@@ -272,7 +272,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 func search(query string) []api.PkgInfo {
 	searchDocs, err := Search(query)
 	if err != nil {
-		util.Die("error searching maven %s", err)
+		util.DieNetwork("error searching maven %s", err)
 	}
 	pkgInfos := []api.PkgInfo{}
 	for _, searchDoc := range searchDocs {
@@ -289,7 +289,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	searchDoc, err := Info(string(pkgName))
 
 	if err != nil {
-		util.Die("error searching maven %s", err)
+		util.DieNetwork("error searching maven %s", err)
 	}
 
 	if searchDoc.Artifact == "" {
