@@ -197,7 +197,7 @@ var ElispBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
 		defer span.Finish()
@@ -210,7 +210,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 
 		if len(required) == 0 {
-			return map[api.PkgName]bool{}, true
+			return map[string][]api.PkgName{}, true
 		}
 
 		r = regexp.MustCompile(
@@ -242,7 +242,7 @@ var ElispBackend = api.LanguageBackend{
 			clauses = append(clauses, fmt.Sprintf("feature = '%s'", feature))
 		}
 		if len(clauses) == 0 {
-			return map[api.PkgName]bool{}, true
+			return map[string][]api.PkgName{}, true
 		}
 		where := strings.Join(clauses, " OR ")
 		query := fmt.Sprintf("SELECT package FROM provided PR WHERE (%s) "+
@@ -255,9 +255,10 @@ var ElispBackend = api.LanguageBackend{
 		output := string(util.GetCmdOutput([]string{"sqlite3", epkgs, query}))
 
 		r = regexp.MustCompile(`"(.+?)"`)
-		names := map[api.PkgName]bool{}
+		names := map[string][]api.PkgName{}
 		for _, match := range r.FindAllStringSubmatch(output, -1) {
-			names[api.PkgName(match[1])] = true
+			name := match[1]
+			names[name] = []api.PkgName{api.PkgName(name)}
 		}
 		return names, true
 	},

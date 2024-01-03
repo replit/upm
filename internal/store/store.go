@@ -148,7 +148,7 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // backend does specify b.GuessRegexps, then the return value of this
 // function is cached.) If forceGuess is true, then write to but do
 // not read from the cache.
-func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
+func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[string][]api.PkgName {
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithCache")
 	defer span.Finish()
 	readMaybe()
@@ -163,7 +163,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		cache.GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
-		var pkgs map[api.PkgName]bool
+		var pkgs map[string][]api.PkgName
 		success := true
 		if new != "" {
 			pkgs, success = b.Guess(ctx)
@@ -174,7 +174,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 			// case we shouldn't have any packages
 			// returned by the bare imports search. Might
 			// as well just skip the search, right?
-			pkgs = map[api.PkgName]bool{}
+			pkgs = map[string][]api.PkgName{}
 		}
 		if !success {
 			// If bare imports search is not successful,
@@ -200,22 +200,37 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		}
 		return pkgs
 	} else {
-		pkgs := map[api.PkgName]bool{}
+		pkgs := map[string][]api.PkgName{}
 		for _, name := range cache.GuessedImports {
-			pkgs[api.PkgName(name)] = true
+			pkgs[name] = []api.PkgName{api.PkgName(name)}
 		}
 		return pkgs
 	}
 }
 
-// UpdateFileHashes caches the current states of the specfile and
-// lockfile. Neither file need exist.
-func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+func ClearGuesses(ctx context.Context, b api.LanguageBackend) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "ClearGuesses")
+	defer span.Finish()
+
+	cache := getLanguageCache(b.Name, b.Alias)
+
+	cache.GuessedImports = nil
+	cache.GuessedImportsHash = ""
+}
+
+func Read(ctx context.Context, b api.LanguageBackend) {
 	//nolint:ineffassign,wastedassign,staticcheck
-	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
+	span, ctx := tracer.StartSpanFromContext(ctx, "store.Read")
 	defer span.Finish()
 	readMaybe()
 	initLanguage(b.Name, b.Alias)
+}
+
+// UpdateFileHashes caches the current states of the specfile and
+// lockfile. Neither file need exist.
+func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
+	defer span.Finish()
 	cache := getLanguageCache(b.Name, b.Alias)
 	cache.SpecfileHash = hashFile(b.Specfile)
 	cache.LockfileHash = hashFile(b.Lockfile)

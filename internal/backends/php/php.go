@@ -280,7 +280,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func(context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(context.Context) (map[string][]api.PkgName, bool) {
 		util.NotImplemented()
 		return nil, false
 	},
