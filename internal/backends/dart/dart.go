@@ -142,12 +142,12 @@ func dartSearch(query string) []api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	var pubDevResults pubDevSearchResults
 	if err := json.Unmarshal(body, &pubDevResults); err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	results := make([]api.PkgInfo, len(pubDevResults.Packages))
@@ -195,12 +195,12 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	var pubDevResults pubDevInfoResults
 	if err := json.Unmarshal(body, &pubDevResults); err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	return api.PkgInfo{

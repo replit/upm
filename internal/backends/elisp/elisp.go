@@ -59,7 +59,7 @@ var ElispBackend = api.LanguageBackend{
 		})
 		var results []api.PkgInfo
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("%s", err)
+			util.DieProtocol("%s", err)
 		}
 		return results
 	},
@@ -83,7 +83,7 @@ var ElispBackend = api.LanguageBackend{
 		})
 		var info api.PkgInfo
 		if err := json.Unmarshal(outputB, &info); err != nil {
-			util.Die("%s", err)
+			util.DieProtocol("%s", err)
 		}
 		return info
 	},
@@ -171,7 +171,7 @@ var ElispBackend = api.LanguageBackend{
 			}
 			fields := strings.SplitN(line, "=", 2)
 			if len(fields) != 2 {
-				util.Die("unexpected output: %s", line)
+				util.DieProtocol("unexpected output, expected name=spec: %s", line)
 			}
 			name := api.PkgName(fields[0])
 			spec := api.PkgSpec(fields[1])

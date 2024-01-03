@@ -99,7 +99,7 @@ func RunNixEditorOps(ops []NixEditorOp) {
 	for _, op := range ops {
 		err := encoder.Encode(op)
 		if err != nil {
-			util.Die("unable to turn op into json: %v error: %s", op, err)
+			util.DieProtocol("unable to turn op into json: %v error: %s", op, err)
 		}
 	}
 	err = stdin.Close()

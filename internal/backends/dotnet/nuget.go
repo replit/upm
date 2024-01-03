@@ -80,13 +80,13 @@ func search(query string) []api.PkgInfo {
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		util.Die("Could not read response: %s", err)
+		util.DieProtocol("Could not read response: %s", err)
 	}
 
 	var searchResult searchResult
 	err = json.Unmarshal(body, &searchResult)
 	if err != nil {
-		util.Die("Could not unmarshal response data: %s", err)
+		util.DieProtocol("Could not unmarshal response data: %s", err)
 	}
 
 	for _, data := range searchResult.Data {
@@ -113,12 +113,12 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	defer res.Body.Close()
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		util.Die("could not read response: %s", err)
+		util.DieProtocol("could not read response: %s", err)
 	}
 	var infoResult infoResult
 	err = json.Unmarshal(body, &infoResult)
 	if err != nil {
-		util.Die("could not read json body: %s", err)
+		util.DieProtocol("could not read json body: %s", err)
 	}
 	latestVersion := infoResult.Versions[len(infoResult.Versions)-1]
 	util.ProgressMsg(fmt.Sprintf("latest version of %s is %s", pkgName, latestVersion))
@@ -131,12 +131,12 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	defer res.Body.Close()
 	body, err = io.ReadAll(res.Body)
 	if err != nil {
-		util.Die("could not read response: %s", err)
+		util.DieProtocol("could not read response: %s", err)
 	}
 	var nugetPackage nugetPackage
 	err = xml.Unmarshal(body, &nugetPackage)
 	if err != nil {
-		util.Die(fmt.Sprintf("failed to read spec %s", err))
+		util.DieProtocol(fmt.Sprintf("failed to read spec %s", err))
 	}
 
 	pkgInfo := api.PkgInfo{

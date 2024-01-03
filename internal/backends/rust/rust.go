@@ -99,12 +99,12 @@ func search(query string) []api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	var crateResults crateSearchResults
 	if err := json.Unmarshal(body, &crateResults); err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	var pkgs []api.PkgInfo
@@ -139,12 +139,12 @@ func info(name api.PkgName) api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("crates.io: could not read response: %s", err)
+		util.DieProtocol("crates.io: could not read response: %s", err)
 	}
 
 	var crateInfo crateInfoResult
 	if err := json.Unmarshal(body, &crateInfo); err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	return crateInfo.toPkgInfo()
@@ -163,7 +163,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 	var specfile cargoToml
 	err := toml.Unmarshal(contents, &specfile)
 	if err != nil {
-		util.Die("Cargo.toml: %s", err)
+		util.DieProtocol("Cargo.toml: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgSpec)
@@ -191,7 +191,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 			}
 
 		default:
-			util.Die("Cargo.toml: unexpected dependency format %q", name)
+			util.DieProtocol("Cargo.toml: unexpected dependency format %q", name)
 		}
 
 		packages[api.PkgName(name)] = spec

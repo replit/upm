@@ -59,7 +59,7 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 
 	pkgs, err = ReadSpec(specReader)
 	if err != nil {
-		util.Die("Failed to read spec file %s, with error: %q", projectFile, err)
+		util.DieProtocol("Failed to read spec file %s, with error: %q", projectFile, err)
 	}
 
 	return pkgs
@@ -102,7 +102,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 
 	pkgs, err = ReadLock(specReader)
 	if err != nil {
-		util.Die("error reading lockFile %s: %q", lockFileName, err)
+		util.DieProtocol("error reading lockFile %s: %q", lockFileName, err)
 	}
 
 	return pkgs

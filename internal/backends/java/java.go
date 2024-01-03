@@ -109,7 +109,7 @@ func readProjectOrMakeEmpty(path string) Project {
 	}
 	err := xml.Unmarshal(xmlbytes, &project)
 	if err != nil {
-		util.Die("error unmarshalling pom.xml: %s", err)
+		util.DieProtocol("error unmarshalling pom.xml: %s", err)
 	}
 	return project
 }
@@ -203,7 +203,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 	project.Dependencies = append(project.Dependencies, newDependencies...)
 	marshalled, err := xml.MarshalIndent(project, "", "  ")
 	if err != nil {
-		util.Die("could not marshal pom: %s", err)
+		util.DieProtocol("could not marshal pom: %s", err)
 	}
 
 	contentsB := []byte(marshalled)
@@ -234,7 +234,7 @@ func removePackages(ctx context.Context, pkgs map[api.PkgName]bool) {
 
 	marshalled, err := xml.MarshalIndent(projectWithFilteredDependencies, "", "  ")
 	if err != nil {
-		util.Die("error marshalling pom.xml: %s", err)
+		util.DieProtocol("error marshalling pom.xml: %s", err)
 	}
 	contentsB := []byte(marshalled)
 	util.ProgressMsg("write pom.xml")

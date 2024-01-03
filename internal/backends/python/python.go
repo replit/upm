@@ -125,12 +125,12 @@ func info(name api.PkgName) api.PkgInfo {
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		util.Die("Res body read failed with error: %s", err)
+		util.DieProtocol("Res body read failed with error: %s", err)
 	}
 
 	var output pypiEntryInfoResponse
 	if err := json.Unmarshal(body, &output); err != nil {
-		util.Die("PyPI response: %s", err)
+		util.DieProtocol("PyPI response: %s", err)
 	}
 
 	info := api.PkgInfo{
@@ -292,7 +292,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		ListLockfile: func() map[api.PkgName]api.PkgVersion {
 			var cfg poetryLock
 			if _, err := toml.DecodeFile("poetry.lock", &cfg); err != nil {
-				util.Die("%s", err.Error())
+				util.DieProtocol("%s", err.Error())
 			}
 			pkgs := map[api.PkgName]api.PkgVersion{}
 			for _, pkgObj := range cfg.Package {

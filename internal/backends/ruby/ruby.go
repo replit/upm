@@ -99,12 +99,12 @@ var RubyBackend = api.LanguageBackend{
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieProtocol("RubyGems: %s", err)
 		}
 
 		var outputStructs []rubygemsInfo
 		if err := json.Unmarshal(body, &outputStructs); err != nil {
-			util.Die("RubyGems response: %s", err)
+			util.DieProtocol("RubyGems response: %s", err)
 		}
 
 		results := []api.PkgInfo{}
@@ -151,12 +151,12 @@ var RubyBackend = api.LanguageBackend{
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieProtocol("RubyGems: %s", err)
 		}
 
 		var s rubygemsInfo
 		if err := json.Unmarshal(body, &s); err != nil {
-			util.Die("RubyGems response: %s", err)
+			util.DieProtocol("RubyGems response: %s", err)
 		}
 		deps := []string{}
 		for _, group := range s.Dependencies {
@@ -238,7 +238,7 @@ var RubyBackend = api.LanguageBackend{
 		})
 		results := map[api.PkgName]api.PkgSpec{}
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results
 	},
@@ -248,7 +248,7 @@ var RubyBackend = api.LanguageBackend{
 		})
 		results := map[api.PkgName]api.PkgVersion{}
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results
 	},
@@ -264,7 +264,7 @@ var RubyBackend = api.LanguageBackend{
 		})
 		results := map[string][]api.PkgName{}
 		if err := json.Unmarshal(guessedGems, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results, true
 	},

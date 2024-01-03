@@ -242,12 +242,12 @@ func nodejsSearch(query string) []api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	var npmResults npmSearchResults
 	if err := json.Unmarshal(body, &npmResults); err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	results := make([]api.PkgInfo, len(npmResults.Objects))
@@ -291,12 +291,12 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("NPM registry: could not read response: %s", err)
+		util.DieProtocol("NPM registry: could not read response: %s", err)
 	}
 
 	var npmInfo npmInfoResult
 	if err := json.Unmarshal(body, &npmInfo); err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	lastVersionStr := ""
@@ -346,7 +346,7 @@ func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
 	}
 	var cfg packageJSON
 	if err := json.Unmarshal(contentsB, &cfg); err != nil {
-		util.Die("package.json: %s", err)
+		util.DieProtocol("package.json: %s", err)
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for nameStr, specStr := range cfg.Dependencies {
@@ -533,7 +533,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		lockfile := map[string]interface{}{}
 		err = yaml.Unmarshal(lockfileBytes, &lockfile)
 		if err != nil {
-			util.Die("pnpm-lock.yaml: %s", err)
+			util.DieProtocol("pnpm-lock.yaml: %s", err)
 		}
 
 		lockfileVersion := strings.Split(lockfile["lockfileVersion"].(string), ".")
@@ -625,7 +625,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 		}
 		var cfg packageLockJSON
 		if err := json.Unmarshal(contentsB, &cfg); err != nil {
-			util.Die("package-lock.json: %s", err)
+			util.DieProtocol("package-lock.json: %s", err)
 		}
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		if cfg.LockfileVersion <= 2 {

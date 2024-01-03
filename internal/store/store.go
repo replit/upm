@@ -53,7 +53,7 @@ func read() {
 
 	if len(strings.TrimSpace(string(bytes))) > 0 {
 		if err = json.Unmarshal(bytes, st); err != nil {
-			util.Die("%s: %s", filename, err)
+			util.DieProtocol("%s: %s", filename, err)
 		}
 	}
 

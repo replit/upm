@@ -81,13 +81,13 @@ func search(query string) []api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("packagist err: %s", err)
+		util.DieProtocol("packagist err: %s", err)
 	}
 
 	pkgInfo, err := parseSearch(body)
 
 	if err != nil {
-		util.Die("Error: %s", err)
+		util.DieProtocol("Error: %s", err)
 	}
 
 	return pkgInfo
@@ -125,13 +125,13 @@ func info(name api.PkgName) api.PkgInfo {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("packagist err: %s", err)
+		util.DieProtocol("packagist err: %s", err)
 	}
 
 	pkgInfo, err := parseInfo(body, name)
 
 	if err != nil {
-		util.Die("Error: %s", err)
+		util.DieProtocol("Error: %s", err)
 	}
 
 	return pkgInfo
@@ -190,7 +190,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 	}
 
 	if err := json.Unmarshal(contents, &specfile); err != nil {
-		util.Die("composer.json: %s", err)
+		util.DieProtocol("composer.json: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgSpec)
@@ -217,7 +217,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 func listLockfileWithContents(contents []byte) map[api.PkgName]api.PkgVersion {
 	var composerLock composerLock
 	if err := json.Unmarshal(contents, &composerLock); err != nil {
-		util.Die("composer.lock err: %s", err)
+		util.DieProtocol("composer.lock err: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgVersion)
