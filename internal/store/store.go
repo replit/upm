@@ -218,14 +218,19 @@ func ClearGuesses(ctx context.Context, b api.LanguageBackend) {
 	cache.GuessedImportsHash = ""
 }
 
-// UpdateFileHashes caches the current states of the specfile and
-// lockfile. Neither file need exist.
-func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+func Read(ctx context.Context, b api.LanguageBackend) {
 	//nolint:ineffassign,wastedassign,staticcheck
-	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
+	span, ctx := tracer.StartSpanFromContext(ctx, "store.Read")
 	defer span.Finish()
 	readMaybe()
 	initLanguage(b.Name, b.Alias)
+}
+
+// UpdateFileHashes caches the current states of the specfile and
+// lockfile. Neither file need exist.
+func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
+	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
+	defer span.Finish()
 	cache := getLanguageCache(b.Name, b.Alias)
 	cache.SpecfileHash = hashFile(b.Specfile)
 	cache.LockfileHash = hashFile(b.Lockfile)
