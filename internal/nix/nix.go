@@ -76,7 +76,7 @@ func ReplitNixAddToNixEditorOps(replitNixAdd ReplitNixAdd) []NixEditorOp {
 func RunNixEditorOps(ops []NixEditorOp) {
 	repl_home := os.Getenv("REPL_HOME")
 	if repl_home == "" {
-		util.Die("REPL_HOME was not set")
+		util.DieInitializationError("REPL_HOME was not set")
 	}
 	path := path.Join(repl_home, "replit.nix")
 

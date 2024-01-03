@@ -552,7 +552,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 			}
 
 		default:
-			util.Die("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
+			util.DieInitializationError("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
 		}
 
 		return pkgs

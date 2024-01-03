@@ -118,7 +118,7 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 		}
 	}
 	if language == "" {
-		util.Die("could not autodetect a language for your project")
+		util.DieInitializationError("could not autodetect a language for your project")
 	}
 	return backends[0]
 }
