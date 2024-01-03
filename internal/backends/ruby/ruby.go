@@ -93,7 +93,7 @@ var RubyBackend = api.LanguageBackend{
 
 		resp, err := api.HttpClient.Get(endpoint + queryParams)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieNetwork("RubyGems: %s", err)
 		}
 		defer resp.Body.Close()
 
@@ -136,7 +136,7 @@ var RubyBackend = api.LanguageBackend{
 
 		resp, err := api.HttpClient.Get(endpoint + path)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieNetwork("RubyGems: %s", err)
 		}
 		defer resp.Body.Close()
 
@@ -146,7 +146,7 @@ var RubyBackend = api.LanguageBackend{
 		case 404:
 			return api.PkgInfo{}
 		default:
-			util.Die("RubyGems: HTTP status %d", resp.StatusCode)
+			util.DieNetwork("RubyGems: HTTP status %d", resp.StatusCode)
 		}
 
 		body, err := io.ReadAll(resp.Body)

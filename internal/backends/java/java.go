@@ -160,7 +160,7 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 		}
 		searchDocs, err := Search(query)
 		if err != nil {
-			util.Die(
+			util.DieNetwork(
 				"error searching maven for latest version of %s:%s: %s",
 				groupId,
 				artifactId,
@@ -272,7 +272,7 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 func search(query string) []api.PkgInfo {
 	searchDocs, err := Search(query)
 	if err != nil {
-		util.Die("error searching maven %s", err)
+		util.DieNetwork("error searching maven %s", err)
 	}
 	pkgInfos := []api.PkgInfo{}
 	for _, searchDoc := range searchDocs {
@@ -289,7 +289,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	searchDoc, err := Info(string(pkgName))
 
 	if err != nil {
-		util.Die("error searching maven %s", err)
+		util.DieNetwork("error searching maven %s", err)
 	}
 
 	if searchDoc.Artifact == "" {

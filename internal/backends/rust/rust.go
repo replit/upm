@@ -93,7 +93,7 @@ func search(query string) []api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieNetwork("crates.io: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -124,7 +124,7 @@ func info(name api.PkgName) api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieNetwork("crates.io: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -134,7 +134,7 @@ func info(name api.PkgName) api.PkgInfo {
 	case 404:
 		return api.PkgInfo{}
 	default:
-		util.Die("crates.io: HTTP status %d", resp.StatusCode)
+		util.DieNetwork("crates.io: HTTP status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)

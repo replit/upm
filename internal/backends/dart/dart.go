@@ -128,7 +128,7 @@ func dartSearch(query string) []api.PkgInfo {
 
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 
 	req.Header.Add("Accept", "application/json")
@@ -136,7 +136,7 @@ func dartSearch(query string) []api.PkgInfo {
 	resp, err := api.HttpClient.Do(req)
 
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -182,14 +182,14 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 
 	req.Header.Add("Accept", "application/json")
 
 	resp, err := api.HttpClient.Do(req)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 	defer resp.Body.Close()
 

@@ -236,7 +236,7 @@ func nodejsSearch(query string) []api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + queryParams)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieNetwork("NPM registry: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -276,7 +276,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieNetwork("NPM registry: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -286,7 +286,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	case 404:
 		return api.PkgInfo{}
 	default:
-		util.Die("NPM registry: HTTP status %d", resp.StatusCode)
+		util.DieNetwork("NPM registry: HTTP status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)

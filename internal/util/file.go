@@ -141,7 +141,7 @@ func DownloadFile(filepath string, url string) {
 	ProgressMsg("download " + url)
 	resp, err := http.Get(url)
 	if err != nil {
-		Die("%s: %s", url, err)
+		DieNetwork("%s: %s", url, err)
 	}
 	defer resp.Body.Close()
 

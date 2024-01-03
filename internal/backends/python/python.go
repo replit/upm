@@ -110,7 +110,7 @@ func info(name api.PkgName) api.PkgInfo {
 	res, err := api.HttpClient.Get(fmt.Sprintf("https://pypi.org/pypi/%s/json", string(name)))
 
 	if err != nil {
-		util.Die("HTTP Request failed with error: %s", err)
+		util.DieNetwork("HTTP Request failed with error: %s", err)
 	}
 
 	defer res.Body.Close()
@@ -120,7 +120,7 @@ func info(name api.PkgName) api.PkgInfo {
 	}
 
 	if res.StatusCode != 200 {
-		util.Die("Received status code: %d", res.StatusCode)
+		util.DieNetwork("Received status code: %d", res.StatusCode)
 	}
 
 	body, err := io.ReadAll(res.Body)
@@ -205,7 +205,7 @@ func searchPypi(query string) []api.PkgInfo {
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
-		util.Die("failed to search pypi: %s", err.Error())
+		util.DieNetwork("failed to search pypi: %s", err.Error())
 	}
 	return results
 }

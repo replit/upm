@@ -70,7 +70,7 @@ func search(query string) []api.PkgInfo {
 
 	res, err := api.HttpClient.Get(queryURL)
 	if err != nil {
-		util.Die("failed to query for packages: %s", err)
+		util.DieNetwork("failed to query for packages: %s", err)
 	}
 	defer res.Body.Close()
 
@@ -108,7 +108,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 
 	res, err := api.HttpClient.Get(infoURL)
 	if err != nil {
-		util.Die("failed to get the versions: %s", err)
+		util.DieNetwork("failed to get the versions: %s", err)
 	}
 	defer res.Body.Close()
 	body, err := io.ReadAll(res.Body)
@@ -126,7 +126,7 @@ func info(pkgName api.PkgName) api.PkgInfo {
 	util.ProgressMsg(fmt.Sprintf("Getting spec from %s", specURL))
 	res, err = api.HttpClient.Get(specURL)
 	if err != nil {
-		util.Die("failed to get the spec: %s", err)
+		util.DieNetwork("failed to get the spec: %s", err)
 	}
 	defer res.Body.Close()
 	body, err = io.ReadAll(res.Body)

@@ -74,7 +74,7 @@ func search(query string) []api.PkgInfo {
 	resp, err := api.HttpClient.Get(endpoint)
 
 	if err != nil {
-		util.Die("packagist search err: %s", err)
+		util.DieNetwork("packagist search err: %s", err)
 	}
 
 	defer resp.Body.Close()
@@ -118,7 +118,7 @@ func info(name api.PkgName) api.PkgInfo {
 	resp, err := api.HttpClient.Get(endpoint)
 
 	if err != nil {
-		util.Die("packagist err: %s", err)
+		util.DieNetwork("packagist err: %s", err)
 	}
 
 	defer resp.Body.Close()
