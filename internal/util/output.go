@@ -23,11 +23,6 @@ func ProgressMsg(msg string) {
 
 // Die is like fmt.Printf, but writes to stderr, adds a newline, and
 // terminates the process.
-func Die(format string, a ...interface{}) {
-	fmt.Fprintf(os.Stderr, format+"\n", a...)
-	os.Exit(1)
-}
-
 func die(code int, format string, a ...interface{}) {
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
 	os.Exit(code)
