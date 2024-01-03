@@ -83,16 +83,16 @@ func RunNixEditorOps(ops []NixEditorOp) {
 	cmd := exec.Command("nix-editor", "--path", path)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		util.Die("couldn't make stdin pipe to nix-editor")
+		util.DieSubprocess("couldn't make stdin pipe to nix-editor")
 	}
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		util.Die("couldn't make stdout pipe to nix-editor")
+		util.DieSubprocess("couldn't make stdout pipe to nix-editor")
 	}
 
 	err = cmd.Start()
 	if err != nil {
-		util.Die("nix-editor error: %s", err)
+		util.DieSubprocess("nix-editor error: %s", err)
 	}
 
 	encoder := json.NewEncoder(stdin)
@@ -104,7 +104,7 @@ func RunNixEditorOps(ops []NixEditorOp) {
 	}
 	err = stdin.Close()
 	if err != nil {
-		util.Die("unable to write to nix-editor")
+		util.DieSubprocess("unable to write to nix-editor")
 	}
 
 	decoder := json.NewDecoder(stdout)
@@ -118,16 +118,16 @@ func RunNixEditorOps(ops []NixEditorOp) {
 			if errors.Is(err, io.EOF) {
 				break
 			}
-			util.Die("unexpected nix-editor output: %s", err)
+			util.DieSubprocess("unexpected nix-editor output: %s", err)
 		}
 		if nixEditorStatus.Status != "success" {
-			util.Die("nix-editor error: %s", nixEditorStatus.Data)
+			util.DieSubprocess("nix-editor error: %s", nixEditorStatus.Data)
 		}
 	}
 	stdout.Close()
 
 	err = cmd.Wait()
 	if err != nil {
-		util.Die("nix-editor error: %s", err)
+		util.DieSubprocess("nix-editor error: %s", err)
 	}
 }

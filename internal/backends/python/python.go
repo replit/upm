@@ -395,7 +395,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				"pip", "freeze",
 			})
 			if err != nil {
-				util.Die("failed to run freeze: %s", err.Error())
+				util.DieSubprocess("failed to run freeze: %s", err.Error())
 			}
 
 			// As we walk through the output of pip freeze,

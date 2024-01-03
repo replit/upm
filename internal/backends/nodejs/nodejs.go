@@ -706,7 +706,7 @@ var BunBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
 		if err != nil {
-			util.Die("bun pm hash-string: %s", err)
+			util.DieSubprocess("bun pm hash-string: %s", err)
 		}
 
 		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
