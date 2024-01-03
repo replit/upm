@@ -652,7 +652,6 @@
   "sounddevice":{"deps":["pkgs.portaudio"]},
   "soundfile":{"deps":["pkgs.libsndfile"]},
   "soxr":{"deps":["pkgs.gnutar"]},
-  "spacy":{"deps":["pkgs.gitFull","pkgs.nix","pkgs.nix-update"]},
   "spacy-alignments":{"deps":["pkgs.cargo","pkgs.libiconv","pkgs.rustc"]},
   "sphinx-issues":{"deps":["pkgs.pandoc"]},
   "sphinxcontrib-mscgen":{"deps":["pkgs.mscgen"]},
