@@ -29,7 +29,7 @@ func RunCmd(cmd []string) {
 	command.Stdout = os.Stderr
 	command.Stderr = os.Stderr
 	if err := command.Run(); err != nil {
-		Die("%s", err)
+		DieSubprocess("%s", err)
 	}
 }
 
@@ -50,7 +50,7 @@ func GetCmdOutputFallible(cmd []string) ([]byte, error) {
 func GetCmdOutput(cmd []string) []byte {
 	output, err := GetCmdOutputFallible(cmd)
 	if err != nil {
-		Die("%s", err)
+		DieSubprocess("%s", err)
 	}
 	return output
 }

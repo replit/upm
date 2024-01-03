@@ -133,7 +133,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 	b := backends.GetBackend(context.Background(), language)
 	info := b.Info(api.PkgName(pkg))
 	if info.Name == "" {
-		util.Die("no such package: %s", pkg)
+		util.DieConsistency("no such package: %s", pkg)
 	}
 
 	switch outputFormat {

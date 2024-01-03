@@ -100,11 +100,11 @@ type dartPubspecLock struct {
 func dartListPubspecLock() map[api.PkgName]api.PkgVersion {
 	contentsB, err := os.ReadFile("pubspec.lock")
 	if err != nil {
-		util.Die("pubspec.lock: %s", err)
+		util.DieIO("pubspec.lock: %s", err)
 	}
 	var cfg dartPubspecLock
 	if err := yaml.Unmarshal(contentsB, &cfg); err != nil {
-		util.Die("pubspec.lock: %s", err)
+		util.DieIO("pubspec.lock: %s", err)
 	}
 	pkgs := map[api.PkgName]api.PkgVersion{}
 	for nameStr, data := range cfg.Packages {
@@ -128,7 +128,7 @@ func dartSearch(query string) []api.PkgInfo {
 
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 
 	req.Header.Add("Accept", "application/json")
@@ -136,18 +136,18 @@ func dartSearch(query string) []api.PkgInfo {
 	resp, err := api.HttpClient.Do(req)
 
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	var pubDevResults pubDevSearchResults
 	if err := json.Unmarshal(body, &pubDevResults); err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	results := make([]api.PkgInfo, len(pubDevResults.Packages))
@@ -182,25 +182,25 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 
 	req.Header.Add("Accept", "application/json")
 
 	resp, err := api.HttpClient.Do(req)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieNetwork("Pub.dev: %s", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	var pubDevResults pubDevInfoResults
 	if err := json.Unmarshal(body, &pubDevResults); err != nil {
-		util.Die("Pub.dev: %s", err)
+		util.DieProtocol("Pub.dev: %s", err)
 	}
 
 	return api.PkgInfo{
@@ -220,7 +220,7 @@ func dartInfo(name api.PkgName) api.PkgInfo {
 
 func createSpecFile() {
 	if util.Exists("pubspec.yaml") {
-		util.Die("pubspec.yaml already exists")
+		util.DieOverwrite("pubspec.yaml already exists")
 	}
 
 	pubspec := dartPubspecYaml{
@@ -246,12 +246,12 @@ func writeSpecFile(specs dartPubspecYaml) {
 func readSpecFile() dartPubspecYaml {
 	contentsB, err := os.ReadFile("pubspec.yaml")
 	if err != nil {
-		util.Die("pubspec.yaml: %s", err)
+		util.DieIO("pubspec.yaml: %s", err)
 	}
 
 	var specs dartPubspecYaml
 	if err := yaml.Unmarshal(contentsB, &specs); err != nil {
-		util.Die("pubspec.yaml: %s", err)
+		util.DieIO("pubspec.yaml: %s", err)
 	}
 
 	return specs
@@ -294,7 +294,7 @@ func dartRemove(ctx context.Context, pkgs map[api.PkgName]bool) {
 
 // dartGuess stub.
 func dartGuess(context.Context) (map[string][]api.PkgName, bool) {
-	util.Die("Guess not implemented!")
+	util.DieUnimplemented("Guess not implemented!")
 
 	return nil, false
 }

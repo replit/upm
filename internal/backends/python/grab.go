@@ -249,12 +249,12 @@ func guess(ctx context.Context, python string) (map[string][]api.PkgName, bool) 
 	defer span.Finish()
 	cwd, err := os.Getwd()
 	if err != nil {
-		util.Die("couldn't get working directory: %s", err)
+		util.DieIO("couldn't get working directory: %s", err)
 	}
 
 	foundImportPaths, err := findImports(ctx, cwd)
 	if err != nil {
-		util.Die("couldn't guess imports: %s", err)
+		util.DieConsistency("couldn't guess imports: %s", err)
 	}
 
 	return filterImports(ctx, foundImportPaths)
@@ -292,7 +292,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 
 	pypiMap, err := NewPypiMap()
 	if err != nil {
-		util.Die(err.Error())
+		util.DieConsistency(err.Error())
 	}
 	defer pypiMap.Close()
 

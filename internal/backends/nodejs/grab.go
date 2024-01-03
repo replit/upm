@@ -62,12 +62,12 @@ func nodejsGuess(ctx context.Context) (map[string][]api.PkgName, bool) {
 	defer span.Finish()
 	cwd, err := os.Getwd()
 	if err != nil {
-		util.Die("couldn't get working directory: %s", err)
+		util.DieIO("couldn't get working directory: %s", err)
 	}
 
 	foundImportPaths, err := findImports(ctx, cwd)
 	if err != nil {
-		util.Die("couldn't guess imports: %s", err)
+		util.DieConsistency("couldn't guess imports: %s", err)
 	}
 
 	return filterImports(ctx, foundImportPaths), true

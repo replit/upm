@@ -48,12 +48,12 @@ func read() {
 		if os.IsNotExist(err) {
 			return
 		}
-		util.Die("%s: %s", filename, err)
+		util.DieIO("%s: %s", filename, err)
 	}
 
 	if len(strings.TrimSpace(string(bytes))) > 0 {
 		if err = json.Unmarshal(bytes, st); err != nil {
-			util.Die("%s: %s", filename, err)
+			util.DieProtocol("%s: %s", filename, err)
 		}
 	}
 
@@ -103,12 +103,12 @@ func Write(ctx context.Context) {
 
 	filename, err := filepath.Abs(filename)
 	if err != nil {
-		util.Die("%s: %s", filename, err)
+		util.DieIO("%s: %s", filename, err)
 	}
 
 	directory, _ := filepath.Split(filename)
 	if err := os.MkdirAll(directory, 0o777); err != nil {
-		util.Die("%s: %s", directory, err)
+		util.DieIO("%s: %s", directory, err)
 	}
 
 	content, err := json.Marshal(st)
