@@ -357,6 +357,7 @@ func runAdd(
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
 	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
@@ -416,6 +417,7 @@ func runRemove(language string, args []string, upgrade bool,
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
 	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
@@ -437,6 +439,7 @@ func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -449,6 +452,7 @@ func runInstall(language string, force bool) {
 
 	maybeInstall(ctx, b, force)
 
+	store.Read(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
