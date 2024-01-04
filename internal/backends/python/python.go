@@ -526,10 +526,6 @@ func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	return pkgs, nil
 }
 
-func getTopLevelModuleName(fullModname string) string {
-	return strings.Split(fullModname, ".")[0]
-}
-
 // getPython3 returns either "python3" or the value of the UPM_PYTHON3
 // environment variable.
 func getPython3() string {
