@@ -46,6 +46,11 @@ type pypiEntryInfo struct {
 	Version       string   `json:"version"`
 }
 
+type pyprojectPackageCfg struct {
+	Include string `json:"include"`
+	From    string `json:"from"`
+}
+
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
@@ -56,6 +61,7 @@ type pyprojectTOML struct {
 			// strings or maps (why?? good lord).
 			Dependencies    map[string]interface{} `json:"dependencies"`
 			DevDependencies map[string]interface{} `json:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg  `json:"packages"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
