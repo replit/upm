@@ -299,11 +299,37 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 
 	pkgs := map[string][]api.PkgName{}
 
+	moduleRoots := []string{"."}
+	packageRoots := make(map[string]string)
+	pyproject, _ := readPyproject()
+	if pyproject != nil {
+		for _, pkgCfg := range pyproject.Tool.Poetry.Packages {
+			pkgRoot := pkgCfg.Include
+			from := "."
+			if pkgCfg.From != "" {
+				from = pkgCfg.From
+			}
+			packageRoots[pkgRoot] = from
+		}
+	}
+
+	// State for local module searching
+	localModuleState := moduleState{
+		fileExists:   util.Exists,
+		moduleRoots:  moduleRoots,
+		packageRoots: packageRoots,
+	}
+
 	for fullModname := range foundPkgs {
 		// try and look it up in Pypi
 		var pkg string
 		var overrides []string
 		var ok bool
+
+		if localModuleState.IsLocalModule(fullModname) {
+			// Module may be locally supplied, let's not guess
+			continue
+		}
 
 		modNameParts := strings.Split(strings.ToLower(fullModname), ".")
 		for len(modNameParts) > 0 {

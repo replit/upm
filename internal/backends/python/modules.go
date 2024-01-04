@@ -6,8 +6,9 @@ import (
 )
 
 type moduleState struct {
-	fileExists  func(path string) bool
-	moduleRoots []string
+	fileExists   func(path string) bool
+	moduleRoots  []string
+	packageRoots map[string]string
 }
 
 // Test to see if `name` is a python module, relative to `directory`
@@ -37,6 +38,15 @@ func (state *moduleState) isModuleLocalToRoot(pkg string, root string) bool {
 // Test to see if a dotted package, `pkg`, is a python module, relative to any project root
 func (state *moduleState) IsLocalModule(pkg string) bool {
 	found := false
+	if state.packageRoots != nil {
+		for localPkg := range state.packageRoots {
+			basePkg := strings.SplitN(pkg, ".", 2)[0]
+			found = localPkg == basePkg
+			if found {
+				return found
+			}
+		}
+	}
 	if state.moduleRoots != nil {
 		for _, root := range state.moduleRoots {
 			found = state.isModuleLocalToRoot(pkg, root)
