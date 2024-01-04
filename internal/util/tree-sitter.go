@@ -8,6 +8,7 @@ import (
 	"os"
 	"path"
 	"regexp"
+	"strings"
 
 	sitter "github.com/smacker/go-tree-sitter"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -40,9 +41,16 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 	defer span.Finish()
 	dirFS := os.DirFS(root)
 
-	var visited int
+	var visited int = 0
 	pathsToSearch := []string{}
 	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
+		// Reproduce the previous behavior of https://github.com/replit/upm/pull/202
+		// During integration tests it was determined that we do need to consider a whole
+		// host of ignore patterns, otherwise we run the risk of guessing transitive deps
+		// from the package store.
+		if (dir != "." && d.IsDir()) || strings.Contains(dir, "/") {
+			return fs.SkipDir
+		}
 		dir = path.Join(root, dir)
 		if err != nil {
 			return err
