@@ -41,6 +41,7 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 	defer span.Finish()
 	dirFS := os.DirFS(root)
 
+	forceRecurse := os.Getenv("UPM_FORCE_RECURSE") == "1"
 	var visited int = 0
 	pathsToSearch := []string{}
 	err := fs.WalkDir(dirFS, ".", func(dir string, d fs.DirEntry, err error) error {
@@ -48,7 +49,9 @@ func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language
 		// During integration tests it was determined that we do need to consider a whole
 		// host of ignore patterns, otherwise we run the risk of guessing transitive deps
 		// from the package store.
-		if (dir != "." && d.IsDir()) || strings.Index(dir, "/") >= 0 {
+		isDir := dir != "." && d.IsDir()
+		isInDir := strings.Index(dir, "/") >= 0
+		if !forceRecurse && (isDir || isInDir) {
 			return fs.SkipDir
 		}
 		dir = path.Join(root, dir)
