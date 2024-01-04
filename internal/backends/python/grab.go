@@ -284,7 +284,8 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 	defer span.Finish()
 	// filter out stdlib/python internal modules
 	for pkg := range foundPkgs {
-		mod := getTopLevelModuleName(pkg)
+		// First path component
+		mod := strings.Split(pkg, ".")[0]
 		if internalModules[mod] {
 			delete(foundPkgs, pkg)
 		}
