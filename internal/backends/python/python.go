@@ -1,4 +1,4 @@
-// Package python provides backends for Python 2 and 3 using Poetry.
+// Package python provides backends for Python 2 and 3 using Poetry and pip.
 package python
 
 import (
