@@ -244,7 +244,7 @@ var internalModules = map[string]bool{
 	"zoneinfo":        true,
 }
 
-func guess(ctx context.Context, python string) (map[string][]api.PkgName, bool) {
+func guess(ctx context.Context) (map[string][]api.PkgName, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
 	defer span.Finish()
 	cwd, err := os.Getwd()
