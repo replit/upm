@@ -282,7 +282,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
-	// filter out internal modules
+	// filter out stdlib/python internal modules
 	for pkg := range foundPkgs {
 		mod := getTopLevelModuleName(pkg)
 		if internalModules[mod] {
