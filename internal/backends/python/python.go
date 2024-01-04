@@ -494,9 +494,17 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 	return b
 }
 
-func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func readPyproject() (*pyprojectTOML, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
+		return nil, err
+	}
+	return &cfg, nil
+}
+
+func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+	cfg, err := readPyproject()
+	if err != nil {
 		return nil, err
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
