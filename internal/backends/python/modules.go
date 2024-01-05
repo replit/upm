@@ -24,15 +24,14 @@ func (state *moduleState) isModuleComponent(directory string, name string) bool 
 func (state *moduleState) isModuleLocalToRoot(pkg string, root string) bool {
 	components := strings.Split(pkg, ".")
 	dir := root
-	found := true
 	for _, nextComponent := range components {
 		found = state.isModuleComponent(dir, nextComponent)
 		if !found {
-			break
+			return false
 		}
 		dir = path.Join(dir, nextComponent)
 	}
-	return found
+	return true
 }
 
 // Test to see if a dotted package, `pkg`, is a python module, relative to any project root
