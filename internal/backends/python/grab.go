@@ -247,6 +247,17 @@ var internalModules = map[string]bool{
 func guess(ctx context.Context) (map[string][]api.PkgName, bool) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.guess")
 	defer span.Finish()
+
+	pypiMap, err := NewPypiMap()
+	if err != nil {
+		util.DieConsistency(err.Error())
+	}
+	defer pypiMap.Close()
+
+	return doGuess(ctx, pypiMap.ModuleToPackage)
+}
+
+func doGuess(ctx context.Context, testPypiMap func(string) (string, bool)) (map[string][]api.PkgName, bool) {
 	cwd, err := os.Getwd()
 	if err != nil {
 		util.DieIO("couldn't get working directory: %s", err)
@@ -257,7 +268,7 @@ func guess(ctx context.Context) (map[string][]api.PkgName, bool) {
 		util.DieConsistency("couldn't guess imports: %s", err)
 	}
 
-	return filterImports(ctx, foundImportPaths)
+	return filterImports(ctx, foundImportPaths, testPypiMap)
 }
 
 func findImports(ctx context.Context, dir string) (map[string]bool, error) {
@@ -278,7 +289,7 @@ func findImports(ctx context.Context, dir string) (map[string]bool, error) {
 	return foundImportPaths, nil
 }
 
-func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][]api.PkgName, bool) {
+func filterImports(ctx context.Context, foundPkgs map[string]bool, testPypiMap func(string) (string, bool)) (map[string][]api.PkgName, bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
@@ -290,12 +301,6 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 			delete(foundPkgs, pkg)
 		}
 	}
-
-	pypiMap, err := NewPypiMap()
-	if err != nil {
-		util.DieConsistency(err.Error())
-	}
-	defer pypiMap.Close()
 
 	pkgs := map[string][]api.PkgName{}
 
@@ -348,7 +353,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool) (map[string][
 			}
 
 			// test pypi
-			pkg, ok = pypiMap.ModuleToPackage(testModName)
+			pkg, ok = testPypiMap(testModName)
 			if ok {
 				break
 			}
