@@ -1,4 +1,4 @@
-// Package python provides backends for Python 2 and 3 using Poetry.
+// Package python provides backends for Python 2 and 3 using Poetry and pip.
 package python
 
 import (
@@ -46,6 +46,11 @@ type pypiEntryInfo struct {
 	Version       string   `json:"version"`
 }
 
+type pyprojectPackageCfg struct {
+	Include string `json:"include"`
+	From    string `json:"from"`
+}
+
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
@@ -56,6 +61,7 @@ type pyprojectTOML struct {
 			// strings or maps (why?? good lord).
 			Dependencies    map[string]interface{} `json:"dependencies"`
 			DevDependencies map[string]interface{} `json:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg  `json:"packages"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
@@ -494,9 +500,17 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 	return b
 }
 
-func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func readPyproject() (*pyprojectTOML, error) {
 	var cfg pyprojectTOML
 	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
+		return nil, err
+	}
+	return &cfg, nil
+}
+
+func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+	cfg, err := readPyproject()
+	if err != nil {
 		return nil, err
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
@@ -524,10 +538,6 @@ func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 	}
 
 	return pkgs, nil
-}
-
-func getTopLevelModuleName(fullModname string) string {
-	return strings.Split(fullModname, ".")[0]
 }
 
 // getPython3 returns either "python3" or the value of the UPM_PYTHON3

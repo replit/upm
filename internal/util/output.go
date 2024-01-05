@@ -52,12 +52,12 @@ func DieInitializationError(format string, a ...interface{}) {
 	die(15, format, a...)
 }
 
-func DieUnimplemented(format string, a ...interface{}) {
-	die(15, format, a...)
-}
-
 func DieSubprocess(format string, a ...interface{}) {
 	die(16, format, a...)
+}
+
+func DieUnimplemented(format string, a ...interface{}) {
+	die(17, format, a...)
 }
 
 // Panicf is a composition of fmt.Sprintf and panic.
