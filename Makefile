@@ -12,7 +12,7 @@ install: cmd/upm/upm
 	go install ./cmd/upm
 
 internal/backends/python/pypi_map.sqlite: internal/backends/python/download_stats.json
-	cd internal/backends/python; go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.sqlite -cache cache -cmd gen
+	cd internal/backends/python; go run ./gen_pypi_map gen -bq download_stats.json -pkg python -out pypi_map.sqlite -cache cache
 
 generated: $(GENERATED)
 
