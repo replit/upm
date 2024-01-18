@@ -44,6 +44,10 @@ func main() {
 			fmt.Fprintf(os.Stderr, "Failed to parse bq flags: %s\n", err)
 			return
 		}
+		if *bqGCP == "" {
+			fmt.Fprintln(os.Stderr, "Error: The 'gcp' flag must not be empty.")
+			return
+		}
 		err := FetchBQDownloads(*bqGCP, *bqBQ)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to fetch BQ download stats: %s", err.Error())
