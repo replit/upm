@@ -7,11 +7,17 @@ import (
 
 type PackageCache = map[string]PackageInfo
 
+type DownloadsInfo struct {
+	LastDay   int `json:"last_day"`
+	LastWeek  int `json:"last_week"`
+	LastMonth int `json:"last_month"`
+}
+
 type PackageInfo struct {
-	Name         string   `json:"name,omitempty"`
-	Downloads    int      `json:"downloads,string,omitempty"`
-	Version      string   `json:"version,omitempty"`
-	RequiresDist []string `json:"requires_dist,omitempty"`
+	Name         string        `json:"name,omitempty"`
+	Downloads    DownloadsInfo `json:"downloads,omitempty"`
+	Version      string        `json:"version,omitempty"`
+	RequiresDist []string      `json:"requires_dist,omitempty"`
 
 	// Specific to the dist we use to get modules from
 	Modules []string `json:"modules,omitempty"`
@@ -34,7 +40,7 @@ type PackageURL struct {
 }
 
 type PackageData struct {
-	Info     PackageInfo
+	Info     PackageInfo `json:"info"`
 	Releases map[string][]PackageURL
 }
 
