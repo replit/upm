@@ -88,7 +88,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 		if err != nil {
 			return packages, err
 		}
-		packages[info.Name] = info.Downloads
+		packages[info.Name] = info.Downloads.LastMonth
 	}
 
 	return packages, nil
