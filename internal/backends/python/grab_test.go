@@ -138,7 +138,7 @@ import flask
 	defer (func() {
 		err := os.Chdir(lastDir)
 		if err != nil {
-		t.Fatal("unable to chdir", err)
+			t.Fatal("unable to chdir", err)
 		}
 	})()
 

@@ -60,7 +60,7 @@ func doLock(bt testUtils.BackendT) {
 	}
 
 	// test absence of package dir
-	bt.Subtest(bt.Backend.Name + "/no-package-dir", func(bt testUtils.BackendT) {
+	bt.Subtest(bt.Backend.Name+"/no-package-dir", func(bt testUtils.BackendT) {
 		bt.AddTestFile(bt.Backend.Name+"/many-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
 
 		specDeps := bt.UpmListSpecFile()
