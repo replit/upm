@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type PackageCache = map[string]PackageInfo
 
@@ -60,5 +63,16 @@ func (e PypiError) Error() string {
 		"Failed to download: " + e.Info,
 		"Failed to install: " + e.Info,
 	}[e.Class]
-	return fmt.Sprintf("{\"type\": %v, \"message\": \"%v\"}", e.Class, message)
+	jsonError := map[string]interface{}{
+		"type":    e.Class,
+		"message": message,
+	}
+	if e.WrappedError != nil {
+		jsonError["wrapped"] = e.WrappedError.Error()
+	}
+	encodedError, err := json.Marshal(jsonError)
+	if err != nil {
+		return fmt.Sprintf("{\"error\": \"%v\"}", err)
+	}
+	return string(encodedError)
 }
