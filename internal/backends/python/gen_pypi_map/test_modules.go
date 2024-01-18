@@ -55,7 +55,7 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 			packageInfo, err := ProcessPackage(packageName, cache, cacheDir, distMods, force)
 			packageInfo.Name = packageName
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Failed to process package: %s\n", err.Error())
+				fmt.Fprintf(os.Stderr, "Failed to process package [%v]: %v\n", packageName, err)
 				packageInfo.Error = err.Error()
 			}
 			resultQueue <- packageInfo
