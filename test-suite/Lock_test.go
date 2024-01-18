@@ -30,6 +30,7 @@ func TestLock(t *testing.T) {
 }
 
 func doLock(bt testUtils.BackendT) {
+	// test absence of lock file
 	for _, tmpl := range standardTemplates {
 		template := bt.Backend.Name + "/" + tmpl + "/"
 
@@ -57,4 +58,29 @@ func doLock(bt testUtils.BackendT) {
 			}
 		})
 	}
+
+	// test absence of package dir
+	bt.Subtest(bt.Backend.Name + "/no-package-dir", func(bt testUtils.BackendT) {
+		bt.AddTestFile(bt.Backend.Name+"/many-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
+
+		specDeps := bt.UpmListSpecFile()
+
+		bt.UpmLock()
+
+		lockDeps := bt.UpmListLockFile()
+
+		for _, specDep := range specDeps {
+			found := false
+			for _, lockDep := range lockDeps {
+				if specDep.Name == lockDep.Name {
+					found = true
+					break
+				}
+			}
+
+			if !found {
+				bt.Fail("expected %s in lock file", specDep.Name)
+			}
+		}
+	})
 }

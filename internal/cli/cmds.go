@@ -216,7 +216,14 @@ func maybeLock(ctx context.Context, b api.LanguageBackend, forceLock bool) bool 
 		return false
 	}
 
-	if forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b) {
+	shouldLock := forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b)
+	if !shouldLock {
+		if packageDir := b.GetPackageDir(); packageDir != "" {
+			shouldLock = !util.Exists(packageDir)
+		}
+	}
+
+	if shouldLock {
 		b.Lock(ctx)
 		return true
 	}
