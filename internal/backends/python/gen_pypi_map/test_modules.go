@@ -23,7 +23,7 @@ func normalizePackageName(name string) string {
 	return name
 }
 
-func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
+func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, threshold int, force bool) {
 	fmt.Printf("Loading pypi stats from cache file\n")
 	bqCache, err := LoadDownloadStats(bigqueryFile)
 	if err != nil {
@@ -57,7 +57,8 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 
 	for packages.Next() {
 		packageName := packages.Package()
-		if _, ok := bqCache[normalizePackageName(packageName)]; !ok {
+		var count int
+		if count = bqCache[normalizePackageName(packageName)]; count < threshold {
 			continue
 		}
 
