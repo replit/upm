@@ -11,21 +11,9 @@ import (
 	"github.com/replit/upm/internal/api"
 )
 
-func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
-	fmt.Printf("Loading pypi stats from cache file\n")
-	bqCache, err := LoadDownloadStats(bigqueryFile)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to load data from big query file")
-		return
-	}
-	fmt.Printf("Loaded %v stats\n", len(bqCache))
+func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
 
 	cache := LoadAllPackageInfo(cacheDir, pkgsFile)
-
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to load cache file and directory")
-		return
-	}
 
 	discoveredPackages := 0
 	fmt.Printf("Using %d workers.\n", workers)
@@ -99,7 +87,7 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 
 	fmt.Printf("Found %v modules in %v packages in %.0f seconds. %v packages failed\n", modules, packageCount, time.Since(startTime).Seconds(), errors)
 
-	err = UpdateAllPackageInfo(cacheDir, pkgsFile)
+	err := UpdateAllPackageInfo(cacheDir, pkgsFile)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to update cache: %s\n", err.Error())
 	}
