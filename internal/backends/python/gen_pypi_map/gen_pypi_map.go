@@ -56,13 +56,31 @@ func cmd_test(args []string) {
 	testBQ := testCommandSet.String("bq", "download_stats.json", "The result of a BigQuery against the pypi downloads dataset.")
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
+	testThreshold := testCommandSet.Int("threshold", 10000, "Only process packages with at least this many downloads")
 	if err := testCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
 		return
 	}
 
 	var packages PackageIndex
-	if *testIndex != "" {
+	if testThreshold != nil {
+		fmt.Printf("Loading pypi stats from cache file\n")
+		bqCache, err := LoadDownloadStats(*testBQ)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to load data from big query file: %s\n", *testBQ)
+			return
+		}
+		fmt.Printf("Loaded %v stats\n", len(bqCache))
+		packageList := []string{}
+		for pkgName, count := range bqCache {
+			if count < *testThreshold {
+				continue
+			}
+			packageList = append(packageList, pkgName)
+		}
+		fmt.Printf("Preparing to process %v packages\n", len(packageList))
+		packages = FakePackageIndex(packageList...)
+	} else if *testIndex != "" {
 		file, err := os.Open(*testIndex)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to open file %s: %s\n", *testIndex, err.Error())
@@ -80,7 +98,7 @@ func cmd_test(args []string) {
 	} else {
 		packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 	}
-	TestModules(packages, *testBQ, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce)
+	TestModules(packages, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce)
 }
 
 func cmd_gen(args []string) {
