@@ -8,8 +8,12 @@ import (
 )
 
 func (bt *BackendT) UpmAdd(pkgs ...string) {
-	beforeLockDeps := bt.UpmListLockFile()
 	beforeSpecDeps := bt.UpmListSpecFile()
+
+	var beforeLockDeps []api.PkgInfo
+	if bt.Backend.QuirksIsReproducible() {
+		beforeLockDeps = bt.UpmListLockFile()
+	}
 
 	args := []string{
 		"--lang",
@@ -25,29 +29,35 @@ func (bt *BackendT) UpmAdd(pkgs ...string) {
 		bt.Fail("upm failed to add: %v", err)
 	}
 
-	afterLockDeps := bt.UpmListLockFile()
 	afterSpecDeps := bt.UpmListSpecFile()
+	var afterLockDeps []api.PkgInfo
 
-	if len(beforeLockDeps) >= len(afterLockDeps) {
-		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeLockDeps), len(afterLockDeps))
+	if bt.Backend.QuirksIsReproducible() {
+		afterLockDeps = bt.UpmListLockFile()
+		if len(beforeLockDeps) >= len(afterLockDeps) {
+			bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeLockDeps), len(afterLockDeps))
+		}
 	}
+
 	if len(beforeSpecDeps) >= len(afterSpecDeps) {
-		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeLockDeps), len(afterLockDeps))
+		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeSpecDeps), len(afterSpecDeps))
 	}
 
 	for _, pkg := range pkgs {
-		found := false
-		for _, dep := range afterLockDeps {
-			if dep.Name == pkg {
-				found = true
-				break
+		if bt.Backend.QuirksIsReproducible() {
+			found := false
+			for _, dep := range afterLockDeps {
+				if dep.Name == pkg {
+					found = true
+					break
+				}
+			}
+			if !found {
+				bt.Fail("expected %s in lock file after add", pkg)
 			}
 		}
-		if !found {
-			bt.Fail("expected %s in lock file after add", pkg)
-		}
 
-		found = false
+		found := false
 		for _, dep := range afterSpecDeps {
 			if dep.Name == pkg {
 				found = true
@@ -138,6 +148,17 @@ func (bt *BackendT) UpmInstall() {
 	}
 }
 
+func normalizePackageNames(bt *BackendT, pkgs []api.PkgInfo) []api.PkgInfo {
+	for idx, pkg := range pkgs {
+		out := (string)(bt.Backend.NormalizePackageName(api.PkgName(pkg.Name)))
+		if pkgs[idx].Name != out {
+			bt.t.Log("Inconsistently normalized package name in results: ", pkgs[idx].Name, "did not equal", out)
+		}
+		pkgs[idx].Name = out
+	}
+	return pkgs
+}
+
 func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 	out, err := bt.Exec(
 		"upm",
@@ -159,7 +180,7 @@ func (bt *BackendT) UpmListLockFile() []api.PkgInfo {
 		bt.Fail("failed to decode json: %v", err)
 	}
 
-	return results
+	return normalizePackageNames(bt, results)
 }
 
 func (bt *BackendT) UpmListSpecFile() []api.PkgInfo {
@@ -182,7 +203,7 @@ func (bt *BackendT) UpmListSpecFile() []api.PkgInfo {
 		bt.Fail("failed to decode json: %v", err)
 	}
 
-	return results
+	return normalizePackageNames(bt, results)
 }
 
 func (bt *BackendT) UpmLock() {
@@ -258,9 +279,11 @@ func (bt *BackendT) UpmRemove(pkgs ...string) {
 	}
 
 	for _, pkg := range pkgs {
-		for _, dep := range afterLockDeps {
-			if dep.Name == pkg {
-				bt.Fail("expected %s not in lock file after remove", pkg)
+		if bt.Backend.QuirksIsReproducible() {
+			for _, dep := range afterLockDeps {
+				if dep.Name == pkg {
+					bt.Fail("expected %s not in lock file after remove", pkg)
+				}
 			}
 		}
 

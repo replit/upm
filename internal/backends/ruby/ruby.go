@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/replit/upm/internal/api"
@@ -31,6 +32,11 @@ type rubygemsInfo struct {
 	Name             string   `json:"name"`
 	SourceCodeURI    string   `json:"source_code_uri"`
 	Version          string   `json:"version"`
+}
+
+func bundlerIsAvailable() bool {
+	_, err := exec.LookPath("bundle")
+	return err == nil
 }
 
 // getPath returns the appropriate --path for 'bundle install'. This
@@ -67,6 +73,7 @@ var RubyBackend = api.LanguageBackend{
 	Name:             "ruby-bundler",
 	Specfile:         "Gemfile",
 	Lockfile:         "Gemfile.lock",
+	IsAvailable:      bundlerIsAvailable,
 	FilenamePatterns: []string{"*.rb"},
 	Quirks:           api.QuirksAddRemoveAlsoLocks,
 	GetPackageDir: func() string {
@@ -86,18 +93,18 @@ var RubyBackend = api.LanguageBackend{
 
 		resp, err := api.HttpClient.Get(endpoint + queryParams)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieNetwork("RubyGems: %s", err)
 		}
 		defer resp.Body.Close()
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieProtocol("RubyGems: %s", err)
 		}
 
 		var outputStructs []rubygemsInfo
 		if err := json.Unmarshal(body, &outputStructs); err != nil {
-			util.Die("RubyGems response: %s", err)
+			util.DieProtocol("RubyGems response: %s", err)
 		}
 
 		results := []api.PkgInfo{}
@@ -129,7 +136,7 @@ var RubyBackend = api.LanguageBackend{
 
 		resp, err := api.HttpClient.Get(endpoint + path)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieNetwork("RubyGems: %s", err)
 		}
 		defer resp.Body.Close()
 
@@ -139,17 +146,17 @@ var RubyBackend = api.LanguageBackend{
 		case 404:
 			return api.PkgInfo{}
 		default:
-			util.Die("RubyGems: HTTP status %d", resp.StatusCode)
+			util.DieNetwork("RubyGems: HTTP status %d", resp.StatusCode)
 		}
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			util.Die("RubyGems: %s", err)
+			util.DieProtocol("RubyGems: %s", err)
 		}
 
 		var s rubygemsInfo
 		if err := json.Unmarshal(body, &s); err != nil {
-			util.Die("RubyGems response: %s", err)
+			util.DieProtocol("RubyGems response: %s", err)
 		}
 		deps := []string{}
 		for _, group := range s.Dependencies {
@@ -218,12 +225,12 @@ var RubyBackend = api.LanguageBackend{
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle install")
 		defer span.Finish()
-		// We need --clean to handle uninstalls.
-		args := []string{"bundle", "install", "--clean"}
+		// We need clean=true to handle uninstalls.
+		util.RunCmd([]string{"bundle", "config", "set", "--local", "clean", "true"})
 		if path := getPath(); path != "" {
-			args = append(args, "--path", path)
+			util.RunCmd([]string{"bundle", "config", "set", "--local", "path", path})
 		}
-		util.RunCmd(args)
+		util.RunCmd([]string{"bundle", "install"})
 	},
 	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
@@ -231,7 +238,7 @@ var RubyBackend = api.LanguageBackend{
 		})
 		results := map[api.PkgName]api.PkgSpec{}
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results
 	},
@@ -241,23 +248,23 @@ var RubyBackend = api.LanguageBackend{
 		})
 		results := map[api.PkgName]api.PkgVersion{}
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results
 	},
 	GuessRegexps: util.Regexps([]string{
 		`require\s*['"]([^'"]+)['"]`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "guess-gems.rb")
 		defer span.Finish()
 		guessedGems := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/guess-gems.rb"),
 		})
-		results := map[api.PkgName]bool{}
+		results := map[string][]api.PkgName{}
 		if err := json.Unmarshal(guessedGems, &results); err != nil {
-			util.Die("ruby: %s", err)
+			util.DieProtocol("ruby: %s", err)
 		}
 		return results, true
 	},

@@ -17,17 +17,8 @@ global_job_config:
       - source ./.semaphore/install_nix.sh
 
 blocks:
-  - name: build
-    dependencies: [ ]
-    task:
-      jobs:
-        - name: nix
-          commands:
-            - nix build
-            - ./result/bin/upm --version
-
   - name: test
-    dependencies: [ build ]
+    dependencies: [ ]
     task:
       jobs:
         - name: test-suite

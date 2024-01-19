@@ -76,35 +76,35 @@ func ReplitNixAddToNixEditorOps(replitNixAdd ReplitNixAdd) []NixEditorOp {
 func RunNixEditorOps(ops []NixEditorOp) {
 	repl_home := os.Getenv("REPL_HOME")
 	if repl_home == "" {
-		util.Die("REPL_HOME was not set")
+		util.DieInitializationError("REPL_HOME was not set")
 	}
 	path := path.Join(repl_home, "replit.nix")
 
 	cmd := exec.Command("nix-editor", "--path", path)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		util.Die("couldn't make stdin pipe to nix-editor")
+		util.DieSubprocess("couldn't make stdin pipe to nix-editor")
 	}
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		util.Die("couldn't make stdout pipe to nix-editor")
+		util.DieSubprocess("couldn't make stdout pipe to nix-editor")
 	}
 
 	err = cmd.Start()
 	if err != nil {
-		util.Die("nix-editor error: %s", err)
+		util.DieSubprocess("nix-editor error: %s", err)
 	}
 
 	encoder := json.NewEncoder(stdin)
 	for _, op := range ops {
 		err := encoder.Encode(op)
 		if err != nil {
-			util.Die("unable to turn op into json: %v error: %s", op, err)
+			util.DieProtocol("unable to turn op into json: %v error: %s", op, err)
 		}
 	}
 	err = stdin.Close()
 	if err != nil {
-		util.Die("unable to write to nix-editor")
+		util.DieSubprocess("unable to write to nix-editor")
 	}
 
 	decoder := json.NewDecoder(stdout)
@@ -118,16 +118,16 @@ func RunNixEditorOps(ops []NixEditorOp) {
 			if errors.Is(err, io.EOF) {
 				break
 			}
-			util.Die("unexpected nix-editor output: %s", err)
+			util.DieSubprocess("unexpected nix-editor output: %s", err)
 		}
 		if nixEditorStatus.Status != "success" {
-			util.Die("nix-editor error: %s", nixEditorStatus.Data)
+			util.DieSubprocess("nix-editor error: %s", nixEditorStatus.Data)
 		}
 	}
 	stdout.Close()
 
 	err = cmd.Wait()
 	if err != nil {
-		util.Die("nix-editor error: %s", err)
+		util.DieSubprocess("nix-editor error: %s", err)
 	}
 }

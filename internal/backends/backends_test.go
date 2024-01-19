@@ -27,7 +27,7 @@ func TestGetBackends(t *testing.T) {
 	for file, backend := range fileToBackend {
 		tmpfile := filepath.Join(dir, file)
 
-		if err := os.WriteFile(tmpfile, []byte{}, 0666); err != nil {
+		if err := os.WriteFile(tmpfile, []byte{}, 0o666); err != nil {
 			t.Errorf("failed to create empty file: %s err: %v", tmpfile, err)
 		}
 

@@ -27,7 +27,8 @@ import (
 // If more than one backend might match the same project, then one
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
-	python.Python3Backend,
+	python.PythonPoetryBackend,
+	python.PythonPipBackend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
 	nodejs.NodejsPNPMBackend,
@@ -89,7 +90,7 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 		}
 		switch len(filteredBackends) {
 		case 0:
-			util.Die("no such language: %s", language)
+			util.DieConsistency("no such language: %s", language)
 		case 1:
 			return filteredBackends[0]
 		default:
@@ -117,18 +118,23 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 		}
 	}
 	if language == "" {
-		util.Die("could not autodetect a language for your project")
+		util.DieInitializationError("could not autodetect a language for your project")
 	}
 	return backends[0]
+}
+
+type BackendInfo struct {
+	Name      string
+	Available bool
 }
 
 // GetBackendNames returns a slice of the canonical names (e.g.
 // python-python3-poetry, not just python3) for all the backends
 // listed in languageBackends.
-func GetBackendNames() []string {
-	backendNames := []string{}
+func GetBackendNames() []BackendInfo {
+	var backendNames []BackendInfo
 	for _, b := range languageBackends {
-		backendNames = append(backendNames, b.Name)
+		backendNames = append(backendNames, BackendInfo{Name: b.Name, Available: b.IsAvailable()})
 	}
 	return backendNames
 }

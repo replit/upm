@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/url"
 	"os"
+	"os/exec"
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
@@ -81,24 +82,29 @@ func (c *crateInfoResult) toPkgInfo() api.PkgInfo {
 	}
 }
 
+func cargoIsAvailable() bool {
+	_, err := exec.LookPath("cargo")
+	return err == nil
+}
+
 func search(query string) []api.PkgInfo {
 	endpoint := "https://crates.io/api/v1/crates"
 	path := "?q=" + url.QueryEscape(query)
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieNetwork("crates.io: %s", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	var crateResults crateSearchResults
 	if err := json.Unmarshal(body, &crateResults); err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	var pkgs []api.PkgInfo
@@ -118,7 +124,7 @@ func info(name api.PkgName) api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieNetwork("crates.io: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -128,17 +134,17 @@ func info(name api.PkgName) api.PkgInfo {
 	case 404:
 		return api.PkgInfo{}
 	default:
-		util.Die("crates.io: HTTP status %d", resp.StatusCode)
+		util.DieNetwork("crates.io: HTTP status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("crates.io: could not read response: %s", err)
+		util.DieProtocol("crates.io: could not read response: %s", err)
 	}
 
 	var crateInfo crateInfoResult
 	if err := json.Unmarshal(body, &crateInfo); err != nil {
-		util.Die("crates.io: %s", err)
+		util.DieProtocol("crates.io: %s", err)
 	}
 
 	return crateInfo.toPkgInfo()
@@ -147,7 +153,7 @@ func info(name api.PkgName) api.PkgInfo {
 func listSpecfile() map[api.PkgName]api.PkgSpec {
 	contents, err := os.ReadFile("Cargo.toml")
 	if err != nil {
-		util.Die("Cargo.toml: %s", err)
+		util.DieIO("Cargo.toml: %s", err)
 	}
 
 	return listSpecfileWithContents(contents)
@@ -157,7 +163,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 	var specfile cargoToml
 	err := toml.Unmarshal(contents, &specfile)
 	if err != nil {
-		util.Die("Cargo.toml: %s", err)
+		util.DieProtocol("Cargo.toml: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgSpec)
@@ -181,11 +187,11 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 			}
 
 			if !found {
-				util.Die("Cargo.toml: could not determine spec for dependecy %q", name)
+				util.DieConsistency("Cargo.toml: could not determine spec for dependecy %q", name)
 			}
 
 		default:
-			util.Die("Cargo.toml: unexpected dependency format %q", name)
+			util.DieProtocol("Cargo.toml: unexpected dependency format %q", name)
 		}
 
 		packages[api.PkgName(name)] = spec
@@ -198,7 +204,7 @@ func listSpecfileWithContents(contents []byte) map[api.PkgName]api.PkgSpec {
 func listLockfile() map[api.PkgName]api.PkgVersion {
 	contents, err := os.ReadFile("Cargo.lock")
 	if err != nil {
-		util.Die("Cargo.lock: %s", err)
+		util.DieIO("Cargo.lock: %s", err)
 	}
 
 	return listLockfileWithContents(contents)
@@ -208,7 +214,7 @@ func listLockfileWithContents(contents []byte) map[api.PkgName]api.PkgVersion {
 	var lockfile cargoLock
 	err := toml.Unmarshal(contents, &lockfile)
 	if err != nil {
-		util.Die("Cargo.lock: %s", err)
+		util.DieIO("Cargo.lock: %s", err)
 	}
 
 	packages := make(map[api.PkgName]api.PkgVersion)
@@ -224,6 +230,7 @@ var RustBackend = api.LanguageBackend{
 	Name:             "rust",
 	Specfile:         "Cargo.toml",
 	Lockfile:         "Cargo.lock",
+	IsAvailable:      cargoIsAvailable,
 	FilenamePatterns: []string{"*.rs"},
 	GetPackageDir: func() string {
 		return "target"
@@ -265,7 +272,7 @@ var RustBackend = api.LanguageBackend{
 	},
 	ListSpecfile: listSpecfile,
 	ListLockfile: listLockfile,
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		util.NotImplemented()
 		return nil, false
 	},

@@ -48,12 +48,12 @@ func read() {
 		if os.IsNotExist(err) {
 			return
 		}
-		util.Die("%s: %s", filename, err)
+		util.DieIO("%s: %s", filename, err)
 	}
 
 	if len(strings.TrimSpace(string(bytes))) > 0 {
 		if err = json.Unmarshal(bytes, st); err != nil {
-			util.Die("%s: %s", filename, err)
+			util.DieProtocol("%s: %s", filename, err)
 		}
 	}
 
@@ -103,12 +103,12 @@ func Write(ctx context.Context) {
 
 	filename, err := filepath.Abs(filename)
 	if err != nil {
-		util.Die("%s: %s", filename, err)
+		util.DieIO("%s: %s", filename, err)
 	}
 
 	directory, _ := filepath.Split(filename)
-	if err := os.MkdirAll(directory, 0777); err != nil {
-		util.Die("%s: %s", directory, err)
+	if err := os.MkdirAll(directory, 0o777); err != nil {
+		util.DieIO("%s: %s", directory, err)
 	}
 
 	content, err := json.Marshal(st)
@@ -148,7 +148,7 @@ func HasLockfileChanged(b api.LanguageBackend) bool {
 // backend does specify b.GuessRegexps, then the return value of this
 // function is cached.) If forceGuess is true, then write to but do
 // not read from the cache.
-func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[api.PkgName]bool {
+func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool) map[string][]api.PkgName {
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithCache")
 	defer span.Finish()
 	readMaybe()
@@ -163,7 +163,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		cache.GuessedImportsHash = new
 	}
 	if forceGuess || new != old {
-		var pkgs map[api.PkgName]bool
+		var pkgs map[string][]api.PkgName
 		success := true
 		if new != "" {
 			pkgs, success = b.Guess(ctx)
@@ -174,7 +174,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 			// case we shouldn't have any packages
 			// returned by the bare imports search. Might
 			// as well just skip the search, right?
-			pkgs = map[api.PkgName]bool{}
+			pkgs = map[string][]api.PkgName{}
 		}
 		if !success {
 			// If bare imports search is not successful,
@@ -200,12 +200,31 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 		}
 		return pkgs
 	} else {
-		pkgs := map[api.PkgName]bool{}
+		pkgs := map[string][]api.PkgName{}
 		for _, name := range cache.GuessedImports {
-			pkgs[api.PkgName(name)] = true
+			pkgs[name] = []api.PkgName{api.PkgName(name)}
 		}
 		return pkgs
 	}
+}
+
+func ClearGuesses(ctx context.Context, b api.LanguageBackend) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "ClearGuesses")
+	defer span.Finish()
+
+	cache := getLanguageCache(b.Name, b.Alias)
+
+	cache.GuessedImports = nil
+	cache.GuessedImportsHash = ""
+}
+
+func Read(ctx context.Context, b api.LanguageBackend) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "store.Read")
+	defer span.Finish()
+	readMaybe()
+	initLanguage(b.Name, b.Alias)
 }
 
 // UpdateFileHashes caches the current states of the specfile and
@@ -214,8 +233,6 @@ func UpdateFileHashes(ctx context.Context, b api.LanguageBackend) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "store.UpdateFileHashes")
 	defer span.Finish()
-	readMaybe()
-	initLanguage(b.Name, b.Alias)
 	cache := getLanguageCache(b.Name, b.Alias)
 	cache.SpecfileHash = hashFile(b.Specfile)
 	cache.LockfileHash = hashFile(b.Lockfile)

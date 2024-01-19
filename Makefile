@@ -12,7 +12,7 @@ install: cmd/upm/upm
 	go install ./cmd/upm
 
 internal/backends/python/pypi_map.sqlite: internal/backends/python/download_stats.json
-	cd internal/backends/python; go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.sqlite -cache cache -cmd gen
+	cd internal/backends/python; go run ./gen_pypi_map gen
 
 generated: $(GENERATED)
 
@@ -91,10 +91,41 @@ endif
 ifdef UPM_CI
 test-suite:
 	go get gotest.tools/gotestsum
+	# TODO: Move the following setup out into before/after or a separate
+	# environment-specific runner
+	venv="$$(mktemp -d)"; \
+	python -m venv "$$venv"; \
+	source "$$venv/bin/activate"; \
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
 else
 test-suite:
 	nix develop -c nix shell -c go test -run $(GO_TEST_RUN_OPTS) ./test-suite
+
+# I don't have a great name for these. The cases are as follows:
+#   make test-python3            # This runs inside nix develop and gates test suite
+#                                # execution on any backend starting with python3
+#   make unwrapped-test-python3  # This sets the requisite envvars to run the filtered
+#                                # test suite execution, but letting you run
+#                                # _outside of nix_, should you need a virtualenv or
+#                                # something special.
+#   make wrapped-test-python3    # This is the underlying command that powers the above
+#                                # two modes. It isn't very useful when run directly,
+#                                # since it doesn't know where upm or the PYPI_MAP_DB are.
+test-%:
+	nix develop -c nix shell -c make wrapped-$@
+
+unwrapped-test-%:
+	label="$@"; \
+	label="$${label#unwrapped-}"; \
+	PATH=$$PWD/cmd/upm/:"$$PATH" \
+	PYPI_MAP_DB=$$PWD/internal/backends/python/pypi_map.sqlite \
+			 make wrapped-$$label
+
+wrapped-test-%:
+	suite_prefix="$$(echo "$@" | cut -d- -f 3-)"; \
+	echo "Running $$suite_prefix"; \
+	cd test-suite; \
+	UPM_SUITE_PREFIX="$$suite_prefix" go test
 endif
 
 fmt:
