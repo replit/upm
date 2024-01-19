@@ -71,6 +71,13 @@ func cmd_test(args []string) {
 			return
 		}
 		fmt.Printf("Loaded %v stats\n", len(bqCache))
+		normalizedBqCache := make(map[string]int)
+
+		for name, count := range bqCache {
+			normalizedBqCache[normalizePackageName(name)] = count
+		}
+		bqCache = normalizedBqCache
+
 		packageList := []string{}
 		for pkgName, count := range bqCache {
 			if count < *testThreshold {
