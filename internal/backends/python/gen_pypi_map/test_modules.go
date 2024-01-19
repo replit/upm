@@ -5,11 +5,23 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"strings"
 	"sync"
 	"time"
 
 	"github.com/replit/upm/internal/api"
 )
+
+var normalizationPattern = regexp.MustCompile(`[-_.]+`)
+
+// normalizePackageName implements NormalizePackageName for the Python
+// backends.
+// See https://packaging.python.org/en/latest/specifications/name-normalization/
+func normalizePackageName(name string) string {
+	name = strings.ToLower(name)
+	name = normalizationPattern.ReplaceAllString(name, "-")
+	return name
+}
 
 func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
 	fmt.Printf("Loading pypi stats from cache file\n")
@@ -19,6 +31,12 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 		return
 	}
 	fmt.Printf("Loaded %v stats\n", len(bqCache))
+	normalizedBqCache := make(map[string]int)
+
+	for name, count := range bqCache {
+		normalizedBqCache[normalizePackageName(name)] = count
+	}
+	bqCache = normalizedBqCache
 
 	cache := LoadAllPackageInfo(cacheDir, pkgsFile)
 
@@ -38,8 +56,12 @@ func TestModules(packages PackageIndex, bigqueryFile string, cacheDir string, pk
 	var wg sync.WaitGroup
 
 	for packages.Next() {
-		discoveredPackages++
 		packageName := packages.Package()
+		if _, ok := bqCache[normalizePackageName(packageName)]; !ok {
+			continue
+		}
+
+		discoveredPackages++
 
 		// Register every goroutine with the wait group before we start it
 		wg.Add(1)
