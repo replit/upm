@@ -16,7 +16,6 @@
     pkgs.nodePackages.pnpm
     pkgs.python310Full
     pkgs.python310Packages.pip
-    pkgs.pip
     pkgs.poetry
     pkgs.R
     pkgs.ruby
