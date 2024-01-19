@@ -62,7 +62,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 	ctx := context.Background()
 	client, err := bigquery.NewClient(ctx, projectID)
 	if err != nil {
-		return map[string]int{}, fmt.Errorf("Failed to connect to bigquery: %v", err)
+		return map[string]int{}, fmt.Errorf("Failed to connect to bigquery [%s]: %v", projectID, err)
 	}
 
 	q := client.Query(
@@ -88,7 +88,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 		if err != nil {
 			return packages, err
 		}
-		packages[info.Name] = info.Downloads
+		packages[info.Name] = info.Downloads.LastMonth
 	}
 
 	return packages, nil
