@@ -1,14 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type PackageCache = map[string]PackageInfo
 
+type DownloadsInfo struct {
+	LastDay   int `json:"last_day"`
+	LastWeek  int `json:"last_week"`
+	LastMonth int `json:"last_month"`
+}
+
 type PackageInfo struct {
-	Name         string   `json:"name,omitempty"`
-	Downloads    int      `json:"downloads,string,omitempty"`
-	Version      string   `json:"version,omitempty"`
-	RequiresDist []string `json:"requires_dist,omitempty"`
+	Name         string        `json:"name,omitempty"`
+	Downloads    DownloadsInfo `json:"downloads,string,omitempty"`
+	Version      string        `json:"version,omitempty"`
+	RequiresDist []string      `json:"requires_dist,omitempty"`
 
 	// Specific to the dist we use to get modules from
 	Modules []string `json:"modules,omitempty"`
@@ -31,7 +40,7 @@ type PackageURL struct {
 }
 
 type PackageData struct {
-	Info     PackageInfo
+	Info     PackageInfo `json:"info"`
 	Releases map[string][]PackageURL
 }
 
@@ -60,5 +69,16 @@ func (e PypiError) Error() string {
 		"Failed to download: " + e.Info,
 		"Failed to install: " + e.Info,
 	}[e.Class]
-	return fmt.Sprintf("{\"type\": %v, \"message\": \"%v\"}", e.Class, message)
+	jsonError := map[string]interface{}{
+		"type":    e.Class,
+		"message": message,
+	}
+	if e.WrappedError != nil {
+		jsonError["wrapped"] = e.WrappedError.Error()
+	}
+	encodedError, err := json.Marshal(jsonError)
+	if err != nil {
+		return fmt.Sprintf("{\"error\": \"%v\"}", err)
+	}
+	return string(encodedError)
 }
