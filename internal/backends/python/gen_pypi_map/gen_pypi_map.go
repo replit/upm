@@ -56,6 +56,7 @@ func cmd_test(args []string) {
 	testBQ := testCommandSet.String("bq", "download_stats.json", "The result of a BigQuery against the pypi downloads dataset.")
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
+	testThreshold := testCommandSet.Int("threshold", 5000, "Only process packages with at least this many downloads")
 	if err := testCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
 		return
@@ -80,7 +81,7 @@ func cmd_test(args []string) {
 	} else {
 		packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 	}
-	TestModules(packages, *testBQ, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce)
+	TestModules(packages, *testBQ, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testThreshold, *testForce)
 }
 
 func cmd_gen(args []string) {
