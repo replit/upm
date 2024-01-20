@@ -102,6 +102,44 @@ func normalizeSpec(spec interface{}) string {
 	return ""
 }
 
+func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
+	pkgs := make(map[api.PkgName]api.PkgCoordinates)
+	versionComponent := regexp.MustCompile(pep440VersionComponent)
+	for _, arg := range args {
+		found := matchPackageAndSpec.FindSubmatch([]byte(arg))
+		var rawName string
+		var name api.PkgName
+		var spec api.PkgSpec
+		if len(found) > 0 {
+			rawName = string(found[1])
+			name = api.PkgName(rawName)
+			spec = api.PkgSpec(string(found[2]))
+		} else {
+			split := strings.SplitN(arg, " ", 2)
+			rawName = split[0]
+			name = api.PkgName(rawName)
+			if len(split) > 1 {
+				specStr := strings.TrimSpace(split[1])
+
+				if specStr != "" {
+					if offset := versionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
+						spec = api.PkgSpec("==" + specStr)
+					} else {
+						spec = api.PkgSpec(specStr)
+					}
+				} else {
+					spec = api.PkgSpec(specStr)
+				}
+			}
+		}
+		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
+			Name: rawName,
+			Spec: spec,
+		}
+	}
+	return pkgs
+}
+
 // normalizePackageName implements NormalizePackageName for the Python
 // backends.
 // See https://packaging.python.org/en/latest/specifications/name-normalization/
@@ -228,6 +266,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
+		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
 			// Check if we're already inside an activated
@@ -353,6 +392,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 		Alias:                "python-python3-pip",
 		FilenamePatterns:     []string{"*.py"},
 		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
+		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
 			// Check if we're already inside an activated
@@ -392,7 +432,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
 				}
 
-				cmd = append(cmd, name+spec)
+				cmd = append(cmd, name+" "+spec)
 			}
 			// Run install
 			util.RunCmd(cmd)
@@ -408,9 +448,9 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			// compare the package metadata name to the normalized
 			// pkgs that we are trying to install, to see which we
 			// want to track in `requirements.txt`.
-			normalizedPkgs := make(map[api.PkgName]bool)
+			normalizedPkgs := make(map[api.PkgName]api.PkgName)
 			for name := range pkgs {
-				normalizedPkgs[normalizePackageName(name)] = true
+				normalizedPkgs[normalizePackageName(name)] = name
 			}
 
 			var toAppend []string
@@ -419,9 +459,13 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
 				if len(matches) > 0 {
 					name = normalizePackageName(api.PkgName(string(matches[1])))
-				}
-				if normalizedPkgs[name] {
-					toAppend = append(toAppend, canonicalSpec)
+					if rawName, ok := normalizedPkgs[name]; ok {
+						// We've meticulously maintained the pkgspec from the CLI args, if specified,
+						// so we don't clobber it with pip freeze's output of "==="
+						name := string(matches[1])
+						userArgSpec := string(pkgs[rawName])
+						toAppend = append(toAppend, name+userArgSpec)
+					}
 				}
 			}
 
