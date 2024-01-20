@@ -104,6 +104,7 @@ func normalizeSpec(spec interface{}) string {
 
 func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 	pkgs := make(map[api.PkgName]api.PkgCoordinates)
+	versionComponent := regexp.MustCompile(pep440VersionComponent)
 	for _, arg := range args {
 		found := matchPackageAndSpec.FindSubmatch([]byte(arg))
 		var rawName string
@@ -118,7 +119,17 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 			rawName = split[0]
 			name = api.PkgName(rawName)
 			if len(split) > 1 {
-				spec = api.PkgSpec(split[1])
+				specStr := strings.TrimSpace(split[1])
+
+				if specStr != "" {
+					if offset := versionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
+						spec = api.PkgSpec("==" + specStr)
+					} else {
+						spec = api.PkgSpec(specStr)
+					}
+				} else {
+					spec = api.PkgSpec(specStr)
+				}
 			}
 		}
 		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
@@ -421,7 +432,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
 				}
 
-				cmd = append(cmd, name+spec)
+				cmd = append(cmd, name+" "+spec)
 			}
 			// Run install
 			util.RunCmd(cmd)
