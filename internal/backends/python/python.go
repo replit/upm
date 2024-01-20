@@ -447,9 +447,9 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			// compare the package metadata name to the normalized
 			// pkgs that we are trying to install, to see which we
 			// want to track in `requirements.txt`.
-			normalizedPkgs := make(map[api.PkgName]bool)
+			normalizedPkgs := make(map[api.PkgName]api.PkgName)
 			for name := range pkgs {
-				normalizedPkgs[normalizePackageName(name)] = true
+				normalizedPkgs[normalizePackageName(name)] = name
 			}
 
 			var toAppend []string
@@ -458,9 +458,13 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
 				if len(matches) > 0 {
 					name = normalizePackageName(api.PkgName(string(matches[1])))
-				}
-				if normalizedPkgs[name] {
-					toAppend = append(toAppend, canonicalSpec)
+					if rawName, ok := normalizedPkgs[name]; ok {
+						// We've meticulously maintained the pkgspec from the CLI args, if specified,
+						// so we don't clobber it with pip freeze's output of "==="
+						name := string(matches[1])
+						userArgSpec := string(pkgs[rawName])
+						toAppend = append(toAppend, name+userArgSpec)
+					}
 				}
 			}
 
