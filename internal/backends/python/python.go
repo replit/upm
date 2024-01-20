@@ -102,6 +102,33 @@ func normalizeSpec(spec interface{}) string {
 	return ""
 }
 
+func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
+	pkgs := make(map[api.PkgName]api.PkgCoordinates)
+	for _, arg := range args {
+		found := matchPackageAndSpec.FindSubmatch([]byte(arg))
+		var rawName string
+		var name api.PkgName
+		var spec api.PkgSpec
+		if len(found) > 0 {
+			rawName = string(found[1])
+			name = api.PkgName(rawName)
+			spec = api.PkgSpec(string(found[2]))
+		} else {
+			split := strings.SplitN(arg, " ", 2)
+			rawName = split[0]
+			name = api.PkgName(rawName)
+			if len(split) > 1 {
+				spec = api.PkgSpec(split[1])
+			}
+		}
+		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
+			Name: rawName,
+			Spec: spec,
+		}
+	}
+	return pkgs
+}
+
 // normalizePackageName implements NormalizePackageName for the Python
 // backends.
 // See https://packaging.python.org/en/latest/specifications/name-normalization/
@@ -228,6 +255,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
+		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
 			// Check if we're already inside an activated
@@ -353,6 +381,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 		Alias:                "python-python3-pip",
 		FilenamePatterns:     []string{"*.py"},
 		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
+		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
 			// Check if we're already inside an activated
