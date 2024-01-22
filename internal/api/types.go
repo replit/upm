@@ -19,6 +19,11 @@ func (n PkgName) HasPrefix(other PkgName) bool {
 	return strings.HasPrefix(string(n), string(other))
 }
 
+type PkgCoordinates struct {
+	Name string
+	Spec PkgSpec
+}
+
 // PkgSpec represents a package version constraint, e.g. "^1.1" or ">=
 // 1.1, <2.0" for Python.
 type PkgSpec string
@@ -194,6 +199,11 @@ type LanguageBackend struct {
 	//
 	// This field is optional, and defaults to QuirksNone.
 	Quirks Quirks
+
+	// Function that normalizes packages as they come in as CLI args
+	//
+	// This function is optional, defaulting to split(" ", 2)
+	NormalizePackageArgs func(args []string) map[PkgName]PkgCoordinates
 
 	// Function that normalizes a package name. This is used to
 	// prevent duplicate packages getting added to the specfile.
@@ -377,6 +387,26 @@ func (b *LanguageBackend) Setup() {
 
 	if len(reasons) > 0 {
 		util.Panicf("language backend %s is incomplete or invalid: %s", b.Name, reasons)
+	}
+
+	if b.NormalizePackageArgs == nil {
+		b.NormalizePackageArgs = func(args []string) map[PkgName]PkgCoordinates {
+			normPkgs := map[PkgName]PkgCoordinates{}
+			for _, arg := range args {
+				fields := strings.SplitN(arg, " ", 2)
+				name := fields[0]
+				var spec PkgSpec
+				if len(fields) >= 2 {
+					spec = PkgSpec(fields[1])
+				}
+
+				normPkgs[b.NormalizePackageName(PkgName(name))] = PkgCoordinates{
+					Name: name,
+					Spec: spec,
+				}
+			}
+			return normPkgs
+		}
 	}
 
 	if b.NormalizePackageName == nil {
