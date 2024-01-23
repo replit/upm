@@ -22,7 +22,7 @@ func TestAdd(t *testing.T) {
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 
 		case "python3-poetry", "python3-pip":
-			pkgs = []string{"replit-ai", "flask", "pyyaml"}
+			pkgs = []string{"replit-ai", "flask >=2", "pyyaml", "discord-py 2.3.2"}
 
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {

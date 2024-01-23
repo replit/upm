@@ -43,11 +43,11 @@ func (bt *BackendT) UpmAdd(pkgs ...string) {
 		bt.Fail("expected more deps in lock file after add (before %d, after %d)", len(beforeSpecDeps), len(afterSpecDeps))
 	}
 
-	for _, pkg := range pkgs {
+	for pkg := range bt.Backend.NormalizePackageArgs(pkgs) {
 		if bt.Backend.QuirksIsReproducible() {
 			found := false
 			for _, dep := range afterLockDeps {
-				if dep.Name == pkg {
+				if bt.Backend.NormalizePackageName(api.PkgName(dep.Name)) == pkg {
 					found = true
 					break
 				}
@@ -59,7 +59,7 @@ func (bt *BackendT) UpmAdd(pkgs ...string) {
 
 		found := false
 		for _, dep := range afterSpecDeps {
-			if dep.Name == pkg {
+			if bt.Backend.NormalizePackageName(api.PkgName(dep.Name)) == pkg {
 				found = true
 				break
 			}
