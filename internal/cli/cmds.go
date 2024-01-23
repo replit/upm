@@ -253,33 +253,6 @@ func maybeInstall(ctx context.Context, b api.LanguageBackend, forceInstall bool)
 	}
 }
 
-// pkgNameAndSpec is a tuple of a PkgName and a PkgSpec. It's used to
-// put both of them as a value in the same map entry.
-type pkgNameAndSpec struct {
-	name api.PkgName
-	spec api.PkgSpec
-}
-
-// Map from normalized package names to the corresponding
-// original package names and specs.
-func normalizePackageArgs(b api.LanguageBackend, args []string) map[api.PkgName]pkgNameAndSpec {
-	normPkgs := map[api.PkgName]pkgNameAndSpec{}
-	for _, arg := range args {
-		fields := strings.SplitN(arg, " ", 2)
-		name := api.PkgName(fields[0])
-		var spec api.PkgSpec
-		if len(fields) >= 2 {
-			spec = api.PkgSpec(fields[1])
-		}
-
-		normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
-			name: name,
-			spec: spec,
-		}
-	}
-	return normPkgs
-}
-
 // runAdd implements 'upm add'.
 func runAdd(
 	language string, args []string, upgrade bool,
@@ -289,7 +262,7 @@ func runAdd(
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
 
-	normPkgs := normalizePackageArgs(b, args)
+	normPkgs := b.NormalizePackageArgs(args)
 
 	if guess {
 		guessed := store.GuessWithCache(ctx, b, forceGuess)
@@ -325,9 +298,9 @@ func runAdd(
 				}
 			}
 			if !found {
-				normPkgs[b.NormalizePackageName(guesses[0])] = pkgNameAndSpec{
-					name: guesses[0],
-					spec: "",
+				normPkgs[b.NormalizePackageName(guesses[0])] = api.PkgCoordinates{
+					Name: string(guesses[0]),
+					Spec: "",
 				}
 			}
 		}
@@ -348,7 +321,7 @@ func runAdd(
 	if len(normPkgs) >= 1 {
 		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, nameAndSpec := range normPkgs {
-			pkgs[nameAndSpec.name] = nameAndSpec.spec
+			pkgs[api.PkgName(nameAndSpec.Name)] = nameAndSpec.Spec
 		}
 
 		b.Add(ctx, pkgs, name)
@@ -651,7 +624,7 @@ func runInstallReplitNixSystemDependencies(language string, args []string) {
 	span, ctx := trace.StartSpanFromExistingContext("runInstallReplitNixSystemDependencies")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
-	normPkgs := normalizePackageArgs(b, args)
+	normPkgs := b.NormalizePackageArgs(args)
 	pkgs := []api.PkgName{}
 	for p := range normPkgs {
 		pkgs = append(pkgs, p)
