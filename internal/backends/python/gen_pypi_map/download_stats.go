@@ -80,7 +80,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 
 	packages := map[string]int{}
 	for {
-		var info PackageInfo
+		var info BqPackageInfo
 		err := it.Next(&info)
 		if err == iterator.Done {
 			break
@@ -88,7 +88,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 		if err != nil {
 			return packages, err
 		}
-		packages[info.Name] = info.Downloads.LastMonth
+		packages[info.Name] = info.Downloads
 	}
 
 	return packages, nil

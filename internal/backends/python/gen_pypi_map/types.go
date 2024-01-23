@@ -7,6 +7,15 @@ import (
 
 type PackageCache = map[string]PackageInfo
 
+// PackageInfo is very similar between BigQuery and PyPi,
+// save for "downloads" which is an int in one, and an object in another.
+type BqPackageInfo struct {
+	Name         string   `json:"name,omitempty"`
+	Downloads    int      `json:"downloads,string,omitempty"`
+	Version      string   `json:"version,omitempty"`
+	RequiresDist []string `json:"requires_dist,omitempty"`
+}
+
 type DownloadsInfo struct {
 	LastDay   int `json:"last_day"`
 	LastWeek  int `json:"last_week"`

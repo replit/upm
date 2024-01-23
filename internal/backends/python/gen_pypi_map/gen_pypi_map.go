@@ -163,19 +163,18 @@ func main() {
 	}
 	if cmd, ok := validCmds[command]; ok {
 		cmd(os.Args[2:])
-	} else if command != "" {
-		choices := make([]string, 0, len(validCmds))
-		for cmd := range validCmds {
-			choices = append(choices, cmd)
-		}
-		sort.Strings(choices)
-		fmt.Fprintf(os.Stderr, "Error: Invalid command '%s'.\nValid commands are %s.\n", command, strings.Join(choices, ", "))
 	} else {
+		var msg string
+		if command != "" {
+			msg = fmt.Sprintf("Invalid command '%s'.", command)
+		} else {
+			msg = "No command provided."
+		}
 		choices := make([]string, 0, len(validCmds))
 		for cmd := range validCmds {
 			choices = append(choices, cmd)
 		}
 		sort.Strings(choices)
-		fmt.Fprintf(os.Stderr, "Error: No command provided.\nValid commands are %s.\n", strings.Join(choices, ", "))
+		fmt.Fprintf(os.Stderr, "Error: %s\nValid commands are %s.\n", msg, strings.Join(choices, ", "))
 	}
 }
