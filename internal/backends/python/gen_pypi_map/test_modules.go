@@ -76,9 +76,17 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 
 			elapsed := time.Since(startTime)
 			rate := float64(processedPackages) / elapsed.Seconds()
-			remaining := float64(discoveredPackages-processedPackages) / rate
+			remaining := int(float64(discoveredPackages-processedPackages) / rate)
 
-			fmt.Printf("%v/%v %.2f%% [%.0fs %.0fd]\n", processedPackages, discoveredPackages, 100*percentage, remaining, remaining/60/60/24)
+			days := remaining / 60 / 60 / 24
+			remaining = remaining % (60 * 60 * 24)
+			hours := remaining / 60 / 60
+			remaining = remaining % (60 * 60)
+			minutes := remaining / 60
+			remaining = remaining % 60
+			seconds := remaining
+
+			fmt.Printf("%v/%v %.2f%% [%02dd%02dh%02dm%02ds]\n", processedPackages, discoveredPackages, 100*percentage, days, hours, minutes, seconds)
 		}
 	}
 
