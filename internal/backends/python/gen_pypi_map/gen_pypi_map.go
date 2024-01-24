@@ -67,7 +67,7 @@ func cmd_test(args []string) {
 		fmt.Printf("Loading pypi stats from cache file\n")
 		bqCache, err := LoadDownloadStats(*testBQ)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to load data from big query file: %s\n", *testBQ)
+			fmt.Fprintf(os.Stderr, "Failed to load data from big query file %s: %v\n", *testBQ, err)
 			return
 		}
 		fmt.Printf("Loaded %v stats\n", len(bqCache))
