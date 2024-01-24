@@ -153,7 +153,7 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 
 	var modules []string
 	if distMods {
-		// Determine moudles by examining a distribution
+		// Determine modules by examining a distribution
 		modules, err = GetModules(metadata)
 	} else {
 		// Determine the modules by installing the package
