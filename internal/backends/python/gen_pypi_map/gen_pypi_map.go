@@ -7,6 +7,7 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"time"
 )
 
 /*
@@ -57,6 +58,7 @@ func cmd_test(args []string) {
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
 	testThreshold := testCommandSet.Int("threshold", 10000, "Only process packages with at least this many downloads")
+	testTimeout := testCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
 	if err := testCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
 		return
@@ -105,7 +107,7 @@ func cmd_test(args []string) {
 	} else {
 		packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 	}
-	TestModules(packages, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce)
+	TestModules(packages, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce, time.Duration(*testTimeout)*time.Second)
 }
 
 func cmd_test_one(args []string) {
@@ -119,6 +121,7 @@ func cmd_test_one(args []string) {
 	testOneDistMods := testOneCommandSet.Bool("distMods", false, "Determine modules by examining dists")
 	testOneForce := testOneCommandSet.Bool("force", false, "Force re-test when cached")
 	testOnePkgsFile := testOneCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
+	testOneTimeout := testOneCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
 	if err := testOneCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
 		return
@@ -129,7 +132,7 @@ func cmd_test_one(args []string) {
 	}
 
 	cache := LoadAllPackageInfo(*testOneCache, *testOnePkgsFile)
-	info, err := ProcessPackage(*testOnePackage, cache, *testOneCache, *testOneDistMods, *testOneForce)
+	info, err := ProcessPackage(*testOnePackage, cache, *testOneCache, *testOneDistMods, *testOneForce, time.Duration(*testOneTimeout)*time.Second)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error processing package: %v\n", err)
 		return
