@@ -64,6 +64,7 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 		return nil, err
 	}
 
+	var fewestSlashes *int
 	modules := make(map[string]bool)
 	err = filepath.WalkDir(root, func(fpath string, entry os.DirEntry, err error) error {
 		if err != nil {
@@ -87,7 +88,17 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 				}
 				relpath = strings.TrimSuffix(relpath, string(filepath.Separator))
 				module := strings.ReplaceAll(relpath, string(filepath.Separator), ".")
-				modules[module] = true
+
+				// Do our best to find the lowest-common module root to avoid ballooning search space
+				// A good example of this is flask-mysql, which installs into flaskext.mysql
+				currentSlashes := strings.Count(relpath, string(filepath.Separator))
+				if fewestSlashes == nil || currentSlashes < *fewestSlashes {
+					fewestSlashes = &currentSlashes
+					modules = make(map[string]bool)
+					modules[module] = true
+				} else if currentSlashes == *fewestSlashes {
+					modules[module] = true
+				}
 			}
 		}
 
