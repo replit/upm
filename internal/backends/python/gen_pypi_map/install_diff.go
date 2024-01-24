@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 type InstallDiffResponse struct {
@@ -42,11 +43,29 @@ func discoverValidSuffixes() ([]string, error) {
 	return res, nil
 }
 
-func InstallDiff(metadata PackageData) ([]string, error) {
+func InstallDiff(metadata PackageData, timeout time.Duration) ([]string, error) {
 	root := "/tmp/pypi/" + metadata.Info.Name
 
 	// Run pip to install just the package, so we can statically analyze it
 	cmd := exec.Command("pip", "install", "--no-deps", "--target", root, metadata.Info.Name)
+
+	killed := false
+	installing := true
+	go func() {
+		start := time.Now()
+		for installing {
+			elapsed := time.Since(start)
+			if elapsed > timeout {
+				killed = true
+				err := cmd.Process.Signal(os.Interrupt)
+				if err != nil {
+					err = cmd.Process.Signal(os.Kill)
+				}
+				break
+			}
+			time.Sleep(1 * time.Second)
+		}
+	}()
 
 	_, err := cmd.StdoutPipe()
 
@@ -56,8 +75,14 @@ func InstallDiff(metadata PackageData) ([]string, error) {
 
 	err = cmd.Run()
 	if err != nil {
-		return nil, PypiError{InstallFailure, "Failed to start installer", err}
+		if killed {
+			return nil, PypiError{InstallFailure, "Exceeded timeout", err}
+		} else {
+			return nil, PypiError{InstallFailure, "Failed to start installer", err}
+		}
 	}
+
+	installing = false
 
 	suffixes, err := discoverValidSuffixes()
 	if err != nil {
