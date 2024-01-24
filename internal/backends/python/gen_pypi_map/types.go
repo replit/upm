@@ -61,6 +61,7 @@ type PypiError struct {
 	WrappedError error
 }
 
+// NB! You _must_ update the message switch below this const.
 const (
 	NoTopLevel PypiErrorType = iota
 	UnknownArchive
@@ -68,16 +69,24 @@ const (
 	NoDistributions
 	DownloadFailure
 	InstallFailure
+	InspectionFailure
 )
 
 func (e PypiError) Error() string {
-	message := [...]string{"No top level module",
+	messages := [...]string{"No top level module",
 		"Unknown archive type:" + e.Info,
 		"Unknown distribution type: " + e.Info,
 		"No distributions for latest version: " + e.Info,
 		"Failed to download: " + e.Info,
 		"Failed to install: " + e.Info,
-	}[e.Class]
+		"Failed to enumerate modules for package: " + e.Info,
+	}
+	var message string
+	if int(e.Class) < len(messages) {
+		message = messages[e.Class]
+	} else {
+		message = "UNKNOWN ERROR: " + e.Info
+	}
 	jsonError := map[string]interface{}{
 		"type":    e.Class,
 		"message": message,
