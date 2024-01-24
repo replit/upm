@@ -159,6 +159,9 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 		// Determine the modules by installing the package
 		modules, err = InstallDiff(metadata)
 	}
+	if err != nil {
+		return PackageInfo{}, PypiError{InspectionFailure, "", err}
+	}
 
 	var retval PackageInfo
 	retval.Version = metadata.Info.Version

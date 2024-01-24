@@ -69,6 +69,7 @@ const (
 	NoDistributions
 	DownloadFailure
 	InstallFailure
+	InspectionFailure
 )
 
 func (e PypiError) Error() string {
@@ -78,6 +79,7 @@ func (e PypiError) Error() string {
 		"No distributions for latest version: " + e.Info,
 		"Failed to download: " + e.Info,
 		"Failed to install: " + e.Info,
+		"Failed to enumerate modules for package: " + e.Info,
 	}
 	var message string
 	if int(e.Class) < len(messages) {
