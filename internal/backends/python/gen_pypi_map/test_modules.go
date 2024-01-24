@@ -151,6 +151,7 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 		return cached, nil
 	}
 
+	// Accumulate everything (including error info!) into retval
 	var modules []string
 	if distMods {
 		// Determine modules by examining a distribution
