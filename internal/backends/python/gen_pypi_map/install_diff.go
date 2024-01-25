@@ -48,6 +48,10 @@ func pipInstall(pkg string, root string, timeout time.Duration) error {
 	// Run pip to install just the package, so we can statically analyze it
 	cmd := exec.Command("pip", "install", "--no-deps", "--target", root, pkg)
 
+	if cmd == nil {
+		return PypiError{InstallFailure, "Failed to initialize exec.Command", nil}
+	}
+
 	killed := false
 	installing := true
 	go func() {
