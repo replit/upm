@@ -17,9 +17,9 @@ type BqPackageInfo struct {
 }
 
 type DownloadsInfo struct {
-	LastDay   int `json:"last_day"`
-	LastWeek  int `json:"last_week"`
-	LastMonth int `json:"last_month"`
+	LastDay   int `json:"last_day,omitempty"`
+	LastWeek  int `json:"last_week,omitempty"`
+	LastMonth int `json:"last_month,omitempty"`
 }
 
 type PackageInfo struct {
