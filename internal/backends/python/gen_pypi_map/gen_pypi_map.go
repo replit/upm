@@ -12,12 +12,15 @@ import (
 
 /*
 
-This CLI program operates with one of 3 commands:
+This CLI program provides the following commands, intended to be executed in order:
 
-* bq - fetch pypi download stats
-* test - test modules on pypi and save the results (1 file per package) in the cache directory
-* gen - generate pypi_map.gen.go file which contains 2 mappings used for package guessing by upm
-* updatepkgs - update the pkgs.json file
+* bq         - fetch pypi download stats
+* test       - test modules on pypi and save the results (1 file per package) in the cache directory
+* updatepkgs - read from the cache directory and update the pkgs.json file
+* gen        - read pkgs.json and generate pypi_map.sqlite file, containing mappings for package guessing
+
+Additionally,
+* test-one - run `test` for a single package
 */
 
 func cmd_bq(args []string) {
@@ -192,9 +195,9 @@ func main() {
 	validCmds := map[string]func([]string){
 		"bq":         cmd_bq,
 		"test":       cmd_test,
-		"gen":        cmd_gen,
-		"updatepkgs": cmd_updatepkgs,
 		"test-one":   cmd_test_one,
+		"updatepkgs": cmd_updatepkgs,
+		"gen":        cmd_gen,
 	}
 	if cmd, ok := validCmds[command]; ok {
 		cmd(os.Args[2:])
