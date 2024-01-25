@@ -98,11 +98,6 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 	close(resultQueue)
 
 	fmt.Printf("Found %v modules in %v packages in %s. %v packages failed\n", modules, packageCount, formatSeconds(int(time.Since(startTime).Seconds())), errors)
-
-	err := UpdateAllPackageInfo(cacheDir, pkgsFile)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to update cache: %s\n", err.Error())
-	}
 }
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
