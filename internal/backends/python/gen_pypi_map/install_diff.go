@@ -81,7 +81,7 @@ func pipInstall(pkg string, root string, timeout time.Duration) error {
 		if killed {
 			return PypiError{InstallFailure, "Exceeded timeout", err}
 		} else {
-			return PypiError{InstallFailure, "Failed to start installer", err}
+			return PypiError{InstallFailure, "Failed to install", err}
 		}
 	}
 
