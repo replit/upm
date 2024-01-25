@@ -44,11 +44,9 @@ func discoverValidSuffixes() ([]string, error) {
 	return res, nil
 }
 
-func InstallDiff(metadata PackageData, timeout time.Duration) ([]string, error) {
-	root := "/tmp/pypi/" + metadata.Info.Name
-
+func pipInstall(pkg string, root string, timeout time.Duration) error {
 	// Run pip to install just the package, so we can statically analyze it
-	cmd := exec.Command("pip", "install", "--no-deps", "--target", root, metadata.Info.Name)
+	cmd := exec.Command("pip", "install", "--no-deps", "--target", root, pkg)
 
 	killed := false
 	installing := true
@@ -75,19 +73,33 @@ func InstallDiff(metadata PackageData, timeout time.Duration) ([]string, error) 
 	_, err := cmd.StdoutPipe()
 
 	if err != nil {
-		return nil, PypiError{InstallFailure, "Failed to redirect stdout", err}
+		return PypiError{InstallFailure, "Failed to redirect stdout", err}
 	}
 
 	err = cmd.Run()
 	if err != nil {
 		if killed {
-			return nil, PypiError{InstallFailure, "Exceeded timeout", err}
+			return PypiError{InstallFailure, "Exceeded timeout", err}
 		} else {
-			return nil, PypiError{InstallFailure, "Failed to start installer", err}
+			return PypiError{InstallFailure, "Failed to start installer", err}
 		}
 	}
 
 	installing = false
+	return nil
+}
+
+func InstallDiff(metadata PackageData, timeout time.Duration) ([]string, error) {
+	root := "/tmp/pypi/" + metadata.Info.Name
+
+	var err error
+	for attempts := 5; attempts > 0; attempts -= 1 {
+		_ = os.RemoveAll(root)
+		err = pipInstall(metadata.Info.Name, root, timeout)
+		if err == nil {
+			break
+		}
+	}
 
 	suffixes, err := discoverValidSuffixes()
 	if err != nil {
