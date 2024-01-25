@@ -11,7 +11,19 @@ import (
 	"github.com/replit/upm/internal/api"
 )
 
-func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMods bool, workers int, force bool) {
+func formatSeconds(totalSeconds int) string {
+	days := totalSeconds / 60 / 60 / 24
+	totalSeconds = totalSeconds % (60 * 60 * 24)
+	hours := totalSeconds / 60 / 60
+	totalSeconds = totalSeconds % (60 * 60)
+	minutes := totalSeconds / 60
+	totalSeconds = totalSeconds % 60
+	seconds := totalSeconds
+
+	return fmt.Sprintf("%02dd%02dh%02dm%02ds", days, hours, minutes, seconds)
+}
+
+func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMods bool, workers int, force bool, timeout time.Duration) {
 
 	cache := LoadAllPackageInfo(cacheDir, pkgsFile)
 
@@ -40,7 +52,7 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 			concurrencyLimiter <- struct{}{}
 			defer func() { <-concurrencyLimiter }()
 
-			packageInfo, err := ProcessPackage(packageName, cache, cacheDir, distMods, force)
+			packageInfo, err := ProcessPackage(packageName, cache, cacheDir, distMods, force, timeout)
 			packageInfo.Name = packageName
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Failed to process package [%v]: %v\n", packageName, err)
@@ -78,27 +90,14 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 			rate := float64(processedPackages) / elapsed.Seconds()
 			remaining := int(float64(discoveredPackages-processedPackages) / rate)
 
-			days := remaining / 60 / 60 / 24
-			remaining = remaining % (60 * 60 * 24)
-			hours := remaining / 60 / 60
-			remaining = remaining % (60 * 60)
-			minutes := remaining / 60
-			remaining = remaining % 60
-			seconds := remaining
-
-			fmt.Printf("%v/%v %.2f%% [%02dd%02dh%02dm%02ds]\n", processedPackages, discoveredPackages, 100*percentage, days, hours, minutes, seconds)
+			fmt.Printf("%v/%v %.2f%% [%s]\n", processedPackages, discoveredPackages, 100*percentage, formatSeconds(remaining))
 		}
 	}
 
 	// After all packages have been processed, close channels
 	close(resultQueue)
 
-	fmt.Printf("Found %v modules in %v packages in %.0f seconds. %v packages failed\n", modules, packageCount, time.Since(startTime).Seconds(), errors)
-
-	err := UpdateAllPackageInfo(cacheDir, pkgsFile)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to update cache: %s\n", err.Error())
-	}
+	fmt.Printf("Found %v modules in %v packages in %s. %v packages failed\n", modules, packageCount, formatSeconds(int(time.Since(startTime).Seconds())), errors)
 }
 
 func GetPackageMetadata(packageName string) (PackageData, error) {
@@ -136,7 +135,7 @@ func GetPackageMetadata(packageName string) (PackageData, error) {
 }
 
 // NOTE: cache is read only
-func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir string, distMods bool, force bool) (PackageInfo, error) {
+func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir string, distMods bool, force bool, timeout time.Duration) (PackageInfo, error) {
 	// Get the package metadata from pypi
 	metadata, err := GetPackageMetadata(packageName)
 	if err != nil {
@@ -151,13 +150,14 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 		return cached, nil
 	}
 
+	// Accumulate everything (including error info!) into retval
 	var modules []string
 	if distMods {
-		// Determine moudles by examining a distribution
+		// Determine modules by examining a distribution
 		modules, err = GetModules(metadata)
 	} else {
 		// Determine the modules by installing the package
-		modules, err = InstallDiff(metadata)
+		modules, err = InstallDiff(metadata, timeout)
 	}
 
 	var retval PackageInfo
