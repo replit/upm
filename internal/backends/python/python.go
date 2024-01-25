@@ -243,14 +243,23 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 }
 
 func searchPypi(query string) []api.PkgInfo {
+	var original api.PkgName
 	if renamed, found := moduleToPypiPackageOverride[query]; found {
+		original = normalizePackageName(api.PkgName(query))
 		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
 	if err != nil {
 		util.DieNetwork("failed to search pypi: %s", err.Error())
 	}
-	return results
+	// Elide package override from results
+	filtered := []api.PkgInfo{}
+	for _, info := range results {
+		if normalizePackageName(api.PkgName(info.Name)) != original {
+			filtered = append(filtered, info)
+		}
+	}
+	return filtered
 }
 
 // makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
