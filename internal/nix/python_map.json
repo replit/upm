@@ -124,7 +124,7 @@
   "discordpy":{"deps":["pkgs.ffmpeg-full","pkgs.libopus"]},
   "distorm3":{"deps":["pkgs.yasm"]},
   "django-cacheops":{"deps":["pkgs.nettools"]},
-  "django-health-check":{"deps":["pkgs.gitFulll"]},
+  "django-health-check":{"deps":["pkgs.gitFull"]},
   "django-hijack":{"deps":["pkgs.gettext","pkgs.nodejs"]},
   "django-js-reverse":{"deps":["pkgs.nodejs"]},
   "django-postgresql-netfields":{"deps":["pkgs.postgresql"]},
