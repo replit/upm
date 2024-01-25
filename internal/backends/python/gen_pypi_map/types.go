@@ -17,9 +17,9 @@ type BqPackageInfo struct {
 }
 
 type DownloadsInfo struct {
-	LastDay   int `json:"last_day"`
-	LastWeek  int `json:"last_week"`
-	LastMonth int `json:"last_month"`
+	LastDay   int `json:"last_day,omitempty"`
+	LastWeek  int `json:"last_week,omitempty"`
+	LastMonth int `json:"last_month,omitempty"`
 }
 
 type PackageInfo struct {
@@ -61,6 +61,7 @@ type PypiError struct {
 	WrappedError error
 }
 
+// NB! You _must_ update the message switch below this const.
 const (
 	NoTopLevel PypiErrorType = iota
 	UnknownArchive
@@ -71,13 +72,19 @@ const (
 )
 
 func (e PypiError) Error() string {
-	message := [...]string{"No top level module",
+	messages := [...]string{"No top level module",
 		"Unknown archive type:" + e.Info,
 		"Unknown distribution type: " + e.Info,
 		"No distributions for latest version: " + e.Info,
 		"Failed to download: " + e.Info,
 		"Failed to install: " + e.Info,
-	}[e.Class]
+	}
+	var message string
+	if int(e.Class) < len(messages) {
+		message = messages[e.Class]
+	} else {
+		message = "UNKNOWN ERROR: " + e.Info
+	}
 	jsonError := map[string]interface{}{
 		"type":    e.Class,
 		"message": message,
