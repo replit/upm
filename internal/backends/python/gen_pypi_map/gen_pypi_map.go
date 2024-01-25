@@ -7,6 +7,7 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"time"
 )
 
 /*
@@ -57,6 +58,7 @@ func cmd_test(args []string) {
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
 	testThreshold := testCommandSet.Int("threshold", 10000, "Only process packages with at least this many downloads")
+	testTimeout := testCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
 	if err := testCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
 		return
@@ -67,7 +69,7 @@ func cmd_test(args []string) {
 		fmt.Printf("Loading pypi stats from cache file\n")
 		bqCache, err := LoadDownloadStats(*testBQ)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to load data from big query file: %s\n", *testBQ)
+			fmt.Fprintf(os.Stderr, "Failed to load data from big query file %s: %v\n", *testBQ, err)
 			return
 		}
 		fmt.Printf("Loaded %v stats\n", len(bqCache))
@@ -105,7 +107,39 @@ func cmd_test(args []string) {
 	} else {
 		packages, _ = NewPackageIndex("https://pypi.org/simple/", -1)
 	}
-	TestModules(packages, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce)
+	TestModules(packages, *testCache, *testPkgsFile, *testDistMods, *testWorkers, *testForce, time.Duration(*testTimeout)*time.Second)
+}
+
+func cmd_test_one(args []string) {
+	/*
+		Test a single package to find the list of modules provided
+	*/
+
+	testOneCommandSet := flag.NewFlagSet("test-one-flags", flag.ExitOnError)
+	testOnePackage := testOneCommandSet.String("package", "", "Which package to test")
+	testOneCache := testOneCommandSet.String("cache", "cache", "A directory where to store temporary cached information for each module.")
+	testOneDistMods := testOneCommandSet.Bool("distMods", false, "Determine modules by examining dists")
+	testOneForce := testOneCommandSet.Bool("force", false, "Force re-test when cached")
+	testOnePkgsFile := testOneCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
+	testOneTimeout := testOneCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
+	if err := testOneCommandSet.Parse(args); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
+		return
+	}
+	if *testOnePackage == "" {
+		fmt.Fprintf(os.Stderr, "Missing -package flag, cannot continue\n")
+		return
+	}
+
+	cache := LoadAllPackageInfo(*testOneCache, *testOnePkgsFile)
+	info, err := ProcessPackage(*testOnePackage, cache, *testOneCache, *testOneDistMods, *testOneForce, time.Duration(*testOneTimeout)*time.Second)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error processing package: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Name: %s\n", info.Name)
+	fmt.Printf("Modules: %s\n", strings.Join(info.Modules, ", "))
 }
 
 func cmd_gen(args []string) {
@@ -160,6 +194,7 @@ func main() {
 		"test":       cmd_test,
 		"gen":        cmd_gen,
 		"updatepkgs": cmd_updatepkgs,
+		"test-one":   cmd_test_one,
 	}
 	if cmd, ok := validCmds[command]; ok {
 		cmd(os.Args[2:])
