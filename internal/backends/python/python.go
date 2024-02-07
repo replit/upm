@@ -283,6 +283,13 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 				return venv
 			}
 
+			// Terminate early if we're running inside a repl.
+			// This will suppress the following poetry commands
+			// from showing up in the Packager pane.
+			if os.Getenv("REPL_HOME") != "" {
+				return ""
+			}
+
 			outputB, err := util.GetCmdOutputFallible([]string{
 				"poetry", "env", "list", "--full-path",
 			})
