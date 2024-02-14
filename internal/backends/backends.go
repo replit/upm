@@ -101,12 +101,33 @@ func GetBackend(ctx context.Context, language string) api.LanguageBackend {
 	for _, b := range backends {
 		if util.Exists(b.Specfile) &&
 			util.Exists(b.Lockfile) {
+			if b.VerifySpecfile != nil {
+				isValid, err := b.VerifySpecfile(b.Specfile)
+				if err != nil {
+					panic(err)
+				}
+				if !isValid {
+					continue
+				}
+			}
 			return b
 		}
 	}
 	for _, b := range backends {
-		if util.Exists(b.Specfile) ||
-			util.Exists(b.Lockfile) {
+		if util.Exists(b.Specfile) {
+			if b.VerifySpecfile != nil {
+				isValid, err := b.VerifySpecfile(b.Specfile)
+				if err != nil {
+					panic(err)
+				}
+				if !isValid {
+					continue
+				}
+			}
+
+			return b
+		}
+		if util.Exists(b.Lockfile) {
 			return b
 		}
 	}

@@ -172,6 +172,9 @@ type LanguageBackend struct {
 	// This field is mandatory.
 	Specfile string
 
+	// An optional function to analyze the specfile to determine compatibility
+	VerifySpecfile func(fullPath string) (bool, error)
+
 	// The filename of the lockfile, e.g. "poetry.lock" for
 	// Poetry.
 	Lockfile string
