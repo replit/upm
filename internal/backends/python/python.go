@@ -429,7 +429,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			if outputB, err := util.GetCmdOutputFallible([]string{
 				"python",
-				"-c", "import site; print(site.USER_SITE)",
+				"-c", "import site; print(site.USER_BASE)",
 			}); err == nil {
 				return string(outputB)
 			}
