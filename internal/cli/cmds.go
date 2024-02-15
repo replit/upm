@@ -247,7 +247,11 @@ func maybeInstall(ctx context.Context, b api.LanguageBackend, forceInstall bool)
 		if !util.Exists(b.Specfile) {
 			return
 		}
-		if forceInstall || store.HasSpecfileChanged(b) {
+		var needsPackageDir bool
+		if packageDir := b.GetPackageDir(); packageDir != "" {
+			needsPackageDir = !util.Exists(packageDir)
+		}
+		if forceInstall || store.HasSpecfileChanged(b) || needsPackageDir {
 			b.Install(ctx)
 		}
 	}
