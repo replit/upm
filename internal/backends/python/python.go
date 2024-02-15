@@ -284,6 +284,11 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 				return venv
 			}
 
+			// Take PYTHONUSERBASE into consideration, if set
+			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
+				return userbase
+			}
+
 			// Terminate early if we're running inside a repl.
 			// This will suppress the following poetry commands
 			// from showing up in the Packager pane.
@@ -415,6 +420,11 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 			// virtualenv. If so, just use it.
 			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
 				return venv
+			}
+
+			// Take PYTHONUSERBASE into consideration, if set
+			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
+				return userbase
 			}
 
 			if outputB, err := util.GetCmdOutputFallible([]string{
