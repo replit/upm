@@ -307,7 +307,7 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool, testPypiMap f
 	moduleRoots := []string{"."}
 	packageRoots := make(map[string]string)
 	pyproject, _ := readPyproject()
-	if pyproject != nil {
+	if pyproject != nil && pyproject.Tool.Poetry != nil {
 		for _, pkgCfg := range pyproject.Tool.Poetry.Packages {
 			pkgRoot := pkgCfg.Include
 			from := "."
