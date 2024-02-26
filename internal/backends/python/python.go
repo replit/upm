@@ -495,13 +495,39 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 				}
 			}
 
-			handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+			handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0o644)
 			if err != nil {
 				util.DieIO("Unable to open requirements.txt for writing: %s", err)
 			}
 			defer handle.Close()
+
+			// Probe handle to determine if the last character is a newline
+			var hasTrailingNewline bool
+			fileInfo, err := handle.Stat()
+			if err != nil {
+				util.DieIO("Error getting file info: %s", err)
+			}
+			if fileInfo.Size() > 0 {
+				var lastChar = make([]byte, 1)
+				_, err := handle.ReadAt(lastChar, fileInfo.Size()-1)
+				if err != nil {
+					util.DieIO("Error reading last character: %s", err)
+				}
+				hasTrailingNewline = (lastChar[0] == '\n')
+			}
+			// Maintain existing formatting style.
+			// If the user has a trailing newline, keep it.
+			// If the user has no trailing newline, don't add one.
+			var leadingNewline, trailingNewline string
+			if hasTrailingNewline {
+				leadingNewline = ""
+				trailingNewline = "\n"
+			} else {
+				leadingNewline = "\n"
+				trailingNewline = ""
+			}
 			for _, line := range toAppend {
-				if _, err := handle.WriteString(line + "\n"); err != nil {
+				if _, err := handle.WriteString(leadingNewline + line + trailingNewline); err != nil {
 					util.DieIO("Error writing to requirements.txt: %s", err)
 				}
 			}
