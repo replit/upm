@@ -49,18 +49,10 @@ will only test a packages if it's not already in the `pkgs.json` file or if
 its latest version was not the one previously tested. If you
 want to force a retest of the packages, you can use the `-force` flag.
 
-## Step 3: generate code
+## Step 3: generate sqlite db
 
-Finally, we use the collected data to generate the code file. This is done with:
+Finally, we use the collected data to generate the lookup database. This is done with:
 
 ```bash
 go run ./gen_pypi_map/ gen
 ```
-
-Or:
-
-```bash
-go generate .
-```
-
-This is is automatically done if you do `make upm` at the top level of the project.
