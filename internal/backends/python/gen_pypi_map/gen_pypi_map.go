@@ -83,11 +83,17 @@ func cmd_test(args []string) {
 		}
 		bqCache = normalizedBqCache
 
-		packageList := []string{}
+		// Deduplicate results
+		packageMap := make(map[string]bool)
 		for pkgName, count := range bqCache {
 			if count < *testThreshold {
 				continue
 			}
+			packageMap[pkgName] = true
+		}
+
+		packageList := []string{}
+		for pkgName := range packageMap {
 			packageList = append(packageList, pkgName)
 		}
 		fmt.Printf("Preparing to process %v packages\n", len(packageList))
