@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -60,6 +61,7 @@ func cmd_test(args []string) {
 	testBQ := testCommandSet.String("bq", "download_stats.json", "The result of a BigQuery against the pypi downloads dataset.")
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
+	testRemapFile := testCommandSet.String("remapfile", "remap.csv", "A file containing alterations for when a popular package name should be replaced with a newer version")
 	testThreshold := testCommandSet.Int("threshold", 10000, "Only process packages with at least this many downloads")
 	testTimeout := testCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
 	if err := testCommandSet.Parse(args); err != nil {
@@ -83,11 +85,34 @@ func cmd_test(args []string) {
 		}
 		bqCache = normalizedBqCache
 
+		packageRemaps := make(map[string]string)
+		file, err := os.Open(*testRemapFile)
+
+		if err == nil {
+			scanner := bufio.NewScanner(file)
+			for scanner.Scan() {
+				columns := strings.SplitN(scanner.Text(), ",", 3) // old,new,description
+				if len(columns) > 0 {
+					packageRemaps[columns[0]] = columns[1]
+				}
+			}
+
+			if err := scanner.Err(); err != nil {
+				panic(err)
+			}
+
+			file.Close()
+		}
+
 		// Deduplicate results
 		packageMap := make(map[string]bool)
 		for pkgName, count := range bqCache {
 			if count < *testThreshold {
 				continue
+			}
+			// Apply package rename
+			if newName, ok := packageRemaps[pkgName]; ok {
+				pkgName = newName
 			}
 			packageMap[pkgName] = true
 		}
