@@ -243,9 +243,9 @@ func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName stri
 }
 
 func searchPypi(query string) []api.PkgInfo {
-	var original api.PkgName
+	// Normalize query before looking it up in the overide map
+	query = string(normalizePackageName(api.PkgName(query)))
 	if renamed, found := moduleToPypiPackageOverride[query]; found {
-		original = normalizePackageName(api.PkgName(query))
 		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
@@ -255,9 +255,17 @@ func searchPypi(query string) []api.PkgInfo {
 	// Elide package override from results
 	filtered := []api.PkgInfo{}
 	for _, info := range results {
-		if normalizePackageName(api.PkgName(info.Name)) != original {
-			filtered = append(filtered, info)
+		lowered := string(normalizePackageName(api.PkgName(info.Name)))
+		if rename, ok := moduleToPypiPackageOverride[lowered]; ok {
+			// If rename[0] == lowered, we are noconflicting a package
+			// If they are different, we are overriding that package,
+			// so the query'd package should not be included in the results
+			// set.
+			if rename[0] != lowered {
+				continue
+			}
 		}
+		filtered = append(filtered, info)
 	}
 	return filtered
 }
