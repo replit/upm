@@ -1,7 +1,9 @@
 package python
 
 import (
+	"bytes"
 	"context"
+	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -144,8 +146,13 @@ import flask
 
 	// Sanity test, actually run Python in the environment.
 	cmd := exec.Command("bash", "-c", "poetry lock -n; poetry install; poetry run python -m foo")
+
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
 	stdout, err := cmd.Output()
 	if err != nil {
+
+		fmt.Println("stderr:", stderr.String())
 		t.Fatal("failed to execute python", err)
 	}
 	lines := strings.Split(strings.TrimSpace(string(stdout)), "\n")
