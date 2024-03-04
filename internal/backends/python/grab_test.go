@@ -20,6 +20,7 @@ func TestParseFile(t *testing.T) {
 		"replit":    true,
 		"replit.ai": true,
 		"bar":       true,
+		"baz":       true,
 	}
 
 	content := `
@@ -30,6 +31,9 @@ from Flask import Flask
 import replit
 import replit.ai
 import foo #upm package(bar)
+
+if True:
+    import baz
 `
 
 	testDir := t.TempDir()
