@@ -1,7 +1,9 @@
 package python
 
 import (
+	"bytes"
 	"context"
+	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -18,6 +20,10 @@ func TestParseFile(t *testing.T) {
 		"replit":    true,
 		"replit.ai": true,
 		"bar":       true,
+		"cond1":     true,
+		"cond2":     true,
+		"cond3":     true,
+		"cond4":     true,
 	}
 
 	content := `
@@ -28,6 +34,15 @@ from Flask import Flask
 import replit
 import replit.ai
 import foo #upm package(bar)
+
+if False:
+    import cond1
+elif True:
+    import cond2
+elif True:
+    import cond3
+else:
+    import cond4
 `
 
 	testDir := t.TempDir()
@@ -144,8 +159,13 @@ import flask
 
 	// Sanity test, actually run Python in the environment.
 	cmd := exec.Command("bash", "-c", "poetry lock -n; poetry install; poetry run python -m foo")
+
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
 	stdout, err := cmd.Output()
 	if err != nil {
+
+		fmt.Println("stderr:", stderr.String())
 		t.Fatal("failed to execute python", err)
 	}
 	lines := strings.Split(strings.TrimSpace(string(stdout)), "\n")

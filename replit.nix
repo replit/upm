@@ -14,8 +14,8 @@
     pkgs.nodejs-18_x
     pkgs.yarn
     pkgs.nodePackages.pnpm
-    pkgs.python310Full
-    pkgs.python310Packages.pip
+    pkgs.python311Full
+    pkgs.python311Packages.pip
     pkgs.poetry
     pkgs.R
     pkgs.ruby
