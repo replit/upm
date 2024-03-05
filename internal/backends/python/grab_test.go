@@ -20,7 +20,10 @@ func TestParseFile(t *testing.T) {
 		"replit":    true,
 		"replit.ai": true,
 		"bar":       true,
-		"baz":       true,
+		"cond1":     true,
+		"cond2":     true,
+		"cond3":     true,
+		"cond4":     true,
 	}
 
 	content := `
@@ -32,8 +35,14 @@ import replit
 import replit.ai
 import foo #upm package(bar)
 
-if True:
-    import baz
+if False:
+    import cond1
+elif True:
+    import cond2
+elif True:
+    import cond3
+else:
+    import cond4
 `
 
 	testDir := t.TempDir()
