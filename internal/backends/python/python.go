@@ -51,6 +51,10 @@ type pyprojectPackageCfg struct {
 	From    string `json:"from"`
 }
 
+type pyprojectTOMLGroup struct {
+	Dependencies map[string]interface{} `json:"dependencies"`
+}
+
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
@@ -59,9 +63,10 @@ type pyprojectTOML struct {
 			Name string `json:"name"`
 			// interface{} because they can be either
 			// strings or maps (why?? good lord).
-			Dependencies    map[string]interface{} `json:"dependencies"`
-			DevDependencies map[string]interface{} `json:"dev-dependencies"`
-			Packages        []pyprojectPackageCfg  `json:"packages"`
+			Dependencies    map[string]interface{}        `json:"dependencies"`
+			DevDependencies map[string]interface{}        `json:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg         `json:"packages"`
+			Group           map[string]pyprojectTOMLGroup `json:"group"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
