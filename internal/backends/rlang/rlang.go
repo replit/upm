@@ -161,7 +161,7 @@ var RlangBackend = api.LanguageBackend{
 			}
 		}
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+	ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, pkg := range RGetSpecFile().Packages {
 			pkgs[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
