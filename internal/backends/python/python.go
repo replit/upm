@@ -46,13 +46,36 @@ type pypiEntryInfo struct {
 	Version       string   `json:"version"`
 }
 
+type pyprojectPackageMeta struct {
+	Version string `json:"version"`
+}
+
+type pyprojectPackageEntry struct {
+	Spec string
+	Meta *pyprojectPackageMeta
+}
+
+func (cd *pyprojectPackageEntry) UnmarshalJSON(b []byte) error {
+	var simpleSpec string
+	if err := json.Unmarshal(b, &simpleSpec); err == nil {
+		cd.Spec = simpleSpec
+		return nil
+	}
+	var meta pyprojectPackageMeta
+	if err := json.Unmarshal(b, &meta); err == nil {
+		cd.Meta = &meta
+		return nil
+	}
+	return fmt.Errorf("json data is not an array of strings or a map of string to string")
+}
+
 type pyprojectPackageCfg struct {
 	Include string `json:"include"`
 	From    string `json:"from"`
 }
 
 type pyprojectTOMLGroup struct {
-	Dependencies map[string]interface{} `json:"dependencies"`
+	Dependencies map[string]pyprojectPackageEntry `json:"dependencies"`
 }
 
 // pyprojectTOML represents the relevant parts of a pyproject.toml
@@ -60,13 +83,11 @@ type pyprojectTOMLGroup struct {
 type pyprojectTOML struct {
 	Tool struct {
 		Poetry *struct {
-			Name string `json:"name"`
-			// interface{} because they can be either
-			// strings or maps (why?? good lord).
-			Dependencies    map[string]interface{}        `json:"dependencies"`
-			DevDependencies map[string]interface{}        `json:"dev-dependencies"`
-			Packages        []pyprojectPackageCfg         `json:"packages"`
-			Group           map[string]pyprojectTOMLGroup `json:"group"`
+			Name            string                           `json:"name"`
+			Dependencies    map[string]pyprojectPackageEntry `json:"dependencies"`
+			DevDependencies map[string]pyprojectPackageEntry `json:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg            `json:"packages"`
+			Group           map[string]pyprojectTOMLGroup    `json:"group"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
@@ -90,21 +111,13 @@ func poetryIsAvailable() bool {
 	return err == nil
 }
 
-// normalizeSpec returns the version string from a Poetry spec, or the
-// empty string. The Poetry spec may be either a string or a
-// map[string]interface{} with a "version" key that is a string. If
-// neither, then the empty string is returned.
-func normalizeSpec(spec interface{}) string {
-	switch spec := spec.(type) {
-	case string:
-		return spec
-	case map[string]interface{}:
-		switch spec := spec["version"].(type) {
-		case string:
-			return spec
-		}
+// normalizeSpec returns the version string from a Poetry package entry.
+func normalizeSpec(entry pyprojectPackageEntry) string {
+	if entry.Meta != nil {
+		return entry.Meta.Version
+	} else {
+		return entry.Spec
 	}
-	return ""
 }
 
 func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
