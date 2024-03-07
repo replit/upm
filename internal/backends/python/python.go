@@ -361,7 +361,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			util.RunCmd([]string{"poetry", "install"})
 		},
 		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			pkgs, err := listPoetrySpecfile()
+			pkgs, err := listPoetrySpecfile(false)
 			if err != nil {
 				util.DieIO("%s", err.Error())
 			}
@@ -395,7 +395,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			specfilePkgs, _ := listPoetrySpecfile()
+			specfilePkgs, _ := listPoetrySpecfile(true)
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
@@ -626,7 +626,7 @@ func verifyPoetrySpecfile(path string) (bool, error) {
 	return cfg.Tool.Poetry != nil, nil
 }
 
-func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func listPoetrySpecfile(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
 	cfg, err := readPyproject()
 	if err != nil {
 		return nil, err
@@ -653,6 +653,17 @@ func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 			continue
 		}
 		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+	}
+	if mergeAllGroups && cfg.Tool.Poetry.Group != nil {
+		for _, group := range cfg.Tool.Poetry.Group {
+			for nameStr, spec := range group.Dependencies {
+				specStr := normalizeSpec(spec)
+				if specStr == "" {
+					continue
+				}
+				pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+			}
+		}
 	}
 
 	return pkgs, nil
