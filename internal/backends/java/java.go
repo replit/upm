@@ -243,7 +243,7 @@ func removePackages(ctx context.Context, pkgs map[api.PkgName]bool) {
 	os.RemoveAll("target/dependency")
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	project := readProjectOrMakeEmpty(pomdotxml)
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for _, dependency := range project.Dependencies {

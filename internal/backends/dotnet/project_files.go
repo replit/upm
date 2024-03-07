@@ -45,7 +45,7 @@ func findSpecFile() string {
 }
 
 // loads the details of the project spec file
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	var pkgs map[api.PkgName]api.PkgSpec
 	projectFile := findSpecFile()
 	specReader, err := os.Open(projectFile)

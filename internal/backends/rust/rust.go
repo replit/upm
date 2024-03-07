@@ -150,7 +150,7 @@ func info(name api.PkgName) api.PkgInfo {
 	return crateInfo.toPkgInfo()
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	contents, err := os.ReadFile("Cargo.toml")
 	if err != nil {
 		util.DieIO("Cargo.toml: %s", err)

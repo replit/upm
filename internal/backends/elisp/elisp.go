@@ -158,7 +158,7 @@ var ElispBackend = api.LanguageBackend{
 		util.ProgressMsg("write packages.txt")
 		util.TryWriteAtomic("packages.txt", outputB)
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+	ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput(
 			[]string{"cask", "eval", util.GetResource(
 				"/elisp/cask-list-specfile.el",

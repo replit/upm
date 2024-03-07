@@ -232,7 +232,7 @@ var RubyBackend = api.LanguageBackend{
 		}
 		util.RunCmd([]string{"bundle", "install"})
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+	ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput([]string{
 			"ruby", "-e", util.GetResource("/ruby/list-specfile.rb"),
 		})

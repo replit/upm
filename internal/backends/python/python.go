@@ -360,8 +360,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			// <https://github.com/sdispater/poetry/issues/648>.
 			util.RunCmd([]string{"poetry", "install"})
 		},
-		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			pkgs, err := listPoetrySpecfile(false)
+		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
+			pkgs, err := listPoetrySpecfile(mergeAllGroups)
 			if err != nil {
 				util.DieIO("%s", err.Error())
 			}
@@ -567,7 +567,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
-		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
 				util.DieIO("%s", err.Error())
