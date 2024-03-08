@@ -297,7 +297,7 @@ type LanguageBackend struct {
 	// specfile is guaranteed to exist already.
 	//
 	// This field is mandatory.
-	ListSpecfile func() map[PkgName]PkgSpec
+	ListSpecfile func(mergeAllGroups bool) map[PkgName]PkgSpec
 
 	// List the packages in the lockfile. Names should be returned
 	// in a format suitable for the Add method. The lockfile is

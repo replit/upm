@@ -51,6 +51,10 @@ type pyprojectPackageCfg struct {
 	From    string `json:"from"`
 }
 
+type pyprojectTOMLGroup struct {
+	Dependencies map[string]interface{} `json:"dependencies"`
+}
+
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
@@ -59,9 +63,10 @@ type pyprojectTOML struct {
 			Name string `json:"name"`
 			// interface{} because they can be either
 			// strings or maps (why?? good lord).
-			Dependencies    map[string]interface{} `json:"dependencies"`
-			DevDependencies map[string]interface{} `json:"dev-dependencies"`
-			Packages        []pyprojectPackageCfg  `json:"packages"`
+			Dependencies    map[string]interface{}        `json:"dependencies"`
+			DevDependencies map[string]interface{}        `json:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg         `json:"packages"`
+			Group           map[string]pyprojectTOMLGroup `json:"group"`
 		} `json:"poetry"`
 	} `json:"tool"`
 }
@@ -355,8 +360,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			// <https://github.com/sdispater/poetry/issues/648>.
 			util.RunCmd([]string{"poetry", "install"})
 		},
-		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
-			pkgs, err := listPoetrySpecfile()
+		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
+			pkgs, err := listPoetrySpecfile(mergeAllGroups)
 			if err != nil {
 				util.DieIO("%s", err.Error())
 			}
@@ -390,7 +395,7 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
-			specfilePkgs, _ := listPoetrySpecfile()
+			specfilePkgs, _ := listPoetrySpecfile(true)
 			for pkg := range specfilePkgs {
 				deps := nix.PythonNixDeps(string(pkg))
 				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
@@ -562,7 +567,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 			util.RunCmd([]string{"pip", "install", "-r", "requirements.txt"})
 		},
-		ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 			flags, pkgs, err := ListRequirementsTxt("requirements.txt")
 			if err != nil {
 				util.DieIO("%s", err.Error())
@@ -621,7 +626,7 @@ func verifyPoetrySpecfile(path string) (bool, error) {
 	return cfg.Tool.Poetry != nil, nil
 }
 
-func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
+func listPoetrySpecfile(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
 	cfg, err := readPyproject()
 	if err != nil {
 		return nil, err
@@ -648,6 +653,17 @@ func listPoetrySpecfile() (map[api.PkgName]api.PkgSpec, error) {
 			continue
 		}
 		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+	}
+	if mergeAllGroups && cfg.Tool.Poetry.Group != nil {
+		for _, group := range cfg.Tool.Poetry.Group {
+			for nameStr, spec := range group.Dependencies {
+				specStr := normalizeSpec(spec)
+				if specStr == "" {
+					continue
+				}
+				pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+			}
+		}
 	}
 
 	return pkgs, nil
