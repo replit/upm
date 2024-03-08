@@ -359,7 +359,7 @@ func runRemove(language string, args []string, upgrade bool,
 	}
 
 	s := silenceSubroutines()
-	specfilePkgs := b.ListSpecfile(false)
+	specfilePkgs := b.ListSpecfile(true)
 	s.restore()
 
 	// Map whose keys are normalized package names.
