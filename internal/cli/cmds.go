@@ -464,7 +464,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		var results map[api.PkgName]api.PkgSpec = nil
 		fileExists := util.Exists(b.Specfile)
 		if fileExists {
-			results = b.ListSpecfile(false)
+			results = b.ListSpecfile(true)
 		}
 		switch outputFormat {
 		case outputFormatTable:
