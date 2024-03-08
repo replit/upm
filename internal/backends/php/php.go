@@ -173,7 +173,7 @@ func parseInfo(body []byte, packageName api.PkgName) (api.PkgInfo, error) {
 	}, nil
 }
 
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	contents, err := os.ReadFile("composer.json")
 
 	if err != nil {

@@ -312,7 +312,7 @@ func runAdd(
 
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
-		for name := range b.ListSpecfile() {
+		for name := range b.ListSpecfile(true) {
 			delete(normPkgs, b.NormalizePackageName(name))
 		}
 		s.restore()
@@ -359,7 +359,7 @@ func runRemove(language string, args []string, upgrade bool,
 	}
 
 	s := silenceSubroutines()
-	specfilePkgs := b.ListSpecfile()
+	specfilePkgs := b.ListSpecfile(true)
 	s.restore()
 
 	// Map whose keys are normalized package names.
@@ -464,7 +464,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		var results map[api.PkgName]api.PkgSpec = nil
 		fileExists := util.Exists(b.Specfile)
 		if fileExists {
-			results = b.ListSpecfile()
+			results = b.ListSpecfile(true)
 		}
 		switch outputFormat {
 		case outputFormatTable:
@@ -564,7 +564,7 @@ func runGuess(
 
 	if !all {
 		if util.Exists(b.Specfile) {
-			for name := range b.ListSpecfile() {
+			for name := range b.ListSpecfile(true) {
 				name := b.NormalizePackageName(name)
 				for key, pkgs := range normPkgs {
 					for _, pkg := range pkgs {
