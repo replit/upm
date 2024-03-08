@@ -63,7 +63,7 @@ type dartPubspecYaml struct {
 }
 
 // dartListPubspecYaml lists all deps in a pubspec.yaml file
-func dartListPubspecYaml() map[api.PkgName]api.PkgSpec {
+func dartListPubspecYaml(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	specs := readSpecFile()
 
 	pkgs := map[api.PkgName]api.PkgSpec{}

@@ -339,7 +339,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 
 // nodejsListSpecfile implements ListSpecfile for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
-func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
+func nodejsListSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	contentsB, err := os.ReadFile("package.json")
 	if err != nil {
 		util.DieIO("package.json: %s", err)
