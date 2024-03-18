@@ -6,6 +6,6 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.11"
-django = "^4.2.10"
+django = "^4.2.11"
 boatman = "^0.0.6"
 ws4py = "^0.5.1"
