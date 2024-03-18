@@ -14,6 +14,7 @@ var moduleToPypiPackageOverride = map[string][]string{
 	"graphics":             {"graphics.py"},                                          // this package is popular, but the module doesn't match the package name https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/graphics.html#a-graphics-introduction
 	"replit.ai":            {"replit-ai"},                                            // Replit's AI package
 	"glm":                  {"PyGLM", "glm"},                                         // Both of these packages are valid, but PyGLM is a library, glm is an executable.
+	"jwt":                  {"PyJWT", "jwt"},                                         // Both of these packages are valid, but PyJWT is more popular
 	"ldclient":             {"ldclient-py", "ldclient"},                              // LaunchDarkly client
 	"tensorflow":           append([]string{"tensorflow"}, tf_variants[:]...),        // Avoid suggesting conflicting tensorflow builds
 	"tensorflow-federated": {"tensorflow-federated", "tensorflow-federated-nightly"}, // Avoid suggesting conflicting tensorflow-federated packages
