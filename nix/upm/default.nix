@@ -7,7 +7,7 @@
   runCommand,
 }:
 let
-  vendorHash = "sha256-7t87/28pBxU7A+SRvw6xxJQ2wErZ/76OJC8feNEQ80E=";
+  vendorHash = "sha256-MJkcj2AR8DDQWNZaoMWxDvGHt6SwAMS4xcrjh075Uio=";
 
   goCache = buildGoCache {
     # keep this up-to-date in CI with:
