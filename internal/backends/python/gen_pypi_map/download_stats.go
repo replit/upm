@@ -62,7 +62,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 	ctx := context.Background()
 	client, err := bigquery.NewClient(ctx, projectID)
 	if err != nil {
-		return map[string]int{}, fmt.Errorf("Failed to connect to bigquery: %v", err)
+		return map[string]int{}, fmt.Errorf("Failed to connect to bigquery [%s]: %v", projectID, err)
 	}
 
 	q := client.Query(
@@ -80,7 +80,7 @@ func GetPypiStats(projectID string) (map[string]int, error) {
 
 	packages := map[string]int{}
 	for {
-		var info PackageInfo
+		var info BqPackageInfo
 		err := it.Next(&info)
 		if err == iterator.Done {
 			break

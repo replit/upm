@@ -8,6 +8,7 @@ import (
 	"os"
 	"path"
 	"regexp"
+	"strings"
 
 	sitter "github.com/smacker/go-tree-sitter"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -23,42 +24,66 @@ type importPragma struct {
 	Package string
 }
 
+const (
+	// Represents filesystem nodes, including directories.
+	MaximumVisits = 5000
+)
+
 // GuessWithTreeSitter guesses the imports of a directory using tree-sitter.
 // For every file in dir that matches a pattern in searchGlobPatterns, but
 // not in ignoreGlobPatterns, it will parse the file using lang and queryImports.
 // When there's a capture tagged as `@import`, it reports the capture as an import.
 // If there's a capture tagged as `@pragma` that's on the same line as an import,
 // it will include the pragma in the results.
-func GuessWithTreeSitter(ctx context.Context, dir string, lang *sitter.Language, queryImports string, searchGlobPatterns, ignoreGlobPatterns []string) ([]string, error) {
+func GuessWithTreeSitter(ctx context.Context, root string, lang *sitter.Language, queryImports string, pathSegmentPatterns []string, ignorePathSegments map[string]bool) ([]string, error) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "GuessWithTreeSitter")
 	defer span.Finish()
-	dirFS := os.DirFS(dir)
+	dirFS := os.DirFS(root)
 
-	ignoredPaths := map[string]bool{}
-	for _, pattern := range ignoreGlobPatterns {
-		globIgnorePaths, err := fs.Glob(dirFS, pattern)
-		if err != nil {
-			return nil, err
-		}
-
-		for _, gPath := range globIgnorePaths {
-			ignoredPaths[gPath] = true
-		}
-	}
-
+	forceRecurse := os.Getenv("UPM_FORCE_RECURSE") == "1"
+	var visited int = 0
 	pathsToSearch := []string{}
-	for _, pattern := range searchGlobPatterns {
-		globSearchPaths, err := fs.Glob(dirFS, pattern)
+	err := fs.WalkDir(dirFS, ".", func(curpath string, d fs.DirEntry, err error) error {
+		// Reproduce the previous behavior of https://github.com/replit/upm/pull/202
+		// During integration tests it was determined that we do need to consider a whole
+		// host of ignore patterns, otherwise we run the risk of guessing transitive deps
+		// from the package store.
+		isDir := curpath != "." && d.IsDir()
+		isInDir := strings.Contains(curpath, "/")
+		if !forceRecurse && (isDir || isInDir) {
+			return fs.SkipDir
+		}
+		curpath = path.Join(root, curpath)
 		if err != nil {
-			return nil, err
+			return err
 		}
 
-		for _, gPath := range globSearchPaths {
-			if !ignoredPaths[gPath] {
-				pathsToSearch = append(pathsToSearch, path.Join(dir, gPath))
+		visited += 1
+
+		// Avoid locking up UPM on pathological project configurations
+		if visited > MaximumVisits {
+			return fs.SkipAll
+		}
+
+		if ignorePathSegments[d.Name()] {
+			return fs.SkipDir
+		}
+
+		for _, pattern := range pathSegmentPatterns {
+			var ok bool
+			if ok, err = path.Match(pattern, d.Name()); ok {
+				pathsToSearch = append(pathsToSearch, curpath)
+			}
+			if err != nil {
+				return err
 			}
 		}
+
+		return nil
+	})
+	if err != nil {
+		return nil, err
 	}
 
 	query, err := sitter.NewQuery([]byte(queryImports), lang)

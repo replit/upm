@@ -5,7 +5,7 @@ require 'json'
 # The mapping between what you require and the gem name is not always 1-to-1,
 # so we will need some sort of mapping like what we do with PyPi if we want
 # to do complete ruby gem guessing.
-$allowed_gems = { 
+$allowed_gems = {
   "sinatra" => "sinatra",
   "sinatra/base" => "sinatra",
   "stripe" => "stripe"
@@ -20,7 +20,7 @@ def traverse_node(node, guesses)
   if node.class != Parser::AST::Node
     return
   end
-  
+
   # Looking for any s(:send, nil, :require, s(:str, "gem"))
   if node.type == :send && node.children[1] == :require
     req_node = node.children[2]
@@ -47,7 +47,7 @@ def process_require(req_str, guesses)
 
   gem = $allowed_gems[req_str]
   if gem
-    guesses[gem] = true
+    guesses[gem] = [gem]
   end
 end
 

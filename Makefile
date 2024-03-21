@@ -12,7 +12,7 @@ install: cmd/upm/upm
 	go install ./cmd/upm
 
 internal/backends/python/pypi_map.sqlite: internal/backends/python/download_stats.json
-	cd internal/backends/python; go run ./gen_pypi_map -bq download_stats.json -pkg python -out pypi_map.sqlite -cache cache -cmd gen
+	cd internal/backends/python; go run ./gen_pypi_map gen
 
 generated: $(GENERATED)
 
@@ -91,6 +91,11 @@ endif
 ifdef UPM_CI
 test-suite:
 	go get gotest.tools/gotestsum
+	# TODO: Move the following setup out into before/after or a separate
+	# environment-specific runner
+	venv="$$(mktemp -d)"; \
+	python -m venv "$$venv"; \
+	source "$$venv/bin/activate"; \
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
 else
 test-suite:

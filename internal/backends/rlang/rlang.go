@@ -3,6 +3,7 @@ package rlang
 import (
 	"context"
 	"os"
+	"os/exec"
 	"path"
 	"regexp"
 	"strings"
@@ -11,6 +12,11 @@ import (
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/util"
 )
+
+func rIsAvailable() bool {
+	_, err := exec.LookPath("R")
+	return err == nil
+}
 
 func getImports(imports string) []string {
 	return regexp.MustCompile(`[a-zA-Z_]\w*`).FindAllString(imports, -1)
@@ -81,6 +87,7 @@ var RlangBackend = api.LanguageBackend{
 	Name:             "rlang",
 	Specfile:         "Rconfig.json",
 	Lockfile:         "Rconfig.lock.json",
+	IsAvailable:      rIsAvailable,
 	FilenamePatterns: []string{"*.r", "*.R"},
 	Quirks:           api.QuirksNone,
 	GetPackageDir:    getRPkgDir,
@@ -154,7 +161,7 @@ var RlangBackend = api.LanguageBackend{
 			}
 		}
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+	ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, pkg := range RGetSpecFile().Packages {
 			pkgs[api.PkgName(pkg.Name)] = api.PkgSpec(pkg.Version)
@@ -169,7 +176,7 @@ var RlangBackend = api.LanguageBackend{
 		return pkgs
 	},
 	//GuessRegexps: []*regexp.Regexp {regexp.MustCompile(`\brequire[ \t]*\(\s*([a-zA-Z_]\w*)\s*`)},
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		util.NotImplemented()
 
 		return nil, false

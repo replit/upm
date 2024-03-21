@@ -1,0 +1,6 @@
+SomeProjectBare
+SomeProjectDoubleEquals == 1.3
+SomeProjectGEL >= 1.2, < 2.0
+SomeProjectExtras[foo, bar]
+SomeProjectCompatible ~= 1.4.2
+SomeProjectExtrasRange [security] >= 2.8.1, == 2.8.*

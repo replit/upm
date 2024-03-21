@@ -32,7 +32,7 @@ type project struct {
 func findSpecFile() string {
 	files, err := os.ReadDir("./")
 	if err != nil {
-		util.Die("can't read current directory: %s", err)
+		util.DieIO("can't read current directory: %s", err)
 	}
 
 	for _, f := range files {
@@ -45,7 +45,7 @@ func findSpecFile() string {
 }
 
 // loads the details of the project spec file
-func listSpecfile() map[api.PkgName]api.PkgSpec {
+func listSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	var pkgs map[api.PkgName]api.PkgSpec
 	projectFile := findSpecFile()
 	specReader, err := os.Open(projectFile)
@@ -53,13 +53,13 @@ func listSpecfile() map[api.PkgName]api.PkgSpec {
 		return pkgs
 	}
 	if err != nil {
-		util.Die("Could not open %s, with error: %q", projectFile, err)
+		util.DieIO("Could not open %s, with error: %q", projectFile, err)
 	}
 	defer specReader.Close()
 
 	pkgs, err = ReadSpec(specReader)
 	if err != nil {
-		util.Die("Failed to read spec file %s, with error: %q", projectFile, err)
+		util.DieProtocol("Failed to read spec file %s, with error: %q", projectFile, err)
 	}
 
 	return pkgs
@@ -96,13 +96,13 @@ func listLockfile() map[api.PkgName]api.PkgVersion {
 		return pkgs
 	}
 	if err != nil {
-		util.Die("Could not open %s, with error: %q", lockFileName, err)
+		util.DieIO("Could not open %s, with error: %q", lockFileName, err)
 	}
 	defer specReader.Close()
 
 	pkgs, err = ReadLock(specReader)
 	if err != nil {
-		util.Die("error reading lockFile %s: %q", lockFileName, err)
+		util.DieProtocol("error reading lockFile %s: %q", lockFileName, err)
 	}
 
 	return pkgs

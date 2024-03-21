@@ -49,8 +49,12 @@ func runWhichLanguage(language string) {
 
 // runListLanguages implements 'upm list-languages'.
 func runListLanguages() {
-	for _, backendName := range backends.GetBackendNames() {
-		fmt.Println(backendName)
+	for _, info := range backends.GetBackendNames() {
+		if info.Available {
+			fmt.Println(info.Name)
+		} else {
+			fmt.Println(info.Name + "  (unavailable)")
+		}
 	}
 }
 
@@ -129,7 +133,7 @@ func runInfo(language string, pkg string, outputFormat outputFormat) {
 	b := backends.GetBackend(context.Background(), language)
 	info := b.Info(api.PkgName(pkg))
 	if info.Name == "" {
-		util.Die("no such package: %s", pkg)
+		util.DieConsistency("no such package: %s", pkg)
 	}
 
 	switch outputFormat {
@@ -212,7 +216,14 @@ func maybeLock(ctx context.Context, b api.LanguageBackend, forceLock bool) bool 
 		return false
 	}
 
-	if forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b) {
+	shouldLock := forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b)
+	if !shouldLock {
+		if packageDir := b.GetPackageDir(); packageDir != "" {
+			shouldLock = !util.Exists(packageDir)
+		}
+	}
+
+	if shouldLock {
 		b.Lock(ctx)
 		return true
 	}
@@ -236,37 +247,14 @@ func maybeInstall(ctx context.Context, b api.LanguageBackend, forceInstall bool)
 		if !util.Exists(b.Specfile) {
 			return
 		}
-		if forceInstall || store.HasSpecfileChanged(b) {
+		var needsPackageDir bool
+		if packageDir := b.GetPackageDir(); packageDir != "" {
+			needsPackageDir = !util.Exists(packageDir)
+		}
+		if forceInstall || store.HasSpecfileChanged(b) || needsPackageDir {
 			b.Install(ctx)
 		}
 	}
-}
-
-// pkgNameAndSpec is a tuple of a PkgName and a PkgSpec. It's used to
-// put both of them as a value in the same map entry.
-type pkgNameAndSpec struct {
-	name api.PkgName
-	spec api.PkgSpec
-}
-
-// Map from normalized package names to the corresponding
-// original package names and specs.
-func normalizePackageArgs(b api.LanguageBackend, args []string) map[api.PkgName]pkgNameAndSpec {
-	normPkgs := map[api.PkgName]pkgNameAndSpec{}
-	for _, arg := range args {
-		fields := strings.SplitN(arg, " ", 2)
-		name := api.PkgName(fields[0])
-		var spec api.PkgSpec
-		if len(fields) >= 2 {
-			spec = api.PkgSpec(fields[1])
-		}
-
-		normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
-			name: name,
-			spec: spec,
-		}
-	}
-	return normPkgs
 }
 
 // runAdd implements 'upm add'.
@@ -278,27 +266,45 @@ func runAdd(
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
 
-	normPkgs := normalizePackageArgs(b, args)
+	normPkgs := b.NormalizePackageArgs(args)
 
 	if guess {
 		guessed := store.GuessWithCache(ctx, b, forceGuess)
 
 		// Map from normalized package names to original
 		// names.
-		guessedNorm := map[api.PkgName]api.PkgName{}
-		for name := range guessed {
-			guessedNorm[b.NormalizePackageName(name)] = name
+		guessedNorm := map[string][]api.PkgName{}
+		for key, guesses := range guessed {
+			normalized := []api.PkgName{}
+			for _, guess := range guesses {
+				normalized = append(normalized, b.NormalizePackageName(guess))
+			}
+			guessedNorm[key] = normalized
 		}
 
 		for _, pkg := range ignoredPackages {
-			delete(guessedNorm, b.NormalizePackageName(api.PkgName(pkg)))
+			pkg := b.NormalizePackageName(api.PkgName(pkg))
+			for key, guesses := range guessedNorm {
+				for _, guess := range guesses {
+					if pkg == guess {
+						delete(guessedNorm, key)
+					}
+				}
+			}
 		}
 
-		for name := range guessed {
-			if _, ok := normPkgs[b.NormalizePackageName(name)]; !ok {
-				normPkgs[b.NormalizePackageName(name)] = pkgNameAndSpec{
-					name: name,
-					spec: "",
+		for _, guesses := range guessedNorm {
+			found := false
+			for _, guess := range guesses {
+				if _, ok := normPkgs[guess]; !ok {
+					found = true
+					break
+				}
+			}
+			if !found {
+				normPkgs[b.NormalizePackageName(guesses[0])] = api.PkgCoordinates{
+					Name: string(guesses[0]),
+					Spec: "",
 				}
 			}
 		}
@@ -306,7 +312,7 @@ func runAdd(
 
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
-		for name := range b.ListSpecfile() {
+		for name := range b.ListSpecfile(true) {
 			delete(normPkgs, b.NormalizePackageName(name))
 		}
 		s.restore()
@@ -319,7 +325,7 @@ func runAdd(
 	if len(normPkgs) >= 1 {
 		pkgs := map[api.PkgName]api.PkgSpec{}
 		for _, nameAndSpec := range normPkgs {
-			pkgs[nameAndSpec.name] = nameAndSpec.spec
+			pkgs[api.PkgName(nameAndSpec.Name)] = nameAndSpec.Spec
 		}
 
 		b.Add(ctx, pkgs, name)
@@ -335,6 +341,8 @@ func runAdd(
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
+	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -351,7 +359,7 @@ func runRemove(language string, args []string, upgrade bool,
 	}
 
 	s := silenceSubroutines()
-	specfilePkgs := b.ListSpecfile()
+	specfilePkgs := b.ListSpecfile(true)
 	s.restore()
 
 	// Map whose keys are normalized package names.
@@ -362,10 +370,10 @@ func runRemove(language string, args []string, upgrade bool,
 
 	// Map from normalized package names to original package
 	// names.
-	normPkgs := map[api.PkgName]api.PkgName{}
+	normPkgs := map[api.PkgName]string{}
 	for _, arg := range args {
-		name := api.PkgName(arg)
-		norm := b.NormalizePackageName(name)
+		name := arg
+		norm := b.NormalizePackageName(api.PkgName(arg))
 		if normSpecfilePkgs[norm] {
 			normPkgs[norm] = name
 		}
@@ -377,7 +385,7 @@ func runRemove(language string, args []string, upgrade bool,
 
 	if len(normPkgs) >= 1 {
 		pkgs := map[api.PkgName]bool{}
-		for _, name := range normPkgs {
+		for name := range normPkgs {
 			pkgs[name] = true
 		}
 		b.Remove(ctx, pkgs)
@@ -393,6 +401,8 @@ func runRemove(language string, args []string, upgrade bool,
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
+	store.ClearGuesses(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -413,6 +423,7 @@ func runLock(language string, upgrade bool, forceLock bool, forceInstall bool) {
 		maybeInstall(ctx, b, forceInstall)
 	}
 
+	store.Read(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -425,6 +436,7 @@ func runInstall(language string, force bool) {
 
 	maybeInstall(ctx, b, force)
 
+	store.Read(ctx, b)
 	store.UpdateFileHashes(ctx, b)
 	store.Write(ctx)
 }
@@ -452,7 +464,7 @@ func runList(language string, all bool, outputFormat outputFormat) {
 		var results map[api.PkgName]api.PkgSpec = nil
 		fileExists := util.Exists(b.Specfile)
 		if fileExists {
-			results = b.ListSpecfile()
+			results = b.ListSpecfile(true)
 		}
 		switch outputFormat {
 		case outputFormatTable:
@@ -538,29 +550,47 @@ func runGuess(
 	span, ctx := trace.StartSpanFromExistingContext("runGuess")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
-	pkgs := store.GuessWithCache(ctx, b, forceGuess)
+	guessed := store.GuessWithCache(ctx, b, forceGuess)
 
 	// Map from normalized to original names.
-	normPkgs := map[api.PkgName]api.PkgName{}
-	for pkg := range pkgs {
-		normPkgs[b.NormalizePackageName(pkg)] = pkg
+	normPkgs := map[string][]api.PkgName{}
+	for key, guesses := range guessed {
+		normalized := []api.PkgName{}
+		for _, guess := range guesses {
+			normalized = append(normalized, b.NormalizePackageName(guess))
+		}
+		normPkgs[key] = normalized
 	}
 
 	if !all {
 		if util.Exists(b.Specfile) {
-			for name := range b.ListSpecfile() {
-				delete(normPkgs, b.NormalizePackageName(name))
+			for name := range b.ListSpecfile(true) {
+				name := b.NormalizePackageName(name)
+				for key, pkgs := range normPkgs {
+					for _, pkg := range pkgs {
+						if pkg == name {
+							delete(normPkgs, key)
+						}
+					}
+				}
 			}
 		}
 	}
 
-	for _, pkg := range ignoredPackages {
-		delete(normPkgs, b.NormalizePackageName(api.PkgName(pkg)))
+	for _, ignored := range ignoredPackages {
+		ignored := b.NormalizePackageName(api.PkgName(ignored))
+		for key, pkgs := range normPkgs {
+			for _, pkg := range pkgs {
+				if pkg == ignored {
+					delete(normPkgs, key)
+				}
+			}
+		}
 	}
 
 	lines := []string{}
-	for _, pkg := range normPkgs {
-		lines = append(lines, string(pkg))
+	for _, pkgs := range normPkgs {
+		lines = append(lines, string(pkgs[0]))
 	}
 	sort.Strings(lines)
 
@@ -578,7 +608,10 @@ func runShowSpecfile(language string) {
 
 // runShowLockfile implements 'upm show-lockfile'.
 func runShowLockfile(language string) {
-	fmt.Println(backends.GetBackend(context.Background(), language).Lockfile)
+	b := backends.GetBackend(context.Background(), language)
+	if b.Lockfile != "" {
+		fmt.Println(b.Lockfile)
+	}
 }
 
 // runShowPackageDir implements 'upm show-package-dir'.
@@ -595,7 +628,7 @@ func runInstallReplitNixSystemDependencies(language string, args []string) {
 	span, ctx := trace.StartSpanFromExistingContext("runInstallReplitNixSystemDependencies")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
-	normPkgs := normalizePackageArgs(b, args)
+	normPkgs := b.NormalizePackageArgs(args)
 	pkgs := []api.PkgName{}
 	for p := range normPkgs {
 		pkgs = append(pkgs, p)

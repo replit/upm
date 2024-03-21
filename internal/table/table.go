@@ -176,18 +176,18 @@ func printOrPage(text string, width int) {
 	}
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		util.Die("connecting pipe to pager stdin: %s", err)
+		util.DieSubprocess("connecting pipe to pager stdin: %s", err)
 	}
 
 	if _, err := io.WriteString(stdin, text); err != nil {
-		util.Die("writing to pager: %s", err)
+		util.DieSubprocess("writing to pager: %s", err)
 	}
 	if err := stdin.Close(); err != nil {
-		util.Die("closing pipe to pager stdin: %s", err)
+		util.DieSubprocess("closing pipe to pager stdin: %s", err)
 	}
 
 	if err := cmd.Run(); err != nil {
-		util.Die("running pager: %s", err)
+		util.DieSubprocess("running pager: %s", err)
 	}
 }
 

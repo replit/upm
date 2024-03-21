@@ -25,11 +25,11 @@ func init() {
 	fmt.Println("Preparing test suites:")
 	for _, bn := range backends.GetBackendNames() {
 		prefix := os.Getenv("UPM_SUITE_PREFIX")
-		if !strings.HasPrefix(bn, prefix) {
+		if !strings.HasPrefix(bn.Name, prefix) {
 			continue
 		}
-		fmt.Println("- " + bn)
-		bt := testUtils.InitBackendT(backends.GetBackend(context.Background(), bn), &templates.FS)
+		fmt.Println("- " + bn.Name)
+		bt := testUtils.InitBackendT(backends.GetBackend(context.Background(), bn.Name), &templates.FS)
 		languageBackends = append(languageBackends, bt)
 	}
 	fmt.Println()

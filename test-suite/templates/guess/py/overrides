@@ -1,4 +1,4 @@
-import grpc_status 
+import grpc_status
 import nvd3
 import requirements
 import base62

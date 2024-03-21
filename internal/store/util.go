@@ -16,7 +16,7 @@ func hashFile(filename string) hash {
 	if os.IsNotExist(err) {
 		return ""
 	} else if err != nil {
-		util.Die("%s: %s", filename, err)
+		util.DieIO("%s: %s", filename, err)
 	}
 	sum := md5.Sum(bytes)
 	return hash(hex.EncodeToString(sum[:]))

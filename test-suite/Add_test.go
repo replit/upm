@@ -21,8 +21,8 @@ func TestAdd(t *testing.T) {
 		case "bun":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 
-		case "python3-poetry":
-			pkgs = []string{"replit-ai", "flask", "pyyaml"}
+		case "python3-poetry", "python3-pip":
+			pkgs = []string{"replit-ai", "flask >=2", "pyyaml", "discord-py 2.3.2"}
 
 		default:
 			t.Run(bt.Backend.Name, func(t *testing.T) {
@@ -40,12 +40,30 @@ func TestAdd(t *testing.T) {
 func doAdd(bt testUtils.BackendT, pkgs ...string) {
 	for _, tmpl := range standardTemplates {
 		template := bt.Backend.Name + "/" + tmpl + "/"
-		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			if tmpl != "no-deps" {
-				bt.Subtest("locked", func(bt testUtils.BackendT) {
+
+		if tmpl != "no-deps" {
+			bt.Subtest(tmpl, func(bt testUtils.BackendT) {
+				if bt.Backend.QuirksIsReproducible() {
+					bt.Subtest("locked", func(bt testUtils.BackendT) {
+						bt.Subtest("each", func(bt testUtils.BackendT) {
+							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							for _, pkg := range pkgs {
+								bt.UpmAdd(pkg)
+							}
+						})
+
+						bt.Subtest("all", func(bt testUtils.BackendT) {
+							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							bt.UpmAdd(pkgs...)
+						})
+					})
+				}
+
+				bt.Subtest("unlocked", func(bt testUtils.BackendT) {
 					bt.Subtest("each", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 						for _, pkg := range pkgs {
 							bt.UpmAdd(pkg)
 						}
@@ -53,25 +71,10 @@ func doAdd(bt testUtils.BackendT, pkgs ...string) {
 
 					bt.Subtest("all", func(bt testUtils.BackendT) {
 						bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-						bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
 						bt.UpmAdd(pkgs...)
 					})
 				})
-			}
-
-			bt.Subtest("unlocked", func(bt testUtils.BackendT) {
-				bt.Subtest("each", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					for _, pkg := range pkgs {
-						bt.UpmAdd(pkg)
-					}
-				})
-
-				bt.Subtest("all", func(bt testUtils.BackendT) {
-					bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-					bt.UpmAdd(pkgs...)
-				})
 			})
-		})
+		}
 	}
 }

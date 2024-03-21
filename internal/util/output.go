@@ -23,9 +23,41 @@ func ProgressMsg(msg string) {
 
 // Die is like fmt.Printf, but writes to stderr, adds a newline, and
 // terminates the process.
-func Die(format string, a ...interface{}) {
+func die(code int, format string, a ...interface{}) {
 	fmt.Fprintf(os.Stderr, format+"\n", a...)
-	os.Exit(1)
+	os.Exit(code)
+}
+
+func DieIO(format string, a ...interface{}) {
+	die(10, format, a...)
+}
+
+func DieOverwrite(format string, a ...interface{}) {
+	die(11, format, a...)
+}
+
+func DieNetwork(format string, a ...interface{}) {
+	die(12, format, a...)
+}
+
+func DieProtocol(format string, a ...interface{}) {
+	die(13, format, a...)
+}
+
+func DieConsistency(format string, a ...interface{}) {
+	die(14, format, a...)
+}
+
+func DieInitializationError(format string, a ...interface{}) {
+	die(15, format, a...)
+}
+
+func DieSubprocess(format string, a ...interface{}) {
+	die(16, format, a...)
+}
+
+func DieUnimplemented(format string, a ...interface{}) {
+	die(17, format, a...)
 }
 
 // Panicf is a composition of fmt.Sprintf and panic.
@@ -37,5 +69,5 @@ func Panicf(format string, a ...interface{}) {
 // operation is not implemented. This should be used in language
 // backends that do not implement all of UPM's API.
 func NotImplemented() {
-	Die("not yet implemented")
+	DieUnimplemented("not yet implemented")
 }

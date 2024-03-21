@@ -71,7 +71,7 @@ func (bt *BackendT) AddTestFile(template, as string) {
 	}
 
 	dstPath := path.Join(bt.TestDir(), as)
-	dst, err := os.OpenFile(dstPath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
+	dst, err := os.OpenFile(dstPath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o644)
 	if err != nil {
 		bt.t.Fatalf("failed to open or create test file %s: %v", dstPath, err)
 	}

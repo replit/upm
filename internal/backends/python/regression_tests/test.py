@@ -24,7 +24,7 @@ def reverse_mapping(dct):
             retval[value].append(key)
         else:
             retval[value] = [key]
-    
+
     return retval
 
 os.makedirs(TEST_DIR, exist_ok=True)

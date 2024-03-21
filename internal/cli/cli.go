@@ -21,7 +21,7 @@ func parseOutputFormat(formatStr string) outputFormat {
 	case "json":
 		return outputFormatJSON
 	default:
-		util.Die(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
+		util.DieConsistency(`Error: invalid format %#v (must be "table" or "json")`, formatStr)
 		return 0
 	}
 }
@@ -341,6 +341,8 @@ func DoCLI() {
 	util.ChdirToUPM()
 	err := rootCmd.Execute()
 	if err != nil {
-		panic(err)
+		// We don't need to log anything here,
+		// cobra.Command does its own error logging.
+		os.Exit(1)
 	}
 }

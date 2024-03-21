@@ -195,6 +195,26 @@ type packageLockJSON struct {
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"}
 
+func bunIsAvailable() bool {
+	_, err := exec.LookPath("bun")
+	return err == nil
+}
+
+func pnpmIsAvailable() bool {
+	_, err := exec.LookPath("pnpm")
+	return err == nil
+}
+
+func yarnIsAvailable() bool {
+	_, err := exec.LookPath("yarn")
+	return err == nil
+}
+
+func npmIsAvailable() bool {
+	_, err := exec.LookPath("npm")
+	return err == nil
+}
+
 // nodejsSearch implements Search for nodejs-yarn, nodejs-pnpm and nodejs-npm.
 func nodejsSearch(query string) []api.PkgInfo {
 	// Special case: if search query is only one character, the
@@ -216,18 +236,18 @@ func nodejsSearch(query string) []api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + queryParams)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieNetwork("NPM registry: %s", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	var npmResults npmSearchResults
 	if err := json.Unmarshal(body, &npmResults); err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	results := make([]api.PkgInfo, len(npmResults.Objects))
@@ -256,7 +276,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 
 	resp, err := api.HttpClient.Get(endpoint + path)
 	if err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieNetwork("NPM registry: %s", err)
 	}
 	defer resp.Body.Close()
 
@@ -266,17 +286,17 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 	case 404:
 		return api.PkgInfo{}
 	default:
-		util.Die("NPM registry: HTTP status %d", resp.StatusCode)
+		util.DieNetwork("NPM registry: HTTP status %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		util.Die("NPM registry: could not read response: %s", err)
+		util.DieProtocol("NPM registry: could not read response: %s", err)
 	}
 
 	var npmInfo npmInfoResult
 	if err := json.Unmarshal(body, &npmInfo); err != nil {
-		util.Die("NPM registry: %s", err)
+		util.DieProtocol("NPM registry: %s", err)
 	}
 
 	lastVersionStr := ""
@@ -319,14 +339,14 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 
 // nodejsListSpecfile implements ListSpecfile for nodejs-yarn, nodejs-pnpm and
 // nodejs-npm.
-func nodejsListSpecfile() map[api.PkgName]api.PkgSpec {
+func nodejsListSpecfile(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 	contentsB, err := os.ReadFile("package.json")
 	if err != nil {
-		util.Die("package.json: %s", err)
+		util.DieIO("package.json: %s", err)
 	}
 	var cfg packageJSON
 	if err := json.Unmarshal(contentsB, &cfg); err != nil {
-		util.Die("package.json: %s", err)
+		util.DieProtocol("package.json: %s", err)
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
 	for nameStr, specStr := range cfg.Dependencies {
@@ -352,6 +372,10 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
 })
 
+var nodeIgnorePathSegments = map[string]bool{
+	"node_modules": true,
+}
+
 var jsPathGlobs = []string{
 	"*.js",
 	"*.jsx",
@@ -372,10 +396,12 @@ var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
+	IsAvailable:      yarnIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
-		api.QuirksLockAlsoInstalls,
+		api.QuirksLockAlsoInstalls |
+		api.QuirkRemoveNeedsLockfile,
 	GetPackageDir: func() string {
 		return "node_modules"
 	},
@@ -425,7 +451,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("yarn.lock")
 		if err != nil {
-			util.Die("yarn.lock: %s", err)
+			util.DieIO("yarn.lock: %s", err)
 		}
 		contents := string(contentsB)
 		r := regexp.MustCompile(`(?m)^"?((?:@[^@ \n]+\/)?[^@ \n]+).+:\n  version "(.+)"$`)
@@ -448,6 +474,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-pnpm",
 	Specfile:         "package.json",
 	Lockfile:         "pnpm-lock.yaml",
+	IsAvailable:      pnpmIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -500,13 +527,13 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		lockfileBytes, err := os.ReadFile("pnpm-lock.yaml")
 		if err != nil {
-			util.Die("pnpm-lock.yaml: %s", err)
+			util.DieIO("pnpm-lock.yaml: %s", err)
 		}
 
 		lockfile := map[string]interface{}{}
 		err = yaml.Unmarshal(lockfileBytes, &lockfile)
 		if err != nil {
-			util.Die("pnpm-lock.yaml: %s", err)
+			util.DieProtocol("pnpm-lock.yaml: %s", err)
 		}
 
 		lockfileVersion := strings.Split(lockfile["lockfileVersion"].(string), ".")
@@ -525,7 +552,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 			}
 
 		default:
-			util.Die("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
+			util.DieInitializationError("pnpm-lock.yaml: unsupported lockfile version %s", lockfileVersion)
 		}
 
 		return pkgs
@@ -541,6 +568,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Name:             "nodejs-npm",
 	Specfile:         "package.json",
 	Lockfile:         "package-lock.json",
+	IsAvailable:      npmIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -593,11 +621,11 @@ var NodejsNPMBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("package-lock.json")
 		if err != nil {
-			util.Die("package-lock.json: %s", err)
+			util.DieIO("package-lock.json: %s", err)
 		}
 		var cfg packageLockJSON
 		if err := json.Unmarshal(contentsB, &cfg); err != nil {
-			util.Die("package-lock.json: %s", err)
+			util.DieProtocol("package-lock.json: %s", err)
 		}
 		pkgs := map[api.PkgName]api.PkgVersion{}
 		if cfg.LockfileVersion <= 2 {
@@ -623,6 +651,7 @@ var BunBackend = api.LanguageBackend{
 	Name:             "bun",
 	Specfile:         "package.json",
 	Lockfile:         "bun.lockb",
+	IsAvailable:      bunIsAvailable,
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -677,7 +706,7 @@ var BunBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
 		if err != nil {
-			util.Die("bun pm hash-string: %s", err)
+			util.DieSubprocess("bun pm hash-string: %s", err)
 		}
 
 		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)

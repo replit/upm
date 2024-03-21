@@ -42,8 +42,8 @@ machine-parseable specfile and lockfile listing.
 
 |                       | core | index | guess |
 |-----------------------|------|-------|-------|
+| python-python3-pip    | yes  | yes   | yes   |
 | python-python3-poetry | yes  | yes   | yes   |
-| python-python2-poetry | yes  | yes   | yes   |
 | nodejs-yarn           | yes  | yes   | yes   |
 | nodejs-pnpm           | yes  | yes   | yes   |
 | nodejs-npm            | yes  | yes   | yes   |

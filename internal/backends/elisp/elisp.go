@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -19,11 +20,20 @@ import (
 // elispPatterns is the FilenamePatterns value for ElispBackend.
 var elispPatterns = []string{"*.el"}
 
+func elispCaskIsAvailable() bool {
+	_, err := exec.LookPath("emacs")
+	if err == nil {
+		_, err = exec.LookPath("cask")
+	}
+	return err == nil
+}
+
 // ElispBackend is the UPM language backend for Emacs Lisp using Cask.
 var ElispBackend = api.LanguageBackend{
 	Name:             "elisp-cask",
 	Specfile:         "Cask",
 	Lockfile:         "packages.txt",
+	IsAvailable:      elispCaskIsAvailable,
 	FilenamePatterns: elispPatterns,
 	Quirks:           api.QuirksNotReproducible,
 	GetPackageDir: func() string {
@@ -32,7 +42,7 @@ var ElispBackend = api.LanguageBackend{
 	Search: func(query string) []api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tmpdir)
 
@@ -49,14 +59,14 @@ var ElispBackend = api.LanguageBackend{
 		})
 		var results []api.PkgInfo
 		if err := json.Unmarshal(outputB, &results); err != nil {
-			util.Die("%s", err)
+			util.DieProtocol("%s", err)
 		}
 		return results
 	},
 	Info: func(name api.PkgName) api.PkgInfo {
 		tmpdir, err := os.MkdirTemp("", "elpa")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tmpdir)
 
@@ -73,7 +83,7 @@ var ElispBackend = api.LanguageBackend{
 		})
 		var info api.PkgInfo
 		if err := json.Unmarshal(outputB, &info); err != nil {
-			util.Die("%s", err)
+			util.DieProtocol("%s", err)
 		}
 		return info
 	},
@@ -89,7 +99,7 @@ var ElispBackend = api.LanguageBackend{
 (source org)
 `
 		} else if err != nil {
-			util.Die("Cask: %s", err)
+			util.DieIO("Cask: %s", err)
 		} else {
 			contents = string(contentsB)
 		}
@@ -118,7 +128,7 @@ var ElispBackend = api.LanguageBackend{
 		defer span.Finish()
 		contentsB, err := os.ReadFile("Cask")
 		if err != nil {
-			util.Die("Cask: %s", err)
+			util.DieIO("Cask: %s", err)
 		}
 		contents := string(contentsB)
 
@@ -148,7 +158,7 @@ var ElispBackend = api.LanguageBackend{
 		util.ProgressMsg("write packages.txt")
 		util.TryWriteAtomic("packages.txt", outputB)
 	},
-	ListSpecfile: func() map[api.PkgName]api.PkgSpec {
+	ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 		outputB := util.GetCmdOutput(
 			[]string{"cask", "eval", util.GetResource(
 				"/elisp/cask-list-specfile.el",
@@ -161,7 +171,7 @@ var ElispBackend = api.LanguageBackend{
 			}
 			fields := strings.SplitN(line, "=", 2)
 			if len(fields) != 2 {
-				util.Die("unexpected output: %s", line)
+				util.DieProtocol("unexpected output, expected name=spec: %s", line)
 			}
 			name := api.PkgName(fields[0])
 			spec := api.PkgSpec(fields[1])
@@ -172,7 +182,7 @@ var ElispBackend = api.LanguageBackend{
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
 		contentsB, err := os.ReadFile("packages.txt")
 		if err != nil {
-			util.Die("packages.txt: %s", err)
+			util.DieIO("packages.txt: %s", err)
 		}
 		contents := string(contentsB)
 		r := regexp.MustCompile(`(.+)=(.+)`)
@@ -187,7 +197,7 @@ var ElispBackend = api.LanguageBackend{
 	GuessRegexps: util.Regexps([]string{
 		`\(\s*require\s*'\s*([^)[:space:]]+)[^)]*\)`,
 	}),
-	Guess: func(ctx context.Context) (map[api.PkgName]bool, bool) {
+	Guess: func(ctx context.Context) (map[string][]api.PkgName, bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp guess")
 		defer span.Finish()
@@ -200,7 +210,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 
 		if len(required) == 0 {
-			return map[api.PkgName]bool{}, true
+			return map[string][]api.PkgName{}, true
 		}
 
 		r = regexp.MustCompile(
@@ -213,7 +223,7 @@ var ElispBackend = api.LanguageBackend{
 
 		tempdir, err := os.MkdirTemp("", "epkgs")
 		if err != nil {
-			util.Die("%s", err)
+			util.DieIO("%s", err)
 		}
 		defer os.RemoveAll(tempdir)
 
@@ -232,7 +242,7 @@ var ElispBackend = api.LanguageBackend{
 			clauses = append(clauses, fmt.Sprintf("feature = '%s'", feature))
 		}
 		if len(clauses) == 0 {
-			return map[api.PkgName]bool{}, true
+			return map[string][]api.PkgName{}, true
 		}
 		where := strings.Join(clauses, " OR ")
 		query := fmt.Sprintf("SELECT package FROM provided PR WHERE (%s) "+
@@ -245,9 +255,10 @@ var ElispBackend = api.LanguageBackend{
 		output := string(util.GetCmdOutput([]string{"sqlite3", epkgs, query}))
 
 		r = regexp.MustCompile(`"(.+?)"`)
-		names := map[api.PkgName]bool{}
+		names := map[string][]api.PkgName{}
 		for _, match := range r.FindAllStringSubmatch(output, -1) {
-			names[api.PkgName(match[1])] = true
+			name := match[1]
+			names[name] = []api.PkgName{api.PkgName(name)}
 		}
 		return names, true
 	},
