@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "build-go-cache": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698326400,
+        "narHash": "sha256-29dSO5Icpk+zM0xYYJBk5wOFTA2zARNbq9N6+ZEX0d8=",
+        "owner": "numtide",
+        "repo": "build-go-cache",
+        "rev": "22bdf84c03c0073e52c6889842a1ae098cc8c8dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "build-go-cache",
+        "type": "github"
+      }
+    },
     "nix-editor": {
       "inputs": {
         "nixpkgs": [
@@ -38,6 +58,7 @@
     },
     "root": {
       "inputs": {
+        "build-go-cache": "build-go-cache",
         "nix-editor": "nix-editor",
         "nixpkgs": "nixpkgs"
       }

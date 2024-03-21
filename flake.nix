@@ -7,10 +7,14 @@
   inputs.nix-editor.url = "github:replit/nix-editor";
   inputs.nix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
+  inputs.build-go-cache.url = "github:numtide/build-go-cache";
+  inputs.build-go-cache.inputs.nixpkgs.follows = "nixpkgs";
+
   outputs = {
     self,
     nixpkgs,
     nix-editor,
+    build-go-cache,
   }: let
     systems = [
       "aarch64-darwin"
@@ -27,6 +31,7 @@
     packages = eachSystem (system:
       import ./nix {
         inherit self nixpkgs rev system nix-editor;
+        inherit (build-go-cache.legacyPackages.${system}) buildGoCache;
       });
     devShells = eachSystem (system: {
       default = self.packages.${system}.devShell;
