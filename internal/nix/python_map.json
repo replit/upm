@@ -293,6 +293,7 @@
   "magic-wormhole":{"deps":["pkgs.nettools"]},
   "mahotas":{"deps":["pkgs.freeimage"]},
   "mail-parser":{"deps":["pkgs.glibcLocales"]},
+  "manimgl":{"deps":["pkgs.ffmpeg","pkgs.pango","pkgs.pkg-config"]},
   "manimpango":{"deps":["pkgs.pango","pkgs.pkg-config"]},
   "manuf":{"deps":["pkgs.wireshark-cli"]},
   "mariadb":{"deps":["pkgs.libmysqlclient"]},
