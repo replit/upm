@@ -218,8 +218,9 @@ func maybeLock(ctx context.Context, b api.LanguageBackend, forceLock bool) bool 
 
 	shouldLock := forceLock || !util.Exists(b.Lockfile) || store.HasSpecfileChanged(b)
 	if !shouldLock {
-		if packageDir := b.GetPackageDir(); packageDir != "" {
-			shouldLock = !util.Exists(packageDir)
+		if packageDir := b.GetPackageDir(); packageDir != "" && !util.Exists(packageDir) {
+			// Only run lock if a specfile exists and it lists at least one package.
+			shouldLock = util.Exists(b.Specfile) && len(b.ListSpecfile(true)) > 0
 		}
 	}
 
