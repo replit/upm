@@ -12,8 +12,8 @@ require (
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/net v0.17.0
-	golang.org/x/term v0.15.0
+	golang.org/x/net v0.23.0
+	golang.org/x/term v0.18.0
 	google.golang.org/api v0.128.0
 	gopkg.in/DataDog/dd-trace-go.v1 v1.56.1
 	gopkg.in/yaml.v2 v2.4.0
@@ -68,11 +68,11 @@ require (
 	go.uber.org/atomic v1.11.0 // indirect
 	go4.org/intern v0.0.0-20230525184215-6c62f75575cb // indirect
 	go4.org/unsafe/assume-no-moving-gc v0.0.0-20230525183740-e7c30c78aeb2 // indirect
-	golang.org/x/crypto v0.17.0 // indirect
+	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/oauth2 v0.9.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.12.1-0.20230815132531-74c255bcf846 // indirect
