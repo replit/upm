@@ -415,6 +415,7 @@
   "pyarrow":{"deps":["pkgs.arrow-cpp","pkgs.pkg-config"]},
   "pyatspi":{"deps":["pkgs.at-spi2-core","pkgs.pkg-config"]},
   "pyautogui":{"deps":["pkgs.scrot","pkgs.xvfb-run"]},
+  "pyaudio":{"deps":["pkgs.pulseaudio"]},
   "pybigwig":{"deps":["pkgs.zlib"]},
   "pybind11":{"deps":["pkgs.catch","pkgs.eigen","pkgs.libxcrypt"]},
   "pybluez":{"deps":["pkgs.bluez"]},
