@@ -19,6 +19,7 @@ let
       install -D ${../../go.sum} $out/go.sum
     '';
     inherit vendorHash;
+    proxyVendor = true;
   };
 in
 buildGoModule rec {
