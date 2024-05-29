@@ -351,6 +351,7 @@
   "openai-triton":{"deps":["pkgs.gtest","pkgs.ncurses","pkgs.zlib"]},
   "openai-whisper":{"deps":["pkgs.ffmpeg-full"]},
   "openbabel-bindings":{"deps":["pkgs.openbabel"]},
+  "opencv-python":{"deps":["pkgs.libGL","pkgs.libGLU"]},
   "opensfm":{"deps":["pkgs.ceres-solver","pkgs.eigen","pkgs.glog","pkgs.gtest","pkgs.metis","pkgs.pkg-config","pkgs.suitesparse"]},
   "opentimestamps":{"deps":["pkgs.gitFull"]},
   "opuslib":{"deps":["pkgs.libopus"]},
