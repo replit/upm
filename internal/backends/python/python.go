@@ -632,6 +632,9 @@ func listPoetrySpecfile(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error
 		return nil, err
 	}
 	pkgs := map[api.PkgName]api.PkgSpec{}
+	if cfg.Tool.Poetry == nil {
+		return pkgs, nil
+	}
 	for nameStr, spec := range cfg.Tool.Poetry.Dependencies {
 		if nameStr == "python" {
 			continue
