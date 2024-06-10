@@ -313,8 +313,10 @@ func runAdd(
 
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
-		for name := range b.ListSpecfile(true) {
-			delete(normPkgs, b.NormalizePackageName(name))
+		for name, spec := range b.ListSpecfile(true) {
+			if spec == normPkgs[b.NormalizePackageName(name)].Spec {
+				delete(normPkgs, b.NormalizePackageName(name))
+			}
 		}
 		s.restore()
 	}
