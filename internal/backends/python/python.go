@@ -54,23 +54,23 @@ type pyprojectTOMLGroup struct {
 // file.
 type pyprojectTOML struct {
 	BuildSystem *struct {
-		Requires     []string `json:"requires"`
-		BuildBackend string   `json:"build-backend"`
-	} `json:"build-system"`
+		Requires     []string `toml:"requires"`
+		BuildBackend string   `toml:"build-backend"`
+	} `toml:"build-system"`
 	Project *struct {
-		Dependencies []string `json:"dependencies"`
-	} `json:"project"`
+		Dependencies []string `toml:"dependencies"`
+	} `toml:"project"`
 	Tool *struct {
 		Poetry *struct {
-			Name string `json:"name"`
+			Name string `toml:"name"`
 			// interface{} because they can be either
 			// strings or maps (why?? good lord).
-			Dependencies    map[string]interface{}        `json:"dependencies"`
-			DevDependencies map[string]interface{}        `json:"dev-dependencies"`
-			Packages        []pyprojectPackageCfg         `json:"packages"`
-			Group           map[string]pyprojectTOMLGroup `json:"group"`
-		} `json:"poetry"`
-	} `json:"tool"`
+			Dependencies    map[string]interface{}        `toml:"dependencies"`
+			DevDependencies map[string]interface{}        `toml:"dev-dependencies"`
+			Packages        []pyprojectPackageCfg         `toml:"packages"`
+			Group           map[string]pyprojectTOMLGroup `toml:"group"`
+		} `toml:"poetry"`
+	} `toml:"tool"`
 }
 
 func getCommonPackageDir() string {
