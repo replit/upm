@@ -53,7 +53,14 @@ type pyprojectTOMLGroup struct {
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
-	Tool struct {
+	BuildSystem *struct {
+		Requires     []string `json:"requires"`
+		BuildBackend string   `json:"build-backend"`
+	} `json:"build-system"`
+	Project *struct {
+		Dependencies []string `json:"dependencies"`
+	} `json:"project"`
+	Tool *struct {
 		Poetry *struct {
 			Name string `json:"name"`
 			// interface{} because they can be either
