@@ -140,6 +140,38 @@ func poetryAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectNam
 	util.RunCmd(cmd)
 }
 
+func poetryGetPackageDir() string {
+	if path := getCommonPackageDir(); path != "" {
+		return path
+	}
+
+	// Terminate early if we're running inside a repl.
+	// This will suppress the following poetry commands
+	// from showing up in the Packager pane.
+	if os.Getenv("REPL_HOME") != "" {
+		return ""
+	}
+
+	outputB, err := util.GetCmdOutputFallible([]string{
+		"poetry", "env", "list", "--full-path",
+	})
+	if err != nil {
+		// there's no virtualenv configured, so no package directory
+		return ""
+	}
+
+	var path string
+	for _, line := range strings.Split(strings.TrimSpace(string(outputB)), "\n") {
+		var isActive bool
+		path, isActive = strings.CutSuffix(line, " (Activated)")
+		if isActive {
+			break
+		}
+	}
+
+	return path
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
 // (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPoetryBackend(python string) api.LanguageBackend {
@@ -155,45 +187,8 @@ func makePythonPoetryBackend(python string) api.LanguageBackend {
 			api.QuirksAddRemoveAlsoInstalls,
 		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
-		GetPackageDir: func() string {
-			// Check if we're already inside an activated
-			// virtualenv. If so, just use it.
-			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
-				return venv
-			}
-
-			// Take PYTHONUSERBASE into consideration, if set
-			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
-				return userbase
-			}
-
-			// Terminate early if we're running inside a repl.
-			// This will suppress the following poetry commands
-			// from showing up in the Packager pane.
-			if os.Getenv("REPL_HOME") != "" {
-				return ""
-			}
-
-			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry", "env", "list", "--full-path",
-			})
-			if err != nil {
-				// there's no virtualenv configured, so no package directory
-				return ""
-			}
-
-			var path string
-			for _, line := range strings.Split(strings.TrimSpace(string(outputB)), "\n") {
-				var isActive bool
-				path, isActive = strings.CutSuffix(line, " (Activated)")
-				if isActive {
-					break
-				}
-			}
-
-			return path
-		},
-		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
+		GetPackageDir:        poetryGetPackageDir,
+		SortPackages:         pkg.SortPrefixSuffix(normalizePackageName),
 
 		Search: searchPypi,
 		Info:   info,

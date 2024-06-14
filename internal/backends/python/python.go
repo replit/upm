@@ -66,6 +66,20 @@ type pyprojectTOML struct {
 	} `json:"tool"`
 }
 
+func getCommonPackageDir() string {
+	// Check if we're already inside an activated
+	// virtualenv. If so, just use it.
+	if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
+		return venv
+	}
+
+	// Take PYTHONUSERBASE into consideration, if set
+	if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
+		return userbase
+	}
+
+	return ""
+}
 func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 	pkgs := make(map[api.PkgName]api.PkgCoordinates)
 	versionComponent := regexp.MustCompile(pep440VersionComponent)

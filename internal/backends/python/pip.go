@@ -19,6 +19,20 @@ func pipIsAvailable() bool {
 	return err == nil
 }
 
+func pipGetPackageDir() string {
+	if path := getCommonPackageDir(); path != "" {
+		return path
+	}
+
+	if outputB, err := util.GetCmdOutputFallible([]string{
+		"python",
+		"-c", "import site; print(site.USER_BASE)",
+	}); err == nil {
+		return string(outputB)
+	}
+	return ""
+}
+
 // makePythonPipBackend returns a backend for invoking poetry, given an arg0 for invoking Python
 // (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPipBackend(python string) api.LanguageBackend {
@@ -33,28 +47,8 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
 		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
-		GetPackageDir: func() string {
-			// Check if we're already inside an activated
-			// virtualenv. If so, just use it.
-			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
-				return venv
-			}
-
-			// Take PYTHONUSERBASE into consideration, if set
-			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
-				return userbase
-			}
-
-			if outputB, err := util.GetCmdOutputFallible([]string{
-				"python",
-				"-c", "import site; print(site.USER_BASE)",
-			}); err == nil {
-				return string(outputB)
-			}
-
-			return ""
-		},
-		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
+		GetPackageDir:        pipGetPackageDir,
+		SortPackages:         pkg.SortPrefixSuffix(normalizePackageName),
 
 		Search: searchPypi,
 		Info:   info,
