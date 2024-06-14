@@ -267,6 +267,11 @@ func runAdd(
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
 
+	if !b.QuirksCanAddRemove() {
+		fmt.Println("This backend does not suppport dependency addition")
+		os.Exit(1)
+	}
+
 	normPkgs := b.NormalizePackageArgs(args)
 
 	if guess {
@@ -356,6 +361,11 @@ func runRemove(language string, args []string, upgrade bool,
 	span, ctx := trace.StartSpanFromExistingContext("runRemove")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
+
+	if !b.QuirksCanAddRemove() {
+		fmt.Println("This backend does not suppport dependency removal")
+		os.Exit(1)
+	}
 
 	if !util.Exists(b.Specfile) {
 		return

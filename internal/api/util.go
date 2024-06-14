@@ -62,3 +62,9 @@ func (b *LanguageBackend) QuirksDoesLockNotAlsoInstall() bool {
 func (b *LanguageBackend) QuirkRemoveNeedsLockfile() bool {
 	return (b.Quirks & QuirkRemoveNeedsLockfile) != 0
 }
+
+// QuirksCanAddRemove returns true if the language backend is
+// able to add and remove packages
+func (b *LanguageBackend) QuirksCanAddRemove() bool {
+	return (b.Quirks & QuirksCannotAddRemove) == 0
+}

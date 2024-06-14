@@ -130,6 +130,10 @@ const (
 	// This constant indicates that remove cannot be performed
 	// without a lockfile.
 	QuirkRemoveNeedsLockfile
+
+	// This constant indicates that the packager is unable to
+	// add or remove packages.
+	QuirksCannotAddRemove
 )
 
 // LanguageBackend is the core abstraction of UPM. It represents an
@@ -364,8 +368,8 @@ func (b *LanguageBackend) Setup() {
 		"missing package dir":              b.GetPackageDir == nil,
 		"missing Search":                   b.Search == nil,
 		"missing Info":                     b.Info == nil,
-		"missing Add":                      b.Add == nil,
-		"missing Remove":                   b.Remove == nil,
+		"missing Add":                      b.QuirksCanAddRemove() && b.Add == nil,
+		"missing Remove":                   b.QuirksCanAddRemove() && b.Remove == nil,
 		"missing IsAvailable":              b.IsAvailable == nil,
 		// The lock method should be unimplemented if
 		// and only if builds are not reproducible.
