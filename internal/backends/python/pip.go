@@ -33,6 +33,101 @@ func pipGetPackageDir() string {
 	return ""
 }
 
+func pipAdd(pipFlags []PipFlag) func(context.Context, map[api.PkgName]api.PkgSpec, string) {
+	return func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		//nolint:ineffassign,wastedassign,staticcheck
+		span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
+		defer span.Finish()
+
+		cmd := []string{"pip", "install"}
+		for _, flag := range pipFlags {
+			cmd = append(cmd, string(flag))
+		}
+		for name, spec := range pkgs {
+			name := string(name)
+			spec := string(spec)
+			if found, ok := moduleToPypiPackageAliases[name]; ok {
+				delete(pkgs, api.PkgName(name))
+				name = found
+				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+			}
+
+			cmd = append(cmd, name+" "+spec)
+		}
+		// Run install
+		util.RunCmd(cmd)
+		// Determine what was actually installed
+		outputB, err := util.GetCmdOutputFallible([]string{
+			"pip", "freeze",
+		})
+		if err != nil {
+			util.DieSubprocess("failed to run freeze: %s", err.Error())
+		}
+
+		// As we walk through the output of pip freeze,
+		// compare the package metadata name to the normalized
+		// pkgs that we are trying to install, to see which we
+		// want to track in `requirements.txt`.
+		normalizedPkgs := make(map[api.PkgName]api.PkgName)
+		for name := range pkgs {
+			normalizedPkgs[normalizePackageName(name)] = name
+		}
+
+		var toAppend []string
+		for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
+			var name api.PkgName
+			matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
+			if len(matches) > 0 {
+				name = normalizePackageName(api.PkgName(string(matches[1])))
+				if rawName, ok := normalizedPkgs[name]; ok {
+					// We've meticulously maintained the pkgspec from the CLI args, if specified,
+					// so we don't clobber it with pip freeze's output of "==="
+					name := string(matches[1])
+					userArgSpec := string(pkgs[rawName])
+					toAppend = append(toAppend, name+userArgSpec)
+				}
+			}
+		}
+
+		handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0o644)
+		if err != nil {
+			util.DieIO("Unable to open requirements.txt for writing: %s", err)
+		}
+		defer handle.Close()
+
+		// Probe handle to determine if the last character is a newline
+		var hasTrailingNewline bool
+		fileInfo, err := handle.Stat()
+		if err != nil {
+			util.DieIO("Error getting file info: %s", err)
+		}
+		if fileInfo.Size() > 0 {
+			var lastChar = make([]byte, 1)
+			_, err := handle.ReadAt(lastChar, fileInfo.Size()-1)
+			if err != nil {
+				util.DieIO("Error reading last character: %s", err)
+			}
+			hasTrailingNewline = (lastChar[0] == '\n')
+		}
+		// Maintain existing formatting style.
+		// If the user has a trailing newline, keep it.
+		// If the user has no trailing newline, don't add one.
+		var leadingNewline, trailingNewline string
+		if hasTrailingNewline {
+			leadingNewline = ""
+			trailingNewline = "\n"
+		} else {
+			leadingNewline = "\n"
+			trailingNewline = ""
+		}
+		for _, line := range toAppend {
+			if _, err := handle.WriteString(leadingNewline + line + trailingNewline); err != nil {
+				util.DieIO("Error writing to requirements.txt: %s", err)
+			}
+		}
+	}
+}
+
 // makePythonPipBackend returns a backend for invoking poetry, given an arg0 for invoking Python
 // (either a full path or just a name like "python3") to use when invoking Python.
 func makePythonPipBackend(python string) api.LanguageBackend {
@@ -52,98 +147,7 @@ func makePythonPipBackend(python string) api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-			//nolint:ineffassign,wastedassign,staticcheck
-			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
-			defer span.Finish()
-
-			cmd := []string{"pip", "install"}
-			for _, flag := range pipFlags {
-				cmd = append(cmd, string(flag))
-			}
-			for name, spec := range pkgs {
-				name := string(name)
-				spec := string(spec)
-				if found, ok := moduleToPypiPackageAliases[name]; ok {
-					delete(pkgs, api.PkgName(name))
-					name = found
-					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
-				}
-
-				cmd = append(cmd, name+" "+spec)
-			}
-			// Run install
-			util.RunCmd(cmd)
-			// Determine what was actually installed
-			outputB, err := util.GetCmdOutputFallible([]string{
-				"pip", "freeze",
-			})
-			if err != nil {
-				util.DieSubprocess("failed to run freeze: %s", err.Error())
-			}
-
-			// As we walk through the output of pip freeze,
-			// compare the package metadata name to the normalized
-			// pkgs that we are trying to install, to see which we
-			// want to track in `requirements.txt`.
-			normalizedPkgs := make(map[api.PkgName]api.PkgName)
-			for name := range pkgs {
-				normalizedPkgs[normalizePackageName(name)] = name
-			}
-
-			var toAppend []string
-			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
-				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
-				if len(matches) > 0 {
-					name = normalizePackageName(api.PkgName(string(matches[1])))
-					if rawName, ok := normalizedPkgs[name]; ok {
-						// We've meticulously maintained the pkgspec from the CLI args, if specified,
-						// so we don't clobber it with pip freeze's output of "==="
-						name := string(matches[1])
-						userArgSpec := string(pkgs[rawName])
-						toAppend = append(toAppend, name+userArgSpec)
-					}
-				}
-			}
-
-			handle, err := os.OpenFile("requirements.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0o644)
-			if err != nil {
-				util.DieIO("Unable to open requirements.txt for writing: %s", err)
-			}
-			defer handle.Close()
-
-			// Probe handle to determine if the last character is a newline
-			var hasTrailingNewline bool
-			fileInfo, err := handle.Stat()
-			if err != nil {
-				util.DieIO("Error getting file info: %s", err)
-			}
-			if fileInfo.Size() > 0 {
-				var lastChar = make([]byte, 1)
-				_, err := handle.ReadAt(lastChar, fileInfo.Size()-1)
-				if err != nil {
-					util.DieIO("Error reading last character: %s", err)
-				}
-				hasTrailingNewline = (lastChar[0] == '\n')
-			}
-			// Maintain existing formatting style.
-			// If the user has a trailing newline, keep it.
-			// If the user has no trailing newline, don't add one.
-			var leadingNewline, trailingNewline string
-			if hasTrailingNewline {
-				leadingNewline = ""
-				trailingNewline = "\n"
-			} else {
-				leadingNewline = "\n"
-				trailingNewline = ""
-			}
-			for _, line := range toAppend {
-				if _, err := handle.WriteString(leadingNewline + line + trailingNewline); err != nil {
-					util.DieIO("Error writing to requirements.txt: %s", err)
-				}
-			}
-		},
+		Add:    pipAdd(pipFlags),
 		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip uninstall")
