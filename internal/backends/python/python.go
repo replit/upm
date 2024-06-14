@@ -245,5 +245,6 @@ func getPython3() string {
 }
 
 // PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
+var PythonFlitBackend = makePythonFlitBackend(getPython3())
 var PythonPoetryBackend = makePythonPoetryBackend(getPython3())
 var PythonPipBackend = makePythonPipBackend(getPython3())
