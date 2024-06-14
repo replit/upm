@@ -108,6 +108,8 @@ func pipAdd(pipFlags []PipFlag) func(context.Context, map[api.PkgName]api.PkgSpe
 				util.DieIO("Error reading last character: %s", err)
 			}
 			hasTrailingNewline = (lastChar[0] == '\n')
+		} else if fileInfo.Size() == 0 {
+			hasTrailingNewline = true
 		}
 		// Maintain existing formatting style.
 		// If the user has a trailing newline, keep it.
