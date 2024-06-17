@@ -50,12 +50,7 @@ var knownFlags = map[string]bool{
 type PipFlag string
 type Constraints map[api.PkgName]api.PkgSpec
 
-func findPackage(line string) (*api.PkgName, *api.PkgSpec, bool) {
-	var name *api.PkgName
-	var spec *api.PkgSpec
-
-	var found bool
-
+func findPackage(line string) (name *api.PkgName, spec *api.PkgSpec, found bool) {
 	matches := matchPackageAndSpec.FindSubmatch([]byte(line))
 	if len(matches) > 1 {
 		_name := api.PkgName(string(matches[1]))
