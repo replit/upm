@@ -16,6 +16,7 @@
     pkgs.nodePackages.pnpm
     pkgs.python311Full
     pkgs.python311Packages.pip
+    pkgs.python311Packages.flit
     pkgs.poetry
     pkgs.R
     pkgs.ruby

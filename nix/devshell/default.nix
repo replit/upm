@@ -21,6 +21,7 @@ mkShell {
     nodePackages.pnpm
     nodePackages.yarn
     python310Packages.pip
+    python310Packages.flit
     poetry
     python310Full
   ];
