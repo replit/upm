@@ -8,17 +8,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1699381303,
-        "narHash": "sha256-qi1FdxpIfHrx6T3W2ck7WOoP2B486H3WSRPFMPJtofs=",
+        "lastModified": 1721386404,
+        "narHash": "sha256-c5t/YVZEn+zsQKqU9cws4boHVNyt7LQNeaf+xdPeWGI=",
         "owner": "numtide",
         "repo": "build-go-cache",
-        "rev": "1f0056d94c4097cf8cfc9ed9c1864e400f689c6b",
+        "rev": "c5fa74cf7666a3fd7908d7ea91f8a6713ba5e838",
         "type": "github"
       },
       "original": {
         "owner": "numtide",
         "repo": "build-go-cache",
-        "rev": "1f0056d94c4097cf8cfc9ed9c1864e400f689c6b",
+        "rev": "c5fa74cf7666a3fd7908d7ea91f8a6713ba5e838",
         "type": "github"
       }
     },
