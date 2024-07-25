@@ -2,6 +2,7 @@ package python
 
 import (
 	"context"
+	_ "embed"
 	"os"
 	"strings"
 
@@ -9,6 +10,11 @@ import (
 	"github.com/replit/upm/internal/util"
 	"github.com/smacker/go-tree-sitter/python"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+)
+
+var (
+	//go:embed common_words.txt
+	common_words_bytes []byte
 )
 
 var importsQuery = `
@@ -309,11 +315,18 @@ func filterImports(ctx context.Context, foundPkgs map[string]bool, testPypiMap f
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "python.grab.filterImports")
 	defer span.Finish()
-	// filter out stdlib/python internal modules
+	common_words := make(map[string]bool)
+	for _, word := range strings.Split(string(common_words_bytes), "\n") {
+		common_words[word] = true
+	}
+	// filter out stdlib/python internal modules, common words
 	for pkg := range foundPkgs {
 		// First path component
 		mod := strings.Split(pkg, ".")[0]
 		if internalModules[mod] {
+			delete(foundPkgs, pkg)
+		}
+		if common_words[mod] {
 			delete(foundPkgs, pkg)
 		}
 	}
