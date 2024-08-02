@@ -416,7 +416,13 @@ var NodejsYarnBackend = api.LanguageBackend{
 		}
 		cmd := []string{"yarn", "add"}
 		for name, spec := range pkgs {
-			arg := string(name)
+			name := string(name)
+			if found, ok := moduleToYarnpkgPackageAliases[name]; ok {
+				delete(pkgs, api.PkgName(name))
+				name = found
+				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+			}
+			arg := name
 			if spec != "" {
 				arg += "@" + string(spec)
 			}
@@ -493,7 +499,13 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		}
 		cmd := []string{"pnpm", "add"}
 		for name, spec := range pkgs {
-			arg := string(name)
+			name := string(name)
+			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
+				delete(pkgs, api.PkgName(name))
+				name = found
+				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+			}
+			arg := name
 			if spec != "" {
 				arg += "@" + string(spec)
 			}
@@ -587,7 +599,13 @@ var NodejsNPMBackend = api.LanguageBackend{
 		}
 		cmd := []string{"npm", "install"}
 		for name, spec := range pkgs {
-			arg := string(name)
+			name := string(name)
+			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
+				delete(pkgs, api.PkgName(name))
+				name = found
+				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+			}
+			arg := name
 			if spec != "" {
 				arg += "@" + string(spec)
 			}
@@ -671,7 +689,13 @@ var BunBackend = api.LanguageBackend{
 		}
 		cmd := []string{"bun", "add"}
 		for name, spec := range pkgs {
-			arg := string(name)
+			name := string(name)
+			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
+				delete(pkgs, api.PkgName(name))
+				name = found
+				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+			}
+			arg := name
 			if spec != "" {
 				arg += "@" + string(spec)
 			}

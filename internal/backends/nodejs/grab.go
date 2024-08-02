@@ -195,6 +195,10 @@ func filterImports(ctx context.Context, foundPaths map[string]bool) map[string][
 			}
 		}
 
+		if pkg, ok := moduleToNpmjsPackageAliases[mod]; ok {
+			mod = pkg
+		}
+
 		pkgs[mod] = []api.PkgName{api.PkgName(mod)}
 	}
 
