@@ -7,7 +7,7 @@
   inputs.nix-editor.url = "github:replit/nix-editor";
   inputs.nix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.build-go-cache.url = "github:numtide/build-go-cache/1f0056d94c4097cf8cfc9ed9c1864e400f689c6b";
+  inputs.build-go-cache.url = "github:numtide/build-go-cache/c5fa74cf7666a3fd7908d7ea91f8a6713ba5e838";
   inputs.build-go-cache.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = {
