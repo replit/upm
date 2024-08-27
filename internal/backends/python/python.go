@@ -275,9 +275,8 @@ func searchPypi(query string) []api.PkgInfo {
 	return filtered
 }
 
-// makePythonPoetryBackend returns a backend for invoking poetry, given an arg0 for invoking Python
-// (either a full path or just a name like "python3") to use when invoking Python.
-func makePythonPoetryBackend(python string) api.LanguageBackend {
+// makePythonPoetryBackend returns a backend for invoking poetry
+func makePythonPoetryBackend() api.LanguageBackend {
 	return api.LanguageBackend{
 		Name:                 "python3-poetry",
 		Alias:                "python-python3-poetry",
@@ -414,9 +413,8 @@ var pythonGuessRegexps = util.Regexps([]string{
 	`import ((?:.|\\\n)*)`,
 })
 
-// makePythonPipBackend returns a backend for invoking poetry, given an arg0 for invoking Python
-// (either a full path or just a name like "python3") to use when invoking Python.
-func makePythonPipBackend(python string) api.LanguageBackend {
+// makePythonPipBackend returns a backend for invoking pip.
+func makePythonPipBackend() api.LanguageBackend {
 	var pipFlags []PipFlag
 
 	b := api.LanguageBackend{
@@ -672,17 +670,6 @@ func listPoetrySpecfile(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error
 	return pkgs, nil
 }
 
-// getPython3 returns either "python3" or the value of the UPM_PYTHON3
-// environment variable.
-func getPython3() string {
-	python3 := os.Getenv("UPM_PYTHON3")
-	if python3 != "" {
-		return python3
-	} else {
-		return "python3"
-	}
-}
-
 // PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
-var PythonPoetryBackend = makePythonPoetryBackend(getPython3())
-var PythonPipBackend = makePythonPipBackend(getPython3())
+var PythonPoetryBackend = makePythonPoetryBackend()
+var PythonPipBackend = makePythonPipBackend()
