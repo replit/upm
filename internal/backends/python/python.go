@@ -275,6 +275,23 @@ func searchPypi(query string) []api.PkgInfo {
 	return filtered
 }
 
+func commonInstallNixDeps(ctx context.Context, pkgs []api.PkgName, specfilePkgs map[api.PkgName]api.PkgSpec) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
+	defer span.Finish()
+	ops := []nix.NixEditorOp{}
+	for _, pkg := range pkgs {
+		deps := nix.PythonNixDeps(string(pkg))
+		ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+	}
+
+	for pkg := range specfilePkgs {
+		deps := nix.PythonNixDeps(string(pkg))
+		ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
+	}
+	nix.RunNixEditorOps(ops)
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry
 func makePythonPoetryBackend() api.LanguageBackend {
 	return api.LanguageBackend{
@@ -383,23 +400,10 @@ func makePythonPoetryBackend() api.LanguageBackend {
 		GuessRegexps: pythonGuessRegexps,
 		Guess:        guess,
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
-			//nolint:ineffassign,wastedassign,staticcheck
-			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
-			defer span.Finish()
-			ops := []nix.NixEditorOp{}
-			for _, pkg := range pkgs {
-				deps := nix.PythonNixDeps(string(pkg))
-				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
-			}
-
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
 			specfilePkgs, _ := listPoetrySpecfile(true)
-			for pkg := range specfilePkgs {
-				deps := nix.PythonNixDeps(string(pkg))
-				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
-			}
-			nix.RunNixEditorOps(ops)
+			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
 		},
 	}
 }
@@ -584,23 +588,10 @@ func makePythonPipBackend() api.LanguageBackend {
 		GuessRegexps: pythonGuessRegexps,
 		Guess:        guess,
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
-			//nolint:ineffassign,wastedassign,staticcheck
-			span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallReplitNixSystemDependencies")
-			defer span.Finish()
-			ops := []nix.NixEditorOp{}
-			for _, pkg := range pkgs {
-				deps := nix.PythonNixDeps(string(pkg))
-				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
-			}
-
 			// Ignore the error here, because if we can't read the specfile,
 			// we still want to add the deps from above at least.
 			_, specfilePkgs, _ := ListRequirementsTxt("requirements.txt")
-			for pkg := range specfilePkgs {
-				deps := nix.PythonNixDeps(string(pkg))
-				ops = append(ops, nix.ReplitNixAddToNixEditorOps(deps)...)
-			}
-			nix.RunNixEditorOps(ops)
+			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
 		},
 	}
 
