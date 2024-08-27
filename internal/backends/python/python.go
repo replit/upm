@@ -80,16 +80,6 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
-func pipIsAvailable() bool {
-	_, err := exec.LookPath("pip")
-	return err == nil
-}
-
-func poetryIsAvailable() bool {
-	_, err := exec.LookPath("poetry")
-	return err == nil
-}
-
 // normalizeSpec returns the version string from a Poetry spec, or the
 // empty string. The Poetry spec may be either a string or a
 // map[string]interface{} with a "version" key that is a string. If
@@ -208,45 +198,6 @@ func info(name api.PkgName) api.PkgInfo {
 	return info
 }
 
-func add(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
-	//nolint:ineffassign,wastedassign,staticcheck
-	span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
-	defer span.Finish()
-	// Initalize the specfile if it doesnt exist
-	if !util.Exists("pyproject.toml") {
-		cmd := []string{"poetry", "init", "--no-interaction"}
-
-		if projectName != "" {
-			cmd = append(cmd, "--name", projectName)
-		}
-
-		util.RunCmd(cmd)
-	}
-
-	cmd := []string{"poetry", "add"}
-	for name, spec := range pkgs {
-		name := string(name)
-		if found, ok := moduleToPypiPackageAliases[name]; ok {
-			delete(pkgs, api.PkgName(name))
-			name = found
-			pkgs[api.PkgName(name)] = api.PkgSpec(spec)
-		}
-		spec := string(spec)
-
-		// NB: this doesn't work if spec has
-		// spaces in it, because of a bug in
-		// Poetry that can't be worked around.
-		// It looks like that bug might be
-		// fixed in the 1.0 release though :/
-		if spec != "" {
-			cmd = append(cmd, name+" "+spec)
-		} else {
-			cmd = append(cmd, name)
-		}
-	}
-	util.RunCmd(cmd)
-}
-
 func searchPypi(query string) []api.PkgInfo {
 	// Normalize query before looking it up in the overide map
 	query = string(normalizePackageName(api.PkgName(query)))
@@ -307,16 +258,89 @@ func commonGuessPackageDir() string {
 	return ""
 }
 
+var pythonGuessRegexps = util.Regexps([]string{
+	// The (?:.|\\\n) subexpression allows us to
+	// match match multiple lines if
+	// backslash-escapes are used on the newlines.
+	`from (?:.|\\\n) import`,
+	`import ((?:.|\\\n)*) as`,
+	`import ((?:.|\\\n)*)`,
+})
+
+func readPyproject() (*pyprojectTOML, error) {
+	var cfg pyprojectTOML
+	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
+		return nil, err
+	}
+	return &cfg, nil
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry
 func makePythonPoetryBackend() api.LanguageBackend {
+	listPoetrySpecfile := func(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
+		cfg, err := readPyproject()
+		if err != nil {
+			return nil, err
+		}
+		pkgs := map[api.PkgName]api.PkgSpec{}
+		if cfg.Tool.Poetry == nil {
+			return pkgs, nil
+		}
+		for nameStr, spec := range cfg.Tool.Poetry.Dependencies {
+			if nameStr == "python" {
+				continue
+			}
+
+			specStr := normalizeSpec(spec)
+			if specStr == "" {
+				continue
+			}
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+		}
+		for nameStr, spec := range cfg.Tool.Poetry.DevDependencies {
+			if nameStr == "python" {
+				continue
+			}
+
+			specStr := normalizeSpec(spec)
+			if specStr == "" {
+				continue
+			}
+			pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+		}
+		if mergeAllGroups && cfg.Tool.Poetry.Group != nil {
+			for _, group := range cfg.Tool.Poetry.Group {
+				for nameStr, spec := range group.Dependencies {
+					specStr := normalizeSpec(spec)
+					if specStr == "" {
+						continue
+					}
+					pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
+				}
+			}
+		}
+
+		return pkgs, nil
+	}
+
 	return api.LanguageBackend{
-		Name:                 "python3-poetry",
-		Alias:                "python-python3-poetry",
-		Specfile:             "pyproject.toml",
-		IsSpecfileCompatible: verifyPoetrySpecfile,
-		Lockfile:             "poetry.lock",
-		IsAvailable:          poetryIsAvailable,
-		FilenamePatterns:     []string{"*.py"},
+		Name:     "python3-poetry",
+		Alias:    "python-python3-poetry",
+		Specfile: "pyproject.toml",
+		IsSpecfileCompatible: func(path string) (bool, error) {
+			cfg, err := readPyproject()
+			if err != nil {
+				return false, err
+			}
+
+			return cfg.Tool.Poetry != nil, nil
+		},
+		Lockfile: "poetry.lock",
+		IsAvailable: func() bool {
+			_, err := exec.LookPath("poetry")
+			return err == nil
+		},
+		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
 			api.QuirksAddRemoveAlsoInstalls,
 		NormalizePackageArgs: normalizePackageArgs,
@@ -357,7 +381,44 @@ func makePythonPoetryBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add:    add,
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
+			defer span.Finish()
+			// Initalize the specfile if it doesnt exist
+			if !util.Exists("pyproject.toml") {
+				cmd := []string{"poetry", "init", "--no-interaction"}
+
+				if projectName != "" {
+					cmd = append(cmd, "--name", projectName)
+				}
+
+				util.RunCmd(cmd)
+			}
+
+			cmd := []string{"poetry", "add"}
+			for name, spec := range pkgs {
+				name := string(name)
+				if found, ok := moduleToPypiPackageAliases[name]; ok {
+					delete(pkgs, api.PkgName(name))
+					name = found
+					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				}
+				spec := string(spec)
+
+				// NB: this doesn't work if spec has
+				// spaces in it, because of a bug in
+				// Poetry that can't be worked around.
+				// It looks like that bug might be
+				// fixed in the 1.0 release though :/
+				if spec != "" {
+					cmd = append(cmd, name+" "+spec)
+				} else {
+					cmd = append(cmd, name)
+				}
+			}
+			util.RunCmd(cmd)
+		},
 		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry remove")
@@ -417,23 +478,17 @@ func makePythonPoetryBackend() api.LanguageBackend {
 	}
 }
 
-var pythonGuessRegexps = util.Regexps([]string{
-	// The (?:.|\\\n) subexpression allows us to
-	// match match multiple lines if
-	// backslash-escapes are used on the newlines.
-	`from (?:.|\\\n) import`,
-	`import ((?:.|\\\n)*) as`,
-	`import ((?:.|\\\n)*)`,
-})
-
 // makePythonPipBackend returns a backend for invoking pip.
 func makePythonPipBackend() api.LanguageBackend {
 	var pipFlags []PipFlag
 
 	b := api.LanguageBackend{
-		Name:                 "python3-pip",
-		Specfile:             "requirements.txt",
-		IsAvailable:          pipIsAvailable,
+		Name:     "python3-pip",
+		Specfile: "requirements.txt",
+		IsAvailable: func() bool {
+			_, err := exec.LookPath("pip")
+			return err == nil
+		},
 		Alias:                "python-python3-pip",
 		FilenamePatterns:     []string{"*.py"},
 		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksNotReproducible,
@@ -599,69 +654,6 @@ func makePythonPipBackend() api.LanguageBackend {
 	}
 
 	return b
-}
-
-func readPyproject() (*pyprojectTOML, error) {
-	var cfg pyprojectTOML
-	if _, err := toml.DecodeFile("pyproject.toml", &cfg); err != nil {
-		return nil, err
-	}
-	return &cfg, nil
-}
-
-func verifyPoetrySpecfile(path string) (bool, error) {
-	cfg, err := readPyproject()
-	if err != nil {
-		return false, err
-	}
-
-	return cfg.Tool.Poetry != nil, nil
-}
-
-func listPoetrySpecfile(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
-	cfg, err := readPyproject()
-	if err != nil {
-		return nil, err
-	}
-	pkgs := map[api.PkgName]api.PkgSpec{}
-	if cfg.Tool.Poetry == nil {
-		return pkgs, nil
-	}
-	for nameStr, spec := range cfg.Tool.Poetry.Dependencies {
-		if nameStr == "python" {
-			continue
-		}
-
-		specStr := normalizeSpec(spec)
-		if specStr == "" {
-			continue
-		}
-		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
-	}
-	for nameStr, spec := range cfg.Tool.Poetry.DevDependencies {
-		if nameStr == "python" {
-			continue
-		}
-
-		specStr := normalizeSpec(spec)
-		if specStr == "" {
-			continue
-		}
-		pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
-	}
-	if mergeAllGroups && cfg.Tool.Poetry.Group != nil {
-		for _, group := range cfg.Tool.Poetry.Group {
-			for nameStr, spec := range group.Dependencies {
-				specStr := normalizeSpec(spec)
-				if specStr == "" {
-					continue
-				}
-				pkgs[api.PkgName(nameStr)] = api.PkgSpec(specStr)
-			}
-		}
-	}
-
-	return pkgs, nil
 }
 
 // PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
