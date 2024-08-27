@@ -292,6 +292,21 @@ func commonInstallNixDeps(ctx context.Context, pkgs []api.PkgName, specfilePkgs 
 	nix.RunNixEditorOps(ops)
 }
 
+func commonGuessPackageDir() string {
+	// Check if we're already inside an activated
+	// virtualenv. If so, just use it.
+	if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
+		return venv
+	}
+
+	// Take PYTHONUSERBASE into consideration, if set
+	if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
+		return userbase
+	}
+
+	return ""
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry
 func makePythonPoetryBackend() api.LanguageBackend {
 	return api.LanguageBackend{
@@ -307,15 +322,9 @@ func makePythonPoetryBackend() api.LanguageBackend {
 		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
-			// Check if we're already inside an activated
-			// virtualenv. If so, just use it.
-			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
-				return venv
-			}
-
-			// Take PYTHONUSERBASE into consideration, if set
-			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
-				return userbase
+			pkgdir := commonGuessPackageDir()
+			if pkgdir != "" {
+				return pkgdir
 			}
 
 			// Terminate early if we're running inside a repl.
@@ -431,15 +440,9 @@ func makePythonPipBackend() api.LanguageBackend {
 		NormalizePackageArgs: normalizePackageArgs,
 		NormalizePackageName: normalizePackageName,
 		GetPackageDir: func() string {
-			// Check if we're already inside an activated
-			// virtualenv. If so, just use it.
-			if venv := os.Getenv("VIRTUAL_ENV"); venv != "" {
-				return venv
-			}
-
-			// Take PYTHONUSERBASE into consideration, if set
-			if userbase := os.Getenv("PYTHONUSERBASE"); userbase != "" {
-				return userbase
+			pkgdir := commonGuessPackageDir()
+			if pkgdir != "" {
+				return pkgdir
 			}
 
 			if outputB, err := util.GetCmdOutputFallible([]string{
