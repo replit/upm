@@ -29,6 +29,7 @@ import (
 var languageBackends = []api.LanguageBackend{
 	python.PythonPoetryBackend,
 	python.PythonPipBackend,
+	python.PythonUvBackend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
 	nodejs.NodejsPNPMBackend,
