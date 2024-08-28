@@ -5,6 +5,7 @@
   nodejs,
   nodePackages,
   nix-editor,
+  pnpm_8,
   poetry,
   python310Full,
   python310Packages,
@@ -18,7 +19,7 @@ mkShell {
     golangci-lint
     nix-editor
     nodejs
-    nodePackages.pnpm
+    pnpm_8
     nodePackages.yarn
     python310Packages.pip
     poetry
