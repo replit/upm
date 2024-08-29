@@ -12,6 +12,7 @@ var testLocks = map[string]bool{
 	"nodejs-pnpm":    true,
 	"nodejs-yarn":    true,
 	"python3-poetry": true,
+	"python3-uv":     true,
 }
 
 func TestLock(t *testing.T) {
