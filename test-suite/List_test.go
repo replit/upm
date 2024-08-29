@@ -33,7 +33,7 @@ func TestList(t *testing.T) {
 				},
 			}
 
-		case "python3-poetry", "python3-pip":
+		case "python3-poetry", "python3-pip", "python3-uv":
 			templatesToPackages = map[string][]string{
 				"no-deps": {},
 				"one-dep": {"django"},
