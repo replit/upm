@@ -376,7 +376,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return false, err
 			}
 
-			return cfg.Tool.Poetry != nil, nil
+			return strings.HasPrefix(cfg.BuildSystem.BuildBackend, "poetry.") && cfg.Tool.Poetry != nil, nil
 		},
 		Lockfile: "poetry.lock",
 		IsAvailable: func() bool {
