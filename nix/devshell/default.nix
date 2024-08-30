@@ -24,5 +24,6 @@ mkShell {
     python310Packages.pip
     poetry
     python310Full
+    uv
   ];
 }
