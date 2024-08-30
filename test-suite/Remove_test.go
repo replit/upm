@@ -24,13 +24,7 @@ func TestRemove(t *testing.T) {
 				"many-deps": {"express", "eslint", "svelte"},
 			}
 
-		case "python3-poetry":
-			pkgsToRemove = map[string][]string{
-				"one-dep":   {"django"},
-				"many-deps": {"django", "boatman", "ws4py"},
-			}
-
-		case "python3-pip":
+		case "python3-poetry", "python3-pip":
 			pkgsToRemove = map[string][]string{
 				"one-dep":   {"django"},
 				"many-deps": {"django", "boatman", "ws4py"},
