@@ -69,12 +69,10 @@ func TestList(t *testing.T) {
 
 func doList(bt testUtils.BackendT, templatesToPackages map[string][]string) {
 	for tmpl, expectPkgs := range templatesToPackages {
-		template := bt.Backend.Name + "/" + tmpl + "/"
-
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-			if tmpl != "no-deps" && bt.Backend.QuirksIsReproducible() {
-				bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+			bt.AddTestDir(tmpl)
+			if tmpl == "no-deps" && bt.Backend.QuirksIsReproducible() {
+				bt.RemoveTestFile(bt.Backend.Lockfile)
 			}
 
 			specs := bt.UpmListSpecFile()
