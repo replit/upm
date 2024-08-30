@@ -376,7 +376,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return false, err
 			}
 
-			return cfg.Tool.Poetry != nil, nil
+			return cfg.BuildSystem != nil && strings.HasPrefix(cfg.BuildSystem.BuildBackend, "poetry.") && cfg.Tool.Poetry != nil, nil
 		},
 		Lockfile: "poetry.lock",
 		IsAvailable: func() bool {
@@ -729,7 +729,7 @@ func makePythonUvBackend() api.LanguageBackend {
 				return false, err
 			}
 
-			return cfg.BuildSystem.BuildBackend == "hatchling.build", nil
+			return cfg.BuildSystem != nil && cfg.BuildSystem.BuildBackend == "hatchling.build", nil
 		},
 		Lockfile: "uv.lock",
 		IsAvailable: func() bool {
