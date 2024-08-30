@@ -522,6 +522,14 @@ func makePythonPipBackend() api.LanguageBackend {
 	b := api.LanguageBackend{
 		Name:     "python3-pip",
 		Specfile: "requirements.txt",
+		IsSpecfileCompatible: func(path string) (bool, error) {
+			cfg, err := readPyproject()
+			if err != nil {
+				return true, nil
+			}
+
+			return cfg.Tool.Poetry == nil, nil
+		},
 		IsAvailable: func() bool {
 			_, err := exec.LookPath("pip")
 			return err == nil
