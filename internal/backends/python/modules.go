@@ -31,7 +31,7 @@ func (state *moduleState) isModuleLocalToRoot(pkg string, root string) bool {
 	last := components[len(components)-1]
 	components = components[:len(components)-1]
 
-	return state.isModuleComponent(path.Join(components...), last)
+	return state.isModuleComponent(path.Join(append([]string{root}, components...)...), last)
 }
 
 // Test to see if a dotted package, `pkg`, is a python module, relative to any project root

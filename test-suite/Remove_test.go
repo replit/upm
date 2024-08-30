@@ -51,23 +51,19 @@ func TestRemove(t *testing.T) {
 
 func doRemove(bt testUtils.BackendT, templatesToPkgsToRemove map[string][]string) {
 	for tmpl, pkgsToRemove := range templatesToPkgsToRemove {
-		template := bt.Backend.Name + "/" + tmpl + "/"
-
 		if tmpl != "no-deps" {
 			bt.Subtest(tmpl, func(bt testUtils.BackendT) {
 				if bt.Backend.QuirksIsReproducible() {
 					bt.Subtest("locked", func(bt testUtils.BackendT) {
 						bt.Subtest("each", func(bt testUtils.BackendT) {
-							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							bt.AddTestDir(tmpl)
 							for _, pkg := range pkgsToRemove {
 								bt.UpmRemove(pkg)
 							}
 						})
 
 						bt.Subtest("all", func(bt testUtils.BackendT) {
-							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-							bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
+							bt.AddTestDir(tmpl)
 							bt.UpmRemove(pkgsToRemove...)
 						})
 					})
@@ -76,14 +72,16 @@ func doRemove(bt testUtils.BackendT, templatesToPkgsToRemove map[string][]string
 				if !bt.Backend.QuirkRemoveNeedsLockfile() {
 					bt.Subtest("unlocked", func(bt testUtils.BackendT) {
 						bt.Subtest("each", func(bt testUtils.BackendT) {
-							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestDir(tmpl)
+							bt.RemoveTestFile(bt.Backend.Lockfile)
 							for _, pkg := range pkgsToRemove {
 								bt.UpmRemove(pkg)
 							}
 						})
 
 						bt.Subtest("all", func(bt testUtils.BackendT) {
-							bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+							bt.AddTestDir(tmpl)
+							bt.RemoveTestFile(bt.Backend.Lockfile)
 							bt.UpmRemove(pkgsToRemove...)
 						})
 					})
