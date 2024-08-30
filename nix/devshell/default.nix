@@ -10,6 +10,7 @@
   python310Full,
   python310Packages,
   golangci-lint,
+  uv,
 }:
 mkShell {
   name = "upm";
@@ -24,5 +25,6 @@ mkShell {
     python310Packages.pip
     poetry
     python310Full
+    uv
   ];
 }
