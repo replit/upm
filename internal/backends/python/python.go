@@ -522,6 +522,14 @@ func makePythonPipBackend() api.LanguageBackend {
 	b := api.LanguageBackend{
 		Name:     "python3-pip",
 		Specfile: "requirements.txt",
+		IsSpecfileCompatible: func(path string) (bool, error) {
+			cfg, err := readPyproject()
+			if err != nil {
+				return false, err
+			}
+
+			return cfg.Tool.Poetry == nil, nil
+		},
 		IsAvailable: func() bool {
 			_, err := exec.LookPath("pip")
 			return err == nil
@@ -729,7 +737,7 @@ func makePythonUvBackend() api.LanguageBackend {
 				return false, err
 			}
 
-			return cfg.BuildSystem.BuildBackend == "hatchling.build", nil
+			return cfg.Tool.Poetry == nil, nil
 		},
 		Lockfile: "uv.lock",
 		IsAvailable: func() bool {
