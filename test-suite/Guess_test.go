@@ -43,7 +43,7 @@ func TestGuess(t *testing.T) {
 				}
 			}
 
-		case "python3-poetry", "python3-pip":
+		case "python3-poetry", "python3-pip", "python3-uv":
 			for _, ext := range []string{"py"} {
 				_, ok := tests[ext]
 				if !ok {
