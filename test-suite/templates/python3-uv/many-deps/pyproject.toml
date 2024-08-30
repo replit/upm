@@ -1,0 +1,15 @@
+[project]
+name = "python-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django >=4.2.7,<5.0.0",
+    "boatman >=0.0.6,<1.0.0",
+    "ws4py >=0.5.1,<1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
