@@ -25,62 +25,61 @@ func TestLock(t *testing.T) {
 			continue
 		}
 
-		bt.Subtest(bt.Backend.Name, doLock)
-	}
-}
+		bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
+			// test absence of lock file
+			for _, tmpl := range standardTemplates {
+				bt.Subtest(tmpl, func(bt testUtils.BackendT) {
+					bt.AddTestDir(tmpl)
+					bt.RemoveTestFile(bt.Backend.Lockfile)
 
-func doLock(bt testUtils.BackendT) {
-	// test absence of lock file
-	for _, tmpl := range standardTemplates {
-		template := bt.Backend.Name + "/" + tmpl + "/"
+					specDeps := bt.UpmListSpecFile()
 
-		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
+					bt.UpmLock()
 
-			specDeps := bt.UpmListSpecFile()
+					lockDeps := bt.UpmListLockFile()
 
-			bt.UpmLock()
+					for _, specDep := range specDeps {
+						found := false
+						for _, lockDep := range lockDeps {
+							if specDep.Name == lockDep.Name {
+								found = true
+								break
+							}
+						}
 
-			lockDeps := bt.UpmListLockFile()
+						if !found {
+							bt.Fail("expected %s in lock file", specDep.Name)
+						}
+					}
+				})
+			}
 
-			for _, specDep := range specDeps {
-				found := false
-				for _, lockDep := range lockDeps {
-					if specDep.Name == lockDep.Name {
-						found = true
-						break
+			// test absence of package dir
+			tmpl := "no-package-dir"
+			bt.Subtest(bt.Backend.Name+"/"+tmpl, func(bt testUtils.BackendT) {
+				bt.AddTestDir(tmpl)
+				bt.RemoveTestFile(bt.Backend.Lockfile)
+
+				specDeps := bt.UpmListSpecFile()
+
+				bt.UpmLock()
+
+				lockDeps := bt.UpmListLockFile()
+
+				for _, specDep := range specDeps {
+					found := false
+					for _, lockDep := range lockDeps {
+						if specDep.Name == lockDep.Name {
+							found = true
+							break
+						}
+					}
+
+					if !found {
+						bt.Fail("expected %s in lock file", specDep.Name)
 					}
 				}
-
-				if !found {
-					bt.Fail("expected %s in lock file", specDep.Name)
-				}
-			}
+			})
 		})
 	}
-
-	// test absence of package dir
-	bt.Subtest(bt.Backend.Name+"/no-package-dir", func(bt testUtils.BackendT) {
-		bt.AddTestFile(bt.Backend.Name+"/many-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
-
-		specDeps := bt.UpmListSpecFile()
-
-		bt.UpmLock()
-
-		lockDeps := bt.UpmListLockFile()
-
-		for _, specDep := range specDeps {
-			found := false
-			for _, lockDep := range lockDeps {
-				if specDep.Name == lockDep.Name {
-					found = true
-					break
-				}
-			}
-
-			if !found {
-				bt.Fail("expected %s in lock file", specDep.Name)
-			}
-		}
-	})
 }

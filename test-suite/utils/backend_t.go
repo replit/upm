@@ -62,6 +62,45 @@ func (bt *BackendT) TestDir() string {
 	return bt.testDir
 }
 
+func (bt *BackendT) AddTestDir(tmpl string) {
+	var rec func(cur string)
+	rec = func(cur string) {
+		entries, _ := bt.templates.ReadDir(path.Join(bt.Backend.Name, cur))
+		for _, entry := range entries {
+			// Combine the current path segment with the src or dst roots
+			srcpath := path.Join(bt.Backend.Name, cur, entry.Name())
+			dstpath := path.Join(bt.TestDir(), cur, entry.Name())
+			if entry.IsDir() {
+				os.MkdirAll(dstpath, 0o755)
+				rec(path.Join(cur, entry.Name()))
+			} else {
+				f, err := bt.templates.Open(srcpath)
+				if err != nil {
+					bt.t.Fatalf("failed to get template %s: %v", srcpath, err)
+				}
+
+				dst, err := os.OpenFile(dstpath, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o644)
+				if err != nil {
+					bt.t.Fatalf("failed to open or create test file %s: %v", dstpath, err)
+				}
+
+				_, err = io.Copy(dst, f)
+				if err != nil {
+					bt.t.Fatalf("failed to read template %s: %v", srcpath, err)
+				}
+			}
+		}
+	}
+
+	os.Mkdir(path.Join(bt.TestDir(), tmpl), 0o755)
+	rec(tmpl)
+}
+
+func (bt *BackendT) RemoveTestFile(fpath string) {
+	fullPath := path.Join(bt.TestDir(), fpath)
+	os.Remove(fullPath)
+}
+
 func (bt *BackendT) AddTestFile(template, as string) {
 	templates := *bt.templates
 
