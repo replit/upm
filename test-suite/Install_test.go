@@ -15,6 +15,7 @@ var testInstalls = map[string]bool{
 	"nodejs-yarn":    true,
 	"python3-poetry": true,
 	"python3-pip":    true,
+	"python3-uv":     true,
 }
 
 func TestInstall(t *testing.T) {
