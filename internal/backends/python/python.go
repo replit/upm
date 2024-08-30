@@ -80,6 +80,17 @@ type poetryLock struct {
 	} `json:"package"`
 }
 
+func pep440Join(name api.PkgName, spec api.PkgSpec) string {
+	if spec == "" {
+		return string(name)
+	} else if matchSpecOnly.Match([]byte(spec)) {
+		return string(name) + string(spec)
+	}
+	// We did not match the version range separator in the spec, so we got
+	// something like "foo 1.2.3", we need to return "foo==1.2.3"
+	return string(name) + "==" + string(spec)
+}
+
 // normalizeSpec returns the version string from a Poetry spec, or the
 // empty string. The Poetry spec may be either a string or a
 // map[string]interface{} with a "version" key that is a string. If
@@ -398,24 +409,18 @@ func makePythonPoetryBackend() api.LanguageBackend {
 
 			cmd := []string{"poetry", "add"}
 			for name, spec := range pkgs {
-				name := string(name)
-				if found, ok := moduleToPypiPackageAliases[name]; ok {
+				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, api.PkgName(name))
-					name = found
-					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+					name = api.PkgName(found)
+					pkgs[name] = api.PkgSpec(spec)
 				}
-				spec := string(spec)
 
 				// NB: this doesn't work if spec has
 				// spaces in it, because of a bug in
 				// Poetry that can't be worked around.
 				// It looks like that bug might be
 				// fixed in the 1.0 release though :/
-				if spec != "" {
-					cmd = append(cmd, name+" "+spec)
-				} else {
-					cmd = append(cmd, name)
-				}
+				cmd = append(cmd, pep440Join(name, spec))
 			}
 			util.RunCmd(cmd)
 		},
@@ -523,15 +528,13 @@ func makePythonPipBackend() api.LanguageBackend {
 				cmd = append(cmd, string(flag))
 			}
 			for name, spec := range pkgs {
-				name := string(name)
-				spec := string(spec)
-				if found, ok := moduleToPypiPackageAliases[name]; ok {
-					delete(pkgs, api.PkgName(name))
-					name = found
-					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
+					delete(pkgs, name)
+					name = api.PkgName(found)
+					pkgs[name] = spec
 				}
 
-				cmd = append(cmd, name+" "+spec)
+				cmd = append(cmd, pep440Join(name, spec))
 			}
 			// Run install
 			util.RunCmd(cmd)
@@ -561,9 +564,7 @@ func makePythonPipBackend() api.LanguageBackend {
 					if rawName, ok := normalizedPkgs[name]; ok {
 						// We've meticulously maintained the pkgspec from the CLI args, if specified,
 						// so we don't clobber it with pip freeze's output of "==="
-						name := string(matches[1])
-						userArgSpec := string(pkgs[rawName])
-						toAppend = append(toAppend, name+userArgSpec)
+						toAppend = append(toAppend, pep440Join(name, pkgs[rawName]))
 					}
 				}
 			}
