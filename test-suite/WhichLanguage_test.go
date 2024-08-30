@@ -13,6 +13,7 @@ var testWhichLanguage = map[string]bool{
 	"nodejs-yarn":    true,
 	"python3-poetry": true,
 	"python3-pip":    true,
+	"python3-uv":     true,
 }
 
 func TestWhichLanguage(t *testing.T) {

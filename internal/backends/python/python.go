@@ -58,6 +58,13 @@ type pyprojectTOMLGroup struct {
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
+	BuildSystem *struct {
+		Requires     []string `json:"requires"`
+		BuildBackend string   `json:"build-backend"`
+	} `json:"build-system"`
+	Project *struct {
+		Dependencies []string `json:"dependencies"`
+	} `json:"project"`
 	Tool struct {
 		Poetry *struct {
 			Name string `json:"name"`
@@ -68,6 +75,9 @@ type pyprojectTOML struct {
 			Packages        []pyprojectPackageCfg         `json:"packages"`
 			Group           map[string]pyprojectTOMLGroup `json:"group"`
 		} `json:"poetry"`
+		Uv *struct {
+			Sources map[string]interface{} `json:"sources"`
+		} `json:"uv"`
 	} `json:"tool"`
 }
 
@@ -78,6 +88,28 @@ type poetryLock struct {
 		Name    string `json:"name"`
 		Version string `json:"version"`
 	} `json:"package"`
+}
+
+type uvLock struct {
+	Version        int    `toml:"version"`
+	RequiresPython string `toml:"requires-python"`
+	Packages       []struct {
+		Name    string `toml:"name"`
+		Version string `toml:"version"`
+		Source  struct {
+			Registry string `toml:"registry"`
+		} `toml:"source"`
+		Sdist struct {
+			URL  string `toml:"url"`
+			Hash string `toml:"hash"`
+			Size int    `toml:"size"`
+		} `toml:"sdist"`
+		Wheels []struct {
+			URL  string `toml:"url"`
+			Hash string `toml:"hash"`
+			Size int    `toml:"size"`
+		} `toml:"wheels"`
+	} `toml:"package"`
 }
 
 func pep440Join(name api.PkgName, spec api.PkgSpec) string {
@@ -344,7 +376,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return false, err
 			}
 
-			return cfg.Tool.Poetry != nil, nil
+			return strings.HasPrefix(cfg.BuildSystem.BuildBackend, "poetry.") && cfg.Tool.Poetry != nil, nil
 		},
 		Lockfile: "poetry.lock",
 		IsAvailable: func() bool {
@@ -657,6 +689,151 @@ func makePythonPipBackend() api.LanguageBackend {
 	return b
 }
 
+// makePythonUvBackend returns a backend for invoking uv.
+func makePythonUvBackend() api.LanguageBackend {
+	listUvSpecfile := func() map[api.PkgName]api.PkgSpec {
+		cfg, err := readPyproject()
+		if err != nil {
+			return nil
+		}
+
+		pkgs := map[api.PkgName]api.PkgSpec{}
+
+		for _, dep := range cfg.Project.Dependencies {
+			var name *api.PkgName
+			var spec *api.PkgSpec
+
+			matches := matchPackageAndSpec.FindSubmatch([]byte(dep))
+			if len(matches) > 1 {
+				_name := api.PkgName(string(matches[1]))
+				name = &_name
+			}
+			if len(matches) > 2 {
+				_spec := api.PkgSpec(string(matches[2]))
+				spec = &_spec
+			} else {
+				_spec := api.PkgSpec("")
+				spec = &_spec
+			}
+			pkgs[*name] = *spec
+		}
+
+		return pkgs
+	}
+	b := api.LanguageBackend{
+		Name:     "python3-uv",
+		Specfile: "pyproject.toml",
+		IsSpecfileCompatible: func(path string) (bool, error) {
+			cfg, err := readPyproject()
+			if err != nil {
+				return false, err
+			}
+
+			return cfg.BuildSystem.BuildBackend == "hatchling.build", nil
+		},
+		Lockfile: "uv.lock",
+		IsAvailable: func() bool {
+			_, err := exec.LookPath("uv")
+			return err == nil
+		},
+		Alias:                "python-python3-uv",
+		FilenamePatterns:     []string{"*.py"},
+		Quirks:               api.QuirksAddRemoveAlsoInstalls | api.QuirksAddRemoveAlsoLocks,
+		NormalizePackageArgs: normalizePackageArgs,
+		NormalizePackageName: normalizePackageName,
+		GetPackageDir: func() string {
+			pkgdir := commonGuessPackageDir()
+			if pkgdir != "" {
+				return pkgdir
+			}
+
+			return ""
+		},
+		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
+
+		Search: searchPypi,
+		Info:   info,
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "uv (init) add")
+			defer span.Finish()
+			// Initalize the specfile if it doesnt exist
+			if !util.Exists("pyproject.toml") {
+				cmd := []string{"uv", "init", "--no-progress"}
+
+				if projectName != "" {
+					cmd = append(cmd, "--name", projectName)
+				}
+
+				util.RunCmd(cmd)
+			}
+
+			cmd := []string{"uv", "add"}
+			for name, spec := range pkgs {
+				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
+					delete(pkgs, name)
+					name = api.PkgName(found)
+					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				}
+
+				cmd = append(cmd, pep440Join(name, spec))
+			}
+			util.RunCmd(cmd)
+		},
+		Lock: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
+			defer span.Finish()
+			util.RunCmd([]string{"uv", "lock"})
+		},
+		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "uv uninstall")
+			defer span.Finish()
+
+			cmd := []string{"uv", "remove"}
+			for name := range pkgs {
+				cmd = append(cmd, string(name))
+			}
+			util.RunCmd(cmd)
+		},
+		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "uv install")
+			defer span.Finish()
+
+			util.RunCmd([]string{"uv", "sync"})
+		},
+		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
+			pkgs := listUvSpecfile()
+			return pkgs
+		},
+		ListLockfile: func() map[api.PkgName]api.PkgVersion {
+			var cfg uvLock
+			if _, err := toml.DecodeFile("uv.lock", &cfg); err != nil {
+				util.DieProtocol("%s", err.Error())
+
+			}
+			pkgs := map[api.PkgName]api.PkgVersion{}
+			for _, pkgObj := range cfg.Packages {
+				pkgs[api.PkgName(pkgObj.Name)] = api.PkgVersion(pkgObj.Version)
+			}
+			return pkgs
+		},
+		GuessRegexps: pythonGuessRegexps,
+		Guess:        guess,
+		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs := listUvSpecfile()
+			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
+		},
+	}
+
+	return b
+}
+
 // PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
 var PythonPoetryBackend = makePythonPoetryBackend()
 var PythonPipBackend = makePythonPipBackend()
+var PythonUvBackend = makePythonUvBackend()
