@@ -38,13 +38,8 @@ func doInstall(bt testUtils.BackendT) {
 			continue
 		}
 
-		template := bt.Backend.Name + "/" + tmpl + "/"
 		bt.Subtest(tmpl, func(bt testUtils.BackendT) {
-			bt.AddTestFile(template+bt.Backend.Specfile, bt.Backend.Specfile)
-			if bt.Backend.QuirksIsReproducible() {
-				bt.AddTestFile(template+bt.Backend.Lockfile, bt.Backend.Lockfile)
-			}
-
+			bt.AddTestDir(tmpl)
 			bt.UpmInstall()
 
 			packageDirPath := bt.UpmPackageDir()
