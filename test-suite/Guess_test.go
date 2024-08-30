@@ -73,7 +73,7 @@ func TestGuess(t *testing.T) {
 
 							bt.Subtest(test, func(bt testUtils.BackendT) {
 								bt.AddTestFile(testSrcFile, test+"."+ext)
-								bt.AddTestFile(bt.Backend.Name+"/no-deps/"+bt.Backend.Specfile, bt.Backend.Specfile)
+								bt.AddTestDir("no-deps")
 
 								expectFile, err := templates.FS.Open(testSrcFile + ".expect")
 								if err != nil {
