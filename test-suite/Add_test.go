@@ -21,7 +21,7 @@ func TestAdd(t *testing.T) {
 		case "bun":
 			pkgs = []string{"lodash", "react", "@replit/protocol"}
 
-		case "python3-poetry", "python3-pip":
+		case "python3-poetry", "python3-pip", "python3-uv":
 			pkgs = []string{"replit-ai", "flask >=2", "pyyaml", "discord-py 2.3.2"}
 
 		default:
