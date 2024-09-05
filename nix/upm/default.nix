@@ -3,10 +3,11 @@
   rev,
   makeWrapper,
   buildGoCache,
+  lib,
   runCommand,
 }:
 let
-  vendorHash = "sha256-vHWl1t/tZ1siHJpxazIzkD3FSYokPm7KZVnM+X02O9Q=";
+  vendorHash = "sha256-LegOSckmhod3Yri1YrV7BHFkzZnMSaQjumDRffOs/Aw=";
 
   goCache = buildGoCache {
     # keep this up-to-date in CI with:
