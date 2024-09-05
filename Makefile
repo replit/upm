@@ -128,5 +128,5 @@ wrapped-test-%:
 	UPM_SUITE_PREFIX="$$suite_prefix" go test
 endif
 
-fmt:
+format:
 	go fmt github.com/replit/upm/...
