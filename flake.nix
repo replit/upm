@@ -1,6 +1,6 @@
 {
   description = "Universal Package Manager";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/808c0d8c53c7ae50f82aca8e7df263225cf235bf";
   # nix-editor is a dev dependency in this project. At Replit, we use
   # nix-editor directly too, so nix-editor is already in the
   # environment.
