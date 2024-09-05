@@ -755,7 +755,12 @@ func makePythonUvBackend() api.LanguageBackend {
 				return pkgdir
 			}
 
-			return ""
+			retval := os.Getenv("UV_PROJECT_ENVIRONMENT")
+			if retval != "" {
+				return retval
+			}
+
+			return ".venv"
 		},
 		SortPackages: pkg.SortPrefixSuffix(normalizePackageName),
 
