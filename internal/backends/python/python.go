@@ -705,6 +705,10 @@ func makePythonUvBackend() api.LanguageBackend {
 			return nil
 		}
 
+		if cfg.Project == nil {
+			return nil
+		}
+
 		pkgs := map[api.PkgName]api.PkgSpec{}
 
 		for _, dep := range cfg.Project.Dependencies {
