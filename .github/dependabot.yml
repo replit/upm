@@ -6,11 +6,13 @@ updates:
     package-ecosystem: "npm"
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 0
     ignore:
     - dependency-name: "*"
   - directory: "/test-suite"
     package-ecosystem: "pip"
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 0
     ignore:
     - dependency-name: "*"
