@@ -776,7 +776,7 @@ func makePythonUvBackend() api.LanguageBackend {
 			defer span.Finish()
 			// Initalize the specfile if it doesnt exist
 			if !util.Exists("pyproject.toml") {
-				cmd := []string{"uv", "init", "--no-progress"}
+				cmd := []string{"uv", "init", "--no-progress", "--no-readme", "--no-pin-python"}
 
 				if projectName != "" {
 					cmd = append(cmd, "--name", projectName)
