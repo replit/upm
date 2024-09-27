@@ -779,6 +779,7 @@ func makePythonUvBackend() api.LanguageBackend {
 			if !util.Exists("pyproject.toml") {
 				// uv (currently?) creates a "hello.py" on uv init. Ensure it gets deleted before control returns to the user.
 				sampleFileName := "hello.py"
+				// If the user already _has_ a file called hello.py, do not delete it for them.
 				if util.Exists(sampleFileName) {
 					// Turns out it didn't exist after all!
 					sampleFileName = ""
