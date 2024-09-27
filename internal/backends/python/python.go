@@ -781,7 +781,6 @@ func makePythonUvBackend() api.LanguageBackend {
 				sampleFileName := "hello.py"
 				// If the user already _has_ a file called hello.py, do not delete it for them.
 				if util.Exists(sampleFileName) {
-					// Turns out it didn't exist after all!
 					sampleFileName = ""
 				}
 
