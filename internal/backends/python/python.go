@@ -4,6 +4,7 @@ package python
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -776,6 +777,13 @@ func makePythonUvBackend() api.LanguageBackend {
 			defer span.Finish()
 			// Initalize the specfile if it doesnt exist
 			if !util.Exists("pyproject.toml") {
+				// uv (currently?) creates a "hello.py" on uv init. Ensure it gets deleted before control returns to the user.
+				sampleFileName := "hello.py"
+				if util.Exists(sampleFileName) {
+					// Turns out it didn't exist after all!
+					sampleFileName = ""
+				}
+
 				cmd := []string{"uv", "init", "--no-progress", "--no-readme", "--no-pin-python"}
 
 				if projectName != "" {
@@ -783,6 +791,9 @@ func makePythonUvBackend() api.LanguageBackend {
 				}
 
 				util.RunCmd(cmd)
+				if sampleFileName != "" && util.Exists(sampleFileName) {
+					os.Remove(sampleFileName)
+				}
 			}
 
 			cmd := []string{"uv", "add"}
