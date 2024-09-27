@@ -776,13 +776,23 @@ func makePythonUvBackend() api.LanguageBackend {
 			defer span.Finish()
 			// Initalize the specfile if it doesnt exist
 			if !util.Exists("pyproject.toml") {
-				cmd := []string{"uv", "init", "--no-progress"}
+				// uv (currently?) creates a "hello.py" on uv init. Ensure it gets deleted before control returns to the user.
+				sampleFileName := "hello.py"
+				// If the user already _has_ a file called hello.py, do not delete it for them.
+				if util.Exists(sampleFileName) {
+					sampleFileName = ""
+				}
+
+				cmd := []string{"uv", "init", "--no-progress", "--no-readme", "--no-pin-python"}
 
 				if projectName != "" {
 					cmd = append(cmd, "--name", projectName)
 				}
 
 				util.RunCmd(cmd)
+				if sampleFileName != "" && util.Exists(sampleFileName) {
+					os.Remove(sampleFileName)
+				}
 			}
 
 			cmd := []string{"uv", "add"}
