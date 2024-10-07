@@ -27,9 +27,9 @@ import (
 // If more than one backend might match the same project, then one
 // that comes first in this list will be used.
 var languageBackends = []api.LanguageBackend{
+	python.PythonUvBackend,
 	python.PythonPoetryBackend,
 	python.PythonPipBackend,
-	python.PythonUvBackend,
 	nodejs.BunBackend,
 	nodejs.NodejsNPMBackend,
 	nodejs.NodejsPNPMBackend,
