@@ -43,16 +43,39 @@ For example, to test the top 50000 packages:
 go run ./gen_pypi_map/ test -threshold 50000
 ```
 
-The test results for all tested packages will be stored in `pkgs.json` along with
-the versions of the packages tested. `pkgs.json` is checked in to git. The command
-will only test a packages if it's not already in the `pkgs.json` file or if
-its latest version was not the one previously tested. If you
-want to force a retest of the packages, you can use the `-force` flag.
-
-## Step 3: generate sqlite db
-
-Finally, we use the collected data to generate the lookup database. This is done with:
+... or, to just test a single package:
 
 ```bash
-go run ./gen_pypi_map/ gen
+go run ./gen_pypi_map test-one -package replit-object-storage
 ```
+
+NB: The command will only test a package if its version has not already been
+tested. To force a rerun, please use `-force`.
+
+The results of each "test" run are stored in the directory,
+specified by `-cache` (default: `./cache/`).
+
+## Step 3: generate `pkgs.json`
+
+Running the following command iterates over all "test" metadata accumulated in
+`./cache/` and upserts that into `pkgs.json`. Commit all changes to `pkgs.json`
+
+```bash
+go run ./gen_pypi_map updatepkgs
+```
+
+If you want to force a retest of the packages, you can use the `-force` flag.
+
+## Step 4: generate sqlite db
+
+Finally, we use the collected data to generate the lookup database. This is
+done at upm-build time, since the resulting database should not be committed
+into git.
+
+You'll find that...
+
+1. `nix/upm/default.nix` calls
+2. `make internal/backends/python/pypi_map.sqlite` which calls
+3. `go run ./gen_pypi_map/ gen`
+
+You should only need to do this locally when testing.
