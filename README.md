@@ -42,6 +42,7 @@ machine-parseable specfile and lockfile listing.
 
 |                       | core | index | guess |
 |-----------------------|------|-------|-------|
+| python-python3-uv     | yes  | yes   | yes   |
 | python-python3-pip    | yes  | yes   | yes   |
 | python-python3-poetry | yes  | yes   | yes   |
 | nodejs-yarn           | yes  | yes   | yes   |
@@ -350,8 +351,8 @@ Here are useful things to know that aren't obvious:
   the files in the current directory. This can be overridden either
   partially or completely by specifying a value for the `-l` option.
   You can see the available languages by running `upm list-languages`.
-  In addition to a full language (e.g. `python-python3-poetry`), you
-  can specify something simpler (e.g. `python`, `python3`, `python2`,
+  In addition to a full language (e.g. `python3-poetry`), you
+  can specify something simpler (e.g. `python`, `python3`,
   `poetry`, `python-poetry`). In that case, UPM will examine all of
   the matching languages and pick whichever one it thinks is best. You
   can experiment with this logic by providing the `-l` option to `upm
