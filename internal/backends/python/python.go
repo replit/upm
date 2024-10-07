@@ -860,7 +860,7 @@ func makePythonUvBackend() api.LanguageBackend {
 	return b
 }
 
-// PythonPoetryBackend is a UPM backend for Python 3 that uses Poetry.
+// A collection of backends exported for consumption
 var PythonPoetryBackend = makePythonPoetryBackend()
 var PythonPipBackend = makePythonPipBackend()
 var PythonUvBackend = makePythonUvBackend()
