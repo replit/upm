@@ -741,6 +741,12 @@ func makePythonUvBackend() api.LanguageBackend {
 				return false, err
 			}
 
+			// If we see a requirements.txt, let's make sure we don't accidentally
+			// choose uv over pip.
+			if info, err := os.Stat(PythonPipBackend.Specfile); err == nil {
+				return info == nil, nil
+			}
+
 			return cfg.Tool.Poetry == nil, nil
 		},
 		Lockfile: "uv.lock",
