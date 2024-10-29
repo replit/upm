@@ -393,10 +393,7 @@ var tsxPathGlobs = []string{
 
 func commonIsActive(lockfile string) bool {
 	_, err := os.Stat(lockfile)
-	if os.IsNotExist(err) {
-		return false
-	}
-	return true
+	return !os.IsNotExist(err)
 }
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses [Yarn](https://yarnpkg.com/).

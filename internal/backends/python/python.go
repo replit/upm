@@ -303,10 +303,7 @@ func commonGuessPackageDir() string {
 
 func commonIsActive(lockfile string) bool {
 	_, err := os.Stat(lockfile)
-	if os.IsNotExist(err) {
-		return false
-	}
-	return true
+	return !os.IsNotExist(err)
 }
 
 var pythonGuessRegexps = util.Regexps([]string{
