@@ -21,6 +21,7 @@ var moduleToPypiPackageOverride = map[string][]string{
 	"tensorflow":           append([]string{"tensorflow"}, tf_variants[:]...),        // Avoid suggesting conflicting tensorflow builds
 	"tensorflow-federated": {"tensorflow-federated", "tensorflow-federated-nightly"}, // Avoid suggesting conflicting tensorflow-federated packages
 	"tensorflow1":          {"tensorflow"},                                           // Avoid confusion.
+	"z3":                   {"z3-solver", "z3"},                                      // Popular library from Microsoft Research vs abandoned beta project
 }
 
 /* Proxy packages
