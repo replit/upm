@@ -182,6 +182,10 @@ type LanguageBackend struct {
 	// Check to see if we think we can run at all
 	IsAvailable func() bool
 
+	// Check for signs that this backend has either been used or
+	// can be used to query
+	IsActive func() bool
+
 	// List of filename globs that match against files written in
 	// this programming language, e.g. "*.py" for Python. These
 	// should not include any slashes, because they may be matched
