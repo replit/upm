@@ -42,9 +42,29 @@ func (s *subroutineSilencer) restore() {
 }
 
 // runWhichLanguage implements 'upm which-language'.
-func runWhichLanguage(language string) {
-	b := backends.GetBackend(context.Background(), language)
-	fmt.Println(b.Name)
+func runWhichLanguage(language string, all bool) {
+	if !all {
+		b := backends.GetBackend(context.Background(), language)
+		fmt.Println(b.Name)
+		return
+	}
+	for _, bi := range backends.GetBackendNames() {
+		if !bi.Available {
+			continue
+		}
+		if language != "" && !strings.Contains(bi.Name, language) {
+			continue
+		}
+
+		b := backends.GetBackend(context.Background(), bi.Name)
+
+		// If we can't determine we are in use, don't report
+		if b.IsActive == nil || !b.IsActive() {
+			continue
+		}
+
+		fmt.Println(b.Name)
+	}
 }
 
 // runListLanguages implements 'upm list-languages'.

@@ -391,12 +391,20 @@ var tsxPathGlobs = []string{
 	"*.tsx",
 }
 
+func commonIsActive(lockfile string) bool {
+	_, err := os.Stat(lockfile)
+	return !os.IsNotExist(err)
+}
+
 // NodejsYarnBackend is a UPM backend for Node.js that uses [Yarn](https://yarnpkg.com/).
 var NodejsYarnBackend = api.LanguageBackend{
 	Name:             "nodejs-yarn",
 	Specfile:         "package.json",
 	Lockfile:         "yarn.lock",
 	IsAvailable:      yarnIsAvailable,
+	IsActive: func() bool {
+		return commonIsActive("yarn.lock")
+	},
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -481,6 +489,9 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	Specfile:         "package.json",
 	Lockfile:         "pnpm-lock.yaml",
 	IsAvailable:      pnpmIsAvailable,
+	IsActive: func() bool {
+		return commonIsActive("pnpm-lock.yaml")
+	},
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -581,6 +592,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 	Specfile:         "package.json",
 	Lockfile:         "package-lock.json",
 	IsAvailable:      npmIsAvailable,
+	IsActive: func() bool {
+		return commonIsActive("package-lock.json")
+	},
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
@@ -670,6 +684,9 @@ var BunBackend = api.LanguageBackend{
 	Specfile:         "package.json",
 	Lockfile:         "bun.lockb",
 	IsAvailable:      bunIsAvailable,
+	IsActive: func() bool {
+		return commonIsActive("bun.lockb")
+	},
 	FilenamePatterns: nodejsPatterns,
 	Quirks: api.QuirksAddRemoveAlsoLocks |
 		api.QuirksAddRemoveAlsoInstalls |
