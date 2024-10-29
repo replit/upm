@@ -301,6 +301,14 @@ func commonGuessPackageDir() string {
 	return ""
 }
 
+func commonIsActive(lockfile string) bool {
+	_, err := os.Stat(lockfile)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return true
+}
+
 var pythonGuessRegexps = util.Regexps([]string{
 	// The (?:.|\\\n) subexpression allows us to
 	// match match multiple lines if
@@ -382,6 +390,9 @@ func makePythonPoetryBackend() api.LanguageBackend {
 		IsAvailable: func() bool {
 			_, err := exec.LookPath("poetry")
 			return err == nil
+		},
+		IsActive: func() bool {
+			return commonIsActive("poetry.lock")
 		},
 		FilenamePatterns: []string{"*.py"},
 		Quirks: api.QuirksAddRemoveAlsoLocks |
@@ -753,6 +764,9 @@ func makePythonUvBackend() api.LanguageBackend {
 		IsAvailable: func() bool {
 			_, err := exec.LookPath("uv")
 			return err == nil
+		},
+		IsActive: func() bool {
+			return commonIsActive("uv.lock")
 		},
 		Alias:                "python-python3-uv",
 		FilenamePatterns:     []string{"*.py"},
