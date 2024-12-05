@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "enquirer": "2.4.1",
-    "eslint": "8.49.0",
+    "eslint": "9.15.0",
     "express": "4.19.2",
     "svelte": "4.2.1",
     "vite": "4.5.3",
