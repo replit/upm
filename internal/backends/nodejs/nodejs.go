@@ -7,11 +7,14 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math/rand"
+	"net/http"
 	"net/url"
 	"os"
 	"os/exec"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -234,9 +237,17 @@ func nodejsSearch(query string) []api.PkgInfo {
 	endpoint := "https://registry.npmjs.org/-/v1/search"
 	queryParams := "?text=" + url.QueryEscape(query)
 
+	var resp *http.Response
+	for resp == nil || resp.StatusCode == 429 {
 	resp, err := api.HttpClient.Get(endpoint + queryParams)
-	if err != nil {
-		util.DieNetwork("NPM registry: %s", err)
+		if err != nil {
+			util.DieNetwork("NPM registry: %s", err)
+		}
+		// Requesting too fast. Back off a bit.
+		if resp.StatusCode == 429 {
+			resp.Body.Close()
+			time.Sleep(time.Duration(10 * rand.Float32()) * time.Second)
+		}
 	}
 	defer resp.Body.Close()
 
