@@ -11,6 +11,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/replit/upm/internal/api"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -82,4 +84,29 @@ func (p *PypiMap) PackageToModules(packageName string) ([]string, bool) {
 		return nil, false
 	}
 	return strings.Split(moduleList, ","), true
+}
+
+func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
+	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%')")
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+	rows, err := stmt.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var packageName string
+	packageNames := []api.PkgInfo{}
+	for rows.Next() {
+		err = rows.Scan(&packageName)
+		if err != nil {
+			return nil, err
+		}
+		packageNames = append(packageNames, api.PkgInfo{
+			Name: packageName,
+		})
+	}
+	return packageNames, nil
 }
