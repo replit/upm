@@ -2,25 +2,8 @@
   buildGoModule,
   rev,
   makeWrapper,
-  buildGoCache,
-  runCommand,
+  goCache,
 }:
-let
-  vendorHash = "sha256-vHWl1t/tZ1siHJpxazIzkD3FSYokPm7KZVnM+X02O9Q=";
-
-  goCache = buildGoCache {
-    # keep this up-to-date in CI with:
-    # $ nix run 'github:numtide/build-go-cache#get-external-imports' -- ./. imported-packages
-    importPackagesFile = ./imported-packages;
-    # FIXME: Somehow we get cache invalidation everytime if we don't do this, also it uses a source filter
-    src = runCommand "go-mod" {} ''
-      install -D ${../../go.mod} $out/go.mod
-      install -D ${../../go.sum} $out/go.sum
-    '';
-    inherit vendorHash;
-    proxyVendor = true;
-  };
-in
 buildGoModule rec {
   pname = "upm";
   version = rev;
@@ -60,7 +43,7 @@ buildGoModule rec {
       --set PYPI_MAP_DB "$out/pypi_map.sqlite"
   '';
 
-  inherit vendorHash;
+  inherit (goCache) vendorHash;
   proxyVendor = true; # we only support proxyVendor with buildGoCache just now
 
   doCheck = false;
