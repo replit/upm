@@ -64,7 +64,7 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 	}
 	_, err = db.Exec(`
 	create table module_to_pypi_package (module_name text primary key, guess text, reason text);
-	create table pypi_packages (package_name text primary key, module_list text);
+	create table pypi_packages (package_name text primary key, module_list text, download_count number);
 	`)
 	if err != nil {
 		return err
@@ -92,7 +92,8 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 			stmt.Close()
 
 			stmt, err = db.Prepare(`
-			insert into pypi_packages values (?, ?)
+			insert into pypi_packages (package_name, module_list, download_count)
+			values (?, ?, ?)
 			on conflict (package_name)
 			do update set
 				module_list = excluded.module_list;
@@ -100,7 +101,9 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 			if err != nil {
 				return err
 			}
-			_, err = stmt.Exec(guess.Name, strings.Join(guess.Modules, ","))
+
+			downloadCount := downloadStats[normalizePackageName(guess.Name)]
+			_, err = stmt.Exec(normalizePackageName(guess.Name), strings.Join(guess.Modules, ","), downloadCount)
 			if err != nil {
 				return fmt.Errorf("%s on %s", err.Error(), guess.Name)
 			}

@@ -64,30 +64,8 @@ func (p *PypiMap) ModuleToPackage(moduleName string) (string, bool) {
 	return guess, true
 }
 
-func (p *PypiMap) PackageToModules(packageName string) ([]string, bool) {
-	stmt, err := p.db.Prepare("select module_list from pypi_packages where package_name = ?")
-	if err != nil {
-		return nil, false
-	}
-	defer stmt.Close()
-	rows, err := stmt.Query(packageName)
-	if err != nil {
-		return nil, false
-	}
-	defer rows.Close()
-	if !rows.Next() {
-		return nil, false
-	}
-	var moduleList string
-	err = rows.Scan(&moduleList)
-	if err != nil {
-		return nil, false
-	}
-	return strings.Split(moduleList, ","), true
-}
-
 func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
-	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%')")
+	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%') order by download_count desc")
 	if err != nil {
 		return nil, err
 	}

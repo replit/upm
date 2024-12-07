@@ -402,10 +402,10 @@ func commonIsActive(lockfile string) bool {
 
 // NodejsYarnBackend is a UPM backend for Node.js that uses [Yarn](https://yarnpkg.com/).
 var NodejsYarnBackend = api.LanguageBackend{
-	Name:             "nodejs-yarn",
-	Specfile:         "package.json",
-	Lockfile:         "yarn.lock",
-	IsAvailable:      yarnIsAvailable,
+	Name:        "nodejs-yarn",
+	Specfile:    "package.json",
+	Lockfile:    "yarn.lock",
+	IsAvailable: yarnIsAvailable,
 	IsActive: func() bool {
 		return commonIsActive("yarn.lock")
 	},
@@ -489,10 +489,10 @@ var NodejsYarnBackend = api.LanguageBackend{
 
 // NodejsPNPMBackend is a UPM backend for Node.js that uses [pnpm](https://pnpm.io/).
 var NodejsPNPMBackend = api.LanguageBackend{
-	Name:             "nodejs-pnpm",
-	Specfile:         "package.json",
-	Lockfile:         "pnpm-lock.yaml",
-	IsAvailable:      pnpmIsAvailable,
+	Name:        "nodejs-pnpm",
+	Specfile:    "package.json",
+	Lockfile:    "pnpm-lock.yaml",
+	IsAvailable: pnpmIsAvailable,
 	IsActive: func() bool {
 		return commonIsActive("pnpm-lock.yaml")
 	},
@@ -592,10 +592,10 @@ var NodejsPNPMBackend = api.LanguageBackend{
 
 // NodejsNPMBackend is a UPM backend for Node.js that uses [NPM](https://npmjs.com/).
 var NodejsNPMBackend = api.LanguageBackend{
-	Name:             "nodejs-npm",
-	Specfile:         "package.json",
-	Lockfile:         "package-lock.json",
-	IsAvailable:      npmIsAvailable,
+	Name:        "nodejs-npm",
+	Specfile:    "package.json",
+	Lockfile:    "package-lock.json",
+	IsAvailable: npmIsAvailable,
 	IsActive: func() bool {
 		return commonIsActive("package-lock.json")
 	},
@@ -684,10 +684,10 @@ var NodejsNPMBackend = api.LanguageBackend{
 
 // BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
 var BunBackend = api.LanguageBackend{
-	Name:             "bun",
-	Specfile:         "package.json",
-	Lockfile:         "bun.lockb",
-	IsAvailable:      bunIsAvailable,
+	Name:        "bun",
+	Specfile:    "package.json",
+	Lockfile:    "bun.lockb",
+	IsAvailable: bunIsAvailable,
 	IsActive: func() bool {
 		return commonIsActive("bun.lockb")
 	},
