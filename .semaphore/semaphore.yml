@@ -3,7 +3,7 @@ version: v1.0
 name: UPM
 agent:
   machine:
-    type: s1-goval
+    type: s1-goval-nixos
 
 global_job_config:
   env_vars:
@@ -13,8 +13,7 @@ global_job_config:
     commands:
       - checkout
       - git switch --detach
-      - export PATH="/tmp:$PATH"
-      - source ./.semaphore/install_nix.sh
+      - eval "$(nix print-dev-env)"
 
 blocks:
   - name: test
@@ -23,7 +22,8 @@ blocks:
       jobs:
         - name: test-suite
           commands:
-            - nix develop -c nix shell -c make test-suite
+            - export PATH="$(nix build . --no-link --print-out-paths)/bin:$PATH"
+            - make test-suite
       epilogue:
         commands:
           - test-results publish junit.xml
@@ -35,11 +35,7 @@ blocks:
         - name: golang lint
           commands:
             - make generated
-            - cache restore golangci-lint
-            - >-
-              curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh
-              | sh -s -- -b /tmp v1.55.2
-            - /tmp/golangci-lint run
+            - golangci-lint run
 
 after_pipeline:
   task:
