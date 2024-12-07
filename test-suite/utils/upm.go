@@ -323,13 +323,13 @@ func (bt *BackendT) UpmSearch(query, expectName string) {
 	)
 
 	if exitError, ok := err.(*exec.ExitError); ok {
-			if exitError.ExitCode() == 13 {
-				duration := time.Duration(float32(10 * time.Second) * rand.Float32())
-				bt.Log("Protocol error in 'search', retrying in %v", duration)
-				time.Sleep(duration)
-				bt.UpmSearch(query, expectName)
-				return
-			}
+		if exitError.ExitCode() == 13 {
+			duration := time.Duration(float32(10*time.Second) * rand.Float32())
+			bt.Log("Protocol error in 'search', retrying in %v", duration)
+			time.Sleep(duration)
+			bt.UpmSearch(query, expectName)
+			return
+		}
 	}
 
 	if err != nil {
