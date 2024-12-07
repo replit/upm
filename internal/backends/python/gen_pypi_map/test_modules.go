@@ -161,6 +161,7 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 	}
 
 	var retval PackageInfo
+	retval.Summary = metadata.Info.Summary
 	retval.Version = metadata.Info.Version
 	retval.Modules = modules
 	retval.Name = metadata.Info.Name

@@ -25,6 +25,7 @@ type DownloadsInfo struct {
 type PackageInfo struct {
 	Name         string        `json:"name,omitempty"`
 	Downloads    DownloadsInfo `json:"downloads,omitempty"`
+	Summary      string        `json:"summary,omitempty"`
 	Version      string        `json:"version,omitempty"`
 	RequiresDist []string      `json:"requires_dist,omitempty"`
 
