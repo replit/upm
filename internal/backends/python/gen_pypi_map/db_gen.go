@@ -92,7 +92,8 @@ func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo,
 			stmt.Close()
 
 			stmt, err = db.Prepare(`
-			insert into pypi_packages values (?, ?, ?)
+			insert into pypi_packages (package_name, module_list, download_count)
+			values (?, ?, ?)
 			on conflict (package_name)
 			do update set
 				module_list = excluded.module_list;
