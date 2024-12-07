@@ -9,6 +9,7 @@ import (
 	"database/sql"
 	"fmt"
 	"os"
+	"regexp"
 
 	"github.com/replit/upm/internal/api"
 
@@ -64,12 +65,14 @@ func (p *PypiMap) ModuleToPackage(moduleName string) (string, bool) {
 }
 
 func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
+	not_letter := regexp.MustCompile("[^a-zA-Z0-9]")
+	percent_query := string(not_letter.ReplaceAll([]byte(query), []byte("%")))
 	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%') order by download_count desc")
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
-	rows, err := stmt.Query(query)
+	rows, err := stmt.Query(percent_query)
 	if err != nil {
 		return nil, err
 	}
