@@ -120,6 +120,13 @@ func cmd_test(args []string) {
 			packageMap[pkgName] = true
 		}
 
+		// Replit dependencies to explicitly include
+		packageMap["replit"] = true
+		packageMap["replit-ai"] = true
+		packageMap["replit-code-exec"] = true
+		packageMap["replit-river"] = true
+		packageMap["replit.object-storage"] = true
+
 		packageList := []string{}
 		for pkgName := range packageMap {
 			packageList = append(packageList, pkgName)
