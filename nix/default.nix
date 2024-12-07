@@ -12,5 +12,6 @@ in rec {
   default = upm;
   devShell = pkgs.callPackage ./devshell {nix-editor = nix-editor-pkg;};
   fmt = pkgs.callPackage ./fmt {};
-  upm = pkgs.callPackage ./upm {inherit rev; inherit buildGoCache;};
+  upm = pkgs.callPackage ./upm {inherit rev; inherit goCache;};
+  goCache = pkgs.callPackage ./goCache {inherit buildGoCache;};
 }

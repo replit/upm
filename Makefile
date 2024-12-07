@@ -99,7 +99,7 @@ test-suite:
 	go run gotest.tools/gotestsum --junitfile ./junit.xml ./test-suite
 else
 test-suite:
-	nix develop -c nix shell -c go test -run $(GO_TEST_RUN_OPTS) ./test-suite
+	go test -run $(GO_TEST_RUN_OPTS) ./test-suite
 
 # I don't have a great name for these. The cases are as follows:
 #   make test-python3            # This runs inside nix develop and gates test suite
@@ -112,7 +112,7 @@ test-suite:
 #                                # two modes. It isn't very useful when run directly,
 #                                # since it doesn't know where upm or the PYPI_MAP_DB are.
 test-%:
-	nix develop -c nix shell -c make wrapped-$@
+	make wrapped-$@
 
 unwrapped-test-%:
 	label="$@"; \
