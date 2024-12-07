@@ -2,7 +2,10 @@ package testUtils
 
 import (
 	"encoding/json"
+	"math/rand"
+	"os/exec"
 	"strings"
+	"time"
 
 	"github.com/replit/upm/internal/api"
 )
@@ -318,6 +321,16 @@ func (bt *BackendT) UpmSearch(query, expectName string) {
 		"json",
 		query,
 	)
+
+	if exitError, ok := err.(*exec.ExitError); ok {
+			if exitError.ExitCode() == 13 {
+				duration := time.Duration(float32(10 * time.Second) * rand.Float32())
+				bt.Log("Protocol error in 'search', retrying in %v", duration)
+				time.Sleep(duration)
+				bt.UpmSearch(query, expectName)
+				return
+			}
+	}
 
 	if err != nil {
 		bt.t.Fatalf("upm failed to search: %v", err)
