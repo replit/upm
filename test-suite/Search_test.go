@@ -21,7 +21,7 @@ func TestSearch(t *testing.T) {
 			doSearch(bt, []searchTest{
 				{"express", "express"},
 				{"@replit/crosis", "@replit/crosis"},
-				{"@replit", "@replit/crosis"},
+				{"@replit", "@replit/protocol"},
 			})
 
 		case "python3-poetry", "python3-pip", "python3-uv":
