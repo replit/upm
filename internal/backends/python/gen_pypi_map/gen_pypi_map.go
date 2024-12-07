@@ -196,7 +196,6 @@ func cmd_gen(args []string) {
 	genOut := genCommandSet.String("out", "pypi_map.sqlite", "the destination file for the generated data")
 	genCache := genCommandSet.String("cache", "cache", "A directory where to store temporary cached information for each module.")
 	genPkgsFile := genCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
-	genPkgsLegacyFile := genCommandSet.String("legacypkgsfile", "pypi_packages.json", "Legacy dependencies information for each module - used as a fallback")
 	genBQ := genCommandSet.String("bq", "download_stats.json", "The result of a BigQuery against the pypi downloads dataset.")
 	if err := genCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse gen flags: %s\n", err)
@@ -204,7 +203,7 @@ func cmd_gen(args []string) {
 	}
 
 	cache := LoadAllPackageInfo(*genCache, *genPkgsFile)
-	err := GenerateDB(*genPkg, *genOut, cache, *genBQ, *genPkgsLegacyFile)
+	err := GenerateDB(*genPkg, *genOut, cache, *genBQ)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to generate %s: %s\n", *genOut, err.Error())
 	}

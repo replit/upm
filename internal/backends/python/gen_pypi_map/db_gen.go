@@ -11,42 +11,18 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string, pkgsLegacyFile string) error {
+func GenerateDB(pkg string, outputFilePath string, cache map[string]PackageInfo, bqFilePath string) error {
 	downloadStats, err := LoadDownloadStats(bqFilePath)
 	if err != nil {
 		return err
 	}
-
-	legacyPypiPackages := loadLegacyPypyPackages(pkgsLegacyFile)
 
 	packagesProcessed := make(map[string]bool)
 	var moduleToPackageList = map[string][]PackageInfo{}
 
 	for _, info := range cache {
 		pkgName := strings.ToLower(info.Name)
-		if info.Error != "" {
-			// fallback to legacy package module info
-			legacyInfo, ok := legacyPypiPackages[pkgName]
-			if ok {
-				info.Modules = legacyInfo.Mods
-			}
-		}
 		packagesProcessed[pkgName] = true
-		for _, module := range info.Modules {
-			moduleToPackageList[module] = append(moduleToPackageList[module], info)
-		}
-	}
-
-	// Backfill legacy package info that is missing from our cache
-	for pkg, legacyInfo := range legacyPypiPackages {
-		_, ok := packagesProcessed[pkg]
-		if ok {
-			continue
-		}
-		var info PackageInfo
-		info.Name = legacyInfo.Pkg
-		info.Modules = legacyInfo.Mods
-
 		for _, module := range info.Modules {
 			moduleToPackageList[module] = append(moduleToPackageList[module], info)
 		}
