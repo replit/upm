@@ -87,7 +87,7 @@ func (p *PypiMap) PackageToModules(packageName string) ([]string, bool) {
 }
 
 func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
-	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%')")
+	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%') order by download_count desc")
 	if err != nil {
 		return nil, err
 	}
