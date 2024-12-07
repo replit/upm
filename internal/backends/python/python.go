@@ -248,6 +248,9 @@ func searchPypi(query string) []api.PkgInfo {
 		query = renamed[0]
 	}
 	results, err := SearchPypi(query)
+	if len(results) == 0 {
+		results, err = SearchLocalSqlite(query)
+	}
 	if err != nil {
 		util.DieNetwork("failed to search pypi: %s", err.Error())
 	}
