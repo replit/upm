@@ -240,6 +240,10 @@ func nodejsSearch(query string) []api.PkgInfo {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode == 429 {
+		util.DieProtocol("Rate limited")
+	}
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		util.DieProtocol("NPM registry: %s", err)
