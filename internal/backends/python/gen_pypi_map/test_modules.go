@@ -28,6 +28,7 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 	cache := LoadAllPackageInfo(cacheDir, pkgsFile)
 
 	discoveredPackages := 0
+	fmt.Printf("Cache size: %d.\n", len(cache))
 	fmt.Printf("Using %d workers.\n", workers)
 	fmt.Printf("Scanning package index...\n")
 
