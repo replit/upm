@@ -67,7 +67,12 @@ func (p *PypiMap) ModuleToPackage(moduleName string) (string, bool) {
 func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
 	not_letter := regexp.MustCompile("[^a-zA-Z0-9]")
 	percent_query := string(not_letter.ReplaceAll([]byte(query), []byte("%")))
-	stmt, err := p.db.Prepare("select package_name from pypi_packages where package_name like ('%' || ? || '%') order by download_count desc")
+	stmt, err := p.db.Prepare(`
+		select package_name,version,summary
+		from pypi_packages
+		where package_name like ('%' || ? || '%')
+		order by download_count desc
+	`)
 	if err != nil {
 		return nil, err
 	}
@@ -78,14 +83,18 @@ func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
 	}
 	defer rows.Close()
 	var packageName string
+	var version string
+	var summary string
 	packageNames := []api.PkgInfo{}
 	for rows.Next() {
-		err = rows.Scan(&packageName)
+		err = rows.Scan(&packageName, &version, &summary)
 		if err != nil {
 			return nil, err
 		}
 		packageNames = append(packageNames, api.PkgInfo{
 			Name: packageName,
+			Version: version,
+			Description: summary,
 		})
 	}
 	return packageNames, nil

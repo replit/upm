@@ -28,6 +28,7 @@ func TestModules(packages PackageIndex, cacheDir string, pkgsFile string, distMo
 	cache := LoadAllPackageInfo(cacheDir, pkgsFile)
 
 	discoveredPackages := 0
+	fmt.Printf("Cache size: %d.\n", len(cache))
 	fmt.Printf("Using %d workers.\n", workers)
 	fmt.Printf("Scanning package index...\n")
 
@@ -161,6 +162,7 @@ func ProcessPackage(packageName string, cache map[string]PackageInfo, cacheDir s
 	}
 
 	var retval PackageInfo
+	retval.Summary = metadata.Info.Summary
 	retval.Version = metadata.Info.Version
 	retval.Modules = modules
 	retval.Name = metadata.Info.Name

@@ -62,7 +62,7 @@ func cmd_test(args []string) {
 	testForce := testCommandSet.Bool("force", false, "Force re-test when cached")
 	testPkgsFile := testCommandSet.String("pkgsfile", "pkgs.json", "A file where to store permanent information for each module.")
 	testRemapFile := testCommandSet.String("remapfile", "remap.csv", "A file containing alterations for when a popular package name should be replaced with a newer version")
-	testThreshold := testCommandSet.Int("threshold", 10000, "Only process packages with at least this many downloads")
+	testThreshold := testCommandSet.Int("threshold", 5000, "Only process packages with at least this many downloads")
 	testTimeout := testCommandSet.Int("timeout", 60, "The maximum number of seconds to wait for a package to install.")
 	if err := testCommandSet.Parse(args); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to parse test flags: %s\n", err)
@@ -119,6 +119,13 @@ func cmd_test(args []string) {
 			}
 			packageMap[pkgName] = true
 		}
+
+		// Replit dependencies to explicitly include
+		packageMap["replit"] = true
+		packageMap["replit-ai"] = true
+		packageMap["replit-code-exec"] = true
+		packageMap["replit-river"] = true
+		packageMap["replit.object-storage"] = true
 
 		packageList := []string{}
 		for pkgName := range packageMap {
