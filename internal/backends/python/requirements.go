@@ -20,7 +20,7 @@ import (
 var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionComponent = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)`
 var pep440VersionSpec = pep440VersionComponent + `(?:\s*,\s*` + pep440VersionComponent + `)*`
-var extrasSpec = `\[(` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*)\]`
+var extrasSpec = `\[` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*\]`
 var MatchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
 var MatchEggComponentIndexEgg = 1
 var MatchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
