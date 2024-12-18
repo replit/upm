@@ -23,9 +23,10 @@ var pep440VersionSpec = pep440VersionComponent + `(?:\s*,\s*` + pep440VersionCom
 var extrasSpec = `\[` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*\]`
 var MatchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
 var MatchEggComponentIndexEgg = 1
-var MatchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
+var MatchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*(` + extrasSpec + `)?\s*(` + pep440VersionSpec + `)?\s*$`)
 var MatchPackageAndSpecIndexName = 1
-var MatchPackageAndSpecIndexVersion = 2
+var MatchPackageAndSpecIndexExtras = 2
+var MatchPackageAndSpecIndexVersion = 3
 var MatchPep440VersionComponent = regexp.MustCompile(pep440VersionComponent)
 var MatchSpecOnly = regexp.MustCompile(`^` + pep440VersionSpec + `$`)
 
