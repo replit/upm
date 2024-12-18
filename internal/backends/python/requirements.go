@@ -21,10 +21,13 @@ var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionComponent = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)`
 var pep440VersionSpec = pep440VersionComponent + `(?:\s*,\s*` + pep440VersionComponent + `)*`
 var extrasSpec = `\[(` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*)\]`
-var matchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
-var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
-var matchPep440VersionComponent = regexp.MustCompile(pep440VersionComponent)
-var matchSpecOnly = regexp.MustCompile(`^` + pep440VersionSpec + `$`)
+var MatchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
+var MatchEggComponentIndexEgg = 1
+var MatchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
+var MatchPackageAndSpecIndexName = 1
+var MatchPackageAndSpecIndexVersion = 2
+var MatchPep440VersionComponent = regexp.MustCompile(pep440VersionComponent)
+var MatchSpecOnly = regexp.MustCompile(`^` + pep440VersionSpec + `$`)
 
 // Global options:
 //
@@ -58,14 +61,14 @@ func findPackage(line string) (*api.PkgName, *api.PkgSpec, bool) {
 
 	var found bool
 
-	matches := matchPackageAndSpec.FindSubmatch([]byte(line))
-	if len(matches) > 1 {
-		_name := api.PkgName(string(matches[1]))
+	matches := MatchPackageAndSpec.FindSubmatch([]byte(line))
+	if len(matches) >= MatchPackageAndSpecIndexName {
+		_name := api.PkgName(string(matches[MatchPackageAndSpecIndexName]))
 		name = &_name
 		found = true
 	}
-	if len(matches) > 2 {
-		_spec := api.PkgSpec(string(matches[2]))
+	if len(matches) >= MatchPackageAndSpecIndexVersion {
+		_spec := api.PkgSpec(string(matches[MatchPackageAndSpecIndexVersion]))
 		spec = &_spec
 	}
 	return name, spec, found
@@ -122,9 +125,9 @@ func recurseRequirementsTxt(depth int, path string, sofar map[api.PkgName]api.Pk
 			// from inserting it into requirements.txt, which would then cause a conflict
 			// on the next run.
 			if parts[0] == "-e" || parts[0] == "--editable" {
-				matches := matchEggComponent.FindSubmatch([]byte(line))
-				if len(matches) > 1 {
-					sofar[api.PkgName(string(matches[1]))] = ""
+				matches := MatchEggComponent.FindSubmatch([]byte(line))
+				if len(matches) >= MatchEggComponentIndexEgg {
+					sofar[api.PkgName(string(matches[MatchEggComponentIndexEgg]))] = ""
 				}
 			}
 		}

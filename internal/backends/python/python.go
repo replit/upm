@@ -115,7 +115,7 @@ type uvLock struct {
 func pep440Join(name api.PkgName, spec api.PkgSpec) string {
 	if spec == "" {
 		return string(name)
-	} else if matchSpecOnly.Match([]byte(spec)) {
+	} else if MatchSpecOnly.Match([]byte(spec)) {
 		return string(name) + string(spec)
 	}
 	// We did not match the version range separator in the spec, so we got
@@ -146,10 +146,10 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 		var rawName string
 		var name api.PkgName
 		var spec api.PkgSpec
-		if found := matchPackageAndSpec.FindSubmatch([]byte(arg)); len(found) > 0 {
-			rawName = string(found[1])
+		if found := MatchPackageAndSpec.FindSubmatch([]byte(arg)); len(found) > 0 {
+			rawName = string(found[MatchPackageAndSpecIndexName])
 			name = api.PkgName(rawName)
-			spec = api.PkgSpec(string(found[2]))
+			spec = api.PkgSpec(string(found[MatchPackageAndSpecIndexVersion]))
 		} else {
 			split := strings.SplitN(arg, " ", 2)
 			rawName = split[0]
@@ -158,7 +158,7 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 				specStr := strings.TrimSpace(split[1])
 
 				if specStr != "" {
-					if offset := matchPep440VersionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
+					if offset := MatchPep440VersionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
 						spec = api.PkgSpec("==" + specStr)
 					} else {
 						spec = api.PkgSpec(specStr)
@@ -610,9 +610,9 @@ func makePythonPipBackend() api.LanguageBackend {
 			var toAppend []string
 			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
 				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
-				if len(matches) > 0 {
-					name = normalizePackageName(api.PkgName(string(matches[1])))
+				matches := MatchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
+				if len(matches) >= MatchPackageAndSpecIndexName {
+					name = normalizePackageName(api.PkgName(string(matches[MatchPackageAndSpecIndexName])))
 					if rawName, ok := normalizedPkgs[name]; ok {
 						// We've meticulously maintained the pkgspec from the CLI args, if specified,
 						// so we don't clobber it with pip freeze's output of "==="
@@ -727,13 +727,13 @@ func makePythonUvBackend() api.LanguageBackend {
 			var name *api.PkgName
 			var spec *api.PkgSpec
 
-			matches := matchPackageAndSpec.FindSubmatch([]byte(dep))
-			if len(matches) > 1 {
-				_name := api.PkgName(string(matches[1]))
+			matches := MatchPackageAndSpec.FindSubmatch([]byte(dep))
+			if len(matches) >= MatchPackageAndSpecIndexName {
+				_name := api.PkgName(string(matches[MatchPackageAndSpecIndexName]))
 				name = &_name
 			}
-			if len(matches) > 2 {
-				_spec := api.PkgSpec(string(matches[2]))
+			if len(matches) >= MatchPackageAndSpecIndexVersion {
+				_spec := api.PkgSpec(string(matches[MatchPackageAndSpecIndexVersion]))
 				spec = &_spec
 			} else {
 				_spec := api.PkgSpec("")
