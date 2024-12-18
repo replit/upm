@@ -142,7 +142,6 @@ func normalizeSpec(spec interface{}) string {
 
 func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 	pkgs := make(map[api.PkgName]api.PkgCoordinates)
-	versionComponent := regexp.MustCompile(pep440VersionComponent)
 	for _, arg := range args {
 		var rawName string
 		var name api.PkgName
@@ -159,7 +158,7 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 				specStr := strings.TrimSpace(split[1])
 
 				if specStr != "" {
-					if offset := versionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
+					if offset := matchPep440VersionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
 						spec = api.PkgSpec("==" + specStr)
 					} else {
 						spec = api.PkgSpec(specStr)

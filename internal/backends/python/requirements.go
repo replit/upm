@@ -20,10 +20,11 @@ import (
 var pep345Name = `(?:[A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])`
 var pep440VersionComponent = `(?:(?:~=|!=|===|==|>=|<=|>|<)\s*[^, ]+)`
 var pep440VersionSpec = pep440VersionComponent + `(?:\s*,\s*` + pep440VersionComponent + `)*`
-var matchSpecOnly = regexp.MustCompile(`^` + pep440VersionSpec + `$`)
 var extrasSpec = `\[(` + pep345Name + `(?:\s*,\s*` + pep345Name + `)*)\]`
-var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
 var matchEggComponent = regexp.MustCompile(`(?i)\begg=(` + pep345Name + `)(?:$|[^A-Z0-9])`)
+var matchPackageAndSpec = regexp.MustCompile(`(?i)^\s*(` + pep345Name + `)\s*` + `((?:` + extrasSpec + `)?\s*(?:` + pep440VersionSpec + `)?)?\s*$`)
+var matchPep440VersionComponent = regexp.MustCompile(pep440VersionComponent)
+var matchSpecOnly = regexp.MustCompile(`^` + pep440VersionSpec + `$`)
 
 // Global options:
 //
