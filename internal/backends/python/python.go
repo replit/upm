@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"runtime"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -20,6 +21,21 @@ import (
 )
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
+
+type extraIndex struct {
+	// url is the location of the index
+	url string
+	// os is the operating system to override the index for, leave empty
+	// to override on any operating system
+	os string
+}
+
+var extraIndexes = []extraIndex{
+	{
+		url: "https://download.pytorch.org/whl/cpu",
+		os:  "linux",
+	},
+}
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
@@ -825,6 +841,17 @@ func makePythonUvBackend() api.LanguageBackend {
 
 				cmd = append(cmd, pep440Join(name, spec))
 			}
+
+			for _, index := range extraIndexes {
+				if strings.HasPrefix(runtime.GOOS, index.os) {
+					cmd = append(cmd, "--index", index.url)
+				}
+			}
+
+			// needed so that we will fall back to the default pypi index for packages that
+			// aren't the right version in the extra indexes like numpy
+			cmd = append(cmd, "--index-strategy", "unsafe-best-match")
+
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
@@ -849,7 +876,18 @@ func makePythonUvBackend() api.LanguageBackend {
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv install")
 			defer span.Finish()
 
-			util.RunCmd([]string{"uv", "sync"})
+			cmd := []string{"uv", "sync"}
+			for _, index := range extraIndexes {
+				if strings.HasPrefix(runtime.GOOS, index.os) {
+					cmd = append(cmd, "--index", index.url)
+				}
+			}
+
+			// needed so that we will fall back to the default pypi index for packages that
+			// aren't the right version in the extra indexes like numpy
+			cmd = append(cmd, "--index-strategy", "unsafe-best-match")
+
+			util.RunCmd(cmd)
 		},
 		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 			pkgs := listUvSpecfile()
