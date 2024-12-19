@@ -21,6 +21,10 @@ import (
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
 
+var extraIndexes = []string{
+	"https://download.pytorch.org/whl/cpu",
+}
+
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
 // pypiEntryInfoResponse is a wrapper around pypiEntryInfo
@@ -825,6 +829,15 @@ func makePythonUvBackend() api.LanguageBackend {
 
 				cmd = append(cmd, pep440Join(name, spec))
 			}
+
+			for _, index := range extraIndexes {
+				cmd = append(cmd, "--index", index)
+			}
+
+			// needed so that we will fall back to the default pypi index for packages that
+			// aren't the right version in the extra indexes like numpy
+			cmd = append(cmd, "--index-strategy", "unsafe-best-match")
+
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
@@ -849,7 +862,16 @@ func makePythonUvBackend() api.LanguageBackend {
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv install")
 			defer span.Finish()
 
-			util.RunCmd([]string{"uv", "sync"})
+			cmd := []string{"uv", "sync"}
+			for _, index := range extraIndexes {
+				cmd = append(cmd, "--index", index)
+			}
+
+			// needed so that we will fall back to the default pypi index for packages that
+			// aren't the right version in the extra indexes like numpy
+			cmd = append(cmd, "--index-strategy", "unsafe-best-match")
+
+			util.RunCmd(cmd)
 		},
 		ListSpecfile: func(mergeAllGroups bool) map[api.PkgName]api.PkgSpec {
 			pkgs := listUvSpecfile()
