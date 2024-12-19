@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/url"
 	"os"
@@ -33,9 +32,9 @@ type npmSearchResults struct {
 			Version     string `json:"version"`
 			Description string `json:"description"`
 			Links       struct {
-				Homepage   string `json:"homepage"`
-				Repository string `json:"repository"`
-				Bugs       string `json:"bugs"`
+				Homepage   packageLink `json:"homepage"`
+				Repository packageLink `json:"repository"`
+				Bugs       packageLink `json:"bugs"`
 			} `json:"links"`
 			Author struct {
 				Username string `json:"username"`
@@ -43,6 +42,43 @@ type npmSearchResults struct {
 			} `json:"author"`
 		} `json:"package"`
 	} `json:"objects"`
+}
+
+type packageLink struct{ URL string }
+
+var _ json.Unmarshaler = (*packageLink)(nil)
+
+// UnmarshalJSON implements json.Unmarshaler.
+//
+// This supports link represented as a single string,
+// list of strings (taking the first one), or an object
+// with the field "url".
+func (link *packageLink) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err == nil {
+		link.URL = str
+		return nil
+	}
+
+	var obj map[string]interface{}
+	if err := json.Unmarshal(data, &obj); err == nil {
+		if url, ok := obj["url"].(string); ok {
+			link.URL = url
+		}
+		return nil
+	}
+
+	var slice []string
+	if err := json.Unmarshal(data, &slice); err == nil {
+		if len(slice) == 0 {
+			link.URL = ""
+			return nil
+		}
+		link.URL = slice[0]
+		return nil
+	}
+
+	return errors.New("expected link to be a string, list of strings, or an object")
 }
 
 // npmInfoResult represents the data we get from the NPM API when
@@ -63,33 +99,11 @@ type npmInfoResult struct {
 	Name        string                 `json:"name"`
 	Versions    map[string]interface{} `json:"versions"`
 	Author      packageJsonPerson      `json:"author"`
-	Bugs        packageJsonBugs        `json:"bugs"`
+	Bugs        packageLink            `json:"bugs"`
 	Description string                 `json:"description"`
-	Homepage    string                 `json:"homepage"`
+	Homepage    packageLink            `json:"homepage"`
 	License     string                 `json:"license"`
-	Repository  packageJsonRepository  `json:"repository"`
-}
-
-type packageJsonRepository struct {
-	URL string
-}
-
-func (repo *packageJsonRepository) UnmarshalJSON(data []byte) error {
-	var str string
-	if err := json.Unmarshal(data, &str); err == nil {
-		repo.URL = str
-		return nil
-	}
-
-	var obj map[string]interface{}
-	if err := json.Unmarshal(data, &obj); err == nil {
-		if url, ok := obj["url"].(string); ok {
-			repo.URL = url
-		}
-		return nil
-	}
-
-	return fmt.Errorf("expected repository in package.json to be a string or an object")
+	Repository  packageLink            `json:"repository"`
 }
 
 type packageJsonPerson struct {
@@ -150,28 +164,6 @@ func (person *packageJsonPerson) UnmarshalJSON(data []byte) error {
 	}
 
 	return errors.New("expected person in package.json to be a string or an object")
-}
-
-type packageJsonBugs struct {
-	URL string
-}
-
-func (bugs *packageJsonBugs) UnmarshalJSON(data []byte) error {
-	var str string
-	if err := json.Unmarshal(data, &str); err == nil {
-		bugs.URL = str
-		return nil
-	}
-
-	var obj map[string]interface{}
-	if err := json.Unmarshal(data, &obj); err == nil {
-		if url, ok := obj["url"].(string); ok {
-			bugs.URL = url
-		}
-		return nil
-	}
-
-	return errors.New("expected bugs in package.json to be a string or an object")
 }
 
 // packageJSON represents the relevant data in a package.json file.
@@ -261,9 +253,9 @@ func nodejsSearch(query string) []api.PkgInfo {
 			Name:          p.Name,
 			Description:   p.Description,
 			Version:       p.Version,
-			HomepageURL:   p.Links.Homepage,
-			SourceCodeURL: p.Links.Repository,
-			BugTrackerURL: p.Links.Bugs,
+			HomepageURL:   p.Links.Homepage.URL,
+			SourceCodeURL: p.Links.Repository.URL,
+			BugTrackerURL: p.Links.Bugs.URL,
 			Author: util.AuthorInfo{
 				Name:  p.Author.Username,
 				Email: p.Author.Email,
@@ -329,7 +321,7 @@ func nodejsInfo(name api.PkgName) api.PkgInfo {
 		Name:          npmInfo.Name,
 		Description:   npmInfo.Description,
 		Version:       lastVersionStr,
-		HomepageURL:   npmInfo.Homepage,
+		HomepageURL:   npmInfo.Homepage.URL,
 		SourceCodeURL: npmInfo.Repository.URL,
 		BugTrackerURL: npmInfo.Bugs.URL,
 		Author: util.AuthorInfo{
