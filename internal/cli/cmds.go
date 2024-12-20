@@ -338,7 +338,8 @@ func runAdd(
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
 		for name, spec := range b.ListSpecfile(true) {
-			if spec == normPkgs[b.NormalizePackageName(name)].Spec {
+			coords := normPkgs[b.NormalizePackageName(name)]
+			if spec == coords.Spec && coords.Extra == nil {
 				delete(normPkgs, b.NormalizePackageName(name))
 			}
 		}

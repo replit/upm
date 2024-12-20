@@ -113,14 +113,18 @@ type uvLock struct {
 }
 
 func pep440Join(coords api.PkgCoordinates) string {
+	var extra string
+	if _extra, ok := coords.Extra.(string); ok {
+		extra = _extra
+	}
 	if coords.Spec == "" {
-		return string(coords.Name)
+		return string(coords.Name) + extra
 	} else if MatchSpecOnly.Match([]byte(coords.Spec)) {
-		return string(coords.Name) + string(coords.Spec)
+		return string(coords.Name) + extra + string(coords.Spec)
 	}
 	// We did not match the version range separator in the spec, so we got
 	// something like "foo 1.2.3", we need to return "foo==1.2.3"
-	return string(coords.Name) + "==" + string(coords.Spec)
+	return string(coords.Name) + extra + "==" + string(coords.Spec)
 }
 
 // normalizeSpec returns the version string from a Poetry spec, or the
@@ -145,10 +149,12 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 	for _, arg := range args {
 		var rawName string
 		var name api.PkgName
+		var extra string
 		var spec api.PkgSpec
 		if found := MatchPackageAndSpec.FindSubmatch([]byte(arg)); len(found) > 0 {
 			rawName = string(found[MatchPackageAndSpecIndexName])
 			name = api.PkgName(rawName)
+			extra = string(found[MatchPackageAndSpecIndexExtras])
 			spec = api.PkgSpec(string(found[MatchPackageAndSpecIndexVersion]))
 		} else {
 			split := strings.SplitN(arg, " ", 2)
@@ -169,8 +175,9 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 			}
 		}
 		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
-			Name: rawName,
-			Spec: spec,
+			Name:  rawName,
+			Spec:  spec,
+			Extra: extra,
 		}
 	}
 	return pkgs

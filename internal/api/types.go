@@ -20,8 +20,9 @@ func (n PkgName) HasPrefix(other PkgName) bool {
 }
 
 type PkgCoordinates struct {
-	Name string
-	Spec PkgSpec
+	Name  string
+	Spec  PkgSpec
+	Extra any
 }
 
 // PkgSpec represents a package version constraint, e.g. "^1.1" or ">=
