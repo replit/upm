@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"runtime"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -20,6 +21,23 @@ import (
 )
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
+
+type extraIndex struct {
+	// url is the location of the index
+	url string
+	// os is the operating system to override the index for, leave empty
+	// to override on any operating system
+	os string
+}
+
+var torchCpu = extraIndex{
+	url: "https://download.pytorch.org/whl/cpu",
+	os:  "linux",
+}
+
+var extraIndexMap = map[string][]extraIndex{
+	"torch": []extraIndex{torchCpu},
+}
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
@@ -824,7 +842,21 @@ func makePythonUvBackend() api.LanguageBackend {
 				}
 
 				cmd = append(cmd, pep440Join(name, spec))
+
+				extraIndexes, ok := extraIndexMap[string(name)]
+				if ok {
+					uvIndex := os.Getenv("UV_INDEX")
+
+					for _, index := range extraIndexes {
+						if strings.HasPrefix(runtime.GOOS, index.os) {
+							uvIndex = index.url + " " + uvIndex
+						}
+					}
+
+					os.Setenv("UV_INDEX", uvIndex)
+				}
 			}
+
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
