@@ -19,14 +19,14 @@ func removePackages(ctx context.Context, pkgs map[api.PkgName]bool, specFileName
 }
 
 // adds packages using dotnet command which automatically updates lock files
-func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string, cmdRunner func([]string)) {
+func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, cmdRunner func([]string)) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dotnet add package")
 	defer span.Finish()
-	for packageName, spec := range pkgs {
+	for packageName, coords := range pkgs {
 		command := []string{"dotnet", "add", "package", string(packageName)}
-		if string(spec) != "" {
-			command = append(command, "--version", string(spec))
+		if string(coords.Spec) != "" {
+			command = append(command, "--version", string(coords.Spec))
 		}
 		cmdRunner(command)
 	}

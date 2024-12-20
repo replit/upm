@@ -112,15 +112,19 @@ type uvLock struct {
 	} `toml:"package"`
 }
 
-func pep440Join(name api.PkgName, spec api.PkgSpec) string {
-	if spec == "" {
-		return string(name)
-	} else if matchSpecOnly.Match([]byte(spec)) {
-		return string(name) + string(spec)
+func pep440Join(coords api.PkgCoordinates) string {
+	var extra string
+	if _extra, ok := coords.Extra.(string); ok {
+		extra = _extra
+	}
+	if coords.Spec == "" {
+		return string(coords.Name) + extra
+	} else if MatchSpecOnly.Match([]byte(coords.Spec)) {
+		return string(coords.Name) + extra + string(coords.Spec)
 	}
 	// We did not match the version range separator in the spec, so we got
 	// something like "foo 1.2.3", we need to return "foo==1.2.3"
-	return string(name) + "==" + string(spec)
+	return string(coords.Name) + extra + "==" + string(coords.Spec)
 }
 
 // normalizeSpec returns the version string from a Poetry spec, or the
@@ -142,15 +146,16 @@ func normalizeSpec(spec interface{}) string {
 
 func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 	pkgs := make(map[api.PkgName]api.PkgCoordinates)
-	versionComponent := regexp.MustCompile(pep440VersionComponent)
 	for _, arg := range args {
 		var rawName string
 		var name api.PkgName
+		var extra string
 		var spec api.PkgSpec
-		if found := matchPackageAndSpec.FindSubmatch([]byte(arg)); len(found) > 0 {
-			rawName = string(found[1])
+		if found := MatchPackageAndSpec.FindSubmatch([]byte(arg)); len(found) > 0 {
+			rawName = string(found[MatchPackageAndSpecIndexName])
 			name = api.PkgName(rawName)
-			spec = api.PkgSpec(string(found[2]))
+			extra = string(found[MatchPackageAndSpecIndexExtras])
+			spec = api.PkgSpec(string(found[MatchPackageAndSpecIndexVersion]))
 		} else {
 			split := strings.SplitN(arg, " ", 2)
 			rawName = split[0]
@@ -159,7 +164,7 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 				specStr := strings.TrimSpace(split[1])
 
 				if specStr != "" {
-					if offset := versionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
+					if offset := MatchPep440VersionComponent.FindIndex([]byte(spec)); len(offset) == 0 {
 						spec = api.PkgSpec("==" + specStr)
 					} else {
 						spec = api.PkgSpec(specStr)
@@ -170,8 +175,9 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 			}
 		}
 		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
-			Name: rawName,
-			Spec: spec,
+			Name:  rawName,
+			Spec:  spec,
+			Extra: extra,
 		}
 	}
 	return pkgs
@@ -435,7 +441,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
 			defer span.Finish()
@@ -451,11 +457,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 			}
 
 			cmd := []string{"poetry", "add"}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, api.PkgName(name))
 					name = api.PkgName(found)
-					pkgs[name] = api.PkgSpec(spec)
+					coords.Name = found
+					pkgs[name] = coords
 				}
 
 				// NB: this doesn't work if spec has
@@ -463,7 +470,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				// Poetry that can't be worked around.
 				// It looks like that bug might be
 				// fixed in the 1.0 release though :/
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			util.RunCmd(cmd)
 		},
@@ -569,7 +576,7 @@ func makePythonPipBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
 			defer span.Finish()
@@ -578,14 +585,15 @@ func makePythonPipBackend() api.LanguageBackend {
 			for _, flag := range pipFlags {
 				cmd = append(cmd, string(flag))
 			}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, name)
 					name = api.PkgName(found)
-					pkgs[name] = spec
+					coords.Name = found
+					pkgs[name] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			// Run install
 			util.RunCmd(cmd)
@@ -609,13 +617,13 @@ func makePythonPipBackend() api.LanguageBackend {
 			var toAppend []string
 			for _, canonicalSpec := range strings.Split(string(outputB), "\n") {
 				var name api.PkgName
-				matches := matchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
-				if len(matches) > 0 {
-					name = normalizePackageName(api.PkgName(string(matches[1])))
+				matches := MatchPackageAndSpec.FindSubmatch(([]byte)(canonicalSpec))
+				if len(matches) >= MatchPackageAndSpecIndexName {
+					name = normalizePackageName(api.PkgName(string(matches[MatchPackageAndSpecIndexName])))
 					if rawName, ok := normalizedPkgs[name]; ok {
 						// We've meticulously maintained the pkgspec from the CLI args, if specified,
 						// so we don't clobber it with pip freeze's output of "==="
-						toAppend = append(toAppend, pep440Join(name, pkgs[rawName]))
+						toAppend = append(toAppend, pep440Join(pkgs[rawName]))
 					}
 				}
 			}
@@ -726,13 +734,13 @@ func makePythonUvBackend() api.LanguageBackend {
 			var name *api.PkgName
 			var spec *api.PkgSpec
 
-			matches := matchPackageAndSpec.FindSubmatch([]byte(dep))
-			if len(matches) > 1 {
-				_name := api.PkgName(string(matches[1]))
+			matches := MatchPackageAndSpec.FindSubmatch([]byte(dep))
+			if len(matches) >= MatchPackageAndSpecIndexName {
+				_name := api.PkgName(string(matches[MatchPackageAndSpecIndexName]))
 				name = &_name
 			}
-			if len(matches) > 2 {
-				_spec := api.PkgSpec(string(matches[2]))
+			if len(matches) >= MatchPackageAndSpecIndexVersion {
+				_spec := api.PkgSpec(string(matches[MatchPackageAndSpecIndexVersion]))
 				spec = &_spec
 			} else {
 				_spec := api.PkgSpec("")
@@ -790,7 +798,7 @@ func makePythonUvBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv (init) add")
 			defer span.Finish()
@@ -816,14 +824,15 @@ func makePythonUvBackend() api.LanguageBackend {
 			}
 
 			cmd := []string{"uv", "add"}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, name)
 					name = api.PkgName(found)
-					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+					coords.Name = found
+					pkgs[api.PkgName(name)] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			util.RunCmd(cmd)
 		},

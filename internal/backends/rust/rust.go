@@ -237,7 +237,7 @@ var RustBackend = api.LanguageBackend{
 	},
 	Search: search,
 	Info:   info,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "cargo add")
 		defer span.Finish()
@@ -245,10 +245,10 @@ var RustBackend = api.LanguageBackend{
 			util.RunCmd([]string{"cargo", "init", "."})
 		}
 		cmd := []string{"cargo", "add"}
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			arg := string(name)
-			if spec != "" {
-				arg += "@" + string(spec)
+			if coords.Spec != "" {
+				arg += "@" + string(coords.Spec)
 			}
 			cmd = append(cmd, arg)
 		}
