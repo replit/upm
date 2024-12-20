@@ -25,7 +25,7 @@ var DotNetBackend = api.LanguageBackend{
 	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
 		removePackages(ctx, pkgs, findSpecFile(), util.RunCmd)
 	},
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		addPackages(ctx, pkgs, projectName, util.RunCmd)
 	},
 	Search:       search,
