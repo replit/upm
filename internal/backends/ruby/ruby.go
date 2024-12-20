@@ -177,7 +177,7 @@ var RubyBackend = api.LanguageBackend{
 			Dependencies:     deps,
 		}
 	},
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle (init) add")
 		defer span.Finish()
@@ -185,8 +185,8 @@ var RubyBackend = api.LanguageBackend{
 			util.RunCmd([]string{"bundle", "init"})
 		}
 		args := []string{}
-		for name, spec := range pkgs {
-			if spec == "" {
+		for name, coords := range pkgs {
+			if coords.Spec == "" {
 				args = append(args, string(name))
 			}
 		}
@@ -197,10 +197,10 @@ var RubyBackend = api.LanguageBackend{
 			util.RunCmd(append([]string{
 				"bundle", "add", "--skip-install"}, args...))
 		}
-		for name, spec := range pkgs {
-			if spec != "" {
+		for name, coords := range pkgs {
+			if coords.Spec != "" {
 				nameArg := string(name)
-				versionArg := "--version=" + string(spec)
+				versionArg := "--version=" + string(coords.Spec)
 				util.RunCmd([]string{"bundle", "add", nameArg, versionArg})
 			}
 		}

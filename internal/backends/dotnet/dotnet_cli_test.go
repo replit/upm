@@ -14,7 +14,7 @@ func TestAddPackages(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	addPackages(context.Background(), map[api.PkgName]api.PkgSpec{"package": "1.0"}, "", cmdRunner)
+	addPackages(context.Background(), map[api.PkgName]api.PkgCoordinates{"package": {Name: "package", Spec: "1.0"}}, "", cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))
@@ -31,7 +31,7 @@ func TestAddPackagesWithoutVersion(t *testing.T) {
 		cmds = append(cmds, strings.Join(cmd, " "))
 	}
 
-	addPackages(context.Background(), map[api.PkgName]api.PkgSpec{"package": ""}, "", cmdRunner)
+	addPackages(context.Background(), map[api.PkgName]api.PkgCoordinates{"package": {Name: "package"}}, "", cmdRunner)
 
 	if len(cmds) != 1 {
 		t.Errorf("Expected one command but got %q", len(cmds))

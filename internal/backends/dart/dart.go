@@ -257,7 +257,7 @@ func readSpecFile() dartPubspecYaml {
 	return specs
 }
 
-func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dartAdd")
 	defer span.Finish()
@@ -267,10 +267,10 @@ func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName 
 
 	specs := readSpecFile()
 
-	for name, spec := range pkgs {
+	for name, coords := range pkgs {
 		arg := string(name)
-		if spec != "" {
-			specs.Dependencies[arg] = string(spec)
+		if coords.Spec != "" {
+			specs.Dependencies[arg] = string(coords.Spec)
 		} else {
 			specs.Dependencies[arg] = nil
 		}

@@ -338,7 +338,8 @@ func runAdd(
 	if util.Exists(b.Specfile) {
 		s := silenceSubroutines()
 		for name, spec := range b.ListSpecfile(true) {
-			if spec == normPkgs[b.NormalizePackageName(name)].Spec {
+			coords := normPkgs[b.NormalizePackageName(name)]
+			if spec == coords.Spec && coords.Extra == nil {
 				delete(normPkgs, b.NormalizePackageName(name))
 			}
 		}
@@ -350,12 +351,7 @@ func runAdd(
 	}
 
 	if len(normPkgs) >= 1 {
-		pkgs := map[api.PkgName]api.PkgSpec{}
-		for _, nameAndSpec := range normPkgs {
-			pkgs[api.PkgName(nameAndSpec.Name)] = nameAndSpec.Spec
-		}
-
-		b.Add(ctx, pkgs, name)
+		b.Add(ctx, normPkgs, name)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {

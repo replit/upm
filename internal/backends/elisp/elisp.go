@@ -87,7 +87,7 @@ var ElispBackend = api.LanguageBackend{
 		}
 		return info
 	},
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "elisp add")
 		defer span.Finish()
@@ -110,10 +110,10 @@ var ElispBackend = api.LanguageBackend{
 			contents += "\n"
 		}
 
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			contents += fmt.Sprintf(`(depends-on "%s"`, name)
-			if spec != "" {
-				contents += fmt.Sprintf(" %s", spec)
+			if coords.Spec != "" {
+				contents += fmt.Sprintf(" %s", coords.Spec)
 			}
 			contents += ")\n"
 		}
