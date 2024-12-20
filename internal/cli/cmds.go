@@ -350,12 +350,7 @@ func runAdd(
 	}
 
 	if len(normPkgs) >= 1 {
-		pkgs := map[api.PkgName]api.PkgSpec{}
-		for _, nameAndSpec := range normPkgs {
-			pkgs[api.PkgName(nameAndSpec.Name)] = nameAndSpec.Spec
-		}
-
-		b.Add(ctx, pkgs, name)
+		b.Add(ctx, normPkgs, name)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {

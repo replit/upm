@@ -121,7 +121,7 @@ func isAvailable() bool {
 	return err == nil
 }
 
-func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "Java add package")
 	defer span.Finish()
@@ -136,7 +136,8 @@ func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectN
 	}
 
 	newDependencies := []Dependency{}
-	for pkgName, pkgSpec := range pkgs {
+	for pkgName, coords := range pkgs {
+		pkgSpec := coords.Spec
 		submatches := pkgNameRegexp.FindStringSubmatch(string(pkgName))
 		if nil == submatches {
 			util.DieConsistency(

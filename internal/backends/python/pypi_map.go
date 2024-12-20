@@ -92,8 +92,8 @@ func (p *PypiMap) QueryToResults(query string) ([]api.PkgInfo, error) {
 			return nil, err
 		}
 		packageNames = append(packageNames, api.PkgInfo{
-			Name: packageName,
-			Version: version,
+			Name:        packageName,
+			Version:     version,
 			Description: summary,
 		})
 	}

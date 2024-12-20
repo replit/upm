@@ -263,7 +263,7 @@ type LanguageBackend struct {
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Add func(context.Context, map[PkgName]PkgSpec, string)
+	Add func(context.Context, map[PkgName]PkgCoordinates, string)
 
 	// Remove packages from the specfile. The map is guaranteed to
 	// have at least one package, and all of the packages are

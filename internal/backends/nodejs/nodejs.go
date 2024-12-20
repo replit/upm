@@ -411,7 +411,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "yarn (init) add")
 		defer span.Finish()
@@ -419,16 +419,17 @@ var NodejsYarnBackend = api.LanguageBackend{
 			util.RunCmd([]string{"yarn", "init", "-y"})
 		}
 		cmd := []string{"yarn", "add"}
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToYarnpkgPackageAliases[name]; ok {
 				delete(pkgs, api.PkgName(name))
 				name = found
-				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				coords.Name = found
+				pkgs[api.PkgName(name)] = coords
 			}
 			arg := name
-			if spec != "" {
-				arg += "@" + string(spec)
+			if coords.Spec != "" {
+				arg += "@" + string(coords.Spec)
 			}
 			cmd = append(cmd, arg)
 		}
@@ -497,7 +498,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm (init) add")
 		defer span.Finish()
@@ -505,16 +506,17 @@ var NodejsPNPMBackend = api.LanguageBackend{
 			util.RunCmd([]string{"pnpm", "init"})
 		}
 		cmd := []string{"pnpm", "add"}
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
 				delete(pkgs, api.PkgName(name))
 				name = found
-				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				coords.Name = found
+				pkgs[api.PkgName(name)] = coords
 			}
 			arg := name
-			if spec != "" {
-				arg += "@" + string(spec)
+			if coords.Spec != "" {
+				arg += "@" + string(coords.Spec)
 			}
 			cmd = append(cmd, arg)
 		}
@@ -600,7 +602,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "npm (init) install")
 		defer span.Finish()
@@ -608,16 +610,17 @@ var NodejsNPMBackend = api.LanguageBackend{
 			util.RunCmd([]string{"npm", "init", "-y"})
 		}
 		cmd := []string{"npm", "install"}
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
 				delete(pkgs, api.PkgName(name))
 				name = found
-				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				coords.Name = found
+				pkgs[api.PkgName(name)] = coords
 			}
 			arg := name
-			if spec != "" {
-				arg += "@" + string(spec)
+			if coords.Spec != "" {
+				arg += "@" + string(coords.Spec)
 			}
 			cmd = append(cmd, arg)
 		}
@@ -692,7 +695,7 @@ var BunBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
 		defer span.Finish()
@@ -701,16 +704,17 @@ var BunBackend = api.LanguageBackend{
 			util.RunCmd([]string{"bun", "init", "-y"})
 		}
 		cmd := []string{"bun", "add"}
-		for name, spec := range pkgs {
+		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
 				delete(pkgs, api.PkgName(name))
 				name = found
-				pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+				coords.Name = found
+				pkgs[api.PkgName(name)] = coords
 			}
 			arg := name
-			if spec != "" {
-				arg += "@" + string(spec)
+			if coords.Spec != "" {
+				arg += "@" + string(coords.Spec)
 			}
 			cmd = append(cmd, arg)
 		}

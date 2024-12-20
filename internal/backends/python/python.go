@@ -435,7 +435,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
 			defer span.Finish()
@@ -451,11 +451,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 			}
 
 			cmd := []string{"poetry", "add"}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, api.PkgName(name))
 					name = api.PkgName(found)
-					pkgs[name] = api.PkgSpec(spec)
+					coords.Name = found
+					pkgs[name] = coords
 				}
 
 				// NB: this doesn't work if spec has
@@ -463,7 +464,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				// Poetry that can't be worked around.
 				// It looks like that bug might be
 				// fixed in the 1.0 release though :/
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(name, coords.Spec))
 			}
 			util.RunCmd(cmd)
 		},
@@ -569,7 +570,7 @@ func makePythonPipBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
 			defer span.Finish()
@@ -578,14 +579,15 @@ func makePythonPipBackend() api.LanguageBackend {
 			for _, flag := range pipFlags {
 				cmd = append(cmd, string(flag))
 			}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, name)
 					name = api.PkgName(found)
-					pkgs[name] = spec
+					coords.Name = found
+					pkgs[name] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(name, coords.Spec))
 			}
 			// Run install
 			util.RunCmd(cmd)
@@ -615,7 +617,7 @@ func makePythonPipBackend() api.LanguageBackend {
 					if rawName, ok := normalizedPkgs[name]; ok {
 						// We've meticulously maintained the pkgspec from the CLI args, if specified,
 						// so we don't clobber it with pip freeze's output of "==="
-						toAppend = append(toAppend, pep440Join(name, pkgs[rawName]))
+						toAppend = append(toAppend, pep440Join(name, pkgs[rawName].Spec)) // TODO: Just promote coordinates
 					}
 				}
 			}
@@ -790,7 +792,7 @@ func makePythonUvBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgSpec, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv (init) add")
 			defer span.Finish()
@@ -816,14 +818,15 @@ func makePythonUvBackend() api.LanguageBackend {
 			}
 
 			cmd := []string{"uv", "add"}
-			for name, spec := range pkgs {
+			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
 					delete(pkgs, name)
 					name = api.PkgName(found)
-					pkgs[api.PkgName(name)] = api.PkgSpec(spec)
+					coords.Name = found
+					pkgs[api.PkgName(name)] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, spec))
+				cmd = append(cmd, pep440Join(name, coords.Spec))
 			}
 			util.RunCmd(cmd)
 		},
