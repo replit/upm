@@ -112,15 +112,15 @@ type uvLock struct {
 	} `toml:"package"`
 }
 
-func pep440Join(name api.PkgName, spec api.PkgSpec) string {
-	if spec == "" {
-		return string(name)
-	} else if MatchSpecOnly.Match([]byte(spec)) {
-		return string(name) + string(spec)
+func pep440Join(coords api.PkgCoordinates) string {
+	if coords.Spec == "" {
+		return string(coords.Name)
+	} else if MatchSpecOnly.Match([]byte(coords.Spec)) {
+		return string(coords.Name) + string(coords.Spec)
 	}
 	// We did not match the version range separator in the spec, so we got
 	// something like "foo 1.2.3", we need to return "foo==1.2.3"
-	return string(name) + "==" + string(spec)
+	return string(coords.Name) + "==" + string(coords.Spec)
 }
 
 // normalizeSpec returns the version string from a Poetry spec, or the
@@ -463,7 +463,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				// Poetry that can't be worked around.
 				// It looks like that bug might be
 				// fixed in the 1.0 release though :/
-				cmd = append(cmd, pep440Join(name, coords.Spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			util.RunCmd(cmd)
 		},
@@ -586,7 +586,7 @@ func makePythonPipBackend() api.LanguageBackend {
 					pkgs[name] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, coords.Spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			// Run install
 			util.RunCmd(cmd)
@@ -616,7 +616,7 @@ func makePythonPipBackend() api.LanguageBackend {
 					if rawName, ok := normalizedPkgs[name]; ok {
 						// We've meticulously maintained the pkgspec from the CLI args, if specified,
 						// so we don't clobber it with pip freeze's output of "==="
-						toAppend = append(toAppend, pep440Join(name, pkgs[rawName].Spec)) // TODO: Just promote coordinates
+						toAppend = append(toAppend, pep440Join(pkgs[rawName]))
 					}
 				}
 			}
@@ -825,7 +825,7 @@ func makePythonUvBackend() api.LanguageBackend {
 					pkgs[api.PkgName(name)] = coords
 				}
 
-				cmd = append(cmd, pep440Join(name, coords.Spec))
+				cmd = append(cmd, pep440Join(coords))
 			}
 			util.RunCmd(cmd)
 		},
