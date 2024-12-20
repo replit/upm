@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"runtime"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -20,6 +21,23 @@ import (
 )
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
+
+type extraIndex struct {
+	// url is the location of the index
+	url string
+	// os is the operating system to override the index for, leave empty
+	// to override on any operating system
+	os string
+}
+
+var torchCpu = extraIndex{
+	url: "https://download.pytorch.org/whl/cpu",
+	os:  "linux",
+}
+
+var extraIndexMap = map[string][]extraIndex{
+	"torch": {torchCpu},
+}
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
@@ -751,6 +769,22 @@ func makePythonUvBackend() api.LanguageBackend {
 
 		return pkgs
 	}
+	addExtraIndexes := func(pkgName string) {
+		extraIndexes, ok := extraIndexMap[pkgName]
+		if ok {
+			uvIndex := os.Getenv("UV_INDEX")
+
+			for _, index := range extraIndexes {
+				if strings.HasPrefix(runtime.GOOS, index.os) {
+					uvIndex = index.url + " " + uvIndex
+				}
+			}
+
+			os.Setenv("UV_INDEX", uvIndex)
+		}
+		os.Setenv("UV_INDEX_STRATEGY", "unsafe-best-match")
+	}
+
 	b := api.LanguageBackend{
 		Name:     "python3-uv",
 		Specfile: "pyproject.toml",
@@ -833,7 +867,14 @@ func makePythonUvBackend() api.LanguageBackend {
 				}
 
 				cmd = append(cmd, pep440Join(coords))
+				addExtraIndexes(string(name))
 			}
+
+			specPkgs := listUvSpecfile()
+			for pkg := range specPkgs {
+				addExtraIndexes(string(pkg))
+			}
+
 			util.RunCmd(cmd)
 		},
 		Lock: func(ctx context.Context) {
@@ -857,6 +898,11 @@ func makePythonUvBackend() api.LanguageBackend {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv install")
 			defer span.Finish()
+
+			pkgs := listUvSpecfile()
+			for pkg := range pkgs {
+				addExtraIndexes(string(pkg))
+			}
 
 			util.RunCmd([]string{"uv", "sync"})
 		},
