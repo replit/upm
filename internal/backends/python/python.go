@@ -8,8 +8,9 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"reflect"
 	"regexp"
-	"runtime"
+	"slices"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -22,22 +23,7 @@ import (
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
 
-type extraIndex struct {
-	// url is the location of the index
-	url string
-	// os is the operating system to override the index for, leave empty
-	// to override on any operating system
-	os string
-}
-
-var torchCpu = extraIndex{
-	url: "https://download.pytorch.org/whl/cpu",
-	os:  "linux",
-}
-
-var extraIndexMap = map[string][]extraIndex{
-	"torch": {torchCpu},
-}
+var torchOverrides = []string{"torch", "torchvision"}
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
@@ -73,6 +59,12 @@ type pyprojectTOMLGroup struct {
 	Dependencies map[string]interface{} `json:"dependencies"`
 }
 
+type pyprojectUVIndex struct {
+	Name     string `json:"name"`
+	Url      string `json:"url"`
+	Explicit bool   `json:"explicit"`
+}
+
 // pyprojectTOML represents the relevant parts of a pyproject.toml
 // file.
 type pyprojectTOML struct {
@@ -95,6 +87,7 @@ type pyprojectTOML struct {
 		} `toml:"poetry"`
 		Uv *struct {
 			Sources map[string]interface{} `toml:"sources"`
+			Index   []pyprojectUVIndex     `toml:"index"`
 		} `toml:"uv"`
 	} `toml:"tool"`
 }
@@ -769,20 +762,77 @@ func makePythonUvBackend() api.LanguageBackend {
 
 		return pkgs
 	}
-	addExtraIndexes := func(pkgName string) {
-		extraIndexes, ok := extraIndexMap[pkgName]
-		if ok {
-			uvIndex := os.Getenv("UV_INDEX")
+	appendTableOnce := func(path string, value map[string]interface{}) error {
+		// check if the value is already added
+		getOp := util.TomlEditorOp{
+			Op:   "get",
+			Path: path,
+		}
+		response, err := util.ExecTomlEditor([]util.TomlEditorOp{getOp})
+		if err != nil {
+			return err
+		}
+		if len(response.Results) != 1 {
+			return fmt.Errorf("expected one result")
+		}
 
-			for _, index := range extraIndexes {
-				if strings.HasPrefix(runtime.GOOS, index.os) {
-					uvIndex = index.url + " " + uvIndex
+		result := response.Results[0]
+		if result != nil {
+			if arr, ok := result.([]interface{}); ok {
+				if slices.ContainsFunc(arr, func(val interface{}) bool {
+					gotValue, ok := val.(map[string]interface{})
+					if !ok {
+						return false
+					}
+
+					return reflect.DeepEqual(gotValue, value)
+				}) {
+					return nil
 				}
 			}
-
-			os.Setenv("UV_INDEX", uvIndex)
 		}
-		os.Setenv("UV_INDEX_STRATEGY", "unsafe-best-match")
+
+		// if the value isn't already present, add it
+		valueBytes, err := json.Marshal(value)
+		if err != nil {
+			return err
+		}
+		addOp := util.TomlEditorOp{
+			Op:              "add",
+			TableHeaderPath: fmt.Sprintf("%s/[[]]", path),
+			Value:           string(valueBytes),
+		}
+		_, err = util.ExecTomlEditor([]util.TomlEditorOp{addOp})
+		if err != nil {
+			return err
+		}
+
+		return nil
+	}
+	addTorchOverride := func() {
+		if !util.TomlEditorIsAvailable() {
+			util.DieSubprocess(
+				"toml-editor is not on the PATH, please install it with " +
+					"`nix profile install github:replit/toml-editor` or " +
+					"`cargo install --git https://github.com/replit/toml-editor` and ensure it's on the PATH.",
+			)
+		}
+
+		for _, name := range torchOverrides {
+			path := fmt.Sprintf("tool/uv/sources/%s", name)
+			value := map[string]interface{}{"index": "pytorch-cpu", "marker": "platform_system == 'Linux'"}
+			err := appendTableOnce(path, value)
+			if err != nil {
+				util.DieSubprocess("%s", err)
+			}
+		}
+
+		path := "tool/uv/index"
+		value := map[string]interface{}{"name": "pytorch-cpu", "url": "https://download.pytorch.org/whl/cpu", "explicit": true}
+		err := appendTableOnce(path, value)
+		if err != nil {
+			util.DieSubprocess("%s", err)
+		}
 	}
 
 	b := api.LanguageBackend{
@@ -857,6 +907,7 @@ func makePythonUvBackend() api.LanguageBackend {
 				}
 			}
 
+			hasTorch := false
 			cmd := []string{"uv", "add"}
 			for name, coords := range pkgs {
 				if found, ok := moduleToPypiPackageAliases[string(name)]; ok {
@@ -867,12 +918,14 @@ func makePythonUvBackend() api.LanguageBackend {
 				}
 
 				cmd = append(cmd, pep440Join(coords))
-				addExtraIndexes(string(name))
+
+				if slices.Contains(torchOverrides, string(name)) {
+					hasTorch = true
+				}
 			}
 
-			specPkgs := listUvSpecfile()
-			for pkg := range specPkgs {
-				addExtraIndexes(string(pkg))
+			if hasTorch {
+				addTorchOverride()
 			}
 
 			util.RunCmd(cmd)
@@ -899,9 +952,16 @@ func makePythonUvBackend() api.LanguageBackend {
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv install")
 			defer span.Finish()
 
+			hasTorch := false
 			pkgs := listUvSpecfile()
 			for pkg := range pkgs {
-				addExtraIndexes(string(pkg))
+				if slices.Contains(torchOverrides, string(pkg)) {
+					hasTorch = true
+				}
+			}
+
+			if hasTorch {
+				addTorchOverride()
 			}
 
 			util.RunCmd([]string{"uv", "sync"})
