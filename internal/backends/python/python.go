@@ -1,4 +1,4 @@
-// Package python provides backends for Python 2 and 3 using Poetry and pip.
+// Package python provides backends for Python 3 using uv, poetry and pip.
 package python
 
 import (
@@ -22,8 +22,6 @@ import (
 )
 
 var normalizationPattern = regexp.MustCompile(`[-_.]+`)
-
-var torchOverrides = []string{"torch", "torchvision"}
 
 // this generates a mapping of pypi packages <-> modules
 // moduleToPypiPackage pypiPackageToModules are provided
