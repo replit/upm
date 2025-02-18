@@ -1,3 +1,4 @@
+
 archive/tar
 archive/zip
 bufio
@@ -26,6 +27,8 @@ github.com/smacker/go-tree-sitter/python
 github.com/smacker/go-tree-sitter/typescript/tsx
 github.com/smacker/go-tree-sitter/typescript/typescript
 github.com/spf13/cobra
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/require
 golang.org/x/net/context
 golang.org/x/net/html
 golang.org/x/term
@@ -36,6 +39,7 @@ gopkg.in/yaml.v2
 io
 io/fs
 log
+math/rand
 net/http
 net/url
 os
@@ -45,6 +49,7 @@ path/filepath
 reflect
 regexp
 runtime
+slices
 sort
 strconv
 strings
