@@ -11,6 +11,6 @@ buildGoCache {
     install -D ${../../go.mod} $out/go.mod
     install -D ${../../go.sum} $out/go.sum
   '';
-  vendorHash = "sha256-vHWl1t/tZ1siHJpxazIzkD3FSYokPm7KZVnM+X02O9Q=";
+  vendorHash = "sha256-CuQl3L7NeOUQ/qTn/kiz/CzGOtRFOwDUXlHT28uEv+g=";
   proxyVendor = true;
 }
