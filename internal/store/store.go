@@ -165,7 +165,7 @@ func GuessWithCache(ctx context.Context, b api.LanguageBackend, forceGuess bool)
 	if forceGuess || new != old {
 		var pkgs map[string][]api.PkgName
 		success := true
-		if new != "" {
+		if new != "" && b.Guess != nil {
 			pkgs, success = b.Guess(ctx)
 		} else {
 			// If new is the empty string, that means
