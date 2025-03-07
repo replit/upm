@@ -1,6 +1,6 @@
 module github.com/replit/upm
 
-go 1.20
+go 1.23.0
 
 // See https://github.com/DataDog/datadog-agent/issues/33597
 // If removing this line followed by `go mod tidy && make upm` passes, it's not
