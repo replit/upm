@@ -11,7 +11,7 @@
   "dependencies": {
     "@codemirror/state": "^6.5.2",
     "enquirer": "^2.4.1",
-    "eslint": "^8.57.1",
+    "eslint": "^9.21.0",
     "express": "^4.21.2",
     "svelte": "^4.2.19",
     "vite": "^4.5.9"
