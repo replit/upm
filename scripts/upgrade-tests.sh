@@ -14,7 +14,7 @@ for dir in "${REPO_ROOT_DIR}/test-suite/templates/bun"/*/; do
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-npm"/*/; do
-  (cd "$dir"; npm install)
+  (cd "$dir"; npm audit fix --force && npm install)
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-pnpm"/*/; do
@@ -22,7 +22,7 @@ for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-pnpm"/*/; do
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-yarn"/*/; do
-  (cd "$dir"; yarn upgrade)
+  (cd "$dir"; yarn upgrade || yarn install)
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/python3-poetry"/*/; do
