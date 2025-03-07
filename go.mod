@@ -2,6 +2,11 @@ module github.com/replit/upm
 
 go 1.20
 
+// See https://github.com/DataDog/datadog-agent/issues/33597
+// If removing this line followed by `go mod tidy && make upm` passes, it's not
+// necessary anymore.
+replace github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes => github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.24.0
+
 require (
 	cloud.google.com/go/bigquery v1.50.0
 	github.com/BurntSushi/toml v0.3.1
