@@ -14,7 +14,7 @@ for dir in "${REPO_ROOT_DIR}/test-suite/templates/bun"/*/; do
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-npm"/*/; do
-  (cd "$dir"; npm install)
+  (cd "$dir"; npm audit fix --force && npm install)
 done
 
 for dir in "${REPO_ROOT_DIR}/test-suite/templates/nodejs-pnpm"/*/; do
