@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@codemirror/state": "6.2.1",
     "enquirer": "2.4.1",
     "eslint": "9.0.0",
     "express": "4.21.2",
     "svelte": "4.2.19",
-    "vite": "6.0.9",
-    "@codemirror/state": "6.2.1"
+    "vite": "6.0.9"
   }
 }
