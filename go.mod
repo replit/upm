@@ -12,7 +12,7 @@ require (
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.33.0
 	golang.org/x/term v0.27.0
 	google.golang.org/api v0.128.0
 	gopkg.in/DataDog/dd-trace-go.v1 v1.56.1
