@@ -1,6 +1,11 @@
 module github.com/replit/upm
 
-go 1.20
+go 1.23.0
+
+// See https://github.com/DataDog/datadog-agent/issues/33597
+// If removing this line followed by `go mod tidy && make upm` passes, it's not
+// necessary anymore.
+replace github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes => github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.24.0
 
 require (
 	cloud.google.com/go/bigquery v1.50.0
@@ -12,7 +17,7 @@ require (
 	github.com/smacker/go-tree-sitter v0.0.0-20230501083651-a7d92773b3aa
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.33.0
 	golang.org/x/term v0.27.0
 	google.golang.org/api v0.128.0
 	gopkg.in/DataDog/dd-trace-go.v1 v1.56.1
@@ -81,7 +86,7 @@ require (
 	google.golang.org/genproto v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230530153820-e85fd2cbaebc // indirect
-	google.golang.org/grpc v1.57.0 // indirect
+	google.golang.org/grpc v1.57.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	inet.af/netaddr v0.0.0-20230525184311-b8eac61e914a // indirect
