@@ -15,6 +15,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
@@ -427,9 +428,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return ""
 			}
 
-			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry", "env", "list", "--full-path",
+			_outputB, err := util.SilenceSubroutinesE(func() (any, error) {
+				return util.GetCmdOutputFallible([]string{
+					"poetry", "env", "list", "--full-path",
+				})
 			})
+			outputB := _outputB.([]byte)
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
 				return ""
@@ -497,7 +501,14 @@ func makePythonPoetryBackend() api.LanguageBackend {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
 			defer span.Finish()
-			util.RunCmd([]string{"poetry", "lock", "--no-update"})
+			lockHelp := util.SilenceSubroutines(func() any {
+				return string(util.GetCmdOutput([]string{"poetry", "lock", "--help"}))
+			}).(string)
+			if strings.Contains(lockHelp, "--no-update") {
+				util.RunCmd([]string{"poetry", "lock", "--no-update"})
+			} else {
+				util.RunCmd([]string{"poetry", "lock"})
+			}
 		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
