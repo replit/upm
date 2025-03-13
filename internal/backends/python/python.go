@@ -15,6 +15,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/config"
 	"github.com/replit/upm/internal/nix"
 	"github.com/replit/upm/internal/pkg"
 	"github.com/replit/upm/internal/util"
@@ -341,6 +342,22 @@ func readPyproject() (*pyprojectTOML, error) {
 	return &cfg, nil
 }
 
+func silenceSubroutines(inner func() any) any {
+	oldQuiet := config.Quiet
+	config.Quiet = true
+	retval := inner()
+	config.Quiet = oldQuiet
+	return retval
+}
+
+func silenceSubroutinesE(inner func() (any, error)) (any, error) {
+	oldQuiet := config.Quiet
+	config.Quiet = true
+	retval, err := inner()
+	config.Quiet = oldQuiet
+	return retval, err
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry
 func makePythonPoetryBackend() api.LanguageBackend {
 	listPoetrySpecfile := func(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
@@ -427,9 +444,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return ""
 			}
 
-			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry", "env", "list", "--full-path",
+			_outputB, err := silenceSubroutinesE(func() (any, error) {
+				return util.GetCmdOutputFallible([]string{
+					"poetry", "env", "list", "--full-path",
+				})
 			})
+			outputB := _outputB.([]byte)
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
 				return ""
@@ -497,7 +517,14 @@ func makePythonPoetryBackend() api.LanguageBackend {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry lock")
 			defer span.Finish()
-			util.RunCmd([]string{"poetry", "lock", "--no-update"})
+			lockHelp := silenceSubroutines(func() any {
+				return string(util.GetCmdOutput([]string{"poetry", "lock", "--help"}))
+			}).(string)
+			if strings.Contains(lockHelp, "--no-update") {
+				util.RunCmd([]string{"poetry", "lock", "--no-update"})
+			} else {
+				util.RunCmd([]string{"poetry", "lock"})
+			}
 		},
 		Install: func(ctx context.Context) {
 			//nolint:ineffassign,wastedassign,staticcheck
