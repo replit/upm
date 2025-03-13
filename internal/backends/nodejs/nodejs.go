@@ -5,12 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/url"
 	"os"
 	"os/exec"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -679,13 +681,29 @@ var NodejsNPMBackend = api.LanguageBackend{
 
 // BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
 func makeBunBackend() api.LanguageBackend {
+	newBun := bunIsAvailable() && strings.HasPrefix(string(util.GetCmdOutput([]string{"bun", "--version"})), "1.2")
+	if newBun && commonIsActive("bun.lockb") {
+		fmt.Fprintln(os.Stderr, "Bun's lockfile format has changed from bun.lockb to bun.lock.")
+		util.RunCmd([]string{"bun", "install", "--save-text-lockfile", "--frozen-lockfile", "--lockfile-only"})
+		backname := fmt.Sprintf("bun.lockb-backup%d", time.Now().Unix())
+		err := os.Rename("bun.lockb", backname)
+		if err != nil {
+			util.DieSubprocess("bun install --save-text-lockfile --frozen-lockfile --lockfile-only: %s", err)
+		}
+		fmt.Fprintln(os.Stderr, "Lock file upgraded, old bun.lockb saved to ", backname)
+	}
+	lockfile := "bun.lock"
+	if !newBun {
+		lockfile = "bun.lockb"
+	}
+
 	b := api.LanguageBackend{
 		Name:        "bun",
 		Specfile:    "package.json",
-		Lockfile:    "bun.lockb",
+		Lockfile:    lockfile,
 		IsAvailable: bunIsAvailable,
 		IsActive: func() bool {
-			return commonIsActive("bun.lockb")
+			return commonIsActive(lockfile)
 		},
 		FilenamePatterns: nodejsPatterns,
 		Quirks: api.QuirksAddRemoveAlsoLocks |
