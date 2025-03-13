@@ -350,6 +350,14 @@ func silenceSubroutines(inner func() any) any {
 	return retval
 }
 
+func silenceSubroutinesE(inner func() (any, error)) (any, error) {
+	oldQuiet := config.Quiet
+	config.Quiet = true
+	retval, err := inner()
+	config.Quiet = oldQuiet
+	return retval, err
+}
+
 // makePythonPoetryBackend returns a backend for invoking poetry
 func makePythonPoetryBackend() api.LanguageBackend {
 	listPoetrySpecfile := func(mergeAllGroups bool) (map[api.PkgName]api.PkgSpec, error) {
@@ -436,9 +444,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 				return ""
 			}
 
-			outputB, err := util.GetCmdOutputFallible([]string{
-				"poetry", "env", "list", "--full-path",
+			_outputB, err := silenceSubroutinesE(func() (any, error) {
+				return util.GetCmdOutputFallible([]string{
+					"poetry", "env", "list", "--full-path",
+				})
 			})
+			outputB := _outputB.([]byte)
 			if err != nil {
 				// there's no virtualenv configured, so no package directory
 				return ""
