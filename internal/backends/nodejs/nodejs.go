@@ -5,12 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/url"
 	"os"
 	"os/exec"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/go-version"
 	"github.com/replit/upm/internal/api"
@@ -678,90 +680,112 @@ var NodejsNPMBackend = api.LanguageBackend{
 }
 
 // BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
-var BunBackend = api.LanguageBackend{
-	Name:        "bun",
-	Specfile:    "package.json",
-	Lockfile:    "bun.lockb",
-	IsAvailable: bunIsAvailable,
-	IsActive: func() bool {
-		return commonIsActive("bun.lockb")
-	},
-	FilenamePatterns: nodejsPatterns,
-	Quirks: api.QuirksAddRemoveAlsoLocks |
-		api.QuirksAddRemoveAlsoInstalls |
-		api.QuirksLockAlsoInstalls,
-	GetPackageDir: func() string {
-		return "node_modules"
-	},
-	Search: nodejsSearch,
-	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
-		//nolint:ineffassign,wastedassign,staticcheck
-		span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
-		defer span.Finish()
-
-		if !util.Exists("package.json") {
-			util.RunCmd([]string{"bun", "init", "-y"})
-		}
-		cmd := []string{"bun", "add"}
-		for name, coords := range pkgs {
-			name := string(name)
-			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
-				delete(pkgs, api.PkgName(name))
-				name = found
-				coords.Name = found
-				pkgs[api.PkgName(name)] = coords
-			}
-			arg := name
-			if coords.Spec != "" {
-				arg += "@" + string(coords.Spec)
-			}
-			cmd = append(cmd, arg)
-		}
-		util.RunCmd(cmd)
-	},
-	Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
-		//nolint:ineffassign,wastedassign,staticcheck
-		span, ctx := tracer.StartSpanFromContext(ctx, "bun remove")
-		defer span.Finish()
-
-		cmd := []string{"bun", "remove"}
-		for name := range pkgs {
-			cmd = append(cmd, string(name))
-		}
-		util.RunCmd(cmd)
-	},
-	Lock: func(ctx context.Context) {
-		//nolint:ineffassign,wastedassign,staticcheck
-		span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
-		defer span.Finish()
-		util.RunCmd([]string{"bun", "install"})
-	},
-	Install: func(ctx context.Context) {
-		//nolint:ineffassign,wastedassign,staticcheck
-		span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
-		defer span.Finish()
-		util.RunCmd([]string{"bun", "install"})
-	},
-	ListSpecfile: nodejsListSpecfile,
-	ListLockfile: func() map[api.PkgName]api.PkgVersion {
-		hashString, err := exec.Command("bun", "pm", "hash-string").Output()
+func makeBunBackend() api.LanguageBackend {
+	newBun := bunIsAvailable() && strings.HasPrefix(string(util.GetCmdOutput([]string{"bun", "--version"})), "1.2")
+	if newBun && commonIsActive("bun.lockb") {
+		fmt.Fprintln(os.Stderr, "Bun's lockfile format has changed from bun.lockb to bun.lock.")
+		util.RunCmd([]string{"bun", "install", "--save-text-lockfile", "--frozen-lockfile", "--lockfile-only"})
+		backname := fmt.Sprintf("bun.lockb-backup%d", time.Now().Unix())
+		err := os.Rename("bun.lockb", backname)
 		if err != nil {
-			util.DieSubprocess("bun pm hash-string: %s", err)
+			util.DieSubprocess("bun install --save-text-lockfile --frozen-lockfile --lockfile-only: %s", err)
 		}
+		fmt.Fprintln(os.Stderr, "Lock file upgraded, old bun.lockb saved to ", backname)
+	}
+	lockfile := "bun.lock"
+	if !newBun {
+		lockfile = "bun.lockb"
+	}
 
-		r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
-		pkgs := map[api.PkgName]api.PkgVersion{}
+	b := api.LanguageBackend{
+		Name:        "bun",
+		Specfile:    "package.json",
+		Lockfile:    lockfile,
+		IsAvailable: bunIsAvailable,
+		IsActive: func() bool {
+			return commonIsActive(lockfile)
+		},
+		FilenamePatterns: nodejsPatterns,
+		Quirks: api.QuirksAddRemoveAlsoLocks |
+			api.QuirksAddRemoveAlsoInstalls |
+			api.QuirksLockAlsoInstalls,
+		GetPackageDir: func() string {
+			return "node_modules"
+		},
+		Search: nodejsSearch,
+		Info:   nodejsInfo,
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
+			defer span.Finish()
 
-		for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
-			name := api.PkgName(match[1])
-			pkgs[name] = api.PkgVersion(match[2])
-		}
+			if !util.Exists("package.json") {
+				util.RunCmd([]string{"bun", "init", "-y"})
+			}
+			cmd := []string{"bun", "add"}
+			for name, coords := range pkgs {
+				name := string(name)
+				if found, ok := moduleToNpmjsPackageAliases[name]; ok {
+					delete(pkgs, api.PkgName(name))
+					name = found
+					coords.Name = found
+					pkgs[api.PkgName(name)] = coords
+				}
+				arg := name
+				if coords.Spec != "" {
+					arg += "@" + string(coords.Spec)
+				}
+				cmd = append(cmd, arg)
+			}
+			util.RunCmd(cmd)
+		},
+		Remove: func(ctx context.Context, pkgs map[api.PkgName]bool) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "bun remove")
+			defer span.Finish()
 
-		return pkgs
-	},
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-	GuessRegexps:                       nodejsGuessRegexps,
-	Guess:                              nodejsGuess,
-	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+			cmd := []string{"bun", "remove"}
+			for name := range pkgs {
+				cmd = append(cmd, string(name))
+			}
+			util.RunCmd(cmd)
+		},
+		Lock: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
+			defer span.Finish()
+			util.RunCmd([]string{"bun", "install"})
+		},
+		Install: func(ctx context.Context) {
+			//nolint:ineffassign,wastedassign,staticcheck
+			span, ctx := tracer.StartSpanFromContext(ctx, "bun install")
+			defer span.Finish()
+			util.RunCmd([]string{"bun", "install"})
+		},
+		ListSpecfile: nodejsListSpecfile,
+		ListLockfile: func() map[api.PkgName]api.PkgVersion {
+			hashString, err := exec.Command("bun", "pm", "hash-string").Output()
+			if err != nil {
+				util.DieSubprocess("bun pm hash-string: %s", err)
+			}
+
+			r := regexp.MustCompile(`(?m)^(@?[^@ \n]+)@(.+)$`)
+			pkgs := map[api.PkgName]api.PkgVersion{}
+
+			for _, match := range r.FindAllStringSubmatch(string(hashString), -1) {
+				name := api.PkgName(match[1])
+				pkgs[name] = api.PkgVersion(match[2])
+			}
+
+			return pkgs
+		},
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+		GuessRegexps:                       nodejsGuessRegexps,
+		Guess:                              nodejsGuess,
+		InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	}
+
+	return b
 }
+
+var BunBackend = makeBunBackend()
