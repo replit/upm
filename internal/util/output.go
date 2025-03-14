@@ -7,6 +7,22 @@ import (
 	"github.com/replit/upm/internal/config"
 )
 
+func SilenceSubroutines(inner func() any) any {
+	oldQuiet := config.Quiet
+	config.Quiet = true
+	retval := inner()
+	config.Quiet = oldQuiet
+	return retval
+}
+
+func SilenceSubroutinesE(inner func() (any, error)) (any, error) {
+	oldQuiet := config.Quiet
+	config.Quiet = true
+	retval, err := inner()
+	config.Quiet = oldQuiet
+	return retval, err
+}
+
 // Log is like fmt.Println, but writes to stderr and is inhibited by
 // --quiet.
 func Log(a ...interface{}) {
