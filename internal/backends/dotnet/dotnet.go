@@ -41,4 +41,5 @@ var DotNetBackend = api.LanguageBackend{
 		api.QuirksAddRemoveAlsoInstalls |
 		api.QuirksLockAlsoInstalls,
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }

@@ -45,6 +45,11 @@ func DefaultInstallReplitNixSystemDependencies(context.Context, []api.PkgName) {
 	// dependency mapping, there is no work to be done.
 }
 
+func DefaultInstallDotReplitSystemDependencies(context.Context, []api.PkgName) {
+	// do nothing by default, if the language doesn't implement a system
+	// dependency mapping, there is no work to be done.
+}
+
 func python_map() map[string]ReplitNixAdd {
 	if python_map_var_loaded {
 		return python_map_var

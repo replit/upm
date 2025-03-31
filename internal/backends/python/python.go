@@ -304,6 +304,74 @@ func commonInstallNixDeps(ctx context.Context, pkgs []api.PkgName, specfilePkgs 
 	nix.RunNixEditorOps(ops)
 }
 
+func commonInstallDotReplitNixDeps(ctx context.Context, pkgs []api.PkgName, specfilePkgs map[api.PkgName]api.PkgSpec) {
+	//nolint:ineffassign,wastedassign,staticcheck
+	span, ctx := tracer.StartSpanFromContext(ctx, "python.InstallDotReplitSystemDependencies")
+	defer span.Finish()
+
+	allPkgs := map[string]bool{}
+
+	getOp := util.TomlEditorOp{
+		Op:   "get",
+		Path: "nix/packages",
+	}
+	response, err := util.ExecTomlEditor(".replit", []util.TomlEditorOp{getOp})
+	if err != nil {
+		util.DieSubprocess("toml-editor error: %s", err)
+	}
+	if len(response.Results) != 1 {
+		util.DieSubprocess("expected one result")
+	}
+
+	result := response.Results[0]
+	if result != nil {
+		if arr, ok := result.([]interface{}); ok {
+			for _, pkg := range arr {
+				if pkgStr, ok := pkg.(string); ok {
+					allPkgs[pkgStr] = true
+				}
+			}
+		}
+	}
+
+	for _, pkg := range pkgs {
+		deps := nix.PythonNixDeps(string(pkg))
+		for _, dep := range deps.Deps {
+			dep = strings.TrimPrefix(dep, "pkgs.")
+			allPkgs[dep] = true
+		}
+	}
+
+	for pkg := range specfilePkgs {
+		deps := nix.PythonNixDeps(string(pkg))
+		for _, dep := range deps.Deps {
+			dep = strings.TrimPrefix(dep, "pkgs.")
+			allPkgs[dep] = true
+		}
+	}
+
+	keys := []string{}
+	for key := range allPkgs {
+		keys = append(keys, key)
+	}
+	slices.Sort(keys)
+	value, err := json.Marshal(keys)
+	if err != nil {
+		util.DieSubprocess("failed to marshal JSON: %s", err)
+	}
+
+	addOp := util.TomlEditorOp{
+		Op:    "add",
+		Path:  "nix/packages",
+		Value: string(value),
+	}
+
+	_, err = util.ExecTomlEditor(".replit", []util.TomlEditorOp{addOp})
+	if err != nil {
+		util.DieSubprocess("toml-editor error: %s", err)
+	}
+}
+
 func commonGuessPackageDir() string {
 	// Check if we're already inside an activated
 	// virtualenv. If so, just use it.
@@ -549,6 +617,12 @@ func makePythonPoetryBackend() api.LanguageBackend {
 			specfilePkgs, _ := listPoetrySpecfile(true)
 			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
 		},
+		InstallDotReplitSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			specfilePkgs, _ := listPoetrySpecfile(true)
+			commonInstallDotReplitNixDeps(ctx, pkgs, specfilePkgs)
+		},
 	}
 }
 
@@ -729,6 +803,12 @@ func makePythonPipBackend() api.LanguageBackend {
 			// we still want to add the deps from above at least.
 			_, specfilePkgs, _ := ListRequirementsTxt("requirements.txt")
 			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
+		},
+		InstallDotReplitSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			// Ignore the error here, because if we can't read the specfile,
+			// we still want to add the deps from above at least.
+			_, specfilePkgs, _ := ListRequirementsTxt("requirements.txt")
+			commonInstallDotReplitNixDeps(ctx, pkgs, specfilePkgs)
 		},
 	}
 
@@ -1043,10 +1123,12 @@ func makePythonUvBackend() api.LanguageBackend {
 		GuessRegexps: pythonGuessRegexps,
 		Guess:        guess,
 		InstallReplitNixSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
-			// Ignore the error here, because if we can't read the specfile,
-			// we still want to add the deps from above at least.
 			specfilePkgs := listUvSpecfile()
 			commonInstallNixDeps(ctx, pkgs, specfilePkgs)
+		},
+		InstallDotReplitSystemDependencies: func(ctx context.Context, pkgs []api.PkgName) {
+			specfilePkgs := listUvSpecfile()
+			commonInstallDotReplitNixDeps(ctx, pkgs, specfilePkgs)
 		},
 	}
 

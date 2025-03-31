@@ -333,4 +333,5 @@ var JavaBackend = api.LanguageBackend{
 	ListLockfile:                       listLockfile,
 	Lock:                               func(ctx context.Context) {},
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
