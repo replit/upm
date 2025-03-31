@@ -182,4 +182,5 @@ var RlangBackend = api.LanguageBackend{
 		return nil, false
 	},
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }

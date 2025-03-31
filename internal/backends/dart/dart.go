@@ -329,4 +329,5 @@ var DartPubBackend = api.LanguageBackend{
 	GuessRegexps:                       nil,
 	Guess:                              dartGuess,
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
