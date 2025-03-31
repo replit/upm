@@ -269,4 +269,5 @@ var RubyBackend = api.LanguageBackend{
 		return results, true
 	},
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }

@@ -479,6 +479,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	GuessRegexps:                       nodejsGuessRegexps,
 	Guess:                              nodejsGuess,
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
 
 // NodejsPNPMBackend is a UPM backend for Node.js that uses [pnpm](https://pnpm.io/).
@@ -583,6 +584,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	GuessRegexps:                       nodejsGuessRegexps,
 	Guess:                              nodejsGuess,
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
 
 // NodejsNPMBackend is a UPM backend for Node.js that uses [NPM](https://npmjs.com/).
@@ -676,6 +678,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	GuessRegexps:                       nodejsGuessRegexps,
 	Guess:                              nodejsGuess,
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
 
 // BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
@@ -780,6 +783,7 @@ func makeBunBackend() api.LanguageBackend {
 		GuessRegexps:                       nodejsGuessRegexps,
 		Guess:                              nodejsGuess,
 		InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+		InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 	}
 
 	return b
