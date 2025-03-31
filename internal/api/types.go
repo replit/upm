@@ -351,6 +351,10 @@ type LanguageBackend struct {
 	// Installs system dependencies into replit.nix for supported
 	// languages.
 	InstallReplitNixSystemDependencies func(context.Context, []PkgName)
+
+	// Installs system dependencies into .replit for supported
+	// languages.
+	InstallDotReplitSystemDependencies func(context.Context, []PkgName)
 }
 
 // Setup panics if the given language backend does not specify all of
