@@ -316,6 +316,16 @@ func DoCLI() {
 	}
 	rootCmd.AddCommand(cmdInstallReplitNixSystemDependencies)
 
+	cmdInstallDotReplitSystemDependencies := &cobra.Command{
+		Use:   `install-dot-replit-system-dependencies "PACKAGE[ SPEC]" ...`,
+		Short: "Install system dependencies into .replit using the passed packages and the specfile.",
+		Run: func(cmd *cobra.Command, args []string) {
+			pkgSpecStrs := args
+			runInstallDotReplitSystemDependencies(language, pkgSpecStrs)
+		},
+	}
+	rootCmd.AddCommand(cmdInstallDotReplitSystemDependencies)
+
 	specialArgs := map[string](func()){}
 	for _, helpFlag := range []string{"-help", "-?"} {
 		specialArgs[helpFlag] = func() {

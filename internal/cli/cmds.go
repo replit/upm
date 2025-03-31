@@ -658,3 +658,16 @@ func runInstallReplitNixSystemDependencies(language string, args []string) {
 	}
 	b.InstallReplitNixSystemDependencies(ctx, pkgs)
 }
+
+// runInstallDotReplitSystemDependencies implements 'upm install-dot-replit-system-dependencies'.\
+func runInstallDotReplitSystemDependencies(language string, args []string) {
+	span, ctx := trace.StartSpanFromExistingContext("runInstallDotReplitSystemDependencies")
+	defer span.Finish()
+	b := backends.GetBackend(ctx, language)
+	normPkgs := b.NormalizePackageArgs(args)
+	pkgs := []api.PkgName{}
+	for p := range normPkgs {
+		pkgs = append(pkgs, p)
+	}
+	b.InstallDotReplitSystemDependencies(ctx, pkgs)
+}

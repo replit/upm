@@ -263,4 +263,5 @@ var ElispBackend = api.LanguageBackend{
 		return names, true
 	},
 	InstallReplitNixSystemDependencies: nix.DefaultInstallReplitNixSystemDependencies,
+	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
