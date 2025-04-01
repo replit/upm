@@ -683,10 +683,12 @@ var NodejsNPMBackend = api.LanguageBackend{
 
 // BunBackend is a UPM backend for Node.js that uses [Bun](https://bun.sh/).
 func makeBunBackend() api.LanguageBackend {
-	bunVersion := util.SilenceSubroutines(func() any {
-		return util.GetCmdOutput([]string{"bun", "--version"})
-	}).([]byte)
-	newBun := bunIsAvailable() && strings.HasPrefix(string(bunVersion), "1.2")
+	bunVersion := func() []byte {
+		return util.SilenceSubroutines(func() any {
+			return util.GetCmdOutput([]string{"bun", "--version"})
+		}).([]byte)
+	}
+	newBun := bunIsAvailable() && strings.HasPrefix(string(bunVersion()), "1.2")
 	if newBun && commonIsActive("bun.lockb") {
 		fmt.Fprintln(os.Stderr, "Bun's lockfile format has changed from bun.lockb to bun.lock.")
 		util.RunCmd([]string{"bun", "install", "--save-text-lockfile", "--frozen-lockfile", "--lockfile-only"})
