@@ -45,7 +45,9 @@ func (s *subroutineSilencer) restore() {
 func runWhichLanguage(language string, all bool) {
 	if !all {
 		b := backends.GetBackend(context.Background(), language)
-		fmt.Println(b.Name)
+		if b.IsAvailable() {
+			fmt.Println(b.Name)
+		}
 		return
 	}
 	for _, bi := range backends.GetBackendNames() {
