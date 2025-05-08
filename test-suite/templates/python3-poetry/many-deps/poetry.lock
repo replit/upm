@@ -48,14 +48,14 @@ files = [
 
 [[package]]
 name = "django"
-version = "4.2.20"
+version = "4.2.21"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "Django-4.2.20-py3-none-any.whl", hash = "sha256:213381b6e4405f5c8703fffc29cd719efdf189dec60c67c04f76272b3dc845b9"},
-    {file = "Django-4.2.20.tar.gz", hash = "sha256:92bac5b4432a64532abb73b2ac27203f485e40225d2640a7fbef2b62b876e789"},
+    {file = "django-4.2.21-py3-none-any.whl", hash = "sha256:1d658c7bf5d31c7d0cac1cab58bc1f822df89255080fec81909256c30e6180b3"},
+    {file = "django-4.2.21.tar.gz", hash = "sha256:b54ac28d6aa964fc7c2f7335138a54d78980232011e0cd2231d04eed393dcb0d"},
 ]
 
 [package.dependencies]
@@ -128,10 +128,11 @@ optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
+    {file = "ws4py-0.5.1-py3-none-any.whl", hash = "sha256:b451fed98044061184a1b5be4e6ae54e9b7448e006da7683c472a81a188dc71e"},
     {file = "ws4py-0.5.1.tar.gz", hash = "sha256:29d073d7f2e006373e6a848b1d00951a1107eb81f3742952be905429dc5a5483"},
 ]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "7fd46a505ec3e6214b810ad3fcdbd5627cd8aefcb43bb37a955e1367456ba1bf"
+content-hash = "edd6a72f9fd19d8a1e739d0c95a4a60105f44b1efd7dbe8f84e0cc1b3a3fdb05"
