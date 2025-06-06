@@ -7,4 +7,4 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.11"
-django = "^4.2.18"
+django = "^4.2.22"
