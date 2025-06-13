@@ -355,6 +355,11 @@ func commonInstallDotReplitNixDeps(ctx context.Context, pkgs []api.PkgName, spec
 		keys = append(keys, key)
 	}
 	slices.Sort(keys)
+
+	if len(keys) == 0 {
+		return
+	}
+
 	value, err := json.Marshal(keys)
 	if err != nil {
 		util.DieSubprocess("failed to marshal JSON: %s", err)
