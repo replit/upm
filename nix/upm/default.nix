@@ -1,16 +1,17 @@
 {
+  self,
   buildGoModule,
   rev,
   makeWrapper,
-  goCache,
 }:
 buildGoModule rec {
   pname = "upm";
   version = rev;
   src = builtins.path {
     name = "${pname}-src";
-    path = ../../.;
-    filter = path: _:
+    path = self;
+    filter =
+      path: _:
       builtins.all (block: (builtins.baseNameOf path) != block) [
         ".github"
         ".semaphore"
@@ -31,9 +32,11 @@ buildGoModule rec {
     go generate ./internal/backends/python
   '';
 
-  buildInputs = [makeWrapper goCache];
+  buildInputs = [
+    makeWrapper
+  ];
 
-  subPackages = ["cmd/upm"];
+  subPackages = [ "cmd/upm" ];
 
   postInstall = ''
     make internal/backends/python/pypi_map.sqlite
@@ -43,7 +46,7 @@ buildGoModule rec {
       --set PYPI_MAP_DB "$out/pypi_map.sqlite"
   '';
 
-  inherit (goCache) vendorHash;
+  vendorHash = "sha256-A4CU4C5SmEZP6Q+CVHjp+Jy4UxRXAnpvhzrsdq4NlsM=";
   proxyVendor = true; # we only support proxyVendor with buildGoCache just now
 
   doCheck = false;
