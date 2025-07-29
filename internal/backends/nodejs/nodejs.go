@@ -705,7 +705,8 @@ func makeBunBackend() api.LanguageBackend {
 		Lockfile:    lockfile,
 		IsAvailable: bunIsAvailable,
 		IsActive: func() bool {
-			return commonIsActive(lockfile)
+			// Check for both possible lockfile formats to handle version transitions
+			return commonIsActive("bun.lock") || commonIsActive("bun.lockb")
 		},
 		FilenamePatterns: nodejsPatterns,
 		Quirks: api.QuirksAddRemoveAlsoLocks |
