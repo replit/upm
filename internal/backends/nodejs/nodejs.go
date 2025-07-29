@@ -694,9 +694,14 @@ func makeBunBackend() api.LanguageBackend {
 		util.RunCmd([]string{"bun", "install", "--save-text-lockfile", "--frozen-lockfile", "--lockfile-only"})
 		fmt.Fprintln(os.Stderr, "Lock file upgraded.")
 	}
-	lockfile := "bun.lock"
-	if !newBun {
-		lockfile = "bun.lockb"
+	
+	// Determine the correct lockfile to use
+	lockfile := "bun.lockb" // default for older bun versions
+	if newBun {
+		// For bun >= 1.2, prefer bun.lock, but fall back to bun.lockb if that's what exists
+		if commonIsActive("bun.lock") || !commonIsActive("bun.lockb") {
+			lockfile = "bun.lock"
+		}
 	}
 
 	b := api.LanguageBackend{
