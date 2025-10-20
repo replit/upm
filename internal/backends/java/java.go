@@ -121,7 +121,7 @@ func isAvailable() bool {
 	return err == nil
 }
 
-func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+func addPackages(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "Java add package")
 	defer span.Finish()
