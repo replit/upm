@@ -257,7 +257,7 @@ func readSpecFile() dartPubspecYaml {
 	return specs
 }
 
-func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+func dartAdd(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 	//nolint:ineffassign,wastedassign,staticcheck
 	span, ctx := tracer.StartSpanFromContext(ctx, "dartAdd")
 	defer span.Finish()

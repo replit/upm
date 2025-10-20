@@ -237,7 +237,7 @@ var RustBackend = api.LanguageBackend{
 	},
 	Search: search,
 	Info:   info,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "cargo add")
 		defer span.Finish()
