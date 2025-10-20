@@ -380,6 +380,12 @@ Here are useful things to know that aren't obvious:
   add`, `upm remove`, `upm lock`, and `upm install` (it is just
   `--force` for `upm install` due to lack of ambiguity) in order to
   ignore the cache for cases (1) and (2).
+* **Security audits:** The `upm add` command accepts a `--skip-audit`
+  (or `-s`) flag to skip security audits during package installation.
+  This flag only has an effect for the npm backend, which runs
+  security audits by default. For all other package managers, this
+  flag is ignored (as they don't have native audit functionality that
+  runs during installation, or don't support disabling it).
 
 ### Environment variables respected
 

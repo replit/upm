@@ -288,7 +288,7 @@ func maybeInstall(ctx context.Context, b api.LanguageBackend, forceInstall bool)
 func runAdd(
 	language string, args []string, upgrade bool,
 	guess bool, forceGuess bool, ignoredPackages []string,
-	forceLock bool, forceInstall bool, name string) {
+	forceLock bool, forceInstall bool, name string, skipAudit bool) {
 	span, ctx := trace.StartSpanFromExistingContext("runAdd")
 	defer span.Finish()
 	b := backends.GetBackend(ctx, language)
@@ -353,7 +353,7 @@ func runAdd(
 	}
 
 	if len(normPkgs) >= 1 {
-		b.Add(ctx, normPkgs, name)
+		b.Add(ctx, normPkgs, name, skipAudit)
 	}
 
 	if len(normPkgs) == 0 || b.QuirksDoesAddRemoveNotAlsoLock() {
