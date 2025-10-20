@@ -412,7 +412,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "yarn (init) add")
 		defer span.Finish()
@@ -420,6 +420,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 			util.RunCmd([]string{"yarn", "init", "-y"})
 		}
 		cmd := []string{"yarn", "add"}
+		// Note: Yarn (classic/v1) doesn't support --no-audit flag
 		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToYarnpkgPackageAliases[name]; ok {
@@ -500,7 +501,7 @@ var NodejsPNPMBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm (init) add")
 		defer span.Finish()
@@ -605,7 +606,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 	},
 	Search: nodejsSearch,
 	Info:   nodejsInfo,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "npm (init) install")
 		defer span.Finish()
@@ -613,6 +614,9 @@ var NodejsNPMBackend = api.LanguageBackend{
 			util.RunCmd([]string{"npm", "init", "-y"})
 		}
 		cmd := []string{"npm", "install"}
+		if skipAudit {
+			cmd = append(cmd, "--no-audit")
+		}
 		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToNpmjsPackageAliases[name]; ok {
@@ -716,7 +720,7 @@ func makeBunBackend() api.LanguageBackend {
 		},
 		Search: nodejsSearch,
 		Info:   nodejsInfo,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "bun (init) add")
 			defer span.Finish()

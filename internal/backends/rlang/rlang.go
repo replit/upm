@@ -130,7 +130,7 @@ var RlangBackend = api.LanguageBackend{
 
 		return api.PkgInfo{}
 	},
-	Add: func(ctx context.Context, packages map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, packages map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		for name, coords := range packages {
 			RAdd(ctx, RPackage{
 				Name:    string(name),

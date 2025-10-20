@@ -57,6 +57,7 @@ func DoCLI() {
 	var ignoredPaths []string
 	var upgrade bool
 	var name string
+	var skipAudit bool
 
 	cobra.EnableCommandSorting = false
 
@@ -153,7 +154,7 @@ func DoCLI() {
 		Run: func(cmd *cobra.Command, args []string) {
 			pkgSpecStrs := args
 			runAdd(language, pkgSpecStrs, upgrade, guess, forceGuess,
-				ignoredPackages, forceLock, forceInstall, name)
+				ignoredPackages, forceLock, forceInstall, name, skipAudit)
 		},
 	}
 	cmdAdd.Flags().SortFlags = false
@@ -174,6 +175,9 @@ func DoCLI() {
 	)
 	cmdAdd.Flags().StringVarP(
 		&name, "name", "n", "", "specify project name",
+	)
+	cmdAdd.Flags().BoolVarP(
+		&skipAudit, "skip-audit", "s", false, "skip security audits (npm only)",
 	)
 	rootCmd.AddCommand(cmdAdd)
 

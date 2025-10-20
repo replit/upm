@@ -521,7 +521,7 @@ func makePythonPoetryBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "poetry (init) add")
 			defer span.Finish()
@@ -669,7 +669,7 @@ func makePythonPipBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "pip install")
 			defer span.Finish()
@@ -1014,7 +1014,7 @@ func makePythonUvBackend() api.LanguageBackend {
 
 		Search: searchPypi,
 		Info:   info,
-		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+		Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 			//nolint:ineffassign,wastedassign,staticcheck
 			span, ctx := tracer.StartSpanFromContext(ctx, "uv (init) add")
 			defer span.Finish()
