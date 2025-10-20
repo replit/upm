@@ -80,9 +80,9 @@ func TestAddSkipAudit(t *testing.T) {
 	for _, bt := range languageBackends {
 		bt.Start(t)
 
-		// Only test skip-audit for npm and yarn since they support it
+		// Only test skip-audit for npm since it supports --no-audit
 		switch bt.Backend.Name {
-		case "nodejs-npm", "nodejs-yarn":
+		case "nodejs-npm":
 			bt.Subtest(bt.Backend.Name, func(bt testUtils.BackendT) {
 				bt.Subtest("skip-audit-flag", func(bt testUtils.BackendT) {
 					bt.AddTestDir("no-deps")

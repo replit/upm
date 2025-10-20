@@ -8,7 +8,7 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-* Added `--skip-audit` (or `-s`) flag to `upm add` command to skip security audits during package installation. This flag is only effective for npm and yarn backends, which run security audits by default. For all other package managers, this flag is ignored as they don't have native audit functionality that runs during installation.
+* Added `--skip-audit` (or `-s`) flag to `upm add` command to skip security audits during package installation. This flag is only effective for the npm backend, which runs security audits by default. For all other package managers, this flag is ignored as they don't have native audit functionality that runs during installation, or don't support disabling it.
 
 ## 1.0 (released 2019-08-14)
 

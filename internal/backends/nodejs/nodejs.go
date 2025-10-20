@@ -420,9 +420,7 @@ var NodejsYarnBackend = api.LanguageBackend{
 			util.RunCmd([]string{"yarn", "init", "-y"})
 		}
 		cmd := []string{"yarn", "add"}
-		if skipAudit {
-			cmd = append(cmd, "--no-audit")
-		}
+		// Note: Yarn (classic/v1) doesn't support --no-audit flag
 		for name, coords := range pkgs {
 			name := string(name)
 			if found, ok := moduleToYarnpkgPackageAliases[name]; ok {

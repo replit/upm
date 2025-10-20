@@ -261,7 +261,7 @@ type LanguageBackend struct {
 	//
 	// The skipAudit parameter indicates whether to skip security
 	// audits during installation (currently only supported by
-	// npm and yarn; ignored by other backends).
+	// npm; ignored by other backends).
 	//
 	// If QuirksAddRemoveAlsoInstalls, then also lock and install.
 	// In this case this method must also create the lockfile if

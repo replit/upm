@@ -177,7 +177,7 @@ func DoCLI() {
 		&name, "name", "n", "", "specify project name",
 	)
 	cmdAdd.Flags().BoolVarP(
-		&skipAudit, "skip-audit", "s", false, "skip security audits (npm/yarn only)",
+		&skipAudit, "skip-audit", "s", false, "skip security audits (npm only)",
 	)
 	rootCmd.AddCommand(cmdAdd)
 
