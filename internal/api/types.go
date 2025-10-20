@@ -259,12 +259,16 @@ type LanguageBackend struct {
 	// required for initalizing specfiles, we can break that out
 	// to a seperate step.
 	//
+	// The skipAudit parameter indicates whether to skip security
+	// audits during installation (currently only supported by
+	// npm and yarn; ignored by other backends).
+	//
 	// If QuirksAddRemoveAlsoInstalls, then also lock and install.
 	// In this case this method must also create the lockfile if
 	// it does not exist already.
 	//
 	// This field is mandatory.
-	Add func(context.Context, map[PkgName]PkgCoordinates, string)
+	Add func(context.Context, map[PkgName]PkgCoordinates, string, bool)
 
 	// Remove packages from the specfile. The map is guaranteed to
 	// have at least one package, and all of the packages are

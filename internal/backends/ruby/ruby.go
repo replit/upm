@@ -177,7 +177,7 @@ var RubyBackend = api.LanguageBackend{
 			Dependencies:     deps,
 		}
 	},
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "bundle (init) add")
 		defer span.Finish()

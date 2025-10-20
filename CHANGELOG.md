@@ -4,8 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## Unreleased
+
+### Added
+
+* Added `--skip-audit` (or `-s`) flag to `upm add` command to skip security audits during package installation. This flag is only effective for npm and yarn backends, which run security audits by default. For all other package managers, this flag is ignored as they don't have native audit functionality that runs during installation.
+
 ## 1.0 (released 2019-08-14)
+
 ### Features
+
 * Languages and package managers:
   * Python 3 and Python 2 with Poetry (`python-python3-poetry`,
     `python-python2-poetry`; all features)

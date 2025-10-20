@@ -241,7 +241,7 @@ var PhpComposerBackend = api.LanguageBackend{
 	},
 	Search: search,
 	Info:   info,
-	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectVendorName string) {
+	Add: func(ctx context.Context, pkgs map[api.PkgName]api.PkgCoordinates, projectVendorName string, skipAudit bool) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "composer require")
 		defer span.Finish()
