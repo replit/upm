@@ -333,6 +333,8 @@ func commonInstallDotReplitNixDeps(ctx context.Context, pkgs []api.PkgName, spec
 			}
 		}
 	}
+	
+	originalLen := len(allPkgs)
 
 	for _, pkg := range pkgs {
 		deps := nix.PythonNixDeps(string(pkg))
@@ -350,11 +352,17 @@ func commonInstallDotReplitNixDeps(ctx context.Context, pkgs []api.PkgName, spec
 		}
 	}
 
+	if len(allPkgs) == originalLen {
+		// No new packages were added, so we can skip writing to .replit
+		return
+	}
+
 	keys := []string{}
 	for key := range allPkgs {
 		keys = append(keys, key)
 	}
 	slices.Sort(keys)
+
 	value, err := json.Marshal(keys)
 	if err != nil {
 		util.DieSubprocess("failed to marshal JSON: %s", err)
