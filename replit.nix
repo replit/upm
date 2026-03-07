@@ -1,7 +1,7 @@
 { pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e11142c85e20.tar.gz") { } }: {
   deps = [ pkgs.mpfr pkgs.gmp pkgs.fftw
     pkgs.stdenv.cc.cc
-    pkgs.wget
+    pkgs.aria2
     pkgs.gnumake
     pkgs.gopls
     pkgs.gcc
