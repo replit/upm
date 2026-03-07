@@ -10,7 +10,7 @@
     pkgs.yq-go
     pkgs.gradle
     pkgs.vim
-    pkgs.cask
+    pkgs.docker
     pkgs.nodejs-18_x
     pkgs.yarn
     pkgs.nodePackages.pnpm
