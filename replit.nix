@@ -11,7 +11,7 @@
     pkgs.gradle
     pkgs.vim
     pkgs.docker
-    pkgs.nodejs-18_x
+    pkgs.nodejs_20
     pkgs.yarn
     pkgs.nodePackages.pnpm
     pkgs.python311Full
