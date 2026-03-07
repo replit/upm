@@ -17,7 +17,7 @@
     pkgs.python3
     pkgs.python3Packages.pip
     pkgs.python3Packages.poetry
-    pkgs.R
+    pkgs.R-interactive
     pkgs.ruby
     pkgs.sqlite
     pkgs.less
