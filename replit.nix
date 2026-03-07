@@ -24,3 +24,4 @@
     # does not include python 2
   ];
 }
+# Optimized environment for high-precision computational physics
