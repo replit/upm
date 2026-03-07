@@ -8,7 +8,7 @@
     pkgs.curlFull
     pkgs.gitLFS
     pkgs.yq-go
-    pkgs.maven
+    pkgs.gradle
     pkgs.emacs-nox
     pkgs.cask
     pkgs.nodejs-18_x
