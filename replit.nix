@@ -1,4 +1,4 @@
-{pkgs}: {
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e11142c85e20.tar.gz") { } }: {
   deps = [
     pkgs.golangci-lint
     pkgs.wget
