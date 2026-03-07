@@ -5,7 +5,7 @@
     pkgs.cmake
     pkgs.nil
     pkgs.gcc13
-    pkgs.curl
+    pkgs.curlFull
     pkgs.git
     pkgs.jq
     pkgs.maven
