@@ -4,7 +4,7 @@
     pkgs.aria2
     pkgs.cmake
     pkgs.nil
-    pkgs.gcc
+    pkgs.gcc13
     pkgs.curl
     pkgs.git
     pkgs.jq
