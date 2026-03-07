@@ -15,7 +15,7 @@
     pkgs.yarn-berry
     pkgs.pnpm
     pkgs.python3
-    pkgs.python311Packages.pip
+    pkgs.python3Packages.pip
     pkgs.poetry
     pkgs.R
     pkgs.ruby
