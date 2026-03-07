@@ -2,7 +2,7 @@
   deps = [ pkgs.mpfr pkgs.gmp pkgs.fftw
     pkgs.stdenv.cc.cc
     pkgs.aria2
-    pkgs.gnumake
+    pkgs.cmake
     pkgs.gopls
     pkgs.gcc
     pkgs.curl
