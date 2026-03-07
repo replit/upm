@@ -12,7 +12,7 @@
     pkgs.vim
     pkgs.docker
     pkgs.nodejs_20
-    pkgs.yarn
+    pkgs.yarn-berry
     pkgs.nodePackages.pnpm
     pkgs.python311Full
     pkgs.python311Packages.pip
