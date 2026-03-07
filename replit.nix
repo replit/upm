@@ -20,7 +20,7 @@
     pkgs.R-interactive
     pkgs.ruby_3_2
     pkgs.sqlite-interactive
-    pkgs.less
+    pkgs.bat
     # does not include python 2
   ];
 }
