@@ -13,7 +13,7 @@
     pkgs.docker
     pkgs.nodejs_20
     pkgs.yarn-berry
-    pkgs.nodePackages.pnpm
+    pkgs.pnpm
     pkgs.python311Full
     pkgs.python311Packages.pip
     pkgs.poetry
