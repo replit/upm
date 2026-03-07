@@ -14,7 +14,7 @@
     pkgs.nodejs_20
     pkgs.yarn-berry
     pkgs.pnpm
-    pkgs.python311Full
+    pkgs.python3
     pkgs.python311Packages.pip
     pkgs.poetry
     pkgs.R
