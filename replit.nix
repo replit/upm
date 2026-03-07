@@ -7,7 +7,7 @@
     pkgs.gcc13
     pkgs.curlFull
     pkgs.gitLFS
-    pkgs.jq
+    pkgs.yq-go
     pkgs.maven
     pkgs.emacs-nox
     pkgs.cask
