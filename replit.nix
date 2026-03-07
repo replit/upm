@@ -16,7 +16,7 @@
     pkgs.pnpm
     pkgs.python3
     pkgs.python3Packages.pip
-    pkgs.poetry
+    pkgs.python3Packages.poetry
     pkgs.R
     pkgs.ruby
     pkgs.sqlite
