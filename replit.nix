@@ -19,7 +19,7 @@
     pkgs.python3Packages.poetry
     pkgs.R-interactive
     pkgs.ruby_3_2
-    pkgs.sqlite
+    pkgs.sqlite-interactive
     pkgs.less
     # does not include python 2
   ];
