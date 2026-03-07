@@ -3,7 +3,7 @@
     pkgs.stdenv.cc.cc
     pkgs.aria2
     pkgs.cmake
-    pkgs.gopls
+    pkgs.nil
     pkgs.gcc
     pkgs.curl
     pkgs.git
