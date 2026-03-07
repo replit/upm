@@ -9,7 +9,7 @@
     pkgs.gitLFS
     pkgs.yq-go
     pkgs.gradle
-    pkgs.emacs-nox
+    pkgs.vim
     pkgs.cask
     pkgs.nodejs-18_x
     pkgs.yarn
