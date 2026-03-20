@@ -59,34 +59,21 @@ machine-parseable specfile and lockfile listing.
 
 ## Installation
 
-You have many options. UPM is a single binary with no dependencies, so
-you can install it anywhere. Tarballs are available on the [releases
-page](https://github.com/replit/upm/releases). Read on for
-instructions on installing via a package manager.
+UPM is a single binary with no dependencies, so you can install it
+anywhere.
 
-### macOS
+### Build from source
 
-Available on [Homebrew](https://brew.sh/) in a [custom
-tap](https://docs.brew.sh/Taps).
+With [Go](https://go.dev/) 1.23+ installed:
 
-    $ brew install replit/tap/upm
+    $ git clone https://github.com/replit/upm.git
+    $ cd upm
+    $ make upm
 
-### Debian-based Linux
+The built binary will be at `./cmd/upm/upm`. You can copy it
+somewhere on your `$PATH`:
 
-.deb packages are available on the [releases
-page](https://github.com/replit/upm/releases).
-
-### RPM-based Linux
-
-.rpm packages are available on the [releases
-page](https://github.com/replit/upm/releases).
-
-### Arch Linux
-
-Soon to be available on the [Arch User
-Repository](https://aur.archlinux.org/). Right now, you can clone this
-repository and install with `makepkg` using the PKGBUILD in
-[`packaging/aur`](packaging/aur).
+    $ cp ./cmd/upm/upm /usr/local/bin/
 
 ### Windows
 
@@ -94,12 +81,6 @@ Available on [Scoop](https://scoop.sh/) in the [main
 bucket](https://github.com/ScoopInstaller/Main/blob/master/bucket/upm.json).
 
     $ scoop install upm
-
-### Snappy
-
-Soon to be available on the [Snap Store](https://snapcraft.io/store).
-Right now, .snap packages are available on the [releases
-page](https://github.com/replit/upm/releases).
 
 ### Docker
 
@@ -112,9 +93,7 @@ installed.
 Additional tags are also available. `replco/upm:full` is the same as
 the above, while `replco/upm:light` just has the UPM binary installed
 to `/usr/local/bin` and none of the languages or package managers
-installed. If you want to run a specific tagged release, rather than
-the latest development snapshot, use e.g. `replco/upm:1.0`,
-`replco/upm:1.0-full`, or `replco/upm:1.0-light`.
+installed.
 
 ## Quick start
 
