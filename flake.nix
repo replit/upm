@@ -1,6 +1,10 @@
 {
   description = "Universal Package Manager";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.go2nix = {
+    url = "github:numtide/go2nix";
+  };
+  inputs.go2nix-nixpkgs.follows = "go2nix/nixpkgs";
   # nix-editor is a dev dependency in this project. At Replit, we use
   # nix-editor directly too, so nix-editor is already in the
   # environment.
@@ -11,6 +15,8 @@
     {
       self,
       nixpkgs,
+      go2nix,
+      go2nix-nixpkgs,
       nix-editor,
     }:
     let
@@ -30,6 +36,8 @@
           inherit
             self
             nixpkgs
+            go2nix
+            go2nix-nixpkgs
             rev
             system
             nix-editor
