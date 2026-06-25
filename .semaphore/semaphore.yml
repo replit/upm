@@ -22,7 +22,12 @@ blocks:
       jobs:
         - name: test-suite
           commands:
-            - export PATH="$(nix build . --no-link --print-out-paths)/bin:$PATH"
+            - nix build .#go2nix-nix .#go2nix-nix-plugin --no-link
+            - export GO2NIX_NIX="$(nix eval --raw .#go2nix-nix.outPath)/bin/nix"
+            - export GO2NIX_PLUGIN="$(nix eval --raw .#go2nix-nix-plugin.outPath)/lib/nix/plugins/libgo2nix_plugin.so"
+            - export GOMODCACHE="$(mktemp -d)"
+            - go mod download
+            - export PATH="$($GO2NIX_NIX build . --no-link --print-out-paths --option allow-import-from-derivation true --option plugin-files \"$GO2NIX_PLUGIN\")/bin:$PATH"
             - make test-suite
       epilogue:
         commands:
