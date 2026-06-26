@@ -69,7 +69,7 @@ instructions on installing via a package manager.
 Available on [Homebrew](https://brew.sh/) in a [custom
 tap](https://docs.brew.sh/Taps).
 
-    $ brew install replit/tap/upm
+    brew install replit/tap/upm
 
 ### Debian-based Linux
 
@@ -93,7 +93,7 @@ repository and install with `makepkg` using the PKGBUILD in
 Available on [Scoop](https://scoop.sh/) in the [main
 bucket](https://github.com/ScoopInstaller/Main/blob/master/bucket/upm.json).
 
-    $ scoop install upm
+    scoop install upm
 
 ### Snappy
 
@@ -107,7 +107,7 @@ You can try out UPM right away in a Docker image based on Ubuntu that
 has all the supported languages and package managers already
 installed.
 
-    $ docker run -it --rm replco/upm
+    docker run -it --rm replco/upm
 
 Additional tags are also available. `replco/upm:full` is the same as
 the above, while `replco/upm:light` just has the UPM binary installed
@@ -116,17 +116,27 @@ installed. If you want to run a specific tagged release, rather than
 the latest development snapshot, use e.g. `replco/upm:1.0`,
 `replco/upm:1.0-full`, or `replco/upm:1.0-light`.
 
+### From source
+
+To build UPM from a checkout, install Go and run:
+
+    git clone https://github.com/replit/upm.git
+    cd upm
+    make upm
+
+The built binary can be found at `./cmd/upm/upm`.
+
 ## Quick start
 
 Let's create a new Python project:
 
-    $ mkdir ~/python
-    $ cd ~/python
+    mkdir ~/python
+    cd ~/python
 
 We'll start by adding Flask as a dependency. UPM will handle setting
 up the project for us:
 
-    $ upm -l python add flask
+    upm -l python add flask
     --> python3 -m poetry init --no-interaction
 
     This command will guide you through creating your pyproject.toml config.
@@ -157,19 +167,19 @@ format, while the lockfile specifies exact versions for everything,
 including transitive dependencies. For Python, the specfile is
 `pyproject.toml` and the lockfile is `poetry.lock`:
 
-    $ ls
+    ls
     poetry.lock  pyproject.toml
 
 We don't have to read them ourselves, because UPM can handle that.
 Notice that UPM is now aware that our project uses Python, because of
 the files that were created:
 
-    $ upm list
+    upm list
     name    spec
     -----   ----
     flask   ^1.1
 
-    $ upm list -a
+    upm list -a
     name           version
     ------------   -------
     click          7.0
@@ -181,7 +191,7 @@ the files that were created:
 
 Let's search for another dependency to add:
 
-    $ upm search nose
+    upm search nose
     --> python3 -c '<secret sauce>' nose
     Name                Description                                                              Version
     -----------------   ----------------------------------------------------------------------   -------
@@ -208,7 +218,7 @@ Let's search for another dependency to add:
 
 We can get more information about a package like this:
 
-    $ upm info nose
+    upm info nose
     --> python3 -c '<secret sauce>' nose
     Name:          nose
     Description:   nose extends unittest to make testing easier
@@ -220,7 +230,7 @@ We can get more information about a package like this:
 For piping into other programs, the `search` and `info` commands can
 also output JSON:
 
-    $ upm info nose --format=json | jq
+    upm info nose --format=json | jq
     --> python3 -c '<secret sauce>' nose
     {
       "name": "nose",
@@ -236,9 +246,9 @@ packages need to be installed. We use this on Repl.it to help
 developers get started faster. To see it in action, we'll need some
 source code:
 
-    $ git clone https://github.com/replit/play.git ~/play
-    $ cd ~/play
-    $ upm add --guess
+    git clone https://github.com/replit/play.git ~/play
+    cd ~/play
+    upm add --guess
     --> python3 -c '<secret sauce>' '<secret sauce>'
     --> python3 -m poetry init --no-interaction
 
@@ -268,7 +278,7 @@ You can also just get the list of guessed dependencies, if you want.
 The `-a` flag lists all guessed dependencies, even the ones already
 added to the specfile:
 
-    $ upm guess -a
+    upm guess -a
     pygame
     pymunk
     setuptools
@@ -277,7 +287,7 @@ All of this might seem a bit too simple to justify a new tool, but the
 real power of UPM is that it works exactly the same for every
 programming language:
 
-    $ upm -l nodejs info express
+    upm -l nodejs info express
     Name:          express
     Description:   Fast, unopinionated, minimalist web framework
     Version:       4.17.1
@@ -287,7 +297,7 @@ programming language:
     Author:        TJ Holowaychuk <tj@vision-media.ca>
     License:       MIT
 
-    $ upm -l ruby info jekyll
+    upm -l ruby info jekyll
     --> ruby -e '<secret sauce>' jekyll
     Name:            jekyll
     Description:     Jekyll is a simple, blog aware, static site generator.
@@ -300,7 +310,7 @@ programming language:
     License:         MIT
     Dependencies:    addressable, colorator, em-websocket, i18n, jekyll-sass-converter, jekyll-watch, kramdown, liquid, mercenary, pathutil, rouge, safe_yaml
 
-    $ upm -l elisp info elnode
+    upm -l elisp info elnode
     --> emacs -Q --batch --eval '<secret sauce>' /tmp/elpa552971126 info elnode
     Name:           elnode
     Description:    The Emacs webserver.
@@ -316,7 +326,7 @@ that you don't have to!
 
 Explore the command-line interface at your leisure:
 
-    $ upm --help
+    upm --help
     Usage:
       upm [command]
 
@@ -441,7 +451,7 @@ All of these dependencies are already installed in the
 
 ## Contributing
 
-    $ make help
+    make help
     usage:
       make upm       Build the UPM binary
       make dev       Run a shell with UPM source code and all package managers inside Docker
@@ -468,10 +478,10 @@ a test folder and use the binary and test your changes.
 For example say you made a change to the `nodejs-npm` language
 and want to test it, you would hit run and do the following:
 
-    $ mkdir testnpm
-    $ cd testnpm
-    $ npm init -y
-    $ ../cmd/upm/upm add left-pad -l nodejs-npm
+    mkdir testnpm
+    cd testnpm
+    npm init -y
+    ../cmd/upm/upm add left-pad -l nodejs-npm
 
 
 ### Using Docker
