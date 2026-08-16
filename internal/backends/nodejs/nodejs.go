@@ -185,6 +185,40 @@ type packageLockJSON struct {
 	} `json:"packages"`
 }
 
+// listNpmLockfileWithContents parses the installed packages out of a
+// package-lock.json.
+func listNpmLockfileWithContents(contents []byte) map[api.PkgName]api.PkgVersion {
+	var cfg packageLockJSON
+	if err := json.Unmarshal(contents, &cfg); err != nil {
+		util.DieProtocol("package-lock.json: %s", err)
+	}
+	pkgs := map[api.PkgName]api.PkgVersion{}
+	if cfg.LockfileVersion <= 2 {
+		for nameStr, data := range cfg.Dependencies {
+			pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+		}
+		return pkgs
+	}
+	// Lockfile version 3 keys packages by install path rather than by name.
+	for pathStr, data := range cfg.Packages {
+		nameStr, ok := strings.CutPrefix(pathStr, "node_modules/")
+		if !ok {
+			// The project itself is keyed by "", and workspace members by
+			// their directory, e.g. "packages/app". Neither is an
+			// installed package.
+			continue
+		}
+		if strings.Contains(nameStr, "/node_modules/") {
+			// A nested install, e.g. "node_modules/send/node_modules/ms",
+			// is a second copy of a package that npm also installs at the
+			// top level. Report the top level one, as versions 1 and 2 do.
+			continue
+		}
+		pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
+	}
+	return pkgs
+}
+
 // nodejsPatterns is the FilenamePatterns value for NodejsBackend.
 var nodejsPatterns = []string{"*.js", "*.ts", "*.jsx", "*.tsx", "*.mjs", "*.cjs"}
 
@@ -661,22 +695,7 @@ var NodejsNPMBackend = api.LanguageBackend{
 		if err != nil {
 			util.DieIO("package-lock.json: %s", err)
 		}
-		var cfg packageLockJSON
-		if err := json.Unmarshal(contentsB, &cfg); err != nil {
-			util.DieProtocol("package-lock.json: %s", err)
-		}
-		pkgs := map[api.PkgName]api.PkgVersion{}
-		if cfg.LockfileVersion <= 2 {
-			for nameStr, data := range cfg.Dependencies {
-				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
-			}
-		} else {
-			for pathStr, data := range cfg.Packages {
-				nameStr := strings.TrimPrefix(pathStr, "node_modules/")
-				pkgs[api.PkgName(nameStr)] = api.PkgVersion(data.Version)
-			}
-		}
-		return pkgs
+		return listNpmLockfileWithContents(contentsB)
 	},
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 	GuessRegexps:                       nodejsGuessRegexps,
