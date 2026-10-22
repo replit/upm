@@ -3,9 +3,12 @@ package nodejs
 import (
 	"context"
 	"os"
+	"path/filepath"
+	"slices"
 	"testing"
 
 	"github.com/replit/upm/internal/api"
+	"github.com/replit/upm/internal/store"
 )
 
 type TestCase struct {
@@ -200,5 +203,144 @@ func verify(t *testing.T, tc TestCase, extension string) {
 		if _, ok := result[key]; !ok {
 			t.Errorf("Key %s not found in result map", key)
 		}
+	}
+}
+
+// TestNodejsGuessRegexps checks that nodejsGuessRegexps recognizes every way
+// a dependency can be spelled. These regexps decide whether the bare imports
+// search runs at all, so a dependency that they miss is a dependency that
+// UPM never sees.
+func TestNodejsGuessRegexps(t *testing.T) {
+	tcs := []struct {
+		scenario string
+		content  string
+		expected []string
+	}{
+		{
+			scenario: "require with a string literal",
+			content:  `const request = require('request');`,
+			expected: []string{"request"},
+		},
+		{
+			scenario: "require with a template literal",
+			content:  "const request = require(`request`);",
+			expected: []string{"request"},
+		},
+		{
+			scenario: "dynamic import with a string literal",
+			content:  `const request = import('request');`,
+			expected: []string{"request"},
+		},
+		{
+			scenario: "dynamic import with a template literal",
+			content:  "const request = import(`request`);",
+			expected: []string{"request"},
+		},
+		{
+			scenario: "require with a scoped package and a template literal",
+			content:  "const request = require(`@scope/request`);",
+			expected: []string{"@scope/request"},
+		},
+		{
+			scenario: "import with a string literal",
+			content:  `import React from 'react';`,
+			expected: []string{"react"},
+		},
+		{
+			scenario: "side effect import with a string literal",
+			content:  `import 'react';`,
+			expected: []string{"react"},
+		},
+		{
+			scenario: "template literal with a substitution is not a dependency",
+			content:  "const request = require(`request-${version}`);",
+			expected: []string{},
+		},
+		{
+			scenario: "template literal on its own is not a dependency",
+			content:  "const request = `request`;",
+			expected: []string{},
+		},
+	}
+
+	for _, tc := range tcs {
+		t.Run(tc.scenario, func(t *testing.T) {
+			matches := []string{}
+			for _, r := range nodejsGuessRegexps {
+				for _, match := range r.FindAllStringSubmatch(tc.content, -1) {
+					matches = append(matches, match[1:]...)
+				}
+			}
+			slices.Sort(matches)
+
+			if !slices.Equal(matches, tc.expected) {
+				t.Errorf("Expected matches to be %v, got %v", tc.expected, matches)
+			}
+		})
+	}
+}
+
+// TestNodejsGuessBacktickImports checks that dependencies pulled in through a
+// template literal are found by the bare imports search.
+func TestNodejsGuessBacktickImports(t *testing.T) {
+	file, err := os.CreateTemp(".", "backtick-*.js")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		if err := os.Remove(file.Name()); err != nil {
+			t.Error(err)
+		}
+	}()
+
+	if _, err := file.WriteString("const request = require(`backtick-request`);\n"); err != nil {
+		t.Fatal(err)
+	}
+	if err := file.Close(); err != nil {
+		t.Fatal(err)
+	}
+
+	result, ok := NodejsNPMBackend.Guess(context.Background())
+	if !ok {
+		t.Fatal("Guess returned a non true value")
+	}
+
+	if _, ok := result["backtick-request"]; !ok {
+		t.Errorf("Key backtick-request not found in result map: %v", result)
+	}
+}
+
+// TestNodejsGuessWithCacheBacktickImports checks that a project whose only
+// dependency is imported through a template literal is still detected. The
+// guess regexps decide whether the bare imports search runs at all, so a
+// dependency that they miss is a dependency that UPM never sees.
+func TestNodejsGuessWithCacheBacktickImports(t *testing.T) {
+	projectDir := t.TempDir()
+	t.Setenv("UPM_STORE", filepath.Join(t.TempDir(), "store.json"))
+
+	if err := os.WriteFile(
+		filepath.Join(projectDir, "index.js"),
+		[]byte("const request = require(`backtick-request`);\n"),
+		0o644,
+	); err != nil {
+		t.Fatal(err)
+	}
+
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chdir(projectDir); err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		if err := os.Chdir(cwd); err != nil {
+			t.Error(err)
+		}
+	}()
+
+	guessed := store.GuessWithCache(context.Background(), NodejsNPMBackend, false)
+	if _, ok := guessed["backtick-request"]; !ok {
+		t.Errorf("Key backtick-request not found in result map: %v", guessed)
 	}
 }
