@@ -5,6 +5,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/replit/upm/internal/api"
 )
 
@@ -200,5 +202,63 @@ func verify(t *testing.T, tc TestCase, extension string) {
 		if _, ok := result[key]; !ok {
 			t.Errorf("Key %s not found in result map", key)
 		}
+	}
+}
+
+// A lockfile version 3 "packages" map is keyed by install path, so it also
+// contains the project itself (""), workspace members, and nested copies of a
+// package that is already installed at the top level.
+const npmLockfileV3 = `{
+  "name": "repro",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "name": "repro",
+      "version": "1.0.0",
+      "dependencies": { "express": "^4.0.0" }
+    },
+    "packages/app": {
+      "name": "@repro/app",
+      "version": "0.0.1"
+    },
+    "node_modules/@codemirror/state": { "version": "6.4.1" },
+    "node_modules/express": { "version": "4.22.2" },
+    "node_modules/ms": { "version": "2.0.0" },
+    "node_modules/send": { "version": "0.19.2" },
+    "node_modules/send/node_modules/ms": { "version": "2.1.3" }
+  }
+}`
+
+// The same install as a lockfile version 2, whose "dependencies" map is keyed
+// by package name and only ever lists the top level.
+const npmLockfileV2 = `{
+  "name": "repro",
+  "lockfileVersion": 2,
+  "dependencies": {
+    "@codemirror/state": { "version": "6.4.1" },
+    "express": { "version": "4.22.2" },
+    "ms": { "version": "2.0.0" },
+    "send": { "version": "0.19.2" }
+  }
+}`
+
+func TestListNpmLockfile(t *testing.T) {
+	expected := map[api.PkgName]api.PkgVersion{
+		"@codemirror/state": "6.4.1",
+		"express":           "4.22.2",
+		"ms":                "2.0.0",
+		"send":              "0.19.2",
+	}
+
+	for _, tc := range []struct {
+		scenario string
+		contents string
+	}{
+		{"lockfile version 3", npmLockfileV3},
+		{"lockfile version 2", npmLockfileV2},
+	} {
+		t.Run(tc.scenario, func(t *testing.T) {
+			require.Equal(t, expected, listNpmLockfileWithContents([]byte(tc.contents)))
+		})
 	}
 }
