@@ -483,6 +483,16 @@ var NodejsYarnBackend = api.LanguageBackend{
 	InstallDotReplitSystemDependencies: nix.DefaultInstallDotReplitSystemDependencies,
 }
 
+// pnpmInstallCmd returns the pnpm install command line.
+//
+// UPM runs pnpm with no stdin, so pnpm can never answer its "remove
+// node_modules?" prompt and instead aborts with
+// ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY. Answer it up front; this is the
+// same answer pnpm assumes in CI and only affects that prompt.
+func pnpmInstallCmd() []string {
+	return []string{"pnpm", "install", "--config.confirm-modules-purge=false"}
+}
+
 // NodejsPNPMBackend is a UPM backend for Node.js that uses [pnpm](https://pnpm.io/).
 var NodejsPNPMBackend = api.LanguageBackend{
 	Name:        "nodejs-pnpm",
@@ -539,13 +549,13 @@ var NodejsPNPMBackend = api.LanguageBackend{
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm install")
 		defer span.Finish()
-		util.RunCmd([]string{"pnpm", "install"})
+		util.RunCmd(pnpmInstallCmd())
 	},
 	Install: func(ctx context.Context) {
 		//nolint:ineffassign,wastedassign,staticcheck
 		span, ctx := tracer.StartSpanFromContext(ctx, "pnpm install")
 		defer span.Finish()
-		util.RunCmd([]string{"pnpm", "install"})
+		util.RunCmd(pnpmInstallCmd())
 	},
 	ListSpecfile: nodejsListSpecfile,
 	ListLockfile: func() map[api.PkgName]api.PkgVersion {
