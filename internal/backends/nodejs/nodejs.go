@@ -366,7 +366,10 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
 	// const mod = import("module-name")
 	// const mod = require("module-name")
-	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+	// const mod = import(`module-name`)
+	// const mod = require(`module-name`)
+	// \x60 is a backtick, which cannot appear in a raw string literal.
+	`(?m)(?:require|import)\s*\(\s*['"\x60]([^'"\x60{}]+)['"\x60]\s*\)`,
 })
 
 var nodeIgnorePathSegments = map[string]bool{
