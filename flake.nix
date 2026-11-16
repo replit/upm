@@ -40,5 +40,8 @@
         default = self.packages.${system}.devShell;
       });
       formatter = eachSystem (system: self.packages.${system}.fmt);
+      checks.x86_64-linux.lint = import ./nix/lint {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      };
     };
 }
