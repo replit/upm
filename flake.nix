@@ -43,5 +43,9 @@
       checks.x86_64-linux.lint = import ./nix/lint {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
       };
+      checks.x86_64-linux.test-suite = import ./nix/test-suite-check.nix {
+        inherit nixpkgs nix-editor;
+        system = "x86_64-linux";
+      };
     };
 }
