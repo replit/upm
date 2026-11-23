@@ -18,6 +18,7 @@ rec {
     name = "upm-test-suite";
     runtimeInputs = [
       upm
+      pkgs.bash
       pkgs.gotestsum
       pkgs.git
       pkgs.coreutils
@@ -29,6 +30,8 @@ rec {
       python -m venv "$venv"
       export VIRTUAL_ENV="$venv"
       export PATH="$VIRTUAL_ENV/bin:$PATH"
+      export npm_config_script_shell="${pkgs.bash}/bin/sh"
+      export UV_PYTHON="${pkgs.python311}/bin/python3.11"
       gotestsum --junitfile junit.xml -- -count=1 ./test-suite
     '';
   };
