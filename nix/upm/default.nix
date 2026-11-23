@@ -14,7 +14,6 @@ buildGoModule rec {
       path: _:
       builtins.all (block: (builtins.baseNameOf path) != block) [
         ".github"
-        ".semaphore"
         "packaging"
         "scripts"
         "test-suite"
