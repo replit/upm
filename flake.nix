@@ -43,6 +43,15 @@
         default = self.packages.${system}.devShell;
       });
       formatter = eachSystem (system: self.packages.${system}.fmt);
+      checks.x86_64-linux.upm-drvgo-smoke =
+        let upm = self.packages.x86_64-linux.upm-drvgo; in
+        nixpkgs.legacyPackages.x86_64-linux.runCommand "upm-drvgo-smoke" { } ''
+          test "$(${upm}/bin/upm --version)" = "upm ${rev}"
+          test -s ${upm}/pypi_map.sqlite
+          echo 'import requests' > main.py
+          test "$(${upm}/bin/upm --lang python3-pip guess --all)" = requests
+          touch "$out"
+        '';
       checks.x86_64-linux.lint = import ./nix/lint {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
       };
