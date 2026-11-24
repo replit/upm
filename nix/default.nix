@@ -37,5 +37,5 @@ rec {
     '';
   };
 } // pkgs.lib.optionalAttrs (builtins.hasAttr system drvgo.packages) {
-  upm-drvgo = pkgs.callPackage ./upm/drvgo.nix { inherit drvgo rev system; };
+  upm-drvgo = pkgs.callPackage ./upm/drvgo.nix { inherit drvgo rev system; inherit (self.packages.${system}.upm) goModules; };
 }

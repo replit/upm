@@ -1,10 +1,15 @@
-{ drvgo, rev, system, runCommand, makeWrapper }:
+{ drvgo, rev, system, goModules, runCommand, makeWrapper }:
 let
   src = drvgo.lib.projectSource {
     root = ../..;
     files = [ ../../go.mod ../../go.sum ../../cmd ../../internal ../../resources ];
   };
-  build = args: drvgo.lib.mkPackage ({ inherit system src; cgoEnabled = true; } // args);
+  build = args: drvgo.lib.mkPackage ({
+    inherit system src;
+    cgoEnabled = true;
+    moduleProxy = "file://${goModules}";
+    prepareModules = true;
+  } // args);
   command = build {
     name = "upm";
     package = "./cmd/upm";
