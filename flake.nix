@@ -1,6 +1,7 @@
 {
   description = "Universal Package Manager";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.drvgo.url = "github:drvlang/drvgo";
   # nix-editor is a dev dependency in this project. At Replit, we use
   # nix-editor directly too, so nix-editor is already in the
   # environment.
@@ -12,6 +13,7 @@
       self,
       nixpkgs,
       nix-editor,
+      drvgo,
     }:
     let
       systems = [
@@ -33,6 +35,7 @@
             rev
             system
             nix-editor
+            drvgo
             ;
         }
       );

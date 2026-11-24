@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nix-editor,
+  drvgo,
   rev,
   self,
   system,
@@ -35,4 +36,6 @@ rec {
       gotestsum --junitfile junit.xml -- -count=1 ./test-suite
     '';
   };
+} // pkgs.lib.optionalAttrs (builtins.hasAttr system drvgo.packages) {
+  upm-drvgo = pkgs.callPackage ./upm/drvgo.nix { inherit drvgo rev system; };
 }
