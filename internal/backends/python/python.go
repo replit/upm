@@ -183,11 +183,17 @@ func normalizePackageArgs(args []string) map[api.PkgName]api.PkgCoordinates {
 				}
 			}
 		}
-		pkgs[normalizePackageName(name)] = api.PkgCoordinates{
-			Name:  rawName,
-			Spec:  spec,
-			Extra: extra,
+		coords := api.PkgCoordinates{
+			Name: rawName,
+			Spec: spec,
 		}
+		// Only set Extra when the argument actually carried extras. Callers
+		// use a nil Extra to mean "nothing beyond name and spec was asked
+		// for"; an empty string is not nil and defeats that check.
+		if extra != "" {
+			coords.Extra = extra
+		}
+		pkgs[normalizePackageName(name)] = coords
 	}
 	return pkgs
 }
