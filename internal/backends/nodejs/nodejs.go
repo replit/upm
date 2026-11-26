@@ -366,7 +366,8 @@ var nodejsGuessRegexps = util.Regexps([]string{
 	`(?m)import\s*['"]([^'"]+)['"]\s*;?\s*$`,
 	// const mod = import("module-name")
 	// const mod = require("module-name")
-	`(?m)(?:require|import)\s*\(\s*['"]([^'"{}]+)['"]\s*\)`,
+	// const mod = require(`module-name`)
+	"(?m)(?:require|import)\\s*\\(\\s*['\"`]([^'\"`{}]+)['\"`]\\s*\\)",
 })
 
 var nodeIgnorePathSegments = map[string]bool{

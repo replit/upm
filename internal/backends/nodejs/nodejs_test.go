@@ -127,7 +127,9 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				require("node-fetch");
 			}
 		`,
-			expected: map[string]bool{},
+			expected: map[string]bool{
+				"node-fetch": true,
+			},
 		},
 		{
 			scenario: "dynamic import",
@@ -152,7 +154,9 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 				import("node-fetch");
 			}
 		`,
-			expected: map[string]bool{},
+			expected: map[string]bool{
+				"node-fetch": true,
+			},
 		},
 	}
 
@@ -170,12 +174,28 @@ func TestNodejsYarnBackend_Guess(t *testing.T) {
 	}
 }
 
-func verify(t *testing.T, tc TestCase, extension string) {
-	dir, err := os.MkdirTemp(".", "temp")
-	if err != nil {
-		t.Error(err)
+func TestNodejsGuessRegexpsMatchBacktickImports(t *testing.T) {
+	content := "const request = require(`request`);\nconst fetch = import(`node-fetch`);\n"
+	expected := map[string]bool{
+		"request":    true,
+		"node-fetch": true,
 	}
-	defer os.RemoveAll(dir)
+
+	for _, re := range nodejsGuessRegexps {
+		for _, match := range re.FindAllStringSubmatch(content, -1) {
+			for _, part := range match[1:] {
+				delete(expected, part)
+			}
+		}
+	}
+
+	if len(expected) > 0 {
+		t.Errorf("Missing imports: %v", expected)
+	}
+}
+
+func verify(t *testing.T, tc TestCase, extension string) {
+	dir := t.TempDir()
 
 	file, err := os.CreateTemp(dir, "*."+extension)
 	if err != nil {
@@ -186,6 +206,22 @@ func verify(t *testing.T, tc TestCase, extension string) {
 	if err != nil {
 		t.Error(err)
 	}
+	if err := file.Close(); err != nil {
+		t.Error(err)
+	}
+
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chdir(dir); err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		if err := os.Chdir(cwd); err != nil {
+			t.Fatal(err)
+		}
+	}()
 
 	result, ok := tc.backend.Guess(context.Background())
 	if !ok {
